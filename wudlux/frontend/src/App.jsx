@@ -8,7 +8,7 @@ import Slider from './Components/Header/Header'
 import Categories from './Components/categories/categories'
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
 
   return (
     <>

@@ -44,6 +44,8 @@
 .arrow {
   font-size: 12px;
   margin-left: 5px;
+  margin-top: 15px;
+  
 }
 
 /* Right section */
@@ -70,7 +72,7 @@
 .navbar-icons {
   display: flex;
   align-items: center;
-  gap: 10px; /* Reduce spacing between icons */
+  gap: 13px; /* Reduce spacing between icons */
 }
 
 .icon {
@@ -82,7 +84,8 @@
 .divider {
   width: 1px;
   height: 20px;
-  background-color: #000;
+  background-color : #000;
+
 }
 
 .icon-cart {
