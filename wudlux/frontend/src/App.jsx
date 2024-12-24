@@ -6,6 +6,7 @@ import Navbar from './Components/Navbar/Navbar'
 import Header from './Components/Header/Header'
 import Slider from './Components/Header/Header'
 import Categories from './Components/categories/categories'
+import Offers from './Components/offers/offers'
 
 function App() {
  
@@ -16,6 +17,7 @@ function App() {
       {/* <Slider /> */}
       <Header />
       <Categories />
+      <Offers />
       <Services />
       <Footer />
       {/* <Slider />  */}
