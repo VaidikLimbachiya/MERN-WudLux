@@ -1,9 +1,9 @@
 import React from 'react';
 import './Navbar.css';
-import logo from '../../assets/logo.png';
-import searchIcon from '../../assets/Vector.png';
-import profileIcon from '../../assets/profile.png';
-import cartIcon from '../../assets/bag.png';
+import logo from '../../assets/logo.png'; // Adjust the path to your logo
+import searchIcon from '../../assets/vector.png'; // Path to search icon
+import profileIcon from '../../assets/profile.png'; // Path to profile icon
+import cartIcon from '../../assets/bag.png'; // Path to cart icon
 
 const Navbar = () => {
   return (
@@ -12,17 +12,17 @@ const Navbar = () => {
         <img src={logo} alt="Logo" />
       </div>
       <ul className="navbar-links">
-        <li>
-          <a href="#serveware">Serveware</a>
+        <li className="nav-item">
+          <a href="#serveware" className="nav-link">Serveware <span className="arrow">&#9662;</span></a>
         </li>
-        <li>
-          <a href="#kitchenware">Kitchenware</a>
+        <li className="nav-item">
+          <a href="#kitchenware" className="nav-link">Kitchenware <span className="arrow">&#9662;</span></a>
         </li>
-        <li>
-          <a href="#tableware">Tableware</a>
+        <li className="nav-item">
+          <a href="#tableware" className="nav-link">Tableware <span className="arrow">&#9662;</span></a>
         </li>
-        <li>
-          <a href="#collections">Collections</a>
+        <li className="nav-item">
+          <a href="#collections" className="nav-link">Collections <span className="arrow">&#9662;</span></a>
         </li>
       </ul>
       <div className="navbar-right">
@@ -30,10 +30,12 @@ const Navbar = () => {
         <a href="#shop" className="navbar-shop">Shop Now</a>
         <div className="navbar-icons">
           <img src={searchIcon} alt="Search" className="icon" />
+          <span className="divider"></span>
           <img src={profileIcon} alt="Profile" className="icon" />
+          <span className="divider"></span>
           <div className="icon-cart">
             <img src={cartIcon} alt="Cart" className="icon" />
-            <span className="cart-badge"></span>
+            <span className="cart-badge">8</span>
           </div>
         </div>
       </div>

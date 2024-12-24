@@ -1,18 +1,24 @@
 /* Navbar container */
 .navbar {
+  font-family: 'Arial', sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
+  padding: 10px 50px;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
-  font-family: Arial, sans-serif;
+  font-weight: 500;
+  color: #000;
 }
 
 /* Logo styles */
+.navbar-logo {
+  margin-right: 15px;
+}
+
 .navbar-logo img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
 }
 
@@ -20,21 +26,32 @@
 .navbar-links {
   display: flex;
   list-style: none;
-  gap: 25px;
+  gap: 15px; /* Reduce spacing between navigation links */
+  margin-right: 100px; /* Reduce space between links and right section */
 }
 
-.navbar-links li a {
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
   text-decoration: none;
   color: #000;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: bold;
+}
+
+.arrow {
+  font-size: 12px;
+  margin-left: 5px;
 }
 
 /* Right section */
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px; /* Reduce spacing between right section elements */
+  margin-left: 100px; /* Remove unnecessary space between links and right section */
 }
 
 .navbar-sale {
@@ -53,12 +70,19 @@
 .navbar-icons {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px; /* Reduce spacing between icons */
 }
 
 .icon {
   width: 20px;
   height: 20px;
+  object-fit: contain;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  background-color: #000;
 }
 
 .icon-cart {
@@ -68,7 +92,8 @@
 .cart-badge {
   position: absolute;
   top: -5px;
-  right: -5px;
+  right: -10px;
+  background-color: red;
   color: white;
   font-size: 12px;
   font-weight: bold;

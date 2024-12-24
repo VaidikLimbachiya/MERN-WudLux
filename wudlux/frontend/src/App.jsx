@@ -5,6 +5,7 @@ import Services from './Components/Services/service'
 import Navbar from './Components/Navbar/Navbar'
 import Header from './Components/Header/Header'
 import Slider from './Components/Header/Header'
+import Categories from './Components/categories/categories'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,10 +13,11 @@ function App() {
   return (
     <>
       <Navbar />
+      <Categories />
       {/* <Slider /> */}
-      {/* <Header /> */}
-      {/* <Services /> */}
-      {/* <Footer /> */}
+      <Header />
+      <Services />
+      <Footer />
     </>
   )
 }
