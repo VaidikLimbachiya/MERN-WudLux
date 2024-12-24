@@ -1,32 +1,26 @@
-import React from "react";
-import "./Header.css";
+import React from 'react';
+import './Header.css';
+import backgroundImage from '../../assets/header.png'; // Replace with your actual image path
 
-const Slider = () => {
+const Banner = () => {
   return (
-    <div className="slider">
-      <div className="slider-content">
-        <div className="slider-text">
-          <p className="sale-offer">
+    <div
+      className="banner"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
+      <div className="banner-content">
+      <p className="sale-offer">
             <hr className="line-offer"/>
             <span>Sale offer</span> 10% off this week
             <hr className="line-offer"/>
           </p>
-          <h1 className="slider-heading">
-            Wooden <br /> Kitchenware
-          </h1>
-          <button className="shop-now">
-            Shop Now <span>→</span>
-          </button>
-        </div>
-        <div className="slider-image">
-          <img
-            src="E:\Test\wudlux\src\Components\Header\header.png" // Replace with actual image path
-            alt="Wooden Kitchenware"
-          />
-        </div>
+        <h1 className="banner-title">
+          <span>Wooden</span> <br /> Kitchenware
+        </h1>
+        <button className="banner-button">Shop Now →</button>
       </div>
     </div>
   );
 };
 
-export default Slider;
+export default Banner;

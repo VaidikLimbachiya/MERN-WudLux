@@ -1,77 +1,73 @@
-/* Slider Component Styles */
-.slider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8f1e8;
-    height: 400px; /* Adjust based on your layout */
-    padding: 20px;
-  }
-  
-  .slider-content {
-    display: flex;
-    max-width: 1200px;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .slider-text {
-    max-width: 500px;
-  }
-  
-  .sale-offer {
-    font-size: 1rem;
-    color: #8d6e4d;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  
-  .sale-offer span {
-    color: black;
-    font-weight: bold;
-  }
-  
-  .slider-heading {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    line-height: 1.2;
-  }
-  
-  .shop-now {
-    background: none;
-    border: 1px solid black;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 20px;
-  }
-  
-  .shop-now:hover {
-    background: black;
-    color: white;
-  }
-  
-  .shop-now span {
-    font-weight: bold;
-  }
-  
-  .slider-image img {
-    width: 500px; /* Adjust image size */
-    border-radius: 10px;
-  }
-  
-  
-  .line-offer {
-    margin: 10px;
-    width: 72%;
-    border-bottom: 1px solid #000000;
+/* Banner container */
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-size: cover;
+  background-position: center;
+  height: 500px; /* Adjust as needed */
+  padding: 0 40px;
+  color: #000;
+}
 
-    }
+/* Content inside the banner */
+.banner-content {
+  max-width: 50%;
+}
 
-    span{
-      padding-left: 10px;
-    }
+/* Offer text styling */
+.banner-offer {
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.banner-offer span {
+  color: #d26a5c; /* Highlighted color for "10% off" */
+  font-weight: bold;
+}
+
+/* Title styling */
+.banner-title {
+  font-size: 40px;
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.banner-title span {
+  font-style: italic;
+}
+
+/* Button styling */
+.banner-button {
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  color: #000;
+  border: 2px solid #000;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.line-offer {
+  margin: 10px;
+  width: 72%;
+  border-bottom: 1px solid #000000;
+
+  }
+
+  span{
+    padding-left: 10px;
+  }
+
+.banner-button:hover {
+  background: #000;
+  color: #fff;
+}
