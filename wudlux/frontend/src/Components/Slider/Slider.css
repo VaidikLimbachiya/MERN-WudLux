@@ -1,0 +1,68 @@
+/* General Slider Styles */
+.slider {
+    background-color: #f8f1e8;
+    height: 400px; /* Adjust height based on design */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-container {
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .slider-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .slider-text {
+    max-width: 500px;
+  }
+  
+  .sale-offer {
+    font-size: 1rem;
+    color: #8d6e4d;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .sale-offer span {
+    color: black;
+    font-weight: bold;
+  }
+  
+  .slider-heading {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  
+  .shop-now {
+    background: none;
+    border: 1px solid black;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .shop-now:hover {
+    background: black;
+    color: white;
+  }
+  
+  .shop-now span {
+    font-weight: bold;
+  }
+  
+  .slider-image img {
+    width: 500px;
+    border-radius: 10px;
+  }
+  
