@@ -1,4 +1,4 @@
-/* Container styling */
+/* Offers container */
 .offers {
     margin: 50px auto;
     padding: 20px;
@@ -9,60 +9,71 @@
     display: flex;
     justify-content: center;
     gap: 20px; /* Space between cards */
+    flex-wrap: wrap; /* Ensure responsiveness */
   }
   
   /* Offer card styling */
   .offer-card {
     position: relative;
-    width: 300px;
-    height: 400px;
+    width: 300px; /* Adjust card width */
+    height: 400px; /* Adjust card height */
+    border-radius: 10px; /* Rounded corners */
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
   }
   
   /* Image styling */
   .offer-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
+    object-fit: cover; /* Ensure image covers the card without distortion */
+    border-radius: 10px; /* Keep corners rounded */
   }
   
-  /* Text overlay styling */
+  /* Overlay text styling */
   .offer-overlay {
     position: absolute;
-    top: 20%;
+    top: 10%;
     left: 20px;
+    z-index: 2; /* Ensure text appears above the image */
     color: #000;
-    font-family: 'Arial', sans-serif;
     text-align: left;
+    background: none; /* No background for overlay to preserve image effect */
   }
   
+  /* Title styling */
   .offer-title {
     font-size: 14px;
-    font-family: 'Arial', sans-serif;
-    font-weight: normal;
-    color: #666;
+    font-family: 'Lato', sans-serif; /* Clean, modern sans-serif font */
+    font-weight: 400;
+    color: #666; /* Subtle gray color */
     margin-bottom: 5px;
   }
   
+  /* Subtitle styling */
   .offer-subtitle {
-    font-size: 20px;
-    font-family: 'Georgia', serif; /* Elegant font for subtitle */
+    font-size: 22px;
+    font-family: 'Merriweather', serif; /* Elegant serif font */
     font-weight: bold;
-    color: #000;
+    color: #000; /* Black text */
     margin-bottom: 15px;
     line-height: 1.5;
   }
   
+  /* Button styling */
   .offer-button {
     font-size: 14px;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Lato', sans-serif; /* Consistent sans-serif font */
     font-weight: bold;
-    color: #000;
-    text-decoration: none;
-    border-bottom: 2px solid #000;
+    color: #000; /* Black text for the button */
+    text-decoration: none; /* Remove underline */
+    border-bottom: 2px solid #000; /* Add underline as a border */
     padding-bottom: 2px;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease; /* Smooth hover effect */
+  }
+  
+  .offer-button:hover {
+    color: #555; /* Darker gray on hover */
+    border-bottom-color: #555; /* Border color changes on hover */
   }
   
