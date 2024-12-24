@@ -1,40 +1,44 @@
-import React from "react";
-import "./Navbar.css"; 
+import React from 'react';
+import './Navbar.css';
+import logo from '../../assets/logo.png';
+import searchIcon from '../../assets/Vector.png';
+import profileIcon from '../../assets/profile.png';
+import cartIcon from '../../assets/bag.png';
 
-const Navigation = () => {
+const Navbar = () => {
   return (
-    <nav className="navigation">
-      <div className="nav-logo">
-      <img src="logo.jpg" alt="" />
+    <nav className="navbar">
+      <div className="navbar-logo">
+        <img src={logo} alt="Logo" />
       </div>
-      <ul className="nav-links">
+      <ul className="navbar-links">
         <li>
-          <a href="#">Serveware</a>
+          <a href="#serveware">Serveware</a>
         </li>
         <li>
-          <a href="#">Kitchenware</a>
+          <a href="#kitchenware">Kitchenware</a>
         </li>
         <li>
-          <a href="#">Tableware</a>
+          <a href="#tableware">Tableware</a>
         </li>
         <li>
-          <a href="#">Collections</a>
+          <a href="#collections">Collections</a>
         </li>
       </ul>
-      <div className="nav-sale">
-        <span>
-          Summer sale – <strong>50% OFF!</strong> <a href="#">Shop Now</a>
-        </span>
-      </div>
-      <div className="nav-icons">
-        <span className="icon"><img src="/src/assets/Bag 1.png" alt="" /></span>
-        <span className="icon"><img src="profile1.png" alt="" /></span>
-        <div className="icon cart">
-          <span className="cart-badge"></span>
+      <div className="navbar-right">
+        <span className="navbar-sale">Summer sale – 50% OFF!</span>
+        <a href="#shop" className="navbar-shop">Shop Now</a>
+        <div className="navbar-icons">
+          <img src={searchIcon} alt="Search" className="icon" />
+          <img src={profileIcon} alt="Profile" className="icon" />
+          <div className="icon-cart">
+            <img src={cartIcon} alt="Cart" className="icon" />
+            <span className="cart-badge"></span>
+          </div>
         </div>
       </div>
     </nav>
   );
 };
 
-export default Navigation;
+export default Navbar;
