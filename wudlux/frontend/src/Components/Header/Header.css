@@ -7,7 +7,17 @@
     height: 400px; /* Adjust based on your layout */
     padding: 20px;
   }
-  
+  .banner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-size: cover;
+    background-position: center;
+    height: 500px; /* Adjust as needed */
+    padding: 0 40px;
+    color: #000;
+  }
+
   .slider-content {
     display: flex;
     max-width: 1200px;
