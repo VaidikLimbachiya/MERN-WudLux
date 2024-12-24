@@ -64,3 +64,14 @@
     border-radius: 10px;
   }
   
+  
+  .line-offer {
+    margin: 10px;
+    width: 72%;
+    border-bottom: 1px solid #000000;
+
+    }
+
+    span{
+      padding-left: 10px;
+    }

@@ -7,7 +7,9 @@ const Slider = () => {
       <div className="slider-content">
         <div className="slider-text">
           <p className="sale-offer">
+            <hr className="line-offer"/>
             <span>Sale offer</span> 10% off this week
+            <hr className="line-offer"/>
           </p>
           <h1 className="slider-heading">
             Wooden <br /> Kitchenware
