@@ -22,13 +22,13 @@ const Banner = () => {
           </button>
         </div>
         <div className="slider-image">
-          <img
-            src="E:\Test\wudlux\src\Components\Header\header.png" // Replace with actual image path
-            alt="Wooden Kitchenware"
-          />
+          {/* <img
+            // src="E:\Test\wudlux\src\Components\Header\header.png" // Replace with actual image path
+            // alt="Wooden Kitchenware"
+          /> */}
         </div>
       </div>
-    </div>
+  
   );
 };
 
