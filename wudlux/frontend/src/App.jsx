@@ -7,6 +7,7 @@ import Header from './Components/Header/Header'
 import Slider from './Components/Header/Header'
 import Categories from './Components/categories/categories'
 import Offers from './Components/offers/offers'
+import Products from './Components/Products/products'
 
 function App() {
  
@@ -18,6 +19,7 @@ function App() {
       <Header />
       <Categories />
       <Offers />
+      <Products />
       <Services />
       <Footer />
       {/* <Slider />  */}

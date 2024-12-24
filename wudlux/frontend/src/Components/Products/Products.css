@@ -1,0 +1,113 @@
+/* General layout */
+.products {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #fff; /* White background */
+    color: #000; /* Black text */
+  }
+  
+  .products-title {
+    font-size: 28px;
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .products-subtitle {
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: #666; /* Subtle gray for subtitle */
+    margin-bottom: 40px;
+  }
+  
+  /* Products grid container */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px; /* Space between cards */
+    justify-items: center; /* Center align items */
+  }
+  
+  /* Product card */
+  .product-card {
+    position: relative;
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Discount badge */
+  .product-discount {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 8px;
+    border-radius: 5px;
+  }
+  
+  /* Product information */
+  .product-info {
+    padding: 15px;
+  }
+  
+  .product-title {
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  
+  .product-prices {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .current-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .original-price {
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: line-through;
+    color: #999;
+  }
+  
+  /* View all button */
+  .view-all-button {
+    margin-top: 40px;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    color: #fff;
+    background: #000; /* Black button background */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .view-all-button:hover {
+    background-color: #333; /* Slightly lighter black on hover */
+  }
+  
