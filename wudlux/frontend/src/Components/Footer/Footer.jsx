@@ -1,4 +1,6 @@
-import React from "react";
+import { FaFacebookF } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { BiLogoInstagramAlt } from "react-icons/bi";
 import "./Footer.css"; // Create this file to style the footer
 
 const Footer = () => {
@@ -11,11 +13,11 @@ const Footer = () => {
           <p>Get E-mail updates about our latest shop and special offers.</p>
           <div className="newsletter-input">
             <input type="email" placeholder="Email Address" />
-            <button>Subscribe →</button>
+            <button>Subscribe <FaArrowRightLong /></button>
           </div>
           <div className="social-icons">
-            <a href="#facebook" className="social-icon">F</a>
-            <a href="#instagram" className="social-icon">I</a>
+            <a href="#facebook" className="social-icon"><FaFacebookF /></a>
+            <a href="#instagram" className="social-icon"><BiLogoInstagramAlt /></a>
           </div>
         </div>
 
