@@ -1,6 +1,6 @@
 .footer {
     background-color: #f7f5f4;
-    padding: 40px 20px;
+    padding: 49px 20px;
     color: #333;
     font-family: Arial, sans-serif;
   }
@@ -101,9 +101,9 @@
   
   .footer-bottom {
     text-align: center;
-    margin-top: 20px;
-    border-top: 1px solid #ddd;
-    padding-top: 10px;
+    margin-top: 20px;;
+    border-top: 1px solid #000;
+    padding-top: 20px;
     font-size: 14px;
     color: #666;
-  }
+ }

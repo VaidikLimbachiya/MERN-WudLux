@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import './Offers.css';
 import tablewareImage from '../../assets/offer1.png'; // Replace with actual image paths
 import saleImage from '../../assets/offer2.png';

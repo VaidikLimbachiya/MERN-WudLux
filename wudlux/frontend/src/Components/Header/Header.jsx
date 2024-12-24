@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "./Header.css";
 
 const Slider = () => {
@@ -20,7 +20,7 @@ const Slider = () => {
         </div>
         <div className="slider-image">
           <img
-            src="E:\Test\wudlux\src\Components\Header\header.png" // Replace with actual image path
+            src="header.png" // Replace with actual image path
             alt="Wooden Kitchenware"
           />
         </div>
