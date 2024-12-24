@@ -1,25 +1,29 @@
 import React from "react";
+import { BiSupport } from "react-icons/bi";
+import { FaShippingFast } from "react-icons/fa";
+import { FaPiggyBank } from "react-icons/fa6";
+import { TbRosetteDiscountCheck } from "react-icons/tb";
 import "./service.css"; // CSS file for styling
 
 const Services = () => {
   const services = [
     {
-      icon: "", // Replace this with an image or an icon component if necessary
+      icon: <FaShippingFast />, // Replace this with an image or an icon component if necessary
       title: "Free Shipping",
       description: "Free Shipping all orders",
     },
     {
-      icon: "", // Replace with an icon
+      icon: <BiSupport />, // Replace with an icon
       title: "Support 24/7",
       description: "Support 24 hours a day",
     },
     {
-      icon: "", // Replace with an icon
+      icon: <FaPiggyBank />, // Replace with an icon
       title: "Money Return",
       description: "7 days for free return",
     },
     {
-      icon: "", // Replace with an icon
+      icon: <TbRosetteDiscountCheck />, // Replace with an icon
       title: "Order Discount",
       description: "On every order over ₹299",
     },

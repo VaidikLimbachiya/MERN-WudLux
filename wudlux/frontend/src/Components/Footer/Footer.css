@@ -8,12 +8,13 @@
   .footer-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    width: 100%;
   }
   
   .footer-section {
-    flex: 1 1 20%;
+    flex:10%;
     margin: 10px;
+    
   }
   
   .footer-section h3,
@@ -50,21 +51,23 @@
   .newsletter-input {
     display: flex;
     margin-top: 10px;
+  
   }
   
   .newsletter-input input {
     padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
+    border-radius: 50px;
     flex: 1;
   }
   
   .newsletter-input button {
-    padding: 8px 12px;
+    padding: 8px 1px;
+    width: 10rem;
     background-color: #6b4b3e;
     color: #fff;
     border: none;
-    border-radius: 0 4px 4px 0;
+    border-radius: 50px;
     cursor: pointer;
   }
   
@@ -74,6 +77,8 @@
   
   .social-icons {
     margin-top: 10px;
+    font-size: large;
+    align-items: center;
   }
   
   .social-icon {
@@ -81,15 +86,15 @@
     width: 30px;
     height: 30px;
     margin-right: 10px;
-    background-color: #6b4b3e;
-    color: #fff;
+    background-color: #D8C4B6;
+    color: #000;
     text-align: center;
     line-height: 30px;
     border-radius: 50%;
     text-decoration: none;
     font-size: 14px;
   }
-  
+
   .social-icon:hover {
     background-color: #553b2f;
   }

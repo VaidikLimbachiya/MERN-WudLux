@@ -13,11 +13,12 @@ function App() {
   return (
     <>
       <Navbar />
-      <Categories />
       {/* <Slider /> */}
       <Header />
+      <Categories />
       <Services />
       <Footer />
+      {/* <Slider />  */}
     </>
   )
 }
