@@ -26,17 +26,17 @@
   /* Grid Layout */
   .hot-products-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 2fr 1fr;
     grid-template-rows: repeat(2, 1fr);
     gap: 20px;
     justify-content: center;
-    align-items: center;
+    align-items: start;
   }
   
   .hot-product {
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 10px;
   }
   
   .hot-product img {
@@ -53,26 +53,26 @@
   
   /* Large Product Styling */
   .hot-product.large {
-    grid-column: span 2;
-    grid-row: span 2;
+    grid-column: span 3;
+    grid-row: span 3;
   }
   
   /* Small Product Styling */
   .hot-product.small {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1/1;
   }
   
   /* Responsive Design */
   @media (max-width: 991px) {
     .hot-products-grid {
       grid-template-columns: 1fr;
-      grid-template-rows: auto;
+      grid-template-rows:auto;
       gap: 15px;
     }
   
     .hot-product.large {
-      grid-column: span 1;
-      grid-row: span 1;
+      grid-column: span 3;
+      grid-row: span 3;
     }
   }
   

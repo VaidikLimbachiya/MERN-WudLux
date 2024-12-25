@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "./HotProducts.css";
 
 // Import images from the assets folder
