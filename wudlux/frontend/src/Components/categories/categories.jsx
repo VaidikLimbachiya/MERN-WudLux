@@ -28,17 +28,20 @@ const Categories = () => {
       <div className="categoriesGrid">
         {categories.map((category, index) => (
           <div className="categoryCard" key={index}>
-            <img
-              loading="lazy"
-              src={category.image}
-              alt={`${category.title}` }
-              className="categoryImage"
-            />
+            <div className="categoryHoverEffect">
+              <img
+                loading="lazy"
+                src={category.image}
+                alt={`${category.title} category`}
+                className="categoryImage"
+              />
+              <div className="hoverOverlay">
+                <span>+</span>
+              </div>
+            </div>
             <div className="categoryTitle">{category.title}</div>
           </div>
-          
         ))}
-        
       </div>
     </div>
   );
