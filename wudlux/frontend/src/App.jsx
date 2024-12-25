@@ -1,15 +1,14 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import './App.css'
 import Footer from './Components/Footer/Footer'
 import Services from './Components/Services/service'
 import Navbar from './Components/Navbar/Navbar'
 import Header from './Components/Header/Header'
-import Slider from './Components/Header/Header'
 import Categories from './Components/categories/categories'
 import Offers from './Components/offers/offers'
 import Products from './Components/Products/products'
-// import HotProducts from './Components/HotProducts/Hotproducts'
-
+import Testimonials from './Components/Rating/testimonials'
+import YouTube from './Components/YouTubeSection/YouTube'
 function App() {
  
 
@@ -20,8 +19,12 @@ function App() {
       <Categories />
       <Offers />
       <Products />
-      <Services />
+      
       {/* <HotProducts /> */}
+      <Services />
+      <YouTube />
+      <Testimonials />
+
       <Footer />
     </>
   )
