@@ -8,6 +8,7 @@ import Slider from './Components/Header/Header'
 import Categories from './Components/categories/categories'
 import Offers from './Components/offers/offers'
 import Products from './Components/Products/products'
+import HotProducts from './Components/HotProducts/Hotproducts'
 
 function App() {
  
@@ -20,15 +21,8 @@ function App() {
       <Offers />
       <Products />
       <Services />
+      <HotProducts />
       <Footer />
-      {/* <Slider /> */}
-      {/* <Header />
-      <Categories />
-      <Offers />
-      <Products />
-      <Services />
-      <Footer /> */}
-      {/* <Slider />  */}
     </>
   )
 }

@@ -1,19 +1,11 @@
 /* Container Styles */
 .categoriesContainer {
   text-align: center;
-<<<<<<< HEAD
   padding: 20px;
 }
 
 .categoriesHeader {
   font-family: 'DM Sans', sans-serif;
-=======
-  padding: 50px;
-}
-
-.categoriesHeader {
-  font-family: sans-serif;
->>>>>>> 8558d7afe130dc886a36e0a13547adef1aa1f966
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -35,18 +27,54 @@
   align-items: center;
   justify-content: center;
   width: 202px; /* Fixed width for consistent sizing */
-<<<<<<< HEAD
   padding-bottom: 27px;
-=======
-  padding-bottom: 10px;
->>>>>>> 8558d7afe130dc886a36e0a13547adef1aa1f966
+  position: relative;
+  cursor: pointer;
+}
+
+.categoryHoverEffect {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .categoryImage {
-  width: 100%; /* Fully utilize the card's width */
-  aspect-ratio: 1; /* Maintain square aspect ratio */
-  object-fit: contain; /* Ensure the image fits without cropping */
-  border-radius: 50%; /* Circular image */
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  z-index: 1; /* Ensure the image is above the overlay */
+  transition: transform 0.3s ease;
+}
+
+.categoryHoverEffect:hover .categoryImage {
+  transform: scale(1.1); /* Scale the image slightly */
+}
+
+.hoverOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0;
+  z-index: 2; /* Overlay sits above the image */
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.categoryHoverEffect:hover .hoverOverlay {
+  opacity: 0.8; /* Make the overlay visible on hover */
+}
+
+.hoverOverlay span {
+  font-size: 24px;
+  font-weight: bold;
+  color: white; /* White '+' symbol */
 }
 
 .categoryTitle {
@@ -57,15 +85,6 @@
   text-align: center;
   color: #000;
 }
-<<<<<<< HEAD
-=======
-.categories-subtitle {
-  font-size: 14px;
-  font-family: 'Arial', sans-serif;
-  color: #666;
-  margin-bottom: 40px;
-}
->>>>>>> 8558d7afe130dc886a36e0a13547adef1aa1f966
 
 /* Responsive Design */
 @media (max-width: 991px) {

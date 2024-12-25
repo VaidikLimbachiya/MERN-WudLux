@@ -1,45 +1,47 @@
-import React from 'react';
-import './hotProducts.css'; // Single CSS file
+import React from "react";
+import "./HotProducts.css";
 
-// Import your images from the assets folder
-import product1 from '../../assets/product1.png';
-import product2 from '../../assets/product2.png';
-import product3 from '../../assets/product3.png';
-import product4 from '../../assets/product4.png';
-import product5 from '../../assets/product5.png';
-import product6 from '../../assets/product6.png';
+// Import images from the assets folder
+import largeImage from "../../assets/hp1.png";
+import smallImage1 from "../../assets/hp2.png";
+import smallImage2 from "../../assets/hp3.png";
+import smallImage3 from "../../assets/hp4.png";
+import smallImage4 from "../../assets/hp5.png";
+import smallImage5 from "../../assets/hp6.png";
 
-const products = [
-  { image: product1, title: 'Product 1' },
-  { image: product2, title: 'Product 2' },
-  { image: product3, title: 'Product 3' },
-  { image: product4, title: 'Product 4' },
-  { image: product5, title: 'Product 5' },
-  { image: product6, title: 'Product 6' },
+const productImages = [
+  { src: largeImage, title: "Wooden Bowl", type: "large" },
+  { src: smallImage1, title: "Serving Tray", type: "small" },
+  { src: smallImage2, title: "Wooden Box", type: "small" },
+  { src: smallImage3, title: "Utensils", type: "small" },
+  { src: smallImage4, title: "Cutting Board", type: "small" },
+  { src: smallImage5, title: "Serving Plate", type: "small" },
 ];
 
 const HotProducts = () => {
   return (
-    <div className="hotProductsContainer">
-      <header className="hotProductsHeader">
-        <h2 className="hotProductsTitle">Hot Products</h2>
-        <p className="hotProductsDescription">
+    <section className="hot-products-section">
+      <header className="hot-products-header">
+        <h1 className="hot-products-title">Hot Products</h1>
+        <p className="hot-products-description">
           Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero est.
         </p>
       </header>
-      <div className="hotProductsGrid">
-        {products.map((product, index) => (
-          <div className="productCard" key={index}>
+      <div className="hot-products-grid">
+        {productImages.map((image, index) => (
+          <div
+            key={index}
+            className={`hot-product ${image.type === "large" ? "large" : "small"}`}
+          >
             <img
-              loading="lazy"
-              src={product.image}
-              alt={product.title}
-              className="productImage"
+              src={image.src}
+              alt={image.title}
+              className="hot-product-image"
             />
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

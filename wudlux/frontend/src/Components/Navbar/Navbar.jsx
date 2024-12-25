@@ -1,14 +1,9 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
-=======
-// import React, { useState } from 'react';
->>>>>>> 8558d7afe130dc886a36e0a13547adef1aa1f966
 import './Navbar.css'; // Import the CSS file
 import logo from '../../assets/logo.png'; // Adjust the path to your logo
 import searchIcon from '../../assets/vector.png'; // Path to search icon
 import profileIcon from '../../assets/profile.png'; // Path to profile icon
 import cartIcon from '../../assets/bag.png'; // Path to cart icon
-<<<<<<< HEAD
 
 const categories = [
   { text: 'Serveware', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/a1cfa473b4c3091f113c79eb7155d25fb5458b102ed1a68b6ce2308227f94925' },
@@ -24,24 +19,6 @@ export function Navbar() {
     setActiveCategory(activeCategory === index ? null : index);
   };
 
-=======
-import { useState } from 'react';
-
-const categories = [
-  { text: 'Serveware', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/a1cfa473b4c3091f113c79eb7155d25fb5458b102ed1a68b6ce2308227f94925' },
-  { text: 'Kitchenware', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/93802c32367c70d0f1cbcf887c7e26e1d4f770ebf8473953950cd1af3bf76896' },
-  { text: 'Tableware', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c9ea7504e7b254d854b06a79b48cf39d39e2ab6c6f3afb37338801a7c60027f8' },
-  { text: 'Collections', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/3a93a25a709f4fb428d7f57f554a75f6dae8c2c4a680b05c19026a7d150d8a2f' },
-];
-
-export function Navbar() {
-  const [activeCategory, setActiveCategory] = useState(null);
-
-  const handleCategoryClick = (index) => {
-    setActiveCategory(activeCategory === index ? null : index);
-  };
-
->>>>>>> 8558d7afe130dc886a36e0a13547adef1aa1f966
   return (
     <nav className="navigation" role="navigation">
       <div className="header">
@@ -138,10 +115,6 @@ export function Navbar() {
               className="cartImage"
               loading="lazy"
             />
-<<<<<<< HEAD
-=======
-              <span className="cartBadge">3</span>
->>>>>>> 8558d7afe130dc886a36e0a13547adef1aa1f966
           </div>
 
         </div>
