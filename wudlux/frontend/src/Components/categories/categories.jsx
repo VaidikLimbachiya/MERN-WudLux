@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import './Categories.css';
 import tray from '../../assets/tray.png'; // Replace with actual image paths
 import platter from '../../assets/platter.png';
