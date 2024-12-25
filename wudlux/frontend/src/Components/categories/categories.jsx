@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React from 'react';
+=======
+// import React from 'react';
+>>>>>>> 8558d7afe130dc886a36e0a13547adef1aa1f966
 import './categories.css'; // Single CSS file
 
 // Import images from the assets folder
@@ -22,18 +26,30 @@ const Categories = () => {
   return (
     <div className="categoriesContainer">
       <h1 className="categoriesHeader">Shop by Categories</h1>
+<<<<<<< HEAD
+=======
+      <p className="categories-subtitle">
+        Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero est.
+      </p>
+>>>>>>> 8558d7afe130dc886a36e0a13547adef1aa1f966
       <div className="categoriesGrid">
         {categories.map((category, index) => (
           <div className="categoryCard" key={index}>
             <img
               loading="lazy"
               src={category.image}
+<<<<<<< HEAD
               alt={`${category.title} category`}
+=======
+              alt={`${category.title}` }
+>>>>>>> 8558d7afe130dc886a36e0a13547adef1aa1f966
               className="categoryImage"
             />
             <div className="categoryTitle">{category.title}</div>
           </div>
+          
         ))}
+        
       </div>
     </div>
   );

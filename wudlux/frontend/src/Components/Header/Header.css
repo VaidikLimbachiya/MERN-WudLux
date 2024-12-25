@@ -18,17 +18,19 @@
     color: #000;
   }
 
-  .slider-content {
-    display: flex;
-    max-width: 1200px;
-    width: 100%;
+  .banner-content {
+    /* display: flex; */
+    width: 50 px;
+    /* width: 100%; */
     justify-content: space-between;
     align-items: center;
+    padding-left: 70px;
+
   }
   
-  .slider-text {
+  /* .slider-text {
     max-width: 500px;
-  }
+  } */
   
   .sale-offer {
     font-size: 1rem;

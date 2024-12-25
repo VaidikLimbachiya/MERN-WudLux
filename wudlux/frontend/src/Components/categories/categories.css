@@ -1,11 +1,19 @@
 /* Container Styles */
 .categoriesContainer {
   text-align: center;
+<<<<<<< HEAD
   padding: 20px;
 }
 
 .categoriesHeader {
   font-family: 'DM Sans', sans-serif;
+=======
+  padding: 50px;
+}
+
+.categoriesHeader {
+  font-family: sans-serif;
+>>>>>>> 8558d7afe130dc886a36e0a13547adef1aa1f966
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -27,7 +35,11 @@
   align-items: center;
   justify-content: center;
   width: 202px; /* Fixed width for consistent sizing */
+<<<<<<< HEAD
   padding-bottom: 27px;
+=======
+  padding-bottom: 10px;
+>>>>>>> 8558d7afe130dc886a36e0a13547adef1aa1f966
 }
 
 .categoryImage {
@@ -45,6 +57,15 @@
   text-align: center;
   color: #000;
 }
+<<<<<<< HEAD
+=======
+.categories-subtitle {
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  color: #666;
+  margin-bottom: 40px;
+}
+>>>>>>> 8558d7afe130dc886a36e0a13547adef1aa1f966
 
 /* Responsive Design */
 @media (max-width: 991px) {
