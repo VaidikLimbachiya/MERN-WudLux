@@ -1,21 +1,50 @@
-/* Container styles */
-.categories {
+/* Container Styles */
+.categoriesContainer {
   text-align: center;
-  margin: 50px auto;
-  padding: 20px;
-  width: max-content;
-  max-width: 1200px;
+  padding: 50px;
 }
 
-/* Title styles */
-.categories-title {
+.categoriesHeader {
+  font-family: sans-serif;
   font-size: 28px;
-  font-weight: bold;
-  font-family: 'Arial', sans-serif;
-  color: #000;
-  margin-bottom: 10px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
 }
 
+.categoriesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+/* Category Card Styles */
+.categoryCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 202px; /* Fixed width for consistent sizing */
+  padding-bottom: 10px;
+}
+
+.categoryImage {
+  width: 100%; /* Fully utilize the card's width */
+  aspect-ratio: 1; /* Maintain square aspect ratio */
+  object-fit: contain; /* Ensure the image fits without cropping */
+  border-radius: 50%; /* Circular image */
+}
+
+.categoryTitle {
+  margin-top: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 800; /* Bold title */
+  text-align: center;
+  color: #000;
+}
 .categories-subtitle {
   font-size: 14px;
   font-family: 'Arial', sans-serif;
@@ -23,43 +52,23 @@
   margin-bottom: 40px;
 }
 
-/* Category items container */
-.categories-container {
-  display: flex;
-  justify-content: center;
-  gap: 50px; /* Increased spacing between category items */
-  flex-wrap: wrap;
+/* Responsive Design */
+@media (max-width: 991px) {
+  .categoryCard {
+    width: 150px; /* Slightly smaller width for smaller screens */
+  }
+
+  .categoryTitle {
+    font-size: 16px;
+  }
 }
 
-/* Individual category item */
-.category-item {
-  text-align: center;
-  width: 150px; /* Increased width for each category */
-}
+@media (max-width: 768px) {
+  .categoriesGrid {
+    gap: 15px;
+  }
 
-/* Category image wrapper */
-.category-image-wrapper {
-  width: 150px; /* Increased width */
-  height: 150px; /* Increased height */
-  border-radius: 100%;
-  overflow: hidden; 
-  background-color: #f5f5f5; /* Optional background for circular effect */
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto 20px auto; /* Increased bottom margin */
-}
-
-/* Category image */
-.category-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Category title styles */
-.category-title {
-  font-size: 16px; /* Increased font size */
-  font-weight: bold;
-  font-family: 'Arial', sans-serif;
-  color: #000;
+  .categoriesHeader {
+    font-size: 24px;
+  }
 }

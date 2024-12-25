@@ -1,109 +1,207 @@
-/* Navbar container */
-.navbar {
-  font-family: 'Arial', sans-serif;
-  display: flex;
-  justify-content: space-between;
+/* Navigation Bar */
+.navigation {
   align-items: center;
-  padding: 10px 50px;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-  font-weight: 500;
-  color: #000;
-}
-
-/* Logo styles */
-.navbar-logo {
-  margin-right: 15px;
-}
-
-.navbar-logo img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-/* Navigation links */
-.navbar-links {
+  background: var(--Neutral-50, #fff);
+  box-shadow: 0px 5px 15px 0px rgba(25, 33, 61, 0.11);
   display: flex;
-  list-style: none;
-  gap: 15px; /* Reduce spacing between navigation links */
-  margin-right: 100px; /* Reduce space between links and right section */
+  flex-direction: column;
+  justify-content: start;
+  width: 100%;
 }
 
-.nav-item {
-  position: relative;
+/* Header Section */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space out sections */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  width: 100%;
+  padding: 12px 20px; /* Adjust padding */
+  box-sizing: border-box; /* Include padding in width/height */
+  gap: 20px; /* Add spacing between sections */
 }
 
-.nav-link {
-  text-decoration: none;
-  color: #000;
+/* Logo Section */
+.logoSection {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 3/4; /* Allow proportional width */
+  gap: 20px;
+}
+
+.logo {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 72px;
+}
+
+/* Navigation Categories */
+.navCategories {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center navigation items */
+  flex: 2; /* Adjust width relative to other sections */
+  gap: 30px; /* Spacing between category items */
+}
+
+.categoryWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.categoryWrapper:hover {
+  opacity: 0.8;
+}
+
+.categoryText {
+  font-feature-settings: "liga" off, "clig" off;
+  font: 600 18px/1.4 DM Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  color: var(--Neutral-900, #0a0a0a);
+  white-space: nowrap;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.dropdownIcon {
+  aspect-ratio: 1.75;
+  width: 14px;
+  object-fit: contain;
+  fill: var(--Neutral-900, #0a0a0a);
+}
+
+/* Promotion Section */
+.promotionBanner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align to the right */
+  flex: 1; /* Adjust width */
+  gap: 10px;
+}
+
+.promoText {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 400;
+  font-family: DM Sans, sans-serif;
+  color: var(--Neutral-900, #0a0a0a);
 }
 
-.arrow {
-  font-size: 12px;
-  margin-left: 5px;
-  margin-top: 15px;
-  
+.promoButton {
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  background: none;
+  border-bottom: 2px solid var(--Neutral-900, #0a0a0a);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
-/* Right section */
-.navbar-right {
+.promoButton:hover {
+  opacity: 0.8;
+}
+
+/* User Actions */
+.userActions {
   display: flex;
   align-items: center;
-  gap: 10px; /* Reduce spacing between right section elements */
-  margin-left: 100px; /* Remove unnecessary space between links and right section */
+  justify-content: flex-end; /* Align icons to the right */
+  flex: 1; /* Adjust width */
+  gap: 15px;
 }
 
-.navbar-sale {
-  font-size: 14px;
-  color: #000;
+.actionIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
 
-.navbar-shop {
-  font-weight: bold;
-  color: #000;
-  text-decoration: none;
-  border-bottom: 2px solid #000;
+.actionIcon:hover {
+  opacity: 0.8;
 }
 
-/* Icons container */
-.navbar-icons {
+/* Divider */
+.divider {
+  height: 24px;
+  width: 1px;
+  background-color: #d1d1d1;
+}
+
+/* Cart Icon */
+.cartIcon {
   display: flex;
   align-items: center;
-  gap: 13px; /* Reduce spacing between icons */
+  gap: 12px;
+  cursor: pointer;
 }
 
-.icon {
-  width: 20px;
-  height: 20px;
+.cartImage {
+  width: 33px;
+  aspect-ratio: 1.38;
   object-fit: contain;
 }
 
-.divider {
-  width: 1px;
-  height: 20px;
-  background-color : #000;
+/* Media Queries for Responsiveness */
+@media (max-width: 991px) {
+  .header {
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 10px;
+    padding: 12px 10px;
+  }
 
+  .navCategories {
+    justify-content: center; /* Center navigation links */
+    flex: 100%; /* Take full width */
+    gap: 20px;
+  }
+
+  .promotionBanner,
+  .userActions {
+    justify-content: center;
+    flex: 100%; /* Take full width */
+  }
+
+  .promoText {
+    text-align: center;
+  }
+
+  .userActions {
+    margin-top: 10px;
+  }
 }
 
-.icon-cart {
-  position: relative;
+@media (max-width: 768px) {
+  .navCategories {
+    flex-direction: column; /* Stack links vertically */
+    align-items: center;
+    gap: 15px;
+  }
+
+  .promoButton {
+    font-size: 16px;
+  }
 }
 
-.cart-badge {
-  position: absolute;
-  top: -5px;
-  right: -10px;
-  background-color: red;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column; /* Stack sections */
+    align-items: center;
+    gap: 15px;
+  }
+
+  .promoText {
+    font-size: 14px;
+  }
+
+  .promoButton {
+    font-size: 14px;
+  }
 }
