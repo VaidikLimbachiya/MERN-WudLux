@@ -8,7 +8,7 @@ import Header from './Components/Header/Header'
 import Categories from './Components/categories/categories'
 import Offers from './Components/offers/offers'
 import Products from './Components/Products/products'
-import HotProducts from './Components/HotProducts/Hotproducts'
+// import HotProducts from './Components/HotProducts/Hotproducts'
 import Testimonials from './Components/Rating/testimonials'
 import YouTube from './Components/YouTubeSection/YouTube'
 function App() {
