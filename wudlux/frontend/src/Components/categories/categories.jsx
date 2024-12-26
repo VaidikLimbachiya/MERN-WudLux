@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import './categories.css'; // Single CSS file
 
 // Import images from the assets folder
