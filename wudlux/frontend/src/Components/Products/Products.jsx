@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import './Products.css';
 
 // Import images from the assets folder

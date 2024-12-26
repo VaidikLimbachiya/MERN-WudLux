@@ -2,8 +2,8 @@
 
 /* Offers container */
 .offers {
-    margin: 20px auto;
-    padding: 10px;
+    margin: 10px ;
+    padding: 0px;
     max-width: 100%;
   }
   
@@ -66,6 +66,7 @@
     color: #000; /* Black text */
     margin-bottom: 15px;
     line-height: 1.5;
+    width: 195px;
   }
   
   /* Button styling */
