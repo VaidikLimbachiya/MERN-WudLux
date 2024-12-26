@@ -1,13 +1,16 @@
 import { useState } from "react";
 import "./Testimonials.css";
-
+import person1 from "../../assets/person1.png";
+import person2 from "../../assets/person2.png";
+import person3 from "../../assets/person3.png";
+import person4 from "../../assets/person4.png";
 const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
       name: "Leslie Alexander",
       title: "Product Manager",
-      image: "path-to-image1.jpg",
+      image: person1,
       rating: 4,
       review:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua quis nostrud exercitation ullamco.",
@@ -16,7 +19,7 @@ const Testimonials = () => {
       id: 2,
       name: "Cody Fisher",
       title: "Product Manager",
-      image: "path-to-image2.jpg",
+      image: person2,
       rating: 4,
       review:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua quis nostrud exercitation ullamco.",
@@ -25,7 +28,7 @@ const Testimonials = () => {
       id: 3,
       name: "Bessie Cooper",
       title: "Product Manager",
-      image: "path-to-image3.jpg",
+      image: person3,
       rating: 4,
       review:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua quis nostrud exercitation ullamco.",
@@ -34,7 +37,7 @@ const Testimonials = () => {
       id: 4,
       name: "Kathryn Murphy",
       title: "Product Manager",
-      image: "path-to-image4.jpg",
+      image: person4,
       rating: 4,
       review:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua quis nostrud exercitation ullamco.",
