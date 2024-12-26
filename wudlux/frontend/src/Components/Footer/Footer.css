@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 .footer {
     background-color: #f7f5f4;
     padding: 49px 20px;
@@ -27,7 +29,7 @@
       flex:15%;
       margin: -25px -18px;
       padding: 39px;
-      font-family: "Afacad Flux", serif;
+      font-family: 'Poppins', sans-serif;
       
     }
     

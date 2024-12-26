@@ -1,3 +1,5 @@
+
+
 /* Offers container */
 .offers {
     margin: 20px auto;
@@ -58,7 +60,7 @@
   /* Subtitle styling */
   .offer-subtitle {
     font-size: 22px;
-    font-family: 'Merriweather', serif; /* Elegant serif font */
+    font-family: 'Playfair Display', serif; /* Elegant serif font */
     font-weight: bold;
     color: #000; /* Black text */
     margin-bottom: 15px;
@@ -81,4 +83,36 @@
     color: #555; /* Darker gray on hover */
     border-bottom-color: #555; /* Border color changes on hover */
   }
-  
+  /* Button styling */
+.offer-button {
+  font-size: 14px;
+  font-family: 'Lato', sans-serif; /* Consistent sans-serif font */
+  font-weight: bold;
+  color: #000; /* Black text for the button */
+  text-decoration: none; /* Remove underline */
+  border-bottom: 2px solid #000; /* Add underline as a border */
+  padding-bottom: 2px;
+  position: relative; /* Ensure pseudo-element is positioned relative to the button */
+  transition: color 0.3s ease, border-bottom-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Add arrow on hover */
+.offer-button::after {
+  content: '→'; /* Right arrow symbol */
+  position: absolute;
+  left: 100px; /* Position it outside the button */
+  opacity: 0; /* Initially hidden */
+  transition: right 0.3s ease, opacity 0.3s ease; /* Smooth sliding effect */
+}
+
+/* Hover effect */
+.offer-button:hover {
+  color: #555; /* Darker gray on hover */
+  border-bottom-color: #555; /* Border color changes on hover */
+}
+
+/* Show the arrow on hover */
+.offer-button:hover::after {
+  right: 0; /* Slide the arrow into view */
+  opacity: 1; /* Make it visible */
+}
