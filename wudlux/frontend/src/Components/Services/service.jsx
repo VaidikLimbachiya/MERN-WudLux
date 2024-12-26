@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { BiSupport } from "react-icons/bi";
 import { FaShippingFast } from "react-icons/fa";
 import { FaPiggyBank } from "react-icons/fa6";
