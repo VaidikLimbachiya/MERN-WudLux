@@ -1,44 +1,42 @@
-// import React from 'react';
+import React from 'react';
 import './Offers.css';
 import tablewareImage from '../../assets/offer1.png'; // Replace with actual image paths
 import saleImage from '../../assets/offer2.png';
 import kitchenwareImage from '../../assets/offer3.png';
 
 const Offers = () => {
-  const offers = [
-    {
-      title: "Top Trending",
-      subtitle: "Tableware Collections",
-      button: "Discover Now",
-      image: tablewareImage,
-    },
-    {
-      title: "Black Fridays !",
-      subtitle: "Sale up to 50% off",
-      button: "Shop Now",
-      image: saleImage,
-    },
-    {
-      title: "Top Trending",
-      subtitle: "Kitchenware - Bella Collections",
-      button: "Discover Now",
-      image: kitchenwareImage,
-    },
-  ];
-
   return (
     <div className="offers">
       <div className="offers-container">
-        {offers.map((offer, index) => (
-          <div className="offer-card" key={index}>
-            <img src={offer.image} alt={offer.subtitle} className="offer-image" />
-            <div className="offer-overlay">
-              <p className="offer-title">{offer.title}</p>
-              <h3 className="offer-subtitle">{offer.subtitle}</h3>
-              <a href="#" className="offer-button">{offer.button}</a>
-            </div>
+        {/* First Card */}
+        <div className="offer-card">
+          <img src={tablewareImage} alt="Tableware Collections" className="offer-image" />
+          <div className="offer-overlay">
+            <p className="offer-title">Top Trending</p>
+            <h3 className="offer-subtitle">Tableware Collections</h3>
+            <a href="#" className="offer-button">Discover Now</a>
           </div>
-        ))}
+        </div>
+
+        {/* Second Card */}
+        <div className="offer-card">
+          <img src={saleImage} alt="Black Friday Sale" className="offer-image" />
+          <div className="offer-overlay">
+            <p className="offer-title">Black Fridays!</p>
+            <h3 className="offer-subtitle">Sale up to <br />50% off</h3>
+            <a href="#" className="offer-button">Shop Now</a>
+          </div>
+        </div>
+
+        {/* Third Card */}
+        <div className="offer-card">
+          <img src={kitchenwareImage} alt="Kitchenware Collections" className="offer-image" />
+          <div className="offer-overlay">
+            <p className="offer-title">Top Trending</p>
+            <h3 className="offer-subtitle">Kitchenware - <br />Bella Collections</h3>
+            <a href="#" className="offer-button">Discover Now</a>
+          </div>
+        </div>
       </div>
     </div>
   );
