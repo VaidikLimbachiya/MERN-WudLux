@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import './Navbar.css'; // Import the CSS file
 import logo from '../../assets/logo.png'; // Adjust the path to your logo
 import searchIcon from '../../assets/vector.png'; // Path to search icon
 import profileIcon from '../../assets/profile.png'; // Path to profile icon
 import cartIcon from '../../assets/bag.png'; // Path to cart icon
+import { useState } from 'react';
+
+
 
 const categories = [
   { text: 'Serveware', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/a1cfa473b4c3091f113c79eb7155d25fb5458b102ed1a68b6ce2308227f94925' },

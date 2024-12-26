@@ -15,14 +15,15 @@
   align-items: center;
   justify-content: space-between; /* Space out sections */
   flex-wrap: nowrap; /* Prevent wrapping */
-  width: 100%;
-  padding: 12px 20px; /* Adjust padding */
+  width: 90%;
+  padding: 12px 10px; /* Adjust padding */
   box-sizing: border-box; /* Include padding in width/height */
-  gap: 20px; /* Add spacing between sections */
+  gap: 10px; /* Add spacing between sections */
 }
 
 /* Logo Section */
 .logoSection {
+  padding-left: 100px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -31,17 +32,17 @@
 }
 
 .logo {
-  aspect-ratio: 1;
+  aspect-ratio: 0;
   object-fit: contain;
   object-position: center;
-  width: 72px;
+  width: 90px;
 }
 
 /* Navigation Categories */
 .navCategories {
   display: flex;
-  align-items: center;
-  justify-content: center; /* Center navigation items */
+  align-items: start;
+  justify-content: flex-start; /* Center navigation items */
   flex: 2; /* Adjust width relative to other sections */
   gap: 30px; /* Spacing between category items */
 }
@@ -89,13 +90,13 @@
 .promoText {
   font-size: 16px;
   font-weight: 400;
-  font-family: DM Sans, sans-serif;
+  font-family: sans-serif;
   color: var(--Neutral-900, #0a0a0a);
 }
 
 .promoButton {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 800;
   border: none;
   background: none;
   border-bottom: 2px solid var(--Neutral-900, #0a0a0a);
