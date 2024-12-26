@@ -118,6 +118,7 @@ export function Navbar() {
               className="cartImage"
               loading="lazy"
             />
+             <span className="cartBadge">3</span>
           </div>
 
         </div>
