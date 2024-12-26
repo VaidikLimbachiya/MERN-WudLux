@@ -1,7 +1,7 @@
 /* Navigation Bar */
 .navigation {
   align-items: center;
-  background: var(--Neutral-50, #fff);
+  background: var(--Neutral-50, white solid 2px);
   box-shadow: 0px 5px 15px 0px rgba(25, 33, 61, 0.11);
   display: flex;
   flex-direction: column;
@@ -101,12 +101,35 @@
   background: none;
   border-bottom: 2px solid var(--Neutral-900, #0a0a0a);
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, padding-right 0.3s ease;
+  position: relative;
 }
+
 
 .promoButton:hover {
   opacity: 0.8;
+  padding-right: 20px; /* Creates space for the arrow */
 }
+
+.promoButton::after {
+  content: '➔'; /* Bold arrow symbol */
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--Neutral-900, #0a0a0a);
+  position: absolute;
+  right: -25px; /* Position the arrow */
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease, right 0.3s ease;
+}
+
+
+.promoButton:hover::after {
+  opacity: 1; /* Show arrow on hover */
+  right: -5px; /* Moves the arrow closer to the text */
+}
+
 
 /* User Actions */
 .userActions {
@@ -178,6 +201,28 @@
     margin-top: 10px;
   }
 }
+/* Badge for Cart Icon */
+.cartBadge {
+  position: absolute;
+  top: 1px;
+  right: -2px;
+  background-color: hsl(0, 100%, 62%); /* Red background */
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  border-color: white solid 2px;
+  padding: 1px 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartIcon {
+  position: relative; /* Required for badge positioning */
+}
+
 
 @media (max-width: 768px) {
   .navCategories {
