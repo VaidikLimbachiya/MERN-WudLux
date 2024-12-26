@@ -1,64 +1,47 @@
-import React from 'react';
-import './HotProducts.css';
+import React from "react";
+import "./HotProducts.css";
+import image1 from "../../assets/hp1.png"; // Replace with actual image paths
+import image2 from "../../assets/hp2.png";
+import image3 from "../../assets/hp3.png";
+import image4 from "../../assets/hp4.png";
+import image5 from "../../assets/hp5.png";
+import image6 from "../../assets/hp6.png";
 
-// Import images from the assets folder
-import product1 from '../../assets/hp1.png';
-import product2 from '../../assets/hp2.png';
-import product3 from '../../assets/hp3.png';
-import product4 from '../../assets/hp4.png';
-import product5 from '../../assets/hp5.png';
-
-const HotProducts = () => {
+const GridGallery = () => {
   return (
-    <div className="hotProductsSection">
-      {/* Header Section */}
-      <div className="hotProductsHeader">
-        <h2 className="hotProductsTitle">Hot Products</h2>
-        <p className="hotProductsSubtitle">
+    <div className="grid-section">
+      {/* Section Heading */}
+      <div className="section-heading">
+        <h2 className="heading-title">Hot Products</h2>
+        <div className="heading-underline"></div>
+        <p className="heading-subtitle">
           Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero est.
         </p>
       </div>
 
-      {/* Product Grid */}
-      <div className="hotProductsGrid">
-        <div className="gridItem" style={{ gridArea: "1 / 1 / 2 / 3" }}>
-          <img src={product1} alt="Product 1" className="productImage" />
-          <div className="hoverOverlay">
-            <h3 className="hoverTitle">Product 1</h3>
-            <button className="hoverButton">Shop Now</button>
-          </div>
+      {/* Grid Layout */}
+      <div className="grid-gallery">
+        <div className="grid-item item1">
+          <img src={image1} alt="Image 1" />
         </div>
-        <div className="gridItem" style={{ gridArea: "1 / 3 / 2 / 4" }}>
-          <img src={product2} alt="Product 2" className="productImage" />
-          <div className="hoverOverlay">
-            <h3 className="hoverTitle">Product 2</h3>
-            <button className="hoverButton">Shop Now</button>
-          </div>
+        <div className="grid-item item2">
+          <img src={image2} alt="Image 2" />
         </div>
-        <div className="gridItem" style={{ gridArea: "2 / 1 / 3 / 2" }}>
-          <img src={product3} alt="Product 3" className="productImage" />
-          <div className="hoverOverlay">
-            <h3 className="hoverTitle">Product 3</h3>
-            <button className="hoverButton">Shop Now</button>
-          </div>
+        <div className="grid-item item3">
+          <img src={image3} alt="Image 3" />
         </div>
-        <div className="gridItem" style={{ gridArea: "2 / 2 / 3 / 3" }}>
-          <img src={product4} alt="Product 4" className="productImage" />
-          <div className="hoverOverlay">
-            <h3 className="hoverTitle">Product 4</h3>
-            <button className="hoverButton">Shop Now</button>
-          </div>
+        <div className="grid-item item4">
+          <img src={image4} alt="Image 4" />
         </div>
-        <div className="gridItem" style={{ gridArea: "2 / 3 / 3 / 4" }}>
-          <img src={product5} alt="Product 5" className="productImage" />
-          <div className="hoverOverlay">
-            <h3 className="hoverTitle">Product 5</h3>
-            <button className="hoverButton">Shop Now</button>
-          </div>
+        <div className="grid-item item5">
+          <img src={image5} alt="Image 5" />
+        </div>
+        <div className="grid-item item6">
+          <img src={image6} alt="Image 6" />
         </div>
       </div>
     </div>
   );
 };
 
-export default HotProducts;
+export default GridGallery;
