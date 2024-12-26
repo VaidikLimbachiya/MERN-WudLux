@@ -1,89 +1,120 @@
-/* Slider Component Styles */
-.slider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8f1e8;
-    height: 400px; /* Adjust based on your layout */
-    padding: 20px;
-  }
-  .banner {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    background-size: cover;
-    background-position: center;
-    height: 500px; /* Adjust as needed */
-    padding: 0 40px;
-    color: #000;
-  }
+/* Slider Container */
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 500px; /* Adjust height as needed */
+  overflow: hidden;
+}
 
-  .banner-content {
-    /* display: flex; */
-    width: 50 px;
-    /* width: 100%; */
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 70px;
+/* Slider Track for Smooth Transition */
+.slider-track {
+  display: flex;
+  transition: transform 1s ease-in-out; /* Smooth sliding effect */
+  width: 1700px; /* Adjust to accommodate all slides */
+  height: 550px;
+}
 
-  }
-  
-  /* .slider-text {
-    max-width: 500px;
-  } */
-  
-  .sale-offer {
-    font-size: 1rem;
-    color: #8d6e4d;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  
-  .sale-offer span {
-    color: black;
-    font-weight: bold;
-  }
-  
-  .slider-heading {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    line-height: 1.2;
-  }
-  
-  .shop-now {
-    background: none;
-    border: 1px solid black;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 20px;
-  }
-  
-  .shop-now:hover {
-    background: black;
-    color: white;
-  }
-  
-  .shop-now span {
-    font-weight: bold;
-  }
-  
-  .slider-image img {
-    width: 500px; /* Adjust image size */
-    border-radius: 10px;
-  }
-  
-  
-  .line-offer {
-    margin: 10px;
-    width: 72%;
-    border-bottom: 1px solid #000000;
+/* Each Slide (Banner) */
+.banner {
+  flex: 0 0 100%; /* Each slide takes up 100% of the slider width */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  padding: 0 40px;
+  color: #000;
+}
 
-    }
+/* Text Content Overlay */
+.banner-content {
+  max-width: 40%; /* Adjust based on layout */
+  z-index: 10; /* Ensure text is above the image */
+}
 
-    span{
-      padding-left: 10px;
-    }
+.sale-offer {
+  font-size: 1rem;
+  color: #8d6e4d;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.sale-offer span {
+  color: black;
+  font-weight: bold;
+}
+
+.line-offer {
+  margin: 10px;
+  width: 30%;
+  border-bottom: 1px solid #000;
+}
+
+.slider-heading {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.shop-now {
+  position: relative; /* Needed for the sliding effect */
+  overflow: hidden; /* Ensures the sliding effect stays within bounds */
+  background: none;
+  border: 1px solid black;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  color: black;
+  z-index: 1;
+}
+
+.shop-now::before {
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: -100%; /* Start the sliding background outside the button */
+  width: 100%;
+  height: 100%;
+  background: black; /* Background color for the sliding effect */
+  transition: all 0.4s ease;
+  z-index: -1; /* Place it behind the text */
+}
+
+.shop-now:hover::before {
+  top: 0; /* Move the background to align with the button's top edge */
+  left: 0;
+  right: -50%;
+}
+
+.shop-now:hover {
+  color: white; /* Change text color on hover */
+}
+
+
+/* Dots Navigation */
+.dots-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #000;
+}
