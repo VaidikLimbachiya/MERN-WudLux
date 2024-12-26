@@ -24,11 +24,7 @@
     display: flex;
     position: relative;
     width:32%; /* Adjust card width */
-<<<<<<< HEAD
-    height: 45%; /* Adjust card height */
-=======
     height: 50%; /* Adjust card height */
->>>>>>> e69423dafc3312625192a85413e7c4701c5ee968
     border-radius: 10px; /* Rounded corners */
     overflow: hidden;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
