@@ -21,7 +21,16 @@ const categories = [
 const Categories = () => {
   return (
     <div className="categoriesContainer">
-      <h1 className="categoriesHeader">Shop by Categories</h1>
+      {/* Heading Section */}
+      <div className="headingContainer">
+        <h1 className="headingTitle">Shop by Categories</h1>
+        <div className="headingUnderline"></div>
+        <p className="headingSubtitle">
+          Discover a wide range of categories to find the perfect item for you.
+        </p>
+      </div>
+
+      {/* Categories Grid */}
       <div className="categoriesGrid">
         {categories.map((category, index) => (
           <div className="categoryCard" key={index}>
