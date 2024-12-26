@@ -1,0 +1,105 @@
+/* Section Container */
+.hotProductsSection {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #fff;
+}
+
+/* Header Section */
+.hotProductsHeader {
+  margin-bottom: 30px;
+}
+
+.hotProductsTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+  color: #000;
+}
+
+.hotProductsSubtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #666;
+  margin-top: 10px;
+}
+
+/* Product Grid */
+.hotProductsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  gap: 20px; /* Space between grid items */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Grid Items */
+.gridItem {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.gridItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease-in-out; /* Smooth zoom effect */
+}
+
+.gridItem:hover img {
+  transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Hover Overlay */
+.hoverOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent white overlay */
+  padding: 20px;
+  transform: translateY(100%); /* Initially hidden below the image */
+  transition: transform 0.3s ease-in-out; /* Smooth slide-up effect */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Space between title and button */
+  z-index: 10; /* Ensure overlay is above image */
+}
+
+.gridItem:hover .hoverOverlay {
+  transform: translateY(0); /* Slide up into view on hover */
+}
+
+/* Overlay Title */
+.hoverTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000; /* Black text */
+  margin: 0;
+  text-align: center;
+}
+
+/* Overlay Button */
+.hoverButton {
+  background: #000; /* Black background */
+  color: #fff; /* White text */
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.hoverButton:hover {
+  background: #444; /* Darker background on hover */
+  color: #fff; /* White text on hover */
+}
