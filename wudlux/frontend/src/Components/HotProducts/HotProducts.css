@@ -63,10 +63,11 @@
   
   /* Underline */
   .heading-underline {
-    width: 60px; /* Adjust the width */
+    width: 224px; /* Adjust the width */
     height: 2px; /* Thickness of the line */
     background-color: #d3c0b6; /* Beige color for the underline */
-    margin: 10px auto; /* Centered */
+    margin: 20px auto; /* Centered */
+   margin-top: -20px;
   }
   
   /* Subtitle */

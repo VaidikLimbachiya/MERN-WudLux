@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "./HotProducts.css";
 import image1 from "../../assets/hp1.png"; // Replace with actual image paths
 import image2 from "../../assets/hp2.png";
