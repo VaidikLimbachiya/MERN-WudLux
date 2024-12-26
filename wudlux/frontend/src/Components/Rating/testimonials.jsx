@@ -78,6 +78,7 @@ const Testimonials = () => {
                 <p className="testimonial-user-title">{testimonial.title}</p>
               </div>
             </div>
+            <div className="underline"></div>
           </div>
         ))}
       </div>

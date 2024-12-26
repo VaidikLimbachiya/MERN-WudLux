@@ -1,8 +1,10 @@
 /* Section Styling */
 .premium-look-section {
+  margin-top: 20px;
     text-align: center;
     padding: 20px 20px;
     background-color: #fff;
+    margin-bottom: 20px;
     
   }
   
@@ -11,7 +13,7 @@
     font-size: 32px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   
   .premium-look-subtitle {
@@ -24,7 +26,7 @@
   /* Videos Grid */
   .premium-look-videos {
     display: flex;
-    gap: 10px;
+    gap: 5px;
     justify-content: center;
     align-items: center;
   }
@@ -32,8 +34,8 @@
   /* Video Container */
   .video-container {
     position: relative;
-    width: 100%;
-    max-width: 600px; /* Limit the video size */
+    width: 36rem;
+    max-width: 1600px; /* Limit the video size */
     overflow: hidden;
     /* border:10px solid #f7eeee; */
   
