@@ -1,7 +1,5 @@
 // import React from 'react';
 import './Products.css';
-
-// Import images from the assets folder
 import product1 from '../../assets/product1.png';
 import product2 from '../../assets/product2.png';
 import product3 from '../../assets/product3.png';
@@ -10,7 +8,7 @@ import product5 from '../../assets/product5.png';
 import product6 from '../../assets/product6.png';
 import product7 from '../../assets/product7.png';
 import product8 from '../../assets/product8.png';
-import bagIcon from '../../assets/bag.png'; // Import the bag icon image
+import bagIcon from '../../assets/bag.png';
 
 // Sample product data
 const products = [
