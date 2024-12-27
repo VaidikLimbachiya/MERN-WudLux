@@ -82,10 +82,10 @@
 .dropdownMenu {
   position: absolute; /* Positioned relative to .categoryWrapper */
   top: 100%; /* Just below the category button */
-  left: 0;
-  width: 10rem;
+  left: -10%;
+  width: 15rem;
   background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(252, 251, 251, 0.874);
   border-radius: 4px;
   padding: 8px 12px;
   /* margin-top:0px; */
@@ -95,6 +95,7 @@
   visibility: hidden; /* Hidden by default */
   opacity: 0;
   transition: visibility 0s, opacity 0.2s ease;
+  font-family: 'Poppins', sans-serif; 
 }
 
 .categoryWrapper:hover .dropdownMenu {
