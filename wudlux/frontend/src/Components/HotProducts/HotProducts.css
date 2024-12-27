@@ -125,45 +125,52 @@
   position: relative;
   font-weight: 500;
   transition: color 0.3s ease-in-out;
+  display: inline-block; /* Ensures proper layout for the arrow effect */
+}
+
+.hover-overlay .hover-link {
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: #000; /* Black text */
+  text-decoration: none; /* Remove default underline */
+  position: relative;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+  display: inline-block; /* Ensures proper layout for the arrow effect */
 }
 
 .hover-overlay .hover-link::after {
+  content: "→"; /* Add the arrow */
+  position: absolute;
+  bottom: 0;
+  left: -25px; /* Start off-screen to the left */
+  opacity: 0; /* Initially hidden */
+  font-size: 20px; /* Larger arrow */
+  font-weight: 1000;
+  color: black; /* Darker arrow color */
+  transition: all 0.3s ease-in-out; /* Smooth animation */
+}
+
+.hover-overlay .hover-link::before {
   content: "";
   position: absolute;
-  bottom: -2px;
+  bottom: -2px; /* Position the line */
   left: 0;
   width: 0;
-  height: 2px;
-  background-color: #000; /* Black underline */
-  transition: width 0.3s ease-in-out;
+  height: 2px; /* Line thickness */
+  background-color: #222; /* Line color */
+  transition: width 0.3s ease-in-out; /* Smooth underline animation */
 }
+
+.hover-overlay .hover-link:hover::before {
+  width: 100px; /* Full underline on hover */
+}
+
 .hover-overlay .hover-link:hover::after {
-  width: 100%; /* Expand underline on hover */
+  left: calc(100% + 5px); /* Slide the arrow to the right, just beyond the text */
+  opacity: 1; /* Make the arrow visible */
 }
 
 .hover-overlay .hover-link:hover {
-  color: #444; /* Slightly lighter color on hover */
-}
-
-.hover-overlay .hover-link:hover {
-  opacity: 0.8;
-  padding-right: 20px;
-}
-
-.hover-overlay .hover-link:hover::after {
-  content: '➔';
-  font-size: 18px;
-  font-weight: semi-bold;
-  color: var(--Neutral-900, #0a0a0a);
-  position: absolute;
-  right: -25px;
-  top: 90%;
-  transform: translateY(-50%);
-  opacity: 0;
-  transition: opacity 0.3s ease, right 0.3s ease;
-}
-
-.hover-overlay .hover-link:hover::after {
-  opacity: 1;
-  right: -5px;
+  color: black; /* Slightly lighter color on hover */
 }
