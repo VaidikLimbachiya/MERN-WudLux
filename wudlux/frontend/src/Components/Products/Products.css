@@ -51,13 +51,13 @@
 }
 
 .productCard:hover {
-  transform: translateY(-5px); /* Slight lift effect on hover */
+  transform: translateY(-5px); /* Hover lift effect */
 }
 
 /* Product Image */
 .productImageWrapper {
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Crop overflowing image parts */
 }
 
 .productImage {
@@ -131,7 +131,7 @@
   padding: 10px 20px;
   margin-bottom: 30px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
   transition: color 0.3s ease; /* Smooth text color transition */
   border-radius: 30px;

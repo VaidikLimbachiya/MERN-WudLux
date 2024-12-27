@@ -1,41 +1,57 @@
-// import React from "react";
+import React from "react";
 import "./YouTube.css";
+import thumbnail1 from "../../assets/yt1.jpg"; // Import thumbnails
+import thumbnail2 from "../../assets/yt2.jpg";
+import playIcon from "../../assets/play-icon.svg"; // Import play icon
 
-const PremiumLook = () => {
+const PremiumLookSection = () => {
+  const videos = [
+    {
+      id: 1,
+      thumbnail: thumbnail1, // Use imported thumbnail
+      videoUrl: "https://youtu.be/xBuOZSS5kdE?si=3SHfVWUL8SpXxGeV",
+    },
+    {
+      id: 2,
+      thumbnail: thumbnail2, // Use imported thumbnail
+      videoUrl: "https://youtu.be/xBuOZSS5kdE?si=3SHfVWUL8SpXxGeV",
+    },
+  ];
+
   return (
     <div className="premium-look-section">
-      <h2 className="premium-look-title">See Our Premium Look</h2>
-      <p className="premium-look-subtitle">
-        Curate your style and effortlessly craft your perfect Wudlux.
-      </p>
-      <div className="premium-look-videos">
-        <div className="video-container">
-          <div className="video-overlay">
-            {/* <span className="play-button">▶</span> */}
-          </div>
-          {/* <video
-            src="path-to-video1.mp4"
-            className="video"
-            controls
-            poster="path-to-video-thumbnail1.jpg"
-          ></video> */}
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/xBuOZSS5kdE?si=jQlypUGmjOGO9OSR&amp;start=00" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        <div className="video-container">
-          <div className="video-overlay">
-            {/* <span className="play-button">▶</span> */}
-          </div><iframe width="560" height="315" src="https://www.youtube.com/embed/xBuOZSS5kdE?si=jQlypUGmjOGO9OSR&amp;start=00" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      {/* Header */}
+      <div className="section-header">
+        <h2 className="section-title">See Our Premium Look</h2>
+        <p className="section-subtitle">
+          Curate your style and effortlessly craft your perfect Wudlux.
+        </p>
+      </div>
 
-          {/* <video
-            src="path-to-video2.mp4"
-            className="video"
-            controls
-            poster="path-to-video-thumbnail2.jpg"
-          ></video> */}
-        </div>
+      {/* Video Grid */}
+      <div className="video-grid">
+        {videos.map((video) => (
+          <div className="video-item" key={video.id}>
+            <div className="video-wrapper">
+              <img
+                src={video.thumbnail}
+                alt={`Premium Look Video ${video.id}`}
+                className="video-thumbnail"
+              />
+              <a
+                href={video.videoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="play-button"
+              >
+                <img src={playIcon} alt="Play" className="play-icon" />
+              </a>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default PremiumLook;
+export default PremiumLookSection;
