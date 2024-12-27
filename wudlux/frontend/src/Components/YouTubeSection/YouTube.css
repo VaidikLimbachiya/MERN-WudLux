@@ -27,11 +27,11 @@
 
 /* Video Grid */
 .video-grid {
-  display: grid;
+  display: flex;
   grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-  gap: 20px; /* Space between videos */
-  max-width: 1200px;
-  margin: 0 auto; /* Center grid */
+  gap: 10px; /* Space between videos */
+  max-width: 100%;
+  margin: 20px auto; /* Center grid */
 }
 
 /* Video Item */
@@ -46,9 +46,13 @@
 }
 
 .video-thumbnail {
-  width: 100%;
+  
+  justify-content: space-between;
+  padding-left: 10px;
+  margin-left: 30px;
+  width: 42rem;
   height: 100%;
-  object-fit: cover; /* Ensures thumbnails are properly fitted */
+  object-fit:cover; /* Ensures thumbnails are properly fitted */
 }
 
 .play-button {
