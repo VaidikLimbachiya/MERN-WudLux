@@ -144,3 +144,26 @@
 .hover-overlay .hover-link:hover {
   color: #444; /* Slightly lighter color on hover */
 }
+
+.hover-overlay .hover-link:hover {
+  opacity: 0.8;
+  padding-right: 20px;
+}
+
+.hover-overlay .hover-link:hover::after {
+  content: '➔';
+  font-size: 18px;
+  font-weight: semi-bold;
+  color: var(--Neutral-900, #0a0a0a);
+  position: absolute;
+  right: -25px;
+  top: 90%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease, right 0.3s ease;
+}
+
+.hover-overlay .hover-link:hover::after {
+  opacity: 1;
+  right: -5px;
+}

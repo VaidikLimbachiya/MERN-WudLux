@@ -4,16 +4,21 @@
     text-align: center;
     padding: 20px 20px;
     background-color: #fff;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     
   }
   
+  .responsive-iframe {
+    width: 100%;
+    max-width: 800px; /* Optional: Set a maximum width */
+    height: auto;
+  }
   .premium-look-title {
     font-family: "Playfair Display", serif;
     font-size: 32px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   .premium-look-subtitle {
@@ -25,10 +30,12 @@
   
   /* Videos Grid */
   .premium-look-videos {
-    display: flex;
+    display: flex ;
     gap: 5px;
-    justify-content: center;
+    justify-content: safe;
     align-items: center;
+    margin-left: 150px;
+    /* margin-right: 50px; */
   }
   
   /* Video Container */
