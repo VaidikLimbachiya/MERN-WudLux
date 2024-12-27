@@ -83,9 +83,9 @@
   position: absolute;
   top: 100%;
   left: -10%;
-  width: 15rem;
+  width: 16rem;
   background-color: #fff;
-  box-shadow: 0 4px 8px rgba(252, 251, 251, 0.874);
+  /* box-shadow: 0 4px 8px #fff; */
   border-radius: 4px;
   padding: 8px 12px;
   z-index: 100;
@@ -94,7 +94,12 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.2s ease;
+<<<<<<< HEAD
   font-family: 'Poppins', sans-serif;
+=======
+  font-family: 'Poppins', sans-serif; 
+  font-weight: 600;
+>>>>>>> c9948d31c95663e6694b0aa45a022daec377102d
 }
 
 .categoryWrapper:hover .dropdownMenu {
@@ -103,16 +108,46 @@
 }
 
 .dropdownItem {
+  position: relative; /* Required for positioning the pseudo-element */
   padding: 8px 12px;
   cursor: pointer;
   border-radius: 4px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Vertical line effect */
+.dropdownItem::before {
+  content: ""; /* Empty content for the vertical line */
+  position: absolute;
+  top: 10%; /* Slight offset from the top */
+  bottom: 10%; /* Slight offset from the bottom */
+  left: 0; /* Position it to the left of the item */
+  width: 3px; /* Line thickness */
+  background-color: transparent; /* Initially invisible */
+  border-radius: 4px; /* Matches the item's border-radius */
+  transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+<<<<<<< HEAD
+=======
+/* Hover effect */
 .dropdownItem:hover {
-  background-color: #f4f4f4;
+  background-color: white; /* Light gray background on hover */
+  color: #000; /* Change text color to black on hover */
 }
 
+.dropdownItem:hover::before {
+  background-color: #543A14; /* Black vertical line on hover */
+}
+
+
+
+.categoryButton.active {
+  font-weight: bold;
+}
+
+
+>>>>>>> c9948d31c95663e6694b0aa45a022daec377102d
 /* Promotion Section */
 .promotionBanner {
   display: flex;

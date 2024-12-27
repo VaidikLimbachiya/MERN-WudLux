@@ -9,7 +9,13 @@ const categories = [
   {
     text: 'Serveware',
     iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/a1cfa473b4c3091f113c79eb7155d25fb5458b102ed1a68b6ce2308227f94925',
-    dropdownItems: ['Serving Tray', 'Serving Tray with Drawer', 'Beer Caddy', 'Serving Platter', 'Wine Serving Tray'],
+    dropdownItems: [
+      'Serving Tray',
+      'Serving Tray with Drawer',
+      'Beer Caddy',
+      'Serving Platter',
+      'Wine Serving Tray',
+    ],
   },
   {
     text: 'Kitchenware',
@@ -28,10 +34,13 @@ const categories = [
   },
 ];
 
-
 export function Navbar() {
-  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(null); // Tracks the active category index
 
+  /**
+   * Toggles the dropdown menu for a category on click.
+   * @param {number} index - The index of the clicked category.
+   */
   const handleCategoryClick = (index) => {
     setActiveCategory(activeCategory === index ? null : index);
   };
@@ -47,7 +56,12 @@ export function Navbar() {
         {/* Categories Section */}
         <div className="navCategories">
           {categories.map((category, index) => (
-            <div key={index} className="categoryWrapper">
+            <div
+              key={index}
+              className={`categoryWrapper ${
+                activeCategory === index ? 'active' : ''
+              }`}
+            >
               <div
                 onClick={() => handleCategoryClick(index)}
                 role="button"
