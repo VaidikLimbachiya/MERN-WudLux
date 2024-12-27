@@ -61,7 +61,7 @@ const Testimonials = () => {
       <h2 className="testimonials-title">Our Testimonials</h2>
       <p className="testimonials-subtitle">See what people are saying...</p>
       <div className="testimonials-carousel">
-        {testimonials.slice(currentIndex, currentIndex +4).map((testimonial, index) => (
+        {testimonials.slice(currentIndex, currentIndex +4).map((testimonial, ) => (
           <div key={testimonial.id} className="testimonial-card">
             <div className="testimonial-rating">
               {"⭐".repeat(testimonial.rating)}

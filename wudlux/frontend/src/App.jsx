@@ -10,6 +10,7 @@ import Products from './Components/Products/products'
 import Testimonials from './Components/Rating/testimonials'
 import YouTube from './Components/YouTubeSection/YouTube'
 import HotProducts from './Components/HotProducts/HotProducts'
+// import {Route , route , Switch} from 'react-router-dom'
 function App() {
  
 

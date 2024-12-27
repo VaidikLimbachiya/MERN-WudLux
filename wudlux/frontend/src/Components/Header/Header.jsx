@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import "./Header.css";
 import backgroundImage1 from "../../assets/header.png";
 import backgroundImage2 from "../../assets/header2.png";
