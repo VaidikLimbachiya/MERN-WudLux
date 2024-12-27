@@ -1,7 +1,7 @@
 /* Main Section Styling */
 .premium-look-section {
   text-align: center;
-  padding: 50px 20px;
+  padding: 20px 30px;
   background-color: white;
   color: #fff;
 }
@@ -29,7 +29,6 @@
 .video-grid {
   display: flex;
   grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-  gap: 10px; /* Space between videos */
   max-width: 100%;
   margin: 20px auto; /* Center grid */
 }
