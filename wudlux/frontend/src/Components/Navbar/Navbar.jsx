@@ -28,6 +28,7 @@ const categories = [
   },
 ];
 
+
 export function Navbar() {
   const [activeCategory, setActiveCategory] = useState(null);
 
