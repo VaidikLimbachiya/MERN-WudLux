@@ -171,9 +171,37 @@
     font-size: 16px;
   }
   
-  .footer-section ul li a:hover {
-    color: #000;
+  .footer-section ul li a {
+    position: relative; /* Required for positioning the pseudo-element */
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the inherited color for default state */
+    transition: color 0.3s ease; /* Smooth text color transition */
   }
+  
+  /* Vertical line effect */
+  .footer-section ul li a::before {
+    content: ""; /* Empty content for the vertical line */
+    position: absolute;
+    top: 0; /* Align with the top of the link */
+    bottom: 0; /* Align with the bottom of the link */
+    left: -10px; /* Position the line slightly to the left of the link */
+    width: 2px; /* Line thickness */
+    background-color: transparent; /* Initially invisible */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth line appearance */
+    transform: scaleY(0); /* Initially hidden (scaled down vertically) */
+  }
+  
+  /* Hover effect for the link */
+  .footer-section ul li a:hover {
+    color: #000; /* Change the link text color to black */
+  }
+  
+  /* Hover effect for the vertical line */
+  .footer-section ul li a:hover::before {
+    background-color: #543A14; /* Black vertical line */
+    transform: scaleY(1); /* Expand the line to full height */
+  }
+  
   
   .newsletter-input {
     display: flex;
