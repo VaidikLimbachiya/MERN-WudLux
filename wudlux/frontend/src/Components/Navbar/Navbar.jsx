@@ -15,6 +15,7 @@ const categories = [
   { text: 'Collections', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/3a93a25a709f4fb428d7f57f554a75f6dae8c2c4a680b05c19026a7d150d8a2f' },
 ];
 
+
 export function Navbar() {
   const [activeCategory, setActiveCategory] = useState(null);
 

@@ -21,25 +21,49 @@ const GridGallery = () => {
 
       {/* Grid Layout */}
       <div className="grid-gallery">
-        <div className="grid-item item1">
-          <img src={image1} alt="Image 1" />
-        </div>
-        <div className="grid-item item2">
-          <img src={image2} alt="Image 2" />
-        </div>
-        <div className="grid-item item3">
-          <img src={image3} alt="Image 3" />
-        </div>
-        <div className="grid-item item4">
-          <img src={image4} alt="Image 4" />
-        </div>
-        <div className="grid-item item5">
-          <img src={image5} alt="Image 5" />
-        </div>
-        <div className="grid-item item6">
-          <img src={image6} alt="Image 6" />
-        </div>
-      </div>
+  <div className="grid-item item1">
+    <img src={image1} alt="Product 1" />
+    <div className="hover-overlay">
+      <span className="hover-text">Wooden Bowl</span>
+      <a href="/product-1" className="hover-link">Shop Now</a>
+    </div>
+  </div>
+  <div className="grid-item item2">
+    <img src={image2} alt="Product 2" />
+    <div className="hover-overlay">
+      <span className="hover-text">Wooden Tray</span>
+      <a href="/product-2" className="hover-link">Shop Now</a>
+    </div>
+  </div>
+  <div className="grid-item item3">
+    <img src={image3} alt="Product 3" />
+    <div className="hover-overlay">
+      <span className="hover-text">Tissue Holder</span>
+      <a href="/product-3" className="hover-link">Shop Now</a>
+    </div>
+  </div>
+  <div className="grid-item item4">
+    <img src={image4} alt="Product 4" />
+    <div className="hover-overlay">
+      <span className="hover-text">Chopping Board</span>
+      <a href="/product-4" className="hover-link">Shop Now</a>
+    </div>
+  </div>
+  <div className="grid-item item5">
+    <img src={image5} alt="Product 5" />
+    <div className="hover-overlay">
+      <span className="hover-text">Butcher Board</span>
+      <a href="/product-5" className="hover-link">Shop Now</a>
+    </div>
+  </div>
+  <div className="grid-item item6">
+    <img src={image6} alt="Product 6" />
+    <div className="hover-overlay">
+      <span className="hover-text">Serving Platter</span>
+      <a href="/product-6" className="hover-link">Shop Now</a>
+    </div>
+  </div>
+</div>
     </div>
   );
 };
