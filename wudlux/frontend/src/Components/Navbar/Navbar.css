@@ -7,28 +7,28 @@
   flex-direction: column;
   justify-content: start;
   width: 100%;
-  position: relative; /* Ensures stacking context */
-  z-index: 10; /* Keep it above most elements */
-  overflow: visible; /* Ensure dropdowns are visible */
+  position: relative;
+  z-index: 10;
+  overflow: visible;
 }
 
 /* Header Section */
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Space out sections */
-  flex-wrap: nowrap; /* Prevent wrapping */
+  justify-content: space-between;
+  flex-wrap: nowrap;
   width: 90%;
-  padding: 5px -1px;
+  padding: 10px 20px;
   box-sizing: border-box;
-  gap: 17px;
+  gap: 20px;
 }
 
 /* Logo Section */
 .logoSection {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex: 0 1 auto;
   gap: 20px;
 }
@@ -53,7 +53,7 @@
   align-items: center;
   gap: 4px;
   cursor: pointer;
-  position: relative; /* Ensures dropdown is positioned relative */
+  position: relative;
   transition: opacity 0.2s ease;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .categoryText {
-  font: 600 18px/1.4 DM Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  font: 600 18px/1.4 'DM Sans', sans-serif;
   color: var(--Neutral-900, #0a0a0a);
   white-space: nowrap;
 }
@@ -80,26 +80,25 @@
 
 /* Dropdown Menu */
 .dropdownMenu {
-  position: absolute; /* Positioned relative to .categoryWrapper */
-  top: 100%; /* Just below the category button */
+  position: absolute;
+  top: 100%;
   left: -10%;
   width: 15rem;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(252, 251, 251, 0.874);
   border-radius: 4px;
   padding: 8px 12px;
-  /* margin-top:0px; */
-  z-index: 100; /* Ensure it’s above other elements */
+  z-index: 100;
   display: flex;
   flex-direction: column;
-  visibility: hidden; /* Hidden by default */
+  visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.2s ease;
-  font-family: 'Poppins', sans-serif; 
+  font-family: 'Poppins', sans-serif;
 }
 
 .categoryWrapper:hover .dropdownMenu {
-  visibility: visible; /* Show dropdown on hover */
+  visibility: visible;
   opacity: 1;
 }
 
@@ -113,11 +112,6 @@
 .dropdownItem:hover {
   background-color: #f4f4f4;
 }
-
-.categoryButton.active {
-  font-weight: bold;
-}
-
 
 /* Promotion Section */
 .promotionBanner {
@@ -224,6 +218,8 @@
 }
 
 /* Responsive Design */
+
+/* Medium Devices (Tablets) */
 @media (max-width: 991px) {
   .header {
     flex-wrap: wrap;
@@ -252,6 +248,7 @@
   }
 }
 
+/* Small Devices (Phones) */
 @media (max-width: 768px) {
   .navCategories {
     flex-direction: column;
@@ -262,8 +259,13 @@
   .promoButton {
     font-size: 16px;
   }
+
+  .cartIcon {
+    gap: 8px;
+  }
 }
 
+/* Extra Small Devices (Very Small Phones) */
 @media (max-width: 480px) {
   .header {
     flex-direction: column;
@@ -277,5 +279,10 @@
 
   .promoButton {
     font-size: 14px;
+  }
+
+  .cartBadge {
+    font-size: 10px;
+    padding: 1px 4px;
   }
 }
