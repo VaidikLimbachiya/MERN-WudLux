@@ -1,12 +1,15 @@
 /* Navigation Bar */
 .navigation {
   align-items: center;
-  background: var(--Neutral-50, white solid 2px);
-  box-shadow: 0px 5px 15px 0px rgba(25, 33, 61, 0.11);
+  background: var(--Neutral-50, white);
+  box-shadow: 0px 5px 15px rgba(25, 33, 61, 0.11);
   display: flex;
   flex-direction: column;
   justify-content: start;
   width: 100%;
+  position: relative; /* Ensures stacking context */
+  z-index: 10; /* Keep it above most elements */
+  overflow: visible; /* Ensure dropdowns are visible */
 }
 
 /* Header Section */
@@ -16,23 +19,21 @@
   justify-content: space-between; /* Space out sections */
   flex-wrap: nowrap; /* Prevent wrapping */
   width: 90%;
-  padding: 12px 10px; /* Adjust padding */
-  box-sizing: border-box; /* Include padding in width/height */
-  gap: 10px; /* Add spacing between sections */
+  padding: 5px -1px;
+  box-sizing: border-box;
+  gap: 17px;
 }
 
 /* Logo Section */
 .logoSection {
-  padding-left: 50px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  flex: 3/4; /* Allow proportional width */
+  flex: 0 1 auto;
   gap: 20px;
 }
 
 .logo {
-  aspect-ratio: 0;
   object-fit: contain;
   object-position: center;
   width: 60px;
@@ -41,10 +42,10 @@
 /* Navigation Categories */
 .navCategories {
   display: flex;
-  align-items: start;
-  justify-content: flex-start; /* Center navigation items */
-  flex: 2; /* Adjust width relative to other sections */
-  gap: 30px; /* Spacing between category items */
+  align-items: center;
+  justify-content: flex-start;
+  flex: 2;
+  gap: 30px;
 }
 
 .categoryWrapper {
@@ -52,6 +53,7 @@
   align-items: center;
   gap: 4px;
   cursor: pointer;
+  position: relative; /* Ensures dropdown is positioned relative */
   transition: opacity 0.2s ease;
 }
 
@@ -60,30 +62,67 @@
 }
 
 .categoryText {
-  font-feature-settings: "liga" off, "clig" off;
   font: 600 18px/1.4 DM Sans, -apple-system, Roboto, Helvetica, sans-serif;
   color: var(--Neutral-900, #0a0a0a);
   white-space: nowrap;
 }
 
 .iconWrapper {
-  display: flex;
+  display: inline-block;
   align-items: center;
+  margin-inline-start: 10px;
 }
 
 .dropdownIcon {
-  aspect-ratio: 1.75;
   width: 14px;
   object-fit: contain;
-  fill: var(--Neutral-900, #0a0a0a);
+}
+
+/* Dropdown Menu */
+.dropdownMenu {
+  position: absolute; /* Positioned relative to .categoryWrapper */
+  top: 100%; /* Just below the category button */
+  left: 0;
+  width: 10rem;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 8px 12px;
+  /* margin-top:0px; */
+  z-index: 100; /* Ensure it’s above other elements */
+  display: flex;
+  flex-direction: column;
+  visibility: hidden; /* Hidden by default */
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s ease;
+}
+
+.categoryWrapper:hover .dropdownMenu {
+  visibility: visible; /* Show dropdown on hover */
+  opacity: 1;
+}
+
+.dropdownItem {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.dropdownItem:hover {
+  background-color: #f4f4f4;
+}
+
+.categoryButton.active {
+  font-weight: bold;
 }
 
 /* Promotion Section */
 .promotionBanner {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Align to the right */
-  flex: 1; /* Adjust width */
+  justify-content: flex-end;
+  flex: 1;
   gap: 10px;
 }
 
@@ -101,42 +140,39 @@
   background: none;
   border-bottom: 2px solid var(--Neutral-900, #0a0a0a);
   cursor: pointer;
-  transition: opacity 0.2s ease, padding-right 0.3s ease;
   position: relative;
+  transition: opacity 0.2s ease, padding-right 0.3s ease;
 }
-
 
 .promoButton:hover {
   opacity: 0.8;
-  padding-right: 20px; /* Creates space for the arrow */
+  padding-right: 20px;
 }
 
 .promoButton::after {
-  content: '➔'; /* Bold arrow symbol */
+  content: '➔';
   font-size: 18px;
   font-weight: bold;
   color: var(--Neutral-900, #0a0a0a);
   position: absolute;
-  right: -25px; /* Position the arrow */
+  right: -25px;
   top: 50%;
   transform: translateY(-50%);
-  opacity: 0; /* Hidden by default */
+  opacity: 0;
   transition: opacity 0.3s ease, right 0.3s ease;
 }
 
-
 .promoButton:hover::after {
-  opacity: 1; /* Show arrow on hover */
-  right: -5px; /* Moves the arrow closer to the text */
+  opacity: 1;
+  right: -5px;
 }
-
 
 /* User Actions */
 .userActions {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Align icons to the right */
-  flex: 1; /* Adjust width */
+  justify-content: flex-end;
+  flex: 1;
   gap: 15px;
 }
 
@@ -152,7 +188,6 @@
   opacity: 0.8;
 }
 
-/* Divider */
 .divider {
   height: 24px;
   width: 1px;
@@ -165,32 +200,45 @@
   align-items: center;
   gap: 12px;
   cursor: pointer;
+  position: relative;
 }
 
 .cartImage {
-  width: 33px;
-  aspect-ratio: 1.38;
+  width: 20px;
   object-fit: contain;
 }
 
-/* Media Queries for Responsiveness */
+.cartBadge {
+  position: absolute;
+  top: 0;
+  right: -10px;
+  background-color: hsl(0, 100%, 62%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  border: 2px solid white;
+  padding: 1px 6px;
+}
+
+/* Responsive Design */
 @media (max-width: 991px) {
   .header {
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-wrap: wrap;
     gap: 10px;
     padding: 12px 10px;
   }
 
   .navCategories {
-    justify-content: center; /* Center navigation links */
-    flex: 100%; /* Take full width */
+    justify-content: center;
+    flex: 100%;
     gap: 20px;
   }
 
   .promotionBanner,
   .userActions {
     justify-content: center;
-    flex: 100%; /* Take full width */
+    flex: 100%;
   }
 
   .promoText {
@@ -201,32 +249,10 @@
     margin-top: 10px;
   }
 }
-/* Badge for Cart Icon */
-.cartBadge {
-  position: absolute;
-  top: 1px;
-  right: -2px;
-  background-color: hsl(0, 100%, 62%); /* Red background */
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 50%;
-  border-color: white solid 2px;
-  padding: 1px 6px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cartIcon {
-  position: relative; /* Required for badge positioning */
-}
-
 
 @media (max-width: 768px) {
   .navCategories {
-    flex-direction: column; /* Stack links vertically */
+    flex-direction: column;
     align-items: center;
     gap: 15px;
   }
@@ -238,22 +264,7 @@
 
 @media (max-width: 480px) {
   .header {
-    flex-direction: column; /* Stack sections */
-    align-items: center;
-    gap: 15px;
-  }
-
-  .promoText {
-    font-size: 14px;
-  }
-
-  .promoButton {
-    font-size: 14px;
-  }
-}
-@media (max-width: 480px) {
-  .header {
-    flex-direction: column; /* Stack sections */
+    flex-direction: column;
     align-items: center;
     gap: 15px;
   }
