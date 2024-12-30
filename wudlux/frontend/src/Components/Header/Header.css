@@ -2,21 +2,21 @@
 .slider-container {
   position: relative;
   width: 100%;
-  height: 100%; /* Adjust height dynamically */
+  height: 100%; /* Adjust height as needed */
   overflow: hidden;
 }
 
 /* Slider Track for Smooth Transition */
 .slider-track {
   display: flex;
-  transition: transform 1s ease-in-out;
-  width: 100%;
-  height: 650px; /* Default height for large screens */
+  transition: transform 1s ease-in-out; /* Smooth sliding effect */
+  width: 100%; /* Adjust to accommodate all slides */
+  height: 650px;
 }
 
 /* Each Slide (Banner) */
 .banner {
-  flex: 0 0 100%;
+  flex: 0 0 100%; /* Each slide takes up 100% of the slider width */
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -30,8 +30,8 @@
 /* Text Content Overlay */
 .banner-content {
   margin-left: 200px;
-  max-width: 40%;
-  z-index: 25;
+  max-width: 40%; /* Adjust based on layout */
+  z-index: 25; /* Ensure text is above the image */
 }
 
 .sale-offer {
@@ -57,12 +57,12 @@
   font-weight: bold;
   margin-bottom: 20px;
   line-height: 1.2;
-  width: auto;
+  width: 20%;
 }
 
 .shop-now {
-  position: relative;
-  overflow: hidden;
+  position: relative; /* Needed for the sliding effect */
+  overflow: hidden; /* Ensures the sliding effect stays within bounds */
   background: none;
   border: 1px solid black;
   padding: 10px 20px;
@@ -78,22 +78,25 @@
 .shop-now::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: -100%;
+  top: 0%;
+  left: -100%; /* Start the sliding background outside the button */
   width: 100%;
   height: 100%;
-  background: black;
+  background: black; /* Background color for the sliding effect */
   transition: all 0.4s ease;
-  z-index: -1;
+  z-index: -1; /* Place it behind the text */
 }
 
 .shop-now:hover::before {
+  top: 0; /* Move the background to align with the button's top edge */
   left: 0;
+  right: -50%;
 }
 
 .shop-now:hover {
-  color: white;
+  color: white; /* Change text color on hover */
 }
+
 
 /* Dots Navigation */
 .dots-container {
@@ -116,91 +119,4 @@
 
 .dot.active {
   background-color: #000;
-}
-
-/* Responsive Design */
-
-/* Medium Devices (Tablets) */
-@media (max-width: 991px) {
-  .slider-track {
-    height: 500px; /* Adjust slider height */
-  }
-
-  .banner-content {
-    margin-left: 100px;
-    max-width: 60%;
-  }
-
-  .slider-heading {
-    font-size: 2.5rem;
-  }
-
-  .sale-offer {
-    font-size: 1rem;
-  }
-
-  .shop-now {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-  }
-}
-
-/* Small Devices (Phones) */
-@media (max-width: 768px) {
-  .slider-track {
-    height: 400px; /* Further reduce height */
-  }
-
-  .banner {
-    padding: 0 20px;
-    justify-content: center; /* Center-align text for smaller screens */
-    text-align: center;
-  }
-
-  .banner-content {
-    margin: 0 auto;
-    max-width: 80%;
-  }
-
-  .slider-heading {
-    font-size: 2rem;
-  }
-
-  .sale-offer {
-    font-size: 0.9rem;
-  }
-
-  .line-offer {
-    width: 70%;
-  }
-
-  .shop-now {
-    padding: 8px 12px;
-    font-size: 0.8rem;
-  }
-}
-
-/* Extra Small Devices (Very Small Phones) */
-@media (max-width: 576px) {
-  .slider-track {
-    height: 300px;
-  }
-
-  .banner-content {
-    margin: 0 auto;
-    max-width: 90%;
-  }
-
-  .slider-heading {
-    font-size: 1.5rem;
-  }
-
-  .sale-offer {
-    font-size: 0.8rem;
-  }
-
-  .shop-now {
-    padding: 6px 10px;
-    font-size: 0.7rem;
-  }
 }

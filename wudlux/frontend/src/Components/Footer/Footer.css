@@ -188,7 +188,7 @@
     width: 2px; /* Line thickness */
     background-color: transparent; /* Initially invisible */
     transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth line appearance */
-    transform: scaleY(0); /* Initially hidden (scaled down vertically) */
+    transform: scaleY(); /* Initially hidden (scaled down vertically) */
   }
   
   /* Hover effect for the link */
