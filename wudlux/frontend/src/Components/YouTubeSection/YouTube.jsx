@@ -4,7 +4,7 @@ import thumbnail1 from "../../assets/yt2.jpg"; // Import thumbnails
 import thumbnail2 from "../../assets/yt1.jpg";
 import playIcon from "../../assets/play-icon.svg"; // Import play icon
 
-const PremiumLookSection = () => {
+const YouTube = () => {
   const videos = [
     {
       id: 1,
@@ -57,4 +57,4 @@ const PremiumLookSection = () => {
   );
 };
 
-export default PremiumLookSection;
+export default YouTube;

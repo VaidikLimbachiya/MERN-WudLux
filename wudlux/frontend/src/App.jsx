@@ -1,34 +1,23 @@
-// import { useState } from 'react'
-import './App.css'
-import Footer from './Components/Footer/Footer'
-import Services from './Components/Services/service'
-import Navbar from './Components/Navbar/Navbar'
-import Header from './Components/Header/Header'
-import Categories from './Components/categories/categories'
-import Offers from './Components/offers/offers'
-import Products from './Components/Products/products'
-import Testimonials from './Components/Rating/testimonials'
-import YouTube from './Components/YouTubeSection/YouTube'
-import HotProducts from './Components/HotProducts/HotProducts'
-// import {Route , route , Switch} from 'react-router-dom'
-function App() {
- 
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/Footer";
+import Home from "./Pages/Home/Home";
+import ProductList from "./Pages/ProductList/ProductList";
+import OurStory from "./Pages/OurStory/OurStory";
 
+function App() {
   return (
     <>
       <Navbar />
-      <Header />
-      <Categories />
-      <Offers />
-      <Products />
-      <Services />
-      <HotProducts />
-      <YouTube />
-      <Testimonials />
-
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/our-story" element={<OurStory />} />
+      </Routes>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

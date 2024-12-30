@@ -11,6 +11,16 @@
   z-index: 10;
   overflow: visible;
 }
+/* Remove default link styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Optionally, customize hover effects */
+a:hover {
+  color: #333; /* Example hover color */
+}
 
 /* Header Section */
 .header {

@@ -43,7 +43,7 @@ const Footer = () => {
         <div className="footer-section">
           <h4>About Wudlux</h4>
           <ul>
-            <li><a href="#story">Our Story</a></li>
+            <li><a href="/our-story">Our Story</a></li>
             <li><a href="#contact">Contact Us</a></li>
           </ul>
         </div>
