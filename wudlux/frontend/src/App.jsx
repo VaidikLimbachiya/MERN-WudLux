@@ -1,10 +1,10 @@
-// import { useState } from 'react'
-import {  Route, Routes } from "react-router-dom";
-import "./App.css";
-import { Home } from "./Pages/Homepage/Home";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
-import KitchenWare from "./Pages/kichenWare/KitchenWare";
+import Home from "./Pages/Home/Home";
+import ProductList from "./Pages/ProductList/ProductList";
+import OurStory from "./Pages/OurStory/OurStory";
 
 function App() {
   return (
@@ -12,10 +12,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/kitchenWare/ChoppingBoard" element={<KitchenWare />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/our-story" element={<OurStory />} />
       </Routes>
       <Footer />
-      </>
+    </>
   );
 }
 
