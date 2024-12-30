@@ -11,16 +11,6 @@
   z-index: 10;
   overflow: visible;
 }
-/* Remove default link styles */
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Optionally, customize hover effects */
-a:hover {
-  color: #333; /* Example hover color */
-}
 
 /* Header Section */
 .header {
@@ -132,12 +122,6 @@ a:hover {
   background-color: transparent; /* Initially invisible */
   border-radius: 4px; /* Matches the item's border-radius */
   transition: background-color 0.3s ease; /* Smooth color transition */
-  
-}
-
-a{
-  text-decoration: none;
-  color: inherit;
 }
 
 /* Hover effect */
@@ -227,7 +211,6 @@ a{
 .actionIcon:hover {
   opacity: 0.8;
 }
-
 
 .divider {
   height: 24px;

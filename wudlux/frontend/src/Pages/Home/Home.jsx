@@ -7,6 +7,7 @@ import Products from '../../Components/Products/Products';
 import HotProducts from '../../Components/HotProducts/HotProducts';
 import YouTube from '../../Components/YouTubeSection/YouTube';
 import Testimonials from '../../Components/Rating/testimonials'; // Adjust this path as needed
+import Services from '../../Components/Services/service';
 
 
 
@@ -16,6 +17,7 @@ function Home() {
       {/* <Navbar /> */}
       <Header />
       <Categories />
+      <Services />
       <HotProducts />
       <Products />
       <YouTube />

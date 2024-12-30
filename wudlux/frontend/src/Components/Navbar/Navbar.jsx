@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import './Navbar.css'; // Import the CSS file
+import './Navbar.css'; // Import the CSS file for styling
 import logo from '../../assets/logo.png'; // Adjust the path to your logo
 import searchIcon from '../../assets/vector.png'; // Path to search icon
 import profileIcon from '../../assets/profile.png'; // Path to profile icon
@@ -39,9 +39,7 @@ const categories = [
   {
     text: 'Collections',
     iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/3a93a25a709f4fb428d7f57f554a75f6dae8c2c4a680b05c19026a7d150d8a2f',
-    dropdownItems: [
-      { text: 'Bella', link: '/Collections/Bella' },
-    ],
+    dropdownItems: [{ text: 'Bella', link: '/Collections/Bella' }],
   },
 ];
 
@@ -55,10 +53,6 @@ export function Navbar() {
    */
   const handleCategoryClick = (index) => {
     setActiveCategory(activeCategory === index ? null : index);
-  };
-
-  const handleNavigate = (link) => {
-    navigate(link);
   };
 
   return (
@@ -107,16 +101,11 @@ export function Navbar() {
                   {category.dropdownItems.map((item, subIndex) => (
                     <NavLink
                       key={subIndex}
-                      to={item.link} // Dynamically use item.link
+                      to={item.link}
                       className="dropdownItem"
-                      onClick={() => handleNavigate(item.link)}
+                      onClick={() => setActiveCategory(null)}
                       role="button"
                       tabIndex={0}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          handleNavigate(item.link);
-                        }
-                      }}
                     >
                       {item.text}
                     </NavLink>

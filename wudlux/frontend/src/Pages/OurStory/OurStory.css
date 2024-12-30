@@ -48,13 +48,14 @@
     }
     
     .section-title {
+        width: 100%;
         font-size: 36px;
         font-weight: bold;
         color: black;
-        margin-bottom: -10px;
+        margin-bottom: 10px;
     }
     
-    .section-subtitle {
+    .section-subtitlee {
         font-size: 24px;
         font-weight: normal;
         color: black;
@@ -63,7 +64,7 @@
         display: inline-block; /* Ensure the underline adjusts to the text width */
       }
       
-      .section-subtitle::after {
+      .section-subtitlee::after {
         content: "";
         position: absolute;
         left: 0;

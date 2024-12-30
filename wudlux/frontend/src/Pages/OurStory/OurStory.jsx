@@ -1,7 +1,8 @@
-import './OurStory.css'; // Import styles for this page
-import heroImage from '../../assets/ourStory.jpg'; // Path to hero image
-import storyImage from '../../assets/ostry.png'; // Path to the image in content section
-import featuresImage from '../../assets/sty.png'; // Path to the features image
+import React from "react";
+import "./OurStory.css"; // Import styles for this page
+import heroImage from "../../assets/ourStory.jpg"; // Path to hero image
+import storyImage from "../../assets/ostry.png"; // Path to the image in content section
+import featuresImage from "../../assets/sty.png"; // Path to the features image
 
 function OurStory() {
   return (
@@ -23,8 +24,8 @@ function OurStory() {
 
           {/* Text Content */}
           <div className="content-container">
-            <h1 className="section-title">WUDLUX Story</h1>
-            <h2 className="section-subtitle">
+            <h1 className="section-title">WUDLUX Story </h1>
+            <h2 className="section-subtitlee">
               Exclusive Wooden Kitchenware and Serveware
             </h2>
             <p className="section-description">

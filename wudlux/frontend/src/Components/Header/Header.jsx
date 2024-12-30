@@ -4,7 +4,7 @@ import backgroundImage1 from "../../assets/header.png";
 import backgroundImage2 from "../../assets/header2.png";
 import backgroundImage3 from "../../assets/header3.png";
 
-const Header = () => {
+const Slider = () => {
   const slides = [
     {
       image: backgroundImage1,
@@ -71,4 +71,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Slider;
