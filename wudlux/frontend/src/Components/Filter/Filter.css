@@ -1,0 +1,64 @@
+.filters-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    font-family: Arial, sans-serif;
+  }
+  
+  .filter-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .filter-select,
+  .price-input,
+  .sort-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .price-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .price-label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .price-inputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .apply-button {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .apply-button:hover {
+    background-color: #333;
+  }
+  
+  .sort-dropdown {
+    margin-left: auto;
+  }
+  
+  .sort-select {
+    width: 150px;
+  }
+  

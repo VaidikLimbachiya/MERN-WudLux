@@ -132,6 +132,12 @@ a:hover {
   background-color: transparent; /* Initially invisible */
   border-radius: 4px; /* Matches the item's border-radius */
   transition: background-color 0.3s ease; /* Smooth color transition */
+  
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Hover effect */
@@ -221,6 +227,7 @@ a:hover {
 .actionIcon:hover {
   opacity: 0.8;
 }
+
 
 .divider {
   height: 24px;

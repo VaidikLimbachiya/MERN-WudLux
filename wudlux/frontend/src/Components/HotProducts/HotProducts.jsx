@@ -7,7 +7,7 @@ import image4 from "../../assets/hp4.png";
 import image5 from "../../assets/hp5.png";
 import image6 from "../../assets/hp6.png";
 
-const GridGallery = () => {
+const HotProducts = () => {
   return (
     <div className="grid-section">
       {/* Section Heading */}
@@ -68,4 +68,4 @@ const GridGallery = () => {
   );
 };
 
-export default GridGallery;
+export default HotProducts;

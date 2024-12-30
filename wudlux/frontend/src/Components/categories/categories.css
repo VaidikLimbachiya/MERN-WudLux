@@ -1,4 +1,4 @@
-/* General Container Styles */
+/* Container Styles */
 .categoriesContainer {
   text-align: center;
   padding: 20px;
@@ -11,7 +11,7 @@
 }
 
 .headingTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', serif; /* Elegant serif font */
   font-size: 36px;
   font-weight: 700;
   color: #000;
@@ -20,17 +20,17 @@
 }
 
 .headingUnderline {
-  width: 100px;
-  height: 4px;
-  background-color: #c0a062;
-  margin: 10px auto;
+  width: 100px; /* Width of the underline */
+  height: 4px; /* Thickness of the line */
+  background-color: #c0a062; /* Gold-like color */
+  margin: 10px auto; /* Center the underline */
 }
 
 .headingSubtitle {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', sans-serif; /* Clean sans-serif font */
   font-size: 16px;
   font-weight: 400;
-  color: #666;
+  color: #666; /* Slightly lighter text color */
   margin: 10px;
   margin-top: 20px;
 }
@@ -50,7 +50,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 220px;
+  width: 221px; /* Fixed width for consistent sizing */
   padding-bottom: 27px;
   position: relative;
   cursor: pointer;
@@ -68,12 +68,12 @@
   width: 100%;
   aspect-ratio: 1;
   object-fit: contain;
-  z-index: 1;
+  z-index: 1; /* Ensure the image is above the overlay */
   transition: transform 0.3s ease;
 }
 
 .categoryHoverEffect:hover .categoryImage {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Scale the image slightly */
 }
 
 .hoverOverlay {
@@ -84,7 +84,7 @@
   height: 100%;
   background-color: black;
   opacity: 0;
-  z-index: 2;
+  z-index: 2; /* Overlay sits above the image */
   transition: opacity 0.3s ease;
   display: flex;
   align-items: center;
@@ -92,28 +92,28 @@
 }
 
 .categoryHoverEffect:hover .hoverOverlay {
-  opacity: 0.6;
+  opacity: 0.6; /* Make the overlay visible on hover */
 }
 
 .hoverOverlay span {
   font-size: 60px;
   font-weight: 900;
-  color: white;
+  color: white; /* White '+' symbol */
 }
 
 .categoryTitle {
   margin-top: 15px;
   font-family: 'DM Sans', sans-serif;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 790; /* Bold title */
   text-align: center;
   color: #000;
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (max-width: 991px) {
   .categoryCard {
-    width: 200px;
+    width: 150px; /* Slightly smaller width for smaller screens */
   }
 
   .categoryTitle {
@@ -121,97 +121,20 @@
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 768px) {
   .categoriesGrid {
     gap: 15px;
   }
 
-  .categoryCard {
-    width: 170px;
-  }
-
-  .categoryHoverEffect {
-    width: 160px;
-    height: 160px;
-  }
-
-  .categoryTitle {
-    font-size: 15px;
-  }
-
   .headingTitle {
-    font-size: 30px;
+    font-size: 28px; /* Smaller font size on smaller screens */
   }
 
   .headingUnderline {
-    width: 60px;
+    width: 40px; /* Adjust line width for smaller screens */
   }
 
   .headingSubtitle {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 768px) {
-  .categoriesGrid {
-    gap: 10px;
-  }
-
-  .categoryCard {
-    width: 150px;
-  }
-
-  .categoryHoverEffect {
-    width: 140px;
-    height: 140px;
-  }
-
-  .categoryTitle {
-    font-size: 14px;
-  }
-
-  .headingTitle {
-    font-size: 26px;
-  }
-
-  .headingUnderline {
-    width: 50px;
-  }
-
-  .headingSubtitle {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 576px) {
-  .categoriesGrid {
-    gap: 10px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .categoryCard {
-    width: 130px;
-  }
-
-  .categoryHoverEffect {
-    width: 120px;
-    height: 120px;
-  }
-
-  .categoryTitle {
-    font-size: 12px;
-  }
-
-  .headingTitle {
-    font-size: 22px;
-  }
-
-  .headingUnderline {
-    width: 40px;
-  }
-
-  .headingSubtitle {
-    font-size: 11px;
+    font-size: 14px; /* Slightly smaller subtitle text */
   }
 }

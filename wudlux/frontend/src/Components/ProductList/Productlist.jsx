@@ -1,5 +1,5 @@
 // import React from 'react';
-import './Products.css';
+import './Productlist.css';
 import product1 from '../../assets/product1.png';
 import product2 from '../../assets/product2.png';
 import product3 from '../../assets/product3.png';
@@ -10,7 +10,6 @@ import product7 from '../../assets/product7.png';
 import product8 from '../../assets/product8.png';
 import bagIcon from '../../assets/bag.png';
 
-// Sample product data
 const products = [
   {
     id: 1,
@@ -76,30 +75,49 @@ const products = [
     originalPrice: '₹499.00',
     discount: '-60%',
   },
+  {
+    id: 9,
+    image: product1,
+    title: 'Aliquam lobortis est turpis mauris ...',
+    price: '₹299.00',
+    originalPrice: '₹499.00',
+    discount: '-60%',
+  },
+  {
+    id: 10,
+    image: product2,
+    title: 'Aliquam lobortis est turpis mauris ...',
+    price: '₹299.00',
+    originalPrice: '₹499.00',
+    discount: '-60%',
+  },
+  {
+    id: 11,
+    image: product3,
+    title: 'Aliquam lobortis est turpis mauris ...',
+    price: '₹299.00',
+    originalPrice: '₹499.00',
+    discount: '-60%',
+  },
+  {
+    id: 12,
+    image: product4,
+    title: 'Aliquam lobortis est turpis mauris ...',
+    price: '₹299.00',
+    originalPrice: '₹499.00',
+    discount: '-60%',
+  }
 ];
 
-const Products= () => {
+const Productlist = () => {
   return (
-    <div className="productsSection">
-      {/* Header Section */}
-      <div className="productsHeader">
-        <h2 className="productsTitle">
-          Newly Launched
-          <div className="titleUnderline"></div> {/* Add underline here */}
-        </h2>
-        <p className="productsSubtitle">
-          Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero est.
-        </p>
-      </div>
-
-      {/* Product Grid */}
+    <>
       <div className="productsGrid">
         {products.map((product) => (
           <div className="productCard" key={product.id}>
             <div className="productImageWrapper">
               <img src={product.image} alt={product.title} className="productImage" />
               <div className="discountBadge">{product.discount}</div>
-              {/* Add to Bag Button */}
               <div className="addToBagWrapper">
                 <button className="addToBagButton">
                   Add to Bag <img src={bagIcon} alt="Bag Icon" className="bagIcon" />
@@ -116,13 +134,8 @@ const Products= () => {
           </div>
         ))}
       </div>
-
-      {/* View All Button */}
-      <div className="viewAllButtonWrapper">
-        <button className="viewAllButton">View All →</button>
-      </div>
-    </div>
+    </>
   );
 };
 
-export default Products;
+export default Productlist;
