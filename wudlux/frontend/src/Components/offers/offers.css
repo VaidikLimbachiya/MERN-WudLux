@@ -8,27 +8,23 @@
 .offers-container {
   display: flex;
   padding: 20px;
-  margin-left: auto; /* Center align container */
-  margin-right: auto;
+  margin-left: 35px; /* Center align container */
+  /* margin-right: auto; */
   justify-content: space-between;
   width: 97%;
-  gap: 20px; /* Space between cards */
+  height: relative;
+  gap: 10px; /* Space between cards */
   flex-wrap: wrap; /* Ensure cards stack on smaller screens */
 }
 
 /* Offer card styling */
 .offer-card {
+  display: flex;
   position: relative;
-  width: 30%; /* Default card width for desktops */
+  width: 32%; /* Default card width for desktops */
+  height: 50%; /* Default card height */
   border-radius: 10px; /* Rounded corners */
   overflow: hidden;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
-}
-
-.offer-card:hover {
-  transform: scale(1.02); /* Slightly enlarge on hover */
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* More prominent shadow on hover */
 }
 
 /* Image styling */
@@ -47,26 +43,27 @@
   z-index: 2;
   color: #000;
   text-align: left;
+  padding-left: 30px;
 }
 
 /* Title styling */
 .offer-title {
   font-size: 14px;
   font-family: 'Lato', sans-serif;
-  font-weight: 400;
-  color: #666;
+  /* font-weight: bold; */
+  color: black;
   margin-bottom: 5px;
 }
 
 /* Subtitle styling */
 .offer-subtitle {
-  font-size: 25px;
+  font-size: 35px;
   font-family: 'Playfair Display', serif;
-  font-weight: bold;
+  font-weight: 500;
   color: #000;
   margin-bottom: 15px;
   line-height: 1.5;
-  width: 195px;
+  width: 400px;
 }
 
 /* Button styling */

@@ -13,8 +13,18 @@
   font-family: "Playfair Display", serif;
   font-size: 32px;
   font-weight: bold;
-  margin-bottom: 10px ;
+  margin-bottom: 10px;
   color: #333333;
+  position: relative; /* Required for the underline */
+  text-align: center;
+}
+
+.title-underline {
+  margin: 10px auto 0;
+  width: 100px; /* Adjust width of the underline */
+  height: 3px; /* Thickness of the underline */
+  background-color: #c0a062; /* Gold color for the underline */
+  border-radius: 2px;
 }
 
 .testimonials-subtitle {
@@ -47,13 +57,17 @@
 }
 
 .testimonial-rating {
-  color: #f5c518;
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: #ffc107; /* Gold for filled stars */
+}
+
+.testimonial-rating span {
+  font-size: 1.2rem;
+  color: #e4e5e9; /* Light gray for empty stars */
 }
 
 .testimonial-review {
-  font-family: "Arial", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   color: #333;
   margin-bottom: 20px;
@@ -78,11 +92,13 @@
   font-size: 16px;
   font-weight: bold;
   color: #333;
+  font-family: 'Poppins', sans-serif;
 }
 
 .testimonial-user-title {
   font-size: 14px;
   color: #666;
+  font-family: 'Poppins', sans-serif;
 }
 .underline{
   height: 2px; /* Thickness of the line */

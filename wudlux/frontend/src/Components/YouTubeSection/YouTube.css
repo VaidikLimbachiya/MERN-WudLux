@@ -12,10 +12,13 @@
 }
 
 .section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
   font-weight: bold;
-  color: black;
+  color: #333;
+  position: relative;
+  display: inline-block; /* Ensure underline aligns to the title */
+  margin-bottom: 10px;
 }
 
 .section-subtitle {
@@ -67,8 +70,8 @@
 }
 
 .play-icon {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
 }
 
 .play-button:hover {

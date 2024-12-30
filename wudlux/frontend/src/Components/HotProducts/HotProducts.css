@@ -14,9 +14,9 @@
 
 /* Underline */
 .heading-underline {
-  width: 224px; /* Adjust the width */
+  width: 100px; /* Adjust the width */
   height: 2px; /* Thickness of the line */
-  background-color: #d3c0b6; /* Beige color for the underline */
+  background-color: #c0a062; /* Beige color for the underline */
   margin: 20px auto; /* Centered */
  margin-top: -20px;
 }
@@ -34,7 +34,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
     grid-template-rows: repeat(2, auto); /* 2 rows */
-    gap: 10px; /* Space between grid items */
+    gap: 20px; /* Space between grid items */
     width: 90%;
     margin: 0 auto; /* Center the grid */
   }

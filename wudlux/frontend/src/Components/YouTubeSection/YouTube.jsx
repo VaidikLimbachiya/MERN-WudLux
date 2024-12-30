@@ -1,7 +1,7 @@
 import React from "react";
 import "./YouTube.css";
-import thumbnail1 from "../../assets/yt1.jpg"; // Import thumbnails
-import thumbnail2 from "../../assets/yt2.jpg";
+import thumbnail1 from "../../assets/yt2.jpg"; // Import thumbnails
+import thumbnail2 from "../../assets/yt1.jpg";
 import playIcon from "../../assets/play-icon.svg"; // Import play icon
 
 const PremiumLookSection = () => {
@@ -22,7 +22,10 @@ const PremiumLookSection = () => {
     <div className="premium-look-section">
       {/* Header */}
       <div className="section-header">
-        <h2 className="section-title">See Our Premium Look</h2>
+        <h2 className="section-title">
+          See Our Premium Look
+          <div className="title-underline"></div> {/* Add underline below the title */}
+        </h2>
         <p className="section-subtitle">
           Curate your style and effortlessly craft your perfect Wudlux.
         </p>

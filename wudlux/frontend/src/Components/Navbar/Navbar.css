@@ -94,12 +94,8 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.2s ease;
-<<<<<<< HEAD
-  font-family: 'Poppins', sans-serif;
-=======
   font-family: 'Poppins', sans-serif; 
   font-weight: 600;
->>>>>>> c9948d31c95663e6694b0aa45a022daec377102d
 }
 
 .categoryWrapper:hover .dropdownMenu {
@@ -128,8 +124,6 @@
   transition: background-color 0.3s ease; /* Smooth color transition */
 }
 
-<<<<<<< HEAD
-=======
 /* Hover effect */
 .dropdownItem:hover {
   background-color: white; /* Light gray background on hover */
@@ -147,7 +141,6 @@
 }
 
 
->>>>>>> c9948d31c95663e6694b0aa45a022daec377102d
 /* Promotion Section */
 .promotionBanner {
   display: flex;
