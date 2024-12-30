@@ -2,7 +2,7 @@
 
 .footer {
     background-color: #f7f5f4;
-    padding: 49px 20px;
+    padding: 15px ;
     color: #000000;
     font-family: Arial, sans-serif;
     font-weight:600;
@@ -20,15 +20,15 @@
     .footer-container {
       display: flex;
       /* flex-wrap: wrap; */
-      width: 90%;
-      margin-left: 125px;
+      width: 100%;
+      margin-left: 25px;
   
     }
     
     .footer-section {
       flex:15%;
       margin: -62px -32px;
-      padding: 39px;
+      padding: 70px;
       font-family: 'Poppins', sans-serif;
       
     }
@@ -188,7 +188,7 @@
     width: 2px; /* Line thickness */
     background-color: transparent; /* Initially invisible */
     transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth line appearance */
-    transform: scaleY(); /* Initially hidden (scaled down vertically) */
+    transform: scaleY(1); /* Initially hidden (scaled down vertically) */
   }
   
   /* Hover effect for the link */

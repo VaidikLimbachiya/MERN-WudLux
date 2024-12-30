@@ -78,12 +78,15 @@ const products = [
   },
 ];
 
-const ProductsSection = () => {
+const Products= () => {
   return (
     <div className="productsSection">
       {/* Header Section */}
       <div className="productsHeader">
-        <h2 className="productsTitle">Newly Launched</h2>
+        <h2 className="productsTitle">
+          Newly Launched
+          <div className="titleUnderline"></div> {/* Add underline here */}
+        </h2>
         <p className="productsSubtitle">
           Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero est.
         </p>
@@ -122,4 +125,4 @@ const ProductsSection = () => {
   );
 };
 
-export default ProductsSection;
+export default Products;

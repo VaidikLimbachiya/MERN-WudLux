@@ -50,10 +50,6 @@
   
 }
 
-.productCard:hover {
-  transform: translateY(-5px); /* Hover lift effect */
-}
-
 /* Product Image */
 .productImageWrapper {
   position: relative;
@@ -70,7 +66,7 @@
   position: absolute;
   top: 25px;
   right: 10px;
-  background-color: #ff4d4d; /* Red discount badge */
+  background-color: red; /* Red discount badge */
   color: #fff;
   font-size: 14px;
   font-weight: bold;
@@ -84,13 +80,25 @@
   padding: 1px;
 }
 
-.productTitle {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+/* Title Styles */
+.productsTitle {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  font-weight: bold;
   color: #333;
-  margin: 0 0 10px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
 }
+
+.titleUnderline {
+  margin: 10px auto 0;
+  width: 100px; /* Adjust the underline width */
+  height: 3px; /* Thickness of the underline */
+  background-color: #c0a062; /* Gold color for the underline */
+  border-radius: 2px; /* Rounded corners for a polished look */
+}
+
 
 .productPrice {
   display: flex;
@@ -206,7 +214,7 @@
 
 /* Add to Bag Button Hover Effect */
 .addToBagButton:hover {
-  transform: scale(1.05); /* Slight enlargement on hover */
+  transform: scale(1); /* Slight enlargement on hover */
 }
 
 

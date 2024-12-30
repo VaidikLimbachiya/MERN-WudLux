@@ -13,7 +13,7 @@ const Offers = () => {
           <img src={tablewareImage} alt="Tableware Collections" className="offer-image" />
           <div className="offer-overlay">
             <p className="offer-title">Top Trending</p>
-            <h3 className="offer-subtitle">Tableware Collections</h3>
+            <h3 className="offer-subtitle">Tableware <br />Collections</h3>
             <a href="#" className="offer-button">Discover Now</a>
           </div>
         </div>

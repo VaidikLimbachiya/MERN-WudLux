@@ -4,6 +4,7 @@ import person1 from "../../assets/person1.png";
 import person2 from "../../assets/person2.png";
 import person3 from "../../assets/person3.png";
 import person4 from "../../assets/person4.png";
+
 const Testimonials = () => {
   const testimonials = [
     {
@@ -56,15 +57,24 @@ const Testimonials = () => {
     );
   };
 
+  const renderRating = (rating) => {
+    const filledStars = "⭐".repeat(rating);
+    const emptyStars = "☆".repeat(5 - rating);
+    return `${filledStars}${emptyStars}`;
+  };
+
   return (
     <div className="testimonials-section">
-      <h2 className="testimonials-title">Our Testimonials</h2>
+      <h2 className="testimonials-title">
+        Our Testimonials
+        <div className="title-underline"></div> {/* Underline for the title */}
+      </h2>
       <p className="testimonials-subtitle">See what people are saying...</p>
       <div className="testimonials-carousel">
-        {testimonials.slice(currentIndex, currentIndex +4).map((testimonial, ) => (
+        {testimonials.slice(currentIndex, currentIndex + 4).map((testimonial) => (
           <div key={testimonial.id} className="testimonial-card">
             <div className="testimonial-rating">
-              {"⭐".repeat(testimonial.rating)}
+              {renderRating(testimonial.rating)}
             </div>
             <p className="testimonial-review">{testimonial.review}</p>
             <div className="testimonial-user">

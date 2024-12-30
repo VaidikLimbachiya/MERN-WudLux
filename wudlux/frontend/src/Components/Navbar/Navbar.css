@@ -94,7 +94,8 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.2s ease;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif; 
+  font-weight: 600;
 }
 
 .categoryWrapper:hover .dropdownMenu {
