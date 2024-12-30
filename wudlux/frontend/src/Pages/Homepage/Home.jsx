@@ -1,7 +1,7 @@
-import React from 'react'
-import Navbar from '../../Components/Navbar/Navbar'
+// import React from 'react'
+// import Navbar from '../../Components/Navbar/Navbar'
 import Categories from '../../Components/categories/categories'
-import Footer from '../../Components/Footer/Footer'
+// import Footer from '../../Components/Footer/Footer'
 import Testimonials from '../../Components/Rating/testimonials'
 import Services from '../../Components/Services/service'
 import Header from '../../Components/Header/Header'
@@ -13,7 +13,7 @@ import YouTube from '../../Components/YouTubeSection/YouTube'
 export const Home = () => {
   return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <Header />
         <Categories />
         <Offers />
@@ -22,7 +22,7 @@ export const Home = () => {
         <HotProducts />
         <YouTube />
         <Testimonials />
-        <Footer />
+        {/* <Footer /> */}
       </div>
   )
 }

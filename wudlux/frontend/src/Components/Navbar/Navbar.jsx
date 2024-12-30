@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Navbar.css'; // Import the CSS file
 import logo from '../../assets/logo.png'; // Adjust the path to your logo
 import searchIcon from '../../assets/vector.png'; // Path to search icon
@@ -10,32 +11,42 @@ const categories = [
     text: 'Serveware',
     iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/a1cfa473b4c3091f113c79eb7155d25fb5458b102ed1a68b6ce2308227f94925',
     dropdownItems: [
-      'Serving Tray',
-      'Serving Tray with Drawer',
-      'Beer Caddy',
-      'Serving Platter',
-      'Wine Serving Tray',
+      { text: 'Serving Tray', link: '/Serveware/ServingTray' },
+      { text: 'Serving Tray with Drawer', link: '/Serveware/ServingTrayWithDrawer' },
+      { text: 'Beer Caddy', link: '/Serveware/BeerCaddy' },
+      { text: 'Serving Platter', link: '/Serveware/ServingPlatter' },
+      { text: 'Wine Serving Tray', link: '/Serveware/WineServingTray' },
     ],
   },
   {
     text: 'Kitchenware',
     iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/93802c32367c70d0f1cbcf887c7e26e1d4f770ebf8473953950cd1af3bf76896',
-    dropdownItems: ['Chopping Board', 'Butcher Board'],
+    dropdownItems: [
+      { text: 'Chopping Board', link: '/Kitchenware/ChoppingBoard' },
+      { text: 'Butcher Board', link: '/Kitchenware/ButcherBoard' },
+    ],
   },
   {
     text: 'Tableware',
     iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c9ea7504e7b254d854b06a79b48cf39d39e2ab6c6f3afb37338801a7c60027f8',
-    dropdownItems: ['Lazy Susan', 'Coffee Pods Drawer', 'Cutlery Caddy'],
+    dropdownItems: [
+      { text: 'Lazy Susan', link: '/Tableware/Lazysusan' },
+      { text: 'Coffee Pods Drawer', link: '/Tableware/CoffeePodsDrawer' },
+      { text: 'Cutlery Caddy', link: '/Tableware/CutleryCaddy' },
+    ],
   },
   {
     text: 'Collections',
     iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/3a93a25a709f4fb428d7f57f554a75f6dae8c2c4a680b05c19026a7d150d8a2f',
-    dropdownItems: ['Bella'],
+    dropdownItems: [
+      { text: 'Bella', link: '/Collections/Bella' },
+    ],
   },
 ];
 
 export function Navbar() {
   const [activeCategory, setActiveCategory] = useState(null); // Tracks the active category index
+  const navigate = useNavigate();
 
   /**
    * Toggles the dropdown menu for a category on click.
@@ -43,6 +54,10 @@ export function Navbar() {
    */
   const handleCategoryClick = (index) => {
     setActiveCategory(activeCategory === index ? null : index);
+  };
+
+  const handleNavigate = (link) => {
+    navigate(link);
   };
 
   return (
@@ -90,20 +105,21 @@ export function Navbar() {
               {activeCategory === index && (
                 <div className="dropdownMenu">
                   {category.dropdownItems.map((item, subIndex) => (
-                    <div
+                    <NavLink
                       key={subIndex}
+                      to={item.link} // Dynamically use item.link
                       className="dropdownItem"
-                      onClick={() => alert(`Navigating to ${item}`)}
+                      onClick={() => handleNavigate(item.link)}
                       role="button"
                       tabIndex={0}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
-                          alert(`Navigating to ${item}`);
+                          handleNavigate(item.link);
                         }
                       }}
                     >
-                      {item}
-                    </div>
+                      {item.text}
+                    </NavLink>
                   ))}
                 </div>
               )}

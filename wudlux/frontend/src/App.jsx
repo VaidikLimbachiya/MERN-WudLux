@@ -1,27 +1,22 @@
 // import { useState } from 'react'
-import './App.css'
-// import Footer from './Components/Footer/Footer'
-// import Services from './Components/Services/service'
-// import Navbar from './Components/Navbar/Navbar'
-// import Header from './Components/Header/Header'
-// import Categories from './Components/categories/categories'
-// import Offers from './Components/offers/offers'
-// import Products from './Components/Products/products'
-// import Testimonials from './Components/Rating/testimonials'
-// import YouTube from './Components/YouTubeSection/YouTube'
-// import HotProducts from './Components/HotProducts/HotProducts'
-import { Home } from './Pages/Homepage/Home'
-import KitchenWare from './Pages/Homepage/KitchenWare'
-// import {Route , route , Switch} from 'react-router-dom'
-function App() {
- 
+import {  Route, Routes } from "react-router-dom";
+import "./App.css";
+import { Home } from "./Pages/Homepage/Home";
+import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/Footer";
+import KitchenWare from "./Pages/kichenWare/KitchenWare";
 
+function App() {
   return (
     <>
-    <Home />
-     <KitchenWare /> 
-    </>
-  )
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/kitchenWare/ChoppingBoard" element={<KitchenWare />} />
+      </Routes>
+      <Footer />
+      </>
+  );
 }
 
-export default App
+export default App;
