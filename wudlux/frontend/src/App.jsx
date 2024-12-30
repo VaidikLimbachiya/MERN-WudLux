@@ -5,6 +5,8 @@ import { Home } from "./Pages/Homepage/Home";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import KitchenWare from "./Pages/kichenWare/KitchenWare";
+import OurStory from "./Pages/OurStory/OurStory";
+
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/kitchenWare/ChoppingBoard" element={<KitchenWare />} />
+        <Route path="/our-story" element={<OurStory/>} />
       </Routes>
       <Footer />
       </>

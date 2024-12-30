@@ -13,9 +13,6 @@ const KitchenWare = () => {
         <img src= {brackfast} alt='Breakfast' />
        </div> */}
        <Filters />
-       <hr/>
-
-        <hr />
        <Productlist />
        <Services />
        <CaroProduct />

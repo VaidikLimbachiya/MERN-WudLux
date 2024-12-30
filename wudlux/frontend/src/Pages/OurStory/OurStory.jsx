@@ -1,10 +1,7 @@
-import React from "react";
-import Navbar from "../../Components/Navbar/Navbar";
-import Footer from "../../Components/Footer/Footer";
-import "./OurStory.css"; // Import styles for this page
-import heroImage from "../../assets/ourStory.jpg"; // Path to hero image
-import storyImage from "../../assets/ostry.png"; // Path to the image in content section
-import featuresImage from "../../assets/sty.png"; // Path to the features image
+import './OurStory.css'; // Import styles for this page
+import heroImage from '../../assets/ourStory.jpg'; // Path to hero image
+import storyImage from '../../assets/ostry.png'; // Path to the image in content section
+import featuresImage from '../../assets/sty.png'; // Path to the features image
 
 function OurStory() {
   return (
@@ -31,12 +28,12 @@ function OurStory() {
               Exclusive Wooden Kitchenware and Serveware
             </h2>
             <p className="section-description">
-              "Welcome to Wudlux, where timeless elegance meets sustainable
+              &quot;Welcome to Wudlux, where timeless elegance meets sustainable
               craftsmanship. Our journey began with a simple yet profound idea:
               to bring the beauty and functionality of wooden kitchenware and
               serveware into every home. Inspired by nature’s finest materials
               and the artistry of traditional woodworking, we set out to create
-              products that are as durable as they are beautiful."
+              products that are as durable as they are beautiful.&quot;
             </p>
             <button className="explore-products-button">Explore Products →</button>
           </div>
