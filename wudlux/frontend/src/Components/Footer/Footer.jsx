@@ -44,7 +44,7 @@ const Footer = () => {
           <h4>About Wudlux</h4>
           <ul>
             <li><a href="/our-story">Our Story</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="/contact-us">Contact Us</a></li>
           </ul>
         </div>
 

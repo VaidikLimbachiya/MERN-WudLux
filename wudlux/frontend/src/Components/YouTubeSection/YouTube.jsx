@@ -27,7 +27,7 @@ const YouTube = () => {
           <div className="title-underline"></div> {/* Add underline below the title */}
         </h2>
         <p className="section-subtitle">
-          Curate your style and effortlessly craft your perfect Wudlux.
+          curate your style and effortlessly craft your perfect Wudlux.
         </p>
       </div>
 
