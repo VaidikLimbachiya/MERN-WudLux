@@ -8,10 +8,6 @@ import Services from "../../Components/Services/service";
 const KitchenWare = () => {
   return (
     <div >
-       
-       {/* <div className='picture-of-the-page'>
-        <img src= {brackfast} alt='Breakfast' />
-       </div> */}
        <Filters />
        <Productlist />
        <Services />
