@@ -3,8 +3,8 @@
 // import brackfast from "../../assets/brackfast.jpg";
 import HeroImage from "../../assets/kitchen.png";
 import Filters from "../../Components/Filter/Filter";
-// import Productlist from "../../Components/ProductList/Productlist";
-// import CaroProduct from "../../Components/carousalProduct/caroProduct"
+import Productlist from "../../Components/ProductList/Productlist";
+import CaroProduct from "../../Components/carousalProduct/caroProduct"
 import Services from "../../Components/Services/service";
 const KitchenWare = () => {
   return (
@@ -16,9 +16,9 @@ const KitchenWare = () => {
             >
             </header>
        <Filters />
-       {/* <Productlist /> */}
+       <Productlist />
        <Services />
-       {/* <CaroProduct /> */}
+       <CaroProduct />
     </div>
   )
 }

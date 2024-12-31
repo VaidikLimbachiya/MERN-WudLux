@@ -1,8 +1,10 @@
+/* Carousel Container */
 .carousel-container {
   text-align: center;
   padding: 10px 20px;
 }
 
+/* Header Section */
 .carousel-header {
   margin-bottom: 10px;
 }
@@ -27,21 +29,28 @@
   color: #666;
 }
 
+/* Product Grid */
 .carousel-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  padding-left: 20px;
-  width: 1450px;
+  gap: 50px;
+  width: 1300px;
+  /* max-width: 1200px; */
+  margin: 0 auto;
 }
 
+/* Product Card */
 .carousel-card {
+  position: relative;
   background: #fff;
   border-radius: 8px;
-  padding: 20px;
+  padding: 2px;
   text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
+/* Image Section */
 .carousel-image-wrapper {
   position: relative;
 }
@@ -62,27 +71,49 @@
   font-size: 0.9rem;
 }
 
+/* Add to Bag Wrapper */
 .carousel-add-to-bag-wrapper {
-  margin-top: 15px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  /* transition: opacity 0.3s ease, visibility 0.3s ease; */
 }
 
+/* Show Add to Bag on Hover */
+.carousel-card:hover .carousel-add-to-bag-wrapper {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Add to Bag Button */
 .carousel-add-to-bag-button {
   background-color: #000;
   color: #fff;
   border: none;
+  border-radius: 30px;
   padding: 10px 20px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.carousel-add-to-bag-button .carousel-bag-icon {
+.carousel-bag-icon {
+  width: 16px;
   height: 16px;
+  filter: brightness(0) invert(1);
 }
 
+/* Product Details */
 .carousel-details {
   margin-top: 15px;
 }
@@ -108,6 +139,7 @@
   text-decoration: line-through;
 }
 
+/* Carousel Controls */
 .carousel-controls {
   display: flex;
   justify-content: center;
@@ -126,11 +158,5 @@
   justify-content: center;
   cursor: pointer;
   font-size: 18px;
-  transition: background-color 0.3s;
-}
-
-.carousel-button:hover {
-  background-color: #000;
-  color: #fff;
-  border-color: #f5c518;
+  /* transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; */
 }

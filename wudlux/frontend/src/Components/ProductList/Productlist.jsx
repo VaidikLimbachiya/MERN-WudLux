@@ -1,5 +1,4 @@
-// import React from 'react';
-import './Productlist.css';
+import './ProductList.css';
 import product1 from '../../assets/product1.png';
 import product2 from '../../assets/product2.png';
 import product3 from '../../assets/product3.png';
@@ -109,33 +108,31 @@ const products = [
   }
 ];
 
-const Productlist = () => {
+const ProductList = () => {
   return (
-    <>
-      <div className="productsGrid">
-        {products.map((product) => (
-          <div className="productCard" key={product.id}>
-            <div className="productImageWrapper">
-              <img src={product.image} alt={product.title} className="productImage" />
-              <div className="discountBadge">{product.discount}</div>
-              <div className="addToBagWrapper">
-                <button className="addToBagButton">
-                  Add to Bag <img src={bagIcon} alt="Bag Icon" className="bagIcon" />
-                </button>
-              </div>
-            </div>
-            <div className="productDetails">
-              <p className="productTitle">{product.title}</p>
-              <div className="productPrice">
-                <span className="currentPrice">{product.price}</span>
-                <span className="originalPrice">{product.originalPrice}</span>
-              </div>
+    <div className="product-grid">
+      {products.map((product) => (
+        <div className="product-card" key={product.id}>
+          <div className="image-wrapper">
+            <img src={product.image} alt={product.title} className="product-image" />
+            <div className="discount-badge">{product.discount}</div>
+            <div className="bag-button-wrapper">
+              <button className="bag-button">
+                Add to Bag <img src={bagIcon} alt="Bag Icon" className="bag-icon" />
+              </button>
             </div>
           </div>
-        ))}
-      </div>
-    </>
+          <div className="product-details">
+            <p className="product-title">{product.title}</p>
+            <div className="price-details">
+              <span className="current-price">{product.price}</span>
+              <span className="original-price">{product.originalPrice}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };
 
-export default Productlist;
+export default ProductList;
