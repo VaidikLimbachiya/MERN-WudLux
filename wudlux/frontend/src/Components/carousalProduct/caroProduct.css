@@ -1,69 +1,75 @@
-<<<<<<< HEAD
- /*
+/* CSS for Products Carousel */
 .productsSection{
   text-align: center;
-  padding: 20px 20px;
-
-=======
-.carousel-container {
-  text-align: center;
   padding: 10px 20px;
->>>>>>> 1d19d6070942787a985c2f23c14c062a2eb419dc
+  /* background-color: #fff; White background */
 }
 
-.carousel-header {
+
+.productsHeader {
   margin-bottom: 10px;
 }
 
-.carousel-title {
+.productsTitle {
   font-family: 'Playfair Display', serif;
   font-size: 36px;
-  font-weight: 400;
+  font-weight:00;
   margin: 0;
   color: #000;
 }
 
-.carousel-title-underline {
+.titleUnderline {
   height: 2px;
   width: 60px;
-  background-color: rgba(198, 81, 81, 0.819);
+  background-color: black;
   margin: 8px auto 0;
 }
 
-.carousel-subtitle {
+.productsSubtitle {
   font-size: 1rem;
   color: #666;
 }
 
-.carousel-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  padding-left: 20px;
-  width: 1450px;
+.carouselWrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: 50px;
+
 }
 
-.carousel-card {
+.carouselContainer {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carouselItem {
+  flex: 25%;
+  max-width: 50%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.productCard {
   background: #fff;
+  /* border: 1px solid #eee; */
   border-radius: 8px;
   padding: 20px;
   text-align: center;
-<<<<<<< HEAD
-  
-=======
->>>>>>> 1d19d6070942787a985c2f23c14c062a2eb419dc
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
-.carousel-image-wrapper {
+.productImageWrapper {
   position: relative;
 }
 
-.carousel-image {
+.productImage {
   max-width: 100%;
   border-radius: 8px;
 }
 
-.carousel-discount-badge {
+.discountBadge {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -74,11 +80,11 @@
   font-size: 0.9rem;
 }
 
-.carousel-add-to-bag-wrapper {
+.addToBagWrapper {
   margin-top: 15px;
 }
 
-.carousel-add-to-bag-button {
+.addToBagButton {
   background-color: #000;
   color: #fff;
   border: none;
@@ -91,45 +97,42 @@
   gap: 2px;
 }
 
-.carousel-add-to-bag-button .carousel-bag-icon {
+.addToBagButton .bagIcon {
   height: 16px;
 }
 
-.carousel-details {
+.productDetails {
   margin-top: 15px;
 }
 
-.carousel-product-title {
+.productTitle {
   font-size: 1rem;
   color: #333;
   margin-bottom: 10px;
-  width: 19rem;
 }
 
-.carousel-product-price {
+.productPrice {
   font-size: 1.1rem;
   font-weight: bold;
 }
 
-.carousel-current-price {
+.currentPrice {
   color: #000;
   margin-right: 10px;
 }
 
-.carousel-original-price {
+.originalPrice {
   color: #aaa;
   text-decoration: line-through;
 }
-<<<<<<< HEAD
 .productsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
   padding-left: 20px;
-  width: 1450px;
+  /* margin: 20px auto; */
+  width: 1450px; /* Restrict maximum grid width */
 }
-=======
->>>>>>> 1d19d6070942787a985c2f23c14c062a2eb419dc
 
 .carousel-controls {
   display: flex;
@@ -156,8 +159,4 @@
   background-color: #000;
   color: #fff;
   border-color: #f5c518;
-<<<<<<< HEAD
-}  */
-=======
 }
->>>>>>> 1d19d6070942787a985c2f23c14c062a2eb419dc
