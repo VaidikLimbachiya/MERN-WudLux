@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "./RefundPolicy.css";
 import HeroImage from "../../assets/refund.png";
 

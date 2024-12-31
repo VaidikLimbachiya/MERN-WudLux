@@ -103,6 +103,11 @@
   opacity: 1;
 }
 
+a{
+  text-decoration: none;
+  color:black;
+}
+
 .dropdownItem {
   position: relative; /* Required for positioning the pseudo-element */
   padding: 8px 12px;

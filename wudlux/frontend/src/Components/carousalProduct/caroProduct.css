@@ -1,8 +1,8 @@
-/* CSS for Products Carousel */
-.productsSection {
+ /*
+.productsSection{
   text-align: center;
-  padding: 10px 20px;
-  /* background-color: #fff; White background */
+  padding: 20px 20px;
+
 }
 
 
@@ -21,7 +21,7 @@
 .titleUnderline {
   height: 2px;
   width: 60px;
-  background-color: black;
+  background-color: rgba(198, 81, 81, 0.819);
   margin: 8px auto 0;
 }
 
@@ -53,11 +53,10 @@
 
 .productCard {
   background: #fff;
-  /* border: 1px solid #eee; */
   border-radius: 8px;
   padding: 20px;
   text-align: center;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  
 }
 
 .productImageWrapper {
@@ -109,6 +108,7 @@
   font-size: 1rem;
   color: #333;
   margin-bottom: 10px;
+  width: 19rem;
 }
 
 .productPrice {
@@ -130,8 +130,7 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
   padding-left: 20px;
-  /* margin: 20px auto; */
-  width: 1450px; /* Restrict maximum grid width */
+  width: 1450px;
 }
 
 .carousel-controls {
@@ -159,4 +158,4 @@
   background-color: #000;
   color: #fff;
   border-color: #f5c518;
-}
+}  */

@@ -1,6 +1,3 @@
-import React from 'react';
-import Navbar from '../../Components/Navbar/Navbar';
-import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import Categories from '../../Components/Categories/Categories';
 import Products from '../../Components/Products/Products';
@@ -14,7 +11,6 @@ import Offers from '../../Components/offers/offers'; // Adjust this path as need
 function Home() {
   return (
     <>
-      {/* <Navbar /> */}
       <Header />
       <Categories />
       <Offers />
@@ -23,7 +19,6 @@ function Home() {
       <Products />
       <YouTube />
       <Testimonials />
-      {/* <Footer /> */}
     </>
   );
 }
