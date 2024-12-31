@@ -88,7 +88,7 @@ const Products= () => {
           <div className="titleUnderline"></div> {/* Add underline here */}
         </h2>
         <p className="productsSubtitle">
-          Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero est.
+          Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero est...
         </p>
       </div>
 
