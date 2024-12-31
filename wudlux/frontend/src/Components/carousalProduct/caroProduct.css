@@ -1,212 +1,162 @@
-/* Main Section Container */
+/* CSS for Products Carousel */
+.productsSection {
+  text-align: center;
+  padding: 10px 20px;
+  /* background-color: #fff; White background */
+}
+
+
+.productsHeader {
+  margin-bottom: 10px;
+}
+
+.productsTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight:00;
+  margin: 0;
+  color: #000;
+}
+
+.titleUnderline {
+  height: 2px;
+  width: 60px;
+  background-color: black;
+  margin: 8px auto 0;
+}
+
+.productsSubtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
 .carouselWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 20px 0;
-    position: relative;
-    text-align: center;
-    padding: 10px 20px;
-  }
-  
-  /* Carousel Content */
-  .carousel {
-    display: flex;
-    overflow: hidden;
-    flex: 1;
-    gap: 20px;
-    width: 1450px;
-  }
-  
-  /* Product Card */
-  .productCard {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    flex: 0 0 calc(25% - 20px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    margin: 20px;
-  }
-  
-  .productCard:hover {
-    transform: translateY(-5px);
-  }
-  
-  /* Product Image */
-  .productImageWrapper {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .productImage {
-    width: 100%;
-    height: 290px;
-    object-fit: inherit;
-    display: block;
-  }
-  
-  .discountBadge {
-    position: absolute;
-    top: 25px;
-    right: 10px;
-    background-color: red;
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 4px;
-    z-index: 10;
-  }
-  
-  /* Add to Bag Button */
-  .addToBagWrapper {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-  }
-  
-  .addToBagButton {
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 30px;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .addToBagButton:hover {
-    transform: scale(1.1);
-  }
-  
-  .addToBagButton .bagIcon {
-    width: 16px;
-    height: 16px;
-    filter: brightness(0) invert(1);
-  }
-  
-  .productImageWrapper:hover .addToBagWrapper {
-    opacity: 1;
-    visibility: visible;
-    bottom: 30px;
-  }
-  
-  /* Product Details */
-  .productDetails {
-    padding: 15px;
-    text-align: center;
-  }
-  
-  .productTitle {
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 10px;
-    font-family: 'Playfair Display', serif;
-  }
-  
-  .productPrice {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .currentPrice {
-    font-size: 18px;
-    font-weight: 700;
-    color: #000;
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 0.5px;
-  }
-  
-  .originalPrice {
-    font-size: 14px;
-    font-weight: 400;
-    color: #888;
-    text-decoration: line-through;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  /* Carousel Buttons */
-  .carouselButton {
-    background: #000;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .carouselButton:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .carouselButton:hover:not(:disabled) {
-    background: #333;
-  }
-  
-  /* View All Button */
-  .viewAllButtonWrapper {
-    text-align: center;
-    margin-top: 30px;
-  }
-  
-  .viewAllButton {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-family: 'Arial', sans-serif;
-    font-weight: 500;
-    color: #000;
-    background: none;
-    border: 2px solid #5a4c40;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .viewAllButton::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: #5a4c40;
-    z-index: -1;
-    transition: transform 0.4s ease;
-    transform-origin: left;
-    transform: scaleX(0);
-  }
-  
-  .viewAllButton:hover {
-    color: #fff;
-  }
-  
-  .viewAllButton:hover::before {
-    transform: scaleX(1);
-    left: 0;
-  }
-  
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: 50px;
+
+}
+
+.carouselContainer {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carouselItem {
+  flex: 25%;
+  max-width: 50%;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.productCard {
+  background: #fff;
+  /* border: 1px solid #eee; */
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+}
+
+.productImageWrapper {
+  position: relative;
+}
+
+.productImage {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.discountBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.addToBagWrapper {
+  margin-top: 15px;
+}
+
+.addToBagButton {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.addToBagButton .bagIcon {
+  height: 16px;
+}
+
+.productDetails {
+  margin-top: 15px;
+}
+
+.productTitle {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.productPrice {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.currentPrice {
+  color: #000;
+  margin-right: 10px;
+}
+
+.originalPrice {
+  color: #aaa;
+  text-decoration: line-through;
+}
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding-left: 20px;
+  /* margin: 20px auto; */
+  width: 1450px; /* Restrict maximum grid width */
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.carousel-button {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
+
+.carousel-button:hover {
+  background-color: #000;
+  color: #fff;
+  border-color: #f5c518;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import "react";
 import "./YouTube.css";
 import thumbnail1 from "../../assets/yt2.jpg"; // Import thumbnails
 import thumbnail2 from "../../assets/yt1.jpg";

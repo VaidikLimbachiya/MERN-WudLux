@@ -121,7 +121,7 @@ export function Navbar() {
           <span className="promoText">Summer sale - 50% OFF!</span>
           <button
             className="promoButton"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/products')}
             aria-label="Shop Now - Summer Sale 50% OFF"
           >
             Shop Now
