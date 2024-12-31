@@ -24,8 +24,8 @@ const ContactUs = () => {
         <div className="contact-info">
           <h2>Let's Talk</h2>
           <p>
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley.
+            Lorem Ipsum has been the industry's standard <br /> dummy text ever since the 1500s,
+            when an unknown <br /> printer took a galley.
           </p>
           <div className="info-item">
             <img src={phoneIcon} alt="Phone Icon" className="icon" />
@@ -49,13 +49,16 @@ const ContactUs = () => {
           <h2>Send us a message</h2>
           <form>
             <label>
-              <input placeholder='Your Name *' type="text" name="name" required />
+              <input type="text" name="name" required />
+              <span className="placeholder">Your Name <span className="red">*</span></span>
             </label>
             <label>
-              <input placeholder='Email Address *' type="email" name="email" required />
+              <input type="email" name="email" required />
+              <span className="placeholder">Email Address <span className="red">*</span></span>
             </label>
             <label>
-              <textarea placeholder='Your Message' name="message" rows="8"></textarea>
+              <textarea name="message" rows="10"></textarea>
+              <span className="placeholder">Your Message</span>
             </label>
             <button type="submit">Submit</button>
           </form>

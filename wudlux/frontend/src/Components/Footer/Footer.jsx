@@ -33,10 +33,10 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Customer Care</h4>
           <ul>
-            <li><a href="#refund">Refund Policy</a></li>
-            <li><a href="#privacy">Privacy Policy</a></li>
-            <li><a href="#terms">Terms & Conditions</a></li>
-            <li><a href="#shipping">Shipping Policy</a></li>
+            <li><a href="/refund-policy">Refund Policy</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/terms-condition">Terms & Conditions</a></li>
+            <li><a href="/shipping-policy">Shipping Policy</a></li>
           </ul>
         </div>
 

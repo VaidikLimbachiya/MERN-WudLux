@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 .footer {
-    background-color: #f7f5f4;
+    background-color: #f7f5f4;;
     padding: 15px ;
     color: #000000;
     font-family: Arial, sans-serif;
@@ -21,13 +21,13 @@
       display: flex;
       /* flex-wrap: wrap; */
       width: 100%;
-      margin-left: 25px;
+      margin-left: 2500px;
   
     }
     
     .footer-section {
-      flex:15%;
-      margin: -62px -32px;
+      flex:100%;
+      margin: -62px -44px;
       padding: 70px;
       font-family: 'Poppins', sans-serif;
       
@@ -69,6 +69,7 @@
     .newsletter-input {
       display: flex;
       margin-top: 10px;
+      margin-left: 10px;
     
     }
     
