@@ -11,6 +11,10 @@
   z-index: 10;
   overflow: visible;
 }
+a{
+  text-decoration: none;
+  color: black;
+}
 
 /* Header Section */
 .header {

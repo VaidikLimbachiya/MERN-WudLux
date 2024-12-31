@@ -6,7 +6,6 @@ import product3 from '../../assets/product3.png';
 import product4 from '../../assets/product4.png';
 import bagIcon from '../../assets/bag.png';
 
-// Sample product data
 const products = [
   {
     id: 1,
@@ -74,7 +73,7 @@ const products = [
   },
 ];
 
-const Products = () => {
+const ProductCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNext = () => {
@@ -89,43 +88,42 @@ const Products = () => {
     );
   };
 
-  // Ensure products wrap around if there are fewer than 4 remaining at the end
   const visibleProducts =
     currentIndex + 4 <= products.length
       ? products.slice(currentIndex, currentIndex + 4)
       : [...products.slice(currentIndex), ...products.slice(0, (currentIndex + 4) % products.length)];
 
   return (
-    <div className="productsSection">
+    <div className="carousel-container">
       {/* Header Section */}
-      <div className="productsHeader">
-        <h2 className="productsTitle">
+      <div className="carousel-header">
+        <h2 className="carousel-title">
           Newly Launched
-          <div className="titleUnderline"></div>
+          <div className="carousel-title-underline"></div>
         </h2>
-        <p className="productsSubtitle">
+        <p className="carousel-subtitle">
           Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero est.
         </p>
       </div>
 
       {/* Product Grid */}
-      <div className="productsGrid">
+      <div className="carousel-grid">
         {visibleProducts.map((product) => (
-          <div className="productCard" key={product.id}>
-            <div className="productImageWrapper">
-              <img src={product.image} alt={product.title} className="productImage" />
-              <div className="discountBadge">{product.discount}</div>
-              <div className="addToBagWrapper">
-                <button className="addToBagButton">
-                  Add to Bag <img src={bagIcon} alt="Bag Icon" className="bagIcon" />
+          <div className="carousel-card" key={product.id}>
+            <div className="carousel-image-wrapper">
+              <img src={product.image} alt={product.title} className="carousel-image" />
+              <div className="carousel-discount-badge">{product.discount}</div>
+              <div className="carousel-add-to-bag-wrapper">
+                <button className="carousel-add-to-bag-button">
+                  Add to Bag <img src={bagIcon} alt="Bag Icon" className="carousel-bag-icon" />
                 </button>
               </div>
             </div>
-            <div className="productDetails">
-              <p className="productTitle">{product.title}</p>
-              <div className="productPrice">
-                <span className="currentPrice">{product.price}</span>
-                <span className="originalPrice">{product.originalPrice}</span>
+            <div className="carousel-details">
+              <p className="carousel-product-title">{product.title}</p>
+              <div className="carousel-product-price">
+                <span className="carousel-current-price">{product.price}</span>
+                <span className="carousel-original-price">{product.originalPrice}</span>
               </div>
             </div>
           </div>
@@ -145,4 +143,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default ProductCarousel;

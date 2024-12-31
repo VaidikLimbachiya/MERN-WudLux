@@ -1,123 +1,89 @@
-import { useState } from 'react';
-import './Filter.css'; // CSS for the styling
+import React, { useState } from 'react';
+import './Filter.css'; // Import the CSS file
 
-const sampleProducts = [
-  { id: 1, name: 'Acacia Chair', material: 'Acacia wood', price: 1500 },
-  { id: 2, name: 'Bamboo Table', material: 'Bamboo', price: 3000 },
-  { id: 3, name: 'Walnut Bed', material: 'Steel', price: 5000 },
-  { id: 4, name: 'Premium Sofa', material: 'Acacia wood', price: 4500 },
-];
-
-const Filters = () => {
+const FilterComponent = () => {
   const [material, setMaterial] = useState('');
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
-  const [filteredProducts, setFilteredProducts] = useState(sampleProducts);
+  const [priceRange, setPriceRange] = useState({ min: '', max: '' });
+  const [activeFilters, setActiveFilters] = useState([]);
+
+  const materials = ['Acacia wood', 'Teak wood', 'Pine wood'];
 
   const handleApply = () => {
-    const filtered = sampleProducts.filter((product) => {
-      const isMaterialMatch = material ? product.material === material : true;
-      const isMinPriceMatch = minPrice ? product.price >= Number(minPrice) : true;
-      const isMaxPriceMatch = maxPrice ? product.price <= Number(maxPrice) : true;
+    const newFilters = [];
+    if (material) newFilters.push({ label: material, type: 'Material' });
+    if (priceRange.min && priceRange.max)
+      newFilters.push({
+        label: `Min ₹${priceRange.min} – Max ₹${priceRange.max}`,
+        type: 'Price',
+      });
 
-      return isMaterialMatch && isMinPriceMatch && isMaxPriceMatch;
-    });
-
-    setFilteredProducts(filtered);
+    setActiveFilters(newFilters);
   };
 
-  const handleRemoveFilter = (filterType) => {
-    if (filterType === 'material') setMaterial('');
-    if (filterType === 'minPrice') setMinPrice('');
-    if (filterType === 'maxPrice') setMaxPrice('');
-    handleApply(); // Reapply filters after removing one
+  const removeFilter = (filter) => {
+    if (filter.type === 'Material') setMaterial('');
+    if (filter.type === 'Price') setPriceRange({ min: '', max: '' });
+    setActiveFilters(activeFilters.filter((f) => f.label !== filter.label));
   };
 
   return (
-    <div className="filters-container">
-      <div className="filters-row">
-        {/* Material Dropdown */}
-        <div className="filter-item">
-          <select
-            value={material}
-            onChange={(e) => setMaterial(e.target.value)}
-            className="filter-select"
-          >
-            <option value="">Select Material</option>
-            <option value="Acacia wood">Acacia wood</option>
-            <option value="Bamboo">Bamboo</option>
-            <option value="Steel">Walnut Wood</option>
-          </select>
-        </div>
-
-        {/* Price Range */}
-        <div className="filter-item price-section">
-          <label className="price-label">Price</label>
-          <div className="price-inputs">
-            <span>₹</span>
-            <input
-              type="number"
-              value={minPrice}
-              onChange={(e) => setMinPrice(e.target.value)}
-              placeholder="Min"
-              className="price-input"
-            />
-            <span>to</span>
-            <span>₹</span>
-            <input
-              type="number"
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
-              placeholder="Max"
-              className="price-input"
-            />
-          </div>
-        </div>
-
-        {/* Apply Button */}
-        <button onClick={handleApply} className="apply-button">
-          Apply →
+    <div className="filter-container">
+      {/* Filter Inputs */}
+      <div className="filter-controls">
+        <select
+          className="filter-select"
+          value={material}
+          onChange={(e) => setMaterial(e.target.value)}
+        >
+          <option value="">Select Material</option>
+          {materials.map((mat) => (
+            <option key={mat} value={mat}>
+              {mat}
+            </option>
+          ))}
+        </select>
+        <input
+          type="number"
+          placeholder="Min Price"
+          className="filter-input"
+          value={priceRange.min}
+          onChange={(e) =>
+            setPriceRange({ ...priceRange, min: e.target.value })
+          }
+        />
+        <input
+          type="number"
+          placeholder="Max Price"
+          className="filter-input"
+          value={priceRange.max}
+          onChange={(e) =>
+            setPriceRange({ ...priceRange, max: e.target.value })
+          }
+        />
+        <button className="filter-apply-button" onClick={handleApply}>
+          Apply
         </button>
-
-        {/* Sort Dropdown */}
-        <div className="filter-item sort-dropdown">
-          <select className="sort-select">
-            <option value="Featured">Sort by: Latest</option>
-            <option value="priceLow">Price (Low to High)</option>
-            <option value="priceHigh">Price (High to Low)</option>
-            <option value="AlphabeticallyAtoZ">Alphabetically A to Z</option>
-            <option value="AlphabeticallyZtoA">Alphabetically Z to A</option>
-          </select>
-        </div>
       </div>
 
       {/* Active Filters */}
       <div className="active-filters">
-        <strong>Active Filters:</strong>
-        {material && (
-          <span className="filter-badge">
-            {material} <button onClick={() => handleRemoveFilter('material')}>×</button>
-          </span>
-        )}
-        {minPrice && (
-          <span className="filter-badge">
-            Min ₹{minPrice} <button onClick={() => handleRemoveFilter('minPrice')}>×</button>
-          </span>
-        )}
-        {maxPrice && (
-          <span className="filter-badge">
-            Max ₹{maxPrice} <button onClick={() => handleRemoveFilter('maxPrice')}>×</button>
-          </span>
-        )}
-        {!material && !minPrice && !maxPrice && <span>None</span>}
-      </div>
-
-      {/* Results Found */}
-      <div className="results-info">
-        <strong>{filteredProducts.length} Results found.</strong>
+        <h4>Active Filters:</h4>
+        <div className="filters-list">
+          {activeFilters.map((filter) => (
+            <span className="filter-tag" key={filter.label}>
+              {filter.label}{' '}
+              <button
+                className="remove-button"
+                onClick={() => removeFilter(filter)}
+              >
+                ×
+              </button>
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default Filters;
+export default FilterComponent;

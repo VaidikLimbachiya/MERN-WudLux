@@ -1,75 +1,57 @@
-/* CSS for Products Carousel */
-.productsSection {
+.carousel-container {
   text-align: center;
   padding: 10px 20px;
-  /* background-color: #fff; White background */
 }
 
-
-.productsHeader {
+.carousel-header {
   margin-bottom: 10px;
 }
 
-.productsTitle {
+.carousel-title {
   font-family: 'Playfair Display', serif;
   font-size: 36px;
-  font-weight:00;
+  font-weight: 400;
   margin: 0;
   color: #000;
 }
 
-.titleUnderline {
+.carousel-title-underline {
   height: 2px;
   width: 60px;
   background-color: black;
   margin: 8px auto 0;
 }
 
-.productsSubtitle {
+.carousel-subtitle {
   font-size: 1rem;
   color: #666;
 }
 
-.carouselWrapper {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 1200px;
-  margin-left: 50px;
-
+.carousel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding-left: 20px;
+  width: 1450px;
 }
 
-.carouselContainer {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.carouselItem {
-  flex: 25%;
-  max-width: 50%;
-  box-sizing: border-box;
-  padding: 10px;
-}
-
-.productCard {
+.carousel-card {
   background: #fff;
-  /* border: 1px solid #eee; */
   border-radius: 8px;
   padding: 20px;
   text-align: center;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
-.productImageWrapper {
+.carousel-image-wrapper {
   position: relative;
 }
 
-.productImage {
+.carousel-image {
   max-width: 100%;
   border-radius: 8px;
 }
 
-.discountBadge {
+.carousel-discount-badge {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -80,11 +62,11 @@
   font-size: 0.9rem;
 }
 
-.addToBagWrapper {
+.carousel-add-to-bag-wrapper {
   margin-top: 15px;
 }
 
-.addToBagButton {
+.carousel-add-to-bag-button {
   background-color: #000;
   color: #fff;
   border: none;
@@ -97,41 +79,33 @@
   gap: 2px;
 }
 
-.addToBagButton .bagIcon {
+.carousel-add-to-bag-button .carousel-bag-icon {
   height: 16px;
 }
 
-.productDetails {
+.carousel-details {
   margin-top: 15px;
 }
 
-.productTitle {
+.carousel-product-title {
   font-size: 1rem;
   color: #333;
   margin-bottom: 10px;
 }
 
-.productPrice {
+.carousel-product-price {
   font-size: 1.1rem;
   font-weight: bold;
 }
 
-.currentPrice {
+.carousel-current-price {
   color: #000;
   margin-right: 10px;
 }
 
-.originalPrice {
+.carousel-original-price {
   color: #aaa;
   text-decoration: line-through;
-}
-.productsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  padding-left: 20px;
-  /* margin: 20px auto; */
-  width: 1450px; /* Restrict maximum grid width */
 }
 
 .carousel-controls {
