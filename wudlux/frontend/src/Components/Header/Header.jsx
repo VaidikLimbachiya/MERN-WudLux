@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Header.css";
 import backgroundImage1 from "../../assets/header.png";
 import backgroundImage2 from "../../assets/header2.png";
@@ -9,19 +9,19 @@ const Slider = () => {
     {
       image: backgroundImage1,
       heading: "Wooden ",
-      SubHading : "Kitchenware",
+      SubHading: "Kitchenware",
       subheading: "Sale offer 10% off this week",
     },
     {
       image: backgroundImage2,
       heading: "Wooden",
-      SubHading : "Kitchenware",
+      SubHading: "Kitchenware",
       subheading: "Sale offer 10% off this week",
     },
     {
       image: backgroundImage3,
       heading: "Wooden",
-      SubHading : "Kitchenware",
+      SubHading: "Kitchenware",
       subheading: "Sale offer 10% off this week",
     },
   ];
@@ -46,13 +46,20 @@ const Slider = () => {
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {slides.map((slide, index) => (
-          <div key={index} className="banner" style={{ backgroundImage: `url(${slide.image})` }}>
+          <div
+            key={index}
+            className="banner"
+            style={{ backgroundImage: `url(${slide.image})` }}
+          >
             <div className="banner-content">
-              <p className="sale-offer">
+              <div className="sale-offer">
                 <hr className="line-offer" />
-                <span></span> {slide.subheading}
+                <p>
+                  <span></span> {slide.subheading}
+                </p>
                 <hr className="line-offer" />
-              </p>
+              </div>
+
               <h1 className="slider-heading">{slide.heading}</h1>
               <h1 className="slider-SubHeading">{slide.SubHading}</h1>
               <button className="shop-now">
