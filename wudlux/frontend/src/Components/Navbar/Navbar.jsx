@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import './Navbar.css'; // Import the CSS file for styling
-import logo from '../../assets/logo.png'; // Adjust the path to your logo
-import searchIcon from '../../assets/vector.png'; // Path to search icon
-import profileIcon from '../../assets/profile.png'; // Path to profile icon
-import cartIcon from '../../assets/bag.png'; // Path to cart icon
+import './Navbar.css';
+import logo from '../../assets/logo.png';
+import searchIcon from '../../assets/vector.png';
+import profileIcon from '../../assets/profile.png';
+import cartIcon from '../../assets/bag.png';
 
-// Define the categories array
 const categories = [
   {
     text: 'Serveware',
@@ -45,78 +44,79 @@ const categories = [
 
 export function Navbar() {
   const [activeCategory, setActiveCategory] = useState(null); // Tracks the active category index
+  const [isSearchOpen, setIsSearchOpen] = useState(false); // Tracks if the search pop-up is open
   const navigate = useNavigate();
 
-  /**
-   * Toggles the dropdown menu for a category on click.
-   * @param {number} index - The index of the clicked category.
-   */
   const handleCategoryClick = (index) => {
     setActiveCategory(activeCategory === index ? null : index);
   };
 
-  return (
-    <nav className="navigation" role="navigation">
-      <div className="header">
-        {/* Logo Section */}
-        <div className="logoSection" onClick={() => navigate('/')}>
-          <img src={logo} alt="Company Logo" className="logo" loading="lazy" />
-        </div>
+  const toggleSearch = () => {
+    setIsSearchOpen((prev) => !prev);
+  };
 
-        {/* Categories Section */}
-        <div className="navCategories">
-          {categories.map((category, index) => (
-            <div
-              key={index}
-              className={`categoryWrapper ${
-                activeCategory === index ? 'active' : ''
-              }`}
-            >
+  return (
+    <>
+      <nav className="navigation" role="navigation">
+        <div className="header">
+          {/* Logo Section */}
+          <div className="logoSection" onClick={() => navigate('/')}>
+            <img src={logo} alt="Company Logo" className="logo" loading="lazy" />
+          </div>
+
+          {/* Categories Section */}
+          <div className="navCategories">
+            {categories.map((category, index) => (
               <div
-                onClick={() => handleCategoryClick(index)}
-                role="button"
-                tabIndex={0}
-                aria-expanded={activeCategory === index}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    handleCategoryClick(index);
-                  }
-                }}
-                className={`categoryButton ${
+                key={index}
+                className={`categoryWrapper ${
                   activeCategory === index ? 'active' : ''
                 }`}
               >
-                <span className="categoryText">{category.text}</span>
-                <div className="iconWrapper">
-                  <img
-                    src={category.iconSrc}
-                    alt={`${category.text} Icon`}
-                    className="dropdownIcon"
-                  />
+                <div
+                  onClick={() => handleCategoryClick(index)}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={activeCategory === index}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleCategoryClick(index);
+                    }
+                  }}
+                  className={`categoryButton ${
+                    activeCategory === index ? 'active' : ''
+                  }`}
+                >
+                  <span className="categoryText">{category.text}</span>
+                  <div className="iconWrapper">
+                    <img
+                      src={category.iconSrc}
+                      alt={`${category.text} Icon`}
+                      className="dropdownIcon"
+                    />
+                  </div>
                 </div>
+                {/* Dropdown Menu */}
+                {activeCategory === index && (
+                  <div className="dropdownMenu">
+                    {category.dropdownItems.map((item, subIndex) => (
+                      <NavLink
+                        key={subIndex}
+                        to={item.link}
+                        className="dropdownItem"
+                        onClick={() => setActiveCategory(null)}
+                        role="button"
+                        tabIndex={0}
+                      >
+                        {item.text}
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
               </div>
-              {/* Dropdown Menu */}
-              {activeCategory === index && (
-                <div className="dropdownMenu">
-                  {category.dropdownItems.map((item, subIndex) => (
-                    <NavLink
-                      key={subIndex}
-                      to={item.link}
-                      className="dropdownItem"
-                      onClick={() => setActiveCategory(null)}
-                      role="button"
-                      tabIndex={0}
-                    >
-                      {item.text}
-                    </NavLink>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Promotion Section */}
+            ))}
+          </div>
+          {/* Promotion Section */}
         <div className="promotionBanner">
           <span className="promoText">Summer sale - 50% OFF!</span>
           <button
@@ -127,30 +127,48 @@ export function Navbar() {
             Shop Now
           </button>
         </div>
-
-        {/* User Actions Section */}
-        <div className="userActions">
-          <img
-            src={searchIcon}
-            alt="Search"
-            className="actionIcon"
-            onClick={() => navigate('/search')}
-          />
-          <div className="divider"></div>
-          <img
-            src={profileIcon}
-            alt="User Account"
-            className="actionIcon"
-            onClick={() => navigate('/account')}
-          />
-          <div className="divider"></div>
-          <div className="cartIcon" onClick={() => navigate('/cart')}>
-            <img src={cartIcon} alt="Shopping Cart" className="cartImage" />
-            <span className="cartBadge">3</span>
+          {/* User Actions Section */}
+          <div className="userActions">
+            <img
+              src={searchIcon}
+              alt="Search"
+              className="actionIcon"
+              onClick={toggleSearch}
+            />
+            <div className="divider"></div>
+            <img
+              src={profileIcon}
+              alt="User Account"
+              className="actionIcon"
+              onClick={() => navigate('/account')}
+            />
+            <div className="divider"></div>
+            <div className="cartIcon" onClick={() => navigate('/cart')}>
+              <img src={cartIcon} alt="Shopping Cart" className="cartImage" />
+              <span className="cartBadge">3</span>
+            </div>
           </div>
         </div>
+      </nav>
+
+      {/* Search Drawer */}
+      <div className={`searchDrawer ${isSearchOpen ? 'open' : ''}`}>
+        <div className="searchHeader">
+          <h3>Search by Category...</h3>
+          <button className="closeButton" onClick={toggleSearch}>
+            ✖
+          </button>
+        </div>
+        <ul className="searchCategories">
+          <li>Tray</li>
+          <li>Platter</li>
+          <li>Chopping Board</li>
+          <li>Cheese Board</li>
+          <li>Chip & Dip</li>
+          <li>Bowls</li>
+        </ul>
       </div>
-    </nav>
+    </>
   );
 }
 
