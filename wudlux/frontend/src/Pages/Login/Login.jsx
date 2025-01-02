@@ -1,5 +1,5 @@
 // import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const LoginPage = () => {
@@ -31,7 +31,7 @@ const LoginPage = () => {
                 <input  className ="checkBox " type="checkbox" id="remember-me" />
                 <label htmlFor="remember-me">Remember Me</label>
               </p>
-            <a href="#" className='Forgot-link'>Forgot Password?</a>
+            <Link to="/forgot-password" className='Forgot-link'>Forgot Password?</Link>
           </div>
           <button className="btn" type="submit">Login</button>
           <p>

@@ -1,11 +1,11 @@
-// import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../../assets/logo.png';
 import searchIcon from '../../assets/vector.png';
 import profileIcon from '../../assets/profile.png';
 import cartIcon from '../../assets/bag.png';
-import { useState } from 'react';
+import { StoreContext } from '../../Context/StoreContextProvider'; // Import StoreContext
 
 const categories = [
   {
@@ -46,6 +46,8 @@ const categories = [
 export function Navbar() {
   const [activeCategory, setActiveCategory] = useState(null); // Tracks the active category index
   const [isSearchOpen, setIsSearchOpen] = useState(false); // Tracks if the search pop-up is open
+  const [isCartOpen, setIsCartOpen] = useState(false); // Tracks if the cart drawer is open
+  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext); // Access StoreContext
   const navigate = useNavigate();
 
   const handleCategoryClick = (index) => {
@@ -54,6 +56,18 @@ export function Navbar() {
 
   const toggleSearch = () => {
     setIsSearchOpen((prev) => !prev);
+  };
+
+  const toggleCart = () => {
+    setIsCartOpen((prev) => !prev);
+  };
+
+  const getTotalCartCount = () => {
+    return Object.values(cartItems).reduce((total, item) => total + item.quantity, 0);
+  };
+
+  const getTotalCartPrice = () => {
+    return Object.values(cartItems).reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   return (
@@ -117,17 +131,19 @@ export function Navbar() {
               </div>
             ))}
           </div>
+
           {/* Promotion Section */}
-        <div className="promotionBanner">
-          <span className="promoText">Summer sale - 50% OFF!</span>
-          <button
-            className="promoButton"
-            onClick={() => navigate('/products')}
-            aria-label="Shop Now - Summer Sale 50% OFF"
-          >
-            Shop Now
-          </button>
-        </div>
+          <div className="promotionBanner">
+            <span className="promoText">Summer sale - 50% OFF!</span>
+            <button
+              className="promoButton"
+              onClick={() => navigate('/products')}
+              aria-label="Shop Now - Summer Sale 50% OFF"
+            >
+              Shop Now
+            </button>
+          </div>
+
           {/* User Actions Section */}
           <div className="userActions">
             <img
@@ -144,9 +160,9 @@ export function Navbar() {
               onClick={() => navigate('/log-in')}
             />
             <div className="divider"></div>
-            <div className="cartIcon" onClick={() => navigate('/cart')}>
+            <div className="cartIcon" onClick={toggleCart}>
               <img src={cartIcon} alt="Shopping Cart" className="cartImage" />
-              <span className="cartBadge">3</span>
+              <span className="cartBadge">{getTotalCartCount()}</span>
             </div>
           </div>
         </div>
@@ -169,6 +185,48 @@ export function Navbar() {
           <li>Bowls</li>
         </ul>
       </div>
+
+      {/* Cart Drawer */}
+      {isCartOpen && (
+        <div className="cartOverlay">
+          <div className="cartDrawer">
+            <div className="cartHeader">
+              <h3>Your Cart</h3>
+              <button className="closeButton" onClick={toggleCart}>
+                ✖
+              </button>
+            </div>
+            <ul className="cartItems">
+              {Object.values(cartItems).length === 0 ? (
+                <p>Your cart is empty</p>
+              ) : (
+                Object.values(cartItems).map((item) => (
+                  <li key={item.id} className="cartItem">
+                    <div className="cartItemDetails">
+                      <img src={item.image} alt={item.title} className="cartItemImage" />
+                      <div>
+                        <p>{item.title}</p>
+                        <p>₹{item.price}</p>
+                      </div>
+                    </div>
+                    <div className="cartItemActions">
+                      <button onClick={() => removeFromCart(item.id)}>-</button>
+                      <span>{item.quantity}</span>
+                      <button onClick={() => addToCart(item)}>+</button>
+                    </div>
+                  </li>
+                ))
+              )}
+            </ul>
+            <div className="cartFooter">
+              <p>Total: ₹{getTotalCartPrice()}</p>
+              <button onClick={() => navigate('/checkout')} className="checkoutButton">
+                Checkout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

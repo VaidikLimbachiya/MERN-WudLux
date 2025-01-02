@@ -369,6 +369,163 @@ a{
 }
 
 
+/* Cart Drawer Overlay */
+.cartOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Cart Drawer */
+.cartDrawer {
+  width: 400px;
+  height: 100%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+/* Cart Header */
+.cartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cartHeader h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+/* Cart Items */
+.cartItems {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+  margin: 16px 0;
+  padding: 0;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.cartItemDetails {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.cartItemImage {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 12px;
+}
+
+.cartItemActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cartItemActions button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #ddd;
+  background: #f8f8f8;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cartItemActions span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Cart Footer */
+.cartFooter {
+  padding-top: 16px;
+  border-top: 1px solid #ddd;
+}
+
+.cartFooter p {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.checkoutButton {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+.cartSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.checkoutButton,
+.goToCartButton {
+  width: 48%;
+  padding: 12px 0;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.checkoutButton {
+  background: #000;
+  color: #fff;
+}
+
+.goToCartButton {
+  background: #f0f0f0;
+  color: #000;
+}
+
+
 
 /* Responsive Design */
 

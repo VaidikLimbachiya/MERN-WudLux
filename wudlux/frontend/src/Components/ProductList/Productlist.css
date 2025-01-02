@@ -54,6 +54,7 @@
   transition: all 0.3s ease;
 }
 
+/* Bag Button */
 .bag-button {
   background-color: #000;
   color: #fff;
@@ -64,14 +65,18 @@
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 8px; /* Space between icon and text */
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-.bag-button:hover {
-  transform: scale(1.05);
+.bag-icon {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1); /* Ensures the icon matches the button color */
 }
+
 
 .bag-icon {
   width: 16px;

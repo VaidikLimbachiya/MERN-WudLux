@@ -14,6 +14,7 @@ import OurStory from "./Pages/OurStory/OurStory";
 import LoginPage from "./Pages/Login/Login";
 import RegistrationForm from "./Pages/Register/Register";
 import Productlist from "./Components/ProductList/Productlist";
+import ForgotPassword from "./Pages/ForgetPassword/ForgetPassword";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/shipping-policy" element={<Shipping />} />
         <Route path="/log-in" element={<LoginPage />} />
         <Route path="/sign-up" element={<RegistrationForm />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
       <Footer />
     </>
