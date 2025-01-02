@@ -8,6 +8,8 @@ import choppingBoardImage from '../../assets/choppingBoard.png';
 import cheeseBoardImage from '../../assets/cheeseBoard.png';
 import chipDipImage from '../../assets/chip.png';
 import bowlsImage from '../../assets/bowl.png';
+import { Link } from 'react-router-dom';
+import KitchenWare from '../../Pages/kichenWare/KitchenWare';
 
 const categories = [
   { image: trayImage, title: 'Tray' },
@@ -35,6 +37,7 @@ const Categories = () => {
         {categories.map((category, index) => (
           <div className="categoryCard" key={index}>
             <div className="categoryHoverEffect">
+              <Link to= /*{`/category/${category.title}`}*/ "/Serveware/ServingTray">
               <img
                 loading="lazy"
                 src={category.image}
@@ -44,6 +47,7 @@ const Categories = () => {
               <div className="hoverOverlay">
                 <span>+</span>
               </div>
+              </Link>
             </div>
             <div className="categoryTitle">{category.title}</div>
           </div>
