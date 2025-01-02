@@ -98,13 +98,10 @@
   
   .form-actions a {
     text-decoration: none;
-    color: #007bff;
+    /* color: #007bff; */
     font-size: 0.9rem;
   }
   
-  .form-actions a:hover {
-    text-decoration: underline;
-  }
   
   /* Button */
   .btn {
@@ -139,6 +136,35 @@
   .login-form p a:hover {
     text-decoration: underline;
   }
+  .fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  .fade-out {
+    animation: fadeOut 0.5s ease-out;
+  }
+  
+  #login-form {
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    transform-origin: top;
+  }
+  
+  .scroll-out {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  
+  .scroll-in {
+    transform: translateY(100%);
+    opacity: 1;
+  }
+  
+  .register-link {
+    /* color: blue; */
+    cursor: pointer;
+  }
+  
+  
   
   
   /* Media queries for responsiveness */

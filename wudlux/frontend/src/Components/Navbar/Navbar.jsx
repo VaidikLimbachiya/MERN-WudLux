@@ -140,7 +140,7 @@ export function Navbar() {
               src={profileIcon}
               alt="User Account"
               className="actionIcon"
-              onClick={() => navigate('/account')}
+              onClick={() => navigate('/log-in')}
             />
             <div className="divider"></div>
             <div className="cartIcon" onClick={() => navigate('/cart')}>
