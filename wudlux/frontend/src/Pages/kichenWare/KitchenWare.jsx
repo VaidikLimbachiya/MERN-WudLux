@@ -16,7 +16,7 @@ const KitchenWare = () => {
             >
             </header>
        <Filters />
-        <Productlist /> 
+       <Productlist />
        <Services />
        <CaroProduct />
     </div>

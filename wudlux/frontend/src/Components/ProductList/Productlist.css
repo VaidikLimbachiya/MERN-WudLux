@@ -1,229 +1,119 @@
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 90%;
+  margin: 0 auto;
+}
 
-  z
-  .productsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    padding-left: 20px;
-    /* margin: 20px auto; */
-    width: 1450px; /* Restrict maximum grid width */
-  }
-  
-  /* Product Card */
-  .productCard {
-    /* background-color: #f9f9f9; */
-    /* border: 1px solid #eaeaea; */
-    border-radius: 8px;
-    overflow: hidden;
-    width: 20rem;
-    gap: 10px;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    margin: 20px;
-    
-  }
-  
-  /* Product Image */
-  .productImageWrapper {
-    position: relative;
-    overflow: hidden; /* Crop overflowing image parts */
-  }
-  
-  .discountBadge {
-    position: absolute;
-    top: 25px;
-    right: 10px;
-    background-color: red; /* Red discount badge */
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 4px;
-    z-index: 10;
-  }
-  
-  /* Product Details */
-  .productDetails {
-    padding: 1px;
-  }
-  
-  /* Title Styles */
-  .productsTitle {
-    font-family: "Playfair Display", serif;
-    font-size: 32px;
-    font-weight: bold;
-    color: #333;
-    position: relative;
-    display: inline-block;
-    margin-bottom: 10px;
-  }
-  
-  .titleUnderline {
-    margin: 10px auto 0;
-    width: 100px; /* Adjust the underline width */
-    height: 3px; /* Thickness of the underline */
-    background-color: #c0a062; /* Gold color for the underline */
-    border-radius: 2px; /* Rounded corners for a polished look */
-  }
-  
-  
-  .productPrice {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  .currentPrice {
-    font-size: 18px;
-    font-weight: 700;
-    color: #000;
-    font-family: 'Poppins', sans-serif; 
-    letter-spacing: 0.5px;
-    margin: 0;
-  }
-  
-  .originalPrice {
-    font-size: 14px;
-    font-weight: 400;
-    color: #999;
-    text-decoration: line-through;
-    font-family: 'Poppins', sans-serif; 
-  }
-  
-  /* View All Button */
-  /* Button Wrapper */
-  .viewAllButtonWrapper {
-    margin-top: 30px;
-  }
-  
-  /* Button */
-  /* .viewAllButton {
-    position: relative; 
-    overflow: hidden; 
-    background: none;
-    border: 1px solid #000;
-    padding: 10px 20px;
-    margin-bottom: 30px;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: color 0.3s ease; 
-    border-radius: 30px;
-    color: #000;
-    z-index: 1;
-  } */
-  
-  /* Sliding background effect */
-  /* .viewAllButton::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: #000;
-      z-index: -1; 
-    transition: all 0.4s ease; 
-  } */
-  
-  /* Hover Effect */
-  /* .viewAllButton:hover::before {
-    left: 0; 
-  }
-  
-  .viewAllButton:hover {
-    color: #fff; 
-  } */
-  
-  /* Add to Bag Wrapper */
-  .addToBagWrapper {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%; /* Full width for proper alignment */
-    display: flex;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-  }
-  
-  /* Add to Bag Button */
-  .addToBagButton {
-    background-color: #000; /* Black background */
-    color: #fff; /* White text */
-    border: none;
-    border-radius: 30px;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Space between text and icon */
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .addToBagButton .bagIcon {
-    width: 16px; /* Adjust icon size */
-    height: 16px; /* Adjust icon size */
-    filter: brightness(0) invert(1); /* Ensure the icon is white */
-  }
-  
-  /* Show the button on hover */
-  .productImageWrapper:hover .addToBagWrapper {
-    opacity: 1;
-    visibility: visible;
-    bottom: 30px; /* Slight upward animation */
-  }
-  
-  /* Add to Bag Button Hover Effect */
-  .addToBagButton:hover {
-    transform: scale(1); /* Slight enlargement on hover */
-  }
-  
-  
-  /* Button Styles */
-  .viewAllButton {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    font-family: 'Arial', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    color: #000;
-    background: none;
-    border: 2px solid #5a4c40; /* Border color */
-    border-radius: 30px;
-    overflow: hidden;
-    cursor: pointer;
-    text-align: center;
-    transition: color 0.3s ease;
-    z-index: 0; /* Keep the text above the background */
-  
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%; /* Start outside from the left */
-      width: 100%;
-      height: 100%;
-      background: #5a4c40; /* Fill color */
-      z-index: -1; /* Behind the text */
-      transition: transform 0.4s ease; /* Smooth fill effect */
-      transform-origin: left; /* Starts from the left */
-      transform: scaleX(0); /* Initially hidden */
-    }
-  
-    &:hover {
-      color: #fff; /* Change text color on hover */
-  
-      &::before {
-        transform: scaleX(1); /* Fill background fully */
-        left: 0;
-      }
-    }
-  }
-  
+/* Product Card */
+.product-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  cursor: pointer;
+  /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
+}
+
+
+/* Product Image */
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: 290px;
+  object-fit: contain;
+}
+
+.discount-badge {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  background-color: red;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+/* Bag Button */
+.bag-button-wrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.bag-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.bag-button:hover {
+  transform: scale(1.05);
+}
+
+.bag-icon {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
+/* Show Bag Button on Hover */
+.image-wrapper:hover .bag-button-wrapper {
+  opacity: 1;
+  visibility: visible;
+  bottom: 30px; /* Slight upward animation */
+}
+
+/* Product Details */
+.product-details {
+  padding: 15px;
+  text-align: center;
+}
+
+.product-title {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.price-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.current-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+.original-price {
+  font-size: 14px;
+  font-weight: normal;
+  color: #999;
+  text-decoration: line-through;
+}

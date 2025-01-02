@@ -1,75 +1,66 @@
-/* CSS for Products Carousel */
-.productsSection{
+/* Carousel Container */
+.carousel-container {
   text-align: center;
   padding: 10px 20px;
-  /* background-color: #fff; White background */
 }
 
-
-.productsHeader {
+/* Header Section */
+.carousel-header {
   margin-bottom: 10px;
 }
 
-.productsTitle {
+.carousel-title {
   font-family: 'Playfair Display', serif;
   font-size: 36px;
-  font-weight:00;
+  font-weight: 400;
   margin: 0;
   color: #000;
 }
 
-.titleUnderline {
+.carousel-title-underline {
   height: 2px;
   width: 60px;
   background-color: black;
   margin: 8px auto 0;
 }
 
-.productsSubtitle {
+.carousel-subtitle {
   font-size: 1rem;
   color: #666;
 }
 
-.carouselWrapper {
+/* Product Grid */
+.carousel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 50px;
+  width: 1300px;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+}
+
+/* Product Card */
+.carousel-card {
   position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 1200px;
-  margin-left: 50px;
-
-}
-
-.carouselContainer {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.carouselItem {
-  flex: 25%;
-  max-width: 50%;
-  box-sizing: border-box;
-  padding: 10px;
-}
-
-.productCard {
   background: #fff;
-  /* border: 1px solid #eee; */
   border-radius: 8px;
-  padding: 20px;
+  padding: 2px;
   text-align: center;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
-.productImageWrapper {
+/* Image Section */
+.carousel-image-wrapper {
   position: relative;
 }
 
-.productImage {
+.carousel-image {
   max-width: 100%;
   border-radius: 8px;
 }
 
-.discountBadge {
+.carousel-discount-badge {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -80,60 +71,75 @@
   font-size: 0.9rem;
 }
 
-.addToBagWrapper {
-  margin-top: 15px;
+/* Add to Bag Wrapper */
+.carousel-add-to-bag-wrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  /* transition: opacity 0.3s ease, visibility 0.3s ease; */
 }
 
-.addToBagButton {
+/* Show Add to Bag on Hover */
+.carousel-card:hover .carousel-add-to-bag-wrapper {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Add to Bag Button */
+.carousel-add-to-bag-button {
   background-color: #000;
   color: #fff;
   border: none;
+  border-radius: 30px;
   padding: 10px 20px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.addToBagButton .bagIcon {
+.carousel-bag-icon {
+  width: 16px;
   height: 16px;
+  filter: brightness(0) invert(1);
 }
 
-.productDetails {
+/* Product Details */
+.carousel-details {
   margin-top: 15px;
 }
 
-.productTitle {
+.carousel-product-title {
   font-size: 1rem;
   color: #333;
   margin-bottom: 10px;
 }
 
-.productPrice {
+.carousel-product-price {
   font-size: 1.1rem;
   font-weight: bold;
 }
 
-.currentPrice {
+.carousel-current-price {
   color: #000;
   margin-right: 10px;
 }
 
-.originalPrice {
+.carousel-original-price {
   color: #aaa;
   text-decoration: line-through;
 }
-.productsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  padding-left: 20px;
-  /* margin: 20px auto; */
-  width: 1450px; /* Restrict maximum grid width */
-}
 
+/* Carousel Controls */
 .carousel-controls {
   display: flex;
   justify-content: center;
@@ -152,11 +158,5 @@
   justify-content: center;
   cursor: pointer;
   font-size: 18px;
-  transition: background-color 0.3s;
-}
-
-.carousel-button:hover {
-  background-color: #000;
-  color: #fff;
-  border-color: #f5c518;
+  /* transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; */
 }
