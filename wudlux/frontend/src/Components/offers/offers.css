@@ -70,34 +70,36 @@
 
 /* Button styling */
 .offer-button {
-  font-size: 14px;
-  font-family: 'Lato', sans-serif; /* Consistent sans-serif font */
-  font-weight: bold;
-  color: #000; /* Black text for the button */
-  text-decoration: none; /* Remove underline */
-  border-bottom: 2px solid #000; /* Add underline as a border */
-  padding-bottom: 2px;
-  position: relative; /* Ensure pseudo-element is positioned relative to the button */
-  transition: color 0.3s ease, border-bottom-color 0.3s ease; /* Smooth hover effect */
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  background: none;
+  border-bottom: 2px solid var(--Neutral-900, #0a0a0a);
+  cursor: pointer;
+  position: relative;
+  transition: opacity 0.2s ease, padding-right 0.3s ease;
 }
 
-/* Add arrow on hover */
-.offer-button::after {
-  content: '→'; /* Right arrow symbol */
-  position: absolute;
-  left: 100px; /* Position it outside the button */
-  opacity: 0; /* Initially hidden */
-  transition: right 0.3s ease, opacity 0.3s ease; /* Smooth sliding effect */
-}
-
-/* Hover effect */
 .offer-button:hover {
-  color: #555; /* Darker gray on hover */
-  border-bottom-color: #555; /* Border color changes on hover */
+  opacity: 0.8;
+  padding-right: 20px;
 }
 
-/* Show the arrow on hover */
-.offer-button:hover::after {
-  right: 0; /* Slide the arrow into view */
-  opacity: 1; /* Make it visible */
+.offer-button::after {
+  content: '➔';
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--Neutral-900, #0a0a0a);
+  position: absolute;
+  right: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease, right 0.3s ease;
 }
+
+.offer-button:hover::after {
+  opacity: 1;
+  right: -5px;
+}
+
