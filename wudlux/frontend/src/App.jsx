@@ -12,6 +12,7 @@ import Shipping from "./Pages/Shipping/Shipping";
 import KitchenWare from "./Pages/kichenWare/KitchenWare";
 import OurStory from "./Pages/OurStory/OurStory";
 import LoginPage from "./Pages/Login/Login";
+import RegistrationForm from "./Pages/Register/Register";
 import Productlist from "./Components/ProductList/Productlist";
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Route path="/terms-condition" element={<TermsCondition />} />
         <Route path="/shipping-policy" element={<Shipping />} />
         <Route path="/log-in" element={<LoginPage />} />
+        <Route path="/sign-up" element={<RegistrationForm />} />
       </Routes>
       <Footer />
     </>
