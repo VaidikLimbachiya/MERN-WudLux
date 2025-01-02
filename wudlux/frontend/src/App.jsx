@@ -20,20 +20,19 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path = "/ServerWare/ServingTray" element = {<KitchenWare />} />
-        <Route path = "/ServerWare/WithDrawer" element = {<KitchenWare />} />
-        <Route path = "/ServerWare/BeerCaddy" element = {<KitchenWare />} />
-        <Route path = "/ServerWare/ServingPlatter" element = {<KitchenWare />} />
-        <Route path = "/ServerWare/WineTray" element = {<KitchenWare />} />
+
+        {/* navbar  */}
+        <Route path = "/Serveware/ServingTray" element = {<KitchenWare />} />
+        <Route path = "/ServeWare/withDrawer" element = {<KitchenWare />} />
+        <Route path = "/Serveware/BeerCaddy" element = {<KitchenWare />} />
+        <Route path = "/Serveware/ServingPlatter" element = {<KitchenWare />} />
+        <Route path = "/Serveware/WineServingTray" element = {<KitchenWare />} />
         <Route path = "/KitchenWare/ChoppingBoard" element = {<KitchenWare />} />
-        <Route path = "/KitchenWare/ButcherBoard" element = {<KitchenWare />} />
+        <Route path = "/Kitchenware/ButcherBoard" element = {<KitchenWare />} />
         <Route path = "/TableWare/LazySusan" element = {<KitchenWare />} />
         <Route path = "/TableWare/CoffeePods" element = {<KitchenWare />} />
         <Route path = "/TableWare/CutleryCaddy" element = {<KitchenWare />} />
-        <Route path = "/Collection/Bella" element = {<KitchenWare />} />
-        {/* <Route path="/products" element={<ProductList />} /> */}
-        {/* <Route path="/our-story" element={<OurStory />} /> */}
-        <Route path = "/Kitchenware/ChoppingBoard" element = {<KitchenWare />} />
+        <Route path = "/Collections/Bella" element = {<KitchenWare />} />
         <Route path="/products" element={<Productlist />} />
         <Route path="/our-story" element={<OurStory />} />
         <Route path="/contact-us" element={<ContactUs />} />

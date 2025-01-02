@@ -8,17 +8,20 @@ const Slider = () => {
   const slides = [
     {
       image: backgroundImage1,
-      heading: "Wooden Kitchenware",
+      heading: "Wooden ",
+      SubHading : "Kitchenware",
       subheading: "Sale offer 10% off this week",
     },
     {
       image: backgroundImage2,
-      heading: "Wooden Kitchenware",
+      heading: "Wooden",
+      SubHading : "Kitchenware",
       subheading: "Sale offer 10% off this week",
     },
     {
       image: backgroundImage3,
-      heading: "Wooden Kitchenware",
+      heading: "Wooden",
+      SubHading : "Kitchenware",
       subheading: "Sale offer 10% off this week",
     },
   ];
@@ -51,6 +54,7 @@ const Slider = () => {
                 <hr className="line-offer" />
               </p>
               <h1 className="slider-heading">{slide.heading}</h1>
+              <h1 className="slider-SubHeading">{slide.SubHading}</h1>
               <button className="shop-now">
                 Shop Now <span>→</span>
               </button>

@@ -25,6 +25,7 @@
   height: 100%;
   padding: 0 40px;
   color: #000;
+  
 }
 
 /* Text Content Overlay */
@@ -48,16 +49,23 @@
 
 .line-offer {
   margin: 10px;
-  width: 50%;
+  width: 89%;
   border-bottom: 1px solid #000;
+  /* transform: rotate3d(0, 0, 0, 150deg); */
 }
 
 .slider-heading {
   font-size: 3rem;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom:10px;
   line-height: 1.2;
-  width: auto;
+  width: 2px;
+  font-family: 'playfair display', serif;
+}
+
+.slider-SubHeading{
+  font-weight: 300;
+  font-size: 50px;
 }
 
 .shop-now {

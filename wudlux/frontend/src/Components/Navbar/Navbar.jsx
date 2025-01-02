@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../../assets/logo.png';
 import searchIcon from '../../assets/vector.png';
 import profileIcon from '../../assets/profile.png';
 import cartIcon from '../../assets/bag.png';
+import { useState } from 'react';
 
 const categories = [
   {
@@ -12,7 +13,7 @@ const categories = [
     iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/a1cfa473b4c3091f113c79eb7155d25fb5458b102ed1a68b6ce2308227f94925',
     dropdownItems: [
       { text: 'Serving Tray', link: '/Serveware/ServingTray' },
-      { text: 'Serving Tray with Drawer', link: '/Serveware/ServingTrayWithDrawer' },
+      { text: 'Serving Tray with Drawer', link: '/ServeWare/withDrawer' },
       { text: 'Beer Caddy', link: '/Serveware/BeerCaddy' },
       { text: 'Serving Platter', link: '/Serveware/ServingPlatter' },
       { text: 'Wine Serving Tray', link: '/Serveware/WineServingTray' },
@@ -31,7 +32,7 @@ const categories = [
     iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c9ea7504e7b254d854b06a79b48cf39d39e2ab6c6f3afb37338801a7c60027f8',
     dropdownItems: [
       { text: 'Lazy Susan', link: '/Tableware/Lazysusan' },
-      { text: 'Coffee Pods Drawer', link: '/Tableware/CoffeePodsDrawer' },
+      { text: 'Coffee Pods Drawer', link: '/Tableware/CoffeePods' },
       { text: 'Cutlery Caddy', link: '/Tableware/CutleryCaddy' },
     ],
   },
@@ -140,7 +141,7 @@ export function Navbar() {
               src={profileIcon}
               alt="User Account"
               className="actionIcon"
-              onClick={() => navigate('/account')}
+              onClick={() => navigate('/log-in')}
             />
             <div className="divider"></div>
             <div className="cartIcon" onClick={() => navigate('/cart')}>

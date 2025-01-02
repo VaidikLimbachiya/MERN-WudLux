@@ -3,6 +3,7 @@ import { FaFacebookF } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { BiLogoInstagramAlt } from "react-icons/bi";
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -33,28 +34,28 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Customer Care</h4>
           <ul>
-            <li><a href="/refund-policy">Refund Policy</a></li>
-            <li><a href="/privacy-policy">Privacy Policy</a></li>
-            <li><a href="/terms-condition">Terms & Conditions</a></li>
-            <li><a href="/shipping-policy">Shipping Policy</a></li>
+            <li><Link to="/refund-policy">Refund Policy</Link></li>
+            <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+            <li><Link to="/terms-condition">Terms & Conditions</Link></li>
+            <li><Link to="/shipping-policy">Shipping Policy</Link></li>
           </ul>
         </div>
 
         <div className="footer-section">
           <h4>About Wudlux</h4>
           <ul>
-            <li><a href="/our-story">Our Story</a></li>
-            <li><a href="/contact-us">Contact Us</a></li>
+            <li><Link to="/our-story">Our Story</Link></li>
+            <li><Link to ="/contact-us">Contact Us</Link></li>
           </ul>
         </div>
 
         <div className="footer-section">
           <h4>Wudlux Products</h4>
           <ul>
-            <li><a href="#serverware">Serveware</a></li>
-            <li><a href="#kitchenware">Kitchenware</a></li>
-            <li><a href="#tableware">Tableware</a></li>
-            <li><a href="#collections">Collections</a></li>
+            <li><Link to ="/Serveware/ServingTray">Serveware</Link></li>
+            <li><Link to="/Kitchenware/ChoppingBoard">Kitchenware</Link></li>
+            <li><Link to="/Tableware/Lazysusan">Tableware</Link></li>
+            <li><Link to="/Collections/Bella">Collections</Link></li>
           </ul>
         </div>
 
