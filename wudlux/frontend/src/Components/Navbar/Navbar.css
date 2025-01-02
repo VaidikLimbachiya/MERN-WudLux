@@ -253,6 +253,122 @@ a{
   border: 2px solid white;
   padding: 1px 6px;
 }
+/* Modal background overlay */
+.searchOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+/* Search modal container */
+.searchModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1010;
+}
+
+.searchDrawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100%;
+  width: 410px;
+  background: #fff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1050;
+  overflow-y: auto;
+  transition: right 0.3s ease-in-out;
+}
+
+.searchDrawer.open {
+  right: 0;
+}
+
+.searchHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+.searchHeader h3 {
+  font-size: 1.2rem;
+  font-weight: 100;
+  color: #666;
+  text-align: left;
+  position: relative;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+}
+
+.searchHeader h3::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; /* Adjust the spacing below the text */
+  left: 0; /* Align underline with the text */
+  width: 370px; /* Set desired underline width */
+  height: 2px; /* Thickness of the underline */
+  background-color: #333; /* Color of the underline */
+  margin-bottom: -10px;
+}
+
+
+.searchCategories {
+  list-style: none;
+  padding-left: 25px;
+  margin: 0;
+}
+
+.searchCategories li {
+  font-size: 1rem;
+  padding: 0.8rem 0;
+  position: relative;
+  cursor: pointer;
+  transition: color 0.3s ease; /* Optional: smooth color transition */
+}
+
+.searchCategories li:hover {
+  color: #000; /* Optional: Change text color on hover */
+}
+
+/* Vertical line effect */
+.searchCategories li::before {
+  content: '';
+  position: absolute;
+  left: -10px; /* Align the line to the left */
+  top: 10px;
+  bottom: 0;
+  height: 30px;
+  width: 2px; /* Thickness of the vertical line */
+  background-color: #543A14; /* Line color */
+  transform: scaleY(0); /* Initially hidden (collapsed) */
+  /* transform-origin: top; Line grows from top to bottom */
+  transition: transform 0.3s ease; /* Smooth animation */
+}
+
+.searchCategories li:hover::before {
+  transform: scaleY(1); /* Expand the vertical line on hover */
+  color: #543A14;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+
 
 /* Responsive Design */
 

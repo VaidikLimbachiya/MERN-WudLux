@@ -1,0 +1,154 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Page styling */
+  .login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    background-color: #f9f9f9;
+  }
+  
+  /* Login container */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding: 1rem;
+  }
+  
+  /* Login form */
+  .login-form {
+    background: #fff;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Form heading */
+.login-form h1 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: black;
+    position: relative;
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .login-form h1::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: #333;
+    margin: 0.5rem auto 0;
+  }
+  
+  
+  /* Form description */
+  .login-form p {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Input labels */
+  .login-form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Input fields */
+  .login-form input[type="email"],
+  .login-form input[type="password"] {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Form actions */
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .form-actions a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 0.9rem;
+  }
+  
+  .form-actions a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Button */
+  .btn {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 20%;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .btn:hover {
+    background-color: #555;
+  }
+  
+  /* Register link */
+  .login-form p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .login-form p a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .login-form p a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 480px) {
+    .login-form {
+      padding: 1.5rem;
+    }
+  
+    .login-form h1 {
+      font-size: 1.5rem;
+    }
+  }
+  
