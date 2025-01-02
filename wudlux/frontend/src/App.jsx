@@ -17,7 +17,17 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path = "/Kitchenware/ChoppingBoard" element = {<KitchenWare />} />
+        <Route path = "/ServerWare/ServingTray" element = {<KitchenWare />} />
+        <Route path = "/ServerWare/WithDrawer" element = {<KitchenWare />} />
+        <Route path = "/ServerWare/BeerCaddy" element = {<KitchenWare />} />
+        <Route path = "/ServerWare/ServingPlatter" element = {<KitchenWare />} />
+        <Route path = "/ServerWare/WineTray" element = {<KitchenWare />} />
+        <Route path = "/KitchenWare/ChoppingBoard" element = {<KitchenWare />} />
+        <Route path = "/KitchenWare/ButcherBoard" element = {<KitchenWare />} />
+        <Route path = "/TableWare/LazySusan" element = {<KitchenWare />} />
+        <Route path = "/TableWare/CoffeePods" element = {<KitchenWare />} />
+        <Route path = "/TableWare/CutleryCaddy" element = {<KitchenWare />} />
+        <Route path = "/Collection/Bella" element = {<KitchenWare />} />
         {/* <Route path="/products" element={<ProductList />} /> */}
         {/* <Route path="/our-story" element={<OurStory />} /> */}
         <Route path="/contact-us" element={<ContactUs />} />
