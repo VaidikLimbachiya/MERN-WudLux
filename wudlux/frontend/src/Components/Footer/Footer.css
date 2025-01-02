@@ -69,13 +69,13 @@
     .newsletter-input {
       display: flex;
       margin-top: 10px;
-      margin-left: 10px;
+      margin-left: -1px;
     
     }
     
     .newsletter-input input {
-      text-align: center;
-      padding: 8px;
+      text-align: left;
+      padding: 6px 37px;
       border: 1px solid #ccc;
       border-radius: 50px;
       flex: 1;
@@ -84,7 +84,7 @@
     .newsletter-input button {
       padding: 15px 1px;
       width: 10rem;
-      margin-left:-38px;
+      margin-left:-106px;
       background-color: #685752;
       color: #fff;
       border: none;
@@ -157,13 +157,15 @@
   }
   
   .footer-section ul {
-    font-size: 18px;
+    font-size: 14px;
     list-style: none;
-    padding: 0px 0px 10px 0px; 
+    /* padding: 0px 0px 0px 0px;  */
+    margin-left: 10px;
   }
   
   .footer-section ul li {
-    margin-bottom: 5px;
+    margin-bottom: -5px;
+    
   }
   
   .footer-section ul li a {

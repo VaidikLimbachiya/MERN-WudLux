@@ -9,7 +9,7 @@ import cheeseBoardImage from '../../assets/cheeseBoard.png';
 import chipDipImage from '../../assets/chip.png';
 import bowlsImage from '../../assets/bowl.png';
 import { Link } from 'react-router-dom';
-import KitchenWare from '../../Pages/kichenWare/KitchenWare';
+// import KitchenWare from '../../Pages/kichenWare/KitchenWare';
 
 const categories = [
   { image: trayImage, title: 'Tray' },
