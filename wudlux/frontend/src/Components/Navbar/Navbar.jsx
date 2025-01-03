@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import React, { useContext, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import './Navbar.css';
-import logo from '../../assets/logo.png';
-import searchIcon from '../../assets/vector.png';
-import profileIcon from '../../assets/profile.png';
-import cartIcon from '../../assets/bag.png';
-import { StoreContext } from '../../Context/StoreContextProvider'; // Import StoreContext
-=======
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
@@ -16,8 +6,7 @@ import searchIcon from "../../assets/vector.png";
 import profileIcon from "../../assets/profile.png";
 import cartIcon from "../../assets/bag.png";
 import bowl from "../../assets/bowl.png";
-import { useCartContext } from "../../context/CartContext";
->>>>>>> ff659f503f46f278b8f8021aa5bd1d04345658fa
+import { useCartContext } from "../../Context/CartContext";
 
 const categories = [
   {
@@ -56,18 +45,11 @@ const categories = [
 ];
 
 export function Navbar() {
-<<<<<<< HEAD
-  const [activeCategory, setActiveCategory] = useState(null); // Tracks the active category index
-  const [isSearchOpen, setIsSearchOpen] = useState(false); // Tracks if the search pop-up is open
-  const [isCartOpen, setIsCartOpen] = useState(false); // Tracks if the cart drawer is open
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext); // Access StoreContext
-=======
   const [activeCategory, setActiveCategory] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { cartItems, totalQuantity, totalPrice, updateQuantity, removeItem } = useCartContext();
+  const { cartItems, totalQuantity, totalPrice, updateQuantity, removeItem,totalProducts } = useCartContext();
 
->>>>>>> ff659f503f46f278b8f8021aa5bd1d04345658fa
   const navigate = useNavigate();
 
   const handleCategoryClick = (index) => {
@@ -82,17 +64,6 @@ export function Navbar() {
     setIsCartOpen((prev) => !prev);
   };
 
-<<<<<<< HEAD
-  const getTotalCartCount = () => {
-    return Object.values(cartItems).reduce((total, item) => total + item.quantity, 0);
-  };
-
-  const getTotalCartPrice = () => {
-    return Object.values(cartItems).reduce((total, item) => total + item.price * item.quantity, 0);
-  };
-
-=======
->>>>>>> ff659f503f46f278b8f8021aa5bd1d04345658fa
   return (
     <>
       <nav className="navigation" role="navigation">
@@ -142,11 +113,6 @@ export function Navbar() {
               </div>
             ))}
           </div>
-<<<<<<< HEAD
-
-          {/* Promotion Section */}
-=======
->>>>>>> ff659f503f46f278b8f8021aa5bd1d04345658fa
           <div className="promotionBanner">
             <span className="promoText">Summer sale - 50% OFF!</span>
             <button
@@ -157,11 +123,6 @@ export function Navbar() {
               Shop Now
             </button>
           </div>
-<<<<<<< HEAD
-
-          {/* User Actions Section */}
-=======
->>>>>>> ff659f503f46f278b8f8021aa5bd1d04345658fa
           <div className="userActions">
             <img src={searchIcon} alt="Search" className="actionIcon" onClick={toggleSearch} />
             <div className="divider"></div>
@@ -174,53 +135,80 @@ export function Navbar() {
             <div className="divider"></div>
             <div className="cartIcon" onClick={toggleCart}>
               <img src={cartIcon} alt="Shopping Cart" className="cartImage" />
-<<<<<<< HEAD
-              <span className="cartBadge">{getTotalCartCount()}</span>
-=======
               <span className="cartBadge">{totalQuantity}</span>
->>>>>>> ff659f503f46f278b8f8021aa5bd1d04345658fa
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Cart Slider */}
       <div className={`cartSlider ${isCartOpen ? "open" : ""}`}>
-        <div className="cartHeader">
-          <h3>Shopping Cart</h3>
-          <button className="closeButton" onClick={toggleCart}>✖</button>
-        </div>
-        <div className="cartItems">
-          {cartItems.length > 0 ? (
-            cartItems.map((item) => (
-              <div key={item.id} className="cartItem">
-                <img src={bowl} alt={item.name} className="cartItemImage" />
-                <div className="cartItemDetails">
-                  <p>{item.name}</p>
-                  <p>₹{item.price}.00</p>
-                </div>
-                <div className="cartQuantity">
-                  <button onClick={() => updateQuantity(item.id, -1)}>-</button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => updateQuantity(item.id, 1)}>+</button>
-                </div>
-                <button className="removeItem" onClick={() => removeItem(item.id)}>
-                  ✖
+      {/* Header */}
+      <div className="cartHeader">
+        <h3>Shopping Cart</h3>
+        <button className="closeButton" onClick={toggleCart}>
+          ✖
+        </button>
+      </div>
+
+      {/* Cart Items */}
+      <div className="cartItems">
+        {cartItems.length > 0 ? (
+          cartItems.map((item) => (
+            <div key={item.id} className="cartItem">
+              <img src={item.image} alt={item.name} className="cartItemImage" />
+              <div className="cartItemDetails">
+                <p className="cartItemName">{item.name}</p>
+                <p className="cartItemPrice">₹{item.price}.00</p>
+              </div>
+              <div className="cartQuantity">
+                <button
+                  className="quantityButton"
+                  onClick={() => updateQuantity(item.id, -1)}
+                  disabled={item.quantity === 1}
+                >
+                  −
+                </button>
+                <span className="cartQuantityValue">{item.quantity}</span>
+                <button
+                  className="quantityButton"
+                  onClick={() => updateQuantity(item.id, 1)}
+                >
+                  +
                 </button>
               </div>
-            ))
-          ) : (
-            <p>Your cart is empty.</p>
-          )}
+              <button
+                className="removeButton"
+                onClick={() => removeItem(item.id)}
+              >
+                ✖
+              </button>
+            </div>
+          ))
+        ) : (
+          <p className="emptyCartMessage">Your cart is empty.</p>
+        )}
+      </div>
+
+      {/* Footer */}
+      <div className="cartFooter">
+        <div className="cartSummary">
+          <span>{totalProducts} Product</span>
+          <span>₹{totalPrice}.00</span>
         </div>
-        <div className="cartFooter">
-          <p>Total: ₹{totalPrice}.00</p>
-          <div className="cartActions">
-            <button onClick={() => navigate("/checkout")}>Checkout</button>
-            <button onClick={() => navigate("/cart")}>Go to Cart</button>
-          </div>
+        <div className="cartActions">
+          <button
+            className="checkoutButton"
+            onClick={() => navigate("/checkout")}
+          >
+            Checkout →
+          </button>
+          <button className="goToCartButton" onClick={() => navigate("/cart")}>
+            Go to Cart →
+          </button>
         </div>
       </div>
+    </div>
+
 
       {/* Search Drawer */}
       <div className={`searchDrawer ${isSearchOpen ? "open" : ""}`}>
@@ -237,48 +225,6 @@ export function Navbar() {
           <li>Bowls</li>
         </ul>
       </div>
-
-      {/* Cart Drawer */}
-      {isCartOpen && (
-        <div className="cartOverlay">
-          <div className="cartDrawer">
-            <div className="cartHeader">
-              <h3>Your Cart</h3>
-              <button className="closeButton" onClick={toggleCart}>
-                ✖
-              </button>
-            </div>
-            <ul className="cartItems">
-              {Object.values(cartItems).length === 0 ? (
-                <p>Your cart is empty</p>
-              ) : (
-                Object.values(cartItems).map((item) => (
-                  <li key={item.id} className="cartItem">
-                    <div className="cartItemDetails">
-                      <img src={item.image} alt={item.title} className="cartItemImage" />
-                      <div>
-                        <p>{item.title}</p>
-                        <p>₹{item.price}</p>
-                      </div>
-                    </div>
-                    <div className="cartItemActions">
-                      <button onClick={() => removeFromCart(item.id)}>-</button>
-                      <span>{item.quantity}</span>
-                      <button onClick={() => addToCart(item)}>+</button>
-                    </div>
-                  </li>
-                ))
-              )}
-            </ul>
-            <div className="cartFooter">
-              <p>Total: ₹{getTotalCartPrice()}</p>
-              <button onClick={() => navigate('/checkout')} className="checkoutButton">
-                Checkout
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
