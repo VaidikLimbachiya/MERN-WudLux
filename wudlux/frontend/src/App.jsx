@@ -15,7 +15,11 @@ import LoginPage from "./Pages/Login/Login";
 import RegistrationForm from "./Pages/Register/Register";
 import Productlist from "./Components/ProductList/Productlist";
 import ForgotPassword from "./Pages/ForgetPassword/ForgetPassword";
+<<<<<<< HEAD
 import Checkout from "./Pages/Checkout/Checkout";
+=======
+import ProductInfo from "./Pages/ProductInfo/ProductInfo";
+>>>>>>> 123652bcc80c7a2b2edfd0fa5b8bc383a168fe7f
 
 function App() {
   return (
@@ -46,7 +50,11 @@ function App() {
         <Route path="/log-in" element={<LoginPage />} />
         <Route path="/sign-up" element={<RegistrationForm />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+<<<<<<< HEAD
         <Route path="/checkout" element={<Checkout />} />
+=======
+        <Route path="/product-info" element={<ProductInfo />} />
+>>>>>>> 123652bcc80c7a2b2edfd0fa5b8bc383a168fe7f
       </Routes>
       <Footer />
     </>

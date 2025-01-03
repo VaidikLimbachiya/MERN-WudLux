@@ -1,0 +1,599 @@
+.product-containerr {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .product-gridd {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    
+  }
+  
+  .product-image-section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+ /* Main Image and Zoom Button */
+.main-image-wrapper {
+    position: relative;
+  }
+  
+  .zoom-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .zoom-button img {
+    width: 90px;
+    height: 90px;
+  }
+  
+  /* Modal Styling */
+  .image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .modal-content {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 90%;
+  }
+  
+  .full-image {
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #fff;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+  
+  .main-image {
+    width: 100%;
+    height: 570px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .breadcrumb-link {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
+    transition: color 0.2s ease;
+  }
+  
+  .breadcrumb-link:hover {
+    color: #333; /* Slightly darker color on hover */
+    text-decoration: underline;
+  }
+  
+  .breadcrumb-separator {
+    margin: 0 8px;
+    color: #999; /* Light gray separator color */
+  }
+  
+  .breadcrumb-current {
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .breadcrumb-icon {
+    width: 16px; /* Adjust icon size */
+    height: 16px;
+    object-fit: contain;
+  }
+  
+  
+  
+ /* Prev and Next Buttons */
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .nav-button:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nav-button.prev {
+    left: 10px;
+  }
+  
+  .nav-button.next {
+    right: 10px;
+  }
+  
+  .nav-button img {
+    width: 50px;
+    height:50px;
+  }
+  
+  
+  .thumbnail-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .thumbnail-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .thumbnail-image:hover,
+  .active-thumbnail {
+    border: 2px solid #000;
+  }
+  /* General Styling */
+.product-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: "Arial", sans-serif;
+    color: #333;
+  }
+  
+  /* Product Header */
+  .product-header {
+    margin-bottom: 20px;
+  }
+  
+  .product-title {
+    font-size: 19px;
+    font-weight: bold;
+    color: #a67c52;
+    text-align: left;
+    position: relative; /* Needed for pseudo-elements */
+    margin: 20px 0;
+  }
+  
+  .product-title::before,
+  .product-title::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-370px);
+    width: 20%; /* Adjust underline width */
+    height: 2px;
+    background-color: #a67c52; /* Match underline color with title */
+  }
+  
+  .product-title::before {
+    top: -10px; /* Adjust spacing above the title */
+  }
+  
+  .product-title::after {
+    bottom: -10px; /* Adjust spacing below the title */
+  }
+  
+  
+  .product-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .price-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .current-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .original-price {
+    font-size: 1rem;
+    text-decoration: line-through;
+    color: #999;
+  }
+  
+  .discount {
+    background-color: red;
+    color:white;
+    font-weight: bold;
+    width: 50px;
+    text-align: center;
+    border-radius: 3px;
+  }
+  
+  .action-section {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between elements */
+    margin: 20px 0;
+  }
+  
+  /* Quantity Selector */
+  .quantity-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .quantity-label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Quantity Selector */
+  .quantity-selector {
+    display: flex;
+    align-items: center;
+    background-color: white; /* Light background */
+    padding: 5px 15px;
+    border-radius: 50px; /* Fully rounded edges */
+    border: 1px solid #e0e0e0; /* Subtle border */
+  }
+  
+  .quantity-btn {
+    background-color: #ece6e2; /* Light beige color for buttons */
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .quantity-btn:hover {
+    background-color: white; /* Slightly darker shade on hover */
+  }
+  
+  .quantity-display {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0 10px; /* Space between buttons */
+  }
+  
+  
+  /* Add to Bag Button */
+  .add-to-bag-btn {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px; /* Rounded edges */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .add-to-bag-btn:hover {
+    background-color: #333; /* Darker black on hover */
+  }
+  
+  .add-to-bag-btn img {
+    color: #fff;
+    width: 16px; /* Adjust icon size */
+    height: 16px;
+  }
+  
+  /* Buy Now Button */
+  .buy-now-btn {
+    background-color: transparent;
+    color: #000;
+    padding: 10px 20px;
+    border: 1px solid #000; /* Black border */
+    border-radius: 50px; /* Rounded edges */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    /* align-items: center; */
+    gap: 8px;
+  }
+  
+  .buy-now-btn:hover {
+    background-color: #f5f5f5; /* Light gray on hover */
+    color: #333; /* Darker text on hover */
+  }
+  
+  .buy-now-btn img {
+    width: 20px; /* Adjust icon size */
+    height: 20px;
+  }
+  /* Product Specifications */
+.product-specifications {
+    margin: 20px 0;
+    border-top: 1px solid #ddd; /* Line above the section */
+    padding-top: 20px;
+  }
+  
+  .specifications-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .specs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between rows */
+  }
+  
+  /* Side-by-Side Row */
+  .side-by-side {
+    display: flex;
+    justify-content: space-between; /* Push Category and Material apart */
+    gap: 20px;
+  }
+  
+  .spec-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .spec-label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .spec-value {
+    font-weight: normal;
+    color: #555;
+  }
+  
+  /* Sizes Section */
+  .spec-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .size-options {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .size-box {
+    padding: 5px 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .size-box:hover {
+    border-color: #333;
+    background-color: #f0f0f0;
+  }
+  
+  
+  /* Special Offer Section */
+.special-offer {
+    background-color: #4c3b31; /* Dark brown background */
+    color: #fff; /* White text */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    margin: 20px 0;
+  }
+  
+  .offer-header {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and title */
+    margin-bottom: 15px;
+  }
+  
+  .offer-icon {
+    width: 40px;
+    height: 40px;
+    
+  }
+  
+  .offer-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff; /* White text */
+    font-family: "Playfair display", serif;
+  }
+  
+  .offer-list {
+    list-style: none; /* Remove default list styling */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .offer-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-family: "Poppins", sans-serif;
+  }
+ /* Policy Section Container */
+.policy-section-container {
+    margin-top: 20px;
+  }
+  
+  .policy-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4c3b31; /* Dark brown text color */
+    margin-bottom: 10px; /* Space between title and border */
+  }
+  
+  .policy-section {
+    display: flex;
+    justify-content: space-between; /* Equal spacing between policies */
+    align-items: center;
+    border-top: 1px solid #ddd; /* Line below the title */
+    padding: 20px 0; /* Padding for spacing */
+    width: 750px;
+  }
+  
+  .policy {
+    display: flex;
+    flex-direction: column; /* Align icon and text vertically */
+    align-items: center;
+    text-align: center;
+    gap: 10px; /* Space between icon and text */
+  }
+  
+  .policy-icon {
+    width: 70px; /* Icon size */
+    height: 70px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(0); /* Match icon color with design */
+  }
+  
+  .policy-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: black; /* Dark brown text color */
+    font-family: "Poppins", sans-serif;
+  }
+  /* Additional Information Section */
+.additional-info {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd; /* Top border */
+  }
+  
+  .additional-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px; /* Space between title and text */
+  }
+  
+  .additional-text {
+    font-size: 1rem;
+    line-height: 1.5; /* Improve readability */
+    color: black; /* Slightly lighter text color */
+    margin-top: 10px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+/* Social Links Section */
+.social-links {
+    display: flex;
+    align-items: center; /* Align all elements vertically */
+    justify-content: flex-end; /* Align the section to the right */
+    gap: 1px; /* Space between share icon and social icons */
+    margin-top: 20px;
+
+  }
+  
+  /* Share Icon */
+  .share-icon .icon {
+    object-fit: none;
+    width: 70px;
+    height: 70px;
+    margin-right: -4px;
+    border-radius: 50%;
+    padding: 0px;
+    margin-top: 60px;
+  }
+  
+  /* Social Icons Container */
+  .social-icons {
+    display: flex;
+    gap: 15px; /* Space between social media icons */
+  }
+  
+  /* Social Media Buttons */
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f3f1; /* Light beige background */
+    border-radius: 50%; /* Circular buttons */
+    font-size: 18px; /* Icon size */
+    color: #4c3b31; /* Icon color */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    background-color: #dcd3c9; /* Slightly darker background on hover */
+    color: #000; /* Darker icon color on hover */
+  }
+  
+  
