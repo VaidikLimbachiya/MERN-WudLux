@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
@@ -44,24 +44,44 @@ const categories = [
   },
 ];
 
-export function Navbar() {
+const Navbar = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { cartItems, totalQuantity, totalPrice, updateQuantity, removeItem,totalProducts } = useCartContext();
-
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // Popup state
+  const [productToRemove, setProductToRemove] = useState(null); // Product to remove
+  const {
+    cartItems,
+    totalQuantity,
+    totalPrice,
+    updateQuantity,
+    removeItem,
+    totalProducts,
+  } = useCartContext();
   const navigate = useNavigate();
 
   const handleCategoryClick = (index) => {
     setActiveCategory(activeCategory === index ? null : index);
   };
 
-  const toggleSearch = () => {
-    setIsSearchOpen((prev) => !prev);
+  const toggleSearch = () => setIsSearchOpen((prev) => !prev);
+  const toggleCart = () => setIsCartOpen((prev) => !prev);
+
+  const openPopup = (product) => {
+    setProductToRemove(product);
+    setIsPopupOpen(true);
   };
 
-  const toggleCart = () => {
-    setIsCartOpen((prev) => !prev);
+  const closePopup = () => {
+    setProductToRemove(null);
+    setIsPopupOpen(false);
+  };
+
+  const confirmRemove = () => {
+    if (productToRemove) {
+      removeItem(productToRemove.id);
+    }
+    closePopup();
   };
 
   return (
@@ -75,7 +95,9 @@ export function Navbar() {
             {categories.map((category, index) => (
               <div
                 key={index}
-                className={`categoryWrapper ${activeCategory === index ? "active" : ""}`}
+                className={`categoryWrapper ${
+                  activeCategory === index ? "active" : ""
+                }`}
               >
                 <div
                   onClick={() => handleCategoryClick(index)}
@@ -117,7 +139,7 @@ export function Navbar() {
             <span className="promoText">Summer sale - 50% OFF!</span>
             <button
               className="promoButton"
-              onClick={() => navigate('/products')}
+              onClick={() => navigate("/products")}
               aria-label="Shop Now - Summer Sale 50% OFF"
             >
               Shop Now
@@ -142,79 +164,88 @@ export function Navbar() {
       </nav>
 
       <div className={`cartSlider ${isCartOpen ? "open" : ""}`}>
-      {/* Header */}
-      <div className="cartHeader">
-        <h3>Shopping Cart</h3>
-        <button className="closeButton" onClick={toggleCart}>
-          ✖
-        </button>
+        <div className="cartHeader">
+          <h3>Shopping Cart</h3>
+          <button className="closeButton" onClick={toggleCart}>
+            ✖
+          </button>
+        </div>
+
+        <div className="cartItems">
+          {cartItems.length > 0 ? (
+            cartItems.map((item) => (
+              <div key={item.id} className="cartItem">
+                <img src={item.image} alt={item.name} className="cartItemImage" />
+                <div className="cartItemDetails">
+                  <p className="cartItemName">{item.name}</p>
+                  <p className="cartItemPrice">₹{item.price}.00</p>
+                </div>
+                <div className="cartQuantity">
+                  <button
+                    className="quantityButton"
+                    onClick={() => updateQuantity(item.id, -1)}
+                    disabled={item.quantity === 1}
+                  >
+                    −
+                  </button>
+                  <span className="cartQuantityValue">{item.quantity}</span>
+                  <button
+                    className="quantityButton"
+                    onClick={() => updateQuantity(item.id, 1)}
+                  >
+                    +
+                  </button>
+                </div>
+                <button className="removeButton" onClick={() => openPopup(item)}>
+                  ✖
+                </button>
+              </div>
+            ))
+          ) : (
+            <p className="emptyCartMessage">Your cart is empty.</p>
+          )}
+        </div>
+
+        <div className="cartFooter">
+          <div className="cartSummary">
+            <span>{totalProducts} Product</span>
+            <span>₹{totalPrice}.00</span>
+          </div>
+          <div className="cartActions">
+            <button className="checkoutButton" onClick={() => navigate("/Checkout")}>
+              Checkout →
+            </button>
+            <button className="goToCartButton" onClick={() => navigate("/cart")}>
+              Go to Cart →
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Cart Items */}
-      <div className="cartItems">
-        {cartItems.length > 0 ? (
-          cartItems.map((item) => (
-            <div key={item.id} className="cartItem">
-              <img src={item.image} alt={item.name} className="cartItemImage" />
-              <div className="cartItemDetails">
-                <p className="cartItemName">{item.name}</p>
-                <p className="cartItemPrice">₹{item.price}.00</p>
-              </div>
-              <div className="cartQuantity">
-                <button
-                  className="quantityButton"
-                  onClick={() => updateQuantity(item.id, -1)}
-                  disabled={item.quantity === 1}
-                >
-                  −
-                </button>
-                <span className="cartQuantityValue">{item.quantity}</span>
-                <button
-                  className="quantityButton"
-                  onClick={() => updateQuantity(item.id, 1)}
-                >
-                  +
-                </button>
-              </div>
-              <button
-                className="removeButton"
-                onClick={() => removeItem(item.id)}
-              >
-                ✖
+      {isPopupOpen && (
+        <div className="popupOverlay">
+          <div className="popupContent">
+            <h3>Remove from Cart</h3>
+            <hr className="row-divider"/>
+            <p>Are you sure you want to remove this product?</p>
+            <div className="popupActions">
+              <button className="confirmButton" onClick={confirmRemove}>
+                <span>🗑</span> Yes, Delete
+              </button>
+              <button className="cancelButton" onClick={closePopup}>
+                Cancel
               </button>
             </div>
-          ))
-        ) : (
-          <p className="emptyCartMessage">Your cart is empty.</p>
-        )}
-      </div>
-
-      {/* Footer */}
-      <div className="cartFooter">
-        <div className="cartSummary">
-          <span>{totalProducts} Product</span>
-          <span>₹{totalPrice}.00</span>
+          </div>
         </div>
-        <div className="cartActions">
-          <button
-            className="checkoutButton"
-            onClick={() => navigate("/checkout")}
-          >
-            Checkout →
-          </button>
-          <button className="goToCartButton" onClick={() => navigate("/cart")}>
-            Go to Cart →
-          </button>
-        </div>
-      </div>
-    </div>
+      )}
 
-
-      {/* Search Drawer */}
       <div className={`searchDrawer ${isSearchOpen ? "open" : ""}`}>
         <div className="searchHeader">
           <h3>Search by Category...</h3>
-          <button className="closeButton" onClick={toggleSearch}>✖</button>
+          <button className="closeButton" onClick={toggleSearch}>
+            ✖
+          </button>
         </div>
         <ul className="searchCategories">
           <li>Tray</li>
@@ -227,6 +258,6 @@ export function Navbar() {
       </div>
     </>
   );
-}
+};
 
 export default Navbar;

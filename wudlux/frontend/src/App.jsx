@@ -15,6 +15,7 @@ import LoginPage from "./Pages/Login/Login";
 import RegistrationForm from "./Pages/Register/Register";
 import Productlist from "./Components/ProductList/Productlist";
 import ForgotPassword from "./Pages/ForgetPassword/ForgetPassword";
+import Checkout from "./Pages/Checkout/Checkout";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route path="/log-in" element={<LoginPage />} />
         <Route path="/sign-up" element={<RegistrationForm />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
     </>

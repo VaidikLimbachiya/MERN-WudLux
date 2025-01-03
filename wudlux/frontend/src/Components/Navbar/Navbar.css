@@ -552,6 +552,81 @@ a{
 .goToCartButton:hover {
   background-color: #5a4732;
 }
+
+/* Popup Overlay */
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* Popup Content */
+.popupContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 340px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.row-divider{
+  padding-left: 10px;
+  width: 300px;
+  color: #6c543e solid 1px;
+}
+.popupContent h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.popupContent p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.popupActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.confirmButton {
+  background: white;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.confirmButton:hover {
+  background: #6c543e;
+}
+
+.cancelButton {
+  background: #6c543e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 40px;
+  cursor: pointer;
+  width: 50%;
+}
+
+.cancelButton:hover {
+  background: #999;
+}
+
 /* Responsive Design */
 
 /* Medium Devices (Tablets) */

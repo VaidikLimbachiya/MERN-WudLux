@@ -33,6 +33,7 @@ export const CartProvider = ({ children }) => {
 
   const removeItem = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
+
   };
 
   const totalProducts = cartItems.length; // Total unique products
