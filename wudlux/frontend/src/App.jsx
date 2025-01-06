@@ -17,6 +17,8 @@ import Productlist from "./Components/ProductList/Productlist";
 import ForgotPassword from "./Pages/ForgetPassword/ForgetPassword";
 import ProductPage from "./Pages/ProductInfo/ProductInfo";
 import Checkout from "./Pages/Checkout/Checkout";
+// import Checkout from "./Pages/Checkout/Checkout";
+import ProductInfo from "./Pages/ProductInfo/ProductInfo";
 
 function App() {
   return (
@@ -49,6 +51,7 @@ function App() {
         <Route path="/product-info" element={<ProductPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/product-info" element={<ProductInfo />} />
       </Routes>
       <Footer />
     </>
