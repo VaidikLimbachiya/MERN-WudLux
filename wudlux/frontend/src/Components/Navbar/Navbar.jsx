@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import searchIcon from "../../assets/vector.png";
 import profileIcon from "../../assets/profile.png";
 import cartIcon from "../../assets/bag.png";
-import bowl from "../../assets/bowl.png";
+// import bowl from "../../assets/bowl.png";
 import { useCartContext } from "../../Context/CartContext";
 
 const categories = [
@@ -215,7 +215,7 @@ const Navbar = () => {
             <button className="checkoutButton" onClick={() => navigate("/Checkout")}>
               Checkout →
             </button>
-            <button className="goToCartButton" onClick={() => navigate("/cart")}>
+            <button className="goToCartButton" onClick={() => navigate("/CartPage")}>
               Go to Cart →
             </button>
           </div>

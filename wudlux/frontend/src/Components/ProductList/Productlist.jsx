@@ -94,7 +94,7 @@ const Productlist = () => {
                 onClick={() => addToCart(product)} // Dispatch ADD_TO_CART action
               >
                 <img src={bagIcon} alt="Bag Icon" className="bag-icon" />
-                {cartItems[product.id]?.quantity ? "In Cart" : "Add to Bag"}
+                {cartItems[product.id]?.quantity ? "Add to Bag" : "Add to Bag"}
               </button>
             </div>
           </div>

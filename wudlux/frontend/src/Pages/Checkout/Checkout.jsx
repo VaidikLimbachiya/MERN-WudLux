@@ -1,5 +1,5 @@
 import  { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCartContext } from "../../Context/CartContext"; // Import the cart context
 import "./Checkout.css";
 import logo from "../../assets/logo.png"; // Import the logo image
@@ -57,11 +57,13 @@ const Checkout = () => {
       {/* left part */}
       <div className="form-container">
         <div className="logo-box">
+          <Link to="/" >
           <img src={logo} alt="Company Logo" className="logo-image" />
+          </Link>
         </div>
         <h1 className="form-title">Shipping Information</h1>
         <p className="form-subtitle">
-          Already have an account? <a href="/login">Login</a>
+          Already have an account? <Link to="/log-in">Login</Link>
         </p>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
@@ -194,7 +196,7 @@ const Checkout = () => {
           <h2>Payment Method:</h2>
           <div className="payment-container">
             <label className="payment-option">
-              <span className="payment-label">Pay Online</span>
+              <span className="payment-label-one">Pay Online</span>
             </label>
             <label className="payment-option">
               <input
@@ -218,6 +220,7 @@ const Checkout = () => {
             <label className="checkbox-label">
               <input
                 type="checkbox"
+                className="checkbox-Invoice"
                 name="requiresInvoice"
                 checked={formData.requiresInvoice}
                 onChange={handleInputChange}
@@ -272,7 +275,7 @@ const Checkout = () => {
             <button
               type="button"
               className="back-button"
-              onClick={() => navigate("/cart")} // Navigate back to the cart page
+              onClick={() => navigate("/")} // Navigate back to the cart page
             >
               ← Back to Cart
             </button>
