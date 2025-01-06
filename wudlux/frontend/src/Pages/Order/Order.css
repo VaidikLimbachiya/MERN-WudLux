@@ -1,0 +1,200 @@
+/* Container */
+.order-history-container {
+  display: flex;
+  font-family: "DM Sans", sans-serif;
+  color: #0a0a0a;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+  margin-left: 100px;
+  margin-top: 90px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sidebar-logo {
+  width: 50px;
+}
+
+.sidebar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: playfair display, serif;
+}
+
+.sidebar-navigation .sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.sidebar-navigation .sidebar-nav-item.active {
+  background-color: #50433c;
+  color: #fff;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: #6c757d;
+  margin-bottom: 20px;
+  margin-left: -250px;
+
+}
+
+.breadcrumb img {
+  height: 24px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+.btext {
+  font-size: 16px;
+  color: #0a0a0a;
+  margin-bottom: 1px;
+  margin-left: 10px;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.filter-dropdown {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Table Styling */
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.order-table th,
+.order-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #50433c; /* Horizontal border */
+  font-family: "DM Sans", sans-serif;
+}
+
+.order-table thead th {
+  border-bottom: 1px solid #50433c; /* Thicker border for the header row */
+}
+
+/* Remove Vertical Borders */
+.order-table th,
+.order-table td {
+  border-left: none; /* Remove vertical borders */
+}
+
+/* Status Styling */
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  color: #2657C1;
+}
+
+.status.processing {
+  background-color: #BFFBD3;
+  color: #2A7B45;
+
+}
+
+.status.delivered {
+  background-color: #E3ECFF;
+  color: #2657C1;
+}
+
+.status.cancelled {
+  background-color: #FFD8D8;
+  color: #A72D2D;
+}
+
+/* View Button Styling */
+.view-button {
+  padding: 5px 10px;
+  background-color: #50433c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.pagination button {
+  background-color: #fff;
+  border: 1px solid #cdc2bc;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: #50433c;
+  transition: all 0.3s ease;
+}
+
+.pagination button.active {
+  background-color: #50433c;
+  color: #fff;
+  border-color: #50433c;
+}
+
+.pagination button:hover {
+  background-color: #f4f2f0;
+}
+
+.pagination button img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
