@@ -20,6 +20,7 @@ import Checkout from "./Pages/Checkout/Checkout";
 // import Checkout from "./Pages/Checkout/Checkout";
 import ProductInfo from "./Pages/ProductInfo/ProductInfo";
 import CartPage from "./Pages/Cart/CartPage";
+import Order from "./Pages/Order/Order";
 
 function App() {
   return (
@@ -54,7 +55,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/CartPage" element={<CartPage />} />
         <Route path="/product-info" element={<ProductInfo />} />
-        
+        <Route path="/orders" element={<Order />} />
       </Routes>
       <Footer />
     </>

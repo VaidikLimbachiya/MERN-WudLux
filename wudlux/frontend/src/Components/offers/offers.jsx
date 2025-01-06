@@ -12,7 +12,7 @@ const Offers = () => {
         <div className="offer-card">
           <img src={tablewareImage} alt="Tableware Collections" className="offer-image" />
           <div className="offer-overlay">
-            <p className="offer-title">Top Trending</p>
+            <p className="offer-titlee">Top Trending</p>
             <h3 className="offer-subtitle">Tableware <br />Collections</h3>
             <a href="#" className="offer-button">Discover Now</a>
           </div>
@@ -22,7 +22,7 @@ const Offers = () => {
         <div className="offer-card">
           <img src={saleImage} alt="Black Friday Sale" className="offer-image" />
           <div className="offer-overlay">
-            <p className="offer-title">Black Fridays!</p>
+            <p className="offer-titlee">Black Fridays!</p>
             <h3 className="offer-subtitle">Sale up to <br />50% off</h3>
             <a href="#" className="offer-button">Shop Now</a>
           </div>
@@ -32,7 +32,7 @@ const Offers = () => {
         <div className="offer-card">
           <img src={kitchenwareImage} alt="Kitchenware Collections" className="offer-image" />
           <div className="offer-overlay">
-            <p className="offer-title">Top Trending</p>
+            <p className="offer-titlee">Top Trending</p>
             <h3 className="offer-subtitle">Kitchenware - <br />Bella Collections</h3>
             <a href="#" className="offer-button">Discover Now</a>
           </div>
