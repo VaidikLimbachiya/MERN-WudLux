@@ -57,8 +57,8 @@ const Checkout = () => {
       {/* left part */}
       <div className="form-container">
         <div className="logo-box">
-          <Link to="/" >
-          <img src={logo} alt="Company Logo" className="logo-image" />
+          <Link to="/">
+            <img src={logo} alt="Company Logo" className="logo-image" />
           </Link>
         </div>
         <h1 className="form-title">Shipping Information</h1>
@@ -299,29 +299,47 @@ const Checkout = () => {
               />
               <div className="product-info">
                 <div className="product-title">
+                  {/* {item.name} */}
                   <span className="quantity-badge">{item.quantity}</span>{" "}
-                  {item.name}
+                  <p className="name">ABC</p>
                 </div>
                 <div className="product-cost">₹{item.price.toFixed(2)}</div>
               </div>
             </div>
           ))}
         </div>
-        <h2>Shipping Method:</h2>
-        <button className="shipping-button">
-          Free Delivery – <strong> Free Shipping</strong>
-        </button>
-        <h3>Order Summary</h3>
-        <p>Total Amount: ₹{totalPrice.toFixed(2)}</p>
-        <p>Total CGST: ₹{(totalPrice * 0.09).toFixed(2)}</p>
-        <p>Total SGST: ₹{(totalPrice * 0.09).toFixed(2)}</p>
-        <p>Coupon Discount: -₹99.00</p>
-        <h3>
-          Amount Payable: ₹{(totalPrice + totalPrice * 0.18 - 99).toFixed(2)}
-        </h3>
+        <div className="shipping-method">
+          <h2>Shipping Method:</h2>
+          <button className="shipping-button">
+            Free Delivery – <strong> Free Shipping</strong>
+          </button>
+          <div className="price-item">
+            <span>Total Amount:</span>
+            <span>₹{totalPrice.toFixed(2)}</span>
+          </div>
+          <div className="price-item">
+            <span>Total CGST:</span>
+            <span>₹{(totalPrice * 0.09).toFixed(2)}</span>
+          </div>
+          <div className="price-item">
+            <span>Total SGST:</span>
+            <span>₹{(totalPrice * 0.09).toFixed(2)}</span>
+          </div>
+          <div className="price-item">
+            <span>Coupon Discount:</span>
+            <span className="discount-product">-₹99.00</span>
+          </div>
+          <hr  className="price-divider"/>
+          <h3 className="price-item">
+            <span>Amount Payable:</span>
+            <span>₹{(totalPrice + totalPrice * 0.18 - 99).toFixed(2)}</span>
+          </h3>
+          <hr className="price-divider"/>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Checkout;
+

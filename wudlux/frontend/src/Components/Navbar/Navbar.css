@@ -476,44 +476,68 @@ a{
 .cartQuantity {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.quantityButton {
-  width: 28px;
-  height: 28px;
-  background-color: #f5f5f5;
+  justify-content: center;
   border: 1px solid #ddd;
-  font-size: 16px;
+  border-radius: 30px; /* Rounded container */
+  overflow: hidden;
+  width: 120px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
+  /* background-color: #f9f9f9; */
+  /* margin-right: 45px; */
+  margin-top: 20px;
+  margin-right: 40px;
+}
+ 
+
+.cart-quantity-decrement1,
+.cart-quantity-increment1 {
+  border: none;
+  outline: none;
+  width: 22px; /* Button width */
+  height: 26px; /* Button height */
+  background-color: #DDD6D2;
+  color: #000;
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  border-radius: 40px;
+  transition: background-color 0.3s ease;
+  margin-right: 14px;
+    margin-left: 14px;
 }
-
 .quantityButton:hover {
   background-color: #e0e0e0;
 }
 
 .cartQuantityValue {
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  width: 40px; /* Adjust width to match button */
+  line-height: 40px; /* Vertically center the number */
+  background-color: transparent;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .removeButton {
-  background: none;
-  border: none;
-  font-size: 16px;
-  color: #ff4d4d;
   cursor: pointer;
-  transition: color 0.2s;
+  font-size: 10px;
+  border-radius: 12px;
+  color: black;
+  width: 22px;
+  height: 20px;
+  margin-top: -20px;
 }
 
-.removeButton:hover {
-  color: #ff1a1a;
+.cart-quantity-decrement1:hover,
+.cart-quantity-increment1:hover {
+  background-color: #d6d6d6; /* Hover effect */
 }
-
 /* Footer Section */
 .cartFooter {
   padding: 16px;

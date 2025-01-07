@@ -218,7 +218,7 @@
     transform: translateX(-370px);
     width: 20%;
     height: 2px;
-    background-color: #a67c52; 
+    /* background-color: #a67c52;  */
   }
   
   .product-title::before {
@@ -423,6 +423,11 @@
     gap: 10px;
   }
   
+
+  .order-summary-amount-payable{
+    display: flex;
+    justify-content: space-between;
+  }
   .size-box {
     padding: 5px 15px;
     font-size: 0.9rem;

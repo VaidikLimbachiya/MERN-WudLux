@@ -177,27 +177,27 @@ const Navbar = () => {
               <div key={item.id} className="cartItem">
                 <img src={item.image} alt={item.name} className="cartItemImage" />
                 <div className="cartItemDetails">
-                  <p className="cartItemName">{item.name}</p>
+                  {/* <p className="cartItemName">{item.name}</p> */}
+                  <p className="cartItemName">ABC</p> 
                   <p className="cartItemPrice">₹{item.price}.00</p>
                 </div>
                 <div className="cartQuantity">
-                  <button
-                    className="quantityButton"
-                    onClick={() => updateQuantity(item.id, -1)}
-                    disabled={item.quantity === 1}
-                  >
-                    −
-                  </button>
-                  <span className="cartQuantityValue">{item.quantity}</span>
-                  <button
-                    className="quantityButton"
-                    onClick={() => updateQuantity(item.id, 1)}
-                  >
-                    +
-                  </button>
-                </div>
+                <button
+                      className="cart-quantity-decrement1"
+                      onClick={() => updateQuantity(item.id, -1)}
+                    >
+                      -
+                    </button>
+                    <span className="cart-quantity-value1">{item.quantity}</span>
+                    <button
+                      className="cart-quantity-increment1"
+                      onClick={() => updateQuantity(item.id, 1)}
+                    >
+                      +
+                    </button>
+                    </div>
                 <button className="removeButton" onClick={() => openPopup(item)}>
-                  ✖
+                ✖
                 </button>
               </div>
             ))
