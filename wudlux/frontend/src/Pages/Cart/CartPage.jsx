@@ -92,7 +92,7 @@ const CartPage = () => {
                       className="cart-item-remove"
                       onClick={() => removeItem(item.id)}
                     >
-                      ❌ 
+                      ✖ 
                     </button>
                   </td>
                   </th>
