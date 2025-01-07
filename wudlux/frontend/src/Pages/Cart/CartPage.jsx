@@ -1,7 +1,7 @@
 import { useCartContext } from "../../Context/CartContext"; // Use your context
 import "./CartPage.css";
 import { Link } from "react-router-dom";
-import { IoCloseCircleOutline } from "react-icons/io5";
+// import { IoCloseCircleOutline } from "react-icons/io5";
 
 const CartPage = () => {
   const { cartItems, totalPrice, updateQuantity, removeItem } =
@@ -55,7 +55,8 @@ const CartPage = () => {
                       className="cart-item-image"
                     />
                     <div>
-                      <h4>{item.name}</h4>
+                      {/* <h4>{item.name}</h4> */}
+                      <h4>ABC</h4>
                       <p>Category: {item.category}</p>
                       <p>Size: {item.size}</p>
                     </div>

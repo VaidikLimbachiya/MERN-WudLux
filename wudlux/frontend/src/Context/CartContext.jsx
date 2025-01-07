@@ -1,9 +1,18 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    // Load cart from localStorage or initialize as empty
+    const storedCart = localStorage.getItem("cartItems");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  // Save cart to localStorage whenever cartItems changes
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addToCart = (product) => {
     setCartItems((prev) => {
@@ -27,13 +36,16 @@ export const CartProvider = ({ children }) => {
             ? { ...item, quantity: Math.max(item.quantity + delta, 1) }
             : item
         )
-        .filter((item) => item.quantity > 0)
+        .filter((item) => item.quantity > 0) // Remove items with 0 quantity
     );
   };
 
   const removeItem = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
 
+  const clearCart = () => {
+    setCartItems([]);
   };
 
   const totalProducts = cartItems.length; // Total unique products
@@ -53,6 +65,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         updateQuantity,
         removeItem,
+        clearCart, // Added clearCart function
       }}
     >
       {children}

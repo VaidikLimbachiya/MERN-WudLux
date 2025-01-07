@@ -299,8 +299,9 @@ const Checkout = () => {
               />
               <div className="product-info">
                 <div className="product-title">
+                  {/* {item.name} */}
                   <span className="quantity-badge">{item.quantity}</span>{" "}
-                  {item.name}
+                  <p className="name">ABC</p>
                 </div>
                 <div className="product-cost">₹{item.price.toFixed(2)}</div>
               </div>
