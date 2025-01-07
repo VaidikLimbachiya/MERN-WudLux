@@ -7,6 +7,7 @@ import featuresImage from "../../assets/sty.png"; // Path to the features image
 function OurStory() {
   return (
     <>
+
       <div className="our-story-container">
         {/* Hero Section */}
         <div
@@ -49,6 +50,7 @@ function OurStory() {
           />
         </div>
       </div>
+      
     </>
   );
 }

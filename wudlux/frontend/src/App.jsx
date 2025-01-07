@@ -1,9 +1,8 @@
-// import React from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
-import Home  from "./Pages/Home/Home";
-// import ProductList from "./Pages/ProductList/ProductList";
+import Home from "./Pages/Home/Home";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import RefundPolicy from "./Pages/RefundPolicy/RefundPolicy";
 import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
@@ -17,10 +16,19 @@ import Productlist from "./Components/ProductList/Productlist";
 import ForgotPassword from "./Pages/ForgetPassword/ForgetPassword";
 import ProductPage from "./Pages/ProductInfo/ProductInfo";
 import Checkout from "./Pages/Checkout/Checkout";
-// import Checkout from "./Pages/Checkout/Checkout";
-import ProductInfo from "./Pages/ProductInfo/ProductInfo";
 import CartPage from "./Pages/Cart/CartPage";
 import Order from "./Pages/Order/Order";
+import Address from "./Pages/Address/Address";
+import Sidebar from "./Components/Sidebar/Sidebar";
+
+const SidebarLayout = ({ children }) => {
+  return (
+    <div style={{ display: "flex" }}>
+      <Sidebar />
+      <div style={{ flex: 1 }}>{children}</div>
+    </div>
+  );
+};
 
 function App() {
   return (
@@ -29,18 +37,18 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        {/* navbar  */}
-        <Route path = "/Serveware/ServingTray" element = {<KitchenWare />} />
-        <Route path = "/ServeWare/withDrawer" element = {<KitchenWare />} />
-        <Route path = "/Serveware/BeerCaddy" element = {<KitchenWare />} />
-        <Route path = "/Serveware/ServingPlatter" element = {<KitchenWare />} />
-        <Route path = "/Serveware/WineServingTray" element = {<KitchenWare />} />
-        <Route path = "/KitchenWare/ChoppingBoard" element = {<KitchenWare />} />
-        <Route path = "/Kitchenware/ButcherBoard" element = {<KitchenWare />} />
-        <Route path = "/TableWare/LazySusan" element = {<KitchenWare />} />
-        <Route path = "/TableWare/CoffeePods" element = {<KitchenWare />} />
-        <Route path = "/TableWare/CutleryCaddy" element = {<KitchenWare />} />
-        <Route path = "/Collections/Bella" element = {<KitchenWare />} />
+        {/* Navbar Links */}
+        <Route path="/Serveware/ServingTray" element={<KitchenWare />} />
+        <Route path="/ServeWare/withDrawer" element={<KitchenWare />} />
+        <Route path="/Serveware/BeerCaddy" element={<KitchenWare />} />
+        <Route path="/Serveware/ServingPlatter" element={<KitchenWare />} />
+        <Route path="/Serveware/WineServingTray" element={<KitchenWare />} />
+        <Route path="/KitchenWare/ChoppingBoard" element={<KitchenWare />} />
+        <Route path="/Kitchenware/ButcherBoard" element={<KitchenWare />} />
+        <Route path="/TableWare/LazySusan" element={<KitchenWare />} />
+        <Route path="/TableWare/CoffeePods" element={<KitchenWare />} />
+        <Route path="/TableWare/CutleryCaddy" element={<KitchenWare />} />
+        <Route path="/Collections/Bella" element={<KitchenWare />} />
         <Route path="/products" element={<Productlist />} />
         <Route path="/our-story" element={<OurStory />} />
         <Route path="/contact-us" element={<ContactUs />} />
@@ -54,8 +62,27 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/CartPage" element={<CartPage />} />
-        <Route path="/product-info" element={<ProductInfo />} />
-        <Route path="/orders" element={<Order />} />
+
+        {/* Routes with Sidebar */}
+        <Route
+          path="/orders"
+          element={
+            <SidebarLayout>
+              <Order />
+            </SidebarLayout>
+          }
+        />
+        <Route
+          path="/address"
+          element={
+            <SidebarLayout>
+              <Address />
+            </SidebarLayout>
+          }
+        />
+
+        {/* Logout */}
+        <Route path="/logout" element={<LoginPage />} />
       </Routes>
       <Footer />
     </>

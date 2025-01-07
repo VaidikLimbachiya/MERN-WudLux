@@ -71,31 +71,6 @@ const OrderHistory = () => {
 
   return (
     <div className="order-history-container">
-      {/* Sidebar */}
-      <div className="sidebar">
-        <div className="sidebar-header">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/13c94efa694b4484b36edb96cf0a29f37588720d0d1452a20a4315b87220e64c"
-            alt="Logo"
-            className="sidebar-logo"
-          />
-          <div className="sidebar-brand">Wudlux</div>
-        </div>
-        <nav className="sidebar-navigation">
-          {navItems.map((item) => (
-            <div
-              key={item.id}
-              className={`sidebar-nav-item ${
-                item.active ? "active" : ""
-              }`}
-            >
-              <img src={item.icon} alt={item.label} />
-              <span>{item.label}</span>
-            </div>
-          ))}
-        </nav>
-      </div>
-
       {/* Main Content */}
       <div className="main-content">
         {/* Breadcrumb */}
