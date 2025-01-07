@@ -1,3 +1,7 @@
+*{
+  font-family: 'poppins';
+}
+
 .cart-header-container {
   width: 100%;
   padding: 20px 0;
@@ -18,7 +22,7 @@
 .cart-subtitle {
   font-size: 14px;
   color: #666;
-  font-family: "Arial", sans-serif;
+  font-family: "poppins", sans-serif;
   line-height: 1.5;
 }
 
@@ -30,6 +34,7 @@
   padding: 20px;
   margin: 30px;
   font-family: Arial, sans-serif;
+  margin-top: -20px;
 }
 
 /* Left Section */
@@ -47,7 +52,7 @@
 .cart-items-table td {
   /* border-bottom: 1px solid #ddd; */
   padding: 15px;
-  text-align: left;
+  text-align: center;
   vertical-align: middle;
 }
 
@@ -55,7 +60,8 @@
   /* background-color: #f9f9f9; */
   font-weight: bold;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid #c3c3c3;
+  border-top: 1px solid #c3c3c3;
 }
 
 .cart-item-details {
@@ -144,7 +150,7 @@
 
 .order-summary-coupon {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin: 10px 0;
   font-size: 14px;
 }
@@ -174,6 +180,10 @@
   border: none;
   border-top: 2px dashed #000;
   margin: 10px 0;
+}
+
+.total-amount{
+  justify-content: space-between;
 }
 
 .order-summary-amount-payable {

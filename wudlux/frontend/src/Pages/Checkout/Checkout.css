@@ -29,13 +29,13 @@
   margin-bottom: 5px;
   line-height: 1.2;
   width: 20rem;
-  font-family: 'playfair display', serif;
+  font-family: "playfair display", serif;
 }
 
 .form-container {
   flex: 2;
   margin-right: 40px;
-  padding:30px ;
+  padding: 30px;
 }
 
 .summary-container {
@@ -43,12 +43,14 @@
   border-radius: 8px;
   border: 1px solid #ccc;
   width: 30rem;
+  /* height: 42rem; */
 }
 
 h1,
 h2,
 h3 {
-  font-weight: bold;
+  font-weight: 500;
+  font-family:"Poppins";
 }
 
 .input-group {
@@ -57,23 +59,22 @@ h3 {
   margin-bottom: 15px;
 }
 
-.first-class{
+.first-class {
   width: 100%;
   height: 40px;
   margin-bottom: 15px;
-  }
+}
 
-  .fourth-class{
-    width: 100%;
-  }
-  
+.fourth-class {
+  width: 100%;
+}
+
 .checkbox-input {
   width: 15px;
   height: 15px;
   margin-right: 10px;
   margin-top: 20px;
   margin-bottom: 30px;
-  
 }
 
 .checkbox-label {
@@ -123,7 +124,7 @@ textarea {
   width: 16px;
 }
 
-.payment-label-one{
+.payment-label-one {
   font-size: 14px;
   color: #333;
   /* margin-right: 30px; */
@@ -134,11 +135,12 @@ textarea {
   color: #333;
 }
 
-.checkbox-Invoice{
+.checkbox-Invoice {
   height: 15px;
   width: 15px;
   margin-right: 10px;
 }
+
 .payment-container:hover {
   border-color: #5c3c1d;
 }
@@ -149,9 +151,8 @@ select:disabled {
   cursor: not-allowed;
 }
 
-.checkbox-group-one{
+.checkbox-group-one {
   display: contents;
-
 }
 
 .submit-button {
@@ -175,20 +176,20 @@ select:disabled {
 }
 
 .product-box {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 19px;
-    padding-right: 2rem;
-    padding-left: 2rem;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 19px;
+  padding-right: 2rem;
+  padding-left: 2rem;
 }
 
 .product-thumbnail {
-  width: 70px;
+  width: 86px;
   height: 80px;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-right: 15px;
-  border: 1px solid #ddd;
-  /* object-fit: cover; */
+  border: 0px solid #ddd;
+  object-fit: cover;
 }
 
 .product-info {
@@ -196,8 +197,8 @@ select:disabled {
   justify-content: space-between;
   flex: 1;
   align-items: center;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
+  border-bottom: 1px solid #9f9d9d;
+  padding-bottom: 0px;
 }
 
 .product-title {
@@ -245,7 +246,12 @@ select:disabled {
   background: #5c3c1d;
   color: #fff;
 }
-
+.shipping-method {
+  border-top:2px solid #000;
+  padding-top: 20px;
+  margin-bottom: 0px;
+  position: relative;
+}
 .shipping-button {
   background: #ece5e0;
   border: 1px solid #ccc;
@@ -258,6 +264,29 @@ select:disabled {
   text-align: center;
 }
 
+
+.price-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.price-item span {
+  font-size: 16px;
+  font-family: 'Poppins';
+
+}
+
+.discount-product {
+  color: #007bff; /* Blue for discount */
+  font-weight :600;
+}
+
+.price-divider {
+  border: none;
+  border-top: 1px dashed #000;
+  margin: 10px 0;
+}
 /* .shipping-button:hover {
   background: #5c3c1d;
   color: #fff;

@@ -47,6 +47,7 @@ const CartPage = () => {
             <tbody>
               {cartItems.map((item) => (
                 <tr key={item.id}>
+                  <th>
                   <td className="cart-item-details">
                     <img
                       src={item.image}
@@ -59,6 +60,8 @@ const CartPage = () => {
                       <p>Size: {item.size}</p>
                     </div>
                   </td>
+                  </th>
+                  <th>
                   <td className="cart-quantity-controls">
                     <button
                       className="cart-quantity-decrement"
@@ -74,18 +77,25 @@ const CartPage = () => {
                       +
                     </button>
                   </td>
+                  </th>
+                  <th>
                   <td className="cart-item-price">₹{item.price.toFixed(2)}</td>
+                 </th>
+                 <th>
                   <td className="cart-item-total">
                     ₹{(item.price * item.quantity).toFixed(2)}
                   </td>
+                  </th>
+                  <th>
                   <td>
                     <button
                       className="cart-item-remove"
                       onClick={() => removeItem(item.id)}
                     >
-                      <IoCloseCircleOutline />
+                      ❌ 
                     </button>
                   </td>
+                  </th>
                 </tr>
               ))}
             </tbody>
@@ -119,7 +129,8 @@ const CartPage = () => {
           <hr className="order-summary-divider" />
           <p className="order-summary-amount-payable">
             <span className="order-amount">Amount Payable:</span>
-            ₹{totalPayable}
+            <span className="total-amount"> ₹{totalPayable}</span>
+           
           </p>
           <hr className="order-summary-divider" />
           <Link to="/checkout">
