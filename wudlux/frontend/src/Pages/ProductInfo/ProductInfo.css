@@ -3,18 +3,20 @@
     margin: 0 auto;
     padding: 20px;
     margin-right: 100px;
+    /* margin-right: 40px; */
   }
   
   .product-gridd {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    /* gap: 20px; */
     
   }
   
   .product-image-section {
     display: flex;
     flex-direction: column;
+    padding-left :20px;
   }
   
  
@@ -24,8 +26,8 @@
   
   .zoom-button {
     position: absolute;
-    top: 20px;
-    right: 99px;
+    top: 25px;
+    right: 70px;
     background: white;
     border: 1px solid #ccc;
     border-radius: 50%;
@@ -181,17 +183,18 @@
     object-fit: contain;
     border-radius: 10px;
   }
-  .breadcrumb {
+
+  .breadcrumb-nav {
       display: flex;
       align-items: center;
       gap: 0px;
       font-size: 16px;
       color: #6c757d;
       margin-bottom: 20px;
-      margin-left: 129px;
+      margin-left: 96px;
   }
   
-  .breadcrumb-link {
+  .breadcrumb-nav-link {
     text-decoration: none;
     color: #000;
     font-weight: 500;
@@ -201,22 +204,22 @@
     transition: color 0.2s ease;
   }
   
-  .breadcrumb-link:hover {
+  .breadcrumb-nav-link:hover {
     color: #333; 
     text-decoration: underline;
   }
   
-  .breadcrumb-separator {
+  .breadcrumb-nav-separator {
     margin: 0 8px;
     color: #999;
   }
   
-  .breadcrumb-current {
+  .breadcrumb-nav-current {
     font-weight: bold;
     color: #000;
   }
   
-  .breadcrumb-icon {
+  .breadcrumb-nav-icon {
     width: 16px; 
     height: 16px;
     object-fit: contain;
@@ -247,11 +250,11 @@
   }
   
   .nav-button.prev {
-    left: 90px;
+    left: 55px;
   }
   
   .nav-button.next {
-    right: 90px;
+    right: 55px;
   }
   
   .nav-button img {
@@ -287,6 +290,7 @@
     padding: 20px;
     font-family: "Arial", sans-serif;
     color: #333;
+    margin-right: 40px;
   }
   
   .product-header {
@@ -663,16 +667,20 @@
     margin-right: -4px;
     border-radius: 50%;
     padding: 0px;
-    margin-top: 60px;
+    margin-top: -10px;
   }
   
  
   .social-icons {
     display: flex;
-    gap: 15px;
+    gap:2px;
   }
   
- 
+  .social-icons {
+    margin-top: -19px;
+    font-size: large;
+    align-items: center;
+}
   .social-icon {
     width: 40px;
     height: 40px;
@@ -689,4 +697,9 @@
   .social-icon:hover {
     background-color: #dcd3c9; 
     color: #000;  
+  }
+
+
+  .products-info{
+    margin-top:-20px
   }
