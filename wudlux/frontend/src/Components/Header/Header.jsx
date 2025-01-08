@@ -55,7 +55,7 @@ const Slider = () => {
               <div className="sale-offer">
                 <hr className="line-offer" />
                 <p>
-                  <span></span> {slide.subheading}
+                  <span className="gradient-text"></span> {slide.subheading}
                 </p>
                 <hr className="line-offer" />
               </div>

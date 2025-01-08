@@ -49,8 +49,9 @@
 
 .line-offer {
   margin: 10px;
-  width: 89%;
+  width: 84%;
   border-bottom: 1px solid #000;
+  margin-left: 1px;
 }
 
 .slider-heading {
