@@ -3,6 +3,7 @@ import "./Order.css";
 import prev from "../../assets/prev.png";
 import next from "../../assets/next.png";
 import breadcrumbIcon from "../../assets/home.png"; // Replace with the correct path to your breadcrumb image
+import { Link } from "react-router-dom";
 
 const navItems = [
   {
@@ -120,7 +121,9 @@ const OrderHistory = () => {
                   </span>
                 </td>
                 <td>
-                  <button className="view-button">View</button>
+                <Link to="/order-details">
+  <button className="view-button">View</button>
+</Link>
                 </td>
               </tr>
             ))}

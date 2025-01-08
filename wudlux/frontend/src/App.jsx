@@ -20,6 +20,7 @@ import CartPage from "./Pages/Cart/CartPage";
 import Order from "./Pages/Order/Order";
 import Address from "./Pages/Address/Address";
 import Sidebar from "./Components/Sidebar/Sidebar";
+import OrderDetails from "./Pages/OrderDetails/OrderDetails";
 
 const SidebarLayout = ({ children }) => {
   return (
@@ -77,6 +78,14 @@ function App() {
           element={
             <SidebarLayout>
               <Address />
+            </SidebarLayout>
+          }
+        />
+        <Route
+          path="/order-details"
+          element={
+            <SidebarLayout>
+              <OrderDetails />
             </SidebarLayout>
           }
         />
