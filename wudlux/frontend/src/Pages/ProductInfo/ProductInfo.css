@@ -2,6 +2,7 @@
     width: 100%;
     margin: 0 auto;
     padding: 20px;
+    margin-right: 100px;
   }
   
   .product-gridd {
@@ -23,8 +24,8 @@
   
   .zoom-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 99px;
     background: white;
     border: 1px solid #ccc;
     border-radius: 50%;
@@ -43,60 +44,151 @@
   }
   
   
-  .image-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  
+  /* Modal General Styling */
+/* Modal General Styling */
+.image-modal {
+  position: fixed;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000%;
+  overflow-y: auto; /* Allow scrolling on smaller screens */
+}
+
+.modal-content {
+  position: relative;
+  width: 95%; /* Adjust width for smaller screens */
+  max-width: 1200px; /* Larger width for larger screens */
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 90%; /* Limit height to 90% of the screen */
+  overflow: hidden; /* Prevent content overflow */
+}
+
+/* Close Button */
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Zoomed Image Section */
+.zoomed-image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.full-image {
+  max-width: 100%;
+  max-height: 60vh; /* Adjust image height dynamically */
+  border-radius: 10px;
+  object-fit: contain; /* Ensure the image scales proportionally */
+}
+
+/* Navigation Buttons for Zoomed Image */
+
+/* Thumbnail Carousel */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 250px;
+  gap: 10px;
+  overflow-x: hidden; /* Hide overflow if thumbnails exceed width */
+}
+
+.carousel-nav {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: gray;
+}
+
+.carousel-thumbnails {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  max-width: 90%; /* Limit thumbnail container width */
+}
+
+.thumbnail-image {
+  width: 70px; /* Adjust thumbnail size */
+  height: 70px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.2s ease;
+}
+
+.thumbnail-image.active-thumbnail {
+  border-color: #000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .modal-content {
-    position: relative;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 90%;
-    max-height: 90%;
-  }
-  
-  .full-image {
     width: 100%;
-    max-height: 80vh;
-    object-fit: contain;
+    padding: 15px;
   }
-  
-  .close-modal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #fff;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+  .full-image {
+    max-height: 50vh; /* Further adjust height for smaller screens */
   }
-  
-  
-  
+
+  .thumbnail-image {
+    width: 60px; /* Reduce thumbnail size for smaller screens */
+    height: 60px;
+  }
+
+  .carousel-nav {
+    font-size: 1.5rem; /* Adjust nav button size */
+  }
+}
+
+@media (max-width: 480px) {
+  .thumbnail-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .carousel-thumbnails {
+    gap: 5px; /* Reduce gap between thumbnails */
+  }
+}
+
   .main-image {
     width: 100%;
     height: 570px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 10px;
   }
   .breadcrumb {
-    display: flex;
-    align-items: center;
-    font-size: 0.9rem;
-    color: #555;
-    margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 0px;
+      font-size: 16px;
+      color: #6c757d;
+      margin-bottom: 20px;
+      margin-left: 129px;
   }
   
   .breadcrumb-link {
@@ -155,11 +247,11 @@
   }
   
   .nav-button.prev {
-    left: 10px;
+    left: 90px;
   }
   
   .nav-button.next {
-    right: 10px;
+    right: 90px;
   }
   
   .nav-button img {

@@ -265,22 +265,59 @@ const ProductPage = () => {
   </div>
  
   {isModalOpen && (
-        <div className="image-modal">
-          <div className="modal-content">
-            <button
-              className="close-modal"
-              onClick={() => setIsModalOpen(false)}
-            >
-              &times;
-            </button>
-            <img
-              src={images[currentImage]}
-              alt="Full Product"
-              className="full-image"
-            />
-          </div>
-        </div>
-      )}
+  <div
+    className="image-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="zoomed-image"
+  >
+    <div className="modal-content">
+      {/* Close Button */}
+      <button
+        className="close-modal"
+        aria-label="Close zoomed image"
+        onClick={() => setIsModalOpen(false)}
+      >
+        &times;
+      </button>
+
+      {/* Zoomed Image Section */}
+      <div className="zoomed-image-container">
+        <img
+          id="zoomed-image"
+          src={images[currentImage]}
+          alt="Zoomed product view"
+          className="full-image"
+        />
+      </div>
+
+      {/* Thumbnail Carousel */}
+      <div className="carousel-container">
+  <button className="carousel-nav prev" onClick={handlePrev}>
+    <img src={prev} alt="Previous" className="carousel-nav-icon" />
+  </button>
+  <div className="carousel-thumbnails">
+    {images.map((img, idx) => (
+      <img
+        key={idx}
+        src={img}
+        alt={`Thumbnail ${idx + 1}`}
+        className={`thumbnail-image ${
+          idx === currentImage ? "active-thumbnail" : ""
+        }`}
+        onClick={() => setCurrentImage(idx)}
+      />
+    ))}
+  </div>
+  <button className="carousel-nav next" onClick={handleNext}>
+    <img src={next} alt="Next" className="carousel-nav-icon" />
+  </button>
+</div>
+
+    </div>
+  </div>
+)}
+
        <Products />
        <Services />
 </div>
