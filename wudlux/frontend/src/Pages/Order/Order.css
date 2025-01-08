@@ -50,6 +50,8 @@
 .main-content {
   flex: 1;
   padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .breadcrumb {
@@ -59,7 +61,7 @@
   font-size: 16px;
   color: #6c757d;
   margin-bottom: 20px;
-  margin-left: -250px;
+  margin-left: -285px;
 
 }
 
@@ -72,7 +74,7 @@
   font-size: 16px;
   color: #0a0a0a;
   margin-bottom: 1px;
-  margin-left: 10px;
+  margin-left: -12px;
 }
 
 .order-header {
@@ -91,7 +93,10 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  /* justify-content: flex-start; */
 }
+
+
 
 .filter-dropdown {
   padding: 10px;
@@ -150,10 +155,11 @@
 /* View Button Styling */
 .view-button {
   padding: 5px 10px;
-  background-color: #50433c;
-  color: #fff;
+  background-color: #fff;
+  /* color: #fff; */
   border: none;
-  border-radius: 4px;
+  color:#000;
+  /* border-radius: 4px; */
   cursor: pointer;
 }
 
@@ -163,7 +169,8 @@
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   font-family: 'DM Sans', sans-serif;
 }
 

@@ -83,11 +83,13 @@ const OrderHistory = () => {
         <div className="order-header">
           <h1>Orders</h1>
           <div className="filters">
+            <div className="filter-input">
             <input
               type="text"
               placeholder="Search by Order ID"
               className="search-input"
             />
+            </div>
             <select className="filter-dropdown">
               <option>Status</option>
             </select>

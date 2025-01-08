@@ -1,5 +1,5 @@
-/* Product Grid */
-.product-grid {
+/* Product List Grid */
+.product-list-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
@@ -8,8 +8,8 @@
   margin: 0 auto;
 }
 
-/* Product Card */
-.product-card {
+/* Product List Card */
+.product-list-card {
   position: relative;
   border-radius: 8px;
   overflow: hidden;
@@ -18,20 +18,19 @@
   /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
 }
 
-
-/* Product Image */
-.image-wrapper {
+/* Product List Image */
+.product-list-image-wrapper {
   position: relative;
   overflow: hidden;
 }
 
-.product-image {
+.product-list-image {
   width: 100%;
   height: 290px;
   object-fit: contain;
 }
 
-.discount-badge {
+.product-list-discount-badge {
   position: absolute;
   top: 15px;
   right: 30px;
@@ -43,8 +42,8 @@
   border-radius: 4px;
 }
 
-/* Bag Button */
-.bag-button-wrapper {
+/* Bag Button Wrapper */
+.product-list-bag-button-wrapper {
   position: absolute;
   bottom: 20px;
   left: 50%;
@@ -55,7 +54,7 @@
 }
 
 /* Bag Button */
-.bag-button {
+.product-list-bag-button {
   background-color: #000;
   color: #fff;
   border: none;
@@ -71,52 +70,45 @@
   transition: transform 0.3s ease;
 }
 
-.bag-icon {
+.product-list-bag-icon {
   width: 16px;
   height: 16px;
   filter: brightness(0) invert(1); /* Ensures the icon matches the button color */
 }
 
-
-.bag-icon {
-  width: 16px;
-  height: 16px;
-  filter: brightness(0) invert(1);
-}
-
 /* Show Bag Button on Hover */
-.image-wrapper:hover .bag-button-wrapper {
+.product-list-image-wrapper:hover .product-list-bag-button-wrapper {
   opacity: 1;
   visibility: visible;
   bottom: 30px; /* Slight upward animation */
 }
 
-/* Product Details */
-.product-details {
+/* Product List Details */
+.product-list-details {
   padding: 15px;
   text-align: center;
 }
 
-.product-title {
+.product-list-title {
   font-size: 16px;
   color: #333;
   margin: 10px 0;
 }
 
-.price-details {
+.product-list-price-details {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
 
-.current-price {
+.product-list-current-price {
   font-size: 18px;
   font-weight: bold;
   color: #000;
 }
 
-.original-price {
+.product-list-original-price {
   font-size: 14px;
   font-weight: normal;
   color: #999;

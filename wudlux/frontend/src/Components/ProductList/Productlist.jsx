@@ -82,27 +82,27 @@ const Productlist = () => {
   const { addToCart, cartItems = {} } = useCartContext(); // Ensure cartItems is initialized
 
   return (
-    <div className="product-grid">
+    <div className="product-list-grid">
       {products.map((product) => (
-        <div className="product-card" key={product.id}>
-          <div className="image-wrapper">
-            <img src={product.image} alt={product.title} className="product-image" />
-            <div className="discount-badge">{product.discount}</div>
-            <div className="bag-button-wrapper">
+        <div className="product-list-card" key={product.id}>
+          <div className="product-list-image-wrapper">
+            <img src={product.image} alt={product.title} className="product-list-image" />
+            <div className="product-list-discount-badge">{product.discount}</div>
+            <div className="product-list-bag-button-wrapper">
               <button
-                className="bag-button"
+                className="product-list-bag-button"
                 onClick={() => addToCart(product)} // Dispatch ADD_TO_CART action
               >
-                <img src={bagIcon} alt="Bag Icon" className="bag-icon" />
+                <img src={bagIcon} alt="Bag Icon" className="product-list-bag-icon" />
                 {cartItems[product.id]?.quantity ? "Add to Bag" : "Add to Bag"}
               </button>
             </div>
           </div>
-          <div className="product-details">
-            <p className="product-title">{product.title}</p>
-            <div className="price-details">
-              <span className="current-price">₹{product.price.toFixed(2)}</span>
-              <span className="original-price">₹{product.originalPrice.toFixed(2)}</span>
+          <div className="product-list-details">
+            <p className="product-list-title">{product.title}</p>
+            <div className="product-list-price-details">
+              <span className="product-list-current-price">₹{product.price.toFixed(2)}</span>
+              <span className="product-list-original-price">₹{product.originalPrice.toFixed(2)}</span>
             </div>
           </div>
         </div>

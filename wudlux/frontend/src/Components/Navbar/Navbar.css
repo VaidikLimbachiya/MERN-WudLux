@@ -11,6 +11,7 @@
   z-index: 10;
   overflow: visible;
 }
+
 a{
   text-decoration: none;
   color: black;
@@ -167,7 +168,7 @@ a{
 }
 
 .promoButton {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   border: none;
   background: none;

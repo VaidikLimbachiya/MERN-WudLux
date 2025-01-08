@@ -130,8 +130,8 @@
   width: 20px;
 }
 .cart-continue-shopping {
-  position: absolute;
-    bottom: -41px;
+  position: relative;
+    bottom: -10px;
     left: -3px;
     background: none;
     /* border: 1px solid #333; */
