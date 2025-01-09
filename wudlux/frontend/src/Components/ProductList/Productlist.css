@@ -1,5 +1,4 @@
-/* Product List Grid */
-.product-list-grid {
+.shop-product-list-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
@@ -9,7 +8,7 @@
 }
 
 /* Product List Card */
-.product-list-card {
+.shop-product-list-card {
   position: relative;
   border-radius: 8px;
   overflow: hidden;
@@ -19,18 +18,18 @@
 }
 
 /* Product List Image */
-.product-list-image-wrapper {
+.shop-product-list-image-wrapper {
   position: relative;
   overflow: hidden;
 }
 
-.product-list-image {
+.shop-product-list-image {
   width: 100%;
   height: 290px;
   object-fit: contain;
 }
 
-.product-list-discount-badge {
+.shop-product-list-discount-badge {
   position: absolute;
   top: 15px;
   right: 30px;
@@ -43,7 +42,7 @@
 }
 
 /* Bag Button Wrapper */
-.product-list-bag-button-wrapper {
+.shop-product-list-bag-button-wrapper {
   position: absolute;
   bottom: 20px;
   left: 50%;
@@ -54,7 +53,7 @@
 }
 
 /* Bag Button */
-.product-list-bag-button {
+.shop-product-list-bag-button {
   background-color: #000;
   color: #fff;
   border: none;
@@ -70,45 +69,45 @@
   transition: transform 0.3s ease;
 }
 
-.product-list-bag-icon {
+.shop-product-list-bag-icon {
   width: 16px;
   height: 16px;
   filter: brightness(0) invert(1); /* Ensures the icon matches the button color */
 }
 
 /* Show Bag Button on Hover */
-.product-list-image-wrapper:hover .product-list-bag-button-wrapper {
+.shop-product-list-image-wrapper:hover .shop-product-list-bag-button-wrapper {
   opacity: 1;
   visibility: visible;
   bottom: 30px; /* Slight upward animation */
 }
 
 /* Product List Details */
-.product-list-details {
+.shop-product-list-details {
   padding: 15px;
   text-align: center;
 }
 
-.product-list-title {
+.shop-product-list-title {
   font-size: 16px;
   color: #333;
   margin: 10px 0;
 }
 
-.product-list-price-details {
+.shop-product-list-price-details {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
 
-.product-list-current-price {
+.shop-product-list-current-price {
   font-size: 18px;
   font-weight: bold;
   color: #000;
 }
 
-.product-list-original-price {
+.shop-product-list-original-price {
   font-size: 14px;
   font-weight: normal;
   color: #999;

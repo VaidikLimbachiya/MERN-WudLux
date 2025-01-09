@@ -1,6 +1,6 @@
 import { useCartContext } from "../../Context/CartContext"; // Use your context
 import "./CartPage.css";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 // import { IoCloseCircleOutline } from "react-icons/io5";
 
 const CartPage = () => {
@@ -101,7 +101,7 @@ const CartPage = () => {
               ))}
             </tbody>
           </table>
-          <button className="cart-continue-shopping">← Continue Shopping</button>
+          <Link to= "/" className="cart-continue-shopping">← Continue Shopping</Link>
         </div>
 
         {/* Right Section: Order Summary */}

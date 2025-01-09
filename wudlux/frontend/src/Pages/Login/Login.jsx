@@ -33,7 +33,7 @@ const LoginPage = () => {
               </p>
             <Link to="/forgot-password" className='Forgot-link'>Forgot Password?</Link>
           </div>
-          <button className="btn" type="submit">Login</button>
+          <button className="btn" type="submit">Login →</button>
           <p>
             Don’t have an account? <span onClick={handleRegisterNavigation} className="register-link">Register Now</span>
           </p>

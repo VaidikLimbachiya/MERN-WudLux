@@ -42,17 +42,93 @@
   margin-bottom: 10px;
 }
 
-.sale-offer span {
-  color: black;
-  font-weight: bold;
-}
-
-.line-offer {
+/* .line-offer {
   margin: 10px;
-  width: 84%;
+  width: 100%;
   border-bottom: 1px solid #000;
   margin-left: 1px;
+  } */
+  .line-offer {
+    margin: 10px auto;
+    width: 100%;
+    height: 1px; /* Change to height for gradient */
+    background: linear-gradient(90deg, #000000, #D97B48, #000000);
+    background-size: 200% 200%; /* To enable animation */
+    animation: line-gradient 4s linear infinite;
+    border: none; /* Remove static border */
+    animation: line-glow 2s infinite alternate, line-move 2s ease-in-out infinite; 
 }
+
+.gradient-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #0A0A0A, #D97B48, #000000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  position: relative;
+  animation: move-gradient 2s linear infinite;
+}
+
+/* Gradient animation */
+@keyframes move-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+
+/* To animate the gradient */
+.gradient-text {
+  background-size: 200% 200%;
+}
+
+@keyframes line-glow {
+  0% {
+    border-color: #000;
+    /* box-shadow: 0 0 5px #000; */
+  }
+  50% {
+    border-color: #D97B48;
+    /* box-shadow: 0 0 10px #D97B48; */
+  }
+  100% {
+    border-color: #000;
+    /* box-shadow: 0 0 5px #000; */
+  }
+}
+
+@keyframes line-glow {
+  0% {
+    border-color: #000;
+    /* box-shadow: 0 0 5px #000; */
+  }
+  50% {
+    border-color: #D97B48;
+    /* box-shadow: 0 0 10px #D97B48; */
+  }
+  100% {
+    border-color: #000;
+    
+  }
+}
+
+/* Line up-and-down movement animation */
+@keyframes line-move {
+  0% {
+    transform: translateY(0); /* Initial position */
+  }
+  50% {
+    transform: translateY(-10rem); /* Moves 10px up */
+  }
+  100% {
+    transform: translateY(0); /* Returns to initial position */
+  }
+}
+
 
 .slider-heading {
   font-size: 3rem;
@@ -66,7 +142,7 @@
 .slider-SubHeading{
   font-weight: 300;
   font-size: 50px;
-}
+} 
 
 .shop-now {
   position: relative;
@@ -90,7 +166,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: black;
+  background: #5a4c40;
   transition: all 0.4s ease;
   z-index: -1;
 }

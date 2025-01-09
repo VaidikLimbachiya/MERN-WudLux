@@ -129,6 +129,8 @@
   color: black;
   width: 20px;
 }
+
+
 .cart-continue-shopping {
   position: relative;
     bottom: -10px;
@@ -142,13 +144,16 @@
     border-radius: 50px;
     font-size: 14px;
     font-weight: bold;
+    border: none;
+    
+
 
 }
 
 .cart-continue-shopping:hover {
   background-color: #201f1f ;
   color: #fff;
-  transition: ease-in-out ;
+  transition: background-color 0.9s ease;;
 }
 
 /* Right Section */

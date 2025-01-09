@@ -1,15 +1,15 @@
 /* Carousel Container */
-.carousel-container {
+.shop-carousel-container {
   text-align: center;
   padding: 10px 20px;
 }
 
 /* Header Section */
-.carousel-header {
+.shop-carousel-header {
   margin-bottom: 10px;
 }
 
-.carousel-title {
+.shop-carousel-title {
   font-family: 'Playfair Display', serif;
   font-size: 36px;
   font-weight: 400;
@@ -17,30 +17,29 @@
   color: #000;
 }
 
-.carousel-title-underline {
+.shop-carousel-title-underline {
   height: 2px;
   width: 60px;
   background-color: black;
   margin: 8px auto 0;
 }
 
-.carousel-subtitle {
+.shop-carousel-subtitle {
   font-size: 1rem;
   color: #666;
 }
 
 /* Product Grid */
-.carousel-grid {
+.shop-carousel-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 50px;
   width: 100%;
-  /* max-width: 1200px; */
   margin: 0 auto;
 }
 
 /* Product Card */
-.carousel-card {
+.shop-carousel-card {
   position: relative;
   background: #fff;
   border-radius: 8px;
@@ -51,16 +50,16 @@
 }
 
 /* Image Section */
-.carousel-image-wrapper {
+.shop-carousel-image-wrapper {
   position: relative;
 }
 
-.carousel-image {
+.shop-carousel-image {
   max-width: 100%;
   border-radius: 8px;
 }
 
-.carousel-discount-badge {
+.shop-carousel-discount-badge {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -72,7 +71,7 @@
 }
 
 /* Add to Bag Wrapper */
-.carousel-add-to-bag-wrapper {
+.shop-carousel-add-to-bag-wrapper {
   position: absolute;
   bottom: 20px;
   left: 50%;
@@ -82,17 +81,16 @@
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  /* transition: opacity 0.3s ease, visibility 0.3s ease; */
 }
 
 /* Show Add to Bag on Hover */
-.carousel-card:hover .carousel-add-to-bag-wrapper {
+.shop-carousel-card:hover .shop-carousel-add-to-bag-wrapper {
   opacity: 1;
   visibility: visible;
 }
 
 /* Add to Bag Button */
-.carousel-add-to-bag-button {
+.shop-carousel-add-to-bag-button {
   background-color: #000;
   color: #fff;
   border: none;
@@ -107,47 +105,48 @@
   transition: transform 0.3s ease;
 }
 
-.carousel-bag-icon {
+.shop-carousel-bag-icon {
   width: 16px;
   height: 16px;
   filter: brightness(0) invert(1);
 }
 
 /* Product Details */
-.carousel-details {
+.shop-carousel-details {
   margin-top: 15px;
 }
 
-.carousel-product-title {
+.shop-carousel-product-title {
   font-size: 1rem;
   color: #333;
   margin-bottom: 10px;
 }
 
-.carousel-product-price {
+.shop-carousel-product-price {
   font-size: 1.1rem;
   font-weight: bold;
 }
 
-.carousel-current-price {
+.shop-carousel-current-price {
   color: #000;
   margin-right: 10px;
 }
 
-.carousel-original-price {
+.shop-carousel-original-price {
   color: #aaa;
   text-decoration: line-through;
 }
 
 /* Carousel Controls */
-.carousel-controls {
+.shop-carousel-controls {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
-.carousel-button {
+.shop-carousel-button {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 50%;
@@ -158,5 +157,4 @@
   justify-content: center;
   cursor: pointer;
   font-size: 18px;
-  /* transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; */
 }

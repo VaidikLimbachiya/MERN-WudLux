@@ -65,46 +65,46 @@ const ProductCarousel = () => {
         ];
 
   return (
-    <div className="carousel-container">
+    <div className="shop-carousel-container">
       {/* Header Section */}
-      <div className="carousel-header">
-        <h2 className="carousel-title">
+      <div className="shop-carousel-header">
+        <h2 className="shop-carousel-title">
           Newly Launched
-          <div className="carousel-title-underline"></div>
+          <div className="shop-carousel-title-underline"></div>
         </h2>
-        <p className="carousel-subtitle">
+        <p className="shop-carousel-subtitle">
           Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero
           est.
         </p>
       </div>
 
       {/* Product Grid */}
-      <div className="carousel-grid">
+      <div className="shop-carousel-grid">
         {visibleProducts.map((product) => (
-          <div className="carousel-card" key={product.id}>
-            <div className="carousel-image-wrapper">
+          <div className="shop-carousel-card" key={product.id}>
+            <div className="shop-carousel-image-wrapper">
               <img
                 src={product.image}
                 alt={product.title}
-                className="carousel-image"
+                className="shop-carousel-image"
               />
-              <div className="carousel-discount-badge">{product.discount}</div>
-              <div className="carousel-add-to-bag-wrapper">
-                <button className="carousel-add-to-bag-button">
+              <div className="shop-carousel-discount-badge">{product.discount}</div>
+              <div className="shop-carousel-add-to-bag-wrapper">
+                <button className="shop-carousel-add-to-bag-button">
                   Add to Bag{" "}
                   <img
                     src={bagIcon}
                     alt="Bag Icon"
-                    className="carousel-bag-icon"
+                    className="shop-carousel-bag-icon"
                   />
                 </button>
               </div>
             </div>
-            <div className="carousel-details">
-              <p className="carousel-product-title">{product.title}</p>
-              <div className="carousel-product-price">
-                <span className="carousel-current-price">{product.price}</span>
-                <span className="carousel-original-price">
+            <div className="shop-carousel-details">
+              <p className="shop-carousel-product-title">{product.title}</p>
+              <div className="shop-carousel-product-price">
+                <span className="shop-carousel-current-price">{product.price}</span>
+                <span className="shop-carousel-original-price">
                   {product.originalPrice}
                 </span>
               </div>
@@ -114,11 +114,11 @@ const ProductCarousel = () => {
       </div>
 
       {/* Carousel Controls */}
-      <div className="carousel-controls">
-        <button className="carousel-button" onClick={handlePrev}>
+      <div className="shop-carousel-controls">
+        <button className="shop-carousel-button" onClick={handlePrev}>
           &#8592;
         </button>
-        <button className="carousel-button" onClick={handleNext}>
+        <button className="shop-carousel-button" onClick={handleNext}>
           &#8594;
         </button>
       </div>
