@@ -34,28 +34,28 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Customer Care</h4>
           <ul>
-            <li><Link to="/refund-policy">Refund Policy</Link></li>
-            <li><Link to="/privacy-policy">Privacy Policy</Link></li>
-            <li><Link to="/terms-condition">Terms & Conditions</Link></li>
-            <li><Link to="/shipping-policy">Shipping Policy</Link></li>
+            <li><Link to="/refund-policy" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Refund Policy</Link></li>
+            <li><Link to="/privacy-policy" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Privacy Policy</Link></li>
+            <li><Link to="/terms-condition" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Terms & Conditions</Link></li>
+            <li><Link to="/shipping-policy" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Shipping Policy</Link></li>
           </ul>
         </div>
 
         <div className="footer-section">
           <h4>About Wudlux</h4>
           <ul>
-            <li><Link to="/our-story">Our Story</Link></li>
-            <li><Link to ="/contact-us">Contact Us</Link></li>
+            <li><Link to="/our-story" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Our Story</Link></li>
+            <li><Link to ="/contact-us" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Contact Us</Link></li>
           </ul>
         </div>
 
         <div className="footer-section">
           <h4>Wudlux Products</h4>
           <ul>
-            <li><Link to ="/Serveware/ServingTray">Serveware</Link></li>
-            <li><Link to="/Kitchenware/ChoppingBoard">Kitchenware</Link></li>
-            <li><Link to="/Tableware/Lazysusan">Tableware</Link></li>
-            <li><Link to="/Collections/Bella">Collections</Link></li>
+            <li><Link to ="/Serveware/ServingTray" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Serveware</Link></li>
+            <li><Link to="/Kitchenware/ChoppingBoard"  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Kitchenware</Link></li>
+            <li><Link to="/Tableware/Lazysusan" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Tableware</Link></li>
+            <li><Link to="/Collections/Bella" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Collections</Link></li>
           </ul>
         </div>
 

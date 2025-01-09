@@ -49,14 +49,15 @@
   margin-left: 1px;
   } */
   .line-offer {
-    margin: 10px auto;
-    width: 100%;
+    margin: 8px;
+    width: 83%;
     height: 1px; /* Change to height for gradient */
     background: linear-gradient(90deg, #000000, #D97B48, #000000);
     background-size: 200% 200%; /* To enable animation */
     animation: line-gradient 4s linear infinite;
     border: none; /* Remove static border */
     animation: line-glow 2s infinite alternate, line-move 2s ease-in-out infinite; 
+    margin-left: -2px;
 }
 
 .gradient-text {
@@ -116,18 +117,17 @@
   }
 }
 
-/* Line up-and-down movement animation */
+/* Line up-and-down movement animation
 @keyframes line-move {
   0% {
-    transform: translateY(0); /* Initial position */
+    transform: translateY(0); 
   }
   50% {
-    transform: translateY(-10rem); /* Moves 10px up */
-  }
+    transform: translateY(-10rem);
   100% {
-    transform: translateY(0); /* Returns to initial position */
+    transform: translateY(0); 
   }
-}
+} */
 
 
 .slider-heading {
