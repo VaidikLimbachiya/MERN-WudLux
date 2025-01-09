@@ -70,7 +70,7 @@ const Slider = () => {
         ))}
       </div>
       <div className="dots-container">
-        {slides.map((_, index) => (
+          {slides.map((_, index) => (
           <span
             key={index}
             className={`dot ${index === currentIndex ? "active" : ""}`}
