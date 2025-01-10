@@ -273,9 +273,14 @@ const Checkout = () => {
           )}
           <div className="button-group">
             <button
-              type="button"
-              className="back-button"
-              onClick={() => navigate("/")} // Navigate back to the cart page
+             type="button"
+             className="back-button"
+             onClick={() => {
+               window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
+               navigate("/"); 
+             }
+            }
+              // Navigate back to the cart page
             >
               ← Back to Cart
             </button>

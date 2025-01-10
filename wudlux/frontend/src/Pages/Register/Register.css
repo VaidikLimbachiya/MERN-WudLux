@@ -49,6 +49,7 @@
     border: 1px solid #ccc;
     border-radius: 20px;
     box-sizing: border-box;
+    height: 45px;
   }
   
   .form-input-full {

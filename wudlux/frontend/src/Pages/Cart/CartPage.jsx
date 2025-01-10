@@ -101,7 +101,7 @@ const CartPage = () => {
               ))}
             </tbody>
           </table>
-          <Link to= "/" className="cart-continue-shopping">← Continue Shopping</Link>
+          <Link to= "/"  className="cart-continue-shopping"  onClick={() => {window.scrollTo({ top: 0, behavior: "smooth" });}}>← Continue Shopping</Link>
         </div>
 
         {/* Right Section: Order Summary */}
