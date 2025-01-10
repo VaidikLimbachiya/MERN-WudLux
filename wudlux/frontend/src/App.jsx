@@ -2,6 +2,8 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 import Home from "./Pages/Home/Home";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import RefundPolicy from "./Pages/RefundPolicy/RefundPolicy";
@@ -22,6 +24,7 @@ import Address from "./Pages/Address/Address";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import OrderDetails from "./Pages/OrderDetails/OrderDetails";
 
+// eslint-disable-next-line react/prop-types
 const SidebarLayout = ({ children }) => {
   return (
     <div style={{ display: "flex" }}>
@@ -94,6 +97,9 @@ function App() {
         <Route path="/logout" element={<LoginPage />} />
       </Routes>
       <Footer />
+
+      {/* Toast Container */}
+      <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
@@ -48,8 +48,10 @@ const Navbar = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false); // Popup state
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false); // Profile menu state
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
   const [productToRemove, setProductToRemove] = useState(null); // Product to remove
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // Popup state
   const {
     cartItems,
     totalQuantity,
@@ -60,13 +62,18 @@ const Navbar = () => {
   } = useCartContext();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token); // Set login state based on token existence
+  }, []);
+
   const handleCategoryClick = (index) => {
     setActiveCategory(activeCategory === index ? null : index);
   };
 
   const toggleSearch = () => setIsSearchOpen((prev) => !prev);
   const toggleCart = () => setIsCartOpen((prev) => !prev);
-
+  const toggleProfileMenu = () => setIsProfileMenuOpen((prev) => !prev);
   const openPopup = (product) => {
     setProductToRemove(product);
     setIsPopupOpen(true);
@@ -82,6 +89,14 @@ const Navbar = () => {
       removeItem(productToRemove.id);
     }
     closePopup();
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    setIsProfileMenuOpen(false);
+    navigate("/log-in");
   };
 
   return (
@@ -148,12 +163,35 @@ const Navbar = () => {
           <div className="userActions">
             <img src={searchIcon} alt="Search" className="actionIcon" onClick={toggleSearch} />
             <div className="divider"></div>
-            <img
-              src={profileIcon}
-              alt="User Account"
-              className="actionIcon"
-              onClick={() => navigate("/log-in")}
-            />
+            <div className="profileIconWrapper">
+              <img
+                src={profileIcon}
+                alt="User Account"
+                className="actionIcon"
+                onClick={toggleProfileMenu}
+              />
+              {isProfileMenuOpen && (
+                <div className="profileMenu">
+                  {isLoggedIn ? (
+                    <>
+                      <NavLink to="/orders" className="profileMenuItem">
+                        Order History
+                      </NavLink>
+                      <NavLink to="/address" className="profileMenuItem">
+                        Addresses
+                      </NavLink>
+                      <button onClick={handleLogout} className="profileMenuItem logoutButton">
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <NavLink to="/log-in" className="profileMenuItem">
+                      Login
+                    </NavLink>
+                  )}
+                </div>
+              )}
+            </div>
             <div className="divider"></div>
             <div className="cartIcon" onClick={toggleCart}>
               <img src={cartIcon} alt="Shopping Cart" className="cartImage" />
@@ -162,7 +200,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-
       <div className={`cartSlider ${isCartOpen ? "open" : ""}`}>
         <div className="cartHeader">
           <h3>Shopping Cart</h3>
@@ -256,6 +293,7 @@ const Navbar = () => {
           <li>Bowls</li>
         </ul>
       </div>
+      {/* Remaining parts of the original code remain unchanged */}
     </>
   );
 };
