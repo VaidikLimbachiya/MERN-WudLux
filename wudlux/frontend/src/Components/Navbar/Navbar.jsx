@@ -5,7 +5,6 @@ import logo from "../../assets/logo.png";
 import searchIcon from "../../assets/vector.png";
 import profileIcon from "../../assets/profile.png";
 import cartIcon from "../../assets/bag.png";
-// import bowl from "../../assets/bowl.png";
 import { useCartContext } from "../../Context/CartContext";
 
 const categories = [
@@ -63,9 +62,19 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
     setIsLoggedIn(!!token); // Set login state based on token existence
   }, []);
+
+  const handleProfileIconClick = () => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      setIsLoggedIn(true); // Ensure login state is updated
+      setIsProfileMenuOpen((prev) => !prev); // Toggle the profile menu
+    } else {
+      navigate("/log-in"); // Redirect to login page
+    }
+  };
 
   const handleCategoryClick = (index) => {
     setActiveCategory(activeCategory === index ? null : index);
@@ -73,7 +82,7 @@ const Navbar = () => {
 
   const toggleSearch = () => setIsSearchOpen((prev) => !prev);
   const toggleCart = () => setIsCartOpen((prev) => !prev);
-  const toggleProfileMenu = () => setIsProfileMenuOpen((prev) => !prev);
+
   const openPopup = (product) => {
     setProductToRemove(product);
     setIsPopupOpen(true);
@@ -92,10 +101,16 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    // Clear tokens from localStorage
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     localStorage.removeItem("user");
+
+    // Update login state
     setIsLoggedIn(false);
-    setIsProfileMenuOpen(false);
+    setIsProfileMenuOpen(false); // Close the profile menu
+
+    // Redirect to login page
     navigate("/log-in");
   };
 
@@ -161,34 +176,46 @@ const Navbar = () => {
             </button>
           </div>
           <div className="userActions">
-            <img src={searchIcon} alt="Search" className="actionIcon" onClick={toggleSearch} />
+            <img
+              src={searchIcon}
+              alt="Search"
+              className="actionIcon"
+              onClick={toggleSearch}
+            />
             <div className="divider"></div>
             <div className="profileIconWrapper">
               <img
                 src={profileIcon}
                 alt="User Account"
                 className="actionIcon"
-                onClick={toggleProfileMenu}
+                onClick={handleProfileIconClick}
               />
-              {isProfileMenuOpen && (
+              {isProfileMenuOpen && isLoggedIn && (
                 <div className="profileMenu">
-                  {isLoggedIn ? (
-                    <>
-                      <NavLink to="/orders" className="profileMenuItem">
-                        Order History
-                      </NavLink>
-                      <NavLink to="/address" className="profileMenuItem">
-                        Addresses
-                      </NavLink>
-                      <button onClick={handleLogout} className="profileMenuItem logoutButton">
-                        Logout
-                      </button>
-                    </>
-                  ) : (
-                    <NavLink to="/log-in" className="profileMenuItem">
-                      Login
-                    </NavLink>
-                  )}
+                  <NavLink
+                    to="/orders"
+                    className={({ isActive }) =>
+                      isActive ? "profileMenuItem active" : "profileMenuItem"
+                    }
+                    onClick={() => setIsProfileMenuOpen(false)} // Close menu on navigation
+                  >
+                    Order History
+                  </NavLink>
+                  <NavLink
+                    to="/address"
+                    className={({ isActive }) =>
+                      isActive ? "profileMenuItem active" : "profileMenuItem"
+                    }
+                    onClick={() => setIsProfileMenuOpen(false)} // Close menu on navigation
+                  >
+                    Addresses
+                  </NavLink>
+                  <button
+                    onClick={handleLogout}
+                    className="profileMenuItem logoutButton"
+                  >
+                    Logout
+                  </button>
                 </div>
               )}
             </div>
@@ -200,6 +227,8 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
+      {/* Cart Slider */}
       <div className={`cartSlider ${isCartOpen ? "open" : ""}`}>
         <div className="cartHeader">
           <h3>Shopping Cart</h3>
@@ -207,34 +236,32 @@ const Navbar = () => {
             ✖
           </button>
         </div>
-
         <div className="cartItems">
           {cartItems.length > 0 ? (
             cartItems.map((item) => (
               <div key={item.id} className="cartItem">
                 <img src={item.image} alt={item.name} className="cartItemImage" />
                 <div className="cartItemDetails">
-                  {/* <p className="cartItemName">{item.name}</p> */}
-                  <p className="cartItemName">ABC</p> 
+                  <p className="cartItemName">ABC</p>
                   <p className="cartItemPrice">₹{item.price}.00</p>
                 </div>
                 <div className="cartQuantity">
-                <button
-                      className="cart-quantity-decrement1"
-                      onClick={() => updateQuantity(item.id, -1)}
-                    >
-                      -
-                    </button>
-                    <span className="cart-quantity-value1">{item.quantity}</span>
-                    <button
-                      className="cart-quantity-increment1"
-                      onClick={() => updateQuantity(item.id, 1)}
-                    >
-                      +
-                    </button>
-                    </div>
+                  <button
+                    className="cart-quantity-decrement1"
+                    onClick={() => updateQuantity(item.id, -1)}
+                  >
+                    -
+                  </button>
+                  <span className="cart-quantity-value1">{item.quantity}</span>
+                  <button
+                    className="cart-quantity-increment1"
+                    onClick={() => updateQuantity(item.id, 1)}
+                  >
+                    +
+                  </button>
+                </div>
                 <button className="removeButton" onClick={() => openPopup(item)}>
-                ✖
+                  ✖
                 </button>
               </div>
             ))
@@ -242,7 +269,6 @@ const Navbar = () => {
             <p className="emptyCartMessage">Your cart is empty.</p>
           )}
         </div>
-
         <div className="cartFooter">
           <div className="cartSummary">
             <span>{totalProducts} Product</span>
@@ -259,11 +285,12 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Popup */}
       {isPopupOpen && (
         <div className="popupOverlay">
           <div className="popupContent">
             <h3>Remove from Cart</h3>
-            <hr className="row-divider"/>
+            <hr className="row-divider" />
             <p>Are you sure you want to remove this product?</p>
             <div className="popupActions">
               <button className="confirmButton" onClick={confirmRemove}>
@@ -277,6 +304,7 @@ const Navbar = () => {
         </div>
       )}
 
+      {/* Search Drawer */}
       <div className={`searchDrawer ${isSearchOpen ? "open" : ""}`}>
         <div className="searchHeader">
           <h3>Search by Category...</h3>
@@ -293,7 +321,6 @@ const Navbar = () => {
           <li>Bowls</li>
         </ul>
       </div>
-      {/* Remaining parts of the original code remain unchanged */}
     </>
   );
 };
