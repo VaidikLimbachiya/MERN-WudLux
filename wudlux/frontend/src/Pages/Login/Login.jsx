@@ -16,7 +16,7 @@ const LoginPage = () => {
     try {
       const response = await fetch("http://localhost:5000/api/users/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },y
         body: JSON.stringify({ email, password }),
       });
   
