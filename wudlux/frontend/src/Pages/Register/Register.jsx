@@ -32,13 +32,23 @@ const Register = () => {
         <div className="form-row">
           <select className="form-input" required>
             <option value="">Country *</option>
+
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+
              <option value="USA">USA</option>
             <option value="Canada">Canada</option> 
+
           </select>
           <select className="form-input" required>
             <option value="">State *</option>
+
+            <option value="California">California</option>
+            <option value="Texas">Texas</option>
+
              <option value="California">California</option>
             <option value="Texas">Texas</option> 
+
           </select>
           <select className="form-input" required>
             <option value="">City *</option>
