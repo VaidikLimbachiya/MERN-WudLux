@@ -4,6 +4,9 @@ import "./ForgetPassword.css";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleBackToLogin = () => {
     navigate("/log-in");
@@ -22,6 +25,8 @@ const ForgotPassword = () => {
             type="email"
             placeholder="Email address *"
             className="form-input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -36,6 +41,7 @@ const ForgotPassword = () => {
           ← Back to Login
         </button>
       </form>
+      {message && <p className="forgot-password-message">{message}</p>}
     </div>
   );
 };
