@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { apiCall } from "../../api/api";
 import "./Login.css";
 import { toast } from "react-toastify";
 
@@ -13,37 +14,25 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+  
     try {
-      const response = await fetch("http://localhost:5000/api/users/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const result = await response.json(); // Parse JSON response
-
-      if (!response.ok) {
-        console.error("Backend Error:", result); // Log backend error
-        throw new Error(result.message || "Failed to log in");
-      }
-
+      const result = await apiCall("/auth/login", "POST", { email, password });
+  
       toast.success("Login successful");
-      // Store tokens in localStorage
       localStorage.setItem("accessToken", result.accessToken);
       localStorage.setItem("refreshToken", result.refreshToken);
       localStorage.setItem("user", JSON.stringify(result.user));
       navigate("/");
     } catch (error) {
-      console.error("Login error:", error); // Log error
-      toast.error(error.message || "Failed to connect to the server. Please try again.");
+      toast.error(error.message || "Failed to log in");
     } finally {
       setLoading(false);
     }
   };
+  
 
   // Function to refresh the access token
-  const refreshToken = async () => {
+  const refreshToken = useCallback(async () => {
     try {
       const storedRefreshToken = localStorage.getItem("refreshToken");
       if (!storedRefreshToken) {
@@ -71,7 +60,7 @@ const LoginPage = () => {
       localStorage.clear(); // Clear tokens and user data
       navigate("/log-in");
     }
-  };
+  }, [navigate]);
 
   // Auto-refresh token logic (optional)
   useEffect(() => {
@@ -80,7 +69,7 @@ const LoginPage = () => {
     }, 15 * 60 * 1000); // Refresh token every 15 minutes
 
     return () => clearInterval(interval);
-  }, []);
+  }, [refreshToken]);
 
   const handleRegisterNavigation = () => {
     const form = document.getElementById("login-form");

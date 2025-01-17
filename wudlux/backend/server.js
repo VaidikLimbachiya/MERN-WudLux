@@ -4,6 +4,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
+const authRoutes = require("./src/routes/authRoutes");
 
 // Load environment variables
 dotenv.config();
@@ -24,8 +25,7 @@ mongoose
   .catch((err) => console.error("MongoDB connection failed:", err.message));
 
 // Routes
-const userRoutes = require("./src/routes/userRoute");
-app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;

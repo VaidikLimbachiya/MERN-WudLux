@@ -1,11 +1,13 @@
-import  { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCartContext } from "../../Context/CartContext"; // Import the cart context
+import { useUserContext } from "../../Context/UserContext"; // Import the user context
 import "./Checkout.css";
 import logo from "../../assets/logo.png"; // Import the logo image
 
 const Checkout = () => {
   const { cartItems, totalPrice } = useCartContext(); // Get cart items and total price from context
+  const { user } = useUserContext(); // Get user data from context  
   const navigate = useNavigate(); // For navigation
 
   const statesAndCities = {
@@ -36,6 +38,24 @@ const Checkout = () => {
     companyEmail: "",
   });
 
+  // Auto-fill form fields when the user is logged in
+  useEffect(() => {
+    if (user) {
+      console.log("Populating formData with user data:", user); // Debugging
+      setFormData((prev) => ({
+        ...prev,
+        firstName: user.firstName || "",
+        lastName: user.lastName || "",
+        email: user.email || "",
+        address: user.address || "",
+        zipCode: user.zipCode || "",
+        state: user.state || "",
+        city: user.city || "",
+        phone: user.phone || "",
+      }));
+    }
+  }, [user]);
+
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -54,7 +74,7 @@ const Checkout = () => {
 
   return (
     <div className="checkout-wrapper">
-      {/* left part */}
+      {/* Left part */}
       <div className="form-container">
         <div className="logo-box">
           <Link to="/">
@@ -62,9 +82,13 @@ const Checkout = () => {
           </Link>
         </div>
         <h1 className="form-title">Shipping Information</h1>
-        <p className="form-subtitle">
-          Already have an account? <Link to="/log-in">Login</Link>
-        </p>
+
+        {!user && (
+          <p className="form-subtitle">
+            Already have an account? <Link to="/log-in">Login</Link>
+          </p>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <input
@@ -113,7 +137,6 @@ const Checkout = () => {
             />
           </div>
           <div className="input-group">
-            {/* Disabled Country Field */}
             <input
               type="text"
               name="country"
@@ -160,117 +183,12 @@ const Checkout = () => {
               required
             />
           </div>
-          <div className="checkbox-group">
-            <label className="checkbox-label">
-              <input
-                className="checkbox-input"
-                type="checkbox"
-                name="registerAccount"
-                checked={formData.registerAccount}
-                onChange={handleInputChange}
-              />
-              Register an account with above information?
-            </label>
-          </div>
-          {formData.registerAccount && (
-            <div className="input-group">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password *"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm Password *"
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-          )}
-
-          <h2>Payment Method:</h2>
-          <div className="payment-container">
-            <label className="payment-option">
-              <span className="payment-label-one">Pay Online</span>
-            </label>
-            <label className="payment-option">
-              <input
-                type="radio"
-                name="paymentMethod"
-                value="Payment with Razorpay"
-                checked={formData.paymentMethod === "Payment with Razorpay"}
-                onChange={handleInputChange}
-              />
-              <span className="payment-label">Payment with Razorpay</span>
-            </label>
-          </div>
-
           <textarea
             name="notes"
             placeholder="Notes about your order, e.g. special notes for delivery."
             value={formData.notes}
             onChange={handleInputChange}
           />
-          <div className="checkbox-group-one">
-            <label className="checkbox-label">
-              <input
-                type="checkbox"
-                className="checkbox-Invoice"
-                name="requiresInvoice"
-                checked={formData.requiresInvoice}
-                onChange={handleInputChange}
-              />
-              Requires company invoice (Please fill in your company information
-              to receive the invoice)?
-            </label>
-          </div>
-          {formData.requiresInvoice && (
-            <div>
-              <input
-                type="text"
-                name="companyAddress"
-                className="first-class"
-                placeholder="Company Address *"
-                value={formData.companyAddress}
-                onChange={handleInputChange}
-                required
-              />
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="second-class"
-                  name="companyName"
-                  placeholder="Company Name *"
-                  value={formData.companyName}
-                  onChange={handleInputChange}
-                  required
-                />
-                <input
-                  type="text"
-                  className="third-class"
-                  name="companyTaxCode"
-                  placeholder="Company Tax Code *"
-                  value={formData.companyTaxCode}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <input
-                type="email"
-                className="fourth-class"
-                name="companyEmail"
-                placeholder="Company Email *"
-                value={formData.companyEmail}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-          )}
           <div className="button-group">
             <button
               type="button"
@@ -286,7 +204,7 @@ const Checkout = () => {
         </form>
       </div>
 
-      {/* product right part */}
+      {/* Right part */}
       <div className="summary-container">
         <h2>Products</h2>
         <div className="product-list">
@@ -299,20 +217,15 @@ const Checkout = () => {
               />
               <div className="product-info">
                 <div className="product-title">
-                  {/* {item.name} */}
-                  <span className="quantity-badge">{item.quantity}</span>{" "}
-                  <p className="name">ABC</p>
+                  <span className="quantity-badge">{item.quantity}</span>
+                  <p className="name">{item.name}</p>
                 </div>
                 <div className="product-cost">₹{item.price.toFixed(2)}</div>
               </div>
             </div>
           ))}
         </div>
-        <div className="shipping-method">
-          <h2>Shipping Method:</h2>
-          <button className="shipping-button">
-            Free Delivery – <strong> Free Shipping</strong>
-          </button>
+        <div className="summary-totals">
           <div className="price-item">
             <span>Total Amount:</span>
             <span>₹{totalPrice.toFixed(2)}</span>
@@ -329,12 +242,11 @@ const Checkout = () => {
             <span>Coupon Discount:</span>
             <span className="discount-product">-₹99.00</span>
           </div>
-          <hr  className="price-divider"/>
+          <hr />
           <h3 className="price-item">
             <span>Amount Payable:</span>
             <span>₹{(totalPrice + totalPrice * 0.18 - 99).toFixed(2)}</span>
           </h3>
-          <hr className="price-divider"/>
         </div>
       </div>
     </div>
@@ -342,4 +254,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-

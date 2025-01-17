@@ -1,0 +1,70 @@
+/* General Styling */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.add-product {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.size-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.size-inputs input {
+  flex: 1;
+}
+
+/* Button Styling */
+button {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
