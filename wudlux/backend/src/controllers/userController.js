@@ -1,6 +1,8 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 
 const registerUser = async (req, res) => {
   try {
@@ -75,74 +77,6 @@ const loginUser = async (req, res) => {
   }
 };
 
-const refreshToken = async (req, res) => {
-  const { refreshToken } = req.body;
-
-  if (!refreshToken) {
-    return res.status(400).json({ message: "Refresh token is required" });
-  }
-
-  try {
-    const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
-
-    // Generate new access token
-    const newAccessToken = jwt.sign({ id: decoded.id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-
-    res.status(200).json({ accessToken: newAccessToken });
-  } catch (error) {
-    console.error("Refresh Token Error:", error);
-    res.status(403).json({ message: "Invalid or expired refresh token" });
-  }
-};
-
-// Forgot Password Handler
-const forgotPassword = async (req, res) => {
-  const { email } = req.body;
-
-  try {
-    // Check if the user exists
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Generate a secure reset token
-    const token = crypto.randomBytes(32).toString("hex");
-    user.resetToken = token;
-    user.resetTokenExpiration = Date.now() + 3600000; // 1 hour expiration
-    await user.save();
-
-    // Create transport for sending email
-    const transporter = nodemailer.createTransport({
-      service: "Gmail",
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD,
-      },
-    });
-
-    // Construct the reset link
-    const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
-    
-    // Send the email
-    await transporter.sendMail({
-      to: email,
-      from: process.env.EMAIL,
-      subject: "Password Reset",
-      html: `
-        <p>You requested a password reset</p>
-        <p>Click this <a href="${resetLink}">link</a> to reset your password.</p>
-      `,
-    });
-
-    res.status(200).json({ message: "Password reset email sent successfully" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "An error occurred. Please try again." });
-  }
-};
 
 
-module.exports = { registerUser, loginUser, refreshToken, forgotPassword };
+module.exports = { registerUser, loginUser };

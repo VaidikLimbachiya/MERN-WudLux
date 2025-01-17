@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ForgetPassword.css";
 
@@ -14,6 +14,13 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate email format
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setMessage("Please enter a valid email address.");
+      return;
+    }
+
     setLoading(true);
     setMessage("");
 
@@ -30,6 +37,10 @@ const ForgotPassword = () => {
 
       if (response.ok) {
         setMessage("A password reset link has been sent to your email.");
+      } else if (response.status === 404) {
+        setMessage("Email not found. Please check and try again.");
+      } else if (response.status === 500) {
+        setMessage("Server error. Please try again later.");
       } else {
         setMessage(data.message || "Something went wrong. Please try again.");
       }
@@ -59,7 +70,7 @@ const ForgotPassword = () => {
           />
         </div>
         <button type="submit" className="continue-button" disabled={loading}>
-          {loading ? "Sending..." : "Continue →"}
+          {loading ? <span className="spinner"></span> : "Continue →"}
         </button>
         <button
           type="button"
