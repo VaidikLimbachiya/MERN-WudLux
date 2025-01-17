@@ -1,4 +1,4 @@
-    const nodemailer = require("nodemailer");
+    // const nodemailer = require("nodemailer");
 
     exports.sendEmail = async ({ to, subject, html }) => {
     try {

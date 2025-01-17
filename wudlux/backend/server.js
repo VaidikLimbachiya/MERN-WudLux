@@ -4,12 +4,8 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
-<<<<<<< HEAD
 const authRoutes = require("./src/routes/authRoutes");
-
-=======
-const productRoutes = require("../backend/src/routes/productRoutes");
->>>>>>> c71d7ca1169bb9804a3d202e4fafed49f20ef750
+const productRoutes = require("./src/routes/productRoutes");
 // Load environment variables
 dotenv.config();
 
@@ -30,7 +26,6 @@ mongoose
 
 // Routes
 app.use("/api/auth", authRoutes);
-
 app.use("/api/products", productRoutes);
 
 // Start the server

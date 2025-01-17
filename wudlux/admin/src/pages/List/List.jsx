@@ -1,4 +1,4 @@
-import  { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./List.css";
 import axios from "axios";
@@ -8,25 +8,25 @@ const List = ({ url }) => {
   const [productList, setProductList] = useState([]);
 
   // Fetch Product List
-  const fetchProductList = useCallback(async () => {
+  const fetchProductList = async () => {
     try {
-      const response = await axios.get(`${url}/api/product/`);
-      if (response.data.success) {
-        setProductList(response.data.data);
+      const response = await axios.get(`${url}/api/products`);
+      if (response.status === 200 && response.data) {
+        setProductList(response.data); // Assuming the response is an array of products
       } else {
         toast.error("Failed to fetch products");
       }
     } catch (error) {
       toast.error("Error fetching product list");
     }
-  }, [url]);
+  };
 
   // Remove Product
   const removeProduct = async (productId) => {
     try {
-      const response = await axios.post(`${url}/api/product/remove`, { id: productId });
-      if (response.data.success) {
-        toast.success(response.data.message);
+      const response = await axios.delete(`${url}/api/products/${productId}`);
+      if (response.status === 200) {
+        toast.success("Product deleted successfully");
         fetchProductList(); // Refresh list after deletion
       } else {
         toast.error("Failed to remove product");
@@ -39,7 +39,7 @@ const List = ({ url }) => {
   // Fetch product list on mount
   useEffect(() => {
     fetchProductList();
-  }, [fetchProductList]);
+  }, [url]); // Re-fetch if the url changes
 
   return (
     <div className="list add flex-col">
@@ -76,9 +76,9 @@ const List = ({ url }) => {
     </div>
   );
 };
+
 List.propTypes = {
   url: PropTypes.string.isRequired,
 };
 
 export default List;
-
