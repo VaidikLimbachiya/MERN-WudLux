@@ -10,7 +10,8 @@ import { useCartContext } from "../../Context/CartContext";
 const categories = [
   {
     text: "Serveware",
-    iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/a1cfa473b4c3091f113c79eb7155d25fb5458b102ed1a68b6ce2308227f94925",
+    iconSrc:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/a1cfa473b4c3091f113c79eb7155d25fb5458b102ed1a68b6ce2308227f94925",
     dropdownItems: [
       { text: "Serving Tray", link: "/Serveware/ServingTray" },
       { text: "Serving Tray with Drawer", link: "/ServeWare/withDrawer" },
@@ -21,7 +22,8 @@ const categories = [
   },
   {
     text: "Kitchenware",
-    iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/93802c32367c70d0f1cbcf887c7e26e1d4f770ebf8473953950cd1af3bf76896",
+    iconSrc:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/93802c32367c70d0f1cbcf887c7e26e1d4f770ebf8473953950cd1af3bf76896",
     dropdownItems: [
       { text: "Chopping Board", link: "/Kitchenware/ChoppingBoard" },
       { text: "Butcher Board", link: "/Kitchenware/ButcherBoard" },
@@ -29,7 +31,8 @@ const categories = [
   },
   {
     text: "Tableware",
-    iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/c9ea7504e7b254d854b06a79b48cf39d39e2ab6c6f3afb37338801a7c60027f8",
+    iconSrc:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/c9ea7504e7b254d854b06a79b48cf39d39e2ab6c6f3afb37338801a7c60027f8",
     dropdownItems: [
       { text: "Lazy Susan", link: "/Tableware/Lazysusan" },
       { text: "Coffee Pods Drawer", link: "/Tableware/CoffeePods" },
@@ -38,7 +41,8 @@ const categories = [
   },
   {
     text: "Collections",
-    iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/3a93a25a709f4fb428d7f57f554a75f6dae8c2c4a680b05c19026a7d150d8a2f",
+    iconSrc:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/3a93a25a709f4fb428d7f57f554a75f6dae8c2c4a680b05c19026a7d150d8a2f",
     dropdownItems: [{ text: "Bella", link: "/Collections/Bella" }],
   },
 ];
@@ -119,24 +123,29 @@ const Navbar = () => {
       <nav className="navigation" role="navigation">
         <div className="header">
           <div className="logoSection" onClick={() => navigate("/")}>
-            <img src={logo} alt="Company Logo" className="logo" loading="lazy" />
+            <img
+              src={logo}
+              alt="Company Logo"
+              className="logo"
+              loading="lazy"
+            />
           </div>
           <div className="navCategories">
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               <div
-                key={index}
+                key={category.text} // Use a unique property for the key
                 className={`categoryWrapper ${
-                  activeCategory === index ? "active" : ""
+                  activeCategory === category.text ? "active" : ""
                 }`}
               >
                 <div
-                  onClick={() => handleCategoryClick(index)}
+                  onClick={() => handleCategoryClick(category.text)}
                   role="button"
                   tabIndex={0}
-                  aria-expanded={activeCategory === index}
+                  aria-expanded={activeCategory === category.text}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
-                      handleCategoryClick(index);
+                      handleCategoryClick(category.text);
                     }
                   }}
                   className="categoryButton"
@@ -148,11 +157,11 @@ const Navbar = () => {
                     className="dropdownIcon"
                   />
                 </div>
-                {activeCategory === index && (
+                {activeCategory === category.text && (
                   <div className="dropdownMenu">
-                    {category.dropdownItems.map((item, subIndex) => (
+                    {category.dropdownItems.map((item) => (
                       <NavLink
-                        key={subIndex}
+                        key={item.link} // Use a unique property for the key
                         to={item.link}
                         className="dropdownItem"
                         onClick={() => setActiveCategory(null)}
@@ -240,7 +249,11 @@ const Navbar = () => {
           {cartItems.length > 0 ? (
             cartItems.map((item) => (
               <div key={item.id} className="cartItem">
-                <img src={item.image} alt={item.name} className="cartItemImage" />
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="cartItemImage"
+                />
                 <div className="cartItemDetails">
                   <p className="cartItemName">ABC</p>
                   <p className="cartItemPrice">₹{item.price}.00</p>
@@ -260,7 +273,10 @@ const Navbar = () => {
                     +
                   </button>
                 </div>
-                <button className="removeButton" onClick={() => openPopup(item)}>
+                <button
+                  className="removeButton"
+                  onClick={() => openPopup(item)}
+                >
                   ✖
                 </button>
               </div>
@@ -275,10 +291,16 @@ const Navbar = () => {
             <span>₹{totalPrice}.00</span>
           </div>
           <div className="cartActions">
-            <button className="checkoutButton" onClick={() => navigate("/Checkout")}>
+            <button
+              className="checkoutButton"
+              onClick={() => navigate("/Checkout")}
+            >
               Checkout →
             </button>
-            <button className="goToCartButton" onClick={() => navigate("/CartPage")}>
+            <button
+              className="goToCartButton"
+              onClick={() => navigate("/CartPage")}
+            >
               Go to Cart →
             </button>
           </div>

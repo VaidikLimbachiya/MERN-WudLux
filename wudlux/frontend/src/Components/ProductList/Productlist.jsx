@@ -39,35 +39,36 @@ const Productlist = () => {
 
   return (
     <div className="shop-product-list-grid">
-      {products.map((product) => (
-        <div className="shop-product-list-card" key={product._id}>
-          <div className="shop-product-list-image-wrapper">
-            <img src={product.image} alt={product.title} className="shop-product-list-image" />
-            {product.discount && (
-              <div className="shop-product-list-discount-badge">{product.discount}% OFF</div>
-            )}
-            <div className="shop-product-list-bag-button-wrapper">
-              <button
-                className="shop-product-list-bag-button"
-                onClick={() => addToCart(product)} // Dispatch ADD_TO_CART action
-              >
-                <img src={bagIcon} alt="Bag Icon" className="shop-product-list-bag-icon" />
-                {cartItems[product._id]?.quantity ? "In Bag" : "Add to Bag"}
-              </button>
-            </div>
-          </div>
-          <div className="shop-product-list-details">
-            <p className="shop-product-list-title">{product.title}</p>
-            <div className="shop-product-list-price-details">
-              <span className="shop-product-list-current-price">₹{product.price.toFixed(2)}</span>
-              {product.originalPrice && (
-                <span className="shop-product-list-original-price">₹{product.originalPrice.toFixed(2)}</span>
-              )}
-            </div>
+    {products.map((product) => (
+      <div className="shop-product-list-card" key={product._id}>
+        <div className="shop-product-list-image-wrapper">
+          <img crossOrigin="anonymous" src={product.image} alt={product.title} className="shop-product-list-image" />
+          {product.discount && (
+            <div className="shop-product-list-discount-badge">{product.discount}% OFF</div>
+          )}
+          <div className="shop-product-list-bag-button-wrapper">
+            <button
+              className="shop-product-list-bag-button"
+              onClick={() => addToCart(product)} // Dispatch ADD_TO_CART action
+            >
+              <img src={bagIcon} alt="Bag Icon" className="shop-product-list-bag-icon" />
+              {cartItems[product._id]?.quantity ? "In Bag" : "Add to Bag"}
+            </button>
           </div>
         </div>
-      ))}
-    </div>
+        <div className="shop-product-list-details">
+          <p className="shop-product-list-title">{product.title}</p>
+          <div className="shop-product-list-price-details">
+            <span className="shop-product-list-current-price">₹{product.price.toFixed(2)}</span>
+            {product.originalPrice && (
+              <span className="shop-product-list-original-price">₹{product.originalPrice.toFixed(2)}</span>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+  
   );
 };
 

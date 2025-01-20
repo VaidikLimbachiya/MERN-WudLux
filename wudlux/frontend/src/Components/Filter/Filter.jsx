@@ -118,10 +118,14 @@ export default function Filter() {
             value={sortOption}
             onChange={handleSortChange}
           >
-            <option value="Latest">Sort by: Latest</option>
-            <option value="Price Low to High">Price: Low to High</option>
-            <option value="Price High to Low">Price: High to Low</option>
-            <option value="Popularity">Popularity</option>
+            <option value="Featured">Featured</option>
+            <option value="bestSelling">Best Selling</option>
+            <option value="atoz">Alphabetically A to Z</option>
+            <option value="ztoa">Alphabetically Z to A</option>
+            <option value="Price-low-to-High">Price: Low to High</option>
+            <option value="Price-High-to-Low">Price: High to Low</option>
+            <option value="old-to-new">Date old to new</option>
+            <option value="new-to-old">Date new to old</option>
           </select>
         </div>
       </div>
