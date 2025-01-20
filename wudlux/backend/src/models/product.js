@@ -1,3 +1,4 @@
+// product.js
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
@@ -18,7 +19,7 @@ const productSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: true,
+      required: false,
     },
     price: {
       type: Number,
@@ -33,7 +34,9 @@ const productSchema = new mongoose.Schema(
     },
     size: [
       {
-        type: String,
+        L: { type: String },
+        B: { type: String },
+        H: { type: String },
       },
     ],
     materials: [
@@ -47,6 +50,6 @@ const productSchema = new mongoose.Schema(
   }
 );
 
-const product = mongoose.model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema);
 
-module.exports = product;
+module.exports = Product; // Change to Product (uppercase)

@@ -6,15 +6,25 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const authRoutes = require("./src/routes/authRoutes");
 const productRoutes = require("./src/routes/productRoutes");
-// Load environment variables
+const fs = require("fs");
+const path = require("path");
+
 dotenv.config();
 
-// Initialize app
 const app = express();
 
-// Middleware
 app.use(express.json());
-app.use(cors());
+
+// Enable CORS for all routes, including static files
+const corsOptions = {
+  origin: ["http://localhost:5173", "http://localhost:5174"], // Allow these origins
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type"],
+};
+
+app.use(cors(corsOptions));  // Apply CORS globally to all routes
+
+// Add security headers and request logging
 app.use(helmet());
 app.use(morgan("dev"));
 
@@ -24,9 +34,21 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection failed:", err.message));
 
-// Routes
+// Register routes
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
+
+// Ensure the 'uploads' directory exists
+const uploadDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
+
+// Serve static files from the 'uploads' directory
+app.use(
+  "/uploads",
+  express.static(uploadDir)
+);
 
 // Start the server
 const PORT = process.env.PORT || 5000;

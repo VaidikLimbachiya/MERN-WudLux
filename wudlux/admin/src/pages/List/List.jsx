@@ -1,33 +1,37 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import "./List.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import "./List.css";
 
 const List = ({ url }) => {
   const [productList, setProductList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // Fetch Product List
   const fetchProductList = async () => {
+    setLoading(true);
     try {
-      const response = await axios.get(`${url}/api/products`);
-      if (response.status === 200 && response.data) {
-        setProductList(response.data); // Assuming the response is an array of products
+      const response = await axios.get(`${url}/api/products/list`);
+      if (response.status === 200 && Array.isArray(response.data.data)) {
+        setProductList(response.data.data);
       } else {
         toast.error("Failed to fetch products");
       }
     } catch (error) {
       toast.error("Error fetching product list");
+    } finally {
+      setLoading(false);
     }
   };
 
   // Remove Product
   const removeProduct = async (productId) => {
     try {
-      const response = await axios.delete(`${url}/api/products/${productId}`);
+      const response = await axios.post(`${url}/api/products/remove`, { id: productId });
       if (response.status === 200) {
         toast.success("Product deleted successfully");
-        fetchProductList(); // Refresh list after deletion
+        fetchProductList();
       } else {
         toast.error("Failed to remove product");
       }
@@ -39,40 +43,45 @@ const List = ({ url }) => {
   // Fetch product list on mount
   useEffect(() => {
     fetchProductList();
-  }, [url]); // Re-fetch if the url changes
+  }, []);
 
   return (
-    <div className="list add flex-col">
+    <div className="list-container">
       <h2>All Products</h2>
-      <div className="list-table">
-        <div className="list-table-format title">
-          <b>Thumbnail</b>
-          <b>Title</b>
-          <b>Category</b>
-          <b>Price</b>
-          <b>Discount</b>
-          <b>Actions</b>
-        </div>
-        {productList.map((product, index) => (
-          <div key={index} className="list-table-format">
-            {/* Product Image */}
-            <img
-              src={`${url}/images/${product.image}`}
-              alt={product.title}
-              className="product-thumbnail"
-            />
-            {/* Product Details */}
-            <p>{product.title}</p>
-            <p>{product.category}</p>
-            <p>₹{product.price}</p>
-            <p>{product.discount}%</p>
-            {/* Action (Delete Button) */}
-            <p onClick={() => removeProduct(product._id)} className="cursor delete-btn">
-              Delete
-            </p>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="list-table">
+          <div className="list-table-header">
+            <b>Thumbnail</b>
+            <b>Title</b>
+            <b>Category</b>
+            <b>Price</b>
+            <b>Original Price</b>
+            <b>Discount</b>
+            <b>Actions</b>
           </div>
-        ))}
-      </div>
+          {productList.length > 0 ? (
+            productList.map((product) => (
+              <div key={product._id} className="list-table-row">
+                <img crossOrigin="anonymous" src={`http://localhost:5000/uploads/${product.image}`} alt={product.title} />
+                <p>{product.title}</p>
+                <p>{product.category}</p>
+                <p>₹{product.price}</p>
+                <p>{product.originalPrice}</p>
+                <p>{product.discount}%</p>
+                <div className="actions">
+                  <button onClick={() => removeProduct(product._id)} className="delete-btn">
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No products available.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };
