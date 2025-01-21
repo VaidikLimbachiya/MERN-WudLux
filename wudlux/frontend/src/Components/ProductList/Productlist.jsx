@@ -52,19 +52,20 @@ const Productlist = () => {
                 </div>
               )}
               <div className="shop-product-list-bag-button-wrapper">
-                <button
-                  className="shop-product-list-bag-button"
-                  onClick={() => addToCart(product)} // Dispatch ADD_TO_CART action
-                >
-                  <img
-                    src={bagIcon}
-                    alt="Bag Icon"
-                    className="shop-product-list-bag-icon"
-                  />
-                  {cartItems[product._id]?.quantity
-                    ? "In Bag"
-                    : "Add to Bag"}
-                </button>
+              <button
+  className="shop-product-list-bag-button"
+  onClick={() => addToCart(product)} // Pass the entire product object
+>
+  <img
+    src={bagIcon}
+    alt="Bag Icon"
+    className="shop-product-list-bag-icon"
+  />
+  {cartItems.find((item) => item._id === product._id)
+    ? "In Bag"
+    : "Add to Bag"}
+</button>
+
               </div>
             </div>
             <div className="shop-product-list-details">

@@ -99,10 +99,10 @@ const Navbar = () => {
 
   const confirmRemove = () => {
     if (productToRemove) {
-      removeItem(productToRemove.id);
+      removeItem(productToRemove._id); // Use `_id` instead of `id`
     }
     closePopup();
-  };
+  };  
 
   const handleLogout = () => {
     // Clear tokens from localStorage
@@ -238,53 +238,47 @@ const Navbar = () => {
       </nav>
 
       {/* Cart Slider */}
-      <div className={`cartSlider ${isCartOpen ? "open" : ""}`}>
-        <div className="cartHeader">
-          <h3>Shopping Cart</h3>
-          <button className="closeButton" onClick={toggleCart}>
-            ✖
+< div className={`cartSlider ${isCartOpen ? "open" : ""}`}>
+  <div className="cartHeader">
+    <h3>Shopping Cart</h3>
+    <button className="closeButton" onClick={toggleCart}>
+      ✖
+    </button>
+  </div>
+  <div className="cartItems">
+  {cartItems.length > 0 ? (
+    cartItems.map((item) => (
+      <div key={item._id} className="cartItem">
+        <img
+        crossOrigin="anonymous"
+          src= {`http://localhost:5000/uploads/${item.image}`}
+          alt={item.name}
+          className="cartItemImage"
+        />
+        <div className="cartItemDetails">
+          <p className="cartItemName">{item.title}</p>
+          <p className="cartItemPrice">₹{item.price.toFixed(2)}</p>
+        </div>
+        <div className="cartQuantity">
+          <button className="cart-quantity-decrement1"
+            onClick={() => updateQuantity(item._id, -1)}
+          >
+            -
+          </button>
+          <span>{item.quantity}</span>
+          <button className="cart-quantity-increment1"
+            onClick={() => updateQuantity(item._id, 1)}
+          >
+            +
           </button>
         </div>
-        <div className="cartItems">
-          {cartItems.length > 0 ? (
-            cartItems.map((item) => (
-              <div key={item.id} className="cartItem">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="cartItemImage"
-                />
-                <div className="cartItemDetails">
-                  <p className="cartItemName">ABC</p>
-                  <p className="cartItemPrice">₹{item.price}.00</p>
-                </div>
-                <div className="cartQuantity">
-                  <button
-                    className="cart-quantity-decrement1"
-                    onClick={() => updateQuantity(item.id, -1)}
-                  >
-                    -
-                  </button>
-                  <span className="cart-quantity-value1">{item.quantity}</span>
-                  <button
-                    className="cart-quantity-increment1"
-                    onClick={() => updateQuantity(item.id, 1)}
-                  >
-                    +
-                  </button>
-                </div>
-                <button
-                  className="removeButton"
-                  onClick={() => openPopup(item)}
-                >
-                  ✖
-                </button>
-              </div>
-            ))
-          ) : (
-            <p className="emptyCartMessage">Your cart is empty.</p>
-          )}
-        </div>
+        <button  className="removeButton" onClick={() => openPopup(item)}>✖</button>
+      </div>
+    ))
+  ) : (
+    <p>Your cart is empty.</p>
+  )}
+</div>
         <div className="cartFooter">
           <div className="cartSummary">
             <span>{totalProducts} Product</span>

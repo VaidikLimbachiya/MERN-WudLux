@@ -1,20 +1,15 @@
 import { useCartContext } from "../../Context/CartContext"; // Use your context
 import "./CartPage.css";
-import { Link} from "react-router-dom";
-// import { IoCloseCircleOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
-  const { cartItems, totalPrice, updateQuantity, removeItem } =
-    useCartContext();
+  const { cartItems, totalPrice, updateQuantity, removeItem } = useCartContext();
 
   const cgst = (totalPrice * 0.09).toFixed(2);
   const sgst = (totalPrice * 0.09).toFixed(2);
   const discount = 99;
   const totalPayable = (
-    totalPrice +
-    parseFloat(cgst) +
-    parseFloat(sgst) -
-    discount
+    totalPrice + parseFloat(cgst) + parseFloat(sgst) - discount
   ).toFixed(2);
 
   return (
@@ -46,23 +41,41 @@ const CartPage = () => {
             </thead>
             <tbody>
               {cartItems.map((item) => (
-                <tr key={item.id}>
-                  <th>
+                <tr key={item._id || item.id}> {/* Ensure unique key */}
                   <td className="cart-item-details">
                     <img
-                      src={item.image}
-                      alt={item.name}
+                      crossOrigin="anonymous"
+                      src={`http://localhost:5000/uploads/${item.image}`}
+                      alt={item.name || "Product image"}
                       className="cart-item-image"
                     />
                     <div>
-                      {/* <h4>{item.name}</h4> */}
-                      <h4>ABC</h4>
-                      <p>Category: {item.category}</p>
-                      <p>Size: {item.size}</p>
+                      <h4>{item.title || "Unnamed Product"}</h4>
+                      <p>
+                        Category: {item.category ? item.category : "No category"}
+                      </p>
+                      <p>
+                        Size:{" "}
+                        {Array.isArray(item.size) ? (
+                          // If size is an array, map over it
+                          <ul>
+                            {item.size.map((size, index) => (
+                              <li key={index}>
+                                L: {size.L}, B: {size.B}, H: {size.H}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : item.size ? (
+                          // If size is an object, display its properties
+                          <>
+                            L: {item.size.L}, B: {item.size.B}, H: {item.size.H}
+                          </>
+                        ) : (
+                          "No size available"
+                        )}
+                      </p>
                     </div>
                   </td>
-                  </th>
-                  <th>
                   <td className="cart-quantity-controls">
                     <button
                       className="cart-quantity-decrement"
@@ -78,30 +91,31 @@ const CartPage = () => {
                       +
                     </button>
                   </td>
-                  </th>
-                  <th>
                   <td className="cart-item-price">₹{item.price.toFixed(2)}</td>
-                 </th>
-                 <th>
                   <td className="cart-item-total">
                     ₹{(item.price * item.quantity).toFixed(2)}
                   </td>
-                  </th>
-                  <th>
                   <td>
                     <button
                       className="cart-item-remove"
                       onClick={() => removeItem(item.id)}
                     >
-                      ✖ 
+                      ✖
                     </button>
                   </td>
-                  </th>
                 </tr>
               ))}
             </tbody>
           </table>
-          <Link to= "/"  className="cart-continue-shopping"  onClick={() => {window.scrollTo({ top: 0, behavior: "smooth" });}}>← Continue Shopping</Link>
+          <Link
+            to="/"
+            className="cart-continue-shopping"
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            ← Continue Shopping
+          </Link>
         </div>
 
         {/* Right Section: Order Summary */}
@@ -125,19 +139,18 @@ const CartPage = () => {
           </p>
           <p className="order-summary-discount">
             <span>Coupon Discount:</span>
-            <strong style={{ color: "#007bff" }}>-₹{discount.toFixed(2)}</strong>
+            <strong style={{ color: "#007bff" }}>
+              -₹{discount.toFixed(2)}
+            </strong>
           </p>
           <hr className="order-summary-divider" />
           <p className="order-summary-amount-payable">
             <span className="order-amount">Amount Payable:</span>
             <span className="total-amount"> ₹{totalPayable}</span>
-           
           </p>
           <hr className="order-summary-divider" />
           <Link to="/checkout">
-          <div className="order-summary-checkout-button">
-           Checkout →
-          </div>
+            <div className="order-summary-checkout-button">Checkout →</div>
           </Link>
         </div>
       </div>

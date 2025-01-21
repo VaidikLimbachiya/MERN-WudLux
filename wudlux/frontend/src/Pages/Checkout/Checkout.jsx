@@ -6,8 +6,8 @@ import "./Checkout.css";
 import logo from "../../assets/logo.png"; // Import the logo image
 
 const Checkout = () => {
-  const { cartItems, totalPrice } = useCartContext(); // Get cart items and total price from context
-  const { user } = useUserContext(); // Get user data from context  
+  const { cartItems = [], totalPrice = 0 } = useCartContext(); // Default values for cart context
+  const { user } = useUserContext(); // Default values for user context
   const navigate = useNavigate(); // For navigation
 
   const statesAndCities = {
@@ -71,6 +71,10 @@ const Checkout = () => {
     e.preventDefault();
     console.log("Form Submitted:", formData);
   };
+
+  if (!Array.isArray(cartItems)) {
+    return <p>Error: Cart items not available. Please try again later.</p>;
+  }
 
   return (
     <div className="checkout-wrapper">
@@ -191,14 +195,12 @@ const Checkout = () => {
           />
           <div className="button-group">
             <button
-             type="button"
-             className="back-button"
-             onClick={() => {
-               window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
-               navigate("/"); 
-             }
-            }
-              // Navigate back to the cart page
+              type="button"
+              className="back-button"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
+                navigate("/"); 
+              }}
             >
               ← Back to Cart
             </button>
@@ -213,22 +215,27 @@ const Checkout = () => {
       <div className="summary-container">
         <h2>Products</h2>
         <div className="product-list">
-          {cartItems.map((item) => (
-            <div key={item.id} className="product-box">
-              <img
-                src={item.image}
-                alt={item.name}
-                className="product-thumbnail"
-              />
-              <div className="product-info">
-                <div className="product-title">
-                  <span className="quantity-badge">{item.quantity}</span>
-                  <p className="name">{item.name}</p>
+          {cartItems.length > 0 ? (
+            cartItems.map((item) => (
+              <div key={item.id} className="product-box">
+                <img
+                  crossOrigin="anonymous"
+                  src= {`http://localhost:5000/uploads/${item.image}`}
+                  alt={item.title}
+                  className="product-thumbnail"
+                />
+                <div className="product-info">
+                  <div className="product-title">
+                    <span className="quantity-badge">{item.quantity}</span>
+                    <p className="name">{item.title}</p>
+                  </div>
+                  <div className="product-cost">₹{item.price.toFixed(2)}</div>
                 </div>
-                <div className="product-cost">₹{item.price.toFixed(2)}</div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>No items in the cart.</p>
+          )}
         </div>
         <div className="summary-totals">
           <div className="price-item">
