@@ -10,4 +10,5 @@ productRouter.get("/list", listProducts); // Route for fetching all products
 productRouter.post("/remove", removeProduct); // Route for removing a product
 
 
+
 module.exports = productRouter;

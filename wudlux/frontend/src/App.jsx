@@ -62,7 +62,7 @@ function App() {
         <Route path="/shipping-policy" element={<Shipping />} />
         <Route path="/log-in" element={<LoginPage />} />
         <Route path="/sign-up" element={<RegistrationForm />} />
-        <Route path="/product-info" element={<ProductPage />} />
+        <Route path="/product-info/:productId" element={<ProductPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/CartPage" element={<CartPage />} />

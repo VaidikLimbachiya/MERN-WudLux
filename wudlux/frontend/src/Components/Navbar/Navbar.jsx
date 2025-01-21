@@ -55,6 +55,7 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
   const [productToRemove, setProductToRemove] = useState(null); // Product to remove
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Popup state
+  const [isSliderOpen] = useState(false); // Fix initial state of slider to false
   const {
     cartItems,
     totalQuantity,
@@ -102,7 +103,7 @@ const Navbar = () => {
       removeItem(productToRemove._id); // Use `_id` instead of `id`
     }
     closePopup();
-  };  
+  };
 
   const handleLogout = () => {
     // Clear tokens from localStorage
@@ -116,6 +117,12 @@ const Navbar = () => {
 
     // Redirect to login page
     navigate("/log-in");
+  };
+
+  const handleNavigate = (path) => {
+    setIsCartOpen(false); // Close cart when navigating
+    setIsSearchOpen(false); // Close search slider when navigating
+    navigate(path); // Navigate to the desired path
   };
 
   return (
@@ -238,48 +245,52 @@ const Navbar = () => {
       </nav>
 
       {/* Cart Slider */}
-< div className={`cartSlider ${isCartOpen ? "open" : ""}`}>
-  <div className="cartHeader">
-    <h3>Shopping Cart</h3>
-    <button className="closeButton" onClick={toggleCart}>
-      ✖
-    </button>
-  </div>
-  <div className="cartItems">
-  {cartItems.length > 0 ? (
-    cartItems.map((item) => (
-      <div key={item._id} className="cartItem">
-        <img
-        crossOrigin="anonymous"
-          src= {`http://localhost:5000/uploads/${item.image}`}
-          alt={item.name}
-          className="cartItemImage"
-        />
-        <div className="cartItemDetails">
-          <p className="cartItemName">{item.title}</p>
-          <p className="cartItemPrice">₹{item.price.toFixed(2)}</p>
-        </div>
-        <div className="cartQuantity">
-          <button className="cart-quantity-decrement1"
-            onClick={() => updateQuantity(item._id, -1)}
-          >
-            -
-          </button>
-          <span>{item.quantity}</span>
-          <button className="cart-quantity-increment1"
-            onClick={() => updateQuantity(item._id, 1)}
-          >
-            +
+      <div className={`cartSlider ${isCartOpen ? "open" : ""}`}>
+        <div className="cartHeader">
+          <h3>Shopping Cart</h3>
+          <button className="closeButton" onClick={toggleCart}>
+            ✖
           </button>
         </div>
-        <button  className="removeButton" onClick={() => openPopup(item)}>✖</button>
-      </div>
-    ))
-  ) : (
-    <p>Your cart is empty.</p>
-  )}
-</div>
-        <div className="cartFooter">
+        <div className="cartItems">
+          {cartItems.length > 0 ? (
+            cartItems.map((item) => (
+              <div key={item._id} className="cartItem">
+                <img
+                  crossOrigin="anonymous"
+                  src={`http://localhost:5000/uploads/${item.image}`}
+                  alt={item.name}
+                  className="cartItemImage"
+                />
+                <div className="cartItemDetails">
+                  <p className="cartItemName">{item.title}</p>
+                  <p className="cartItemPrice">₹{item.price.toFixed(2)}</p>
+                </div>
+                <div className="cartQuantity">
+                  <button
+                    className="cart-quantity-decrement1"
+                    onClick={() => updateQuantity(item._id, -1)}
+                  >
+                    -
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button
+                    className="cart-quantity-increment1"
+                    onClick={() => updateQuantity(item._id, 1)}
+                  >
+                    +
+                  </button>
+                </div>
+                <button className="removeButton" onClick={() => openPopup(item)}>
+                  ✖
+                </button>
+              </div>
+            ))
+          ) : (
+            <p>Your cart is empty.</p>
+          )}
+        </div>
+        <div className={`cartFooter ${isSliderOpen ? "open" : "closed"}`}>
           <div className="cartSummary">
             <span>{totalProducts} Product</span>
             <span>₹{totalPrice}.00</span>
@@ -287,13 +298,13 @@ const Navbar = () => {
           <div className="cartActions">
             <button
               className="checkoutButton"
-              onClick={() => navigate("/Checkout")}
+              onClick={() => handleNavigate("/Checkout")}
             >
               Checkout →
             </button>
             <button
               className="goToCartButton"
-              onClick={() => navigate("/CartPage")}
+              onClick={() => handleNavigate("/CartPage")}
             >
               Go to Cart →
             </button>
