@@ -1,18 +1,13 @@
 const express = require("express");
-const router = express.Router();
-const {
-  createProduct,
-  getProducts,
-  getProductById,
-  updateProduct,
-  deleteProduct,
-} = require("../controllers/productController");
+const { createProduct, listProducts, removeProduct } = require("../controllers/productController");
+const upload = require("../middlewares/upload"); // Import the multer configuration
+
+const productRouter = express.Router();
 
 // Routes
-router.post("/", createProduct); // Create a product
-router.get("/", getProducts); // Get all products
-router.get("/:id", getProductById); // Get a product by ID
-router.put("/:id", updateProduct); // Update a product by ID
-router.delete("/:id", deleteProduct); // Delete a product by ID
+productRouter.post("/add", upload.single("image"), createProduct); // Route for creating a product with file upload
+productRouter.get("/list", listProducts); // Route for fetching all products
+productRouter.post("/remove", removeProduct); // Route for removing a product
 
-module.exports = router;
+
+module.exports = productRouter;

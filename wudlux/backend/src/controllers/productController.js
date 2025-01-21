@@ -1,61 +1,74 @@
+// productController.js
 const Product = require("../models/product");
+const fs = require("fs");
 
-// Create a new product
-exports.createProduct = async (req, res) => {
+module.exports.createProduct = async (req, res) => {
+  let image_filename = `${req.file.filename}`;
+
+  let size = req.body.size;
+
+  // If size is a string, parse it as JSON
+  if (typeof size === 'string') {
+    size = JSON.parse(size);
+  }
+
+  const newProduct = new Product({
+    category: req.body.category,
+    subcategory: req.body.subcategory,
+    title: req.body.title,
+    price: req.body.price,
+    originalPrice: req.body.originalPrice,
+    discount: req.body.discount,
+    size: size,
+    materials: JSON.parse(req.body.materials),
+    image: req.file.filename // Only save the filename
+  });  
+
   try {
-    const product = new Product(req.body);
-    const savedProduct = await product.save();
-    res.status(201).json(savedProduct);
+    await newProduct.save();
+    res.json({ success: true, message: "Product created successfully!" });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.log(error);
+    res.json({ success: false, message: "Error creating product" });
   }
 };
+
+
 
 // Get all products
-exports.getProducts = async (req, res) => {
+module.exports.listProducts = async (req, res) => {
   try {
-    const products = await Product.find();
-    res.status(200).json(products);
+    const products = await Product.find({});
+    res.json({ success: true, data: products });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.log(error);
+    res.json({ success: false, message: "Error fetching products" });
   }
 };
 
-// Get a single product
-exports.getProductById = async (req, res) => {
+
+
+// Remove a product
+module.exports.removeProduct = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.body.id);
+    
+    // Check if the product exists
     if (!product) {
-      return res.status(404).json({ message: "Product not found" });
+      return res.json({ success: false, message: "Product not found" });
     }
-    res.status(200).json(product);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+    
+    // If the product has an image, remove it from the file system
+    if (product.image) {
+      fs.unlink(`uploads/${product.image}`, (err) => {
+        if (err) console.log("Error deleting image", err);
+      });
+    }
 
-// Update a product
-exports.updateProduct = async (req, res) => {
-  try {
-    const updatedProduct = await Product.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true,
-      }
-    );
-    res.status(200).json(updatedProduct);
+    await Product.findByIdAndDelete(req.body.id);
+    res.json({ success: true, message: "Product removed successfully" });
   } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
-
-// Delete a product
-exports.deleteProduct = async (req, res) => {
-  try {
-    await Product.findByIdAndDelete(req.params.id);
-    res.status(200).json({ message: "Product deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.log(error);
+    res.json({ success: false, message: "Error removing product" });
   }
 };
