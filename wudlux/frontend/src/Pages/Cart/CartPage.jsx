@@ -41,7 +41,7 @@ const CartPage = () => {
             </thead>
             <tbody>
               {cartItems.map((item) => (
-                <tr key={item._id || item.id}> {/* Ensure unique key */}
+                <tr key={item._id || item.id} className="cart-item-tr"> {/* Ensure unique key */}
                   <td className="cart-item-details">
                     <img
                       crossOrigin="anonymous"
@@ -55,10 +55,11 @@ const CartPage = () => {
                         Category: {item.category ? item.category : "No category"}
                       </p>
                       <p>
-                        Size:{" "}
+                        Size:
+                          </p>
                         {Array.isArray(item.size) ? (
                           // If size is an array, map over it
-                          <ul>
+                          <ul >
                             {item.size.map((size, index) => (
                               <li key={index}>
                                 L: {size.L}, B: {size.B}, H: {size.H}
@@ -73,7 +74,7 @@ const CartPage = () => {
                         ) : (
                           "No size available"
                         )}
-                      </p>
+                    
                     </div>
                   </td>
                   <td className="cart-quantity-controls">
