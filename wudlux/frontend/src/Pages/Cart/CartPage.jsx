@@ -3,13 +3,17 @@ import "./CartPage.css";
 import { Link } from "react-router-dom";
 
 const CartPage = () => {
-  const { cartItems, totalPrice, updateQuantity, removeItem } = useCartContext();
+  const { cartItems, totalPrice, updateQuantity, removeItem } =
+    useCartContext();
 
   const cgst = (totalPrice * 0.09).toFixed(2);
   const sgst = (totalPrice * 0.09).toFixed(2);
   const discount = 99;
   const totalPayable = (
-    totalPrice + parseFloat(cgst) + parseFloat(sgst) - discount
+    totalPrice +
+    parseFloat(cgst) +
+    parseFloat(sgst) -
+    discount
   ).toFixed(2);
 
   return (
@@ -31,17 +35,19 @@ const CartPage = () => {
         <div className="cart-items-section">
           <table className="cart-items-table">
             <thead>
-              <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-                <th></th>
+              <tr className="tableHeader">
+                <th className="productTH">Product</th>
+                <th className="productData">Quantity</th>
+                <th className="productData">Price</th>
+                <th className="productData">Total</th>
+                <th className="productData"></th>
               </tr>
             </thead>
             <tbody>
               {cartItems.map((item) => (
-                <tr key={item._id || item.id}> {/* Ensure unique key */}
+                <tr className="tableRow" key={item._id || item.id}>
+                  {" "}
+                  {/* Ensure unique key */}
                   <td className="cart-item-details">
                     <img
                       crossOrigin="anonymous"
@@ -49,30 +55,25 @@ const CartPage = () => {
                       alt={item.name || "Product image"}
                       className="cart-item-image"
                     />
-                    <div>
+                    <div className="cart-item-info">
                       <h4>{item.title || "Unnamed Product"}</h4>
                       <p>
-                        Category: {item.category ? item.category : "No category"}
+                        Category:{" "}
+                        {item.category ? item.category : "No category"}
                       </p>
-                      <p>
+                      <p className="cart-item-size">
                         Size:{" "}
-                        {Array.isArray(item.size) ? (
-                          // If size is an array, map over it
-                          <ul>
-                            {item.size.map((size, index) => (
-                              <li key={index}>
-                                L: {size.L}, B: {size.B}, H: {size.H}
-                              </li>
-                            ))}
-                          </ul>
-                        ) : item.size ? (
-                          // If size is an object, display its properties
-                          <>
-                            L: {item.size.L}, B: {item.size.B}, H: {item.size.H}
-                          </>
-                        ) : (
-                          "No size available"
-                        )}
+                        {Array.isArray(item.size)
+                          ? // If size is an array, join each item's dimensions into a single line
+                            item.size
+                              .map(
+                                (size) => `L-${size.L} B-${size.B} H-${size.H}`
+                              )
+                              .join(", ")
+                          : item.size
+                          ? // If size is an object, display its properties in a single line
+                            `L-${item.size.L} B-${item.size.B} H-${item.size.H}`
+                          : "No size available"}
                       </p>
                     </div>
                   </td>
@@ -96,12 +97,14 @@ const CartPage = () => {
                     ₹{(item.price * item.quantity).toFixed(2)}
                   </td>
                   <td>
-                    <button
-                      className="cart-item-remove"
-                      onClick={() => removeItem(item.id)}
-                    >
-                      ✖
-                    </button>
+                  <button
+  className="cart-item-remove-btn"
+  aria-label="Remove item"
+  onClick={() => removeItem(item.id)}
+>
+  <span className="cart-item-remove-icon">✖</span>
+</button>
+
                   </td>
                 </tr>
               ))}

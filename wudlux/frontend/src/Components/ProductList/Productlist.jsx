@@ -1,71 +1,81 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./Productlist.css";
-import bagIcon from "../../assets/bag.png"; // Import the bag icon
-import { useCartContext } from "../../Context/CartContext"; // Correct import
+import bagIcon from "../../assets/bag.png";
+import { useCartContext } from "../../Context/CartContext";
 
 const Productlist = () => {
-  const { addToCart, cartItems = {} } = useCartContext(); // Ensure cartItems is initialized
-  const [products, setProducts] = useState([]); // State to hold products
-  const [loading, setLoading] = useState(true); // Loading state (fixed)
-  const [error, setError] = useState(null); // Error state (fixed)
+  const { addToCart, cartItems = {} } = useCartContext();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Fetch products from backend
+  const navigate = useNavigate(); // Initialize navigate
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/products/list"); // Replace with your backend URL
+        const response = await fetch("http://localhost:5000/api/products/list");
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
-        const result = await response.json(); // Store the whole response
+        const result = await response.json();
         if (result.success) {
-          setProducts(result.data); // Access the 'data' key to set products
+          setProducts(result.data);
         } else {
           throw new Error("Failed to fetch products: " + result.message);
         }
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false); // Set loading to false once data is fetched
+        setLoading(false);
       }
     };
 
     fetchProducts();
   }, []);
 
-  console.log("Products in state:", products); // Log products inside the JSX
-
   return (
     <div className="shop-product-list-grid">
       {error ? (
-        <div>Error: {error}</div> // Display error message if there's an error
+        <div>Error: {error}</div>
       ) : loading ? (
-        <div>Loading products...</div> // Show loading message while fetching data
+        <div>Loading products...</div>
       ) : Array.isArray(products) && products.length > 0 ? (
-        products.map((product ) => (
-          <div className="shop-product-list-card" key={product._id}>
+        products.map((product) => (
+          <div
+            className="shop-product-list-card"
+            key={product._id}
+            onClick={() => navigate(`/product-info/${product._id}`)} // Navigate on click
+          >
             <div className="shop-product-list-image-wrapper">
-            <img crossOrigin="anonymous" src={`http://localhost:5000/uploads/${product.image}`} alt={product.title} />
+              <img
+                crossOrigin="anonymous"
+                src={`http://localhost:5000/uploads/${product.image}`}
+                alt={product.title}
+              />
               {product.discount && (
                 <div className="shop-product-list-discount-badge">
                   {product.discount}% OFF
                 </div>
               )}
               <div className="shop-product-list-bag-button-wrapper">
-              <button
-  className="shop-product-list-bag-button"
-  onClick={() => addToCart(product)} // Pass the entire product object
->
-  <img
-    src={bagIcon}
-    alt="Bag Icon"
-    className="shop-product-list-bag-icon"
-  />
-  {cartItems.find((item) => item._id === product._id)
-    ? "In Bag"
-    : "Add to Bag"}
-</button>
-
+                <button
+                  className="shop-product-list-bag-button"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent navigation on button click
+                    addToCart(product);
+                  }}
+                >
+                  <img
+                    src={bagIcon}
+                    alt="Bag Icon"
+                    className="shop-product-list-bag-icon"
+                  />
+                  {cartItems.find((item) => item._id === product._id)
+                    ? "In Bag"
+                    : "Add to Bag"}
+                </button>
               </div>
             </div>
             <div className="shop-product-list-details">
@@ -84,7 +94,7 @@ const Productlist = () => {
           </div>
         ))
       ) : (
-        <div>No products available</div> // Display message if no products are found
+        <div>No products available</div>
       )}
     </div>
   );
