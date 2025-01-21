@@ -42,7 +42,7 @@ const Productlist = () => {
       ) : loading ? (
         <div>Loading products...</div> // Show loading message while fetching data
       ) : Array.isArray(products) && products.length > 0 ? (
-        products.map((product) => (
+        products.map((product ) => (
           <div className="shop-product-list-card" key={product._id}>
             <div className="shop-product-list-image-wrapper">
             <img crossOrigin="anonymous" src={`http://localhost:5000/uploads/${product.image}`} alt={product.title} />

@@ -30,35 +30,66 @@ const Add = ({ url }) => {
 
   const materialOptions = ["Acacia Wood", "Teak Wood", "Mongo Wood"];
 
-    const onChangeHandler = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setData(data=>({...data,[name]:value}))
-    }
+  const onChangeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
 
-    const onSubmitHandler = async (event) =>{
-        event.preventDefault();
-        const formData = new FormData();
-        formData.append("name",data.name)
-        formData.append("description",data.description)
-        formData.append("price",Number(data.price))
-        formData.append("category",data.category)
-        formData.append("image",image)
-        const response = await axios.post(`${url}/api/food/add`,formData)
-        if (response.data.success) {
-            setData({
-                name:"",
-                description:"",
-                price:"",
-                category:"Salad"
-            })
-            setImage(false)
-            toast.success(response.data.message)
-        }
-        else{
-            toast.error(response.data.message)
-        }
+    if (name === "category") {
+      // Update the category and reset subcategory to the first value
+      setData((prevData) => ({
+        ...prevData,
+        category: value,
+        subcategory: categories[value][0],
+      }));
+    } else if (name === "L" || name === "B" || name === "H") {
+      setData((prevData) => ({
+        ...prevData,
+        size: { ...prevData.size, [name]: value },
+      }));
+    } else {
+      setData((prevData) => ({ ...prevData, [name]: value }));
     }
+  };
+
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+  
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("category", data.category);
+    formData.append("subcategory", data.subcategory);
+    formData.append("price", Number(data.price));
+    formData.append("originalPrice", Number(data.originalPrice));
+    formData.append("discount", Number(data.discount));
+    formData.append("size", JSON.stringify([{ L: data.size.L, B: data.size.B, H: data.size.H }]));
+
+    formData.append("materials", JSON.stringify(data.materials));
+    formData.append("image", image);
+  
+    try {
+        const response = await axios.post("http://localhost:5000/api/products/add", formData);
+      if (response.data.success) {
+        setData({
+          title: "",
+          category: "Serveware",
+          subcategory: "Tray",
+          price: "",
+          originalPrice: "",
+          discount: "",
+          size: { L: "", B: "", H: "" },
+          materials: [],
+        });
+        setImage(null);
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error("Failed to create product!");
+    }
+  };
+  
+
   return (
     <div className="add">
       <form className="" onSubmit={onSubmitHandler}>
@@ -192,8 +223,7 @@ const Add = ({ url }) => {
         <button>Add</button>
       </form>
     </div>
-  )
+  );
 };
-
 
 export default Add;
