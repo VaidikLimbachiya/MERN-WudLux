@@ -1,68 +1,56 @@
-import { useState } from "react";
-import "./caroProduct.css";
-import product1 from "../../assets/product1.png";
-import product2 from "../../assets/product2.png";
-import product3 from "../../assets/product3.png";
-import product4 from "../../assets/product4.png";
-import bagIcon from "../../assets/bag.png";
-
-const products = [
-  {
-    id: 1,
-    image: product1,
-    title: "Aliquam lobortis est turpis mauris ...",
-    price: "₹299.00",
-    originalPrice: "₹499.00",
-    discount: "-60%",
-  },
-  {
-    id: 2,
-    image: product2,
-    title: "Aliquam lobortis est turpis mauris ...",
-    price: "₹299.00",
-    originalPrice: "₹499.00",
-    discount: "-60%",
-  },
-  {
-    id: 3,
-    image: product3,
-    title: "Aliquam lobortis est turpis mauris ...",
-    price: "₹299.00",
-    originalPrice: "₹499.00",
-    discount: "-60%",
-  },
-  {
-    id: 4,
-    image: product4,
-    title: "Aliquam lobortis est turpis mauris ...",
-    price: "₹299.00",
-    originalPrice: "₹499.00",
-    discount: "-60%",
-  },
-];
-
+import { useState, useEffect } from "react";
+import "./caroProduct.css"; // Ensure CSS styles are properly linked
+import bagIcon from "../../assets/bag.png"; // Static icon
+import product1 from "../../assets/product1.png"; // Static product image
 const ProductCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [products, setProducts] = useState([]); // To hold product data
+  const [currentIndex, setCurrentIndex] = useState(0); // Current carousel position
 
+  // Fetch products dynamically from backend
+  async function fetchProducts() {
+    try {
+      const response = await fetch("http://localhost:5000/api/products/list");
+      
+      if (!response.ok) {
+        console.error('HTTP error:', response.status, response.statusText);
+        return;
+      }
+      
+      const result = await response.json();
+  
+      if (result.success && Array.isArray(result.data)) {
+        console.log('Products fetched:', result.data);
+        setProducts(result.data); // Set the fetched products to state
+      } else {
+        console.error('Unexpected API response format:', result);
+      }
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
+    }
+  }
+  
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+  
+  
+  // Navigate to the next set of products
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex + 4 >= products.length ? 0 : prevIndex + 4
     );
   };
 
+  // Navigate to the previous set of products
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex - 4 < 0 ? products.length - 4 : prevIndex - 4
     );
   };
 
-  const visibleProducts =
-    currentIndex + 4 <= products.length
-      ? products.slice(currentIndex, currentIndex + 4)
-      : [
-          ...products.slice(currentIndex),
-          ...products.slice(0, (currentIndex + 4) % products.length),
-        ];
+  // Calculate the visible products
+  const visibleProducts = Array.isArray(products) ? products.slice(currentIndex, currentIndex + 4) : [];
+
 
   return (
     <div className="shop-carousel-container">
@@ -80,18 +68,23 @@ const ProductCarousel = () => {
 
       {/* Product Grid */}
       <div className="shop-carousel-grid">
-        {visibleProducts.map((product) => (
-          <div className="shop-carousel-card" key={product.id}>
+        {visibleProducts.slice(0, 4).map((product, index) => (
+          <div className="shop-carousel-card" key={product.id || index}>
             <div className="shop-carousel-image-wrapper">
               <img
-                src={product.images}
+                crossOrigin="anonymous"
+                src={`http://localhost:5000/uploads/${
+                  product.images ? product.images : product1
+                }`}
                 alt={product.title}
                 className="shop-carousel-image"
               />
-              <div className="shop-carousel-discount-badge">{product.discount}</div>
+              <div className="shop-carousel-discount-badge">
+                {product.discount}%
+              </div>
               <div className="shop-carousel-add-to-bag-wrapper">
                 <button className="shop-carousel-add-to-bag-button">
-                  Add to Bag{" "}
+                  Add to Bag
                   <img
                     src={bagIcon}
                     alt="Bag Icon"
@@ -103,7 +96,9 @@ const ProductCarousel = () => {
             <div className="shop-carousel-details">
               <p className="shop-carousel-product-title">{product.title}</p>
               <div className="shop-carousel-product-price">
-                <span className="shop-carousel-current-price">{product.price}</span>
+                <span className="shop-carousel-current-price">
+                  {product.price}
+                </span>
                 <span className="shop-carousel-original-price">
                   {product.originalPrice}
                 </span>
@@ -114,14 +109,16 @@ const ProductCarousel = () => {
       </div>
 
       {/* Carousel Controls */}
-      <div className="shop-carousel-controls">
-        <button className="shop-carousel-button" onClick={handlePrev}>
-          &#8592;
-        </button>
-        <button className="shop-carousel-button" onClick={handleNext}>
-          &#8594;
-        </button>
-      </div>
+      {products.length > 4 && (
+        <div className="shop-carousel-controls">
+          <button className="shop-carousel-button" onClick={handlePrev}>
+            &#8592;
+          </button>
+          <button className="shop-carousel-button" onClick={handleNext}>
+            &#8594;
+          </button>
+        </div>
+      )}
     </div>
   );
 };

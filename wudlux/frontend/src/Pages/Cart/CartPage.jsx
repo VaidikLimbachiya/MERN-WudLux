@@ -6,6 +6,8 @@ const CartPage = () => {
   const { cartItems, totalPrice, updateQuantity, removeItem } =
     useCartContext();
 
+    
+
   const cgst = (totalPrice * 0.09).toFixed(2);
   const sgst = (totalPrice * 0.09).toFixed(2);
   const discount = 99;
@@ -80,14 +82,14 @@ const CartPage = () => {
                   <td className="cart-quantity-controls">
                     <button
                       className="cart-quantity-decrement"
-                      onClick={() => updateQuantity(item.id, -1)}
+                      onClick={() => updateQuantity(item._id, -1)}
                     >
                       -
                     </button>
                     <span className="cart-quantity-value">{item.quantity}</span>
                     <button
                       className="cart-quantity-increment"
-                      onClick={() => updateQuantity(item.id, 1)}
+                      onClick={() => updateQuantity(item._id, 1)}
                     >
                       +
                     </button>
@@ -100,7 +102,7 @@ const CartPage = () => {
                     <button
                       className="cart-item-remove-btn"
                       aria-label="Remove item"
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(item._id)}
                     >
                       <span className="cart-item-remove-icon">✖</span>
                     </button>

@@ -216,8 +216,8 @@ const Checkout = () => {
         <h2>Products</h2>
         <div className="product-list">
           {cartItems.length > 0 ? (
-            cartItems.map((item) => (
-              <div key={item.id} className="product-box">
+            cartItems.map((item ,index) => (
+              <div key={item.id || index} className="product-box">
                 <img
                   crossOrigin="anonymous"
                   src= {`http://localhost:5000/uploads/${item.images}`}
