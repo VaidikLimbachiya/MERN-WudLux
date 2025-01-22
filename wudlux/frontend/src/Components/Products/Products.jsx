@@ -55,7 +55,7 @@ const Products = () => {
           products.slice(0,8).map((product , index) => (
             <div className="productCard" key={product.id || index}>
               <div className="productImageWrapper">
-              <img className="productImage" crossOrigin="anonymous" src={`http://localhost:5000/uploads/${product.image}`} alt={product.title} />
+              <img className="productImage" crossOrigin="anonymous" src={`http://localhost:5000/uploads/${product.images}`} alt={product.title} />
                 {product.discount && (
                   <div className="discountBadge">{product.discount}% OFF</div>
                 )}

@@ -258,7 +258,7 @@ const Navbar = () => {
               <div key={item._id} className="cartItem">
                 <img
                   crossOrigin="anonymous"
-                  src={`http://localhost:5000/uploads/${item.image}`}
+                  src={`http://localhost:5000/uploads/${item.images}`}
                   alt={item.name}
                   className="cartItemImage"
                 />

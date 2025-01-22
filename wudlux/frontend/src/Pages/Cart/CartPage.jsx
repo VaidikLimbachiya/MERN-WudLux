@@ -53,7 +53,7 @@ const CartPage = () => {
                   <td className="cart-item-details">
                     <img
                       crossOrigin="anonymous"
-                      src={`http://localhost:5000/uploads/${item.image}`}
+                      src={`http://localhost:5000/uploads/${item.images}`}
                       alt={item.name || "Product image"}
                       className="cart-item-image"
                     />

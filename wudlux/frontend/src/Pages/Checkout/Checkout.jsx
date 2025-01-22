@@ -220,7 +220,7 @@ const Checkout = () => {
               <div key={item.id || index} className="product-box">
                 <img
                   crossOrigin="anonymous"
-                  src= {`http://localhost:5000/uploads/${item.image}`}
+                  src= {`http://localhost:5000/uploads/${item.images}`}
                   alt={item.title}
                   className="product-thumbnail"
                 />
