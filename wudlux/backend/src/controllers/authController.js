@@ -1,18 +1,20 @@
-const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { User } = require("../models/userModel"); // Assuming you have a User model for your MongoDB
 const crypto = require("crypto");
 const { sendEmail } = require("../utils/emailService"); // Helper for sending emails
 
-
+// Register a new user
 exports.register = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
 
+    // Validate required fields
     if (!firstName || !lastName || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
+    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "Email already exists" });
@@ -21,49 +23,67 @@ exports.register = async (req, res) => {
     // Hash the password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new User({ 
-      firstName, 
-      lastName, 
-      email, 
-      password: hashedPassword 
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword,
     });
+
     await newUser.save();
 
     res.status(201).json({ message: "User registered successfully" });
   } catch (err) {
-    res.status(500).json({ message: "Internal server error", error: err.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: err.message });
   }
 };
 
+// User login
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // Validate user
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    // Verify the hashed password
+    // Verify password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    // Generate tokens
-    const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "15m" });
-    const refreshToken = jwt.sign({ id: user._id }, process.env.JWT_REFRESH_SECRET, { expiresIn: "7d" });
+    // Generate JWT tokens
+    const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "15m",
+    });
+    const refreshToken = jwt.sign(
+      { id: user._id },
+      process.env.JWT_REFRESH_SECRET,
+      { expiresIn: "7d" }
+    );
 
-    res.status(200).json({ accessToken, refreshToken, user: { id: user._id, email: user.email } });
+    res.status(200).json({
+      accessToken,
+      refreshToken,
+      user: { id: user._id, email: user.email },
+    });
   } catch (err) {
-    res.status(500).json({ message: "Internal server error", error: err.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: err.message });
   }
 };
 
+// Forgot password - sends email with a reset link
 exports.forgotPassword = async (req, res) => {
-  try {
-    const { email } = req.body;
+  const { email } = req.body;
 
+  try {
     if (!email) {
       return res.status(400).json({ message: "Email is required" });
     }
@@ -96,15 +116,18 @@ exports.forgotPassword = async (req, res) => {
 
     res.status(200).json({ message: "Password reset link sent to your email" });
   } catch (err) {
-    res.status(500).json({ message: "Internal server error", error: err.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: err.message });
   }
 };
 
+// Reset password - sets a new password using the provided token
 exports.resetPassword = async (req, res) => {
-  try {
-    const { token } = req.params;
-    const { password } = req.body;
+  const { token } = req.params;
+  const { password } = req.body;
 
+  try {
     if (!password) {
       return res.status(400).json({ message: "Password is required" });
     }
@@ -119,15 +142,17 @@ exports.resetPassword = async (req, res) => {
       return res.status(400).json({ message: "Invalid or expired token" });
     }
 
-    // Hash the new password
+    // Hash the new password and save it
     const hashedPassword = await bcrypt.hash(password, 10);
     user.password = hashedPassword;
-    user.resetToken = null;
-    user.tokenExpiration = null;
+    user.resetToken = null; // Clear the reset token
+    user.tokenExpiration = null; // Clear the token expiration
     await user.save();
 
     res.status(200).json({ message: "Password reset successfully" });
   } catch (err) {
-    res.status(500).json({ message: "Internal server error", error: err.message });
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: err.message });
   }
 };

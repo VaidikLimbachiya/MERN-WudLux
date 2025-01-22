@@ -9,11 +9,7 @@ const ProductCarousel = () => {
   // Fetch products dynamically from backend
   async function fetchProducts() {
     try {
-<<<<<<< HEAD
-      const response = await fetch('http://localhost:5000/api/products/list');
-=======
       const response = await fetch("http://localhost:5000/api/products/list");
->>>>>>> 6e14bba0013fdeb950457e48d82108113b565fa3
       
       if (!response.ok) {
         console.error('HTTP error:', response.status, response.statusText);

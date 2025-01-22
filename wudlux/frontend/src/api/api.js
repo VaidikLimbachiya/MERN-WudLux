@@ -1,20 +1,23 @@
-const BASE_URL = "http://localhost:5000/api";
+// api.js
+export const apiCall = async (url, method = "GET", body = null) => {
+  const headers = {
+    "Content-Type": "application/json",
+  };
 
-export const apiCall = async (endpoint, method = "GET", body = null, headers = {}) => {
-  const response = await fetch(`${BASE_URL}${endpoint}`, {
+  const options = {
     method,
-    headers: {
-      "Content-Type": "application/json",
-      ...headers,
-    },
+    headers,
     body: body ? JSON.stringify(body) : null,
-  });
+  };
 
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || "Something went wrong");
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("API error:", error);
+    throw error; // Re-throw to handle in the component
   }
-
-  return data;
 };
