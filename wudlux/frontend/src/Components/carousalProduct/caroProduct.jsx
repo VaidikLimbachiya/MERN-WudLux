@@ -84,7 +84,7 @@ const ProductCarousel = () => {
           <div className="shop-carousel-card" key={product.id}>
             <div className="shop-carousel-image-wrapper">
               <img
-                src={product.image}
+                src={product.images}
                 alt={product.title}
                 className="shop-carousel-image"
               />

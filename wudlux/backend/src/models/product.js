@@ -1,4 +1,3 @@
-// product.js
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
@@ -17,10 +16,24 @@ const productSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    image: {
+    description: {
       type: String,
-      required: false,
+      required: false, // Optional; set to true if you want it mandatory
+      trim: true,
     },
+    images: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
+    variantImages: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
+    
     price: {
       type: Number,
       required: true,
@@ -52,4 +65,4 @@ const productSchema = new mongoose.Schema(
 
 const Product = mongoose.model("Product", productSchema);
 
-module.exports = Product; // Change to Product (uppercase)
+module.exports = Product;

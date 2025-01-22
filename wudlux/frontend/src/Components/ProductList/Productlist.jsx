@@ -52,7 +52,7 @@ const Productlist = () => {
               <img
               className="shop-product-list-image"
                 crossOrigin="anonymous"
-                src={`http://localhost:5000/uploads/${product.image}`}
+                src={`http://localhost:5000/uploads/${product.images}`}
                 alt={product.title}
               />
               {product.discount && (

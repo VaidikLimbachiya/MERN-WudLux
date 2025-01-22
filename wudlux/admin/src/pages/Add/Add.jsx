@@ -5,7 +5,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const Add = ({ url }) => {
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);
+  const [variantImages, setVariantImages] = useState([]);
   const [data, setData] = useState({
     category: "Serveware",
     subcategory: "Tray",
@@ -15,27 +16,22 @@ const Add = ({ url }) => {
     discount: "",
     size: { L: "", B: "", H: "" },
     materials: "Wood",
+    description: "",
   });
 
   const categories = {
     Serveware: ["Tray", "Platter", "Bowl"],
-    Tableware: [
-      "Fruit Bowl",
-      "Tissue Holder",
-      "Lazy Susan",
-      "Cutlery caddy",
-    ],
+    Tableware: ["Fruit Bowl", "Tissue Holder", "Lazy Susan", "Cutlery Caddy"],
     Kitchenware: ["Chopping Board", "Tissue Holder", "Collection"],
   };
 
-  const materialOptions = ["Acacia Wood", "Teak Wood", "Mongo Wood"];
+  const materialOptions = ["Acacia Wood", "Teak Wood", "Mango Wood"];
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
 
     if (name === "category") {
-      // Update the category and reset subcategory to the first value
       setData((prevData) => ({
         ...prevData,
         category: value,
@@ -51,9 +47,23 @@ const Add = ({ url }) => {
     }
   };
 
+  const onFileChange = (event) => {
+    const files = Array.from(event.target.files);
+    setImages(files);
+  };
+
+  const onVariantFileChange = (event) => {
+    const files = Array.from(event.target.files);
+    const uniqueFiles = files.filter(
+      (file) =>
+        !variantImages.some((existingFile) => existingFile.name === file.name)
+    );
+    setVariantImages((prevImages) => [...prevImages, ...uniqueFiles]);
+  };
+
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-  
+
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("category", data.category);
@@ -61,13 +71,18 @@ const Add = ({ url }) => {
     formData.append("price", Number(data.price));
     formData.append("originalPrice", Number(data.originalPrice));
     formData.append("discount", Number(data.discount));
-    formData.append("size", JSON.stringify([{ L: data.size.L, B: data.size.B, H: data.size.H }]));
-
+    formData.append(
+      "size",
+      JSON.stringify([{ L: data.size.L, B: data.size.B, H: data.size.H }])
+    );
     formData.append("materials", JSON.stringify(data.materials));
-    formData.append("image", image);
-  
+    formData.append("description", data.description);
+
+    images.forEach((image) => formData.append("images", image));
+    variantImages.forEach((image) => formData.append("variantImages", image));
+
     try {
-        const response = await axios.post("http://localhost:5000/api/products/add", formData);
+      const response = await axios.post("http://localhost:5000/api/products/add", formData);
       if (response.data.success) {
         setData({
           title: "",
@@ -78,8 +93,10 @@ const Add = ({ url }) => {
           discount: "",
           size: { L: "", B: "", H: "" },
           materials: [],
+          description: "",
         });
-        setImage(null);
+        setImages([]);
+        setVariantImages([]);
         toast.success(response.data.message);
       } else {
         toast.error(response.data.message);
@@ -88,28 +105,66 @@ const Add = ({ url }) => {
       toast.error("Failed to create product!");
     }
   };
-  
 
   return (
     <div className="add">
-      <form className="" onSubmit={onSubmitHandler}>
+      <form onSubmit={onSubmitHandler}>
+        {/* Image Upload Section */}
         <div className="add-img-upload">
-          <p>Upload Image</p>
-          <label htmlFor="image">
+          <p>Upload Main Images</p>
+          <label htmlFor="images">
             <img
-              className="image"
-              src={image ? URL.createObjectURL(image) : assets.upload_area}
-              alt=""
+              className="image-preview"
+              src={
+                images.length > 0
+                  ? URL.createObjectURL(images[0])
+                  : assets.upload_area
+              }
+              alt="Product"
             />
           </label>
           <input
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={onFileChange}
             type="file"
-            id="image"
+            id="images"
+            multiple
             hidden
             required
           />
         </div>
+
+        {/* Variant Image Upload */}
+        <div className="add-variant-images">
+          <p>Upload Variant Images</p>
+          <label htmlFor="variantImages">
+            <img
+              className="image-preview"
+              src={assets.upload_area}
+              alt="Variant Upload"
+            />
+          </label>
+          <input
+            onChange={onVariantFileChange}
+            type="file"
+            id="variantImages"
+            multiple
+            hidden
+          />
+          {/* Preview Variant Images */}
+          <div className="variant-images-preview">
+            {variantImages.length > 0 &&
+              variantImages.map((image, index) => (
+                <img
+                  key={index}
+                  src={URL.createObjectURL(image)}
+                  alt={`Variant ${index + 1}`}
+                  className="variant-image"
+                />
+              ))}
+          </div>
+        </div>
+
+        {/* Product Title */}
         <div className="add-product-name">
           <p>Product Title</p>
           <input
@@ -121,7 +176,9 @@ const Add = ({ url }) => {
             required
           />
         </div>
-        <div className="add-category  ">
+
+        {/* Category Selection */}
+        <div className="add-category">
           <p>Product Category</p>
           <select
             className="selectt"
@@ -136,6 +193,8 @@ const Add = ({ url }) => {
             ))}
           </select>
         </div>
+
+        {/* Subcategory Selection */}
         <div className="add-subcategory">
           <p>Product Subcategory</p>
           <select
@@ -151,7 +210,9 @@ const Add = ({ url }) => {
             ))}
           </select>
         </div>
-        <div className="add-price  ">
+
+        {/* Price Inputs */}
+        <div className="add-price">
           <p>Product Price</p>
           <input
             className="inputclasa"
@@ -163,7 +224,9 @@ const Add = ({ url }) => {
             required
           />
         </div>
-        <div className="add-original-discount  ">
+
+        {/* Original Price and Discount */}
+        <div className="add-original-discount">
           <p>Original Price</p>
           <input
             onChange={onChangeHandler}
@@ -181,7 +244,9 @@ const Add = ({ url }) => {
             placeholder="10%"
           />
         </div>
-        <div className="add-size  ">
+
+        {/* Size Inputs */}
+        <div className="add-size">
           <p>Product Size (L x B x H)</p>
           <input
             onChange={onChangeHandler}
@@ -205,6 +270,8 @@ const Add = ({ url }) => {
             placeholder="Height"
           />
         </div>
+
+        {/* Materials Selection */}
         <div className="add-materials">
           <p>Materials</p>
           <select
@@ -220,7 +287,21 @@ const Add = ({ url }) => {
             ))}
           </select>
         </div>
-        <button>Add</button>
+
+        {/* Description Input */}
+        <div className="add-description">
+          <p>Description</p>
+          <textarea
+            onChange={onChangeHandler}
+            value={data.description}
+            name="description"
+            placeholder="Product description"
+            rows="4"
+            required
+          />
+        </div>
+
+        <button type="submit">Add Product</button>
       </form>
     </div>
   );

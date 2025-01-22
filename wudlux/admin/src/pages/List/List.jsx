@@ -7,10 +7,11 @@ import "./List.css";
 const List = ({ url }) => {
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingData, setLoadingData] = useState(false); // For data loading state
 
   // Fetch Product List
   const fetchProductList = async () => {
-    setLoading(true);
+    setLoadingData(true);
     try {
       const response = await axios.get(`${url}/api/products/list`);
       if (response.status === 200 && Array.isArray(response.data.data)) {
@@ -21,7 +22,7 @@ const List = ({ url }) => {
     } catch (error) {
       toast.error("Error fetching product list");
     } finally {
-      setLoading(false);
+      setLoadingData(false);
     }
   };
 
@@ -48,8 +49,13 @@ const List = ({ url }) => {
   return (
     <div className="list-container">
       <h2>All Products</h2>
-      {loading ? (
-        <p>Loading...</p>
+      {loadingData ? (
+        <div className="loading">
+          <div className="loading-spinner">
+            <div className="spinner"></div>
+            <p>Loading Products...</p>
+          </div>
+        </div>
       ) : (
         <div className="list-table">
           <div className="list-table-header">
@@ -64,7 +70,17 @@ const List = ({ url }) => {
           {productList.length > 0 ? (
             productList.map((product) => (
               <div key={product._id} className="list-table-row">
-                <img crossOrigin="anonymous" src={`http://localhost:5000/uploads/${product.image}`} alt={product.title} />
+                <img
+                  crossOrigin="anonymous"
+                  src={
+                    product.image
+                      ? `http://localhost:5000/uploads/${product.image}`
+                      : product.variantImages && product.variantImages[0]
+                      ? `http://localhost:5000/uploads/${product.variantImages[0]}`
+                      : "https://via.placeholder.com/150" // Placeholder if no image available
+                  }
+                  alt={product.title}
+                />
                 <p>{product.title}</p>
                 <p>{product.category}</p>
                 <p>₹{product.price}</p>
@@ -78,7 +94,9 @@ const List = ({ url }) => {
               </div>
             ))
           ) : (
-            <p>No products available.</p>
+            <div className="empty">
+              <p>No products available.</p>
+            </div>
           )}
         </div>
       )}
