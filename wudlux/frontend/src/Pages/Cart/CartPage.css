@@ -109,7 +109,7 @@ ul{
   margin: 0;
 }
 .cart-quantity-controls {
-  /* display: flex; */
+  display: flex;
   align-items: center;
   /* justify-content: center; */
   border: 1px solid #ddd;

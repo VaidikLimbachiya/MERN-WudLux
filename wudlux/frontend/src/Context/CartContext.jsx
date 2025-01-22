@@ -38,11 +38,11 @@ export const CartProvider = ({ children }) => {
         )
         .filter((item) => item.quantity > 0) // Remove items with 0 quantity
     );
-  };  
-
+  };
   const removeItem = (id) => {
     setCartItems((prev) => prev.filter((item) => item._id !== id));
   };
+  
   
 
   const clearCart = () => {
