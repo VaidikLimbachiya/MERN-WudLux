@@ -95,9 +95,10 @@ const ProductCarousel = () => {
             </div>
             <div className="shop-carousel-details">
               <p className="shop-carousel-product-title">{product.title}</p>
+              <p className="shop-carousel-product-title">{product.description}</p>
               <div className="shop-carousel-product-price">
                 <span className="shop-carousel-current-price">
-                  {product.price}
+                ₹{product.price}
                 </span>
                 <span className="shop-carousel-original-price">
                   {product.originalPrice}

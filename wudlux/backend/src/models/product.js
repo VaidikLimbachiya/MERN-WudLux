@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      required: false, // Optional; set to true if you want it mandatory
+      required: true, // Optional; set to true if you want it mandatory
       trim: true,
     },
     images: [

@@ -19,6 +19,7 @@ const parsedMaterials = (typeof materials === "string") ? JSON.parse(materials) 
     category: req.body.category,
     subcategory: req.body.subcategory,
     title: req.body.title,
+    description: req.body.description,
     price: req.body.price,
     originalPrice: req.body.originalPrice,
     discount: req.body.discount,
