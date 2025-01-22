@@ -52,10 +52,10 @@ const Products = () => {
         ) : error ? (
           <div>Error: {error}</div> // Error message
         ) : products.length > 0 ? (
-          products.slice(0,8).map((product) => (
-            <div className="productCard" key={product.id}>
+          products.slice(0,8).map((product , index) => (
+            <div className="productCard" key={product.id || index}>
               <div className="productImageWrapper">
-              <img crossOrigin="anonymous" src={`http://localhost:5000/uploads/${product.image}`} alt={product.title} />
+              <img className="productImage" crossOrigin="anonymous" src={`http://localhost:5000/uploads/${product.image}`} alt={product.title} />
                 {product.discount && (
                   <div className="discountBadge">{product.discount}% OFF</div>
                 )}

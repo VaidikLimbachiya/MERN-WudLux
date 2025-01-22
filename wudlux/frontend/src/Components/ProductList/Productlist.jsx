@@ -50,6 +50,7 @@ const Productlist = () => {
           >
             <div className="shop-product-list-image-wrapper">
               <img
+              className="shop-product-list-image"
                 crossOrigin="anonymous"
                 src={`http://localhost:5000/uploads/${product.image}`}
                 alt={product.title}

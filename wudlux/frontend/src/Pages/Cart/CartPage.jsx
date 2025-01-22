@@ -46,7 +46,7 @@ const CartPage = () => {
             <tbody>
               {cartItems.map((item) => (
                 <tr className="tableRow" key={item._id || item.id}>
-                  {" "}
+                
                   {/* Ensure unique key */}
                   <td className="cart-item-details">
                     <img
@@ -58,11 +58,11 @@ const CartPage = () => {
                     <div className="cart-item-info">
                       <h4>{item.title || "Unnamed Product"}</h4>
                       <p>
-                        Category:{" "}
+                        Category:
                         {item.category ? item.category : "No category"}
                       </p>
                       <p className="cart-item-size">
-                        Size:{" "}
+                        Size:
                         {Array.isArray(item.size)
                           ? // If size is an array, join each item's dimensions into a single line
                             item.size
