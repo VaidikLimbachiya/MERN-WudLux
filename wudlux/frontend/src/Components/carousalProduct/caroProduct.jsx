@@ -9,18 +9,18 @@ const ProductCarousel = () => {
   // Fetch products dynamically from backend
   async function fetchProducts() {
     try {
-      const response = await fetch('/api/products');
+      const response = await fetch('http://localhost:5000/api/products/list');
       
       if (!response.ok) {
         console.error('HTTP error:', response.status, response.statusText);
         return;
       }
-      
+
       const result = await response.json();
   
       if (result.success && Array.isArray(result.data)) {
-        console.log('Products fetched:', result.data);
-        setProducts(result.data); // Set the fetched products to state
+        console.log('Products fetched:',result.data);
+        setProducts(result.data); 
       } else {
         console.error('Unexpected API response format:', result);
       }
