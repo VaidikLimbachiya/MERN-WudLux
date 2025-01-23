@@ -1,4 +1,3 @@
-// import React from 'react';
 import './categories.css'; // Single CSS file
 
 // Import images from the assets folder
@@ -8,8 +7,7 @@ import choppingBoardImage from '../../assets/choppingBoard.png';
 import cheeseBoardImage from '../../assets/cheeseBoard.png';
 import chipDipImage from '../../assets/chip.png';
 import bowlsImage from '../../assets/bowl.png';
-import { Link } from 'react-router-dom';
-// import KitchenWare from '../../Pages/kichenWare/KitchenWare';
+import { Link, useNavigate } from 'react-router-dom';
 
 const categories = [
   { image: trayImage, title: 'Tray' },
@@ -21,6 +19,14 @@ const categories = [
 ];
 
 const Categories = () => {
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (subCategoryText) => {
+    // Example logic: navigate with the category in the query string
+    const queryParams = `subcategory=${subCategoryText}`;
+    navigate(`/products?${queryParams}`);
+  };
+
   return (
     <div className="categoriesContainer">
       {/* Heading Section */}
@@ -37,17 +43,20 @@ const Categories = () => {
         {categories.map((category, index) => (
           <div className="categoryCard" key={index}>
             <div className="categoryHoverEffect">
-              <Link to= /*{`/category/${category.title}`}*/ "/Serveware/ServingTray">
-              <img
-                loading="lazy"
-                src={category.image}
-                alt={`${category.title} category`}
-                className="categoryImage"
-              />
-              <div className="hoverOverlay">
-                <span>+</span>
+              <div
+                onClick={() => handleCategoryClick(category.title)} // Pass category title for navigation
+                className="categoryClickArea"
+              >
+                <img
+                  loading="lazy"
+                  src={category.image}
+                  alt={`${category.title} category`}
+                  className="categoryImage"
+                />
+                <div className="hoverOverlay">
+                  <span>+</span>
+                </div>
               </div>
-              </Link>
             </div>
             <div className="categoryTitle">{category.title}</div>
           </div>

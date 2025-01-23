@@ -88,3 +88,23 @@ module.exports.removeProduct = async (req, res) => {
     res.json({ success: false, message: "Error removing product" });
   }
 };
+
+// Controller for fetching products by category and subcategory
+module.exports.listProductsByCategory = async (req, res) => {
+  try {
+    const { category, subcategory } = req.query;
+    const filter = {}; // Initialize filter object
+    
+    if (category) filter.category = category;
+if (subcategory) filter.subcategory = { $regex: new RegExp(subcategory, "i") };  // Case-insensitive match
+
+    console.log("Filter:", filter); // Debugging line to verify the filter
+
+    const products = await Product.find(filter); // Find products based on filter
+    res.status(200).json({ success: true, data: products });
+  } catch (error) {
+    console.error("Error fetching products by category:", error);
+    res.status(500).json({ success: false, message: "Error fetching products" });
+  }
+};
+

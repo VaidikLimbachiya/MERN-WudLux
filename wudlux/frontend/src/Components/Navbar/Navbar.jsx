@@ -13,11 +13,11 @@ const categories = [
     iconSrc:
       "https://cdn.builder.io/api/v1/image/assets/TEMP/a1cfa473b4c3091f113c79eb7155d25fb5458b102ed1a68b6ce2308227f94925",
     dropdownItems: [
-      { text: "Serving Tray", link: "/Serveware/ServingTray" },
-      { text: "Serving Tray with Drawer", link: "/ServeWare/withDrawer" },
-      { text: "Beer Caddy", link: "/Serveware/BeerCaddy" },
-      { text: "Serving Platter", link: "/Serveware/ServingPlatter" },
-      { text: "Wine Serving Tray", link: "/Serveware/WineServingTray" },
+      { text: "Tray", link: "/Serveware/ServingTray" },
+      { text: "Platter", link: "/ServeWare/withDrawer" },
+      { text: "Bowl", link: "/Serveware/BeerCaddy" },
+      // { text: "Serving Platter", link: "/Serveware/ServingPlatter" },
+      // { text: "Wine Serving Tray", link: "/Serveware/WineServingTray" },
     ],
   },
   {
@@ -26,7 +26,7 @@ const categories = [
       "https://cdn.builder.io/api/v1/image/assets/TEMP/93802c32367c70d0f1cbcf887c7e26e1d4f770ebf8473953950cd1af3bf76896",
     dropdownItems: [
       { text: "Chopping Board", link: "/Kitchenware/ChoppingBoard" },
-      { text: "Butcher Board", link: "/Kitchenware/ButcherBoard" },
+      { text: "Tissue Holder", link: "/Kitchenware/Tissue Holder" },
     ],
   },
   {
@@ -34,9 +34,9 @@ const categories = [
     iconSrc:
       "https://cdn.builder.io/api/v1/image/assets/TEMP/c9ea7504e7b254d854b06a79b48cf39d39e2ab6c6f3afb37338801a7c60027f8",
     dropdownItems: [
-      { text: "Lazy Susan", link: "/Tableware/Lazysusan" },
-      { text: "Coffee Pods Drawer", link: "/Tableware/CoffeePods" },
+      { text: "Fruit Bowl", link: "/Tableware/FruitBowl" },
       { text: "Cutlery Caddy", link: "/Tableware/CutleryCaddy" },
+      { text: "Lazy Susan", link: "/Tableware/LazySusan"},
     ],
   },
   {
@@ -47,6 +47,7 @@ const categories = [
   },
 ];
 
+
 const Navbar = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -56,6 +57,7 @@ const Navbar = () => {
   const [productToRemove, setProductToRemove] = useState(null); // Product to remove
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Popup state
   const [isSliderOpen] = useState(false); // Fix initial state of slider to false
+
   const {
     cartItems,
     totalQuantity,
@@ -81,9 +83,30 @@ const Navbar = () => {
     }
   };
 
-  const handleCategoryClick = (index) => {
-    setActiveCategory(activeCategory === index ? null : index);
+  const handleCategoryClick = async (categoryText, subCategoryText = "") => {
+    if (subCategoryText) {
+      // If a subcategory is clicked, fetch products for that subcategory
+      try {
+        const products = await fetchProductsByCategory(categoryText, subCategoryText);
+        console.log("Fetched products:", products); // Debug: View fetched products
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+  
+      // Navigate with both category and subcategory query parameters
+      const queryParams = `category=${categoryText}&subcategory=${subCategoryText}`;
+      navigate(`/products?${queryParams}`);
+    } else {
+      // Handle only category click (e.g., open/close the dropdown)
+      setActiveCategory(activeCategory === categoryText ? null : categoryText);
+    }
   };
+  
+  
+  
+  
+  
+  
 
   const toggleSearch = () => setIsSearchOpen((prev) => !prev);
   const toggleCart = () => setIsCartOpen((prev) => !prev);
@@ -124,6 +147,13 @@ const Navbar = () => {
     setIsSearchOpen(false); // Close search slider when navigating
     navigate(path); // Navigate to the desired path
   };
+  const fetchProductsByCategory = async (categoryText, subCategoryText) => {
+    // Make an API call with category and subcategory as query parameters
+    const response = await fetch(`/api/products?category=${categoryText}&subcategory=${subCategoryText}`);
+    const data = await response.json();
+    return data;
+  };
+  
 
   return (
     <>
@@ -138,49 +168,50 @@ const Navbar = () => {
             />
           </div>
           <div className="navCategories">
-            {categories.map((category) => (
-              <div
-                key={category.text} // Use a unique property for the key
-                className={`categoryWrapper ${
-                  activeCategory === category.text ? "active" : ""
-                }`}
-              >
-                <div
-                  onClick={() => handleCategoryClick(category.text)}
-                  role="button"
-                  tabIndex={0}
-                  aria-expanded={activeCategory === category.text}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      handleCategoryClick(category.text);
-                    }
-                  }}
-                  className="categoryButton"
-                >
-                  <span className="categoryText">{category.text}</span>
-                  <img
-                    src={category.iconSrc}
-                    alt={`${category.text} Icon`}
-                    className="dropdownIcon"
-                  />
-                </div>
-                {activeCategory === category.text && (
-                  <div className="dropdownMenu">
-                    {category.dropdownItems.map((item) => (
-                      <NavLink
-                        key={item.link} // Use a unique property for the key
-                        to={item.link}
-                        className="dropdownItem"
-                        onClick={() => setActiveCategory(null)}
-                      >
-                        {item.text}
-                      </NavLink>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+  {categories.map((category) => (
+    <div
+      key={category.text} // Use a unique property for the key
+      className={`categoryWrapper ${activeCategory === category.text ? "active" : ""}`}
+    >
+      <div
+        onClick={() => handleCategoryClick(category.text)}
+        role="button"
+        tabIndex={0}
+        aria-expanded={activeCategory === category.text}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            handleCategoryClick(category.text);
+          }
+        }}
+        className="categoryButton"
+      >
+        <span className="categoryText">{category.text}</span>
+        <img
+          src={category.iconSrc}
+          alt={`${category.text} Icon`}
+          className="dropdownIcon"
+        />
+      </div>
+      {activeCategory === category.text && (
+        <div className="dropdownMenu">
+         {category.dropdownItems.map((item) => (
+  <NavLink
+    key={item.link}
+    to="#"
+    className="dropdownItem"
+    onClick={() => handleCategoryClick(category.text, item.text)} // Fetch products when clicking on a subcategory
+  >
+    {item.text}
+  </NavLink>
+))}
+
+
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
           <div className="promotionBanner">
             <span className="promoText">Summer sale - 50% OFF!</span>
             <button
