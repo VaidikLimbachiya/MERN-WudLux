@@ -112,29 +112,87 @@
 
 /* Responsive Design */
 @media (max-width: 991px) {
+  .categoriesSlider {
+    gap: 15px; /* Reduce gap between cards */
+    padding: 0 8px; /* Adjust padding for smaller screens */
+  }
+
   .categoryCard {
-    width: 150px; /* Slightly smaller width for smaller screens */
+    width: 160px; /* Smaller card width */
+  }
+
+  .categoryHoverEffect {
+    width: 140px;
+    height: 140px; /* Smaller hover effect */
   }
 
   .categoryTitle {
-    font-size: 16px;
+    font-size: 16px; /* Smaller title font size */
   }
 }
 
+/* Media Query: 768px (Small Screens) */
 @media (max-width: 768px) {
-  .categoriesGrid {
-    gap: 15px;
+  .categoriesSlider {
+    gap: 12px; /* Further reduce gap */
+    padding: 0 6px;
+  }
+
+  .categoryCard {
+    width: 140px; /* Adjust card size */
+  }
+
+  .categoryHoverEffect {
+    width: 120px;
+    height: 120px;
+  }
+
+  .categoryTitle {
+    font-size: 14px; /* Smaller font for titles */
   }
 
   .headingTitle {
-    font-size: 28px; /* Smaller font size on smaller screens */
+    font-size: 28px; /* Adjust heading size */
   }
 
   .headingUnderline {
-    width: 40px; /* Adjust line width for smaller screens */
+    width: 50px; /* Adjust underline size */
   }
 
   .headingSubtitle {
-    font-size: 14px; /* Slightly smaller subtitle text */
+    font-size: 14px; /* Adjust subtitle font size */
+  }
+}
+
+/* Media Query: 576px (Extra Small Screens) */
+@media (max-width: 576px) {
+  .categoriesSlider {
+    gap: 0px; /* Minimal gap for smaller screens */
+    padding: 0 5px;
+  }
+
+  .categoryCard {
+    width: 120px; /* Smaller cards */
+  }
+
+  .categoryHoverEffect {
+    width: 100px;
+    height: 100px;
+  }
+
+  .categoryTitle {
+    font-size: 12px; /* Smaller font size for titles */
+  }
+
+  .headingTitle {
+    font-size: 24px; /* Even smaller heading size */
+  }
+
+  .headingUnderline {
+    width: 40px; /* Minimal underline width */
+  }
+
+  .headingSubtitle {
+    font-size: 12px; /* Subtitle fits small screens */
   }
 }

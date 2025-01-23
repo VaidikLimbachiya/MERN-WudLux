@@ -221,6 +221,7 @@
 
   .sale-offer {
     font-size: 1rem;
+
   }
 
   .shop-now {
@@ -243,29 +244,44 @@
 
   .banner-content {
     margin: 0 auto;
-    max-width: 80%;
+    max-width: 100%;
+   
   }
 
   .slider-heading {
     font-size: 2rem;
+    margin-left: -15.2rem;
+  }
+  .slider-SubHeading{
+    font-size: 2.5rem;
+    margin-left: -15.5rem;
   }
 
   .sale-offer {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+   margin-left: -15rem;
   }
 
   .line-offer {
-    width: 70%;
+    width: 100%;
+    /* margin-left: ; */
   }
 
   .shop-now {
     padding: 8px 12px;
     font-size: 0.8rem;
+    margin-left: -25rem;
   }
 }
 
 /* Extra Small Devices (Very Small Phones) */
-@media (max-width: 576px) {
+@media (max-width: 576px) and (max-width: 320px) {
+
+  .banner-content {
+    margin: 0 auto;
+    max-width: 100%;
+    margin-left: -9px;
+  }
   .slider-track {
     height: 300px;
   }
@@ -273,18 +289,70 @@
   .banner-content {
     margin: 0 auto;
     max-width: 90%;
+    margin-left: -5px;
   }
 
   .slider-heading {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: -2px;
   }
-
+  
+.slider-SubHeading{
+  font-size: 2.5rem;
+  margin-left: 5px;
+}
   .sale-offer {
     font-size: 0.8rem;
+    margin-left: -6px;
   }
 
+  .line-offer {
+    width: 100%;
+    margin-left: -1px;
+  }
   .shop-now {
     padding: 6px 10px;
     font-size: 0.7rem;
+    margin-right: 9rem;
   }
 }
+
+/* Media Query: max-width 320px */
+@media (max-width: 320px) {
+  .banner-content {
+    margin: 0 auto;
+    max-width: 100%;
+    margin-left: 0; /* Adjust for very small screens */
+  }
+
+  .slider-track {
+    height: 220px; /* Reduce slider height for small screens */
+  }
+
+  .slider-heading {
+    font-size: 1.2rem; /* Adjust heading size for better readability */
+    margin-bottom: 0px;
+  }
+
+  .slider-SubHeading {
+    font-size: 1rem; /* Adjust subheading size */
+    margin-left: 0; /* Remove margin */
+  }
+
+  .sale-offer {
+    font-size: 0.8rem; /* Properly sized font for small screens */
+    margin-left: 0; /* Remove margin */
+  }
+
+  .line-offer {
+    width: 100%;
+    margin-left: 0; /* Remove margin */
+  }
+
+  .shop-now {
+    padding: 4px 6px; /* Slightly smaller padding for button */
+    font-size: 0.7rem; /* Small font size for button text */
+    margin-right: 3rem; /* Adjust margin for better alignment */
+  }
+}
+

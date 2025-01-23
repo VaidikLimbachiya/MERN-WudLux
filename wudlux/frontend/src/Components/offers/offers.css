@@ -103,3 +103,58 @@
   right: -5px;
 }
 
+
+/* Responsive design for offer cards */
+@media (max-width: 1024px) {
+  .offers-container {
+    flex-direction: row;
+    flex-wrap: wrap; /* Stack items on smaller screens */
+    justify-content: center;
+  }
+
+  .offer-card {
+    width: 48%; /* Adjust width for tablets */
+    margin-bottom: 15px; /* Add spacing between rows */
+  }
+
+  .offer-subtitle {
+    font-size: 28px; /* Reduce text size for better fit */
+    width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .offers-container {
+    flex-direction: column;
+    gap: 15px; /* Space between stacked cards */
+  }
+
+  .offer-card {
+    width: 100%; /* Full width for mobile screens */
+    margin: 0 auto; /* Center align */
+  }
+
+  .offer-subtitle {
+    font-size: 22px; /* Further reduce font size */
+  }
+
+  .offer-button {
+    font-size: 16px; /* Adjust button size */
+  }
+}
+
+@media (max-width: 480px) {
+  .offer-subtitle {
+    font-size: 18px; /* Smaller subtitle for very small screens */
+  }
+
+  .offer-titlee {
+    font-size: 12px; /* Reduce title size */
+  }
+
+  .offer-button {
+    font-size: 14px; /* Smaller button size */
+  }
+}
+
+
