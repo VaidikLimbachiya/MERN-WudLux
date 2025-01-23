@@ -1,39 +1,61 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Productlist.css";
 import bagIcon from "../../assets/bag.png";
 import { useCartContext } from "../../Context/CartContext";
 
 const Productlist = () => {
-  const { addToCart, cartItems = {} } = useCartContext();
+  const { addToCart, cartItems = [] } = useCartContext();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/api/products/list");
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        const result = await response.json();
-        if (result.success) {
-          setProducts(result.data);
-        } else {
-          throw new Error("Failed to fetch products: " + result.message);
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+  // Get category and subcategory from query params
+  // Get category and subcategory from query params
+const queryParams = new URLSearchParams(location.search);
+const category = queryParams.get("category");
+const subcategory = queryParams.get("subcategory");
+
+useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      let url = "http://localhost:5000/api/products/listByCategory"; // Initial URL
+
+      // Add query parameters for category and subcategory
+      const params = [];
+      if (category) params.push(`category=${category}`);
+      if (subcategory) params.push(`subcategory=${subcategory}`);
+
+      if (params.length > 0) {
+        url += `?${params.join("&")}`; // Append query parameters
       }
-    };
 
-    fetchProducts();
-  }, []);
+      console.log("Fetching products from URL:", url); // Debugging line to check URL
+
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
+      const result = await response.json();
+      if (result.success) {
+        setProducts(result.data);
+      } else {
+        throw new Error("Failed to fetch products: " + result.message);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchProducts();
+}, [category, subcategory]); // Refetch when category or subcategory changes
+
 
   return (
     <div className="shop-product-list-grid">
@@ -50,7 +72,7 @@ const Productlist = () => {
           >
             <div className="shop-product-list-image-wrapper">
               <img
-              className="shop-product-list-image"
+                className="shop-product-list-image"
                 crossOrigin="anonymous"
                 src={`http://localhost:5000/uploads/${product.images}`}
                 alt={product.title}

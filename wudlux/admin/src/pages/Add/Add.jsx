@@ -27,6 +27,13 @@ const Add = ({ url }) => {
 
   const materialOptions = ["Acacia Wood", "Teak Wood", "Mango Wood"];
 
+  const fetchProductsByCategory = async (category, subCategory) => {
+    const query = new URLSearchParams({ category, subCategory });
+    const response = await fetch(`/api/products/listByCategory?${query}`);
+    const products = await response.json();
+    return products;
+  };
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;

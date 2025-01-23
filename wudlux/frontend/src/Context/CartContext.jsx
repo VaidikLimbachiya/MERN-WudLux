@@ -46,7 +46,7 @@ export const CartProvider = ({ children }) => {
   
 
   const clearCart = () => {
-    setCartItems([]);
+    setCartItems([]);  // This should just reset the cart items, no recursion.
   };
 
   const totalProducts = cartItems.length; // Total unique products
