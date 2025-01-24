@@ -25,7 +25,7 @@ function OurStory() {
 
           {/* Text Content */}
           <div className="content-container">
-            <h1 className="section-title">WUDLUX Story </h1>
+            <h1 className="section-title1">WUDLUX Story </h1>
             <h2 className="section-subtitlee">
               Exclusive Wooden Kitchenware and Serveware
             </h2>

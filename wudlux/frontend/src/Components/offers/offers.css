@@ -1,5 +1,3 @@
-
-
 /* Offers container */
 .offers {
   margin: 10px;
@@ -10,22 +8,28 @@
 .offers-container {
   display: flex;
   padding: 20px;
-  margin-left: 35px; /* Center align container */
+  margin-left: 35px;
+  /* Center align container */
   /* margin-right: auto; */
   justify-content: space-between;
   width: 97%;
   height: relative;
-  gap: 10px; /* Space between cards */
-  flex-wrap: wrap; /* Ensure cards stack on smaller screens */
+  gap: 10px;
+  /* Space between cards */
+  flex-wrap: wrap;
+  /* Ensure cards stack on smaller screens */
 }
 
 /* Offer card styling */
 .offer-card {
   display: flex;
   position: relative;
-  width: 32%; /* Default card width for desktops */
-  height: 50%; /* Default card height */
-  border-radius: 10px; /* Rounded corners */
+  width: 32%;
+  /* Default card width for desktops */
+  height: 50%;
+  /* Default card height */
+  border-radius: 10px;
+  /* Rounded corners */
   overflow: hidden;
 }
 
@@ -33,8 +37,10 @@
 .offer-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure the image covers the card without distortion */
-  border-radius: 10px; /* Keep corners rounded */
+  object-fit: cover;
+  /* Ensure the image covers the card without distortion */
+  border-radius: 10px;
+  /* Keep corners rounded */
 }
 
 /* Overlay text styling */
@@ -107,18 +113,27 @@
 /* Responsive design for offer cards */
 @media (max-width: 1024px) {
   .offers-container {
+    display: flex;
     flex-direction: row;
-    flex-wrap: wrap; /* Stack items on smaller screens */
     justify-content: center;
+    width: 61rem;
+    margin-left: 24px;
+  }
+
+  .offer-overlay {
+    padding-left: 0px;
   }
 
   .offer-card {
-    width: 48%; /* Adjust width for tablets */
-    margin-bottom: 15px; /* Add spacing between rows */
+    width: 48%;
+    /* Adjust width for tablets */
+    margin-bottom: 15px;
+    /* Add spacing between rows */
   }
 
   .offer-subtitle {
-    font-size: 28px; /* Reduce text size for better fit */
+    font-size: 28px;
+    /* Reduce text size for better fit */
     width: auto;
   }
 }
@@ -126,35 +141,60 @@
 @media (max-width: 768px) {
   .offers-container {
     flex-direction: column;
-    gap: 15px; /* Space between stacked cards */
+    margin-left: 13px;
+    gap: 15px;
+    width: 44rem;
+    /* Space between stacked cards */
+  }
+
+  .categoryTitle {
+    font-size: 17px;
+    font-weight: 700;
   }
 
   .offer-card {
-    width: 100%; /* Full width for mobile screens */
-    margin: 0 auto; /* Center align */
+    width: 100%;
+    /* Full width for mobile screens */
+    margin: 0 auto;
+    /* Center align */
   }
 
   .offer-subtitle {
-    font-size: 22px; /* Further reduce font size */
+    font-size: 3rem;
+    /* Further reduce font size *
   }
 
   .offer-button {
-    font-size: 16px; /* Adjust button size */
+    font-size: 16px;
+    /* Adjust button size */
   }
 }
 
 @media (max-width: 480px) {
+
+  .offers-container {
+    width: 321px;
+    height: 40rem;
+    margin-bottom: 21rem;
+    flex-direction: row;
+    margin-left: -7px;
+    gap: 15px;
+    margin-top: -28px;
+}
+
+    /* Space between stacked cards */
   .offer-subtitle {
-    font-size: 18px; /* Smaller subtitle for very small screens */
+    font-size: 27px;
+    /* Smaller subtitle for very small screens */
   }
 
-  .offer-titlee {
-    font-size: 12px; /* Reduce title size */
+  .offer-title {
+    font-size: 12px;
+    /* Reduce title size */
   }
 
   .offer-button {
-    font-size: 14px; /* Smaller button size */
+    font-size: 14px;
+    /* Smaller button size */
   }
 }
-
-

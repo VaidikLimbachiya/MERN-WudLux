@@ -145,6 +145,6 @@
   }
 
   .testimonial-card {
-    flex: 0 0 calc(100% - 20px);
+    flex: 0 0 calc(100% - 10px);
   }
 }

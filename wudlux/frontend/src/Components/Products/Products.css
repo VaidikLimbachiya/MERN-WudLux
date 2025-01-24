@@ -1,7 +1,7 @@
 /* Main Section Container */
 .productsSection {
   text-align: center;
-  padding: 10px 20px;
+  padding: 10px 10px;
   /* background-color: #fff; White background */
 }
 
@@ -258,5 +258,105 @@
       transform: scaleX(1); /* Fill background fully */
       left: 0;
     }
+  }
+}
+
+
+/* For screens larger than 768px (tablet to desktop) */
+@media (max-width: 768px) {
+  .productsGrid {
+    grid-template-columns: 2fr 2fr; /* Stack items in a single column */
+    /* padding-left: 35px; Adjust padding */
+    width: 100%;
+  }
+
+  .productCard {
+    margin: 10px 0; /* Reduce margin between cards */
+  }
+
+  .productImage {
+    height: 250px; /* Adjust product image height */
+  }
+
+  .productsTitle {
+    font-size: 28px; /* Smaller title font */
+  }
+
+  .viewAllButton {
+    padding: 8px 16px; /* Adjust button size */
+  }
+}
+
+/* For screens smaller than 576px (small devices like phones) */
+@media (max-width: 576px) {
+  .productsGrid {
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 15px;
+  }
+
+  .productCard {
+    margin: 8px 0; /* Reduce margins for mobile */
+  }
+
+  .productImage {
+    height: 220px; /* Smaller image for compact view */
+  }
+
+  .productsTitle {
+    font-size: 24px; /* Adjust title size for smaller devices */
+  }
+
+  .viewAllButton {
+    padding: 6px 12px; /* Smaller button for mobile */
+  }
+}
+
+/* For screens smaller than 480px (extra small devices) */
+@media (max-width: 480px) {
+  .productsGrid {
+    grid-template-columns: 1fr; /* Single column for ultra small screens */
+    gap: 10px; /* Adjust gap between items */
+  }
+
+  .productCard {
+    margin: 6px 0; /* Reduce space between cards */
+  }
+
+  .productImage {
+    height: 200px; /* Further reduced image height */
+  }
+
+  .productsTitle {
+    font-size: 22px; /* Even smaller font size */
+  }
+
+  .viewAllButton {
+    font-size: 14px; /* Adjust button font */
+    padding: 6px 12px;
+  }
+}
+
+/* For screens smaller than 320px (extremely small devices like old phones) */
+@media (max-width: 320px) {
+  .productsGrid {
+    grid-template-columns: 1fr; /* Force a single column */
+    gap: 8px; /* Reduce gap */
+  }
+
+  .productCard {
+    margin: 4px 0; /* Further reduce margin between items */
+  }
+
+  .productImage {
+    height: 180px; /* Very small product image */
+  }
+
+  .productsTitle {
+    font-size: 30px; /* Minimized font size */
+  }
+
+  .viewAllButton {
+    font-size: 12px; /* Adjust button font size */
+    padding: 5px 10px;
   }
 }

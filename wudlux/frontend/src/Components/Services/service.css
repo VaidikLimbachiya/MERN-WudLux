@@ -46,217 +46,86 @@
   color: white;
 }
 
-/* Responsive Design for Services */
+/* Responsive Styles */
+
+/* For 991px and larger (Tablet and up) */
 @media (max-width: 991px) {
+  .services-container {
+    gap: 30px; /* Slightly reduce gap on tablet-sized screens */
+  }
+
+  .service-card {
+    width: 220px; /* Slightly reduce width for tablets */
+  }
+}
+
+/* For 768px and smaller (Large mobile and tablets) */
+@media (max-width: 768px) {
   .services-container {
     gap: 20px;
   }
 
   .service-card {
-    width: calc(50% - 20px); /* Two cards per row on medium screens */
+    width: 200px; /* Reduce width for smaller tablets */
   }
 }
 
-@media (max-width: 768px) {
+/* For 576px and smaller (Mobile landscape) */
+@media (max-width: 576px) {
+  .services-container {
+    gap: 15px; /* Reduce gap further for mobile landscape */
+  }
+
   .service-card {
-    width: calc(100% - 20px); /* Full width for smaller screens */
+    width: 180px; /* Further reduce width */
+    padding: 15px; /* Reduce padding to fit the smaller screen */
+  }
+
+  .service-title {
+    font-size: 18px; /* Slightly smaller font size */
+  }
+
+  .service-description {
+    font-size: 12px; /* Adjust description font size */
   }
 }
 
-/* Testimonials Section */
-.testimonials-section {
-  background-color: #fff;
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.testimonials-title {
-  font-family: "Playfair Display", serif;
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333333;
-}
-
-.testimonials-subtitle {
-  font-family: "DM Sans", sans-serif;
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-/* Testimonials Carousel */
-.testimonials-carousel {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  overflow: hidden;
-  flex-wrap: nowrap;
-}
-
-.testimonial-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 300px;
-  flex: 0 0 calc(25% - 20px);
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  transition: transform 0.3s ease;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-5px);
-}
-
-.testimonial-rating {
-  color: #f5c518;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.testimonial-review {
-  font-family: "Arial", sans-serif;
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.testimonial-user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.testimonial-user-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #ddd;
-}
-
-.testimonial-user-name {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-}
-
-.testimonial-user-title {
-  font-size: 14px;
-  color: #666;
-}
-
-.underline {
-  height: 2px;
-  background-color: #000000;
-  margin: 10px auto;
-}
-
-/* Carousel Controls */
-.carousel-controls {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.carousel-button {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 18px;
-  transition: background-color 0.3s;
-}
-
-.carousel-button:hover {
-  background-color: #000000;
-  border-color: #f5c518;
-  color: #fff;
-}
-
-/* Responsive Design for Testimonials */
-@media (max-width: 991px) {
-  .testimonials-carousel {
-    gap: 30px;
-    flex-wrap: wrap;
-  }
-
-  .testimonial-card {
-    flex: 0 0 calc(45% - 20px); /* Two cards per row on medium screens */
-  }
-
-  .testimonials-title {
-    font-size: 28px;
-  }
-
-  .testimonials-subtitle {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 768px) {
-  .testimonials-carousel {
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .testimonial-card {
-    flex: 0 0 calc(100% - 20px); /* Full width on smaller screens */
-  }
-
-  .testimonials-title {
-    font-size: 24px;
-  }
-
-  .testimonials-subtitle {
-    font-size: 12px;
-  }
-}
-
+/* For 480px and smaller (Mobile portrait) */
 @media (max-width: 480px) {
-  .testimonials-title {
-    font-size: 20px;
+  .services-container {
+    gap: 10px; /* Reduce gap even more */
   }
 
-  .testimonials-subtitle {
-    font-size: 10px;
+  .service-card {
+    width: 160px; /* Reduce width even further for very small screens */
+    padding: 10px; /* Reduce padding */
   }
 
-  .testimonial-card {
-    padding: 20px;
+  .service-title {
+    font-size: 16px; /* Make title smaller on very small screens */
   }
 
-  .testimonial-review {
-    font-size: 12px;
+  .service-description {
+    font-size: 12px; /* Adjust description font size */
+  }
+}
+
+/* For 320px and smaller (Very small mobile devices) */
+@media (max-width: 320px) {
+  .services-container {
+    gap: 5px; /* Minimal gap for very small screens */
   }
 
-  .testimonial-user-image {
-    width: 35px;
-    height: 35px;
+  .service-card {
+    width: 140px; /* Further reduce width for tiny screens */
+    padding: 8px; /* Reduce padding to fit content */
   }
 
-  .testimonial-user-name {
-    font-size: 12px;
+  .service-title {
+    font-size: 14px; /* Very small font size for the title */
   }
 
-  .testimonial-user-title {
-    font-size: 10px;
-  }
-
-  .carousel-button {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
+  .service-description {
+    font-size: 10px; /* Smaller font size for the description */
   }
 }

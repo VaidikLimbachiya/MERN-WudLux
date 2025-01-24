@@ -275,7 +275,7 @@
 }
 
 /* Extra Small Devices (Very Small Phones) */
-@media (max-width: 576px) and (max-width: 320px) {
+@media (max-width: 576px) {
 
   .banner-content {
     margin: 0 auto;
@@ -286,6 +286,11 @@
     height: 300px;
   }
 
+  .banner {
+    padding: 0 20px;
+    justify-content: center; /* Center-align text for smaller screens */
+    text-align: center;
+  }
   .banner-content {
     margin: 0 auto;
     max-width: 90%;
@@ -317,8 +322,62 @@
   }
 }
 
+/* For smaller devices (e.g., mobile phones) with a max width of 480px */
+@media (max-width: 480px) {
+
+  .banner {
+    padding: 0 15px; /* Reduce padding for slightly larger screens */
+    justify-content: center; /* Center-align text for better presentation */
+    text-align: center;
+  }
+
+  .banner-content {
+    margin: 0 auto;
+    max-width: 100%;
+    margin-left: 0; /* Ensure no extra margin on smaller screens */
+  }
+
+  .slider-track {
+    height: 250px; /* Slightly increase height from 320px version */
+  }
+
+  .slider-heading {
+    font-size: 1.5rem; /* Adjust heading size for better readability on small screens */
+    margin-bottom: 5px; /* Allow some space below the heading */
+    margin-left: 0rem;
+  }
+
+  .slider-SubHeading {
+    font-size: 1.6rem; /* Slightly larger font for subheading */
+    margin-left: -6rem; /* Remove left margin for proper alignment */
+  }
+
+  .sale-offer {
+    font-size: 1rem; /* Slightly bigger font size for sale text */
+    margin-left: 0; /* Remove unnecessary margin */
+  }
+
+  .line-offer {
+    width: 100%; /* Full width for the offer line */
+    margin-left: 0; /* Remove extra margin */
+  }
+
+  .shop-now {
+    padding: 6px 8px; /* Adjust button padding for better usability */
+    font-size: 1rem; /* Make font size slightly larger for readability */
+    margin-left: 0;
+  }
+}
+
+
 /* Media Query: max-width 320px */
 @media (max-width: 320px) {
+
+  .banner {
+    padding: 0 20px;
+    justify-content: center; /* Center-align text for smaller screens */
+    text-align: center;
+  }
   .banner-content {
     margin: 0 auto;
     max-width: 100%;
@@ -332,11 +391,12 @@
   .slider-heading {
     font-size: 1.2rem; /* Adjust heading size for better readability */
     margin-bottom: 0px;
+    margin-left: 0rem;
   }
 
   .slider-SubHeading {
-    font-size: 1rem; /* Adjust subheading size */
-    margin-left: 0; /* Remove margin */
+    font-size: 1.4rem;
+    margin-left: -7rem;/* Remove margin */
   }
 
   .sale-offer {
@@ -352,7 +412,7 @@
   .shop-now {
     padding: 4px 6px; /* Slightly smaller padding for button */
     font-size: 0.7rem; /* Small font size for button text */
-    margin-right: 3rem; /* Adjust margin for better alignment */
+    margin-left: -2rem;
   }
 }
 
