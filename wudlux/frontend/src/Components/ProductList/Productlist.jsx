@@ -58,6 +58,7 @@ useEffect(() => {
 
 
   return (
+    
     <div className="shop-product-list-grid">
       {error ? (
         <div>Error: {error}</div>
@@ -103,7 +104,7 @@ useEffect(() => {
             </div>
             <div className="shop-product-list-details">
               <p className="shop-product-list-title">{product.title}</p>
-              <p className="shop-product-list-title">{product.description}</p>
+              <p className="shop-product-list-desc">{product.description}</p>
               <div className="shop-product-list-price-details">
                 <span className="shop-product-list-current-price">
                   ₹{product.price.toFixed(2)}

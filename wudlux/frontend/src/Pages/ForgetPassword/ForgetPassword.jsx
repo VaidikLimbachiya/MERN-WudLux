@@ -33,11 +33,11 @@ const ForgotPassword = () => {
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+  
     try {
-      await apiCall("/auth/reset-password", "POST", { email, newPassword });
+      // Only send token and new password in the request body
+      await apiCall("http://localhost:5000/auth/reset-password", "POST", { newPassword });
       setMessage("Your password has been reset successfully.");
-      // You can optionally navigate the user to the login page after a successful password reset
       navigate("/log-in");
     } catch (error) {
       setMessage(error.message || "Failed to reset password. Please try again.");

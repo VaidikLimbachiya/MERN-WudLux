@@ -7,7 +7,11 @@ import choppingBoardImage from '../../assets/choppingBoard.png';
 import cheeseBoardImage from '../../assets/cheeseBoard.png';
 import chipDipImage from '../../assets/chip.png';
 import bowlsImage from '../../assets/bowl.png';
+<<<<<<< HEAD
 import {  useNavigate } from 'react-router-dom';
+=======
+import { useNavigate } from 'react-router-dom';
+>>>>>>> 070dbe25f115170d6be78016f2c7953d3b80b99c
 
 const categories = [
   { image: trayImage, title: 'Tray' },

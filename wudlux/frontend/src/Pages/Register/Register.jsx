@@ -61,7 +61,7 @@
         await registrationSchema.validate(structuredData, { abortEarly: false });
     
         // API call
-        await apiCall("/auth/register", "POST", structuredData);
+        await apiCall("http://localhost:5000/api/auth/register", "POST", structuredData);
     
         toast.success("Registration successful");
         navigate("/log-in");

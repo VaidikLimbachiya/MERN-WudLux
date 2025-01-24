@@ -42,7 +42,7 @@ function App() {
         <Route path="/" element={<Home />} />
 
         {/* Navbar Links */}
-        <Route path="/Serveware/ServingTray" element={<KitchenWare />} />
+        <Route path="/Serveware/Tray" element={<KitchenWare />} />
         <Route path="/ServeWare/withDrawer" element={<KitchenWare />} />
         <Route path="/Serveware/BeerCaddy" element={<KitchenWare />} />
         <Route path="/Serveware/ServingPlatter" element={<KitchenWare />} />
@@ -62,11 +62,10 @@ function App() {
         <Route path="/shipping-policy" element={<Shipping />} />
         <Route path="/log-in" element={<LoginPage />} />
         <Route path="/sign-up" element={<RegistrationForm />} />
-        <Route path="/product-info/:productId" element={<ProductPage />} />
+        <Route path="/product-info/:id" element={<ProductPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/CartPage" element={<CartPage />} />
-
         {/* Routes with Sidebar */}
         <Route
           path="/orders"

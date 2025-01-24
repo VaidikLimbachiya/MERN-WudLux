@@ -1,8 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { User } = require("../models/userModel"); // Assuming you have a User model for your MongoDB
+const User = require("../models/userModel"); // Assuming you have a User model for your MongoDB
 const crypto = require("crypto");
-const { sendEmail } = require("../utils/emailService"); // Helper for sending emails
 
 // Register a new user
 exports.register = async (req, res) => {
@@ -79,62 +78,63 @@ exports.login = async (req, res) => {
   }
 };
 
-// Forgot password - sends email with a reset link
+// Forgot password - No email sending
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
 
   try {
+    // Validate input
     if (!email) {
-      return res.status(400).json({ message: "Email is required" });
+      return res.status(400).json({ message: "Please provide an email address." });
     }
 
+    // Check if the user exists in the database
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: "Email not found" });
+      return res.status(404).json({
+        message: "No account found with this email address. Please check and try again.",
+      });
     }
 
-    // Generate a secure reset token
+    // Generate a secure reset token and hash it
     const resetToken = crypto.randomBytes(32).toString("hex");
-    user.resetToken = resetToken;
+    const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+
+    // Set the token and expiration time in the user's record
+    user.resetToken = hashedToken;
     user.tokenExpiration = Date.now() + 3600000; // Token valid for 1 hour
     await user.save();
 
-    // Send password reset email
-    const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
-    const emailContent = `
-      <h1>Password Reset Request</h1>
-      <p>Click the link below to reset your password:</p>
-      <a href="${resetUrl}">${resetUrl}</a>
-      <p>If you did not request a password reset, you can ignore this email.</p>
-    `;
-
-    await sendEmail({
-      to: user.email,
-      subject: "Password Reset",
-      html: emailContent,
+    // Instead of sending an email, return the token to the user
+    res.status(200).json({
+      message: "Password reset token generated successfully. Use this token to reset your password.",
+      resetToken,  // Send the reset token back to the client (this can be used for password reset)
     });
 
-    res.status(200).json({ message: "Password reset link sent to your email" });
-  } catch (err) {
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: err.message });
+  } catch (error) {
+    console.error("Error in forgotPassword:", error);
+    res.status(500).json({
+      message: "Internal server error",
+      error: error.message,
+    });
   }
 };
 
-// Reset password - sets a new password using the provided token
+// Reset password with token (direct password reset without email)
 exports.resetPassword = async (req, res) => {
-  const { token } = req.params;
-  const { password } = req.body;
+  const { token, password } = req.body;  // Now accepting token and password directly from the body
 
   try {
+    // Validate input
     if (!password) {
       return res.status(400).json({ message: "Password is required" });
     }
 
-    // Find the user by the reset token
+    // Hash the received token and find the user
+    const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+
     const user = await User.findOne({
-      resetToken: token,
+      resetToken: hashedToken,
       tokenExpiration: { $gt: Date.now() }, // Ensure the token is not expired
     });
 
@@ -142,17 +142,20 @@ exports.resetPassword = async (req, res) => {
       return res.status(400).json({ message: "Invalid or expired token" });
     }
 
-    // Hash the new password and save it
-    const hashedPassword = await bcrypt.hash(password, 10);
-    user.password = hashedPassword;
-    user.resetToken = null; // Clear the reset token
-    user.tokenExpiration = null; // Clear the token expiration
+    // Reset the user's password
+    user.password = await bcrypt.hash(password, 10); // Hash the new password
+    user.resetToken = null; // Clear the token
+    user.tokenExpiration = null; // Clear the expiration
     await user.save();
 
-    res.status(200).json({ message: "Password reset successfully" });
-  } catch (err) {
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: err.message });
+    res.status(200).json({
+      message: "Password reset successfully",
+    });
+  } catch (error) {
+    console.error("Error in resetPassword:", error);
+    res.status(500).json({
+      message: "Internal server error",
+      error: error.message,
+    });
   }
 };
