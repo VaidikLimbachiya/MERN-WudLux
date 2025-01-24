@@ -13,7 +13,7 @@
 .productsTitle {
   font-family: 'Playfair Display', serif;
   font-size: 36px;
-  font-weight:400;
+  font-weight:bold;
   margin: 0;
   color: #000;
 }
@@ -86,7 +86,7 @@
   font-family: "Playfair Display", serif;
   font-size: 32px;
   font-weight: bold;
-  color: #333;
+  color: black;
   position: relative;
   display: inline-block;
   margin-bottom: 10px;

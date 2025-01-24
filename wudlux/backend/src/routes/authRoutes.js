@@ -5,18 +5,14 @@ const {
   forgotPassword,
   resetPassword,
 } = require("../controllers/authController");
+
 const router = express.Router();
 
-// User registration route
+// Auth routes
 router.post("/register", register);
-
-// User login route
 router.post("/login", login);
-
-// Forgot password route - sends a password reset link to the user's email
-router.post("/forgot-password", forgotPassword);
-
-// Reset password route - used when the user provides the reset token to set a new password
-router.post("/reset-password/:token", resetPassword);
+router.post("/forgot-password", forgotPassword); // Forgot password route
+router.post("/reset-password", resetPassword); // Reset password route
 
 module.exports = router;
+

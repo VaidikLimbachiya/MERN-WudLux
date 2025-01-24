@@ -16,7 +16,7 @@ const LoginPage = () => {
     setLoading(true);
   
     try {
-      const result = await apiCall("/auth/login", "POST", { email, password });
+      const result = await apiCall("http://localhost:5000/api/auth/login", "POST", { email, password });
   
       toast.success("Login successful");
       localStorage.setItem("accessToken", result.accessToken);

@@ -8,6 +8,7 @@ const Products = () => {
   const { addToCart } = useCartContext();
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
+  const [showAll, setShowAll] = useState(false); // State for "View All"
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -32,6 +33,8 @@ const Products = () => {
     fetchProducts(); // Trigger product fetching on component mount
   }, []);
 
+  const displayedProducts = showAll ? products : products.slice(0, 8);
+
   return (
     <div className="productsSection">
       {/* Header Section */}
@@ -51,11 +54,16 @@ const Products = () => {
           <div>Loading products...</div> // Loading message
         ) : error ? (
           <div>Error: {error}</div> // Error message
-        ) : products.length > 0 ? (
-          products.slice(0,8).map((product , index) => (
+        ) : displayedProducts.length > 0 ? (
+          displayedProducts.map((product, index) => (
             <div className="productCard" key={product.id || index}>
               <div className="productImageWrapper">
-              <img className="productImage" crossOrigin="anonymous" src={`http://localhost:5000/uploads/${product.images}`} alt={product.title} />
+                <img
+                  className="productImage"
+                  crossOrigin="anonymous"
+                  src={`http://localhost:5000/uploads/${product.images}`}
+                  alt={product.title}
+                />
                 {product.discount && (
                   <div className="discountBadge">{product.discount}% OFF</div>
                 )}
@@ -70,7 +78,8 @@ const Products = () => {
                 </div>
               </div>
               <div className="productDetails">
-                <p className="productTitle">{product.title}</p>
+                <p className="shop-product-list-title">{product.title}</p>
+                <p className="shop-product-list-desc">{product.description}</p>
                 <div className="productPrice">
                   <span className="currentPrice">₹{product.price.toFixed(2)}</span>
                   {product.originalPrice && (
@@ -88,9 +97,13 @@ const Products = () => {
       </div>
 
       {/* View All Button */}
-      <div className="viewAllButtonWrapper">
-        <button className="viewAllButton">View All →</button>
-      </div>
+      {!showAll && (
+        <div className="viewAllButtonWrapper">
+          <button className="viewAllButton" onClick={() => setShowAll(true)}>
+            View All →
+          </button>
+        </div>
+      )}
     </div>
   );
 };
