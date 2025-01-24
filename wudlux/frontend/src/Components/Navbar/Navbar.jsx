@@ -36,7 +36,7 @@ const categories = [
     dropdownItems: [
       { text: "Fruit Bowl", link: "/Tableware/FruitBowl" },
       { text: "Cutlery Caddy", link: "/Tableware/CutleryCaddy" },
-      { text: "Lazy Susan", link: "/Tableware/LazySusan"},
+      { text: "Lazy Susan", link: "/Tableware/LazySusan" },
     ],
   },
   {
@@ -46,7 +46,6 @@ const categories = [
     dropdownItems: [{ text: "Bella", link: "/Collections/Bella" }],
   },
 ];
-
 
 const Navbar = () => {
   const [activeCategory, setActiveCategory] = useState(null);
@@ -87,12 +86,15 @@ const Navbar = () => {
     if (subCategoryText) {
       // If a subcategory is clicked, fetch products for that subcategory
       try {
-        const products = await fetchProductsByCategory(categoryText, subCategoryText);
+        const products = await fetchProductsByCategory(
+          categoryText,
+          subCategoryText
+        );
         console.log("Fetched products:", products); // Debug: View fetched products
       } catch (error) {
         console.error("Error fetching products:", error);
       }
-  
+
       // Navigate with both category and subcategory query parameters
       const queryParams = `category=${categoryText}&subcategory=${subCategoryText}`;
       navigate(`/products?${queryParams}`);
@@ -101,12 +103,6 @@ const Navbar = () => {
       setActiveCategory(activeCategory === categoryText ? null : categoryText);
     }
   };
-  
-  
-  
-  
-  
-  
 
   const toggleSearch = () => setIsSearchOpen((prev) => !prev);
   const toggleCart = () => setIsCartOpen((prev) => !prev);
@@ -149,11 +145,12 @@ const Navbar = () => {
   };
   const fetchProductsByCategory = async (categoryText, subCategoryText) => {
     // Make an API call with category and subcategory as query parameters
-    const response = await fetch(`/api/products?category=${categoryText}&subcategory=${subCategoryText}`);
+    const response = await fetch(
+      `/api/products?category=${categoryText}&subcategory=${subCategoryText}`
+    );
     const data = await response.json();
     return data;
   };
-  
 
   return (
     <>
@@ -168,49 +165,51 @@ const Navbar = () => {
             />
           </div>
           <div className="navCategories">
-  {categories.map((category) => (
-    <div
-      key={category.text} // Use a unique property for the key
-      className={`categoryWrapper ${activeCategory === category.text ? "active" : ""}`}
-    >
-      <div
-        onClick={() => handleCategoryClick(category.text)}
-        role="button"
-        tabIndex={0}
-        aria-expanded={activeCategory === category.text}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            handleCategoryClick(category.text);
-          }
-        }}
-        className="categoryButton"
-      >
-        <span className="categoryText">{category.text}</span>
-        <img
-          src={category.iconSrc}
-          alt={`${category.text} Icon`}
-          className="dropdownIcon"
-        />
-      </div>
-      {activeCategory === category.text && (
-        <div className="dropdownMenu">
-         {category.dropdownItems.map((item) => (
-  <NavLink
-    key={item.link}
-    to="#"
-    className="dropdownItem"
-    onClick={() => handleCategoryClick(category.text, item.text)} // Fetch products when clicking on a subcategory
-  >
-    {item.text}
-  </NavLink>
-))}
-
-
-        </div>
-      )}
-    </div>
-  ))}
-</div>
+            {categories.map((category) => (
+              <div
+                key={category.text} // Use a unique property for the key
+                className={`categoryWrapper ${
+                  activeCategory === category.text ? "active" : ""
+                }`}
+              >
+                <div
+                  onClick={() => handleCategoryClick(category.text)}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={activeCategory === category.text}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      handleCategoryClick(category.text);
+                    }
+                  }}
+                  className="categoryButton"
+                >
+                  <span className="categoryText">{category.text}</span>
+                  <img
+                    src={category.iconSrc}
+                    alt={`${category.text} Icon`}
+                    className="dropdownIcon"
+                  />
+                </div>
+                {activeCategory === category.text && (
+                  <div className="dropdownMenu">
+                    {category.dropdownItems.map((item) => (
+                      <NavLink
+                        key={item.link}
+                        to="#"
+                        className="dropdownItem"
+                        onClick={() =>
+                          handleCategoryClick(category.text, item.text)
+                        } // Fetch products when clicking on a subcategory
+                      >
+                        {item.text}
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
 
           <div className="promotionBanner">
             <span className="promoText">Summer sale - 50% OFF!</span>
@@ -312,7 +311,10 @@ const Navbar = () => {
                     +
                   </button>
                 </div>
-                <button className="removeButton" onClick={() => openPopup(item)}>
+                <button
+                  className="removeButton"
+                  onClick={() => openPopup(item)}
+                >
                   ✖
                 </button>
               </div>

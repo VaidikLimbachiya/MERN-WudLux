@@ -141,9 +141,9 @@
 @media (max-width: 768px) {
   .offers-container {
     flex-direction: column;
-    margin-left: 13px;
+    margin-left: 40px;
     gap: 15px;
-    width: 44rem;
+    width: 43rem;
     /* Space between stacked cards */
   }
 
@@ -173,13 +173,12 @@
 @media (max-width: 480px) {
 
   .offers-container {
-    width: 321px;
-    height: 40rem;
-    margin-bottom: 21rem;
+    width: 21rem;
+    margin-bottom: 1rem;
     flex-direction: row;
-    margin-left: -7px;
+    margin-left: 40px;
     gap: 15px;
-    margin-top: -28px;
+    margin-top: -30px;
 }
 
     /* Space between stacked cards */
@@ -196,5 +195,47 @@
   .offer-button {
     font-size: 14px;
     /* Smaller button size */
+  }
+}
+
+@media (max-width: 320px) {
+  .offers-container {
+    width: 18rem; /* Adjust container width to fit narrow screens */
+    margin-bottom: 2rem; /* Provide spacing below the container */
+    flex-direction: column; /* Stack items vertically */
+    margin-left: 10px; /* Align container for smaller viewports */
+    gap: 10px; /* Reduce space between elements */
+    margin-top: -20px; /* Fine-tune top margin */
+  }
+
+  .offer-subtitle {
+    font-size: 20px; /* Slightly smaller subtitle for narrow screens */
+    text-align: left; /* Center align text */
+  }
+
+  .offer-title {
+    font-size: 10px; /* Reduce title size for compact layout */
+    text-align: center; /* Align title text to center */
+    margin-bottom: 5px; /* Add spacing below the title */
+  }
+
+  .offer-button {
+    font-size: 12px; /* Smaller button font size */
+    padding: 8px 10px; /* Adjust padding for smaller buttons */
+    text-align: center; /* Center align button text */
+  }
+
+  /* Make images inside the container responsive */
+  .offers-container img {
+    width: 100%; /* Allow images to fit container width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Add rounded corners for better design */
+  }
+
+  /* Center buttons and ensure proper spacing */
+  .offer-button-container {
+    display: flex;
+    justify-content: center; /* Center align buttons */
+    margin-top: 10px; /* Add spacing above buttons */
   }
 }

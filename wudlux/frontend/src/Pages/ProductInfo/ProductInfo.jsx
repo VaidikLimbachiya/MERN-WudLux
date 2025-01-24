@@ -327,6 +327,7 @@ const ProductPage = () => {
       <Services />
     </div>
   );
+  
 };
 
 export default ProductPage;

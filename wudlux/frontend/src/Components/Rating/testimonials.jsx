@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Testimonials.css";
 import person1 from "../../assets/person1.png";
 import person2 from "../../assets/person2.png";
@@ -46,6 +46,19 @@ const Testimonials = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check screen width on mount
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust breakpoint as needed
+    };
+
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
@@ -63,45 +76,93 @@ const Testimonials = () => {
     return `${filledStars}${emptyStars}`;
   };
 
-  return (
-    <div className="testimonials-section">
-      <h2 className="testimonials-title">
-        Our Testimonials
-        <div className="title-underline"></div> {/* Underline for the title */}
-      </h2>
-      <p className="testimonials-subtitle">See what people are saying...</p>
-      <div className="testimonials-carousel">
-        {testimonials.slice(currentIndex, currentIndex + 4).map((testimonial) => (
-          <div key={testimonial.id} className="testimonial-card">
-            <div className="testimonial-rating">
-              {renderRating(testimonial.rating)}
+  if (!isMobile) {
+    // Desktop View: Show multiple testimonials
+    return (
+      <div className="testimonials-section">
+        <h2 className="testimonials-title">
+          Our Testimonials
+          <div className="title-underline"></div> {/* Underline for the title */}
+        </h2>
+        <p className="testimonials-subtitle">See what people are saying...</p>
+        <div className="testimonials-carousel">
+          {testimonials.slice(currentIndex, currentIndex + 4).map((testimonial) => (
+            <div key={testimonial.id} className="testimonial-card">
+              <div className="testimonial-rating">
+                {renderRating(testimonial.rating)}
+              </div>
+              <p className="testimonial-review">{testimonial.review}</p>
+              <div className="testimonial-user">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="testimonial-user-image"
+                />
+                <div>
+                  <p className="testimonial-user-name">{testimonial.name}</p>
+                  <p className="testimonial-user-title">{testimonial.title}</p>
+                </div>
+              </div>
+              <div className="underline"></div>
             </div>
-            <p className="testimonial-review">{testimonial.review}</p>
+          ))}
+        </div>
+        <div className="carousel-controls">
+          <button className="carousel-button" onClick={handlePrev}>
+            &#8592;
+          </button>
+          <button className="carousel-button" onClick={handleNext}>
+            &#8594;
+          </button>
+        </div>
+      </div>
+    );
+  } else {
+    // Mobile View: Show one testimonial at a time
+    return (
+      <div className="testimonials-section">
+        <h2 className="testimonials-title">
+          Our Testimonials
+          <div className="title-underline"></div> {/* Underline for the title */}
+        </h2>
+        <p className="testimonials-subtitle">See what people are saying...</p>
+        <div className="testimonials-carousel">
+          <div key={testimonials[currentIndex].id} className="testimonial-card">
+            <div className="testimonial-rating">
+              {renderRating(testimonials[currentIndex].rating)}
+            </div>
+            <p className="testimonial-review">
+              {testimonials[currentIndex].review}
+            </p>
             <div className="testimonial-user">
               <img
-                src={testimonial.image}
-                alt={testimonial.name}
+                src={testimonials[currentIndex].image}
+                alt={testimonials[currentIndex].name}
                 className="testimonial-user-image"
               />
               <div>
-                <p className="testimonial-user-name">{testimonial.name}</p>
-                <p className="testimonial-user-title">{testimonial.title}</p>
+                <p className="testimonial-user-name">
+                  {testimonials[currentIndex].name}
+                </p>
+                <p className="testimonial-user-title">
+                  {testimonials[currentIndex].title}
+                </p>
               </div>
             </div>
             <div className="underline"></div>
           </div>
-        ))}
+        </div>
+        <div className="carousel-controls">
+          <button className="carousel-button" onClick={handlePrev}>
+            &#8592;
+          </button>
+          <button className="carousel-button" onClick={handleNext}>
+            &#8594;
+          </button>
+        </div>
       </div>
-      <div className="carousel-controls">
-        <button className="carousel-button" onClick={handlePrev}>
-          &#8592;
-        </button>
-        <button className="carousel-button" onClick={handleNext}>
-          &#8594;
-        </button>
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Testimonials;
