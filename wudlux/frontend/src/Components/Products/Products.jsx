@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { useCartContext } from "../../Context/CartContext";
 import "./Products.css";
 import bagIcon from "../../assets/bag.png"; // Ensure the path is correct
@@ -9,11 +10,12 @@ const Products = () => {
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
   const [showAll, setShowAll] = useState(false); // State for "View All"
+  const navigate = useNavigate(); // Initialize navigate hook
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/products/list"); // Replace with your backend URL
+        const response = await fetch("http://localhost:5000/api/products/list/"); // Replace with your backend URL
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -56,7 +58,11 @@ const Products = () => {
           <div>Error: {error}</div> // Error message
         ) : displayedProducts.length > 0 ? (
           displayedProducts.map((product, index) => (
-            <div className="productCard" key={product.id || index}>
+            <div
+              className="productCard"
+              key={product.id || index}
+              onClick={() => navigate(`/product-info/${product._id}`, { state: { product } })}
+            >
               <div className="productImageWrapper">
                 <img
                   className="productImage"
@@ -70,7 +76,10 @@ const Products = () => {
                 <div className="addToBagWrapper">
                   <button
                     className="addToBagButton"
-                    onClick={() => addToCart(product)}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent navigation when clicking "Add to Bag"
+                      addToCart(product);
+                    }}
                   >
                     Add to Bag{" "}
                     <img src={bagIcon} alt="Bag Icon" className="bagIcon" />

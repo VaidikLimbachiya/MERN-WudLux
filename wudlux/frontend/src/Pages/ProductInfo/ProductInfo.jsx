@@ -1,10 +1,6 @@
-import  { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom"; // Use useParams instead of match
 import "./ProductInfo.css";
-import mainImage from "../../assets/main.png";
-import thumbnail1 from "../../assets/main.png";
-import thumbnail2 from "../../assets/main2.png";
-import thumbnail3 from "../../assets/main3.png";
-import thumbnail4 from "../../assets/main4.png";
 import zoom from "../../assets/zoom.png";
 import prev from "../../assets/prev.png";
 import next from "../../assets/next.png";
@@ -22,53 +18,109 @@ import { FaInstagram } from "react-icons/fa6";
 import Services from "../../Components/Services/service";
 import Products from "../../Components/Products/Products";
 import home from "../../assets/home.png";
-
-const images = [mainImage, thumbnail1, thumbnail2, thumbnail3, thumbnail4];
+import { useCartContext } from "../../Context/CartContext"; 
+import axios from "axios";
 
 const ProductPage = () => {
+  const { id } = useParams(); // Use useParams hook to get the product ID from the URL
+
+  const [product, setProduct] = useState(null); // Store product details
   const [currentImage, setCurrentImage] = useState(0); // Current image index
   const [quantity, setQuantity] = useState(1); // Quantity selector
-  const [isModalOpen, setIsModalOpen] = useState(0); // Modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility
+  const [mainImage, setMainImage] = useState(""); // Current main image 
+  const { addToCart } = useCartContext();
 
+  // Fetch product data based on the product ID from the URL
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/products/list/${id}`);
+        const fetchedProduct = response.data.product;
+        setProduct(fetchedProduct); // Set product data to state
+        if (fetchedProduct && fetchedProduct.variantImages.length > 0) {
+          setMainImage(`http://localhost:5000/uploads/${fetchedProduct.variantImages[0]}`); // Set the default main image
+        }
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
+    };
+    fetchProduct();
+  }, [id]); // Trigger when the ID changes
+
+  // Handle Quantity Change
   const handleQuantityChange = (type) => {
     if (type === "increment") setQuantity(quantity + 1);
     else if (type === "decrement" && quantity > 1) setQuantity(quantity - 1);
   };
 
+  // Handle Previous Image
   const handlePrev = () => {
     setCurrentImage((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? product.variantImages.length - 1 : prevIndex - 1
+    );
+    setMainImage(
+      `http://localhost:5000/uploads/${product.variantImages[
+        currentImage === 0 ? product.variantImages.length - 1 : currentImage - 1
+      ]}`
     );
   };
 
+  // Handle Next Image
   const handleNext = () => {
     setCurrentImage((prevIndex) =>
-      prevIndex === images.length - 1 ? 0: prevIndex + 1
+      prevIndex === product.variantImages.length - 1 ? 0 : prevIndex + 1
+    );
+    setMainImage(
+      `http://localhost:5000/uploads/${product.variantImages[
+        currentImage === product.variantImages.length - 1 ? 0 : currentImage + 1
+      ]}`
     );
   };
 
+  // Handle Thumbnail Click
   const handleThumbnailClick = (index) => {
-    setCurrentImage(index);
+    setCurrentImage(index); // Update the currentImage state with the clicked thumbnail index
+    setMainImage(`http://localhost:5000/uploads/${product.variantImages[index]}`);
   };
+
+  // If product is not loaded yet, show a loading state
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="product-containerr">
-      <div className="breadcrumb-nav">
-        <a href="/" className="breadcrumb-nav-link">
-          <img src={home} alt="Home" className="breadcrumb-nav-icon" />
-        </a>
-        <span className="breadcrumb-nav-separator">&gt;</span>
-        <a href="/kitchenware" className="breadcrumb-nav-link">
-          Kitchenware
-        </a>
-        <span className="breadcrumb-nav-separator">&gt;</span>
-        <a href="/bowl" className="breadcrumb-nav-link">
-          Bowl
-        </a>
-        <span className="breadcrumb-nav-separator">&gt;</span>
-        <span className="breadcrumb-nav-current">Wooden Bowl</span>
-      </div>
+      <div className="product-containerr">
+  <div className="breadcrumb-nav">
+    {/* Home Link */}
+    <a href="/" className="breadcrumb-nav-link">
+      <img src={home} alt="Home" className="breadcrumb-nav-icon" />
+    </a>
+    <span className="breadcrumb-nav-separator">&gt;</span>
 
+    {/* Category and Subcategory Links */}
+    {product.categories &&
+      product.categories.map((category, index) => (
+        <span key={index}>
+          <a
+            href={`/${category.slug}`} // Dynamic slug-based URL
+            className="breadcrumb-nav-link"
+          >
+            {category.name}
+          </a>
+          {/* Add separator except for the last item */}
+          {index < product.categories.length - 1 && (
+            <span className="breadcrumb-nav-separator">&gt;</span>
+          )}
+        </span>
+      ))}
+
+    {/* Current Product Title */}
+    <span className="breadcrumb-nav-separator">&gt;</span>
+    <span className="breadcrumb-nav-current">{product.title}</span>
+  </div>
+</div>
       <div className="product-gridd">
         {/* Image Section */}
         <div className="product-image-section">
@@ -77,47 +129,47 @@ const ProductPage = () => {
               <img src={prev} alt="Previous" />
             </button>
             <img
-              src={images[currentImage]}
+              crossOrigin="anonymous"
+              src={mainImage} // Main image updates with state
               alt="Product"
               className="main-image"
             />
-            <button
-              className="zoom-button"
-              onClick={() => setIsModalOpen(true)}
-            >
-              <img
-                src={zoom} // Replace with your zoom icon
-                alt="Zoom"
-              />
+            <button className="zoom-button" onClick={() => setIsModalOpen(true)}>
+              <img src={zoom} alt="Zoom" />
             </button>
             <button className="nav-button next" onClick={handleNext}>
               <img src={next} alt="Next" />
             </button>
           </div>
+
+          {/* Thumbnails */}
           <div className="thumbnail-container">
-            {images.map((img, idx) => (
+            {product.variantImages.map((img, idx) => (
               <img
+                crossOrigin="anonymous"
                 key={idx}
-                src={img}
+                src={`http://localhost:5000/uploads/${img}`} // Thumbnail image URL
                 alt={`Thumbnail ${idx + 1}`}
-                className={`thumbnail-image ${
-                  idx === currentImage ? "active-thumbnail" : ""
-                }`}
-                onClick={() => handleThumbnailClick(idx)}
+                className={`thumbnail-image ${idx === currentImage ? "active-thumbnail" : ""}`}
+                onClick={() => handleThumbnailClick(idx)} // On click, set the current image
               />
             ))}
           </div>
         </div>
 
+        {/* Product Details */}
+        {/* Rest of the component remains the same */}
         <div className="product-container">
           {/* Product Title and Price Section */}
           <div className="product-header">
-            <h1 className="product-title">WUDLUX Choice</h1>
-            <h2 className="product-name">Wooden Bowl</h2>
+            <h1 className="product-title">{product.title}</h1>
+            <h2 className="product-name">{product.title}</h2>
             <div className="price-section">
-              <span className="current-price">₹299.00</span>
-              <span className="original-price">₹499.00</span>
-              <span className="discount">-60%</span>
+              <span className="current-price">₹{product.price}</span>
+              {product.originalPrice && (
+                <span className="original-price">₹{product.originalPrice}</span>
+              )}
+              <span className="discount">-{product.discount}%</span>
             </div>
           </div>
 
@@ -143,7 +195,10 @@ const ProductPage = () => {
             </div>
 
             {/* Add to Bag Button */}
-            <button className="add-to-bag-btn">
+            <button className="add-to-bag-btn" onClick={(e) => {
+                      e.stopPropagation(); // Prevent navigation when clicking "Add to Bag"
+                      addToCart(product);
+                    }}>
               <img src={bag} alt="Bag" /> Add to Bag
             </button>
 
@@ -157,15 +212,14 @@ const ProductPage = () => {
           <div className="product-specifications">
             <h3 className="specifications-title">Product Specifications</h3>
             <div className="specs">
-              {/* Category and Material Side by Side */}
               <div className="spec-row side-by-side">
                 <div className="spec-item">
                   <span className="spec-label">Category:</span>
-                  <span className="spec-value">Serveware</span>
+                  <span className="spec-value">{product.category}</span>
                 </div>
                 <div className="spec-item">
                   <span className="spec-label">Material:</span>
-                  <span className="spec-value">Acacia Wood</span>
+                  <span className="spec-value">{product.materials.join(", ")}</span>
                 </div>
               </div>
 
@@ -173,9 +227,11 @@ const ProductPage = () => {
               <div className="spec-row">
                 <span className="spec-label">Sizes:</span>
                 <div className="size-options">
-                  <div className="size-box">L-12 B-12 H-1</div>
-                  <div className="size-box">L-10 B-10 H-1</div>
-                  <div className="size-box">L-8 B-8 H-1</div>
+                  {product.size.map((size, index) => (
+                    <div key={index} className="size-box">
+                      L-{size.L} B-{size.B} H-{size.H}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -202,6 +258,7 @@ const ProductPage = () => {
             </ul>
           </div>
 
+          {/* Policy Section */}
           <div className="policy-section-container">
             <h3 className="policy-title">WUDLUX Policy</h3>
             <div className="policy-section">
@@ -243,19 +300,14 @@ const ProductPage = () => {
           {/* Additional Information */}
           <div className="additional-info">
             <h3 className="additional-title">Additional Information</h3>
-            <p className="additional-text">
-              Perfect for serving salads, fruits, snacks, and desserts. <br />{" "}
-              Add a rustic, elegant touch to your dining table or gatherings.{" "}
-              <br /> A thoughtful gift option for housewarmings, weddings, or
-              festive occasions.
-            </p>
+            <p className="additional-text">{product.description}</p>
           </div>
+
+          {/* Social Media Icons */}
           <div className="social-links">
-            {/* Share Icon */}
             <div className="share-icon">
               <img src={share} alt="Share" className="icon" />
             </div>
-            {/* Social Media Icons */}
             <div className="social-icons">
               <a href="#facebook" className="social-icon">
                 <FaFacebook />
@@ -268,63 +320,76 @@ const ProductPage = () => {
         </div>
       </div>
 
-      {isModalOpen && (
-        <div
-          className="image-modal"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="zoomed-image"
-        >
-          <div className="modal-content">
-            {/* Close Button */}
-            <button
-              className="close-modal"
-              aria-label="Close zoomed image"
-              onClick={() => setIsModalOpen(false)}
-            >
-              &times;
-            </button>
+      {isModalOpen && product.variantImages && (
+  <div
+    className="image-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="zoomed-image"
+  >
+    <div className="modal-content">
+      {/* Close Button */}
+      <button
+        className="close-modal"
+        aria-label="Close zoomed image"
+        onClick={() => setIsModalOpen(false)}
+      >
+        &times;
+      </button>
 
-            {/* Zoomed Image Section */}
-            <div className="zoomed-image-container">
-              <img
-                id="zoomed-image"
-                src={images[currentImage]}
-                alt="Zoomed product view"
-                className="full-image"
-              />
-            </div>
-
-            {/* Thumbnail Carousel */}
-            <div className="carousel-container">
-              <button className="carousel-nav prev" onClick={handlePrev}>
-                <img src={prev} alt="Previous" className="carousel-nav-icon" />
-              </button>
-              <div className="carousel-thumbnails">
-                {images.map((img, idx) => (
-                  <img
-                    key={idx}
-                    src={img}
-                    alt={`Thumbnail ${idx + 1}`}
-                    className={`thumbnail-image ${
-                      idx === currentImage ? "active-thumbnail" : ""
-                    }`}
-                    onClick={() => setCurrentImage(idx)}
-                  />
-                ))}
-              </div>
-              <button className="carousel-nav next" onClick={handleNext}>
-                <img src={next} alt="Next" className="carousel-nav-icon" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-      <div className="products-info">
-
-      <Products />
+      {/* Zoomed Image Section */}
+      <div className="zoomed-image-container">
+        <img
+        crossOrigin="anonymous"
+          id="zoomed-image"
+          src={`http://localhost:5000/uploads/${product.variantImages[currentImage]}`}
+          alt="Zoomed product view"
+          className="full-image"
+        />
       </div>
+
+      {/* Thumbnail Carousel */}
+      <div className="carousel-container">
+        {/* Previous Button */}
+        <button
+          className="carousel-nav prev"
+          aria-label="View previous image"
+          onClick={handlePrev}
+        >
+          <img src={prev} alt="Previous" className="carousel-nav-icon" />
+        </button>
+
+        {/* Thumbnails */}
+        <div className="carousel-thumbnails">
+          {product.variantImages.map((img, idx) => (
+            <img
+            crossOrigin="anonymous"
+              key={idx}
+              src={`http://localhost:5000/uploads/${img}`} // Fallback for missing thumbnails
+              alt={`Thumbnail ${idx + 1}`}
+              className={`thumbnail-image ${
+                idx === currentImage ? "active-thumbnail" : ""
+              }`}
+              onClick={() => setCurrentImage(idx)} // Update current image on thumbnail click
+            />
+          ))}
+        </div>
+
+        {/* Next Button */}
+        <button
+          className="carousel-nav next"
+          aria-label="View next image"
+          onClick={handleNext}
+        >
+          <img src={next} alt="Next" className="carousel-nav-icon" />
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
       <Services />
+      <Products />
     </div>
   );
   

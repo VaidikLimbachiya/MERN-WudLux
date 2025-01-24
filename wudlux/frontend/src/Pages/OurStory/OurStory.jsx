@@ -2,7 +2,8 @@
 import "./OurStory.css"; // Import styles for this page
 import heroImage from "../../assets/ourStory.jpg"; // Path to hero image
 import storyImage from "../../assets/ostry.png"; // Path to the image in content section
-import featuresImage from "../../assets/sty.png"; // Path to the features image
+
+import Features from "../../Components/Features/Features";
 
 function OurStory() {
   return (
@@ -42,13 +43,7 @@ function OurStory() {
         </div>
 
         {/* Features Section */}
-        <div className="features-section">
-          <img
-            src={featuresImage}
-            alt="Sustainable Design, Eco-friendly, Mindful Living"
-            className="features-image"
-          />
-        </div>
+        <Features />
       </div>
       
     </>

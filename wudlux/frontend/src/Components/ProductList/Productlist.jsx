@@ -69,7 +69,7 @@ useEffect(() => {
           <div
             className="shop-product-list-card"
             key={product._id}
-            onClick={() => navigate(`/product-info/${product._id}`)} // Navigate on click
+            onClick={() => navigate(`/product-info/${product._id}`, { state: { product } })}
           >
             <div className="shop-product-list-image-wrapper">
               <img

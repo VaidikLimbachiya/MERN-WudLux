@@ -196,7 +196,7 @@ const Navbar = () => {
                     {category.dropdownItems.map((item) => (
                       <NavLink
                         key={item.link}
-                        to="#"
+                        to={item.link}
                         className="dropdownItem"
                         onClick={() =>
                           handleCategoryClick(category.text, item.text)
