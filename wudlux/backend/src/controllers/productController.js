@@ -49,7 +49,17 @@ module.exports.listProducts = async (req, res) => {
     res.json({ success: false, message: "Error fetching products" });
   }
 };
-
+module.exports.getProductById = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
+    res.status(200).json({ success: true, product });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 // Remove a product
 module.exports.removeProduct = async (req, res) => {
   try {
