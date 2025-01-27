@@ -331,9 +331,12 @@ font-family: "Playfair Display", serif;
   }
 
   .icon {
-    width: 35px;
-    height: 35px;
-    margin-bottom: 5px;
+    width: 65px;
+    height: 65px;
+    margin-bottom: -57px;
+    margin-left: -18rem;
+    margin-right: 40px;
+
   }
 
   .contact-form form input,
@@ -385,9 +388,9 @@ font-family: "Playfair Display", serif;
   width: 65px;
   height: 65px;
   padding-left: -42px;
-  margin-bottom: -55px;
-  margin-left: -15rem;
-  margin-top: 4px;
+  margin-bottom: -50px;
+  margin-left: -13rem;
+  margin-top: 3px;
  } 
 
 

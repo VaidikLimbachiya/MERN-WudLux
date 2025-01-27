@@ -1,3 +1,5 @@
+/* General Styles for All Screens */
+
 /* Carousel Container */
 .shop-carousel-container {
   text-align: center;
@@ -161,4 +163,108 @@
   justify-content: center;
   cursor: pointer;
   font-size: 18px;
+}
+
+/* Responsive Styles */
+
+/* For Tablets (768px and below) */
+@media (max-width: 768px) {
+  .shop-carousel-title {
+    font-size: 28px;
+  }
+
+  .shop-carousel-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .shop-carousel-grid {
+    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+
+  .shop-carousel-image {
+    height: 240px;
+  }
+
+  .shop-carousel-add-to-bag-button {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+
+/* For Small Devices (480px and below) */
+@media (max-width: 480px) {
+  .shop-carousel-title {
+    font-size: 24px;
+  }
+
+  .shop-carousel-title-underline {
+    width: 40px;
+  }
+
+  .shop-carousel-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .shop-carousel-grid {
+    gap: 20px;
+    grid-template-columns: 1fr; /* Single column on small devices */
+  }
+
+  .shop-carousel-image {
+    height: 200px;
+  }
+
+  .shop-carousel-discount-badge {
+    top: 10px;
+    right: 20px;
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .shop-carousel-add-to-bag-button {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+
+  .shop-carousel-controls {
+    gap: 5px;
+  }
+
+  .shop-carousel-button {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+}
+
+/* For Large Screens (1200px and above) */
+@media (min-width: 1200px) {
+  .shop-carousel-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 60px;
+  }
+
+  .shop-carousel-title {
+    font-size: 40px;
+  }
+
+  .shop-carousel-image {
+    height: 320px;
+  }
+
+  .shop-carousel-add-to-bag-button {
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+
+  .shop-carousel-controls {
+    margin-top: 40px;
+  }
+
+  .shop-carousel-button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
 }

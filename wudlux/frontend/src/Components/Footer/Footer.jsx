@@ -52,10 +52,10 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Wudlux Products</h4>
           <ul>
-            <li><Link to ="/Serveware/ServingTray" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Serveware</Link></li>
-            <li><Link to="/Kitchenware/ChoppingBoard"  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Kitchenware</Link></li>
-            <li><Link to="/Tableware/Lazysusan" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Tableware</Link></li>
-            <li><Link to="/Collections/Bella" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Collections</Link></li>
+            <li><Link to ="/products/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} >Serveware</Link></li>
+            <li><Link to="/products/"  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Kitchenware</Link></li>
+            <li><Link to="/products/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Tableware</Link></li>
+            <li><Link to="/products/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Collections</Link></li>
           </ul>
         </div>
 

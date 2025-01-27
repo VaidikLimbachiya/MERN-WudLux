@@ -21,6 +21,7 @@ import home from "../../assets/home.png";
 import { useCartContext } from "../../Context/CartContext"; 
 import axios from "axios";
 
+
 const ProductPage = () => {
   const { id } = useParams(); // Use useParams hook to get the product ID from the URL
 
@@ -111,7 +112,10 @@ const ProductPage = () => {
           </a>
           {/* Add separator except for the last item */}
           {index < product.categories.length - 1 && (
-            <span className="breadcrumb-nav-separator">&gt;</span>
+            <div>
+              <span className="breadcrumb-nav-separator">&gt;</span>
+              <span className="breadcrumb-nav-current">{product.category}</span>
+            </div>
           )}
         </span>
       ))}
@@ -180,14 +184,14 @@ const ProductPage = () => {
               <div className="quantity-selector">
                 <button
                   className="quantity-btn"
-                  onClick={() => handleQuantityChange("decrement")}
+                  onClick={() => handleQuantityChange(product._id, "decrement")}
                 >
                   -
                 </button>
                 <span className="quantity-display">{quantity}</span>
                 <button
                   className="quantity-btn"
-                  onClick={() => handleQuantityChange("increment")}
+                  onClick={() => handleQuantityChange(product._id, "increment")}
                 >
                   +
                 </button>
@@ -387,9 +391,11 @@ const ProductPage = () => {
     </div>
   </div>
 )}
-
+<>
+<Products />
       <Services />
-      <Products />
+</>
+      
     </div>
   );
   
