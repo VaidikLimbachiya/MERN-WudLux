@@ -33,7 +33,7 @@ const Features = () => {
           <h2 className="feature-title">{feature.title}</h2>
           <p className="feature-description">{feature.description}</p>
         </div>
-      ))}
+      ))} 
     </div>
   );
 };
