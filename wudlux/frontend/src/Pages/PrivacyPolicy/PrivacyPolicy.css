@@ -1,0 +1,124 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  
+  /* Responsive Hero Section */
+  .responsive-hero {
+    padding: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .responsive-hero {
+      height: 250px;
+    }
+  }
+  
+  @media (max-width: 425px) {
+    .responsive-hero {
+      height: 200px;
+    }
+  
+    .hero-title {
+      font-size: 1.8rem;
+    }
+  }
+  
+  /* Policy Content */
+  .policy-content {
+    max-width: 800px;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    margin-top: 10px;
+    color: #333;
+  }
+  
+  .section-paragraph {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .text-content {
+    line-height: 1.8;
+  }
+  
+  /* Responsive Content */
+  .responsive-content {
+    padding: 20px;
+  }
+  
+  .responsive-policy {
+    padding: 20px;
+  }
+  
+  .responsive-text {
+    padding: 0 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .responsive-policy {
+      padding: 15px;
+    }
+  
+    .section-title {
+      font-size: 1.6rem;
+    }
+  
+    .section-paragraph {
+      font-size: 0.95rem;
+    }
+  }
+  
+  @media (max-width: 425px) {
+    .responsive-policy {
+      padding: 10px;
+    }
+  
+    .section-title {
+      font-size: 1.4rem;
+    }
+  
+    .section-paragraph {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .responsive-policy {
+      padding: 30px;
+    }
+  
+    .section-title {
+      font-size: 2rem;
+    }
+  
+    .section-paragraph {
+      font-size: 1.1rem;
+    }
+  }
+  

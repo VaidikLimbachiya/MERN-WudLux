@@ -1,10 +1,10 @@
-.product-containerr {
+/* .product-container{
+  padding:40px ;
     width: 100%;
-    margin: 0 auto;
     padding: 20px;
     margin-right: 100px;
-    /* margin-right: 40px; */
-  }
+   
+  } */
   
   .product-gridd {
     display: grid;
@@ -16,7 +16,7 @@
   .product-image-section {
     display: flex;
     flex-direction: column;
-    padding-left :20px;
+    padding-left :40px;
   }
   
  
@@ -27,7 +27,7 @@
   .zoom-button {
     position: absolute;
     top: 25px;
-    right: 70px;
+    right: 90px;
     background: white;
     border: 1px solid #ccc;
     border-radius: 50%;
@@ -40,6 +40,13 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
   
+  .nav-button prev{
+    margin-left: -20px;
+  }
+
+  .nav-button next{
+      margin-left: 20px;
+ }
   .zoom-button img {
     width: 90px;
     height: 90px;
@@ -178,9 +185,9 @@
 }
 
   .main-image {
-    width: 100%;
-    height: 570px;
-    object-fit: contain;
+    width: 90%;
+    height: 520px;
+    object-fit: cover;
     border-radius: 10px;
   }
 
@@ -192,6 +199,7 @@
       color: #6c757d;
       margin-bottom: 20px;
       margin-left: 96px;
+      margin-top: 20px;
   }
   
   .breadcrumb-nav-link {
@@ -250,11 +258,11 @@
   }
   
   .nav-button.prev {
-    left: 55px;
+    left: 25px;
   }
   
   .nav-button.next {
-    right: 55px;
+    right: 85px;
   }
   
   .nav-button img {
@@ -287,10 +295,11 @@
 .product-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    /* padding: 20px; */
     font-family: "Arial", sans-serif;
     color: #333;
     margin-right: 40px;
+    margin-top: -20px;
   }
   
   .product-header {
@@ -389,7 +398,7 @@
   }
   
   .quantity-btn {
-    background-color: #ece6e2;
+    background-color: #DDD6D2;
     border: none;
     border-radius: 50%;
     width: 30px;
@@ -405,7 +414,7 @@
   }
   
   .quantity-btn:hover {
-    background-color: white;
+    /* background-color: white; */
   }
   
   .quantity-display {
@@ -531,9 +540,9 @@
     color: #333;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
-    cursor: pointer;
+    background-color: #f9f9f9;;
     transition: all 0.3s ease;
+    cursor: pointer;
   }
   
   .size-box:hover {

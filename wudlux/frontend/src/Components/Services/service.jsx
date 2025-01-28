@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "./service.css"; // CSS file for styling
 
 // Import your icons from the assets folder

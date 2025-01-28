@@ -42,8 +42,8 @@ function App() {
         <Route path="/" element={<Home />} />
 
         {/* Navbar Links */}
-        <Route path="/Serveware/Tray" element={<KitchenWare />} />
-        <Route path="/ServeWare/withDrawer" element={<KitchenWare />} />
+        <Route path="/products" element={<KitchenWare />} />
+        {/* <Route path="/ServeWare/withDrawer" element={<KitchenWare />} />
         <Route path="/Serveware/BeerCaddy" element={<KitchenWare />} />
         <Route path="/Serveware/ServingPlatter" element={<KitchenWare />} />
         <Route path="/Serveware/WineServingTray" element={<KitchenWare />} />
@@ -52,7 +52,7 @@ function App() {
         <Route path="/TableWare/LazySusan" element={<KitchenWare />} />
         <Route path="/TableWare/CoffeePods" element={<KitchenWare />} />
         <Route path="/TableWare/CutleryCaddy" element={<KitchenWare />} />
-        <Route path="/Collections/Bella" element={<KitchenWare />} />
+        <Route path="/Collections/Bella" element={<KitchenWare />} /> */}
         <Route path="/products" element={<Productlist />} />
         <Route path="/our-story" element={<OurStory />} />
         <Route path="/contact-us" element={<ContactUs />} />

@@ -171,3 +171,93 @@
     white-space: initial;
   }
 }
+@media (max-width: 320px) {
+  .filterContainer {
+    flex-direction: column;
+    gap: 12px; /* Reduced gap for compactness */
+    padding: 8px; /* Reduced padding for small screens */
+  }
+
+  .filterRow {
+    flex-direction: column;
+    gap: 12px; /* Tighter spacing */
+    align-items: flex-start;
+  }
+
+  .filterGroup {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .dropdownButton {
+    padding: 6px 8px; /* Compact padding */
+    font-size: 10px; /* Smaller font size */
+    width: 100%; /* Full width for mobile */
+  }
+
+  .dropdownText {
+    width: auto;
+    font-size: 10px;
+    text-align: left;
+  }
+
+  .priceSlider {
+    width: 100%;
+    margin: 0; /* Eliminate excess spacing */
+  }
+
+  .currencyInput {
+    flex-direction: row; /* Align currency inputs horizontally */
+    justify-content: space-between;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .currencySymbol {
+    padding: 6px 8px;
+    font-size: 10px; /* Adjust for small screens */
+  }
+
+  .priceInput {
+    padding: 6px 8px;
+    font-size: 10px; /* Match other small inputs */
+    text-align: left;
+  }
+
+  .priceRange {
+    flex-direction: column; /* Stack vertically */
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .applyButton {
+    padding: 6px 8px;
+    font-size: 12px;
+    width: 100%;
+    justify-content: center; /* Center align text */
+  }
+
+  .activeFiltersBar {
+    flex-direction: column; /* Stack active filters */
+    gap: 8px;
+    padding: 10px;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .activeFiltersList {
+    flex-direction: row;
+    gap: 18px;
+    width: 100%;
+    margin-left: -38px;
+  }
+
+  .resultsCount {
+    font-size: 13px;
+    text-align: right;
+    margin: 0;
+
+  }
+}

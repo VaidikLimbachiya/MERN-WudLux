@@ -4,6 +4,7 @@ import "./Productlist.css";
 import bagIcon from "../../assets/bag.png";
 import { useCartContext } from "../../Context/CartContext";
 
+
 const Productlist = () => {
   const { addToCart, cartItems = [] } = useCartContext();
   const [products, setProducts] = useState([]);
@@ -93,8 +94,13 @@ const Productlist = () => {
                     alt="Bag Icon"
                     className="shop-product-list-bag-icon"
                   />
+<<<<<<< HEAD
                   {cartItems.some((item) => item._id === product._id)
                     ? "In Bag"
+=======
+                  {cartItems.find((item) => item._id === product._id)
+                    ? "Add to Bag"
+>>>>>>> b478d28275c0e6c263a49da9091591536ee2e25c
                     : "Add to Bag"}
                 </button>
               </div>

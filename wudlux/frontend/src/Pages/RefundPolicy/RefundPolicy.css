@@ -1,62 +1,156 @@
 /* General Styles */
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
-  }
-  
-  /* Refund Policy Page */
-  .refund-policy-page {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Hero Section */
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+/* Responsive Hero Section */
+.responsive-hero {
+  padding: 20px;
+}
+
+/* Large Devices (1200px and above) */
+@media (min-width: 1200px) {
   .hero-section {
-    background-size: cover;
-    background-position: center;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-  }
-  
-  .hero-content h1 {
-    font-size: 2.5rem;
-    margin: 0;
-  }
-  
-  .breadcrumb-icon {
-    width: 40px;
-    /* margin-bottom: 1px; */
+    height: 350px;
   }
 
-  .policy-content {
-    font-family: 'Poppins', sans-serif;
-    margin: 0 auto;
-    max-width: 800px;
-    /* background-color: white; */
-    border-radius: 10px;
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .responsive-policy {
+    padding: 30px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-paragraph {
+    font-size: 1.1rem;
+  }
+}
+
+/* Medium Devices (768px to 1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .hero-section {
+    height: 250px;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .responsive-policy {
     padding: 20px;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   }
-  
-  .policy-content h2 {
-    font-family: 'Poppins', sans-serif;
-    margin-top: 2px;
+
+  .section-title {
     font-size: 1.8rem;
-    color: #333;
   }
-  
-  .policy-content p {
-    margin-bottom: 15px;
+
+  .section-paragraph {
     font-size: 1rem;
-    color: #555;
   }
-  
+}
+
+/* Small Devices (426px to 768px) */
+@media (max-width: 768px) and (min-width: 426px) {
+  .hero-section {
+    height: 200px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .responsive-policy {
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+
+  .section-paragraph {
+    font-size: 0.95rem;
+  }
+}
+
+/* Extra Small Devices (320px to 425px) */
+@media (max-width: 425px) {
+  .hero-section {
+    height: 180px;
+    padding: 10px;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .responsive-policy {
+    padding: 10px;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .section-paragraph {
+    font-size: 0.85rem;
+  }
+
   .text-content {
-    line-height: 1.8;
+    padding: 0 5px;
   }
-  
+}
+
+/* Extra Small Devices (320px and below) */
+@media (max-width: 320px) {
+  .hero-section {
+    height: 150px;
+    padding: 5px;
+  }
+
+  .hero-title {
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
+
+  .responsive-policy {
+    padding: 8px;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .section-paragraph {
+    font-size: 0.8rem;
+  }
+
+  .text-content {
+    padding: 0 5px;
+    line-height: 1.5;
+  }
+}

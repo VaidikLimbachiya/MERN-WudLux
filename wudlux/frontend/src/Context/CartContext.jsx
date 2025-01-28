@@ -205,6 +205,8 @@ export const CartProvider = ({ children }) => {
         clearCart,
         loading,
         error,
+        // clearCart, 
+      // Added clearCart function
       }}
     >
       {children}
