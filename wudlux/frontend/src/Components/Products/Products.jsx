@@ -78,7 +78,7 @@ const Products = () => {
                     className="addToBagButton"
                     onClick={(e) => {
                       e.stopPropagation(); // Prevent navigation when clicking "Add to Bag"
-                      addToCart(product);
+                      addToCart(product._id, 1);
                     }}
                   >
                     Add to Bag{" "}

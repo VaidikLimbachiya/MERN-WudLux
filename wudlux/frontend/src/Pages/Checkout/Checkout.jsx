@@ -47,11 +47,11 @@ const Checkout = () => {
         firstName: user.firstName || "",
         lastName: user.lastName || "",
         email: user.email || "",
-        address: user.address || "",
-        zipCode: user.zipCode || "",
-        state: user.state || "",
-        city: user.city || "",
-        phone: user.phone || "",
+        address: user.address?.street || "",
+        zipCode: user.address?.zipCode || "",
+        state: user.address?.state || "",
+        city: user.address?.city || "",
+        phone: user.phoneNumber || "",
       }));
     }
   }, [user]);
@@ -61,15 +61,21 @@ const Checkout = () => {
     setFormData({
       ...formData,
       [name]: type === "checkbox" ? checked : value,
+      ...(name === "state" && { city: "" }), // Reset city when state changes
     });
-    if (name === "state") {
-      setFormData((prev) => ({ ...prev, city: "" })); // Reset city when state changes
-    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validate required fields
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.address || !formData.state || !formData.city || !formData.phone) {
+      alert("Please complete all required fields.");
+      return;
+    }
+
     console.log("Form Submitted:", formData);
+    alert("Checkout Successful!");
   };
 
   if (!Array.isArray(cartItems)) {
@@ -170,7 +176,7 @@ const Checkout = () => {
             >
               <option value="">City *</option>
               {formData.state &&
-                statesAndCities[formData.state].map((city) => (
+                statesAndCities[formData.state]?.map((city) => (
                   <option key={city} value={city}>
                     {city}
                   </option>
@@ -189,7 +195,7 @@ const Checkout = () => {
           </div>
           <textarea
             name="notes"
-            placeholder="Notes about your order, e.g. special notes for delivery."
+            placeholder="Notes about your order, e.g., special delivery instructions."
             value={formData.notes}
             onChange={handleInputChange}
           />
@@ -216,12 +222,12 @@ const Checkout = () => {
         <h2>Products</h2>
         <div className="product-list">
           {cartItems.length > 0 ? (
-            cartItems.map((item ,index) => (
+            cartItems.map((item, index) => (
               <div key={item.id || index} className="product-box">
                 <img
                   crossOrigin="anonymous"
-                  src= {`http://localhost:5000/uploads/${item.images}`}
-                  alt={item.title}
+                  src={item.images ? `http://localhost:5000/uploads/${item.images}` : "placeholder.png"}
+                  alt={item.title || "Product Image"}
                   className="product-thumbnail"
                 />
                 <div className="product-info">

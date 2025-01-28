@@ -2,7 +2,6 @@
 import "./OurStory.css"; // Import styles for this page
 import heroImage from "../../assets/ourStory.jpg"; // Path to hero image
 import storyImage from "../../assets/ostry.png"; // Path to the image in content section
-
 import Features from "../../Components/Features/Features";
 
 function OurStory() {

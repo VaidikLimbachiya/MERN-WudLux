@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 const authRoutes = require("./src/routes/authRoutes");
 const productRoutes = require("./src/routes/productRoutes");
+const cartRoutes = require("./src/routes/cartRoutes");
 const fs = require("fs");
 const path = require("path");
 
@@ -21,8 +22,8 @@ app.use(morgan("dev")); // Request logging
 // Enable CORS for all routes
 const corsOptions = {
   origin: ["http://localhost:5173", "http://localhost:5174"], // Allow these origins
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type"],
+  methods: ["GET", "POST", "PUT", "DELETE","PATCH"], // Allow these methods
+  allowedHeaders: ["Content-Type","Authorization"],
 };
 app.use(cors(corsOptions)); // Apply CORS globally to all routes
 
@@ -43,6 +44,45 @@ app.use("/uploads", express.static(uploadDir));
 
 // Register routes
 app.use("/api/auth", authRoutes);
+const jwt = require("jsonwebtoken");
+
+const isValidRefreshToken = (token) => {
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+    return decoded;
+  } catch (err) {
+    if (!decoded) {
+      return res.status(401).json({ error: "Refresh token expired or invalid." });
+    }    
+    return null;
+  }
+};
+
+const generateAccessToken = (userId) => {
+  return jwt.sign({ id: userId }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
+};
+
+
+app.post("/api/auth/refresh", (req, res) => {
+  const { refreshToken } = req.body;
+
+  if (!refreshToken) {
+    return res.status(400).json({ error: "Refresh token is required" });
+  }
+
+  const decoded = isValidRefreshToken(refreshToken);
+
+  if (!decoded) {
+    return res.status(401).json({ error: "Invalid or expired refresh token" });
+  }
+
+  const newAccessToken = generateAccessToken(decoded.id);
+  res.json({ accessToken: newAccessToken });
+});
+
+
+
+app.use("/api/cart", cartRoutes);
 
 app.use((err, req, res, next) => {
   console.error("Error in forgotPassword:", err);

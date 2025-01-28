@@ -1,348 +1,143 @@
 /* Hero Section */
 .hero-section {
-  height: 300px;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.page-title {
-  font-size: 32px;
-  font-weight: bold;
-  color: #fff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-}
-
-/* Story Section */
-.story-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  width: 54%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.image-container {
-  flex: 1;
-  max-width: 50%;
-}
-
-.story-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-left: -300px;
-}
-
-.content-container {
-  max-width: 800px;
-  padding: 0 20px;
-}
-
-.section-title1 {
-  font-weight: bold;
-  color: black;
-  margin-bottom: -10px;
-}
-
-.section-subtitlee {
-  font-size: 24px;
-  font-weight: normal;
-  color: black;
-  margin-bottom: 20px;
-  position: relative;
-  display: inline-block;
-}
-
-.section-subtitlee::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 10%;
-  height: 2px;
-  background-color: black;
-}
-
-.section-description {
-  width: 100%;
-  font-size: 16px;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.explore-products-button {
-  padding: 12px 20px;
-  background-color: #6a4b35;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* Features Section */
-.features-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px; /* Space between cards */
-  padding: 20px;
-  background-color: #f9f9f9; /* Light background for contrast */
-}
-
-.feature-item {
-  flex: 1 1 100%; /* Full width by default */
-  max-width: 320px; /* Limit maximum width for mobile devices */
-  padding: 15px;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  background-color: white;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-
-.feature-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.feature-description {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.6;
-}
-/* Button Styling */
-.explore-products-button {
-  position: relative;
-  overflow: hidden;
-  background: none;
-  border: 1px solid black;
-  padding: 12px 20px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 20px;
-  color: black;
-  z-index: 1;
-}
-
-.explore-products-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: black;
-  transition: all 0.4s ease;
-  z-index: -1;
-}
-
-.explore-products-button:hover::before {
-  left: 0;
-}
-
-.explore-products-button:hover {
-  color: white;
-}
-
-/* Responsive Styles */
-
-/* For smaller screens (max-width: 768px) */
-@media (max-width: 768px) {
-  .story-section {
-      flex-direction: column; /* Stack the image and content vertically */
-      align-items: center;
-      width: 80%; /* Decrease width for smaller screens */
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
   }
-
+  
+  .page-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Story Section */
+  .story-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 54%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Image Container */
   .image-container {
-      max-width: 100%; /* Image container takes full width */
-      margin-left: 0; /* Remove left margin */
-      display: flex;
-      justify-content: center;
+    flex: 1;
+    max-width: 50%;
   }
-
+  
   .story-image {
-      max-width: 100%;
-      margin-left: 0; /* Reset margin */
+    width: 400px;
+    height: auto;
+    border-radius: 8px;
+    margin-left: -300px;
   }
-
+  
+  /* Content Container */
   .content-container {
-      max-width: 100%; /* Content container takes full width */
-      padding: 0;
+    max-width: 800px;
+    padding: 0 20px;
   }
-
-  .section-description {
-      width: 100%;
-  }
-
-  .explore-products-button {
-      width: 100%; /* Make button full width on smaller screens */
-      padding: 15px 30px;
-  }
-}
-@media (max-width: 568px) {
-  /* Hero Section Adjustments */
-  .hero-section {
-      height: 220px; /* Adjust height for 568px screens */
-  }
-
-  .page-title {
-      font-size: 22px; /* Adjust title size */
-  }
-
-  /* Story Section Adjustments */
-  .story-section {
-      padding: 15px; /* Increase padding for breathing space */
-  }
-
+  
   .section-title1 {
-      font-size: 20px; /* Adjust title font size */
+    /* font-size: 36px; */
+    font-weight: bold;
+    color: black;
+    margin-bottom: -10px;
   }
-
+  
   .section-subtitlee {
-      font-size: 18px; /* Keep subtitle font size the same */
+    font-size: 24px;
+    font-weight: normal;
+    color: black;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block; /* Ensure the underline adjusts to the text width */
   }
-
+  
+  .section-subtitlee::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Adjust the space between the text and the underline */
+    width: 10%;
+    height: 2px; /* Thickness of the underline */
+    background-color: black; /* Color of the underline */
+  }
+  
+  
   .section-description {
-      font-size: 14px; /* Keep font size for description */
+    width: 800px;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
   }
-
+  
   .explore-products-button {
-      font-size: 14px; /* Keep button font size consistent */
-      padding: 12px 18px; /* Adjust padding */
+    padding: 12px 20px;
+    background-color: #6a4b35;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
   }
-
+  
   /* Features Section */
+.features-section {
+    text-align: center;
+    margin: 40px auto;
+  }
+  
   .features-image {
-      max-height: 220px; /* Reduce max-height for features image */
+    width: 100%;
+    /* max-width: 1200px; */
+    height: 350px;
+    /* border-radius: 8px; */
   }
-  .feature-item {
-    flex: 1 1 45%; /* Two cards per row */
-}
-}
-/* For very small screens (max-width: 480px) */
-@media (max-width: 480px) {
-  .hero-section {
-      height: 200px; /* Adjust hero section height */
-  }
-
-  .page-title {
-      font-size: 24px; /* Decrease font size for small screens */
-  }
-
-  .story-section {
-      width: 90%; /* Increase width for more space */
-      padding: 10px;
-  }
-
-  .section-subtitlee {
-      font-size: 20px;
-  }
-
-  .section-description {
-      font-size: 14px; /* Reduce font size for better readability */
-  }
-
   .explore-products-button {
-      padding: 12px 20px;
-      font-size: 14px;
+    position: relative;
+    overflow: hidden;
+    background: none;
+    border: 1px solid black;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+    color: black;
+    z-index: 1;
   }
-
-  .features-image {
-      height: 250px; /* Reduce image height */
-  }
-}
-
-@media (max-width: 320px) {
-  /* Hero Section Adjustments */
-  .hero-section {
-      height: 180px; /* Reduced height for smaller screens */
-      background-size: cover;
-      background-position: center;
-  }
-
-  .page-title {
-      font-size: 20px; /* Smaller font size for titles */
-  }
-
-  /* Story Section Adjustments */
-  .story-section {
-      padding: 10px; /* Compact padding */
-  }
-
-  .story-image {
-      width: 100%; /* Full width */
-      height: auto;
-      border-radius: 5px;
-  }
-
-  .section-title1 {
-      font-size: 18px; /* Adjusted for smaller screen */
-  }
-
-  .section-subtitlee {
-      font-size: 16px; /* Adjusted for better readability */
-  }
-
-  .section-description {
-      font-size: 12px; /* Slightly smaller font size */
-      line-height: 1.3;
-  }
-
-  .explore-products-button {
-      font-size: 12px; /* Adjust button font size */
-      padding: 10px 15px; /* Compact padding */
-      border-radius: 10px; /* Softer corners */
-  }
-
-  /* Features Section Adjustments */
-  .features-image {
-      max-height: 180px; /* Reduced max height */
-      width: 100%; /* Ensure it fits within the screen */
-  }
-
-  /* Button Hover Effects */
-  .explore-products-button {
-      border: 1px solid black;
-      padding: 10px 15px;
-      font-size: 12px;
-      border-radius: 15px;
-      color: black;
-  }
-
+  
   .explore-products-button::before {
-      background: black;
-      transition: all 0.4s ease;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: black;
+    transition: all 0.4s ease;
+    z-index: -1; /* Ensures the pseudo-element is behind the button text */
   }
-
+  
+  .explore-products-button:hover::before {
+    left: 0; /* Slide the background into view */
+  }
+  
   .explore-products-button:hover {
-      color: white;
+    color: white; /* Change text color to white on hover */
   }
-
-  /* General Typography */
-  .section-description, 
-  .features-section {
-      text-align: center; /* Center-align text for simplicity */
-  }
-
-  /* Additional Spacing for Small Screens */
-  .story-section,
-  .features-section {
-      margin-bottom: 15px; /* Add space between sections */
-  }
-}
+  
+    
