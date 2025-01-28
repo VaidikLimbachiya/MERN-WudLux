@@ -47,8 +47,13 @@
     padding: 0 20px;
   }
   
+<<<<<<< HEAD
+  .section-title1 {
+    /* font-size: 36px; */
+=======
   .section-title {
     font-size: 36px;
+>>>>>>> b478d28275c0e6c263a49da9091591536ee2e25c
     font-weight: bold;
     color: black;
     margin-bottom: -10px;

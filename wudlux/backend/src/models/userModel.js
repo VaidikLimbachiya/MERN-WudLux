@@ -16,6 +16,12 @@ const userSchema = new mongoose.Schema(
     phoneNumber: { type: String },
     resetToken: { type: String, default: null },
     tokenExpiration: { type: Date, default: null },
+    cart: [
+      {
+        productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+        quantity: { type: Number, default: 1 },
+      },
+    ],
   },
   { timestamps: true }
 );

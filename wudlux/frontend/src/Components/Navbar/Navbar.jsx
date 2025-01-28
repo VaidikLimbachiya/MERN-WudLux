@@ -55,21 +55,21 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
   const [productToRemove, setProductToRemove] = useState(null); // Product to remove
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Popup state
-  const [isSliderOpen] = useState(false); // Fix initial state of slider to false
+  // const [isSliderOpen] = useState(false); // Fix initial state of slider to false
 
   const {
     cartItems,
-    totalQuantity,
-    totalPrice,
-    updateQuantity,
-    removeItem,
-    totalProducts,
+        totalQuantity,
+        totalPrice,
+        totalProducts,
+        updateQuantity,
+        removeItem,
   } = useCartContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
-    setIsLoggedIn(!!token); // Set login state based on token existence
+    setIsLoggedIn(!!token); // Update login state based on token
   }, []);
 
   const handleProfileIconClick = () => {
@@ -108,9 +108,10 @@ const Navbar = () => {
   const toggleCart = () => setIsCartOpen((prev) => !prev);
 
   const openPopup = (product) => {
+    console.log("Product passed to openPopup:", product);
     setProductToRemove(product);
     setIsPopupOpen(true);
-  };
+  };  
 
   const closePopup = () => {
     setProductToRemove(null);
@@ -118,11 +119,15 @@ const Navbar = () => {
   };
 
   const confirmRemove = () => {
-    if (productToRemove) {
-      removeItem(productToRemove._id); // Use `_id` instead of `id`
-    }
-    closePopup();
-  };
+  if (productToRemove && productToRemove.productId) {
+    console.log("Removing Product ID:", productToRemove.productId);
+    removeItem(productToRemove.productId);
+  } else {
+    console.error("Invalid productToRemove:", productToRemove);
+  }
+  closePopup();
+};
+
 
   const handleLogout = () => {
     // Clear tokens from localStorage
@@ -276,74 +281,85 @@ const Navbar = () => {
 
       {/* Cart Slider */}
       <div className={`cartSlider ${isCartOpen ? "open" : ""}`}>
-        <div className="cartHeader">
-          <h3>Shopping Cart</h3>
-          <button className="closeButton" onClick={toggleCart}>
-            ✖
+  <div className="cartHeader">
+    <h3>Shopping Cart</h3>
+    <button className="closeButton" onClick={toggleCart}>
+      ✖
+    </button>
+  </div>
+  <div className="cartItems">
+  {cartItems.length > 0 ? (
+    cartItems.map((item, index) => (
+      <div
+        key={`${item.productId}-${index}`} // Ensures unique key by combining productId and index
+        className="cartItem"
+      >
+        <img
+          crossOrigin="anonymous"
+          src={
+            item.images
+              ? `http://localhost:5000/uploads/${item.images}`
+              : "path/to/placeholder-image.png"
+          }
+          alt={item.title || "Product Image"}
+          className="cartItemImage"
+        />
+        <div className="cartItemDetails">
+          <p className="cartItemName">{item.title || "Unnamed Product"}</p>
+          <p className="cartItemPrice">
+            ₹{typeof item.price === "number" ? item.price.toFixed(2) : "0.00"}
+          </p>
+        </div>
+        <div className="cartQuantity">
+          <button
+            className="cart-quantity-decrement1"
+            onClick={() => updateQuantity(item.productId, -1)}
+            disabled={item.quantity <= 1}
+          >
+            -
+          </button>
+          <span>{item.quantity}</span>
+          <button
+            className="cart-quantity-increment1"
+            onClick={() => updateQuantity(item.productId, 1)}
+          >
+            +
           </button>
         </div>
-        <div className="cartItems">
-          {cartItems.length > 0 ? (
-            cartItems.map((item) => (
-              <div key={item._id} className="cartItem">
-                <img
-                  crossOrigin="anonymous"
-                  src={`http://localhost:5000/uploads/${item.images}`}
-                  alt={item.name}
-                  className="cartItemImage"
-                />
-                <div className="cartItemDetails">
-                  <p className="cartItemName">{item.title}</p>
-                  <p className="cartItemPrice">₹{item.price.toFixed(2)}</p>
-                </div>
-                <div className="cartQuantity">
-                  <button
-                    className="cart-quantity-decrement1"
-                    onClick={() => updateQuantity(item._id, -1)}
-                  >
-                    -
-                  </button>
-                  <span>{item.quantity}</span>
-                  <button
-                    className="cart-quantity-increment1"
-                    onClick={() => updateQuantity(item._id, 1)}
-                  >
-                    +
-                  </button>
-                </div>
-                <button
-                  className="removeButton"
-                  onClick={() => openPopup(item)}
-                >
-                  ✖
-                </button>
-              </div>
-            ))
-          ) : (
-            <p>Your cart is empty.</p>
-          )}
-        </div>
-        <div className={`cartFooter ${isSliderOpen ? "open" : "closed"}`}>
-          <div className="cartSummary">
-            <span>{totalProducts} Product</span>
-            <span>₹{totalPrice}.00</span>
-          </div>
-          <div className="cartActions">
-            <button
-              className="checkoutButton"
-              onClick={() => handleNavigate("/Checkout")}
-            >
-              Checkout →
-            </button>
-            <button
-              className="goToCartButton"
-              onClick={() => handleNavigate("/CartPage")}
-            >
-              Go to Cart →
-            </button>
-          </div>
-        </div>
+        <button className="removeButton" onClick={() => openPopup(item)}>
+          ✖
+        </button>
       </div>
+    ))
+  ) : (
+    <p>Your cart is empty.</p>
+  )}
+</div>
+
+  {/* Cart Footer */}
+  <div className="cartFooter">
+    <div className="cartSummary">
+      <span>{totalProducts} Product(s)</span>
+      <span>Total: ₹{totalPrice.toFixed(2)}</span>
+    </div>
+    <div className="cartActions">
+      <button
+        className="checkoutButton"
+        onClick={() => handleNavigate("/checkout")}
+        disabled={cartItems.length === 0} // Disable if cart is empty
+      >
+        Checkout →
+      </button>
+      <button
+        className="goToCartButton"
+        onClick={() => handleNavigate("/cartPage")}
+        disabled={cartItems.length === 0} // Disable if cart is empty
+      >
+        View Cart →
+      </button>
+    </div>
+  </div>
+</div>
 
       {/* Popup */}
       {isPopupOpen && (

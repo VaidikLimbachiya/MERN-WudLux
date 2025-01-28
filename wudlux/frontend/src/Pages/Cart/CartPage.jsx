@@ -82,14 +82,14 @@ const CartPage = () => {
                   <td className="cart-quantity-controls">
                     <button
                       className="cart-quantity-decrement"
-                      onClick={() => updateQuantity(item._id, -1)}
+                      onClick={() => updateQuantity(item.productId, -1)}
                     >
                       -
                     </button>
                     <span className="cart-quantity-value">{item.quantity}</span>
                     <button
                       className="cart-quantity-increment"
-                      onClick={() => updateQuantity(item._id, 1)}
+                      onClick={() => updateQuantity(item.productId, 1)}
                     >
                       +
                     </button>
@@ -102,7 +102,7 @@ const CartPage = () => {
                     <button
                       className="cart-item-remove-btn"
                       aria-label="Remove item"
-                      onClick={() => removeItem(item._id)}
+                      onClick={() => removeItem(item.productId)}
                     >
                       <span className="cart-item-remove-icon">✖</span>
                     </button>

@@ -1,32 +1,21 @@
-// const jwt = require("jsonwebtoken");
-
-// exports.authenticate = (req, res, next) => {
-//   const token = req.headers.authorization?.split(" ")[1];
-//   if (!token) {
-//     return res.status(401).json({ message: "Access token is required" });
-//   }
-
-//   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-//     if (err) {
-//       return res.status(403).json({ message: "Invalid or expired token" });
-//     }
-//     req.user = user;
-//     next();
-//   });
-// };
-
 const jwt = require("jsonwebtoken");
 
 const authenticate = (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
-  if (!token) return res.status(401).json({ message: "Unauthorized" });
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ error: "Unauthorized: Token missing or invalid" });
+  }
+
+  const token = authHeader.split(" ")[1]; // Extract the token
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify the token
+    req.user = decoded; // Attach decoded payload to request
+    next(); // Proceed to the next middleware/controller
   } catch (err) {
-    res.status(401).json({ message: "Invalid token" });
+    console.error("Token validation error:", err.message);
+    return res.status(401).json({ error: "Unauthorized: Token invalid or expired" });
   }
 };
 

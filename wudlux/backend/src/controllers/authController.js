@@ -44,19 +44,16 @@ exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Validate user
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    // Verify password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid email or password" });
     }
 
-    // Generate JWT tokens
     const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "15m",
     });
@@ -66,10 +63,25 @@ exports.login = async (req, res) => {
       { expiresIn: "7d" }
     );
 
+    // Ensure all fields (e.g., address and phoneNumber) are returned
     res.status(200).json({
       accessToken,
       refreshToken,
-      user: { id: user._id, email: user.email },
+      user: {
+        id: user._id,
+        firstName: user.firstName || "",
+        lastName: user.lastName || "",
+        email: user.email || "",
+        address: {
+          street: user.address?.street || "",
+          city: user.address?.city || "",
+          state: user.address?.state || "",
+          zipCode: user.address?.zipCode || "",
+          country: user.address?.country || "",
+        },
+        phoneNumber: user.phoneNumber || "",
+        role: user.role || "user",
+      },
     });
   } catch (err) {
     res
@@ -77,6 +89,7 @@ exports.login = async (req, res) => {
       .json({ message: "Internal server error", error: err.message });
   }
 };
+
 
 // Forgot password - No email sending
 exports.forgotPassword = async (req, res) => {
