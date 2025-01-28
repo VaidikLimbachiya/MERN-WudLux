@@ -11,7 +11,7 @@
 
 .testimonials-title {
   font-family: "Playfair Display", serif;
-  font-size: 32px;
+  /* font-size: 32px; */
   font-weight: bold;
   margin-bottom: 10px;
   color: #333333;
@@ -154,6 +154,7 @@
     margin: 10px auto;
   }
 
+  
   .testimonials-subtitle {
     font-size: 16px; /* Adjust subtitle font size */
     margin-bottom: 20px;
