@@ -1,11 +1,13 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -20,13 +22,16 @@ export const CartProvider = ({ children }) => {
   // Fetch cart items
   const fetchCart = async (force = false) => {
     const token = localStorage.getItem("accessToken");
-    if (!token && !force) return; // Avoid fetching cart if no token is available
+
+    if (!user || !user.id || (!token && !force)) {
+      return;
+    }
 
     setLoading(true);
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:5000/api/cart", {
+      const response = await fetch(`http://localhost:5000/api/cart?userId=${user.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -41,14 +46,7 @@ export const CartProvider = ({ children }) => {
       }
 
       const data = await response.json();
-      setCartItems(
-        (data.cartItems || []).map((item) => ({
-          ...item,
-          title: item.title || "Unnamed Product",
-          price: item.price || 0,
-          images: item.images || ["/path/to/your/placeholder.png"],
-        }))
-      );
+      setCartItems(data.cartItems || []);
     } catch (err) {
       console.error("Error fetching cart:", err);
       setError(err.message);
@@ -56,6 +54,7 @@ export const CartProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  
 
   // Add an item to the cart
   const addToCart = async (productId, quantity = 1) => {
@@ -177,13 +176,14 @@ export const CartProvider = ({ children }) => {
 
   // Watch for login/logout and refresh cart accordingly
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      fetchCart(); // Fetch cart if token is available
+    if (user && user.id) {
+      fetchCart(true);
     } else {
-      clearCartState(); // Clear cart if no token
+      clearCartState(); // Clear cart when user logs out
     }
-  }, []);
+  }, [user]); // ✅ Runs every time user logs in or out
+  
+  
 
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cartItems.reduce(
@@ -197,6 +197,7 @@ export const CartProvider = ({ children }) => {
       value={{
         cartItems,
         totalQuantity,
+        fetchCart,
         totalPrice,
         totalProducts,
         addToCart,
@@ -205,8 +206,6 @@ export const CartProvider = ({ children }) => {
         clearCart,
         loading,
         error,
-        // clearCart, 
-      // Added clearCart function
       }}
     >
       {children}

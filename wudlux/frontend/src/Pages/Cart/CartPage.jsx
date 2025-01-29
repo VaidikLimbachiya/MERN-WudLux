@@ -112,7 +112,7 @@ const CartPage = () => {
             </tbody>
           </table>
           <Link
-            to="/"
+            to="/products"
             className="cart-continue-shopping"
             onClick={() => {
               window.scrollTo({ top: 0, behavior: "smooth" });

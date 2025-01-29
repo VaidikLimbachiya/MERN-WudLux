@@ -8,7 +8,7 @@ const Slider = () => {
   const slides = [
     {
       image: backgroundImage1,
-      heading: "Wooden ",
+      heading: "Wooden",
       SubHading: "Kitchenware",
       subheading: "Sale offer 10% off this week",
     },
@@ -26,32 +26,69 @@ const Slider = () => {
     },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const totalSlides = slides.length;
+  const extendedSlides = [slides[totalSlides - 1], ...slides, slides[0]]; // Clone first & last for smooth looping
 
+  const [currentIndex, setCurrentIndex] = useState(1); // Start at first real slide
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  // ✅ Auto Slide Every 3 Seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 3000); // Change slide every 3 seconds
-    return () => clearInterval(interval); // Cleanup interval on component unmount
-  }, [slides.length]);
+      nextSlide();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [currentIndex]); // ✅ Fixed dependency
 
+  // ✅ Handle Next Slide (Seamless Loop)
+  const nextSlide = () => {
+    if (currentIndex < totalSlides) {
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+    } else {
+      setIsTransitioning(false);
+      setCurrentIndex(0); // Instantly jump
+      setTimeout(() => {
+        setIsTransitioning(true);
+        setCurrentIndex(1); // Reset smoothly
+      }, 50);
+    }
+  };
+
+  // ✅ Handle Previous Slide (Seamless Loop)
+  const prevSlide = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex((prevIndex) => prevIndex - 1);
+    } else {
+      setIsTransitioning(false);
+      setCurrentIndex(totalSlides + 1); // Instantly jump
+      setTimeout(() => {
+        setIsTransitioning(true);
+        setCurrentIndex(totalSlides); // Reset smoothly
+      }, 50);
+    }
+  };
+
+  // ✅ Handle Dot Click
   const handleDotClick = (index) => {
-    setCurrentIndex(index);
+    setCurrentIndex(index + 1); // Offset by 1 because of cloned slides
   };
 
   return (
     <div className="slider-container">
       <div
         className="slider-track"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        style={{
+          transform: `translateX(-${currentIndex * 100}%)`,
+          transition: isTransitioning ? "transform 0.5s ease-in-out" : "none",
+        }}
       >
-        {slides.map((slide, index) => (
+        {extendedSlides.map((slide, index) => (
           <div
             key={index}
             className="banner"
             style={{ backgroundImage: `url(${slide.image})` }}
           >
-            <div className="banner-content">
+            <div className="banner-content fade-in">
               <div className="sale-offer">
                 <hr className="line-offer" />
                 <p>
@@ -69,11 +106,17 @@ const Slider = () => {
           </div>
         ))}
       </div>
+
+      {/* ✅ Navigation Buttons */}
+      <button className="prev-button" onClick={prevSlide}>←</button>
+      <button className="next-button" onClick={nextSlide}>→</button>
+
+      {/* ✅ Dots Navigation */}
       <div className="dots-container">
-          {slides.map((_, index) => (
+        {slides.map((_, index) => (
           <span
             key={index}
-            className={`dot ${index === currentIndex ? "active" : ""}`}
+            className={`dot ${index + 1 === currentIndex ? "active" : ""}`}
             onClick={() => handleDotClick(index)}
           ></span>
         ))}

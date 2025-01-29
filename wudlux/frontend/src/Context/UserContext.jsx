@@ -13,35 +13,35 @@ export const UserProvider = ({ children }) => {
   // Login function to store user data and token
   const login = (userData, authToken) => {
     console.log("User data received for login:", userData);
-  
+
     const completeUserData = {
       id: userData?.id || "",
       firstName: userData?.firstName || "",
       lastName: userData?.lastName || "",
       email: userData?.email || "",
-      address: {
-        street: userData?.address?.street || "",
-        city: userData?.address?.city || "",
-        state: userData?.address?.state || "",
-        zipCode: userData?.address?.zipCode || "",
-        country: userData?.address?.country || "",
-      },
+      address: Array.isArray(userData?.address)
+        ? userData.address.map((addr) => ({
+            street: addr.street || "",
+            city: addr.city || "",
+            state: addr.state || "",
+            zipCode: addr.zipCode || "",
+            country: addr.country || "",
+          }))
+        : [],
       phoneNumber: userData?.phoneNumber || "",
       role: userData?.role || "user",
     };
-  
+
     console.log("Complete user data:", completeUserData);
-  
+
     setUser(completeUserData);
     setToken(authToken || null);
-  
+
     localStorage.setItem("user", JSON.stringify(completeUserData));
     if (authToken) {
       localStorage.setItem("token", authToken);
     }
   };
-  
-  
 
   // Logout function to clear user data
   const logout = () => {
@@ -57,13 +57,16 @@ export const UserProvider = ({ children }) => {
   // Update user details dynamically
   const updateUser = (updatedData) => {
     console.log("Updating user data:", updatedData);
+
     const updatedUser = {
       ...user,
-      ...updatedData, // Merge updated data with existing user data
-      address: {
-        ...user?.address, // Preserve existing address structure
-        ...updatedData?.address,
-      },
+      ...updatedData,
+      address: Array.isArray(updatedData?.address)
+        ? updatedData.address.map((addr, index) => ({
+            ...user?.address?.[index], // Preserve existing structure if available
+            ...addr,
+          }))
+        : user?.address,
     };
 
     setUser(updatedUser);
@@ -87,10 +90,10 @@ export const UserProvider = ({ children }) => {
         email: parsedUser?.email || "",
         address: {
           street: parsedUser?.address?.street || "",
+          city: parsedUser?.address?.city || "",
+          state: parsedUser?.address?.state || "",
           zipCode: parsedUser?.address?.zipCode || "",
           country: parsedUser?.address?.country || "",
-          state: parsedUser?.address?.state || "",
-          city: parsedUser?.address?.city || "",
         },
         phoneNumber: parsedUser?.phoneNumber || "",
         role: parsedUser?.role || "user",
@@ -104,8 +107,7 @@ export const UserProvider = ({ children }) => {
     }
   
     setLoading(false);
-  }, []);
-  
+  }, []);  
 
   return (
     <UserContext.Provider

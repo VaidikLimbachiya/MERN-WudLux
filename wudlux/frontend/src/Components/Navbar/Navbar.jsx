@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
@@ -6,6 +6,7 @@ import searchIcon from "../../assets/vector.png";
 import profileIcon from "../../assets/profile.png";
 import cartIcon from "../../assets/bag.png";
 import { useCartContext } from "../../Context/CartContext";
+import { AuthContext } from "../../Context/AuthContext";
 
 const categories = [
   {
@@ -55,6 +56,7 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
   const [productToRemove, setProductToRemove] = useState(null); // Product to remove
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Popup state
+  const { logout } = useContext(AuthContext);
   // const [isSliderOpen] = useState(false); // Fix initial state of slider to false
 
   const {
@@ -129,19 +131,10 @@ const Navbar = () => {
 };
 
 
-  const handleLogout = () => {
-    // Clear tokens from localStorage
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("user");
-
-    // Update login state
-    setIsLoggedIn(false);
-    setIsProfileMenuOpen(false); // Close the profile menu
-
-    // Redirect to login page
-    navigate("/log-in");
-  };
+const handleLogout = () => {
+  logout(); // ✅ Clears auth state and storage globally
+  setIsProfileMenuOpen(false); // ✅ Close the profile menu
+};
 
   const handleNavigate = (path) => {
     setIsCartOpen(false); // Close cart when navigating

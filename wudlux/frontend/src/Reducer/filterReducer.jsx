@@ -1,34 +1,30 @@
-// export const initialFilterState = {
-//   selectedMaterial: "",
-//   priceRange: { min: "", max: "" },
-//   sortOption: "Featured", // Default sort option
-//   activeFilters: [],
-// };
-
-// export function filterReducer(state, action) {
-//   switch (action.type) {
-//     case "SET_MATERIAL":
-//       return { ...state, selectedMaterial: action.payload };
-//     case "SET_PRICE_RANGE":
-//       return { ...state, priceRange: action.payload };
-//     case "SET_SORT_OPTION":
-//       return { ...state, sortOption: action.payload };
-//     case "APPLY_FILTERS": {
-//       const newFilters = [];
-//       if (state.selectedMaterial) {
-//         newFilters.push({ id: 1, text: state.selectedMaterial });
-//       }
-//       if (state.priceRange.min && state.priceRange.max) {
-//         newFilters.push({
-//           id: 2,
-//           text: `Min ₹${state.priceRange.min} - Max ₹${state.priceRange.max}`,
-//         });
-//       }
-//       return { ...state, activeFilters: newFilters };
-//     }
-//     case "RESET_FILTERS":
-//       return initialFilterState;
-//     default:
-//       return state;
-//   }
-// }
+export const initialFilterState = {
+    selectedMaterials: [], // Supports multiple selections
+    selectedCategory: "",
+    searchQuery: "",
+    priceRange: { min: null, max: null },
+    sortOption: "default",
+  };
+  
+  export const filterReducer = (state, action) => {
+    switch (action.type) {
+      case "SET_MATERIAL":
+        return {
+          ...state,
+          selectedMaterials: action.payload, // ✅ Supports multiple selections
+        };
+      case "SET_CATEGORY":
+        return { ...state, selectedCategory: action.payload };
+      case "SET_SEARCH_QUERY":
+        return { ...state, searchQuery: action.payload };
+      case "SET_PRICE_RANGE":
+        return { ...state, priceRange: action.payload };
+      case "SET_SORT_OPTION":
+        return { ...state, sortOption: action.payload };
+      case "RESET_FILTERS":
+        return initialFilterState; // ✅ Fully resets filters
+      default:
+        return state;
+    }
+  };
+  

@@ -1,46 +1,63 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiCall } from "../../api/api";
+import { toast } from "react-toastify"; // ✅ Import toast
+import "react-toastify/dist/ReactToastify.css"; // ✅ Import toast styles
 import "./ForgetPassword.css";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-  const [resetRequested, setResetRequested] = useState(false);  // Track if the reset link was sent
-  const [newPassword, setNewPassword] = useState("");           // Track new password input
+  const [showPasswordReset, setShowPasswordReset] = useState(false);
 
   const handleBackToLogin = () => {
     navigate("/log-in");
   };
 
-  const handleSubmit = async (e) => {
+  // ✅ Step 1: Verify Email Exists
+  const handleVerifyEmail = async (e) => {
     e.preventDefault();
     setLoading(true);
-  
+
     try {
-      await apiCall("http://localhost:5000/api/auth/forgot-password ", "POST", { email });
-      setMessage("A password reset link has been sent to your email.");
-      setResetRequested(true);  // Mark the reset link request as successful
+      const response = await apiCall("http://localhost:5000/api/auth/verify-email", "POST", { email });
+
+      if (response.message === "Email verified") {
+        setShowPasswordReset(true); // Show password reset form
+        toast.success("Email verified! Enter a new password."); // ✅ Toast message
+      } else {
+        toast.error("No account found with this email.");
+      }
     } catch (error) {
-      setMessage(error.message || "An error occurred. Please try again.");
+      toast.error(error.message || "An error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
+  // ✅ Step 2: Reset Password Directly
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     setLoading(true);
-  
+
     try {
-      // Only send token and new password in the request body
-      await apiCall("http://localhost:5000/auth/reset-password", "POST", { newPassword });
-      setMessage("Your password has been reset successfully.");
+      const response = await fetch("http://localhost:5000/api/auth/reset-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, newPassword }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to reset password: ${response.statusText}`);
+      }
+
+      await response.json();
+      toast.success("Your password has been reset successfully."); // ✅ Toast message
       navigate("/log-in");
     } catch (error) {
-      setMessage(error.message || "Failed to reset password. Please try again.");
+      toast.error(error.message || "Failed to reset password. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -50,13 +67,12 @@ const ForgotPassword = () => {
     <div className="forgot-password-container">
       <h2 className="forgot-password-title">Forgot Password</h2>
       <p className="forgot-password-description">
-        Lost your password? Please enter your email address. <br />
-        You will receive a link to create a new password via email.
+        Enter your email and reset your password instantly.
       </p>
 
-      {!resetRequested ? (
-        // Initial email form to request a password reset link
-        <form className="forgot-password-form" onSubmit={handleSubmit}>
+      {!showPasswordReset ? (
+        // ✅ Step 1: Enter Email for Verification
+        <form className="forgot-password-form" onSubmit={handleVerifyEmail}>
           <div className="form-group">
             <input
               type="email"
@@ -68,18 +84,14 @@ const ForgotPassword = () => {
             />
           </div>
           <button type="submit" className="continue-button" disabled={loading}>
-            {loading ? <span className="spinner"></span> : "Continue →"}
+            {loading ? <span className="spinner"></span> : "Verify Email →"}
           </button>
-          <button
-            type="button"
-            className="back-to-login-button"
-            onClick={handleBackToLogin}
-          >
+          <button type="button" className="back-to-login-button" onClick={handleBackToLogin}>
             ← Back to Login
           </button>
         </form>
       ) : (
-        // Display form to enter a new password after reset link request
+        // ✅ Step 2: Reset Password Directly
         <form className="forgot-password-form" onSubmit={handlePasswordReset}>
           <div className="form-group">
             <input
@@ -94,17 +106,11 @@ const ForgotPassword = () => {
           <button type="submit" className="continue-button" disabled={loading}>
             {loading ? <span className="spinner"></span> : "Reset Password →"}
           </button>
-          <button
-            type="button"
-            className="back-to-login-button"
-            onClick={handleBackToLogin}
-          >
+          <button type="button" className="back-to-login-button" onClick={handleBackToLogin}>
             ← Back to Login
           </button>
         </form>
       )}
-
-      {message && <p className="forgot-password-message">{message}</p>}
     </div>
   );
 };

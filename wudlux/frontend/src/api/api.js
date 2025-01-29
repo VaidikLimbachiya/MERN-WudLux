@@ -1,25 +1,17 @@
-export const apiCall = async (url, method = "GET", body = null) => {
-  const headers = {
-    "Content-Type": "application/json",
-  };
+export const apiCall = async (url, method, body) => {
+  console.log("API Call:", url, { method, headers: { "Content-Type": "application/json" }, body });
 
-  const options = {
+  const response = await fetch(url, {
     method,
-    headers,
-    body: body ? JSON.stringify(body) : null,
-  };
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
 
-  console.log("API Call:", url, options);
-
-  try {
-    const response = await fetch(url, options);
-    if (!response.ok) {
-      console.error(`Error: HTTP ${response.status} for URL: ${url}`);
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error("API error:", error);
-    throw error; // Re-throw to handle in the component
+  if (!response.ok) {
+    const error = await response.json();
+    console.error("API Error Response:", error);
+    throw new Error(error.message || `HTTP ${response.status}`);
   }
+
+  return response.json();
 };

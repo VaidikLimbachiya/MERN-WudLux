@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { useCartContext } from "../../Context/CartContext"; // Import the cart context
 import { useUserContext } from "../../Context/UserContext"; // Import the user context
@@ -9,6 +10,7 @@ const Checkout = () => {
   const { cartItems = [], totalPrice = 0 } = useCartContext(); // Default values for cart context
   const { user } = useUserContext(); // Default values for user context
   const navigate = useNavigate(); // For navigation
+  const location = useLocation();
 
   const statesAndCities = {
     Maharashtra: ["Mumbai", "Pune", "Nagpur"],
@@ -41,20 +43,25 @@ const Checkout = () => {
   // Auto-fill form fields when the user is logged in
   useEffect(() => {
     if (user) {
-      console.log("Populating formData with user data:", user); // Debugging
+      console.log("Populating formData with user data:", user);
+  
+      const { address = {} } = user; // Destructure address object
+  
       setFormData((prev) => ({
         ...prev,
         firstName: user.firstName || "",
         lastName: user.lastName || "",
         email: user.email || "",
-        address: user.address?.street || "",
-        zipCode: user.address?.zipCode || "",
-        state: user.address?.state || "",
-        city: user.address?.city || "",
+        address: address.street || "",
+        zipCode: address.zipCode || "",
+        country: address.country || "",
+        state: address.state || "",
+        city: address.city || "",
         phone: user.phoneNumber || "",
       }));
     }
-  }, [user]);
+  }, [user]);  
+  
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -95,8 +102,8 @@ const Checkout = () => {
 
         {!user && (
           <p className="form-subtitle">
-            Already have an account? <Link to="/log-in">Login</Link>
-          </p>
+  Already have an account? <Link to={`/log-in?redirect=${location.pathname}`}>Login</Link>
+</p>
         )}
 
         <form onSubmit={handleSubmit}>
@@ -205,7 +212,7 @@ const Checkout = () => {
               className="back-button"
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
-                navigate("/"); 
+                navigate("/cartPage"); 
               }}
             >
               ← Back to Cart
