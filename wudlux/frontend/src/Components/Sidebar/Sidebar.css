@@ -82,12 +82,15 @@
     }
   
     .sidebar-logo {
-      width: 30px; /* Reduce logo size */
-      height: 30px;
+      margin-top: 69px;
+      width: 60px; /* Reduce logo size */
+      height: 60px;
+      margin-left: -14.9rem;  
     }
   
     .sidebar-title {
-      font-size: 16px; /* Reduce title font size */
+      font-size: 30px; /* Reduce title font size */
+      margin-left: -12rem;
     }
   
     .sidebar-navigation {
