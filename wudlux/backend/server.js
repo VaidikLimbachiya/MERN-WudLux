@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 const authRoutes = require("./src/routes/authRoutes");
 const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
+const addressRoutes = require("./src/routes/addressRoutes");
 const fs = require("fs");
 const path = require("path");
 
@@ -46,6 +47,7 @@ app.use("/uploads", express.static(uploadDir));
 app.use("/api/auth", authRoutes);
 const jwt = require("jsonwebtoken");
 
+app.use("/addresses", addressRoutes);
 const isValidRefreshToken = (token) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_REFRESH_SECRET);

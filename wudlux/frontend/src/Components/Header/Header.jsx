@@ -107,10 +107,6 @@ const Slider = () => {
         ))}
       </div>
 
-      {/* ✅ Navigation Buttons */}
-      <button className="prev-button" onClick={prevSlide}>←</button>
-      <button className="next-button" onClick={nextSlide}>→</button>
-
       {/* ✅ Dots Navigation */}
       <div className="dots-container">
         {slides.map((_, index) => (

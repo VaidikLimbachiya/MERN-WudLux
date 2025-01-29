@@ -1,94 +1,168 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "./Address.css";
-import breadcrumbIcon from "../../assets/home.png"; // Update the path to your breadcrumb icon
+import breadcrumbIcon from "../../assets/home.png";
 
-const initialAddresses = [
-  {
-    id: 1,
-    name: "Meghna Sheth",
-    email: "meghna_sheth@gmail.com",
-    address: "J-305, Krishna road, Opp. HDFC bank, Ahmedabad, Gujarat, India",
-    zipCode: "360006",
-    country: "India",
-    state: "Gujarat",
-    city: "Ahmedabad",
-    phone: "9632587412",
-    isDefault: true,
-  },
-  {
-    id: 2,
-    name: "Ramesh Vora",
-    email: "ramesh_vora@gmail.com",
-    address: "1205, Ramol Road, Opp. ICICI bank, Ahmedabad, Gujarat",
-    zipCode: "360007",
-    country: "India",
-    state: "Gujarat",
-    city: "Ahmedabad",
-    phone: "9876543210",
-    isDefault: false,
-  },
-];
+const API_BASE_URL = "http://localhost:5000/addresses";
 
 const AddressList = () => {
-  const [addresses, setAddresses] = useState(initialAddresses);
-  const [currentAddress, setCurrentAddress] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [isAdding, setIsAdding] = useState(false);
+  const [user, setUser] = useState(null);
+  const [addresses, setAddresses] = useState([]);
+  const [editingAddressId, setEditingAddressId] = useState(null);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [newAddress, setNewAddress] = useState({
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    country: "India",
+    isDefault: false,
+  });
 
-  const handleAddNew = () => {
-    setIsAdding(true);
-    setIsEditing(false);
-    setCurrentAddress(null);
-  };
+  // Fetch user info from local storage
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser?.id) {
+      setUser(storedUser);
+    }
+    setLoading(false);
+  }, []);
 
-  const handleEdit = (address) => {
-    setIsEditing(true);
-    setIsAdding(false);
-    setCurrentAddress(address);
-  };
+  // Fetch addresses from the database
+  useEffect(() => {
+    if (!user?.id) return;
 
-  const handleRemove = (id) => {
-    setAddresses(addresses.filter((address) => address.id !== id));
-  };
-
-  const handleSetDefault = (id) => {
-    setAddresses(
-      addresses.map((address) => ({
-        ...address,
-        isDefault: address.id === id,
-      }))
-    );
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const newAddress = {
-      id: currentAddress ? currentAddress.id : addresses.length + 1,
-      name: `${formData.get("firstName")} ${formData.get("lastName")}`,
-      email: formData.get("email"),
-      address: formData.get("address"),
-      zipCode: formData.get("zipCode"),
-      country: formData.get("country"),
-      state: formData.get("state"),
-      city: formData.get("city"),
-      phone: formData.get("phone"),
-      isDefault: formData.get("isDefault") === "on",
+    const fetchAddresses = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/${user.id}`);
+        setAddresses(response.data);
+      } catch (error) {
+        console.error("Error fetching addresses:", error);
+      }
     };
 
-    if (currentAddress) {
-      setAddresses(
-        addresses.map((address) =>
-          address.id === currentAddress.id ? newAddress : address
-        )
-      );
-    } else {
-      setAddresses([...addresses, newAddress]);
-    }
+    fetchAddresses();
+  }, [user?.id]);
 
-    setIsAdding(false);
-    setIsEditing(false);
-    setCurrentAddress(null);
+  const toggleAddForm = () => {
+    setShowAddForm(!showAddForm);
+    setEditingAddressId(null);
+    setNewAddress({
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      country: "India",
+      isDefault: false,
+    });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setNewAddress((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleAddNew = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${API_BASE_URL}/${user.id}`,
+        newAddress
+      );
+
+      if (response.data) {
+        // Ensure we get the new address and update state
+        setAddresses((prev) => [...prev, response.data]);
+
+        // Reset form and hide add form
+        toggleAddForm();
+
+        // **Force a re-fetch to ensure state updates immediately**
+        fetchAddresses();
+      } else {
+        console.error("Unexpected API response:", response);
+      }
+    } catch (error) {
+      console.error("Error adding address:", error);
+    }
+  };
+  const fetchAddresses = async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/${user.id}`);
+      setAddresses(response.data);
+    } catch (error) {
+      console.error("Error fetching addresses:", error);
+    }
+  };
+
+  // Fetch addresses when component mounts or user ID changes
+  useEffect(() => {
+    if (user?.id) {
+      fetchAddresses();
+    }
+  }, [user?.id]);
+
+  const toggleEdit = (address) => {
+    setEditingAddressId(address._id);
+    setShowAddForm(true); // Show form when editing
+    setNewAddress({
+      street: address.street,
+      city: address.city,
+      state: address.state,
+      zipCode: address.zipCode,
+      country: address.country,
+      isDefault: address.isDefault,
+    });
+  };
+
+  const handleSaveEdit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(
+        `${API_BASE_URL}/${user.id}/${editingAddressId}`,
+        newAddress
+      );
+
+      if (response.data) {
+        setAddresses((prev) =>
+          prev.map((addr) =>
+            addr._id === editingAddressId ? response.data : addr
+          )
+        );
+
+        // Reset form after updating
+        setEditingAddressId(null);
+        toggleAddForm(); // Hide form after editing
+      }
+    } catch (error) {
+      console.error("Error updating address:", error);
+    }
+  };
+
+  const handleRemove = async (addressId) => {
+    try {
+      await axios.delete(`${API_BASE_URL}/${user.id}/${addressId}`);
+      setAddresses(addresses.filter((addr) => addr._id !== addressId));
+    } catch (error) {
+      console.error("Error deleting address:", error);
+    }
+  };
+
+  const handleSetDefault = async (addressId) => {
+    try {
+      await axios.patch(`${API_BASE_URL}/${user.id}/${addressId}/default`);
+      const updatedAddresses = addresses.map((addr) => ({
+        ...addr,
+        isDefault: addr._id === addressId,
+      }));
+      setAddresses(updatedAddresses);
+    } catch (error) {
+      console.error("Error setting default address:", error);
+    }
   };
 
   return (
@@ -99,124 +173,118 @@ const AddressList = () => {
         <h2 className="btext">{">"} Addresses</h2>
       </div>
 
+      {/* User Greeting */}
+
       {/* Address Header */}
       <div className="address-header">
         <h2>Addresses</h2>
-        <button className="add-address-button" onClick={handleAddNew}>
-          Add a new address →
+
+        <button className="add-address-button" onClick={toggleAddForm}>
+          {showAddForm ? "Cancel" : "Add a new address →"}
         </button>
       </div>
 
-      {/* Form Section */}
-      {isAdding || isEditing ? (
-        <form className="address-form" onSubmit={handleFormSubmit}>
-          <h2>{isEditing ? "" : "Add a new address"}</h2>
+      {/* Add/Edit Address Form */}
+      {showAddForm || editingAddressId ? (
+        <form
+          className="address-form"
+          onSubmit={editingAddressId ? handleSaveEdit : handleAddNew}
+        >
+          <h2>{editingAddressId ? "Edit Address" : "Add a new address"}</h2>
           <div className="form-group">
             <input
               type="text"
-              name="firstName"
-              placeholder="First Name *"
-              defaultValue={currentAddress?.name.split(" ")[0] || ""}
+              name="street"
+              placeholder="Street Address *"
+              value={newAddress.street}
+              onChange={handleInputChange}
               required
             />
             <input
               type="text"
-              name="lastName"
-              placeholder="Last Name *"
-              defaultValue={currentAddress?.name.split(" ")[1] || ""}
+              name="city"
+              placeholder="City *"
+              value={newAddress.city}
+              onChange={handleInputChange}
               required
             />
           </div>
-          <input
-            type="email"
-            name="email"
-            className="email-input"
-            placeholder="Email Address *"
-            defaultValue={currentAddress?.email || ""}
-            required
-          />
           <div className="form-group">
             <input
               type="text"
-              name="address"
-              placeholder="Your Address *"
-              defaultValue={currentAddress?.address || ""}
+              name="state"
+              placeholder="State *"
+              value={newAddress.state}
+              onChange={handleInputChange}
               required
             />
             <input
               type="text"
               name="zipCode"
               placeholder="Zip Code *"
-              defaultValue={currentAddress?.zipCode || ""}
+              value={newAddress.zipCode}
+              onChange={handleInputChange}
               required
             />
+            <input
+              type="text"
+              name="country"
+              value={newAddress.country}
+              readOnly
+            />
           </div>
-          <div className="form-group">
-            <select name="country" defaultValue={currentAddress?.country || ""}>
-              <option value="India">India</option>
-            </select>
-            <select name="state" defaultValue={currentAddress?.state || ""}>
-              <option value="Gujarat">Gujarat</option>
-            </select>
-            <select name="city" defaultValue={currentAddress?.city || ""}>
-              <option value="Ahmedabad">Ahmedabad</option>
-            </select>
-          </div>
-          <input
-            type="text"
-            name="phone"
-            placeholder="Phone Number *"
-            defaultValue={currentAddress?.phone || ""}
-            required
-          />
           <div className="form-group">
             <label>
               <input
                 type="checkbox"
                 name="isDefault"
-                className="custom-checkbox"
-                defaultChecked={currentAddress?.isDefault || false}
+                checked={newAddress.isDefault}
+                onChange={handleInputChange}
               />
               <span className="dfText">Use this address as default</span>
             </label>
           </div>
-          <button type="submit" className="update-button">
-            {isEditing ? "Update" : "Add"} →
+          <button className="update-button" type="submit">
+            {editingAddressId ? "Update Address" : "Save →"}
           </button>
         </form>
       ) : (
         <div className="address-list">
-          {addresses.length > 0 ? (
+          {loading ? (
+            <p>Loading addresses...</p>
+          ) : addresses.length > 0 ? (
             addresses.map((address) => (
-              <div key={address.id} className="address-card">
+              <div key={address._id} className="address-card">
+                {address.isDefault && (
+                  <span className="default-badge">Default</span>
+                )}
+                <div className="user-info">
+                  <h3>
+                    {user?.firstName} {user?.lastName}
+                  </h3>
+                </div>
                 <div className="address-info">
-                  <div className="address-name">
-                    {address.name}
-                    {address.isDefault && (
-                      <span className="default-badge">Default</span>
-                    )}
-                  </div>
-                  <div className="address-details">{address.address}</div>
+                  <p>{`${address.street}, ${address.city}, ${address.state}, ${address.country}, ${address.zipCode}`}</p>
                 </div>
                 <div className="address-actions">
                   <button
                     className="edit-button"
-                    onClick={() => handleEdit(address)}
+                    onClick={() => toggleEdit(address._id)}
                   >
                     Edit
                   </button>
                   <button
                     className="remove-button"
-                    onClick={() => handleRemove(address.id)}
+                    onClick={() => handleRemove(address._id)}
                   >
                     Remove
                   </button>
                   {!address.isDefault && (
                     <button
                       className="set-default-button"
-                      onClick={() => handleSetDefault(address.id)}
+                      onClick={() => handleSetDefault(address._id)}
                     >
-                      Set as default
+                      Set Default
                     </button>
                   )}
                 </div>

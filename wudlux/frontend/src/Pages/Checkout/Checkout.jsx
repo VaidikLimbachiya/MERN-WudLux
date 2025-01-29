@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
-import { useCartContext } from "../../Context/CartContext"; // Import the cart context
-import { useUserContext } from "../../Context/UserContext"; // Import the user context
+import { useCartContext } from "../../Context/CartContext";
+import { useUserContext } from "../../Context/UserContext";
 import "./Checkout.css";
-import logo from "../../assets/logo.png"; // Import the logo image
+import logo from "../../assets/logo.png";
+
+const API_BASE_URL = "http://localhost:5000"; // Backend API base URL
 
 const Checkout = () => {
-  const { cartItems = [], totalPrice = 0 } = useCartContext(); // Default values for cart context
-  const { user } = useUserContext(); // Default values for user context
-  const navigate = useNavigate(); // For navigation
+  const { cartItems = [] } = useCartContext();
+  const { user } = useUserContext();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const statesAndCities = {
@@ -25,73 +28,113 @@ const Checkout = () => {
     email: "",
     address: "",
     zipCode: "",
-    country: "India", // Default and unchangeable country
+    country: "India",
     state: "",
     city: "",
     phone: "",
     notes: "",
-    registerAccount: false, // For "Register Account" checkbox
-    requiresInvoice: false, // For "Requires Company Invoice" checkbox
-    password: "",
-    confirmPassword: "",
-    companyAddress: "",
-    companyName: "",
-    companyTaxCode: "",
-    companyEmail: "",
   });
 
-  // Auto-fill form fields when the user is logged in
+  const [selectedAddressId, setSelectedAddressId] = useState("");
+  const [addresses, setAddresses] = useState([]);
+
+  // Fetch user addresses from the database
   useEffect(() => {
-    if (user) {
-      console.log("Populating formData with user data:", user);
-  
-      const { address = {} } = user; // Destructure address object
-  
+    const fetchAddresses = async () => {
+      if (!user || !user.id) return;
+      try {
+        const response = await axios.get(`${API_BASE_URL}/addresses/${user.id}`);
+        setAddresses(response.data);
+      } catch (error) {
+        console.error("Error fetching addresses:", error);
+      }
+    };
+
+    fetchAddresses();
+  }, [user]);
+
+  // Ensure addresses are always an array
+  const userAddresses = Array.isArray(addresses) ? addresses : [];
+
+  // Auto-fill form fields when user logs in
+  useEffect(() => {
+    if (userAddresses.length > 0) {
+      console.log("Populating formData with user addresses:", userAddresses);
+
+      const defaultAddress = userAddresses.find((addr) => addr.isDefault) || userAddresses[0];
+
+      setSelectedAddressId(defaultAddress?._id || "");
+
       setFormData((prev) => ({
         ...prev,
-        firstName: user.firstName || "",
-        lastName: user.lastName || "",
-        email: user.email || "",
-        address: address.street || "",
-        zipCode: address.zipCode || "",
-        country: address.country || "",
-        state: address.state || "",
-        city: address.city || "",
-        phone: user.phoneNumber || "",
+        firstName: user?.firstName || "",
+        lastName: user?.lastName || "",
+        email: user?.email || "",
+        address: defaultAddress?.street || "",
+        zipCode: defaultAddress?.zipCode || "",
+        country: defaultAddress?.country || "India",
+        state: defaultAddress?.state || "",
+        city: defaultAddress?.city || "",
+        phone: user?.phoneNumber || "",
       }));
     }
-  }, [user]);  
-  
+  }, [userAddresses]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: type === "checkbox" ? checked : value,
       ...(name === "state" && { city: "" }), // Reset city when state changes
-    });
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleAddressChange = (e) => {
+    const selectedId = e.target.value;
+    setSelectedAddressId(selectedId);
+    const selectedAddress = userAddresses.find((addr) => addr._id === selectedId);
+
+    if (selectedAddress) {
+      setFormData((prev) => ({
+        ...prev,
+        address: selectedAddress.street || "",
+        zipCode: selectedAddress.zipCode || "",
+        state: selectedAddress.state || "",
+        city: selectedAddress.city || "",
+        phone: user?.phoneNumber || "",
+      }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate required fields
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.address || !formData.state || !formData.city || !formData.phone) {
       alert("Please complete all required fields.");
       return;
     }
 
-    console.log("Form Submitted:", formData);
-    alert("Checkout Successful!");
-  };
+    try {
+      const response = await axios.post(`${API_BASE_URL}/checkout`, {
+        userId: user?.id,
+        selectedAddressId,
+        cartItems,
+        totalPrice: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
+        formData,
+      });
 
-  if (!Array.isArray(cartItems)) {
-    return <p>Error: Cart items not available. Please try again later.</p>;
-  }
+      console.log("Checkout Success:", response.data);
+      alert("Checkout Successful!");
+      navigate("/order-confirmation");
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      alert("Checkout failed. Please try again.");
+    }
+  };
 
   return (
     <div className="checkout-wrapper">
-      {/* Left part */}
+      {/* Left Part - Shipping Form */}
       <div className="form-container">
         <div className="logo-box">
           <Link to="/">
@@ -102,71 +145,38 @@ const Checkout = () => {
 
         {!user && (
           <p className="form-subtitle">
-  Already have an account? <Link to={`/log-in?redirect=${location.pathname}`}>Login</Link>
-</p>
+            Already have an account? <Link to={`/log-in?redirect=${location.pathname}`}>Login</Link>
+          </p>
         )}
 
         <form onSubmit={handleSubmit}>
+          {userAddresses.length > 0 && (
+            <div className="input-group">
+              <label>Select an Address:</label>
+              <select value={selectedAddressId} onChange={handleAddressChange}>
+                {userAddresses.map((addr) => (
+                  <option key={addr._id} value={addr._id}>
+                    {addr.street}, {addr.city}, {addr.state}, {addr.zipCode}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
           <div className="input-group">
-            <input
-              type="text"
-              name="firstName"
-              placeholder="First Name *"
-              value={formData.firstName}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Last Name *"
-              value={formData.lastName}
-              onChange={handleInputChange}
-              required
-            />
+            <input type="text" name="firstName" placeholder="First Name *" value={formData.firstName} onChange={handleInputChange} required />
+            <input type="text" name="lastName" placeholder="Last Name *" value={formData.lastName} onChange={handleInputChange} required />
           </div>
           <div className="input-group">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address *"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-            />
+            <input type="email" name="email" placeholder="Email Address *" value={formData.email} onChange={handleInputChange} required />
           </div>
           <div className="input-group">
-            <input
-              type="text"
-              name="address"
-              placeholder="Your Address *"
-              value={formData.address}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="text"
-              name="zipCode"
-              placeholder="Zip Code *"
-              value={formData.zipCode}
-              onChange={handleInputChange}
-              required
-            />
+            <input type="text" name="address" placeholder="Your Address *" value={formData.address} onChange={handleInputChange} required />
+            <input type="text" name="zipCode" placeholder="Zip Code *" value={formData.zipCode} onChange={handleInputChange} required />
           </div>
           <div className="input-group">
-            <input
-              type="text"
-              name="country"
-              value={formData.country}
-              readOnly
-              className="readonly-input"
-            />
-            <select
-              name="state"
-              value={formData.state}
-              onChange={handleInputChange}
-              required
-            >
+            <input type="text" name="country" value={formData.country} readOnly className="readonly-input" />
+            <select name="state" value={formData.state} onChange={handleInputChange} required>
               <option value="">State *</option>
               {Object.keys(statesAndCities).map((state) => (
                 <option key={state} value={state}>
@@ -174,105 +184,24 @@ const Checkout = () => {
                 </option>
               ))}
             </select>
-            <select
-              name="city"
-              value={formData.city}
-              onChange={handleInputChange}
-              required
-              disabled={!formData.state}
-            >
+            <select name="city" value={formData.city} onChange={handleInputChange} required disabled={!formData.state}>
               <option value="">City *</option>
-              {formData.state &&
-                statesAndCities[formData.state]?.map((city) => (
-                  <option key={city} value={city}>
-                    {city}
-                  </option>
-                ))}
+              {formData.state && statesAndCities[formData.state]?.map((city) => (
+                <option key={city} value={city}>
+                  {city}
+                </option>
+              ))}
             </select>
           </div>
           <div className="input-group">
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone Number *"
-              value={formData.phone}
-              onChange={handleInputChange}
-              required
-            />
+            <input type="text" name="phone" placeholder="Phone Number *" value={formData.phone} onChange={handleInputChange} required />
           </div>
-          <textarea
-            name="notes"
-            placeholder="Notes about your order, e.g., special delivery instructions."
-            value={formData.notes}
-            onChange={handleInputChange}
-          />
+          <textarea name="notes" placeholder="Notes about your order, e.g., special delivery instructions." value={formData.notes} onChange={handleInputChange} />
           <div className="button-group">
-            <button
-              type="button"
-              className="back-button"
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page
-                navigate("/cartPage"); 
-              }}
-            >
-              ← Back to Cart
-            </button>
-            <button type="submit" className="submit-button">
-              Checkout →
-            </button>
+            <button type="button" className="back-button" onClick={() => navigate("/cartPage")}>← Back to Cart</button>
+            <button type="submit" className="submit-button">Checkout →</button>
           </div>
         </form>
-      </div>
-
-      {/* Right part */}
-      <div className="summary-container">
-        <h2>Products</h2>
-        <div className="product-list">
-          {cartItems.length > 0 ? (
-            cartItems.map((item, index) => (
-              <div key={item.id || index} className="product-box">
-                <img
-                  crossOrigin="anonymous"
-                  src={item.images ? `http://localhost:5000/uploads/${item.images}` : "placeholder.png"}
-                  alt={item.title || "Product Image"}
-                  className="product-thumbnail"
-                />
-                <div className="product-info">
-                  <div className="product-title">
-                    <span className="quantity-badge">{item.quantity}</span>
-                    <p className="name">{item.title}</p>
-                  </div>
-                  <div className="product-cost">₹{item.price.toFixed(2)}</div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p>No items in the cart.</p>
-          )}
-        </div>
-        <div className="summary-totals">
-          <div className="price-item">
-            <span>Total Amount:</span>
-            <span>₹{totalPrice.toFixed(2)}</span>
-          </div>
-          <div className="price-item">
-            <span>Total CGST:</span>
-            <span>₹{(totalPrice * 0.09).toFixed(2)}</span>
-          </div>
-          <div className="price-item">
-            <span>Total SGST:</span>
-            <span>₹{(totalPrice * 0.09).toFixed(2)}</span>
-          </div>
-          <div className="price-item">
-            <span>Coupon Discount:</span>
-            <span className="discount-product">-₹99.00</span>
-          </div>
-          <hr />
-          <h3 className="price-item">
-            <span>Amount Payable:</span>
-            <span>₹{(totalPrice + totalPrice * 0.18 - 99).toFixed(2)}</span>
-          </h3>
-        </div>
       </div>
     </div>
   );

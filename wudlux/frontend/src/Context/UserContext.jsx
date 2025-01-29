@@ -19,13 +19,15 @@ export const UserProvider = ({ children }) => {
       firstName: userData?.firstName || "",
       lastName: userData?.lastName || "",
       email: userData?.email || "",
-      address: Array.isArray(userData?.address)
-        ? userData.address.map((addr) => ({
+      addresses: Array.isArray(userData?.addresses)
+        ? userData.addresses.map((addr) => ({
+            _id: addr._id || "", // Ensure _id is included
             street: addr.street || "",
             city: addr.city || "",
             state: addr.state || "",
             zipCode: addr.zipCode || "",
             country: addr.country || "",
+            isDefault: addr.isDefault || false, // Ensure default address logic
           }))
         : [],
       phoneNumber: userData?.phoneNumber || "",
@@ -54,19 +56,19 @@ export const UserProvider = ({ children }) => {
     localStorage.removeItem("token");
   };
 
-  // Update user details dynamically
+  // Update user details dynamically (including addresses)
   const updateUser = (updatedData) => {
     console.log("Updating user data:", updatedData);
 
     const updatedUser = {
       ...user,
       ...updatedData,
-      address: Array.isArray(updatedData?.address)
-        ? updatedData.address.map((addr, index) => ({
-            ...user?.address?.[index], // Preserve existing structure if available
+      addresses: Array.isArray(updatedData?.addresses)
+        ? updatedData.addresses.map((addr, index) => ({
+            ...user?.addresses?.[index], // Preserve existing address if available
             ...addr,
           }))
-        : user?.address,
+        : user?.addresses, // Ensure addresses stay an array
     };
 
     setUser(updatedUser);
@@ -77,37 +79,41 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     const storedToken = localStorage.getItem("token");
-  
+
     console.log("Stored user:", storedUser);
-  
+
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
-  
+
       const completeUserData = {
         id: parsedUser?.id || "",
         firstName: parsedUser?.firstName || "",
         lastName: parsedUser?.lastName || "",
         email: parsedUser?.email || "",
-        address: {
-          street: parsedUser?.address?.street || "",
-          city: parsedUser?.address?.city || "",
-          state: parsedUser?.address?.state || "",
-          zipCode: parsedUser?.address?.zipCode || "",
-          country: parsedUser?.address?.country || "",
-        },
+        addresses: Array.isArray(parsedUser?.addresses)
+          ? parsedUser.addresses.map((addr) => ({
+              _id: addr._id || "",
+              street: addr.street || "",
+              city: addr.city || "",
+              state: addr.state || "",
+              zipCode: addr.zipCode || "",
+              country: addr.country || "",
+              isDefault: addr.isDefault || false,
+            }))
+          : [],
         phoneNumber: parsedUser?.phoneNumber || "",
         role: parsedUser?.role || "user",
       };
-  
+
       setUser(completeUserData);
     }
-  
+
     if (storedToken) {
       setToken(storedToken);
     }
-  
+
     setLoading(false);
-  }, []);  
+  }, []);
 
   return (
     <UserContext.Provider
