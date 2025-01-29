@@ -427,6 +427,7 @@
 
   .footer-section p {
       font-size: 10px; /* Smaller font size */
+      width: 231px;
   }
 
   .footer-section ul li {

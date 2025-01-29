@@ -64,3 +64,62 @@
   .sidebar-nav-active .sidebar-nav-icon {
     filter: invert(1) brightness(1.5);
   }
+
+  @media (max-width: 320px) {
+    .sidebar {
+      width: 100%; /* Sidebar spans full width */
+      height: auto; /* Adjust height to fit content */
+      padding: 8px; /* Reduce padding for smaller screens */
+      box-shadow: none; /* Remove shadow for a cleaner look */
+      border-right: none; /* Remove border for a minimal design */
+    }
+  
+    .sidebar-header {
+      flex-direction: column; /* Stack the logo and title vertically */
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+  
+    .sidebar-logo {
+      margin-top: 69px;
+      width: 60px; /* Reduce logo size */
+      height: 60px;
+      margin-left: -14.9rem;  
+    }
+  
+    .sidebar-title {
+      font-size: 30px; /* Reduce title font size */
+      margin-left: -12rem;
+    }
+  
+    .sidebar-navigation {
+      gap: 12px; /* Reduce the gap between navigation items */
+    }
+  
+    .sidebar-nav-item {
+      padding: 6px 8px; /* Reduce padding for smaller navigation items */
+    }
+  
+    .sidebar-nav-icon {
+      width: 20px; /* Adjust icon size */
+      height: 20px;
+      margin-right: 8px;
+    }
+  
+    .sidebar-nav-text {
+      font-size: 14px; /* Reduce text size */
+    }
+  
+    /* Adjust the layout so the rest of the page content is below the sidebar */
+    .app-container {
+      display: flex;
+      flex-direction: column; /* Stack the sidebar and main content */
+    }
+  
+    .main-content {
+      margin-top: 16px; /* Add space between the sidebar and content */
+      padding: 8px; /* Add padding for smaller screens */
+    }
+  }
+  

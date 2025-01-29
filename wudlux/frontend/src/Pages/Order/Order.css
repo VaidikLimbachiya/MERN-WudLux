@@ -205,3 +205,106 @@
   object-fit: contain;
 }
 
+@media (max-width: 320px) {
+  .order-history-container {
+    flex-direction: column;
+    padding: 10px;
+    margin-top: -50px;
+  }
+
+
+
+  .sidebar {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0;
+    padding: 10px;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .breadcrumb {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 0;
+    /* margin-top; */
+  }
+  .breadcrumb img {
+    height: 24px;
+    object-fit: contain;
+    margin-right: 10px;
+    margin-top: -21.5rem;
+}
+  .btext {
+    font-size: 16px;
+    color: #0a0a0a;
+    margin-bottom: -3px;
+    margin-left: -8px;
+    margin-top: -21.5rem;
+}
+  .order-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .filter-input input, .filter-dropdown {
+    width: 100%;
+  }
+
+  /* Ensure table data is fully visible */
+  .order-slider-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+
+  .order-slider {
+    min-width: 600px; /* Ensures content doesn't get squeezed */
+    overflow-x: auto;
+    scroll-snap-align: start;
+  }
+
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .order-table {
+    min-width: 600px; /* Ensures horizontal scrolling */
+    border-collapse: collapse;
+  }
+
+  .order-table thead th {
+    border-bottom: 1px solid #50433c;
+    padding: 10px;
+    white-space: nowrap;
+  }
+
+  .order-table td {
+    border-left: none;
+    text-align: center;
+    padding: 10px;
+    white-space: nowrap;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pagination button {
+    padding: 4px;
+    font-size: 10px;
+  }
+}

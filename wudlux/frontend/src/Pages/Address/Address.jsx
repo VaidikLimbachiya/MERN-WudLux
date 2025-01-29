@@ -96,7 +96,7 @@ const AddressList = () => {
       {/* Breadcrumb Section */}
       <div className="breadcrumb">
         <img src={breadcrumbIcon} alt="Breadcrumb" />
-        <h2 className="btext">{'>'} Addresses</h2>
+        <h2 className="btext">{">"} Addresses</h2>
       </div>
 
       {/* Address Header */}

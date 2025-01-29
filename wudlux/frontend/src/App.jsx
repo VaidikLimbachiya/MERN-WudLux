@@ -23,11 +23,22 @@ import Order from "./Pages/Order/Order";
 import Address from "./Pages/Address/Address";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import OrderDetails from "./Pages/OrderDetails/OrderDetails";
+import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
 const SidebarLayout = ({ children }) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); 
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: isMobile ? "block" : "flex" }}>
       <Sidebar />
       <div style={{ flex: 1 }}>{children}</div>
     </div>
