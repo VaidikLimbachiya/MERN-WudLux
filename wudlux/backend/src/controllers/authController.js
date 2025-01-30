@@ -26,15 +26,18 @@ exports.register = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      address: {
-        street: address?.street || "",
-        zipCode: address?.zipCode || "",
-        country: address?.country || "",
-        state: address?.state || "",
-        city: address?.city || "",
-      },
+      addresses: address ? [
+        {
+          street: address?.street || "",
+          zipCode: address?.zipCode || "",
+          country: address?.country || "",
+          state: address?.state || "",
+          city: address?.city || "",
+          isDefault: true, // Mark the first address as default
+        },
+      ] : [],
       phoneNumber: phoneNumber || "",
-    });
+    });    
 
     await newUser.save();
     res.status(201).json({ message: "User registered successfully" });
@@ -71,16 +74,10 @@ exports.login = async (req, res) => {
         firstName: user.firstName || "",
         lastName: user.lastName || "",
         email: user.email || "",
-        address: {
-          street: user.address?.street || "",
-          city: user.address?.city || "",
-          state: user.address?.state || "",
-          zipCode: user.address?.zipCode || "",
-          country: user.address?.country || "",
-        },
+        addresses: user.addresses || [], // Send all addresses
         phoneNumber: user.phoneNumber || "",
         role: user.role || "user",
-      },
+      },      
     });
   } catch (err) {
     console.error("Error during login:", err);
