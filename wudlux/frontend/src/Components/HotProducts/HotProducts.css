@@ -1,3 +1,6 @@
+.grid-section{
+  width: 100%;
+}
 .section-heading {
   text-align: center;
   margin-bottom: 20px;
@@ -308,7 +311,8 @@
 
   /* Grid Items */
   .grid-item {
-    border-radius: 3px; /* Slightly smaller border-radius */
+    border-radius: 4px;
+    height: 96px; /* Slightly smaller border-radius */
   }
 
   .grid-item img {

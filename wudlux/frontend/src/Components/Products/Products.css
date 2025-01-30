@@ -339,24 +339,31 @@
 /* For screens smaller than 320px (extremely small devices like old phones) */
 @media (max-width: 320px) {
   .productsGrid {
-    grid-template-columns: 1fr; /* Force a single column */
-    gap: 8px; /* Reduce gap */
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 0;
   }
 
   .productCard {
-    margin: 4px 0; /* Further reduce margin between items */
+    margin: 5px auto;
+    width: 90%; /* Narrow card width */
   }
 
   .productImage {
-    height: 180px; /* Very small product image */
+    height: 180px;
   }
 
   .productsTitle {
-    font-size: 30px; /* Minimized font size */
+    font-size: 18px;
   }
 
   .viewAllButton {
-    font-size: 12px; /* Adjust button font size */
-    padding: 5px 10px;
+    font-size: 14px;
+    padding: 8px 21px;
+  }
+
+  .discountBadge {
+    font-size: 10px;
+    padding: 3px 5px;
   }
 }

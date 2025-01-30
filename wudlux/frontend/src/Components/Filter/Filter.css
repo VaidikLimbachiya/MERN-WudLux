@@ -156,21 +156,6 @@
   font-weight: 700;
 }
 
-@media (max-width: 991px) {
-  .filterRow,
-  .filterGroup,
-  .priceRange,
-  .activeFiltersBar,
-  .activeFiltersList {
-    max-width: 100%;
-  }
-  
-  .priceRange,
-  .currencyInput,
-  .applyButton {
-    white-space: initial;
-  }
-}
 @media (max-width: 320px) {
   .filterContainer {
     flex-direction: column;

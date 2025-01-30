@@ -2,6 +2,7 @@
 
 /* Carousel Container */
 .shop-carousel-container {
+  width: 100%;
   text-align: center;
   padding: 10px 20px;
 }
