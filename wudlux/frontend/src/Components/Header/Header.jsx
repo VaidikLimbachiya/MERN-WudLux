@@ -54,19 +54,6 @@ const Slider = () => {
     }
   };
 
-  // ✅ Handle Previous Slide (Seamless Loop)
-  const prevSlide = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevIndex) => prevIndex - 1);
-    } else {
-      setIsTransitioning(false);
-      setCurrentIndex(totalSlides + 1); // Instantly jump
-      setTimeout(() => {
-        setIsTransitioning(true);
-        setCurrentIndex(totalSlides); // Reset smoothly
-      }, 50);
-    }
-  };
 
   // ✅ Handle Dot Click
   const handleDotClick = (index) => {
@@ -106,10 +93,6 @@ const Slider = () => {
           </div>
         ))}
       </div>
-
-      {/* ✅ Navigation Buttons */}
-      <button className="prev-button" onClick={prevSlide}>←</button>
-      <button className="next-button" onClick={nextSlide}>→</button>
 
       {/* ✅ Dots Navigation */}
       <div className="dots-container">

@@ -1,12 +1,13 @@
-import { useState, useEffect,useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import searchIcon from "../../assets/vector.png";
 import profileIcon from "../../assets/profile.png";
 import cartIcon from "../../assets/bag.png";
 import { useCartContext } from "../../Context/CartContext";
-import { AuthContext } from "../../Context/AuthContext";
+// import { IoMenu } from "react-icons/io5";
+import menuBar from "../../assets/hamburgerIcon.png";
 
 const categories = [
   {
@@ -56,8 +57,9 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
   const [productToRemove, setProductToRemove] = useState(null); // Product to remove
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Popup state
-  const { logout } = useContext(AuthContext);
   // const [isSliderOpen] = useState(false); // Fix initial state of slider to false
+  const [isMobile, setIsMobile] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const {
     cartItems,
@@ -72,6 +74,17 @@ const Navbar = () => {
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     setIsLoggedIn(!!token); // Update login state based on token
+
+    const checkScreenWidth = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust breakpoint as needed
+    };
+
+    checkScreenWidth(); // Check on component mount
+    window.addEventListener("resize", checkScreenWidth);
+
+    return () => {
+      window.removeEventListener("resize", checkScreenWidth); // Cleanup listener
+    };
   }, []);
 
   const handleProfileIconClick = () => {
@@ -130,11 +143,24 @@ const Navbar = () => {
   closePopup();
 };
 
-
-const handleLogout = () => {
-  logout(); // ✅ Clears auth state and storage globally
-  setIsProfileMenuOpen(false); // ✅ Close the profile menu
+const toggleMenu = () => {
+  setIsMenuOpen((prev) => !prev);
 };
+
+
+  const handleLogout = () => {
+    // Clear tokens from localStorage
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("user");
+
+    // Update login state
+    setIsLoggedIn(false);
+    setIsProfileMenuOpen(false); // Close the profile menu
+
+    // Redirect to login page
+    navigate("/log-in");
+  };
 
   const handleNavigate = (path) => {
     setIsCartOpen(false); // Close cart when navigating
@@ -153,6 +179,91 @@ const handleLogout = () => {
   return (
     <>
       <nav className="navigation" role="navigation">
+      {isMobile ? (
+        <div className="mobileNavbar">
+          {/* Menu Icon */}
+          <div className="navbar__menuIcon" onClick={toggleMenu}>
+        <img src={menuBar} alt="Menu" />
+      </div>
+
+      {/* Menu Drawer */}
+      <div className={`menuDrawer ${isMenuOpen ? "open" : ""}`}>
+        <div className="menuDrawerHeader">
+          <h3>Menu</h3>
+          <button
+            className="menuDrawerCloseButton"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            ✖
+          </button>
+          
+        </div>
+        <div className="navigationCategories">
+  {categories.map((category) => (
+    <div
+      key={category.text} // Use a unique property for the key
+      className={`categoryContainer ${
+        activeCategory === category.text ? "selectedCategory" : ""
+      }`}
+    >
+      <div
+        onClick={() => handleCategoryClick(category.text)}
+        role="button"
+        tabIndex={0}
+        aria-expanded={activeCategory === category.text}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            handleCategoryClick(category.text);
+          }
+        }}
+        className="categoryTrigger"
+      >
+        <span className="categoryLabel">{category.text}</span>
+        <img
+          src={category.iconSrc}
+          alt={`${category.text} Icon`}
+          className="categoryIcon"
+        />
+      </div>
+      {activeCategory === category.text && (
+        <div className="categoryDropdown">
+          {category.dropdownItems.map((item) => (
+            <NavLink
+              key={item.link}
+              to={item.link}
+              className="dropdownOption"
+              onClick={() =>
+                handleCategoryClick(category.text, item.text)
+              } // Fetch products when clicking on a subcategory
+            >
+              {item.text}
+            </NavLink>
+          ))}
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
+      </div>
+
+          {/* Search Icon */}
+          <div className="navbar__searchIcon">
+            <img src={searchIcon} alt="Search" onClick={toggleSearch} />
+          </div>
+
+          {/* Logo */}
+          <div className="navbar__logo" onClick={() => navigate("/")}>
+            <img src={logo} alt="Logo" />
+          </div>
+
+          {/* Cart Icon */}
+          <div className="navbar__cartIcon" onClick={toggleCart}>
+            <img src={cartIcon} alt="Cart" />
+            <span className="navbar__cartBadge">{totalQuantity}</span>
+          </div>
+        </div>
+      ) : (
         <div className="header">
           <div className="logoSection" onClick={() => navigate("/")}>
             <img
@@ -270,6 +381,7 @@ const handleLogout = () => {
             </div>
           </div>
         </div>
+      )}
       </nav>
 
       {/* Cart Slider */}
