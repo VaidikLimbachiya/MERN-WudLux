@@ -8,6 +8,7 @@ const authRoutes = require("./src/routes/authRoutes");
 const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
 const addressRoutes = require("./src/routes/addressRoutes");
+const orderRoutes = require("./src/routes/orderRoutes");
 const fs = require("fs");
 const path = require("path");
 
@@ -94,6 +95,7 @@ app.use((err, req, res, next) => {
 });
 
 app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;

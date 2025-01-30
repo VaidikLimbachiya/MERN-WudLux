@@ -1,37 +1,20 @@
-// import React from "react";
-import "./Order.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import prev from "../../assets/prev.png";
 import next from "../../assets/next.png";
-import breadcrumbIcon from "../../assets/home.png"; // Replace with the correct path to your breadcrumb image
+import breadcrumbIcon from "../../assets/home.png"
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useUserContext } from "../../Context/UserContext";
+import "./Order.css";
 
-// const navItems = [
-//   {
-//     id: "orders",
-//     label: "Order History",
-//     icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/163ad495a8d423ba0d335e16843aaca0873363609b3486d91bd349e743d41350",
-//     active: true,
-//   },
-//   {
-//     id: "addresses",
-//     label: "Addresses",
-//     icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/893b1c5b721df8413e4e4d2beb9e36a0415d02afbfb6e9b925a30a9f3a8f5275",
-//     active: false,
-//   },
-//   {
-//     id: "logout",
-//     label: "Logout",
-//     icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/f4416fa9e173b2dffe1ec95cc99ae26ca914227a03beb84d7306598352d24367",
-//     active: false,
-//   },
-// ];
+const API_BASE_URL = "http://localhost:5000";
 
 const OrderHistory = () => {
-
+  const { user } = useUserContext();
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [isMobileMode, setIsMobileMode] = useState(window.innerWidth <= 320);
-
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobileMode(window.innerWidth <= 320);
@@ -41,59 +24,60 @@ const OrderHistory = () => {
   }, []);
 
 
-  const orders = [
-    {
-      id: "#WU3658",
-      date: "19-12-2024",
-      total: "₹1,695.00",
-      payment: "Paid",
-      status: "Processing",
-      statusColor: "processing",
-    },
-    {
-      id: "#WU3223",
-      date: "10-02-2024",
-      total: "₹3,699.00",
-      payment: "Paid",
-      status: "Delivered",
-      statusColor: "delivered",
-    },
-    {
-      id: "#WU3002",
-      date: "29-08-2023",
-      total: "₹2,699.00",
-      payment: "Refund",
-      status: "Cancelled",
-      statusColor: "cancelled",
-    },
-    {
-      id: "#WU2560",
-      date: "13-04-2023",
-      total: "₹2,698.00",
-      payment: "Paid",
-      status: "Delivered",
-      statusColor: "delivered",
-    },
-    {
-      id: "#WU2203",
-      date: "25-02-2022",
-      total: "₹4,695.00",
-      payment: "Paid",
-      status: "Delivered",
-      statusColor: "delivered",
-    },
-  ];
+  useEffect(() => {
+    const fetchOrders = async () => {
+      if (!user || !user.id) {
+        setError("User not found. Please log in.");
+        return;
+      }
+
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        setError("Unauthorized! Please log in.");
+        return;
+      }
+
+      try {
+        console.log(`Fetching orders for user ID: ${user.id}`); // ✅ Debugging log
+
+        const response = await axios.get(
+          `${API_BASE_URL}/api/orders/user/${user.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        console.log("✅ User Orders:", response.data.orders); // ✅ Debugging log
+
+        setOrders(response.data.orders);
+      } catch (error) {
+        console.error("❌ Error fetching orders:", error);
+        setError("Failed to fetch orders.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, [user]);
+
+  if (loading) {
+    return <p>Loading orders...</p>;
+  }
+
+  if (error) {
+    return <p className="error-message">{error}</p>;
+  }
 
   return (
     <div className="order-history-container">
-      {/* Main Content */}
       <div className="main-content">
-        {/* Breadcrumb */}
-        <div className="breadcrumb">
+      <div className="breadcrumb">
           <img src={breadcrumbIcon} alt="Breadcrumb" />
           <h2 className="btext"> {">"} Order History</h2>
         </div>
-
         <div className="order-header">
           <h1>Orders</h1>
           <div className="filters">
@@ -127,30 +111,35 @@ const OrderHistory = () => {
         </tr>
       </thead>
       <tbody>
-        {orders.map((order, index) => (
-          <tr key={index}>
-            <td>{order.id}</td>
-            <td>{order.date}</td>
-            <td>{order.total}</td>
-            <td>{order.payment}</td>
-            <td>
-              <span className={`status ${order.statusColor}`}>
-                {order.status}
-              </span>
-            </td>
-            <td>
-              <Link to="/order-details">
-                <button className="view-button">View</button>
-              </Link>
-            </td>
-          </tr>
-        ))}
-      </tbody>
+              {orders.map((order) => (
+                <tr key={order._id}>
+                  <td>{order.orderId}</td>
+                  <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                  <td>₹{order.totalAmount}</td>
+                  <td>
+                  <span className={`status ${order.statusColor}`}>
+                      {order.orderStatus}
+                    </span>
+                  </td>
+                  <td>
+                  <span className={`status ${order.statusColor}`}>
+                      {order.paymentStatus}
+                    </span>{" "}
+                    {/* ✅ Show Payment Status */}
+                  </td>
+                  <td>
+                  <Link to={`/order-details/${encodeURIComponent(order.orderId)}`}>
+  <button className="view-button">View</button>
+</Link>
+
+                  </td>
+                </tr>
+              ))}
+            </tbody>
     </table>
   </div>
 </div>
-
-        {/* Pagination */}
+{/* Pagination */}
         {!isMobileMode ? (
           <div className="pagination">
             <button>
@@ -166,6 +155,7 @@ const OrderHistory = () => {
             </button>
           </div>
         ) : null}
+
       </div>
     </div>
   );

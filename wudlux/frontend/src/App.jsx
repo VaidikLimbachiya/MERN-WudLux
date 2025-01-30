@@ -95,7 +95,7 @@ function App() {
           }
         />
         <Route
-          path="/order-details"
+          path="/order-details/:orderId"
           element={
             <SidebarLayout>
               <OrderDetails />

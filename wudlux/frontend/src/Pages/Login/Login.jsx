@@ -23,11 +23,16 @@ const LoginPage = () => {
   
     try {
       const result = await apiCall("http://localhost:5000/api/auth/login", "POST", { email, password });
-  
+
       toast.success("Login successful");
 
       // ✅ Store authentication details in AuthContext
       login(result.user, result.accessToken, result.refreshToken);
+
+      // ✅ Store tokens in localStorage
+      localStorage.setItem("accessToken", result.accessToken);
+      localStorage.setItem("refreshToken", result.refreshToken);
+      localStorage.setItem("user", JSON.stringify(result.user));
 
       // ✅ Fetch cart data immediately after login
       await fetchCart(true);
@@ -40,7 +45,7 @@ const LoginPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+};
   const refreshToken = useCallback(async () => {
     try {
       const storedRefreshToken = localStorage.getItem("refreshToken");

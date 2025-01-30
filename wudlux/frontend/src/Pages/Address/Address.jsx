@@ -264,7 +264,7 @@ const AddressList = () => {
                   </h3>
                 </div>
                 <div className="address-info">
-                  <p>{`${address.street}, ${address.city}, ${address.state}, ${address.country}, ${address.zipCode}`}</p>
+                  <p className="address-details">{`${address.street}, ${address.city}, ${address.state}, ${address.country}, ${address.zipCode}`}</p>
                 </div>
                 <div className="address-actions">
                   <button
