@@ -826,11 +826,6 @@ a{
   transition: all 0.3s ease;
 }
 
-/* Active category */
-.selectedCategory {
-  background: #e0f7fa; /* Light blue to highlight active selection */
-}
-
 /* Category trigger button */
 .categoryTrigger {
   display: flex;
@@ -856,6 +851,7 @@ a{
   flex-grow: 1;
   text-align: left;
   color: #222;
+  font-size: 15px;
 }
 
 /* Category icon */
@@ -1137,10 +1133,14 @@ a{
       width: 16px;
       height: 16px;
     }
-  
+
+
     .dropdownOption {
-      font-size: 12px;
+      font-size: 13px;
+      color: #000;
       padding: 6px;
+      text-decoration: none;
+      /* transition: background 0.3s ease; */
     }
   
     .userAccountSection {
@@ -1209,18 +1209,7 @@ a{
       min-width: 300px;
       z-index: 10;
       margin-left: 221px;
-  }
-
-
-    .dropdownOption {
-      font-size: 12px;
-      color: #333;
-      padding: 6px;
-      text-decoration: none;
-      /* transition: background 0.3s ease; */
-    }
-  
-  
+  }  
     .accountLink {
       font-size: 12px;
       color: #000;

@@ -228,8 +228,8 @@
   
     /* Stack form rows on small screens */
     .form-row {
-      flex-direction: column; /* Stack inputs vertically */
-      gap: 10px;
+      flex-direction: row; /* Stack inputs vertically */
+      gap: 3px;
     }
   
     /* Ensure input fields take full width */
@@ -241,8 +241,8 @@
     }
   
     .password-row {
-      flex-direction: column;
-      gap: 15px;
+      flex-direction: row;
+      gap: 5px;
     }
   
     /* Adjust checkbox container */

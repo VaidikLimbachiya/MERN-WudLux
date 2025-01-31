@@ -37,6 +37,7 @@
   }
   
   .status {
+
     font-weight: bold;
   }
   
@@ -91,7 +92,7 @@
   }
   
   .info-box {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     padding: 20px;
     width: 30%;
@@ -252,5 +253,135 @@
     margin: 5px 0;
     font-size: 14px;
     color: #555;
+  }
+  
+
+  @media (max-width: 320px) {
+    /* Adjust the main container */
+    .order-summary-container {
+      margin: 10px; /* Reduce margin */
+      padding: 10px; /* Reduce padding */
+      border-radius: 8px;
+    }
+  
+    /* Header Section */
+    .header-container {
+      flex-direction: column;
+      align-items: baseline;
+      text-align: left;
+      gap: 10px;
+  }
+    .date-info {
+      font-size: 14px; /* Reduce font size */
+    }
+  
+    /* Invoice Section */
+    .invoice-section {
+      width: 100%; /* Full width */
+      padding: 10px;
+      align-items: center;
+      text-align: left;
+    }
+  
+    .invoice-content {
+      font-size: 12px; /* Reduce font size */
+    }
+  
+    .print-icon img {
+      width: 24px;
+      height: 24px;
+    }
+  
+    /* Customer & Address Info */
+    .info-section {
+      flex-direction: column; /* Stack elements */
+      gap: 10px;
+    }
+  
+    .info-box {
+      width: 100%; /* Full width */
+      padding: 10px;
+      text-align: left;
+    }
+  
+    .info-box h4 {
+      font-size: 14px;
+    }
+  
+    .info-box p {
+      font-size: 12px;
+    }
+  
+    .info-icon {
+      width: 28px;
+      height: 28px;
+    }
+  
+    /* Product Table */
+    .product-table {
+      font-size: 12px;
+      overflow-x: auto; /* Scroll on small screens */
+      display: block;
+    }
+  
+    .product-table th,
+    .product-table td {
+      padding: 8px;
+      font-size: 12px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+  
+    .product-info {
+      flex-direction: column; /* Stack product image and details */
+      text-align: center;
+    }
+  
+    .product-image {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .product-details {
+      flex-direction: column;
+    }
+  
+    /* Summary Section */
+    .summary-section {
+      align-items: center; /* Center align */
+      width: 100%;
+    }
+  
+    .summary-item,
+    .grand-total {
+      width: 100%;
+      font-size: 14px;
+      justify-content: space-between;
+    }
+  
+    /* Payment Info */
+    .payment-info {
+      width: 100%;
+      padding: 10px;
+    }
+  
+    .payment-info h4 {
+      font-size: 16px;
+      text-align: center;
+    }
+  
+    .payment-details p {
+      font-size: 12px;
+    }
+  
+    .card-info {
+      justify-content: center;
+    }
+  
+    .card-logo {
+      width: 25px;
+      height: 15px;
+    }
   }
   

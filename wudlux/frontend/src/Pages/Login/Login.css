@@ -228,74 +228,13 @@
   
   
   
-  
-  /* Media queries for responsiveness */
-  @media (max-width: 480px) {
-    .login-form {
-      padding: 1.5rem;
-    }
-  
-    .login-form h1 {
-      font-size: 1.5rem;
-    }
-  }
-  
-
-  /* Media queries for responsiveness */
-@media (max-width: 768px) {
-  .login-container {
-    width: 90%;
-    max-width: none; /* Make the form full width on tablets and below */
-  }
-
-  .login-form {
-    padding: 1.5rem;
-  }
-
-  .login-form h1 {
-    font-size: 1.5rem;
-  }
-
-  .form-actions {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .remember-me {
-    padding-left: 10px;
-    padding-right: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .login-form {
-    padding: 1.5rem;
-  }
-
-  .login-form h1 {
-    font-size: 1.4rem;
-  }
-
-  .form-actions {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .btn {
-    width: 100%;
-    padding: 12px;
-  }
-
-  .remember-me {
-    flex-direction: column;
-  }
-}
 
 /* 320px screen size adjustments */
 @media (max-width: 320px) {
   .login-page {
-    min-height: 100vh; /* Ensure it takes full height */
-    padding: 10px;
+    min-height: 100%;
+    padding: 0px;
+    
   }
 
   .login-container {
@@ -375,6 +314,17 @@
   .login-form p a {
     font-size: 0.8rem;
   }
+.form-actions a {
+  text-decoration: none;
+  /* color: #007bff; */
+  font-size: 0.7rem;
+  margin-top: -54px;
+  margin-right: -149px;
+}
+.remember-me{
+  margin-left: -80px;
+  font-size: 0.5rem;
+}
 }
 
 

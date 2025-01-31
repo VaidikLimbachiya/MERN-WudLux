@@ -207,7 +207,7 @@
   /* Style the checkbox */
 .address-form .form-group label input[type="checkbox"] {
     width: 20px;
-    height: 25px;
+    height: 19px;
     border: 2px solid #50433c; 
     border-radius: 4px;
     cursor: pointer;
@@ -220,7 +220,8 @@
 /* Add a custom checkmark for the checkbox */
 .address-form .form-group label input[type="checkbox"]:checked {
     background-color: #50433c;
-    border-color: #50433c; 
+    border-color: #50433c;
+    margin-bottom: -7px; 
 }
 
 .address-form .form-group label input[type="checkbox"]:checked::after {
@@ -237,6 +238,7 @@
 }
 .dfText{
     margin-top: 15px;
+    margin-left: 6px;
 }
 
 @media (max-width: 320px) {
@@ -324,13 +326,14 @@
   }
 
   .custom-checkbox input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 
   .dfText {
     font-size: 12px;
     /* margin: 0; */
+    margin-left: 6px;
   }
 
   /* Address List adjustments */

@@ -491,32 +491,6 @@ const Navbar = () => {
           )}
         </div>
 
-<<<<<<< HEAD
-  {/* Cart Footer */}
-  <div className="cartFooter">
-    <div className="cartSummary">
-      <span>{totalProducts} Product(s)</span>
-      <span>Total: ₹{totalPrice.toFixed(2)}</span>
-    </div>
-    <div className="cartActions">
-      <button
-        className="checkoutButton"
-        onClick={() => handleNavigate("/checkout")}
-        disabled={cartItems.length === 0} // Disable if cart is empty
-      >
-        Checkout →
-      </button>
-      <button
-        className="goToCartButton"
-        onClick={() => handleNavigate("/cartPage")}
-        disabled={cartItems.length === 0} // Disable if cart is empty
-      >
-        Go to Cart →
-      </button>
-    </div>
-  </div>
-</div>
-=======
         {/* Cart Footer */}
         <div className="cartFooter">
           <div className="cartSummary">
@@ -541,7 +515,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
->>>>>>> 369c6f11fa768f2ef52a3cceccc199806f170f8d
 
       {/* Popup */}
       {isPopupOpen && (

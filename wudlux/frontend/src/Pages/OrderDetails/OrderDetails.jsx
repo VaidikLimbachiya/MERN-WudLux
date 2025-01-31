@@ -87,7 +87,7 @@ const OrderSummary = () => {
     <img src={customer} alt="Customer Icon" className="info-icon" />
     <h4>Customer Info</h4>
   </div>
-  <p>Name:{order.userId?.firstName} {order.userId?.lastName || "Unknown User"}</p><p>Email:{order.userId?.email || "No Email Available"}</p>
+  <p>Name: {order.userId?.firstName} {order.userId?.lastName || "Unknown User"}</p><p>Email: {order.userId?.email || "No Email Available"}</p>
 </div>
 
 
