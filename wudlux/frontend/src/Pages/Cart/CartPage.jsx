@@ -46,70 +46,63 @@ const CartPage = () => {
               </tr>
             </thead>
             <tbody>
-              {cartItems.map((item) => (
-                <tr className="tableRow" key={item._id || item.id}>
-                
-                  {/* Ensure unique key */}
-                  <td className="cart-item-details">
-                    <img
-                      crossOrigin="anonymous"
-                      src={`http://localhost:5000/uploads/${item.images}`}
-                      alt={item.name || "Product image"}
-                      className="cart-item-image"
-                    />
-                    <div className="cart-item-info">
-                      <h4>{item.title || "Unnamed Product"}</h4>
-                      <p>
-                        Category:
-                        {item.category ? item.category : "No category"}
-                      </p>
-                      <p className="cart-item-size">
-                        Size:
-                        {Array.isArray(item.size)
-                          ? // If size is an array, join each item's dimensions into a single line
-                            item.size
-                              .map(
-                                (size) => `L-${size.L} B-${size.B} H-${size.H}`
-                              )
-                              .join(", ")
-                          : item.size
-                          ? // If size is an object, display its properties in a single line
-                            `L-${item.size.L} B-${item.size.B} H-${item.size.H}`
-                          : "No size available"}
-                      </p>
-                    </div>
-                  </td>
-                  <td className="cart-quantity-controls">
-                    <button
-                      className="cart-quantity-decrement"
-                      onClick={() => updateQuantity(item.productId, -1)}
-                    >
-                      -
-                    </button>
-                    <span className="cart-quantity-value">{item.quantity}</span>
-                    <button
-                      className="cart-quantity-increment"
-                      onClick={() => updateQuantity(item.productId, 1)}
-                    >
-                      +
-                    </button>
-                  </td>
-                  <td className="cart-item-price">₹{item.price.toFixed(2)}</td>
-                  <td className="cart-item-total">
-                    ₹{(item.price * item.quantity).toFixed(2)}
-                  </td>
-                  <td>
-                    <button
-                      className="cart-item-remove-btn"
-                      aria-label="Remove item"
-                      onClick={() => removeItem(item.productId)}
-                    >
-                      <span className="cart-item-remove-icon">✖</span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+  {cartItems.map((item) => (
+    <tr className="tableRow" key={item._id || item.id}>
+      <td className="cart-item-details">
+        <img
+          crossOrigin="anonymous"
+          src={item.images ? `http://localhost:5000/uploads/${item.images}` : "placeholder.png"}
+          alt={item.name || "Product image"}
+          className="cart-item-image"
+        />
+        <div className="cart-item-info">
+          <h4>{item.title || "Unnamed Product"}</h4>
+          <p>Category: {item.category || "No category"}</p>
+          <p className="cart-item-size">
+            Size:
+            {Array.isArray(item.size)
+              ? item.size
+                  .map((size) => `L-${size.L} B-${size.B} H-${size.H}`)
+                  .join(", ")
+              : item.size
+              ? `L-${item.size.L} B-${item.size.B} H-${item.size.H}`
+              : "No size available"}
+          </p>
+        </div>
+      </td>
+      <td className="cart-quantity-controls">
+        <button
+          className="cart-quantity-decrement"
+          onClick={() => updateQuantity(item.productId, -1)}
+        >
+          -
+        </button>
+        <span className="cart-quantity-value">{item.quantity}</span>
+        <button
+          className="cart-quantity-increment"
+          onClick={() => updateQuantity(item.productId, 1)}
+        >
+          +
+        </button>
+      </td>
+      <td className="cart-item-price">
+        ₹{item.price ? item.price.toFixed(2) : "0.00"} {/* ✅ Fix */}
+      </td>
+      <td className="cart-item-total">
+        ₹{item.price ? (item.price * item.quantity).toFixed(2) : "0.00"} {/* ✅ Fix */}
+      </td>
+      <td>
+        <button
+          className="cart-item-remove-btn"
+          aria-label="Remove item"
+          onClick={() => removeItem(item.productId)}
+        >
+          <span className="cart-item-remove-icon">✖</span>
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
           </table>
           <Link
             to="/products"

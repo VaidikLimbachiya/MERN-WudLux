@@ -13,6 +13,7 @@ const API_BASE_URL = "http://localhost:5000"; // Backend API base URL
 
 const Checkout = () => {
   const { cartItems = [], clearCart } = useCartContext();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { user } = useUserContext();
   const navigate = useNavigate();
   const location = useLocation();
@@ -148,28 +149,85 @@ const refreshToken = useCallback(async () => {
   
     let token = localStorage.getItem("accessToken");
   
-    if (!token) {
-      console.log("No token found. Trying to refresh token...");
-      token = await refreshToken();
+    // If user is not logged in and wants to register
+    if (!user && formData.registerAccount) {
+      if (!formData.password || !formData.confirmPassword) {
+        toast.error("Please enter a password and confirm it.");
+        return;
+      }
+      if (formData.password !== formData.confirmPassword) {
+        toast.error("Passwords do not match!");
+        return;
+      }
+  
+      try {
+        const registerPayload = {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          phoneNumber: formData.phone,
+          address: {
+            street: formData.address,
+            city: formData.city,
+            state: formData.state,
+            zipCode: formData.zipCode,
+            country: formData.country,
+          },
+        };
+  
+        // Call backend API to register the user
+        const registerResponse = await axios.post(`${API_BASE_URL}/api/users/register`, registerPayload);
+        const { accessToken, user: newUser } = registerResponse.data;
+  
+        // Save token and update user context
+        localStorage.setItem("accessToken", accessToken);
+        toast.success("Account registered successfully!");
+  
+        // Update the user state
+        setIsLoggedIn(true);
+  
+        // Assign user data
+        user.id = newUser.id;
+        user.firstName = newUser.firstName;
+        user.lastName = newUser.lastName;
+        user.email = newUser.email;
+        user.phoneNumber = newUser.phoneNumber;
+  
+        // Remove "Register an account" checkbox after successful registration
+        setFormData((prev) => ({
+          ...prev,
+          registerAccount: false,
+          password: "",
+          confirmPassword: "",
+        }));
+  
+        token = accessToken;
+      } catch (error) {
+        console.error("Registration Error:", error);
+        toast.error("Failed to register. Please try again.");
+        return;
+      }
     }
   
     if (!token) {
-      toast.error("Authentication required. Please log in.");
-      navigate("/log-in");
-      return;
+      token = await refreshToken();
+      if (!token) {
+        toast.error("Authentication required. Please log in.");
+        return;
+      }
     }
   
     try {
-      // ✅ Ensure `productId` is included in `items` array
-      const payload = {
+      const orderPayload = {
         userId: user?.id,
         selectedAddressId,
         items: cartItems.map((item) => ({
-          productId: item.id || item.productId, // ✅ Ensure productId is not missing
+          productId: item.productId,
           quantity: item.quantity,
           price: item.price,
         })),
-        totalAmount: totalPrice,
+        totalAmount: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
         shippingAddress: {
           street: formData.address,
           city: formData.city,
@@ -180,35 +238,17 @@ const refreshToken = useCallback(async () => {
         notes: formData.notes,
       };
   
-      console.log("🛒 Checkout Request Payload:", JSON.stringify(payload, null, 2)); // ✅ Debugging log
-  
-      // ✅ Include the token in headers
-      const response = await axios.post(`${API_BASE_URL}/api/orders`, payload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
+      await axios.post(`${API_BASE_URL}/api/orders`, orderPayload, {
+        headers: { Authorization: `Bearer ${token}` },
       });
-  
-      console.log("✅ Checkout Response:", response.data);
   
       toast.success("Order placed successfully!");
       clearCart();
     } catch (error) {
-      console.error("❌ Checkout Error:", error);
-  
-      if (error.response) {
-        console.log("Error Status:", error.response.status);
-        console.log("Error Data:", error.response.data);
-      }
-  
-      if (error.response && error.response.status === 500) {
-        toast.error("Internal Server Error. Please try again later.");
-      } else {
-        toast.error("Failed to place the order. Please try again.");
-      }
+      console.error("Checkout Error:", error);
+      toast.error("Failed to place order. Please try again.");
     }
-  };  
+  };    
   return (
     <div className="checkout-wrapper">
       {/* Left Part - Shipping Form */}
@@ -273,6 +313,111 @@ const refreshToken = useCallback(async () => {
           <div className="input-group">
             <input type="text" name="phone" placeholder="Phone Number *" value={formData.phone} onChange={handleInputChange} required />
           </div>
+{!isLoggedIn && (
+  <div className="checkbox-group">
+    <label>
+      <input
+        type="checkbox"
+        name="registerAccount"
+        checked={formData.registerAccount}
+        onChange={handleInputChange}
+      />
+      Register an account with the above information?
+    </label>
+  </div>
+)}
+{!isLoggedIn && formData.registerAccount && (
+  <div className="input-group">
+    <input
+      type="password"
+      name="password"
+      placeholder="Password *"
+      value={formData.password}
+      onChange={handleInputChange}
+      required
+    />
+    <input
+      type="password"
+      name="confirmPassword"
+      placeholder="Confirm Password *"
+      value={formData.confirmPassword}
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+)}
+
+          <h2>Payment Method:</h2>
+          <div className="payment-container">
+            <label className="payment-option">
+              <span className="payment-label-one">Pay Online</span>
+            </label>
+            <label className="payment-option">
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="Payment with Razorpay"
+                checked={formData.paymentMethod === "Payment with Razorpay"}
+                onChange={handleInputChange}
+              />
+              <span className="payment-label">Payment with Razorpay</span>
+            </label>
+          </div>
+          <div className="checkbox-group-one">
+            <label className="checkbox-label">
+              <input
+                type="checkbox"
+                className="checkbox-Invoice"
+                name="requiresInvoice"
+                checked={formData.requiresInvoice}
+                onChange={handleInputChange}
+              />
+              Requires company invoice (Please fill in your company information
+              to receive the invoice)?
+            </label>
+          </div>
+          {formData.requiresInvoice && (
+            <div>
+              <input
+                type="text"
+                name="companyAddress"
+                className="first-class"
+                placeholder="Company Address *"
+                value={formData.companyAddress}
+                onChange={handleInputChange}
+                required
+              />
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="second-class"
+                  name="companyName"
+                  placeholder="Company Name *"
+                  value={formData.companyName}
+                  onChange={handleInputChange}
+                  required
+                />
+                <input
+                  type="text"
+                  className="third-class"
+                  name="companyTaxCode"
+                  placeholder="Company Tax Code *"
+                  value={formData.companyTaxCode}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <input
+                type="email"
+                className="fourth-class"
+                name="companyEmail"
+                placeholder="Company Email *"
+                value={formData.companyEmail}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          )}
           <textarea name="notes" placeholder="Notes about your order, e.g., special delivery instructions." value={formData.notes} onChange={handleInputChange} />
           <div className="button-group">
             <button type="button" className="back-button" onClick={() => navigate("/cartPage")}>← Back to Cart</button>
@@ -285,28 +430,32 @@ const refreshToken = useCallback(async () => {
       <div className="summary-container">
         <h2>Products</h2>
         <div className="product-list">
-          {cartItems.length > 0 ? (
-            cartItems.map((item, index) => (
-              <div key={item.id || index} className="product-box">
-                <img
-                  crossOrigin="anonymous"
-                  src={item.images ? `http://localhost:5000/uploads/${item.images}` : "placeholder.png"}
-                  alt={item.title || "Product Image"}
-                  className="product-thumbnail"
-                />
-                <div className="product-info">
-                  <div className="product-title">
-                    <span className="quantity-badge">{item.quantity}</span>
-                    <p className="name">{item.title}</p>
-                  </div>
-                  <div className="product-cost">₹{item.price.toFixed(2)}</div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p>No items in the cart.</p>
-          )}
+        {cartItems.length > 0 ? (
+  cartItems.map((item, index) => (
+    <div key={item.id || index} className="product-box">
+      <img
+        crossOrigin="anonymous"
+        src={item.images ? `http://localhost:5000/uploads/${item.images}` : "placeholder.png"}
+        alt={item.title || "Product Image"}
+        className="product-thumbnail"
+      />
+      <div className="product-info">
+        <div className="product-title">
+          <span className="quantity-badge">{item.quantity}</span>
+          <p className="name">{item.title || "Unknown Product"}</p>
         </div>
+        <div className="product-cost">
+          ₹{item.price ? item.price.toFixed(2) : "0.00"} {/* ✅ Prevents crash */}
+        </div>
+      </div>
+    </div>
+  ))
+) : (
+  <p>No items in the cart.</p>
+)}
+</div>
+
+        
         <div className="summary-totals">
           <div className="price-item">
             <span>Total Amount:</span>
