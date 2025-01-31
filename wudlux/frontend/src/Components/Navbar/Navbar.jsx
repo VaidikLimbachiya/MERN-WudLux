@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
-import searchIcon from "../../assets/vector.png";
+import searchIcon from "../../assets/Vector.png";
 import profileIcon from "../../assets/profile.png";
 import cartIcon from "../../assets/bag.png";
 import { useCartContext } from "../../Context/CartContext";
 // import { IoMenu } from "react-icons/io5";
-import menuBar from "../../assets/hamburgerIcon.png";
+import menuBar from "../../assets/Hamburger.png";
 
 const categories = [
   {
@@ -60,14 +60,15 @@ const Navbar = () => {
   // const [isSliderOpen] = useState(false); // Fix initial state of slider to false
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false);
 
   const {
     cartItems,
-        totalQuantity,
-        totalPrice,
-        totalProducts,
-        updateQuantity,
-        removeItem,
+    totalQuantity,
+    totalPrice,
+    totalProducts,
+    updateQuantity,
+    removeItem,
   } = useCartContext();
   const navigate = useNavigate();
 
@@ -126,7 +127,7 @@ const Navbar = () => {
     console.log("Product passed to openPopup:", product);
     setProductToRemove(product);
     setIsPopupOpen(true);
-  };  
+  };
 
   const closePopup = () => {
     setProductToRemove(null);
@@ -134,19 +135,18 @@ const Navbar = () => {
   };
 
   const confirmRemove = () => {
-  if (productToRemove && productToRemove.productId) {
-    console.log("Removing Product ID:", productToRemove.productId);
-    removeItem(productToRemove.productId);
-  } else {
-    console.error("Invalid productToRemove:", productToRemove);
-  }
-  closePopup();
-};
+    if (productToRemove && productToRemove.productId) {
+      console.log("Removing Product ID:", productToRemove.productId);
+      removeItem(productToRemove.productId);
+    } else {
+      console.error("Invalid productToRemove:", productToRemove);
+    }
+    closePopup();
+  };
 
-const toggleMenu = () => {
-  setIsMenuOpen((prev) => !prev);
-};
-
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
 
   const handleLogout = () => {
     // Clear tokens from localStorage
@@ -161,7 +161,6 @@ const toggleMenu = () => {
     // Redirect to login page
     navigate("/log-in");
   };
-
   const handleNavigate = (path) => {
     setIsCartOpen(false); // Close cart when navigating
     setIsSearchOpen(false); // Close search slider when navigating
@@ -179,292 +178,343 @@ const toggleMenu = () => {
   return (
     <>
       <nav className="navigation" role="navigation">
-      {isMobile ? (
-        <div className="mobileNavbar">
-          {/* Menu Icon */}
-          <div className="navbar__menuIcon" onClick={toggleMenu}>
-        <img src={menuBar} alt="Menu" />
-      </div>
+        {isMobile ? (
+          <div className="mobileNavbar">
+            {/* Menu Icon */}
+            <div className="navbar__menuIcon" onClick={toggleMenu}>
+              <img src={menuBar} alt="Menu" />
+            </div>
 
-      {/* Menu Drawer */}
-      <div className={`menuDrawer ${isMenuOpen ? "open" : ""}`}>
-        <div className="menuDrawerHeader">
-          <h3>Menu</h3>
-          <button
-            className="menuDrawerCloseButton"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            ✖
-          </button>
-          
-        </div>
-        <div className="navigationCategories">
-  {categories.map((category) => (
-    <div
-      key={category.text} // Use a unique property for the key
-      className={`categoryContainer ${
-        activeCategory === category.text ? "selectedCategory" : ""
-      }`}
-    >
+            {/* Menu Drawer */}
+            <div className={`menuDrawer ${isMenuOpen ? "open" : ""}`}>
+              <div className="menuDrawerHeader">
+                <h3>Menu</h3>
+                <button
+                  className="menuDrawerCloseButton"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  ✖
+                </button>
+              </div>
+              <div className="navigationCategories">
+                {categories.map((category) => (
+                  <div
+                    key={category.text} // Use a unique property for the key
+                    className={`categoryContainer ${
+                      activeCategory === category.text ? "selectedCategory" : ""
+                    }`}
+                  >
+                    <div
+                      onClick={() => handleCategoryClick(category.text)}
+                      role="button"
+                      tabIndex={0}
+                      aria-expanded={activeCategory === category.text}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          handleCategoryClick(category.text);
+                        }
+                      }}
+                      className="categoryTrigger"
+                    >
+                      <span className="categoryLabel">{category.text}</span>
+                      <img
+                        src={category.iconSrc}
+                        alt={`${category.text} Icon`}
+                        className="categoryIcon"
+                      />
+                    </div>
+                    {activeCategory === category.text && (
+                      <div className="categoryDropdown">
+                        {category.dropdownItems.map((item) => (
+                          <NavLink
+                            key={item.link}
+                            to={item.link}
+                            className="dropdownOption"
+                            onClick={() =>
+                              handleCategoryClick(category.text, item.text)
+                            } // Fetch products when clicking on a subcategory
+                          >
+                            {item.text}
+                          </NavLink>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+                <div className="userAccountSection">
+  {isLoggedIn ? (
+    // If user is logged in, show account dropdown
+    <div className="userInfo">
       <div
-        onClick={() => handleCategoryClick(category.text)}
+        className="accountDropdownTrigger"
+        onClick={() => setIsAccountDropdownOpen(!isAccountDropdownOpen)}
         role="button"
         tabIndex={0}
-        aria-expanded={activeCategory === category.text}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
-            handleCategoryClick(category.text);
+            setIsAccountDropdownOpen(!isAccountDropdownOpen);
           }
         }}
-        className="categoryTrigger"
       >
-        <span className="categoryLabel">{category.text}</span>
-        <img
-          src={category.iconSrc}
-          alt={`${category.text} Icon`}
-          className="categoryIcon"
-        />
+        <span className="userName">Account</span>
+        <span className={`dropdownIcon ${isAccountDropdownOpen ? "open" : ""}`}>
+          ▼
+        </span>
       </div>
-      {activeCategory === category.text && (
-        <div className="categoryDropdown">
-          {category.dropdownItems.map((item) => (
-            <NavLink
-              key={item.link}
-              to={item.link}
-              className="dropdownOption"
-              onClick={() =>
-                handleCategoryClick(category.text, item.text)
-              } // Fetch products when clicking on a subcategory
-            >
-              {item.text}
-            </NavLink>
-          ))}
+
+      {isAccountDropdownOpen && (
+        <div className="accountDropdown">
+          <NavLink to="/orders" className="dropdownOption">
+            Orders
+          </NavLink>
+          <NavLink to="/address" className="dropdownOption">
+            Address
+          </NavLink>
+          <button className="logoutButton" onClick={handleLogout}>
+            Logout
+          </button>
         </div>
       )}
     </div>
-  ))}
+  ) : (
+    // If user is not logged in, show login link
+    <div className="userInfo">
+      <NavLink to="/log-in" className="accountLink">
+        View Account
+      </NavLink>
+    </div>
+  )}
 </div>
 
-      </div>
+              </div>
+            </div>
 
-          {/* Search Icon */}
-          <div className="navbar__searchIcon">
-            <img src={searchIcon} alt="Search" onClick={toggleSearch} />
-          </div>
+            {/* Search Icon */}
+            <div className="navbar__searchIcon">
+              <img src={searchIcon} alt="Search" onClick={toggleSearch} />
+            </div>
 
-          {/* Logo */}
-          <div className="navbar__logo" onClick={() => navigate("/")}>
-            <img src={logo} alt="Logo" />
-          </div>
+            {/* Logo */}
+            <div className="navbar__logo" onClick={() => navigate("/")}>
+              <img src={logo} alt="Logo" />
+            </div>
 
-          {/* Cart Icon */}
-          <div className="navbar__cartIcon" onClick={toggleCart}>
-            <img src={cartIcon} alt="Cart" />
-            <span className="navbar__cartBadge">{totalQuantity}</span>
+            {/* Cart Icon */}
+            <div className="navbar__cartIcon" onClick={toggleCart}>
+              <img src={cartIcon} alt="Cart" />
+              <span className="navbar__cartBadge">{totalQuantity}</span>
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className="header">
-          <div className="logoSection" onClick={() => navigate("/")}>
-            <img
-              src={logo}
-              alt="Company Logo"
-              className="logo"
-              loading="lazy"
-            />
-          </div>
-          <div className="navCategories">
-            {categories.map((category) => (
-              <div
-                key={category.text} // Use a unique property for the key
-                className={`categoryWrapper ${
-                  activeCategory === category.text ? "active" : ""
-                }`}
-              >
+        ) : (
+          <div className="header">
+            <div className="logoSection" onClick={() => navigate("/")}>
+              <img
+                src={logo}
+                alt="Company Logo"
+                className="logo"
+                loading="lazy"
+              />
+            </div>
+            <div className="navCategories">
+              {categories.map((category) => (
                 <div
-                  onClick={() => handleCategoryClick(category.text)}
-                  role="button"
-                  tabIndex={0}
-                  aria-expanded={activeCategory === category.text}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      handleCategoryClick(category.text);
-                    }
-                  }}
-                  className="categoryButton"
+                  key={category.text} // Use a unique property for the key
+                  className={`categoryWrapper ${
+                    activeCategory === category.text ? "active" : ""
+                  }`}
                 >
-                  <span className="categoryText">{category.text}</span>
-                  <img
-                    src={category.iconSrc}
-                    alt={`${category.text} Icon`}
-                    className="dropdownIcon"
-                  />
+                  <div
+                    onClick={() => handleCategoryClick(category.text)}
+                    role="button"
+                    tabIndex={0}
+                    aria-expanded={activeCategory === category.text}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        handleCategoryClick(category.text);
+                      }
+                    }}
+                    className="categoryButton"
+                  >
+                    <span className="categoryText">{category.text}</span>
+                    <img
+                      src={category.iconSrc}
+                      alt={`${category.text} Icon`}
+                      className="dropdownIcon"
+                    />
+                  </div>
+                  {activeCategory === category.text && (
+                    <div className="dropdownMenu">
+                      {category.dropdownItems.map((item) => (
+                        <NavLink
+                          key={item.link}
+                          to={item.link}
+                          className="dropdownItem"
+                          onClick={() =>
+                            handleCategoryClick(category.text, item.text)
+                          } // Fetch products when clicking on a subcategory
+                        >
+                          {item.text}
+                        </NavLink>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                {activeCategory === category.text && (
-                  <div className="dropdownMenu">
-                    {category.dropdownItems.map((item) => (
-                      <NavLink
-                        key={item.link}
-                        to={item.link}
-                        className="dropdownItem"
-                        onClick={() =>
-                          handleCategoryClick(category.text, item.text)
-                        } // Fetch products when clicking on a subcategory
-                      >
-                        {item.text}
-                      </NavLink>
-                    ))}
+              ))}
+            </div>
+
+            <div className="promotionBanner">
+              <span className="promoText">Summer sale - 50% OFF!</span>
+              <button
+                className="promoButton"
+                onClick={() => navigate("/products")}
+                aria-label="Shop Now - Summer Sale 50% OFF"
+              >
+                Shop Now
+              </button>
+            </div>
+            <div className="userActions">
+              <img
+                src={searchIcon}
+                alt="Search"
+                className="actionIcon"
+                onClick={toggleSearch}
+              />
+              <div className="divider"></div>
+              <div className="profileIconWrapper">
+                <img
+                  src={profileIcon}
+                  alt="User Account"
+                  className="actionIcon"
+                  onClick={handleProfileIconClick}
+                />
+                {isProfileMenuOpen && isLoggedIn && (
+                  <div className="profileMenu">
+                    <NavLink
+                      to="/orders"
+                      className={({ isActive }) =>
+                        isActive ? "profileMenuItem active" : "profileMenuItem"
+                      }
+                      onClick={() => setIsProfileMenuOpen(false)} // Close menu on navigation
+                    >
+                      Order History
+                    </NavLink>
+                    <NavLink
+                      to="/address"
+                      className={({ isActive }) =>
+                        isActive ? "profileMenuItem active" : "profileMenuItem"
+                      }
+                      onClick={() => setIsProfileMenuOpen(false)} // Close menu on navigation
+                    >
+                      Addresses
+                    </NavLink>
+                    <button
+                      onClick={handleLogout}
+                      className="profileMenuItem logoutButton"
+                    >
+                      Logout
+                    </button>
                   </div>
                 )}
               </div>
-            ))}
-          </div>
-
-          <div className="promotionBanner">
-            <span className="promoText">Summer sale - 50% OFF!</span>
-            <button
-              className="promoButton"
-              onClick={() => navigate("/products")}
-              aria-label="Shop Now - Summer Sale 50% OFF"
-            >
-              Shop Now
-            </button>
-          </div>
-          <div className="userActions">
-            <img
-              src={searchIcon}
-              alt="Search"
-              className="actionIcon"
-              onClick={toggleSearch}
-            />
-            <div className="divider"></div>
-            <div className="profileIconWrapper">
-              <img
-                src={profileIcon}
-                alt="User Account"
-                className="actionIcon"
-                onClick={handleProfileIconClick}
-              />
-              {isProfileMenuOpen && isLoggedIn && (
-                <div className="profileMenu">
-                  <NavLink
-                    to="/orders"
-                    className={({ isActive }) =>
-                      isActive ? "profileMenuItem active" : "profileMenuItem"
-                    }
-                    onClick={() => setIsProfileMenuOpen(false)} // Close menu on navigation
-                  >
-                    Order History
-                  </NavLink>
-                  <NavLink
-                    to="/address"
-                    className={({ isActive }) =>
-                      isActive ? "profileMenuItem active" : "profileMenuItem"
-                    }
-                    onClick={() => setIsProfileMenuOpen(false)} // Close menu on navigation
-                  >
-                    Addresses
-                  </NavLink>
-                  <button
-                    onClick={handleLogout}
-                    className="profileMenuItem logoutButton"
-                  >
-                    Logout
-                  </button>
-                </div>
-              )}
-            </div>
-            <div className="divider"></div>
-            <div className="cartIcon" onClick={toggleCart}>
-              <img src={cartIcon} alt="Shopping Cart" className="cartImage" />
-              <span className="cartBadge">{totalQuantity}</span>
+              <div className="divider"></div>
+              <div className="cartIcon" onClick={toggleCart}>
+                <img src={cartIcon} alt="Shopping Cart" className="cartImage" />
+                <span className="cartBadge">{totalQuantity}</span>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
       </nav>
 
       {/* Cart Slider */}
       <div className={`cartSlider ${isCartOpen ? "open" : ""}`}>
-  <div className="cartHeader">
-    <h3>Shopping Cart</h3>
-    <button className="closeButton" onClick={toggleCart}>
-      ✖
-    </button>
-  </div>
-  <div className="cartItems">
-  {cartItems.length > 0 ? (
-    cartItems.map((item, index) => (
-      <div
-        key={`${item.productId}-${index}`} // Ensures unique key by combining productId and index
-        className="cartItem"
-      >
-        <img
-          crossOrigin="anonymous"
-          src={
-            item.images
-              ? `http://localhost:5000/uploads/${item.images}`
-              : "path/to/placeholder-image.png"
-          }
-          alt={item.title || "Product Image"}
-          className="cartItemImage"
-        />
-        <div className="cartItemDetails">
-          <p className="cartItemName">{item.title || "Unnamed Product"}</p>
-          <p className="cartItemPrice">
-            ₹{typeof item.price === "number" ? item.price.toFixed(2) : "0.00"}
-          </p>
-        </div>
-        <div className="cartQuantity">
-          <button
-            className="cart-quantity-decrement1"
-            onClick={() => updateQuantity(item.productId, -1)}
-            disabled={item.quantity <= 1}
-          >
-            -
-          </button>
-          <span>{item.quantity}</span>
-          <button
-            className="cart-quantity-increment1"
-            onClick={() => updateQuantity(item.productId, 1)}
-          >
-            +
+        <div className="cartHeader">
+          <h3>Shopping Cart</h3>
+          <button className="closeButton" onClick={toggleCart}>
+            ✖
           </button>
         </div>
-        <button className="removeButton" onClick={() => openPopup(item)}>
-          ✖
-        </button>
-      </div>
-    ))
-  ) : (
-    <p>Your cart is empty.</p>
-  )}
-</div>
+        <div className="cartItems">
+          {cartItems.length > 0 ? (
+            cartItems.map((item, index) => (
+              <div
+                key={`${item.productId}-${index}`} // Ensures unique key by combining productId and index
+                className="cartItem"
+              >
+                <img
+                  crossOrigin="anonymous"
+                  src={
+                    item.images
+                      ? `http://localhost:5000/uploads/${item.images}`
+                      : "path/to/placeholder-image.png"
+                  }
+                  alt={item.title || "Product Image"}
+                  className="cartItemImage"
+                />
+                <div className="cartItemDetails">
+                  <p className="cartItemName">
+                    {item.title || "Unnamed Product"}
+                  </p>
+                  <p className="cartItemPrice">
+                    ₹
+                    {typeof item.price === "number"
+                      ? item.price.toFixed(2)
+                      : "0.00"}
+                  </p>
+                </div>
+                <div className="cartQuantity">
+                  <button
+                    className="cart-quantity-decrement1"
+                    onClick={() => updateQuantity(item.productId, -1)}
+                    disabled={item.quantity <= 1}
+                  >
+                    -
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button
+                    className="cart-quantity-increment1"
+                    onClick={() => updateQuantity(item.productId, 1)}
+                  >
+                    +
+                  </button>
+                </div>
+                <button
+                  className="removeButton"
+                  onClick={() => openPopup(item)}
+                >
+                  ✖
+                </button>
+              </div>
+            ))
+          ) : (
+            <p>Your cart is empty.</p>
+          )}
+        </div>
 
-  {/* Cart Footer */}
-  <div className="cartFooter">
-    <div className="cartSummary">
-      <span>{totalProducts} Product(s)</span>
-      <span>Total: ₹{totalPrice.toFixed(2)}</span>
-    </div>
-    <div className="cartActions">
-      <button
-        className="checkoutButton"
-        onClick={() => handleNavigate("/checkout")}
-        disabled={cartItems.length === 0} // Disable if cart is empty
-      >
-        Checkout →
-      </button>
-      <button
-        className="goToCartButton"
-        onClick={() => handleNavigate("/cartPage")}
-        disabled={cartItems.length === 0} // Disable if cart is empty
-      >
-        View Cart →
-      </button>
-    </div>
-  </div>
-</div>
+        {/* Cart Footer */}
+        <div className="cartFooter">
+          <div className="cartSummary">
+            <span>{totalProducts} Product(s)</span>
+            <span>Total: ₹{totalPrice.toFixed(2)}</span>
+          </div>
+          <div className="cartActions">
+            <button
+              className="checkoutButton"
+              onClick={() => handleNavigate("/checkout")}
+              disabled={cartItems.length === 0} // Disable if cart is empty
+            >
+              Checkout →
+            </button>
+            <button
+              className="goToCartButton"
+              onClick={() => handleNavigate("/cartPage")}
+              disabled={cartItems.length === 0} // Disable if cart is empty
+            >
+              Go to Cart →
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* Popup */}
       {isPopupOpen && (
