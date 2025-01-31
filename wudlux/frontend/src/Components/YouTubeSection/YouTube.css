@@ -103,7 +103,8 @@
   }
 
   .play-icon {
-    width: 30px;
-    height: 30px; /* Tiny play icon */
+    width: 50px;
+    height: 50px;
+    margin-left: 50px; /* Tiny play icon */
   }
 }

@@ -154,7 +154,14 @@
       height: 2px;
       margin: 5px auto;
     }
-  
+    .underline{
+      /* height: 2px; Thickness of the line */
+      background-color: #000000; /* Gold-like color */
+      /* padding-top:5px; Center the underline */
+      margin-top: 10px;
+     
+    }
+    
     .testimonials-subtitle {
       font-size: 12px; /* Smaller subtitle font size */
       margin-bottom: 10px;

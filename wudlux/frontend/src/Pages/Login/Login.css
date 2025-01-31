@@ -293,51 +293,90 @@
 
 /* 320px screen size adjustments */
 @media (max-width: 320px) {
+  .login-page {
+    min-height: 100vh; /* Ensure it takes full height */
+    padding: 10px;
+  }
+
   .login-container {
     width: 100%;
     max-width: none;
-    padding: 0.8rem; /* Less padding to fit content on smaller screens */
+    padding: 0.8rem; /* Less padding to fit content properly */
+    display: flex;
+    justify-content: center;
   }
 
   .login-form {
-    padding: 1rem; /* Reduce padding for a more compact look */
+    width: 100%;
+    padding: 1rem; /* Reduce padding for compact design */
+    text-align: center;
   }
 
+  /* Adjust heading size */
   .login-form h1 {
-    font-size: 1.3rem; /* Decrease the font size for small screens */
+    font-size: 1.2rem; /* Smaller for small screens */
   }
 
-  .login-form p {
-    font-size: 0.8rem; /* Adjust description text size */
+  .login-description {
+    font-size: 0.85rem; /* Reduce text size for better readability */
+    margin-bottom: 1rem;
   }
 
+  /* Ensure inputs fit within the small screen */
+  .login-form input[type="email"],
+  .login-form input[type="password"] {
+    width: 95%; /* Make inputs fill the screen width */
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  /* Adjust form actions (Remember Me & Forgot Password) */
   .form-actions {
     flex-direction: column;
-    padding-left: 5px;
-    padding-right: 5px;
-    font-size: 0.8rem; /* Reduce font size in action buttons */
+    align-items: center;
+    padding: 0;
+    font-size: 0.85rem;
   }
 
   .remember-me {
-    flex-direction: column;
-    align-items: flex-start;
+    display: flex;
+    align-items: center;
     font-size: 0.8rem;
+    flex-direction: row;
   }
 
-  .login-form input[type="email"],
-  .login-form input[type="password"] {
-    width: 90%; /* Make inputs fill more of the screen width */
-    padding: 8px;
+  .checkBox {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
   }
 
+  /* Make the button full width */
   .btn {
-    width: 88%;
-    padding: 11px;
+    width: 90%;
+    padding: 12px;
     font-size: 14px;
-} /* Smaller text on buttons */
+    text-align: center;
   }
 
+  /* Adjust the "Forgot Password" link */
+  .Forgot-link {
+    font-size: 0.85rem;
+    margin-top: 5px;
+  }
+
+  /* Register Now link styling */
+  .register-link {
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-top: 5px;
+    cursor: pointer;
+  }
   .login-form p a {
     font-size: 0.8rem;
   }
 }
+
+
+  
+

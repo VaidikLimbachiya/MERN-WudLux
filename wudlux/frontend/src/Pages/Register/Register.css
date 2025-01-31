@@ -207,3 +207,97 @@
     }
   }
   
+
+  @media (max-width: 320px) {
+    .register-container {
+      width: 100%; /* Make it full width */
+      padding: 15px; /* Reduce padding */
+      margin: 20px auto; /* Reduce margin for better spacing */
+      border-radius: 8px;
+    }
+  
+    /* Adjust title font sizes */
+    .register-title {
+      font-size: 22px;
+    }
+  
+    .register-subtitle {
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+  
+    /* Stack form rows on small screens */
+    .form-row {
+      flex-direction: column; /* Stack inputs vertically */
+      gap: 10px;
+    }
+  
+    /* Ensure input fields take full width */
+    .form-input,
+    .form-input-full {
+      width: 100%;
+      padding: 10px;
+      font-size: 13px;
+    }
+  
+    .password-row {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    /* Adjust checkbox container */
+    .checkbox-container {
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 12px;
+    }
+  
+    /* Register button */
+    .register-button {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+    }
+  
+    /* Back to login button */
+    .back-to-login {
+      font-size: 14px;
+      width: 100%;
+      text-align: center;
+    }
+  
+    /* Animation adjustments */
+    .expand-out {
+      transform: scale(1.1);
+      opacity: 0;
+    }
+  
+    .shrink-in {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+  
+    /* Ensure animations work well on small screens */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+    }
+  }
+  
