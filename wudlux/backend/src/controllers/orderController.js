@@ -6,7 +6,8 @@ exports.getOrders = async (req, res) => {
     const { page = 1, limit = 10 } = req.query; // Default page 1, limit 10
 
     const orders = await Order.find()
-      .populate("userId", "name email")
+      .populate("userId", "firstName lastName email") // Populate user details
+      .populate("items.productId", "title images") // Populate product details (title, images)
       .skip((page - 1) * limit)
       .limit(parseInt(limit));
 
@@ -29,6 +30,7 @@ exports.getOrders = async (req, res) => {
     });
   }
 };
+
 // Get Orders by User ID
 exports.getOrdersByUserId = async (req, res) => {
     try {

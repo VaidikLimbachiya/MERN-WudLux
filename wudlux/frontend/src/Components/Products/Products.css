@@ -10,13 +10,6 @@
   margin-bottom: 10px;
 }
 
-.productsTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  font-weight:bold;
-  margin: 0;
-  color: #000;
-}
 
 .productsSubtitle {
   font-family: 'DM Sans', sans-serif;
@@ -84,7 +77,7 @@
 /* Title Styles */
 .productsTitle {
   font-family: "Playfair Display", serif;
-  font-size: 32px;
+  font-size: 36px;
   font-weight: bold;
   color: black;
   position: relative;

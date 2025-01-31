@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import {  NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import searchIcon from "../../assets/vector.png";
@@ -460,7 +460,7 @@ const toggleMenu = () => {
         onClick={() => handleNavigate("/cartPage")}
         disabled={cartItems.length === 0} // Disable if cart is empty
       >
-        View Cart →
+        Go to Cart →
       </button>
     </div>
   </div>

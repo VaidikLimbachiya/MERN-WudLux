@@ -76,13 +76,16 @@ exports.getCart = async (req, res) => {
   try {
     const userId = req.user.id; // Get the authenticated user's ID
 
-    // Find the user and populate the product details in the cart
-    const user = await userModel.findById(userId).populate('cart.productId');
+    // Find the user and populate cart products with required fields
+    const user = await userModel.findById(userId).populate({
+      path: "cart.productId",
+      select: "title category size images price", // ✅ Include category & size
+    });
 
     if (!user) {
       return res.status(404).json({
         success: false,
-        message: 'User not found',
+        message: "User not found",
       });
     }
 
@@ -91,19 +94,22 @@ exports.getCart = async (req, res) => {
       cartItems: user.cart.map((item) => ({
         productId: item.productId._id,
         title: item.productId.title,
+        category: item.productId.category || "No category", // ✅ Now included
+        size: item.productId.size || [], // ✅ Now included
         price: item.productId.price,
         images: item.productId.images,
         quantity: item.quantity,
       })),
     });
   } catch (error) {
-    console.error('Error fetching cart:', error);
+    console.error("Error fetching cart:", error);
     return res.status(500).json({
       success: false,
-      message: 'An error occurred while fetching the cart',
+      message: "An error occurred while fetching the cart",
     });
   }
 };
+
 // Update item quantity in user cart
 exports.updateCart = async (req, res) => {
   try {

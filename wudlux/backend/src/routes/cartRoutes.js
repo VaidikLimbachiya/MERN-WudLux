@@ -5,7 +5,6 @@ const authenticateToken = require("../middlewares/authMiddleware"); // Import th
 
 const router = express.Router();
 
-// Use individual methods from the controller
 router.get("/", authenticateToken, cartController.getCart);
 router.post("/add", authenticateToken, cartController.addToCart);
 router.delete("/remove", authenticateToken, cartController.removeFromCart);
