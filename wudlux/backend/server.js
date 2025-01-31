@@ -72,7 +72,7 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 
-// ✅ Refresh Token Function
+
 const isValidRefreshToken = (token) => {
   try {
     return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
@@ -87,19 +87,19 @@ const generateAccessToken = (userId) => {
 
 // ✅ Refresh Token Route
 app.post("/api/auth/refresh", (req, res) => {
-  const { refreshToken } = req.body;
+  const refreshToken = req.cookies.refreshToken; // Use httpOnly cookie
 
   if (!refreshToken) {
     return res.status(400).json({ error: "Refresh token is required" });
   }
 
   const decoded = isValidRefreshToken(refreshToken);
-
   if (!decoded) {
     return res.status(401).json({ error: "Invalid or expired refresh token" });
   }
 
   const newAccessToken = generateAccessToken(decoded.id);
+
   res.json({ accessToken: newAccessToken });
 });
 
