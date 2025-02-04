@@ -72,7 +72,6 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 
-
 const isValidRefreshToken = (token) => {
   try {
     return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
@@ -82,7 +81,9 @@ const isValidRefreshToken = (token) => {
 };
 
 const generateAccessToken = (userId) => {
-  return jwt.sign({ id: userId }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
+  return jwt.sign({ id: userId }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "1h",
+  });
 };
 
 // ✅ Refresh Token Route
@@ -111,32 +112,49 @@ app.post("/api/order/status", async (req, res) => {
 
   try {
     if (!orderId || !status) {
-      return res.status(400).json({ success: false, message: "Missing orderId or status" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Missing orderId or status" });
     }
 
     // ✅ Ensure `Order` model is imported
-    const order = await Order.findByIdAndUpdate(orderId, { orderStatus: status }, { new: true });
+    const order = await Order.findByIdAndUpdate(
+      orderId,
+      { orderStatus: status },
+      { new: true }
+    );
 
     if (!order) {
       console.error("❌ Order not found:", orderId);
-      return res.status(404).json({ success: false, message: "Order not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Order not found" });
     }
 
     // ✅ Emit WebSocket event
     io.emit("orderUpdated", { orderId, status });
 
-    res.json({ success: true, message: "Order status updated successfully", updatedOrder: order });
-
+    res.json({
+      success: true,
+      message: "Order status updated successfully",
+      updatedOrder: order,
+    });
   } catch (error) {
     console.error("❌ Error updating order status:", error.message);
-    res.status(500).json({ success: false, message: "Internal server error", error: error.message });
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
   }
 });
 
 // ✅ Error Handling Middleware
 app.use((err, req, res, next) => {
   console.error("❌ Internal Server Error:", err);
-  res.status(500).json({ message: "Internal server error", error: err.message });
+  res
+    .status(500)
+    .json({ message: "Internal server error", error: err.message });
 });
 
 // ✅ Start Server (IMPORTANT: Use `server.listen`, NOT `app.listen`)

@@ -259,13 +259,14 @@ const refreshToken = useCallback(async () => {
           </Link>
         </div>
         <h1 className="form-title">Shipping Information</h1>
-  
+
         {!user && (
           <p className="form-subtitle">
-            Already have an account? <Link to={`/log-in?redirect=${location.pathname}`}>Login</Link>
+            Already have an account?{" "}
+            <Link to={`/log-in?redirect=${location.pathname}`}>Login</Link>
           </p>
         )}
-  
+
         <form onSubmit={handleSubmit}>
           {userAddresses.length > 0 && (
             <div className="input-group">
@@ -279,21 +280,67 @@ const refreshToken = useCallback(async () => {
               </select>
             </div>
           )}
-  
+
           <div className="input-group">
-            <input type="text" name="firstName" placeholder="First Name *" value={formData.firstName} onChange={handleInputChange} required />
-            <input type="text" name="lastName" placeholder="Last Name *" value={formData.lastName} onChange={handleInputChange} required />
+            <input
+              type="text"
+              name="firstName"
+              placeholder="First Name *"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type="text"
+              name="lastName"
+              placeholder="Last Name *"
+              value={formData.lastName}
+              onChange={handleInputChange}
+              required
+            />
           </div>
           <div className="input-group">
-            <input type="email" name="email" placeholder="Email Address *" value={formData.email} onChange={handleInputChange} required />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address *"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+            />
           </div>
           <div className="input-group">
-            <input type="text" name="address" placeholder="Your Address *" value={formData.address} onChange={handleInputChange} required />
-            <input type="text" name="zipCode" placeholder="Zip Code *" value={formData.zipCode} onChange={handleInputChange} required />
+            <input
+              type="text"
+              name="address"
+              placeholder="Your Address *"
+              value={formData.address}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type="text"
+              name="zipCode"
+              placeholder="Zip Code *"
+              value={formData.zipCode}
+              onChange={handleInputChange}
+              required
+            />
           </div>
           <div className="input-group">
-            <input type="text" name="country" value={formData.country} readOnly className="readonly-input" />
-            <select name="state" value={formData.state} onChange={handleInputChange} required>
+            <input
+              type="text"
+              name="country"
+              value={formData.country}
+              readOnly
+              className="readonly-input"
+            />
+            <select
+              name="state"
+              value={formData.state}
+              onChange={handleInputChange}
+              required
+            >
               <option value="">State *</option>
               {Object.keys(statesAndCities).map((state) => (
                 <option key={state} value={state}>
@@ -301,51 +348,66 @@ const refreshToken = useCallback(async () => {
                 </option>
               ))}
             </select>
-            <select name="city" value={formData.city} onChange={handleInputChange} required disabled={!formData.state}>
+            <select
+              name="city"
+              value={formData.city}
+              onChange={handleInputChange}
+              required
+              disabled={!formData.state}
+            >
               <option value="">City *</option>
-              {formData.state && statesAndCities[formData.state]?.map((city) => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-              ))}
+              {formData.state &&
+                statesAndCities[formData.state]?.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
             </select>
           </div>
           <div className="input-group">
-            <input type="text" name="phone" placeholder="Phone Number *" value={formData.phone} onChange={handleInputChange} required />
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone Number *"
+              value={formData.phone}
+              onChange={handleInputChange}
+              required
+            />
           </div>
-{!isLoggedIn && (
-  <div className="checkbox-group">
-    <label>
-      <input
-        type="checkbox"
-        name="registerAccount"
-        checked={formData.registerAccount}
-        onChange={handleInputChange}
-      />
-      Register an account with the above information?
-    </label>
-  </div>
-)}
-{!isLoggedIn && formData.registerAccount && (
-  <div className="input-group">
-    <input
-      type="password"
-      name="password"
-      placeholder="Password *"
-      value={formData.password}
-      onChange={handleInputChange}
-      required
-    />
-    <input
-      type="password"
-      name="confirmPassword"
-      placeholder="Confirm Password *"
-      value={formData.confirmPassword}
-      onChange={handleInputChange}
-      required
-    />
-  </div>
-)}
+          {!isLoggedIn && (
+            <div className="checkbox-group">
+              <label  className="checkbox-label">
+                <input
+                  type="checkbox"
+                   className="checkbox-Invoice"
+                  name="registerAccount"
+                  checked={formData.registerAccount}
+                  onChange={handleInputChange}
+                />
+                Register an account with the above information?
+              </label>
+            </div>
+          )}
+          {!isLoggedIn && formData.registerAccount && (
+            <div className="input-group">
+              <input
+                type="password"
+                name="password"
+                placeholder="Password *"
+                value={formData.password}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password *"
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          )}
 
           <h2>Payment Method:</h2>
           <div className="payment-container">
@@ -418,44 +480,60 @@ const refreshToken = useCallback(async () => {
               />
             </div>
           )}
-          <textarea name="notes" placeholder="Notes about your order, e.g., special delivery instructions." value={formData.notes} onChange={handleInputChange} />
+          <textarea
+            name="notes"
+            placeholder="Notes about your order, e.g., special delivery instructions."
+            value={formData.notes}
+            onChange={handleInputChange}
+          />
           <div className="button-group">
-            <button type="button" className="back-button" onClick={() => navigate("/cartPage")}>← Back to Cart</button>
-            <button type="submit" className="submit-button">Checkout →</button>
+            <button
+              type="button"
+              className="back-button"
+              onClick={() => navigate("/cartPage")}
+            >
+              ← Back to Cart
+            </button>
+            <button type="submit" className="submit-button">
+              Checkout →
+            </button>
           </div>
         </form>
-        
       </div>
       {/* Right part */}
       <div className="summary-container">
         <h2>Products</h2>
         <div className="product-list">
-        {cartItems.length > 0 ? (
-  cartItems.map((item, index) => (
-    <div key={item.id || index} className="product-box">
-      <img
-        crossOrigin="anonymous"
-        src={item.images ? `http://localhost:5000/uploads/${item.images}` : "placeholder.png"}
-        alt={item.title || "Product Image"}
-        className="product-thumbnail"
-      />
-      <div className="product-info">
-        <div className="product-title">
-          <span className="quantity-badge">{item.quantity}</span>
-          <p className="name">{item.title || "Unknown Product"}</p>
+          {cartItems.length > 0 ? (
+            cartItems.map((item, index) => (
+              <div key={item.id || index} className="product-box">
+                <img
+                  crossOrigin="anonymous"
+                  src={
+                    item.images
+                      ? `http://localhost:5000/uploads/${item.images}`
+                      : "placeholder.png"
+                  }
+                  alt={item.title || "Product Image"}
+                  className="product-thumbnail"
+                />
+                <div className="product-info">
+                  <div className="product-title">
+                    <span className="quantity-badge">{item.quantity}</span>
+                    <p className="name">{item.title || "Unknown Product"}</p>
+                  </div>
+                  <div className="product-cost">
+                    ₹{item.price ? item.price.toFixed(2) : "0.00"}{" "}
+                    {/* ✅ Prevents crash */}
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No items in the cart.</p>
+          )}
         </div>
-        <div className="product-cost">
-          ₹{item.price ? item.price.toFixed(2) : "0.00"} {/* ✅ Prevents crash */}
-        </div>
-      </div>
-    </div>
-  ))
-) : (
-  <p>No items in the cart.</p>
-)}
-</div>
 
-        
         <div className="summary-totals">
           <div className="price-item">
             <span>Total Amount:</span>

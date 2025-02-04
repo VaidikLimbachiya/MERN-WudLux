@@ -1,10 +1,10 @@
 const express = require("express");
-const { 
-  createProduct, 
-  listProducts, 
-  removeProduct, 
+const {
+  createProduct,
+  listProducts,
+  removeProduct,
   getProductById,
-  listProductsByCategory // New controller function for filtering products
+  listProductsByCategory, // New controller function for filtering products
 } = require("../controllers/productController");
 const upload = require("../middlewares/upload"); // Import the multer configuration
 
@@ -17,6 +17,6 @@ productRouter.post("/remove", removeProduct); // Route for removing a product
 productRouter.get("/list/:id", getProductById); // Route to fetch product by ID
 
 // New route for fetching products by category and subcategory
-productRouter.get("/listByCategory", listProductsByCategory); 
+productRouter.get("/listByCategory", listProductsByCategory);
 
 module.exports = productRouter;

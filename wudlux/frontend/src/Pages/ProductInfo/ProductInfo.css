@@ -67,7 +67,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000%;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   /* Allow scrolling on smaller screens */
 }
 
@@ -124,7 +124,7 @@
   display: flex;
   align-items: center;
   margin-top: 20px;
-  margin-left: 250px;
+  margin-left: 200px;
   gap: 10px;
   overflow-x: hidden;
   /* Hide overflow if thumbnails exceed width */
@@ -163,41 +163,7 @@
   border-color: #000;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .modal-content {
-    width: 100%;
-    padding: 15px;
-  }
 
-  .full-image {
-    max-height: 50vh;
-    /* Further adjust height for smaller screens */
-  }
-
-  .thumbnail-image {
-    width: 60px;
-    /* Reduce thumbnail size for smaller screens */
-    height: 60px;
-  }
-
-  .carousel-nav {
-    font-size: 1.5rem;
-    /* Adjust nav button size */
-  }
-}
-
-@media (max-width: 480px) {
-  .thumbnail-image {
-    width: 50px;
-    height: 50px;
-  }
-
-  .carousel-thumbnails {
-    gap: 5px;
-    /* Reduce gap between thumbnails */
-  }
-}
 
 .main-image {
   width: 90%;
@@ -732,41 +698,87 @@
 }
 
 /* Extra Small Devices (max-width: 320px) */
+/* Extra Small Devices (max-width: 320px) */
 @media (max-width: 320px) {
-
-  /* Container Adjustments */
+  /* General Container Adjustments */
   .product-container {
     padding: 5px;
-    margin: 0 auto;
     width: 100%;
+    margin: 0 auto;
   }
 
-  /* Grid Layout */
+  /* Grid Layout Adjustments */
   .product-gridd {
-    grid-template-columns: 1fr;
-    /* Single-column layout */
+    grid-template-columns: 1fr; /* Single-column layout */
     gap: 8px;
-    /* Reduce gap */
   }
 
   .product-image-section {
     padding-left: 0;
   }
 
+
+  /* Main Image */
   .main-image {
-    height: 298px;
-    width: 90%;
+    height: 280px;
+    width: 96%;
     object-fit: cover;
-    /* margin-left: 10px; */
-    margin: 10px;
+    margin: 5px;
   }
 
+  /* Navigation Buttons */
+  .nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .nav-button:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-button.prev {
+    left: 20px; /* Adjusted positioning for small screens */
+  }
+
+  .nav-button.next {
+    right: 20px; /* Adjusted positioning */
+  }
+
+  .nav-button img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .zoom-button {
+    position: absolute;
+    top: 20px; /* Adjusted positioning for small screens */
+    right: 20px; /* Keeps button inside container */
+    width: 30px; /* Smaller button size */
+    height: 30px;
+  }
+
+  .zoom-button img {
+    width: 60px; /* Adjusted for better placement */
+    height: 60px;
+  }
 
   /* Breadcrumb Navigation */
   .breadcrumb-nav {
     font-size: 10px;
     gap: 3px;
-    margin-left:20px ;
+    margin-left: 10px;
   }
 
   .breadcrumb-nav-link {
@@ -780,54 +792,46 @@
   /* Thumbnail Images */
   .thumbnail-image {
     width: 40px;
-    /* Smaller thumbnails */
     height: 40px;
   }
-  
+
   .thumbnail-container {
-    margin-left: -60px;
+    margin-left: 0;
   }
 
   .carousel-container {
-    margin-left: 0;
-    gap: 3px;
-    /* Smaller gap between thumbnails */
+    /* gap: 5px; */
+    margin-left: -12px;
   }
 
-  /* Special Offer Section */
-  .special-offer {
-    padding: 10px;
-    font-size: 0.8rem;
-  }
-
-  /* Buttons */
+  /* Buttons Section */
   .add-to-bag-btn,
   .buy-now-btn {
-    padding: 12px 95px;
+    padding: 12px 90px;
     font-size: 0.7rem;
     display: flex;
-    margin-top: 20px;
-    margin-left: 20px;
+    margin-top: 10px;
+    justify-content: center;
   }
 
-  .action-section{
-    display: block;
+  .action-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
+
   /* Title and Price Section */
   .product-title {
     font-size: 14px;
     margin: 8px 0;
+    text-align: center;
   }
 
-  .spec-row {
-    display: block;
-    align-items: center;
-    gap: 10px;
-  }
   .price-section {
     flex-direction: row;
-    /* align-items: flex-start; */
     gap: 6px;
+    justify-content: center;
   }
 
   .current-price {
@@ -848,15 +852,12 @@
   .policy-section {
     flex-direction: column;
     gap: 8px;
-    width: 98%;
-    margin-left: 10px;
-    margin-right: 10px;
+    width: 100%;
+    padding: 10px;
   }
 
   .policy {
-    /* flex-direction: row; */
-    justify-content: flex-start;
-    gap: 5px;
+    justify-content: center;
     text-align: center;
     font-size: 0.8rem;
   }
@@ -869,24 +870,22 @@
 
   /* Carousel Navigation */
   .carousel-nav {
-    font-size: 0.8rem;
-    /* Smaller navigation buttons */
+    font-size: 1rem;
   }
 
   /* Social Icons */
   .social-icon {
-    width: 40px;
-    height: 40px;
-    /* font-size: 12px; */
-  }
-  .icon{
-    width: 65px;
-    height: 65px;
-    padding-left: -42px;
-    margin-bottom: 0px;
-    margin-left: -4rem;
-    margin-top: 3px;
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
   }
 
+  .icon {
+    width: 60px;
+    height: 60px;
+    margin-left: -3rem;
+    margin-top: 5px;
+  }
 }
+
  
