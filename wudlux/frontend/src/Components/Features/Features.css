@@ -4,9 +4,10 @@
     align-items: flex-start;
     /* padding: 3rem; */
     background: url("../../assets/OSBG.png") no-repeat center center;
-    background-size: contain; /* Makes the image cover the full width */
+    background-size: cover; /* Makes the image cover the full width */
     color: white;
     /* gap: 2rem; */
+    height: 400px;
     margin-bottom: 40px;
   }
   
@@ -16,7 +17,7 @@
     /* border-radius: 10px; */
     text-align: center;
     width: 100%; /* Fixed width for cards */
-    height: 320px; /* Fixed height for cards */
+    height: 400px; /* Fixed height for cards */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
   }
   
@@ -35,14 +36,32 @@
     line-height: 1.4;
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 320px) {
     .features-container {
       flex-direction: column;
       align-items: center;
+      height: 100%; /* Allow dynamic height */
+      /* padding: 1rem; Add some padding for spacing */
     }
   
     .feature-card {
-      width: 90%; /* Adjust width for smaller screens */
+      width: 100%; /* Adjust width for better fit */
+      height: 100%; /* Remove fixed height for better responsiveness */
+      /* padding: 1.5rem; Reduce padding for smaller screens */
+      margin-bottom: 0px;
+    }
+  
+    .feature-icon {
+      width: 60px; /* Reduce icon size for better proportion */
+      height: 60px;
+    }
+  
+    .feature-title {
+      font-size: 1.5rem; /* Slightly smaller font */
+    }
+  
+    .feature-description {
+      font-size: 0.9rem; /* Reduce text size for better fit */
     }
   }
   

@@ -60,7 +60,7 @@ export const CartProvider = ({ children }) => {
   const addToCart = async (productId, quantity = 1) => {
     const token = localStorage.getItem("accessToken");
     setError(null);
-
+  
     try {
       const response = await fetch("http://localhost:5000/api/cart/add", {
         method: "POST",
@@ -70,30 +70,34 @@ export const CartProvider = ({ children }) => {
         },
         body: JSON.stringify({ productId, quantity }),
       });
-
+  
       if (!response.ok) {
         throw new Error("Failed to add to cart");
       }
-
-      // Refresh cart data after successful addition
+  
       await fetchCart();
+      setCartItems((prevItems) => [...prevItems]); // Force re-render
     } catch (err) {
       console.error("Error adding to cart:", err);
       setError(err.message);
     }
   };
+  
 
   // Update item quantity
   const updateQuantity = async (productId, delta) => {
     const token = localStorage.getItem("accessToken");
     setError(null);
-
+  
     const existingItem = cartItems.find((item) => item.productId === productId);
     if (!existingItem) {
       console.error("Item not found in cart");
       return;
     }
-
+  
+    // Ensure the quantity never goes below 1
+    const newQuantity = Math.max(1, existingItem.quantity + delta);
+  
     try {
       const response = await fetch("http://localhost:5000/api/cart/update", {
         method: "PATCH",
@@ -101,20 +105,28 @@ export const CartProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ productId, quantity: existingItem.quantity + delta }),
+        body: JSON.stringify({ productId, quantity: newQuantity }),
       });
-
+  
       if (!response.ok) {
         throw new Error("Failed to update item quantity");
       }
-
-      // Refresh cart data after successful update
-      await fetchCart();
+  
+      // Update the local state to reflect the new quantity
+      setCartItems((prevItems) =>
+        prevItems.map((item) =>
+          item.productId === productId ? { ...item, quantity: newQuantity } : item
+        )
+      );
+  
+      await fetchCart(); // Ensure cart data is refreshed
     } catch (err) {
       console.error("Error updating quantity:", err);
       setError(err.message);
     }
   };
+  
+  
 
   // Remove an item from the cart
   const removeItem = async (productId) => {

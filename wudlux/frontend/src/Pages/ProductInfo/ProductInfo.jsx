@@ -27,10 +27,12 @@ const ProductPage = () => {
 
   const [product, setProduct] = useState(null); // Store product details
   const [currentImage, setCurrentImage] = useState(0); // Current image index
-  const [quantity, setQuantity] = useState(1); // Quantity selector
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility
   const [mainImage, setMainImage] = useState(""); // Current main image 
-  const { addToCart } = useCartContext();
+  const { cartItems, updateQuantity,addToCart } = useCartContext(); 
+  const cartItem = cartItems.find((item) => item.productId === product._id);
+  const quantity = cartItem ? cartItem.quantity : 1;
+
 
   // Fetch product data based on the product ID from the URL
   useEffect(() => {
@@ -49,11 +51,7 @@ const ProductPage = () => {
     fetchProduct();
   }, [id]); // Trigger when the ID changes
 
-  // Handle Quantity Change
-  const handleQuantityChange = (type) => {
-    if (type === "increment") setQuantity(quantity + 1);
-    else if (type === "decrement" && quantity > 1) setQuantity(quantity - 1);
-  };
+
 
   // Handle Previous Image
   const handlePrev = () => {
@@ -179,32 +177,28 @@ const ProductPage = () => {
 
           {/* Quantity and Buttons Section */}
           <div className="action-section">
-            <div className="quantity-container">
-              <span className="quantity-label">Quantity:</span>
-              <div className="quantity-selector">
-                <button
-                  className="quantity-btn"
-                  onClick={() => handleQuantityChange(product._id, "decrement")}
-                >
-                  -
-                </button>
-                <span className="quantity-display">{quantity}</span>
-                <button
-                  className="quantity-btn"
-                  onClick={() => handleQuantityChange(product._id, "increment")}
-                >
-                  +
-                </button>
-              </div>
-            </div>
+          <div className="quantity-container">
+  <span className="quantity-label">Quantity:</span>
+  <div className="quantity-selector">
+    <button className="quantity-btn" onClick={() => updateQuantity(product._id, -1)}>
+      -
+    </button>
+    <span className="quantity-display">{quantity}</span>
+    <button className="quantity-btn" onClick={() => updateQuantity(product._id, 1)}>
+      +
+    </button>
+  </div>
+</div>
+
 
             {/* Add to Bag Button */}
             <button className="add-to-bag-btn" onClick={(e) => {
-                      e.stopPropagation(); // Prevent navigation when clicking "Add to Bag"
-                      addToCart(product);
-                    }}>
+              e.stopPropagation();
+              addToCart(product._id, quantity);
+            }}>
               <img src={bag} alt="Bag" /> Add to Bag
             </button>
+            
 
             {/* Buy Now Button */}
             <button className="buy-now-btn">
