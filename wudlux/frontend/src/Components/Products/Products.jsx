@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../Context/CartContext";
-import Filter from "../Filter/Filter"; // Import the Filter component
+// import Filter from "../Filter/Filter"; // Import the Filter component
 import "./Products.css";
 import bagIcon from "../../assets/bag.png";
 
@@ -15,9 +15,7 @@ const Products = () => {
 
   // State for filtering and sorting
   const [selectedMaterial, setSelectedMaterial] = useState("");
-  const [priceRange, setPriceRange] = useState({ min: "", max: "" });
-  const [sortOption, setSortOption] = useState("Latest");
-
+ 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -40,51 +38,11 @@ const Products = () => {
     fetchProducts();
   }, []);
 
-  // Apply Filtering
-  const filteredProducts = products.filter((product) => {
-    const matchesMaterial =
-      selectedMaterial === "" || product.material === selectedMaterial;
 
-    const matchesPrice =
-      (!priceRange.min || product.price >= Number(priceRange.min)) &&
-      (!priceRange.max || product.price <= Number(priceRange.max));
 
-    return matchesMaterial && matchesPrice;
-  });
-
-  // Apply Sorting
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    switch (sortOption) {
-      case "atoz":
-        return a.title.localeCompare(b.title);
-      case "ztoa":
-        return b.title.localeCompare(a.title);
-      case "Price-low-to-High":
-        return a.price - b.price;
-      case "Price-High-to-Low":
-        return b.price - a.price;
-      case "old-to-new":
-      case "new-to-old":
-        return 0; // Placeholder for sorting by date if available
-      default:
-        return 0;
-    }
-  });
-
-  const displayedProducts = showAll ? sortedProducts : sortedProducts.slice(0, 8);
-
+  
   return (
     <div className="productsSection">
-      {/* Filter Component */}
-      <Filter
-        selectedMaterial={selectedMaterial}
-        setSelectedMaterial={setSelectedMaterial}
-        priceRange={priceRange}
-        setPriceRange={setPriceRange}
-        sortOption={sortOption}
-        setSortOption={setSortOption}
-      />
-
       {/* Header Section */}
       <div className="productsHeader">
         <h2 className="productsTitle">
