@@ -85,7 +85,7 @@ font-family: "Playfair Display", serif;
 }
 
 .dividerr {
-  width: 344px;
+  width: 100%;
   border: none;
   border-top: 1px solid #ccc;
   margin: 10px 0;
@@ -379,9 +379,10 @@ font-family: "Playfair Display", serif;
   }
 
   .info-item {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    text-align: center;
+    text-align: left;
+    margin-left: 51px;
   }
 
  .icon{

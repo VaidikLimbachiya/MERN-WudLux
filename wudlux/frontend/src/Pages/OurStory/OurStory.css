@@ -1,51 +1,196 @@
+/* General Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 /* Hero Section */
 .hero-section {
-    height: 300px;
-    background-size: cover;
-    background-position: center;
+  height: 250px; /* Reduce height for mobile */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.page-title {
+  font-size: 28px; /* Adjust font size for smaller screens */
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  padding: 0 10px; /* Ensure title fits on smaller screens */
+}
+
+/* Story Section */
+.story-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Image Container */
+.image-container {
+  flex: 1;
+  max-width: 50%;
+}
+
+.story-image {
+  width: 400px;
+  height: auto;
+  border-radius: 8px;
+  margin-left: -300px;
+}
+
+/* Content Container */
+.content-container {
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.section-title {
+  font-size: 30px; /* Adjust font size for smaller screens */
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.section-subtitlee {
+  font-size: 20px; /* Adjust font size */
+  font-weight: normal;
+  color: black;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block; /* Ensure the underline adjusts to the text width */
+}
+
+.section-subtitlee::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 30%; /* Make underline wider */
+  height: 2px;
+  background-color: black;
+}
+
+.section-description {
+  width: 100%;
+  font-size: 14px; /* Adjust font size */
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Responsive Explore Button */
+.explore-products-button {
+  padding: 10px 18px;
+  background-color: #6a4b35;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Features Section */
+.features-section {
+  text-align: center;
+  margin: 40px auto;
+}
+
+.features-image {
+  width: 100%;
+  height: 350px;
+}
+
+/* Responsive Explore Button */
+.explore-products-button {
+  position: relative;
+  overflow: hidden;
+  background: none;
+  border: 1px solid black;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  color: black;
+  z-index: 1;
+}
+
+.explore-products-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: black;
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+.explore-products-button:hover::before {
+  left: 0;
+}
+
+.explore-products-button:hover {
+  color: white;
+}
+
+/* 🌟 Responsive Design for 320px width */
+@media (max-width: 320px) {
+  /* Adjust Hero Section */
+  .hero-section {
+    height: 200px;
+  }
+  .page-title {
+    font-size: 24px;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  /* Stack Image and Content Vertically */
+  .story-section {
+    flex-direction: column;
+    text-align: center;
+    width: 90%;
+  }
+
+  .image-container {
+    max-width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
   }
-  
-  .page-title {
-    font-size: 32px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-  }
-  
-  /* Story Section */
-  .story-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    width: 54%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  /* Image Container */
-  .image-container {
-    flex: 1;
-    max-width: 50%;
-  }
-  
+
+  /* 🖼 Make Image Vertical */
   .story-image {
-    width: 400px;
+    width: 250px;
     height: auto;
+    margin-left: 0;
     border-radius: 8px;
-    margin-left: -300px;
   }
-  
-  /* Content Container */
+
+  /* Adjust Content */
   .content-container {
-    max-width: 800px;
-    padding: 0 20px;
+    padding: 0;
+    max-width: 100%;
   }
+<<<<<<< HEAD
+
+  .section-title {
+=======
   
   .section-title {
     font-size: 36px;
@@ -55,82 +200,35 @@
   }
   
   .section-subtitlee {
+>>>>>>> a22aabe8579dd0b157150b77a46b9dbef0817d5d
     font-size: 24px;
-    font-weight: normal;
-    color: black;
-    margin-bottom: 20px;
-    position: relative;
-    display: inline-block; /* Ensure the underline adjusts to the text width */
   }
-  
+
+  .section-subtitlee {
+    font-size: 18px;
+  }
+
   .section-subtitlee::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -5px; /* Adjust the space between the text and the underline */
-    width: 10%;
-    height: 2px; /* Thickness of the underline */
-    background-color: black; /* Color of the underline */
+    width: 50%;
   }
-  
-  
+
   .section-description {
-    width: 800px;
-    font-size: 16px;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .explore-products-button {
-    padding: 12px 20px;
-    background-color: #6a4b35;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  /* Features Section */
-.features-section {
+    font-size: 14px;
     text-align: center;
-    margin: 40px auto;
   }
-  
-  .features-image {
-    width: 100%;
-    /* max-width: 1200px; */
-    height: 350px;
-    /* border-radius: 8px; */
-  }
+
   .explore-products-button {
-    position: relative;
-    overflow: hidden;
-    background: none;
-    border: 1px solid black;
-    padding: 12px 20px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 20px;
-    color: black;
-    z-index: 1;
+    font-size: 14px;
+    padding: 8px 14px;
   }
-  
-  .explore-products-button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: black;
-    transition: all 0.4s ease;
-    z-index: -1; /* Ensures the pseudo-element is behind the button text */
+
+  /* Features Section */
+  .features-image {
+    height: 250px;
   }
+<<<<<<< HEAD
+}
+=======
   
   .explore-products-button:hover::before {
     left: 0; /* Slide the background into view */
@@ -245,3 +343,4 @@
     }
   }  
   
+>>>>>>> a22aabe8579dd0b157150b77a46b9dbef0817d5d

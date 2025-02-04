@@ -11,7 +11,9 @@ import { AuthProvider } from "./Context/AuthContext"; // ✅ Import AuthProvider
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <AuthProvider> {/* ✅ Wrap everything inside AuthProvider */}
+      <AuthProvider>
+        {" "}
+        {/* ✅ Wrap everything inside AuthProvider */}
         <UserProvider>
           <CartProvider>
             {/* <FilterProvider>  */}

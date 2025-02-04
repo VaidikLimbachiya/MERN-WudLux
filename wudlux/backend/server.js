@@ -14,12 +14,12 @@ const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
 const addressRoutes = require("./src/routes/addressRoutes");
 const orderRoutes = require("./src/routes/orderRoutes");
-const Order = require("./src/models/orderModel"); 
+const Order = require("./src/models/orderModel");
 
 dotenv.config();
 
 const app = express();
-const server = http.createServer(app); // 
+const server = http.createServer(app); //
 const io = new Server(server, {
   cors: {
     origin: "*",
@@ -61,21 +61,22 @@ app.use("/api/cart", cartRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 
-
 const isValidRefreshToken = (token) => {
   try {
     return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
   } catch (err) {
-    return null; 
+    return null;
   }
 };
 
 const generateAccessToken = (userId) => {
-  return jwt.sign({ id: userId }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
+  return jwt.sign({ id: userId }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "1h",
+  });
 };
 
 app.post("/api/auth/refresh", (req, res) => {
-  const refreshToken = req.cookies.refreshToken; 
+  const refreshToken = req.cookies.refreshToken;
   if (!refreshToken) {
     return res.status(400).json({ error: "Refresh token is required" });
   }
@@ -83,7 +84,7 @@ app.post("/api/auth/refresh", (req, res) => {
   if (!decoded) {
     return res.status(401).json({ error: "Invalid or expired refresh token" });
   }
-const newAccessToken = generateAccessToken(decoded.id);
+  const newAccessToken = generateAccessToken(decoded.id);
   res.json({ accessToken: newAccessToken });
 });
 
@@ -92,24 +93,42 @@ app.post("/api/order/status", async (req, res) => {
   console.log("🔄 Updating Order:", { orderId, status });
   try {
     if (!orderId || !status) {
-      return res.status(400).json({ success: false, message: "Missing orderId or status" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Missing orderId or status" });
     }
-    const order = await Order.findByIdAndUpdate(orderId, { orderStatus: status }, { new: true });
+    const order = await Order.findByIdAndUpdate(
+      orderId,
+      { orderStatus: status },
+      { new: true }
+    );
     if (!order) {
       console.error("❌ Order not found:", orderId);
-      return res.status(404).json({ success: false, message: "Order not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Order not found" });
     }
     io.emit("orderUpdated", { orderId, status });
-    res.json({ success: true, message: "Order status updated successfully", updatedOrder: order });
+    res.json({
+      success: true,
+      message: "Order status updated successfully",
+      updatedOrder: order,
+    });
   } catch (error) {
     console.error("❌ Error updating order status:", error.message);
-    res.status(500).json({ success: false, message: "Internal server error", error: error.message });
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
   }
 });
 
 app.use((err, req, res, next) => {
   console.error("❌ Internal Server Error:", err);
-  res.status(500).json({ message: "Internal server error", error: err.message });
+  res
+    .status(500)
+    .json({ message: "Internal server error", error: err.message });
 });
 
 const PORT = process.env.PORT || 5000;

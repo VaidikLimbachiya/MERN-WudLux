@@ -76,6 +76,7 @@ h3 {
 
 .fourth-class {
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .checkbox-input {
@@ -159,9 +160,17 @@ select:disabled {
   color: #999;
   cursor: not-allowed;
 }
+.checkbox-group{
+  display: flex;
+  /* margin-top:20px; */
+  /* flex-direction: row; */
+  /* gap: 10px; */
+  margin-bottom: -15px;
+}
 
 .checkbox-group-one {
   display: contents;
+  
 }
 
 .submit-button {

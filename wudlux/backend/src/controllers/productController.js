@@ -3,17 +3,21 @@ const fs = require("fs");
 const path = require("path"); // Make sure to require path module
 
 module.exports.createProduct = async (req, res) => {
-  const image_filenames = req.files?.images ? req.files.images.map((file) => file.filename) : [];
-const variant_image_filenames = req.files?.variantImages ? req.files.variantImages.map((file) => file.filename) : [];
+  const image_filenames = req.files?.images
+    ? req.files.images.map((file) => file.filename)
+    : [];
+  const variant_image_filenames = req.files?.variantImages
+    ? req.files.variantImages.map((file) => file.filename)
+    : [];
 
-let size = req.body.size;
-if (typeof size === "string") {
-  size = JSON.parse(size);
-}
+  let size = req.body.size;
+  if (typeof size === "string") {
+    size = JSON.parse(size);
+  }
 
-const materials = req.body.materials;
-const parsedMaterials = (typeof materials === "string") ? JSON.parse(materials) : materials;
-
+  const materials = req.body.materials;
+  const parsedMaterials =
+    typeof materials === "string" ? JSON.parse(materials) : materials;
 
   const newProduct = new Product({
     category: req.body.category,
@@ -38,7 +42,6 @@ const parsedMaterials = (typeof materials === "string") ? JSON.parse(materials) 
   }
 };
 
-
 // Get all products
 module.exports.listProducts = async (req, res) => {
   try {
@@ -53,7 +56,9 @@ module.exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     if (!product) {
-      return res.status(404).json({ success: false, message: "Product not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Product not found" });
     }
     res.status(200).json({ success: true, product });
   } catch (error) {
@@ -73,7 +78,7 @@ module.exports.removeProduct = async (req, res) => {
     // If the product has images, remove them from the file system
     if (product.images && product.images.length > 0) {
       product.images.forEach((image) => {
-        const imagePath = path.join(__dirname, '..', 'uploads', image); // Adjusted path
+        const imagePath = path.join(__dirname, "..", "uploads", image); // Adjusted path
         fs.unlink(imagePath, (err) => {
           if (err) console.log("Error deleting image", err);
         });
@@ -83,7 +88,7 @@ module.exports.removeProduct = async (req, res) => {
     // If the product has variantImages, remove them from the file system
     if (product.variantImages && product.variantImages.length > 0) {
       product.variantImages.forEach((image) => {
-        const imagePath = path.join(__dirname, '..', 'uploads', image); // Adjusted path
+        const imagePath = path.join(__dirname, "..", "uploads", image); // Adjusted path
         fs.unlink(imagePath, (err) => {
           if (err) console.log("Error deleting variant image", err);
         });
@@ -104,9 +109,10 @@ module.exports.listProductsByCategory = async (req, res) => {
   try {
     const { category, subcategory } = req.query;
     const filter = {}; // Initialize filter object
-    
+
     if (category) filter.category = category;
-if (subcategory) filter.subcategory = { $regex: new RegExp(subcategory, "i") };  // Case-insensitive match
+    if (subcategory)
+      filter.subcategory = { $regex: new RegExp(subcategory, "i") }; // Case-insensitive match
 
     console.log("Filter:", filter); // Debugging line to verify the filter
 
@@ -114,7 +120,8 @@ if (subcategory) filter.subcategory = { $regex: new RegExp(subcategory, "i") }; 
     res.status(200).json({ success: true, data: products });
   } catch (error) {
     console.error("Error fetching products by category:", error);
-    res.status(500).json({ success: false, message: "Error fetching products" });
+    res
+      .status(500)
+      .json({ success: false, message: "Error fetching products" });
   }
 };
-
