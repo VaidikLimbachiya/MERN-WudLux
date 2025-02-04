@@ -14,12 +14,12 @@ const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
 const addressRoutes = require("./src/routes/addressRoutes");
 const orderRoutes = require("./src/routes/orderRoutes");
-const Order = require("./src/models/orderModel"); 
+const Order = require("./src/models/orderModel");
 
 dotenv.config();
 
 const app = express();
-const server = http.createServer(app); // 
+const server = http.createServer(app); //
 const io = new Server(server, {
   cors: {
     origin: "*",
@@ -65,7 +65,7 @@ const isValidRefreshToken = (token) => {
   try {
     return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
   } catch (err) {
-    return null; 
+    return null;
   }
 };
 
@@ -76,7 +76,7 @@ const generateAccessToken = (userId) => {
 };
 
 app.post("/api/auth/refresh", (req, res) => {
-  const refreshToken = req.cookies.refreshToken; 
+  const refreshToken = req.cookies.refreshToken;
   if (!refreshToken) {
     return res.status(400).json({ error: "Refresh token is required" });
   }
@@ -84,7 +84,7 @@ app.post("/api/auth/refresh", (req, res) => {
   if (!decoded) {
     return res.status(401).json({ error: "Invalid or expired refresh token" });
   }
-const newAccessToken = generateAccessToken(decoded.id);
+  const newAccessToken = generateAccessToken(decoded.id);
   res.json({ accessToken: newAccessToken });
 });
 
@@ -97,18 +97,11 @@ app.post("/api/order/status", async (req, res) => {
         .status(400)
         .json({ success: false, message: "Missing orderId or status" });
     }
-<<<<<<< HEAD
-
-    // ✅ Ensure `Order` model is imported
     const order = await Order.findByIdAndUpdate(
       orderId,
       { orderStatus: status },
       { new: true }
     );
-
-=======
-    const order = await Order.findByIdAndUpdate(orderId, { orderStatus: status }, { new: true });
->>>>>>> a22aabe8579dd0b157150b77a46b9dbef0817d5d
     if (!order) {
       console.error("❌ Order not found:", orderId);
       return res
@@ -116,16 +109,11 @@ app.post("/api/order/status", async (req, res) => {
         .json({ success: false, message: "Order not found" });
     }
     io.emit("orderUpdated", { orderId, status });
-<<<<<<< HEAD
-
     res.json({
       success: true,
       message: "Order status updated successfully",
       updatedOrder: order,
     });
-=======
-    res.json({ success: true, message: "Order status updated successfully", updatedOrder: order });
->>>>>>> a22aabe8579dd0b157150b77a46b9dbef0817d5d
   } catch (error) {
     console.error("❌ Error updating order status:", error.message);
     res.status(500).json({

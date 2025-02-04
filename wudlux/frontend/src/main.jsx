@@ -16,11 +16,7 @@ createRoot(document.getElementById("root")).render(
         {/* ✅ Wrap everything inside AuthProvider */}
         <UserProvider>
           <CartProvider>
-<<<<<<< HEAD
-            <FilterProvider>
-=======
             {/* <FilterProvider>  */}
->>>>>>> a22aabe8579dd0b157150b77a46b9dbef0817d5d
               <App />
             {/* </FilterProvider> */}
           </CartProvider>

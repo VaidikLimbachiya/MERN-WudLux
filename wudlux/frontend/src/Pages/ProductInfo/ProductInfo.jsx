@@ -30,7 +30,7 @@ const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility
   const [mainImage, setMainImage] = useState(""); // Current main image 
   const { cartItems, updateQuantity,addToCart } = useCartContext(); 
-  const cartItem = cartItems.find((item) => item.productId === product._id);
+  const cartItem = product ? cartItems.find((item) => item.productId === product._id) : null ;
   const quantity = cartItem ? cartItem.quantity : 1;
 
 
