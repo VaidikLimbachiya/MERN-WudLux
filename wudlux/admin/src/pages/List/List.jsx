@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -7,11 +7,10 @@ import "./List.css";
 const List = ({ url }) => {
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [loadingData, setLoadingData] = useState(false); // For data loading state
 
   // Fetch Product List
-  const fetchProductList = async () => {
-    setLoadingData(true);
+  const fetchProductList = useCallback(async () => {
+    setLoading(true);
     try {
       const response = await axios.get(`${url}/api/products/list`);
       if (response.status === 200 && Array.isArray(response.data.data)) {
@@ -20,11 +19,11 @@ const List = ({ url }) => {
         toast.error("Failed to fetch products");
       }
     } catch (error) {
-      toast.error("Error fetching product list");
+      toast.error("Error fetching product list. Please try again.");
     } finally {
-      setLoadingData(false);
+      setLoading(false);
     }
-  };
+  }, [url]);
 
   // Remove Product
   const removeProduct = async (productId) => {
@@ -32,31 +31,32 @@ const List = ({ url }) => {
       const response = await axios.post(`${url}/api/products/remove`, { id: productId });
       if (response.status === 200) {
         toast.success("Product deleted successfully");
-        fetchProductList();
+        fetchProductList(); // Refresh list after deletion
       } else {
         toast.error("Failed to remove product");
       }
     } catch (error) {
-      toast.error("Error removing product");
+      toast.error("Error removing product. Please try again.");
     }
   };
 
   // Fetch product list on mount
   useEffect(() => {
     fetchProductList();
-  }, []);
+  }, [fetchProductList]);
 
   return (
     <div className="list-container">
       <h2>All Products</h2>
-      {loadingData ? (
+
+      {loading ? (
         <div className="loading">
           <div className="loading-spinner">
             <div className="spinner"></div>
             <p>Loading Products...</p>
           </div>
         </div>
-      ) : (
+      ) : productList.length > 0 ? (
         <div className="list-table">
           <div className="list-table-header">
             <b>Thumbnail</b>
@@ -67,37 +67,36 @@ const List = ({ url }) => {
             <b>Discount</b>
             <b>Actions</b>
           </div>
-          {productList.length > 0 ? (
-            productList.map((product) => (
-              <div key={product._id} className="list-table-row">
-                <img
-                  crossOrigin="anonymous"
-                  src={
-                    product.image
-                      ? `http://localhost:5000/uploads/${product.image}`
-                      : product.variantImages && product.variantImages[0]
-                      ? `http://localhost:5000/uploads/${product.variantImages[0]}`
-                      : "https://via.placeholder.com/150" // Placeholder if no image available
-                  }
-                  alt={product.title}
-                />
-                <p>{product.title}</p>
-                <p>{product.category}</p>
-                <p>₹{product.price}</p>
-                <p>{product.originalPrice}</p>
-                <p>{product.discount}%</p>
-                <div className="actions">
-                  <button onClick={() => removeProduct(product._id)} className="delete-btn">
-                    Delete
-                  </button>
-                </div>
+          {productList.map((product) => (
+            <div key={product._id} className="list-table-row">
+              <img
+                crossOrigin="anonymous"
+                src={
+                  product.image
+                    ? `${url}/uploads/${product.image}`
+                    : product.variantImages?.[0]
+                    ? `${url}/uploads/${product.variantImages[0]}`
+                    : "https://via.placeholder.com/150"
+                }
+                alt={product.title}
+              />
+              <p>{product.title}</p>
+              <p>{product.category}</p>
+              <p>₹{product.price}</p>
+              <p>₹{product.originalPrice}</p>
+              <p>{product.discount}%</p>
+              <div className="actions">
+                <button onClick={() => removeProduct(product._id)} className="delete-btn">
+                  Delete
+                </button>
+                <button className="edit-btn">Edit</button>
               </div>
-            ))
-          ) : (
-            <div className="empty">
-              <p>No products available.</p>
             </div>
-          )}
+          ))}
+        </div>
+      ) : (
+        <div className="empty">
+          <p>No products found. Add some to get started!</p>
         </div>
       )}
     </div>

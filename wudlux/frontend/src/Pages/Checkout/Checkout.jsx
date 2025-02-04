@@ -13,7 +13,7 @@ const API_BASE_URL = "http://localhost:5000"; // Backend API base URL
 
 const Checkout = () => {
   const { cartItems = [], clearCart } = useCartContext();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn] = useState(false);
   const { user } = useUserContext();
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,7 +44,7 @@ const Checkout = () => {
   // Fetch user addresses from the database
   useEffect(() => {
     const fetchAddresses = async () => {
-      if (!user || !user.id) return;
+      if (!user?.id) return;
       try {
         const response = await axios.get(`${API_BASE_URL}/addresses/${user.id}`);
         setAddresses(response.data);
@@ -52,36 +52,35 @@ const Checkout = () => {
         console.error("Error fetching addresses:", error);
       }
     };
-
+  
     fetchAddresses();
-  }, [user]);
+  }, [user?.id]); // ✅ Now only updates when user.id changes
+  
 
   // Ensure addresses are always an array
   const userAddresses = Array.isArray(addresses) ? addresses : [];
 
   // Auto-fill form fields when user logs in
   useEffect(() => {
-    if (userAddresses.length > 0) {
-      console.log("Populating formData with user addresses:", userAddresses);
-
-      const defaultAddress = userAddresses.find((addr) => addr.isDefault) || userAddresses[0];
-
-      setSelectedAddressId(defaultAddress?._id || "");
-
-      setFormData((prev) => ({
-        ...prev,
-        firstName: user?.firstName || "",
-        lastName: user?.lastName || "",
-        email: user?.email || "",
-        address: defaultAddress?.street || "",
-        zipCode: defaultAddress?.zipCode || "",
-        country: defaultAddress?.country || "India",
-        state: defaultAddress?.state || "",
-        city: defaultAddress?.city || "",
-        phone: user?.phoneNumber || "",
-      }));
-    }
-  }, [userAddresses]);
+    if (!userAddresses.length) return;
+    
+    const defaultAddress = userAddresses.find((addr) => addr.isDefault) || userAddresses[0];
+  
+    setSelectedAddressId(defaultAddress?._id || "");
+    setFormData((prev) => ({
+      ...prev,
+      firstName: user?.firstName || "",
+      lastName: user?.lastName || "",
+      email: user?.email || "",
+      address: defaultAddress?.street || "",
+      zipCode: defaultAddress?.zipCode || "",
+      country: defaultAddress?.country || "India",
+      state: defaultAddress?.state || "",
+      city: defaultAddress?.city || "",
+      phone: user?.phoneNumber || "",
+    }));
+  }, [userAddresses, user?.id]); // ✅ Ensures only necessary updates
+  
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -91,6 +90,7 @@ const Checkout = () => {
       ...(name === "state" && { city: "" }), // Reset city when state changes
     }));
   };
+  
 
   const handleAddressChange = (e) => {
     const selectedId = e.target.value;
@@ -111,144 +111,78 @@ const Checkout = () => {
 
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 const refreshToken = useCallback(async () => {
-    try {
-      const storedRefreshToken = localStorage.getItem("refreshToken");
-      if (!storedRefreshToken) {
-        throw new Error("No refresh token found");
-      }
-
-      const response = await fetch("http://localhost:5000/api/users/refresh-token", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ refreshToken: storedRefreshToken }),
-      });
-
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.message || "Failed to refresh token");
-      }
-
-      // Update access token in localStorage
-      localStorage.setItem("accessToken", result.accessToken);
-      toast.success("Session refreshed successfully!");
-      return result.accessToken;
-    } catch (error) {
-      console.error("Token refresh error:", error);
-      toast.error("Session expired. Please log in again.");
-      localStorage.clear(); // Clear tokens and user data
-      navigate("/log-in");
+  try {
+    const storedRefreshToken = localStorage.getItem("refreshToken");
+    if (!storedRefreshToken) {
+      throw new Error("No refresh token found");
     }
-  }, [navigate]);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.address || !formData.state || !formData.city || !formData.phone) {
-      toast.error("Please complete all required fields.");
+
+    const response = await axios.post(`${API_BASE_URL}/api/users/refresh-token`, {
+      refreshToken: storedRefreshToken,
+    });
+
+    const { accessToken } = response.data;
+    localStorage.setItem("accessToken", accessToken);
+    toast.success("Session refreshed successfully!");
+
+    return accessToken;
+  } catch (error) {
+    console.error("Token refresh error:", error);
+    toast.error("Session expired. Please log in again.");
+    localStorage.clear();
+    navigate("/log-in");
+  }
+}, [navigate]);
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!formData.firstName || !formData.lastName || !formData.email || !formData.address || !formData.state || !formData.city || !formData.phone) {
+    toast.error("Please complete all required fields.");
+    return;
+  }
+
+  let token = localStorage.getItem("accessToken");
+
+  if (!token) {
+    token = await refreshToken();
+    if (!token) {
+      toast.error("Authentication required. Please log in.");
       return;
     }
-  
-    let token = localStorage.getItem("accessToken");
-  
-    // If user is not logged in and wants to register
-    if (!user && formData.registerAccount) {
-      if (!formData.password || !formData.confirmPassword) {
-        toast.error("Please enter a password and confirm it.");
-        return;
-      }
-      if (formData.password !== formData.confirmPassword) {
-        toast.error("Passwords do not match!");
-        return;
-      }
-  
-      try {
-        const registerPayload = {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          password: formData.password,
-          phoneNumber: formData.phone,
-          address: {
-            street: formData.address,
-            city: formData.city,
-            state: formData.state,
-            zipCode: formData.zipCode,
-            country: formData.country,
-          },
-        };
-  
-        // Call backend API to register the user
-        const registerResponse = await axios.post(`${API_BASE_URL}/api/users/register`, registerPayload);
-        const { accessToken, user: newUser } = registerResponse.data;
-  
-        // Save token and update user context
-        localStorage.setItem("accessToken", accessToken);
-        toast.success("Account registered successfully!");
-  
-        // Update the user state
-        setIsLoggedIn(true);
-  
-        // Assign user data
-        user.id = newUser.id;
-        user.firstName = newUser.firstName;
-        user.lastName = newUser.lastName;
-        user.email = newUser.email;
-        user.phoneNumber = newUser.phoneNumber;
-  
-        // Remove "Register an account" checkbox after successful registration
-        setFormData((prev) => ({
-          ...prev,
-          registerAccount: false,
-          password: "",
-          confirmPassword: "",
-        }));
-  
-        token = accessToken;
-      } catch (error) {
-        console.error("Registration Error:", error);
-        toast.error("Failed to register. Please try again.");
-        return;
-      }
-    }
-  
-    if (!token) {
-      token = await refreshToken();
-      if (!token) {
-        toast.error("Authentication required. Please log in.");
-        return;
-      }
-    }
-  
-    try {
-      const orderPayload = {
-        userId: user?.id,
-        selectedAddressId,
-        items: cartItems.map((item) => ({
-          productId: item.productId,
-          quantity: item.quantity,
-          price: item.price,
-        })),
-        totalAmount: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
-        shippingAddress: {
-          street: formData.address,
-          city: formData.city,
-          state: formData.state,
-          zipCode: formData.zipCode,
-          country: formData.country,
-        },
-        notes: formData.notes,
-      };
-  
-      await axios.post(`${API_BASE_URL}/api/orders`, orderPayload, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-  
-      toast.success("Order placed successfully!");
-      clearCart();
-    } catch (error) {
-      console.error("Checkout Error:", error);
-      toast.error("Failed to place order. Please try again.");
-    }
-  };    
+  }
+
+  try {
+    const orderPayload = {
+      userId: user?.id,
+      selectedAddressId,
+      items: cartItems.map((item) => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        price: item.price,
+      })),
+      totalAmount: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
+      shippingAddress: {
+        street: formData.address,
+        city: formData.city,
+        state: formData.state,
+        zipCode: formData.zipCode,
+        country: formData.country,
+      },
+      notes: formData.notes,
+    };
+
+    await axios.post(`${API_BASE_URL}/api/orders`, orderPayload, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    toast.success("Order placed successfully!");
+    clearCart();
+  } catch (error) {
+    console.error("Checkout Error:", error);
+    toast.error("Failed to place order. Please try again.");
+  }
+};   
   return (
     <div className="checkout-wrapper">
       {/* Left Part - Shipping Form */}

@@ -5,7 +5,7 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { CartProvider } from "./Context/CartContext"; 
 import { UserProvider } from "./Context/UserContext"; 
-import { FilterProvider } from "./Context/FilterContext"; 
+// import { FilterProvider } from "./Context/FilterContext"; 
 import { AuthProvider } from "./Context/AuthContext"; // ✅ Import AuthProvider
 
 createRoot(document.getElementById("root")).render(
@@ -14,9 +14,9 @@ createRoot(document.getElementById("root")).render(
       <AuthProvider> {/* ✅ Wrap everything inside AuthProvider */}
         <UserProvider>
           <CartProvider>
-            <FilterProvider> 
+            {/* <FilterProvider>  */}
               <App />
-            </FilterProvider>
+            {/* </FilterProvider> */}
           </CartProvider>
         </UserProvider>
       </AuthProvider>

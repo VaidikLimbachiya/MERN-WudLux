@@ -4,7 +4,6 @@ import "./Productlist.css";
 import bagIcon from "../../assets/bag.png";
 import { useCartContext } from "../../Context/CartContext";
 
-
 const Productlist = () => {
   const { addToCart, cartItems = [] } = useCartContext();
   const [products, setProducts] = useState([]);
@@ -23,7 +22,7 @@ const Productlist = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        let url = "http://localhost:5000/api/products/listByCategory"; // Initial URL
+        let url = "http://localhost:5000/api/products/listByCategory";
 
         // Add query parameters for category and subcategory
         const params = [];
@@ -31,22 +30,23 @@ const Productlist = () => {
         if (subcategory) params.push(`subcategory=${subcategory}`);
 
         if (params.length > 0) {
-          url += `?${params.join("&")}`; // Append query parameters
+          url += `?${params.join("&")}`;
         }
 
-        console.log("Fetching products from URL:", url); // Debugging line to check URL
+        console.log("Fetching products from URL:", url);
 
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error("Failed to fetch products");
+          throw new Error(`Failed to fetch products. Status: ${response.status}`);
         }
         const result = await response.json();
         if (result.success) {
           setProducts(result.data);
         } else {
-          throw new Error("Failed to fetch products: " + result.message);
+          throw new Error(result.message || "Failed to fetch products");
         }
       } catch (err) {
+        console.error("Error fetching products:", err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -54,70 +54,68 @@ const Productlist = () => {
     };
 
     fetchProducts();
-  }, [category, subcategory]); // Refetch when category or subcategory changes
+  }, [category, subcategory]);
 
   return (
     <div className="shop-product-list-grid">
       {error ? (
-        <div>Error: {error}</div>
+        <div className="errorMessage">⚠️ {error}</div>
       ) : loading ? (
-        <div>Loading products...</div>
-      ) : Array.isArray(products) && products.length > 0 ? (
-        products.map((product) => (
-          <div
-            className="shop-product-list-card"
-            key={product._id}
-            onClick={() => navigate(`/product-info/${product._id}`, { state: { product } })}
-          >
-            <div className="shop-product-list-image-wrapper">
-              <img
-                className="shop-product-list-image"
-                crossOrigin="anonymous"
-                src={`http://localhost:5000/uploads/${product.images}`}
-                alt={product.title}
-              />
-              {product.discount && (
-                <div className="shop-product-list-discount-badge">
-                  {product.discount}% OFF
-                </div>
-              )}
-              <div className="shop-product-list-bag-button-wrapper">
-                <button
-                  className="shop-product-list-bag-button"
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent navigation on button click
-                    addToCart(product); // Add product to the cart
-                  }}
-                >
-                  <img
-                    src={bagIcon}
-                    alt="Bag Icon"
-                    className="shop-product-list-bag-icon"
-                  />
-                  {cartItems.find((item) => item._id === product._id)
-                    ? "Add to Bag"
-                    : "Add to Bag"}
-                </button>
-              </div>
-            </div>
-            <div className="shop-product-list-details">
-              <p className="shop-product-list-title">{product.title}</p>
-              <p className="shop-product-list-desc">{product.description}</p>
-              <div className="shop-product-list-price-details">
-                <span className="shop-product-list-current-price">
-                  ₹{product.price.toFixed(2)}
-                </span>
-                {product.originalPrice && (
-                  <span className="shop-product-list-original-price">
-                    ₹{product.originalPrice.toFixed(2)}
-                  </span>
+        <div className="loadingSpinner">Loading products...</div>
+      ) : products.length > 0 ? (
+        products.map((product) => {
+          const isInCart = cartItems.some((item) => item._id === product._id);
+
+          return (
+            <div
+              className="shop-product-list-card"
+              key={product._id}
+              onClick={() => navigate(`/product-info/${product._id}`, { state: { product } })}
+            >
+              <div className="shop-product-list-image-wrapper">
+                <img
+                  className="shop-product-list-image"
+                  crossOrigin="anonymous"
+                  src={`http://localhost:5000/uploads/${Array.isArray(product.images) ? product.images[0] : product.images}`}
+                  alt={product.title}
+                />
+                {product.discount > 0 && (
+                  <div className="shop-product-list-discount-badge">
+                    {product.discount}% OFF
+                  </div>
                 )}
+                <div className="shop-product-list-bag-button-wrapper">
+                  <button
+                    className="shop-product-list-bag-button"
+                    onClick={(e) => {
+                      e.stopPropagation(); // ✅ Prevents navigation
+                      addToCart(product);
+                    }}
+                  >
+                    <img src={bagIcon} alt="Bag Icon" className="shop-product-list-bag-icon" />
+                    {isInCart ? "Added" : "Add to Bag"}
+                  </button>
+                </div>
+              </div>
+              <div className="shop-product-list-details">
+                <p className="shop-product-list-title">{product.title}</p>
+                <p className="shop-product-list-desc">{product.description}</p>
+                <div className="shop-product-list-price-details">
+                  <span className="shop-product-list-current-price">
+                    ₹{product.price.toFixed(2)}
+                  </span>
+                  {product.originalPrice > product.price && (
+                    <span className="shop-product-list-original-price">
+                      ₹{product.originalPrice.toFixed(2)}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))
+          );
+        })
       ) : (
-        <div>No products available</div>
+        <div className="noProductsMessage">No products available in this category.</div>
       )}
     </div>
   );
