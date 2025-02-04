@@ -13,10 +13,14 @@ const Productlist = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Get category and subcategory from query params
+  // Get category, subcategory, material, price range, and sorting from query params
   const queryParams = new URLSearchParams(location.search);
   const category = queryParams.get("category");
   const subcategory = queryParams.get("subcategory");
+  const material = queryParams.get("material");
+  const minPrice = queryParams.get("minPrice");
+  const maxPrice = queryParams.get("maxPrice");
+  const sortOption = queryParams.get("sortOption") || "Latest";
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -24,7 +28,6 @@ const Productlist = () => {
         setLoading(true);
         let url = "http://localhost:5000/api/products/listByCategory";
 
-        // Add query parameters for category and subcategory
         const params = [];
         if (category) params.push(`category=${category}`);
         if (subcategory) params.push(`subcategory=${subcategory}`);
@@ -56,14 +59,42 @@ const Productlist = () => {
     fetchProducts();
   }, [category, subcategory]);
 
+  // Apply filters
+  let filteredProducts = [...products];
+
+  if (material) {
+    filteredProducts = filteredProducts.filter(
+      (product) => product.material && product.material.toLowerCase() === material.toLowerCase()
+    );
+  }
+
+  if (minPrice || maxPrice) {
+    filteredProducts = filteredProducts.filter((product) => {
+      const productPrice = product.price;
+      const min = minPrice ? Number(minPrice) : 0;
+      const max = maxPrice ? Number(maxPrice) : Infinity;
+      return productPrice >= min && productPrice <= max;
+    });
+  }
+
+  // Apply sorting
+  filteredProducts.sort((a, b) => {
+    if (sortOption === "Price-low-to-High") {
+      return a.price - b.price;
+    } else if (sortOption === "Price-High-to-Low") {
+      return b.price - a.price;
+    }
+    return 0;
+  });
+
   return (
     <div className="shop-product-list-grid">
       {error ? (
         <div className="errorMessage">⚠️ {error}</div>
       ) : loading ? (
         <div className="loadingSpinner">Loading products...</div>
-      ) : products.length > 0 ? (
-        products.map((product) => {
+      ) : filteredProducts.length > 0 ? (
+        filteredProducts.map((product) => {
           const isInCart = cartItems.some((item) => item._id === product._id);
 
           return (
@@ -88,7 +119,7 @@ const Productlist = () => {
                   <button
                     className="shop-product-list-bag-button"
                     onClick={(e) => {
-                      e.stopPropagation(); // ✅ Prevents navigation
+                      e.stopPropagation();
                       addToCart(product);
                     }}
                   >
