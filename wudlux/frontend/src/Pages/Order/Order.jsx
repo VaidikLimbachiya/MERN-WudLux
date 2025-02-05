@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { io } from "socket.io-client"; // ✅ Import socket.io-client
+import { io } from "socket.io-client"; // Import socket.io-client
 import prev from "../../assets/prev.png";
 import next from "../../assets/next.png";
 import breadcrumbIcon from "../../assets/home.png";
@@ -56,14 +56,14 @@ const OrderHistory = () => {
     }
   };
 
-  // ✅ Listen for real-time order updates
+  // Listen for real-time order updates
   useEffect(() => {
     fetchOrders();
 
     // Initialize WebSocket connection
     const socket = io(API_BASE_URL);
 
-    // ✅ Listen for order status updates
+    // Listen for order status updates
     socket.on("orderUpdated", ({ orderId, status }) => {
       setOrders((prevOrders) =>
         prevOrders.map((order) =>

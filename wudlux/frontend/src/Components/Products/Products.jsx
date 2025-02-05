@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { useCartContext } from "../../Context/CartContext";
-import Filter from "../Filter/Filter"; // Import the Filter component
+// import Filter from "../Filter/Filter"; // Import the Filter component
 import "./Products.css";
 import bagIcon from "../../assets/bag.png"; // Ensure the path is correct
 
@@ -14,9 +14,9 @@ const Products = () => {
   const navigate = useNavigate();
 
   // State for filtering and sorting
-  const [selectedMaterial, setSelectedMaterial] = useState("");
-  const [priceRange, setPriceRange] = useState({ min: "", max: "" });
-  const [sortOption, setSortOption] = useState("Latest");
+  const [selectedMaterial] = useState("");
+  const [priceRange] = useState({ min: "", max: "" });
+  const [sortOption] = useState("Latest");
 
   useEffect(() => {
     const fetchProducts = async () => {

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiCall } from "../../api/api";
-import { toast } from "react-toastify"; // ✅ Import toast
-import "react-toastify/dist/ReactToastify.css"; // ✅ Import toast styles
+import { toast } from "react-toastify"; // Import toast
+import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 import "./ForgetPassword.css";
 
 const ForgotPassword = () => {
@@ -16,7 +16,7 @@ const ForgotPassword = () => {
     navigate("/log-in");
   };
 
-  // ✅ Step 1: Verify Email Exists
+  // Step 1: Verify Email Exists
   const handleVerifyEmail = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -26,7 +26,7 @@ const ForgotPassword = () => {
 
       if (response.message === "Email verified") {
         setShowPasswordReset(true); // Show password reset form
-        toast.success("Email verified! Enter a new password."); // ✅ Toast message
+        toast.success("Email verified! Enter a new password."); // Toast message
       } else {
         toast.error("No account found with this email.");
       }
@@ -37,7 +37,7 @@ const ForgotPassword = () => {
     }
   };
 
-  // ✅ Step 2: Reset Password Directly
+  // Step 2: Reset Password Directly
   const handlePasswordReset = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -54,7 +54,7 @@ const ForgotPassword = () => {
       }
 
       await response.json();
-      toast.success("Your password has been reset successfully."); // ✅ Toast message
+      toast.success("Your password has been reset successfully."); // Toast message
       navigate("/log-in");
     } catch (error) {
       toast.error(error.message || "Failed to reset password. Please try again.");
@@ -71,7 +71,7 @@ const ForgotPassword = () => {
       </p>
 
       {!showPasswordReset ? (
-        // ✅ Step 1: Enter Email for Verification
+        // Step 1: Enter Email for Verification
         <form className="forgot-password-form" onSubmit={handleVerifyEmail}>
           <div className="form-group">
             <input
@@ -91,7 +91,7 @@ const ForgotPassword = () => {
           </button>
         </form>
       ) : (
-        // ✅ Step 2: Reset Password Directly
+        // Step 2: Reset Password Directly
         <form className="forgot-password-form" onSubmit={handlePasswordReset}>
           <div className="form-group">
             <input

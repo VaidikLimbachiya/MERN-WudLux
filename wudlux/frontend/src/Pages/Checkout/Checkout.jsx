@@ -54,7 +54,7 @@ const Checkout = () => {
     };
   
     fetchAddresses();
-  }, [user?.id]); // ✅ Now only updates when user.id changes
+  }, [user?.id]); // Now only updates when user.id changes
   
 
   // Ensure addresses are always an array
@@ -79,7 +79,7 @@ const Checkout = () => {
       city: defaultAddress?.city || "",
       phone: user?.phoneNumber || "",
     }));
-  }, [userAddresses, user?.id]); // ✅ Ensures only necessary updates
+  }, [userAddresses, user?.id]); // Ensures only necessary updates
   
 
   const handleInputChange = (e) => {
@@ -458,7 +458,7 @@ const handleSubmit = async (e) => {
                   </div>
                   <div className="product-cost">
                     ₹{item.price ? item.price.toFixed(2) : "0.00"}{" "}
-                    {/* ✅ Prevents crash */}
+                    {/* Prevents crash */}
                   </div>
                 </div>
               </div>

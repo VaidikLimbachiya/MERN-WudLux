@@ -8,7 +8,8 @@ exports.register = async (req, res) => {
   try {
     console.log("Request Body:", req.body); // Log incoming request data
 
-    const { firstName, lastName, email, password, address, phoneNumber } = req.body;
+    const { firstName, lastName, email, password, address, phoneNumber } =
+      req.body;
 
     if (!firstName || !lastName || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
@@ -26,18 +27,20 @@ exports.register = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      addresses: address ? [
-        {
-          street: address?.street || "",
-          zipCode: address?.zipCode || "",
-          country: address?.country || "",
-          state: address?.state || "",
-          city: address?.city || "",
-          isDefault: true, // Mark the first address as default
-        },
-      ] : [],
+      addresses: address
+        ? [
+            {
+              street: address?.street || "",
+              zipCode: address?.zipCode || "",
+              country: address?.country || "",
+              state: address?.state || "",
+              city: address?.city || "",
+              isDefault: true, // Mark the first address as default
+            },
+          ]
+        : [],
       phoneNumber: phoneNumber || "",
-    });    
+    });
 
     await newUser.save();
     res.status(201).json({ message: "User registered successfully" });
@@ -63,8 +66,14 @@ exports.login = async (req, res) => {
     }
 
     // Generate JWT tokens
-    const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-    const refreshToken = jwt.sign({ id: user._id }, process.env.JWT_REFRESH_SECRET, { expiresIn: "7d" });
+    const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+    const refreshToken = jwt.sign(
+      { id: user._id },
+      process.env.JWT_REFRESH_SECRET,
+      { expiresIn: "7d" }
+    );
 
     res.status(200).json({
       accessToken,
@@ -77,7 +86,7 @@ exports.login = async (req, res) => {
         addresses: user.addresses || [], // Send all addresses
         phoneNumber: user.phoneNumber || "",
         role: user.role || "user",
-      },      
+      },
     });
   } catch (err) {
     console.error("Error during login:", err);
@@ -91,16 +100,23 @@ exports.forgotPassword = async (req, res) => {
 
   try {
     if (!email) {
-      return res.status(400).json({ message: "Please provide an email address." });
+      return res
+        .status(400)
+        .json({ message: "Please provide an email address." });
     }
 
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: "No account found with this email address." });
+      return res
+        .status(404)
+        .json({ message: "No account found with this email address." });
     }
 
     const resetToken = crypto.randomBytes(32).toString("hex");
-    const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
 
     user.resetToken = hashedToken;
     user.tokenExpiration = Date.now() + 3600000; // Token valid for 1 hour
@@ -122,15 +138,19 @@ exports.resetPassword = async (req, res) => {
 
   try {
     if (!email || !newPassword) {
-      return res.status(400).json({ message: "Email and new password are required." });
+      return res
+        .status(400)
+        .json({ message: "Email and new password are required." });
     }
 
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: "No account found with this email." });
+      return res
+        .status(404)
+        .json({ message: "No account found with this email." });
     }
 
-    // ✅ Hash the new password before saving it
+    // Hash the new password before saving it
     user.password = await bcrypt.hash(newPassword, 10);
     await user.save();
 
@@ -149,12 +169,14 @@ exports.verifyEmail = async (req, res) => {
       return res.status(400).json({ message: "Email is required." });
     }
 
-    console.log("Checking email:", email); // ✅ Debugging log
+    console.log("Checking email:", email); // Debugging log
 
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(404).json({ message: "No account found with this email." });
+      return res
+        .status(404)
+        .json({ message: "No account found with this email." });
     }
 
     res.status(200).json({ message: "Email verified", email });

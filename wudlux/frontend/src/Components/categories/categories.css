@@ -160,7 +160,7 @@
 
   /* Ensure the heading is also properly aligned */
   .headingTitle {
-    font-size: 18px;
+    font-size: 24px;
     text-align: center;
     margin-bottom: 5px;
   }
@@ -168,14 +168,17 @@
   .headingUnderline {
     width: 50px;
     height: 2px;
-    background-color: #000;
+    background-color: #c0a062;
     margin: 0 auto;
   }
 
   .headingSubtitle {
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
     margin-top: 5px;
     color: #666;
+    width: 118%;
+    margin-left: -18px;
   }
 }
+

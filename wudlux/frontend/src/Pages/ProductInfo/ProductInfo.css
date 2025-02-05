@@ -499,7 +499,7 @@
 
 
 .spec-row {
-  display: flex;
+  display: inline;
   align-items: center;
   gap: 10px;
 }
@@ -831,7 +831,7 @@
   .price-section {
     flex-direction: row;
     gap: 6px;
-    justify-content: center;
+    justify-content: left;
   }
 
   .current-price {

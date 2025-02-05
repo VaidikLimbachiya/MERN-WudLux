@@ -86,10 +86,10 @@ const CartPage = () => {
         </button>
       </td>
       <td className="cart-item-price">
-        ₹{item.price ? item.price.toFixed(2) : "0.00"} {/* ✅ Fix */}
+        ₹{item.price ? item.price.toFixed(2) : "0.00"} {/* Fix */}
       </td>
       <td className="cart-item-total">
-        ₹{item.price ? (item.price * item.quantity).toFixed(2) : "0.00"} {/* ✅ Fix */}
+        ₹{item.price ? (item.price * item.quantity).toFixed(2) : "0.00"} {/* Fix */}
       </td>
       <td>
         <button

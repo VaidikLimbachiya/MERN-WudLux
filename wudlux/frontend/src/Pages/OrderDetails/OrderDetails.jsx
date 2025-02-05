@@ -49,7 +49,7 @@ const OrderSummary = () => {
   if (error) return <p className="error-message">{error}</p>;
   if (!order) return <p>No order details found.</p>;
 
-  // ✅ Dynamically Calculate Order Summary
+  // Dynamically Calculate Order Summary
   const summary = {
     totalAmount: order.totalAmount || 0,
     cgst: order.cgst || 0,
