@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../Context/AuthContext";
+import { io } from "socket.io-client"; // Import Socket.IO client
 import prev from "../../assets/prev.png";
 import next from "../../assets/next.png";
 import breadcrumbIcon from "../../assets/home.png";
@@ -8,6 +9,7 @@ import { Link } from "react-router-dom";
 import "./Order.css";
 import Search from "../../assets/Search 2.png";
 const API_BASE_URL = "http://localhost:5000";
+const socket = io(API_BASE_URL); // Initialize Socket.IO connection
 
 const OrderHistory = () => {
   const { user } = useContext(AuthContext);
@@ -60,6 +62,20 @@ const OrderHistory = () => {
     };
 
     fetchOrders();
+
+    // Listen for real-time updates from the server
+    socket.on("orderUpdated", ({ orderId, status }) => {
+      console.log(`Order ${orderId} updated to status: ${status}`);
+      setOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order._id === orderId ? { ...order, orderStatus: status } : order
+        )
+      );
+    });
+
+    return () => {
+      socket.disconnect(); // Disconnect socket when the component unmounts
+    };
   }, [user]);
 
   // 🔹 Filter & Sort Orders
@@ -192,15 +208,18 @@ const OrderHistory = () => {
                         </span>
                       </td>
                       <td>
-                        <span
-                          className={`status ${
-                            order.orderStatus === "Delivered"
-                              ? "delivered"
-                              : "processing"
-                          }`}
-                        >
-                          {order.orderStatus}
-                        </span>
+                      <span
+  className={`status ${
+    order.orderStatus === "Delivered"
+      ? "delivered"
+      : order.orderStatus === "Cancelled"
+      ? "cancelled"
+      : "processing"
+  }`}
+>
+  {order.orderStatus}
+</span>
+
                       </td>
                       <td>
                         <Link
@@ -221,21 +240,6 @@ const OrderHistory = () => {
               </p>
             )}
           </div>
-        </div>
-
-        {/* Pagination */}
-        <div className="pagination">
-          <button>
-            <img src={prev} alt="Previous" className="pagination-button" />
-          </button>
-          <button className="active">1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>...</button>
-          <button>21</button>
-          <button>
-            <img src={next} alt="Next" className="pagination-button" />
-          </button>
         </div>
       </div>
     </div>
