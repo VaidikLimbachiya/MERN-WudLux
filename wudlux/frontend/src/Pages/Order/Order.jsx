@@ -1,33 +1,28 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "../../Context/AuthContext";
 import prev from "../../assets/prev.png";
 import next from "../../assets/next.png";
 import breadcrumbIcon from "../../assets/home.png";
-import { AuthContext } from "../../Context/AuthContext";
-
 import { Link } from "react-router-dom";
-
 import "./Order.css";
 
 const API_BASE_URL = "http://localhost:5000";
+
 const OrderHistory = () => {
   const { user } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
+  const [filteredOrders, setFilteredOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [isMobileMode, setIsMobileMode] = useState(window.innerWidth <= 320);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileMode(window.innerWidth <= 320);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterStatus, setFilterStatus] = useState(""); // Status Filter
+  const [sortOption, setSortOption] = useState("date-desc"); // Sorting
 
   useEffect(() => {
     if (!user?.id) {
       setOrders([]);
+      setFilteredOrders([]);
       setLoading(false);
       return;
     }
@@ -36,6 +31,7 @@ const OrderHistory = () => {
       try {
         setLoading(true);
         setOrders([]);
+        setFilteredOrders([]);
 
         const token = localStorage.getItem("accessToken");
         if (!token) {
@@ -44,12 +40,16 @@ const OrderHistory = () => {
           return;
         }
 
-        const response = await axios.get(`${API_BASE_URL}/api/orders/user/${user.id}?timestamp=${Date.now()}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(
+          `${API_BASE_URL}/api/orders/user/${user.id}?timestamp=${Date.now()}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
 
         console.log("User Orders:", response.data.orders);
         setOrders(response.data.orders);
+        setFilteredOrders(response.data.orders);
         setError("");
       } catch (error) {
         console.error("❌ Error fetching orders:", error);
@@ -62,70 +62,181 @@ const OrderHistory = () => {
     fetchOrders();
   }, [user]);
 
+  // 🔹 Filter & Sort Orders
+  useEffect(() => {
+    let updatedOrders = [...orders];
+
+    // ✅ Apply Search Filter Safely
+    if (searchQuery) {
+      updatedOrders = updatedOrders.filter(
+        (order) =>
+          order.orderId.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          order.items.some(
+            (item) =>
+              item.productId && // ✅ Ensure productId exists
+              item.productId.title && // ✅ Ensure title exists
+              item.productId.title
+                .toLowerCase()
+                .includes(searchQuery.toLowerCase())
+          )
+      );
+    }
+
+    // ✅ Apply Status Filter
+    if (filterStatus) {
+      updatedOrders = updatedOrders.filter(
+        (order) => order.orderStatus === filterStatus
+      );
+    }
+
+    // ✅ Apply Sorting
+    if (sortOption === "date-desc") {
+      updatedOrders.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      ); // Newest First
+    } else if (sortOption === "date-asc") {
+      updatedOrders.sort(
+        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+      ); // Oldest First
+    } else if (sortOption === "amount-desc") {
+      updatedOrders.sort((a, b) => b.totalAmount - a.totalAmount); // High to Low
+    } else if (sortOption === "amount-asc") {
+      updatedOrders.sort((a, b) => a.totalAmount - b.totalAmount); // Low to High
+    }
+
+    setFilteredOrders(updatedOrders);
+  }, [searchQuery, filterStatus, sortOption, orders]);
+
   return (
     <div className="order-history-container">
       <div className="main-content">
+        {/* Breadcrumb */}
         <div className="breadcrumb">
-          <img src={breadcrumbIcon} alt="Breadcrumb" />
+          <img
+            src={breadcrumbIcon}
+            alt="Breadcrumb"
+            className="breadcrumb-icon"
+          />
           <h2 className="btext"> {">"} Order History</h2>
         </div>
 
+        {/* Order Header */}
         <div className="order-header">
           <h1>Orders</h1>
         </div>
 
+        {/* 🔹 Filters & Search */}
+        <div className="filters">
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search by Order ID or Product Name..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+
+          <select
+            className="filter-dropdown"
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+          >
+            <option value="">All Statuses</option>
+            <option value="Pending">Pending</option>
+            <option value="Processing">Processing</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+
+          <select
+            className="filter-dropdown"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value="date-desc">Newest First</option>
+            <option value="date-asc">Oldest First</option>
+            <option value="amount-desc">High to Low (Amount)</option>
+            <option value="amount-asc">Low to High (Amount)</option>
+          </select>
+        </div>
+
+        {/* Order Table */}
         <div className="order-slider-wrapper">
           <div className="table-wrapper">
-            <table className="order-table">
-              <thead>
-                <tr>
-                  <th>Order ID</th>
-                  <th>Date</th>
-                  <th>Total</th>
-                  <th>Payment</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders.map((order) => (
-                  <tr key={order._id}>
-                    <td>{order.orderId}</td>
-                    <td>{new Date(order.createdAt).toLocaleDateString()}</td>
-                    <td>₹{order.totalAmount}</td>
-                    <td>
-                      <span className={`status ${order.paymentStatus === "Completed" ? "completed" : "pending"}`}>
-                        {order.paymentStatus}
-                      </span>
-                    </td>
-                    <td>
-                      <span className={`status ${order.orderStatus === "Delivered" ? "delivered" : "pending"}`}>
-                        {order.orderStatus}
-                      </span>
-                    </td>
-                    <td>
-                      <Link to={`/order-details/${encodeURIComponent(order.orderId)}`}>
-                        <button className="view-button">View</button>
-                      </Link>
-                    </td>
+            {filteredOrders.length > 0 ? (
+              <table className="order-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                    <th>Payment</th>
+                    <th>Status</th>
+                    <th>Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {filteredOrders.map((order) => (
+                    <tr key={order._id}>
+                      <td>{order.orderId}</td>
+                      <td>{new Date(order.createdAt).toLocaleDateString()}</td>
+                      <td>₹{order.totalAmount}</td>
+                      <td>
+                        <span
+                          className={`status ${
+                            order.paymentStatus === "Completed"
+                              ? "processing"
+                              : "pending"
+                          }`}
+                        >
+                          {order.paymentStatus}
+                        </span>
+                      </td>
+                      <td>
+                        <span
+                          className={`status ${
+                            order.orderStatus === "Delivered"
+                              ? "delivered"
+                              : "processing"
+                          }`}
+                        >
+                          {order.orderStatus}
+                        </span>
+                      </td>
+                      <td>
+                        <Link
+                          to={`/order-details/${encodeURIComponent(
+                            order.orderId
+                          )}`}
+                        >
+                          <button className="view-button">View</button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p className="no-orders-message">
+                No orders found matching your search.
+              </p>
+            )}
           </div>
         </div>
 
-        {!isMobileMode && (
-          <div className="pagination">
-            <button><img src={prev} alt="Previous" /></button>
-            <button className="active">1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>...</button>
-            <button>21</button>
-            <button><img src={next} alt="Next" /></button>
-          </div>
-        )}
+        {/* Pagination */}
+        <div className="pagination">
+          <button>
+            <img src={prev} alt="Previous" className="pagination-button" />
+          </button>
+          <button className="active">1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>...</button>
+          <button>21</button>
+          <button>
+            <img src={next} alt="Next" className="pagination-button" />
+          </button>
+        </div>
       </div>
     </div>
   );

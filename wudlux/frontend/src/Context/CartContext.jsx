@@ -186,11 +186,7 @@ export const CartProvider = ({ children }) => {
     } else {
       clearCartState(); // Clear cart when user logs out
     }
-<<<<<<< HEAD
   }, [user]); //   Runs every time user logs in or out
-=======
-  }, [user]); // Runs every time user logs in or out
->>>>>>> 335fefab1947c264ce085c2cd630dfb273119e0a
   
   
 
