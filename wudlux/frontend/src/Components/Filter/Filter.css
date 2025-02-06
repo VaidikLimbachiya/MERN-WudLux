@@ -139,8 +139,10 @@
 }
 
 .removeIcon {
+  /* font-size: 90px; */
   aspect-ratio: 1;
-  width: 12px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
 }
 
