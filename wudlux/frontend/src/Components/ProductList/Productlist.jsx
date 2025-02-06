@@ -13,7 +13,7 @@ const Productlist = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Get category, subcategory, material, price range, and sorting from query params
+  // Get filters from URL params
   const queryParams = new URLSearchParams(location.search);
   const category = queryParams.get("category");
   const subcategory = queryParams.get("subcategory");
@@ -26,30 +26,41 @@ const Productlist = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        let url = "http://localhost:5000/api/products/listByCategory";
 
+        // Build API URL with filters
+        let url = "http://localhost:5000/api/products/listByCategory";
         const params = [];
+
         if (category) params.push(`category=${category}`);
         if (subcategory) params.push(`subcategory=${subcategory}`);
+        if (material) params.push(`material=${encodeURIComponent(material)}`);
+        if (minPrice) params.push(`minPrice=${minPrice}`);
+        if (maxPrice) params.push(`maxPrice=${maxPrice}`);
+        if (sortOption) params.push(`sortOption=${sortOption}`);
 
         if (params.length > 0) {
           url += `?${params.join("&")}`;
         }
 
-        console.log("Fetching products from URL:", url);
-
         const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch products. Status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`Failed to fetch products. Status: ${response.status}`);
+
         const result = await response.json();
         if (result.success) {
-          setProducts(result.data);
+          let filteredProducts = result.data;
+
+          // ✅ Fix: Ensure Material Filtering Works (Check inside materials array)
+          if (material) {
+            filteredProducts = filteredProducts.filter((product) =>
+              product.materials && product.materials.some((mat) => mat.toLowerCase() === material.toLowerCase())
+            );
+          }
+
+          setProducts(filteredProducts);
         } else {
           throw new Error(result.message || "Failed to fetch products");
         }
       } catch (err) {
-        console.error("Error fetching products:", err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -57,44 +68,16 @@ const Productlist = () => {
     };
 
     fetchProducts();
-  }, [category, subcategory]);
-
-  // Apply filters
-  let filteredProducts = [...products];
-
-  if (material) {
-    filteredProducts = filteredProducts.filter(
-      (product) => product.material && product.material.toLowerCase() === material.toLowerCase()
-    );
-  }
-
-  if (minPrice || maxPrice) {
-    filteredProducts = filteredProducts.filter((product) => {
-      const productPrice = product.price;
-      const min = minPrice ? Number(minPrice) : 0;
-      const max = maxPrice ? Number(maxPrice) : Infinity;
-      return productPrice >= min && productPrice <= max;
-    });
-  }
-
-  // Apply sorting
-  filteredProducts.sort((a, b) => {
-    if (sortOption === "Price-low-to-High") {
-      return a.price - b.price;
-    } else if (sortOption === "Price-High-to-Low") {
-      return b.price - a.price;
-    }
-    return 0;
-  });
+  }, [category, subcategory, material, minPrice, maxPrice, sortOption]);
 
   return (
     <div className="shop-product-list-grid">
-      {error ? (
-        <div className="errorMessage">⚠️ {error}</div>
-      ) : loading ? (
+      {loading ? (
         <div className="loadingSpinner">Loading products...</div>
-      ) : filteredProducts.length > 0 ? (
-        filteredProducts.map((product) => {
+      ) : error ? (
+        <div className="errorMessage">⚠️ {error}</div>
+      ) : products.length > 0 ? (
+        products.map((product) => {
           const isInCart = cartItems.some((item) => item._id === product._id);
 
           return (

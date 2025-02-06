@@ -1,168 +1,135 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Filter.css';
 import rp from '../../assets/rp.png';
 import { CiCircleRemove } from "react-icons/ci";
 
 export default function Filter() {
-  const [selectedMaterial, setSelectedMaterial] = useState('');
-  const [priceRange, setPriceRange] = useState({ min: '', max: '' });
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
+  // Keep existing category & subcategory
+  const category = queryParams.get("category") || "";
+  const subcategory = queryParams.get("subcategory") || "";
+
+  // Get initial filter values from URL
+  const initialMaterial = queryParams.get("material") || '';
+  const initialMinPrice = queryParams.get("minPrice") || '';
+  const initialMaxPrice = queryParams.get("maxPrice") || '';
+  const initialSortOption = queryParams.get("sortOption") || 'Latest';
+
+  // **State for filter values before applying**
+  const [selectedMaterial, setSelectedMaterial] = useState(initialMaterial);
+  const [priceRange, setPriceRange] = useState({ min: initialMinPrice, max: initialMaxPrice });
+  const [sortOption, setSortOption] = useState(initialSortOption);
+  
+  // **State for applied filters (Only updates when Apply is clicked)**
   const [activeFilters, setActiveFilters] = useState([]);
-  const [sortOption, setSortOption] = useState('Latest');
-  const [products, setProducts] = useState([]); // Store filtered results
-  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    fetchFilteredData();
-  }, [selectedMaterial, priceRange, sortOption]);
-
-  const fetchFilteredData = async () => {
-    setLoading(true);
-    try {
-      const queryParams = new URLSearchParams({
-        material: selectedMaterial || "",
-        minPrice: priceRange.min || "",
-        maxPrice: priceRange.max || "",
-        sort: sortOption || "",
-      }).toString();
-
-      const response = await fetch(`/api/products?${queryParams}`);
-      const data = await response.json();
-      setProducts(data);
-    } catch (error) {
-      console.error("Error fetching filtered data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // **Apply Filters & Update URL**
   const applyFilters = () => {
-    const newFilters = [];
-    if (selectedMaterial) {
-      newFilters.push({ id: 1, text: selectedMaterial });
+    const newParams = new URLSearchParams();
+
+    if (category) newParams.set("category", category);
+    if (subcategory) newParams.set("subcategory", subcategory);
+    if (selectedMaterial) newParams.set("material", selectedMaterial);
+    if (priceRange.min) newParams.set("minPrice", priceRange.min);
+    if (priceRange.max) newParams.set("maxPrice", priceRange.max);
+    if (sortOption) newParams.set("sortOption", sortOption);
+
+    // Update URL
+    navigate(`/products?${newParams.toString()}`);
+
+    // **Update active filters (only on Apply button click)**
+    const filters = [];
+    if (selectedMaterial) filters.push({ id: 'material', text: selectedMaterial });
+    if (priceRange.min || priceRange.max) {
+      const priceText = `₹${priceRange.min || '0'} - ₹${priceRange.max || '∞'}`;
+      filters.push({ id: 'price', text: priceText });
     }
-    if (priceRange.min && priceRange.max) {
-      newFilters.push({
-        id: 2,
-        text: `₹${priceRange.min} - ₹${priceRange.max}`,
-      });
-    }
-    if (sortOption) {
-      newFilters.push({
-        id: 3,
-        text: `Sort: ${sortOption}`,
-      });
-    }
-    setActiveFilters(newFilters);
+    if (sortOption && sortOption !== "Latest") filters.push({ id: 'sort', text: `Sort: ${sortOption}` });
+
+    setActiveFilters(filters);
   };
 
-  const removeFilter = (id) => {
-    if (id === 1) setSelectedMaterial("");
-    if (id === 2) setPriceRange({ min: "", max: "" });
-    if (id === 3) setSortOption("");
-    setActiveFilters(activeFilters.filter((filter) => filter.id !== id));
-    fetchFilteredData();
+  // **Remove Individual Filters**
+  const removeFilter = (filterId) => {
+    const newParams = new URLSearchParams(location.search);
+
+    if (filterId === "material") {
+      setSelectedMaterial("");
+      newParams.delete("material");
+    }
+    if (filterId === "price") {
+      setPriceRange({ min: "", max: "" });
+      newParams.delete("minPrice");
+      newParams.delete("maxPrice");
+    }
+    if (filterId === "sort") {
+      setSortOption("Latest");
+      newParams.delete("sortOption");
+    }
+
+    // Update URL
+    navigate(`/products?${newParams.toString()}`);
+
+    // **Update active filters list**
+    setActiveFilters(activeFilters.filter(filter => filter.id !== filterId));
   };
 
   return (
     <div className="filterContainer">
       <div className="filterRow">
-        <div className="filterGroup">
-          <select
-            className="dropdownButton"
-            value={selectedMaterial}
-            onChange={(e) => setSelectedMaterial(e.target.value)}
-          >
-            <option value="">Select Material</option>
-            <option value="Acacia wood">Acacia wood</option>
-            <option value="Teak wood">Teak wood</option>
-            <option value="Pine wood">Pine wood</option>
-          </select>
+        {/* Material Filter */}
+        <select className="dropdownButton" value={selectedMaterial} onChange={(e) => setSelectedMaterial(e.target.value)}>
+          <option value="">Select Material</option>
+          <option value="Acacia wood">Acacia wood</option>
+          <option value="Teak wood">Teak wood</option>
+          <option value="Mango wood">Mango wood</option>
+        </select>
 
-          <div className="priceRange">
-            <span className="priceLabel">Price</span>
-            <div className="currencyInput">
-              <span className="currencySymbol"><img src={rp} alt="" /></span>
-              <input
-                type="number"
-                className="priceInput"
-                placeholder="Min"
-                value={priceRange.min}
-                onChange={(e) =>
-                  setPriceRange({ ...priceRange, min: e.target.value })
-                }
-              />
-            </div>
-            <span>to</span>
-            <div className="currencyInput">
-              <span className="currencySymbol"><img src={rp} alt="" /></span>
-              <input
-                type="number"
-                className="priceInput"
-                placeholder="Max"
-                value={priceRange.max}
-                onChange={(e) =>
-                  setPriceRange({ ...priceRange, max: e.target.value })
-                }
-              />
-            </div>
+        {/* Price Range Filter */}
+        <div className="priceRange">
+          <span className="priceLabel">Price</span>
+          <div className="currencyInput">
+            <span className="currencySymbol"><img src={rp} alt="" /></span>
+            <input type="number" className="priceInput" placeholder="Min" value={priceRange.min}
+              onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })} />
           </div>
-
-          <button className="applyButton" onClick={applyFilters}>
-            <span>Apply</span>
-          </button>
-        </div>
-
-        <div>
-          <select
-            className="dropdownButton"
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
-          >
-            <option value="Featured">Featured</option>
-            <option value="Best Selling">Best Selling</option>
-            <option value="Alphabetically: A to Z">Alphabetically A to Z</option>
-            <option value="Alphabetically: Z to A">Alphabetically Z to A</option>
-            <option value="Price: low to High">Price: Low to High</option>
-            <option value="Price: High to Low">Price: High to Low</option>
-            <option value="old to new">Date old to new</option>
-            <option value="new to old">Date new to old</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="activeFiltersBar">
-        <div className="activeFiltersList">
-          <span className="activeFiltersLabel">Active Filters:</span>
-          {activeFilters.map((filter) => (
-            <div className="filterTag" key={filter.id}>
-              <span>{filter.text}</span>
-              {/* <img
-                // src="https://cdn.builder.io/api/v1/image/assets/TEMP/remove-icon.png"
-                alt="Remove filter"
-                className="removeIcon"
-                onClick={() => removeFilter(filter.id)}
-                role="button"
-                tabIndex={0}
-              /> */}
-              <CiCircleRemove  className="removeIcon"  onClick={() => removeFilter(filter.id)}/>
-            </div>
-          ))}
-        </div>
-        <div className="resultsCount">
-          {loading ? <span>Loading...</span> : <span>{products.length} Results found</span>}
-        </div>
-      </div>
-
-      {/* Render Filtered Products */}
-      <div className="productGrid">
-        {products.map((product) => (
-          <div key={product.id} className="productCard">
-            <img src={product.image} alt={product.name} />
-            <h3>{product.name}</h3>
-            <p>₹{product.price}</p>
+          <span>to</span>
+          <div className="currencyInput">
+            <span className="currencySymbol"><img src={rp} alt="" /></span>
+            <input type="number" className="priceInput" placeholder="Max" value={priceRange.max}
+              onChange={(e) => setPriceRange({ ...priceRange, max: e.target.value })} />
           </div>
-        ))}
+        </div>
+
+        {/* Sort Filter */}
+        <select className="dropdownButton" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+          <option value="Latest">Latest</option>
+          <option value="Price-low-to-High">Price: Low to High</option>
+          <option value="Price-High-to-Low">Price: High to Low</option>
+        </select>
+
+        {/* Apply Button */}
+        <button className="applyButton" onClick={applyFilters}>Apply</button>
       </div>
+
+      {/* **Active Filters Display (Only shows after clicking Apply)** */}
+      {activeFilters.length > 0 && (
+        <div className="activeFiltersBar">
+          <div className="activeFiltersList">
+            <span className="activeFiltersLabel">Active Filters:</span>
+            {activeFilters.map((filter) => (
+              <div className="filterTag" key={filter.id}>
+                <span>{filter.text}</span>
+                <CiCircleRemove className="removeIcon" onClick={() => removeFilter(filter.id)} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

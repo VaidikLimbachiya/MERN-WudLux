@@ -1,8 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
 import "./OrderDetails.css";
 import customer from "../../assets/customer.png";
 import shiping from "../../assets/shiping.png";
@@ -16,7 +14,6 @@ const OrderSummary = () => {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const invoiceRef = useRef(); // Ref for the invoice section
 
   useEffect(() => {
     const fetchOrderDetails = async () => {
@@ -28,13 +25,17 @@ const OrderSummary = () => {
       }
 
       try {
+        console.log(`Fetching order details for Order ID: ${orderId}`);
+
         const encodedOrderId = encodeURIComponent(orderId);
         const response = await axios.get(`${API_BASE_URL}/api/orders/${encodedOrderId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
+        console.log("  API Response:", response.data); // Debugging
         setOrder(response.data.order);
       } catch (error) {
+        console.error("❌ Error fetching order details:", error);
         setError("Failed to fetch order details.");
       } finally {
         setLoading(false);
@@ -48,7 +49,7 @@ const OrderSummary = () => {
   if (error) return <p className="error-message">{error}</p>;
   if (!order) return <p>No order details found.</p>;
 
-  // Order Summary Calculations
+  //   Dynamically Calculate Order Summary
   const summary = {
     totalAmount: order.totalAmount || 0,
     cgst: order.cgst || 0,
@@ -57,29 +58,8 @@ const OrderSummary = () => {
     grandTotal: (order.totalAmount || 0) - (order.discount || 0),
   };
 
-  // Generate PDF
-  const generatePDF = async () => {
-    const element = invoiceRef.current;
-
-    if (element) {
-      const canvas = await html2canvas(element);
-      const imgData = canvas.toDataURL("image/png");
-
-      const pdf = new jsPDF("p", "mm", "a4");
-      const pageWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
-
-      const imgWidth = pageWidth;
-      const imgHeight = (canvas.height * pageWidth) / canvas.width;
-
-      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-
-      pdf.save(`Invoice_${order.orderId}.pdf`);
-    }
-  };
-
   return (
-    <div className="order-summary-container" ref={invoiceRef}>
+    <div className="order-summary-container">
       {/* Header Section */}
       <div className="header-container">
         <div className="left-section">
@@ -99,7 +79,7 @@ const OrderSummary = () => {
             <p>Issue Date: <span className="bold">{order.createdAt ? new Date(order.createdAt).toLocaleDateString() : "N/A"}</span></p>
             <p>Amount: <span className="bold">₹{summary.totalAmount.toFixed(2)}</span></p>
           </div>
-          <div className="print-icon" onClick={generatePDF}>
+          <div className="print-icon">
             <img src={print} alt="Print Icon" />
           </div>
         </div>
@@ -176,6 +156,18 @@ const OrderSummary = () => {
         <div className="summary-item"><span>Total SGST:</span><span>₹{summary.sgst.toFixed(2)}</span></div>
         <div className="summary-item"><span>Coupon Discount:</span><span className="discountt">₹{summary.discount.toFixed(2)}</span></div>
         <div className="grand-total"><span>Grand Total:</span><span>₹{summary.grandTotal.toFixed(2)}</span></div>
+      </div>
+
+      {/* Payment Info */}
+      <div className="payment-info">
+        <h4>Payment Info</h4>
+        <div className="payment-details">
+          <div className="card-info">
+            <img src={mastercard} alt="MasterCard Logo" className="card-logo" />
+            <span>{order.paymentMethod || "Not Available"}</span>
+          </div>
+          <p>Business Name: {order.userId?.name || "Unknown User"}</p>
+        </div>
       </div>
     </div>
   );

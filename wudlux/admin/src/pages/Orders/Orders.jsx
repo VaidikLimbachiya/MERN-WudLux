@@ -91,7 +91,7 @@ const Orders = ({ url }) => {
               <div className="order-footer">
                 <label><strong>Update Status:</strong></label>
                 <select onChange={(event) => statusHandler(event, order._id)} value={order.orderStatus}>
-                  <option value="Cancle">Cancle</option>
+                  <option value="Cancelled">Cancelled</option>
                   <option value="Processing">Processing</option>
                   <option value="Out for delivery">Out for delivery</option>
                   <option value="Delivered">Delivered</option>
