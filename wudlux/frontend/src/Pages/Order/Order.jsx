@@ -6,7 +6,7 @@ import next from "../../assets/next.png";
 import breadcrumbIcon from "../../assets/home.png";
 import { Link } from "react-router-dom";
 import "./Order.css";
-
+import Search from "../../assets/Search 2.png";
 const API_BASE_URL = "http://localhost:5000";
 
 const OrderHistory = () => {
@@ -117,30 +117,30 @@ const OrderHistory = () => {
             alt="Breadcrumb"
             className="breadcrumb-icon"
           />
-          <h2 className="btext"> {">"} Order History</h2>
+          <h2 className="btext">{">"} Order History</h2>
         </div>
 
-        {/* Order Header */}
         <div className="order-header">
           <h1>Orders</h1>
         </div>
 
-        {/* 🔹 Filters & Search */}
         <div className="filters">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search by Order ID or Product Name..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-
+          <div className="search-container">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search by Order ID"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <img src={Search} alt="Search Icon" className="search-icon" />
+          </div>
           <select
             className="filter-dropdown"
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
           >
-            <option value="">All Statuses</option>
+            <option value="">Status</option>
             <option value="Pending">Pending</option>
             <option value="Processing">Processing</option>
             <option value="Delivered">Delivered</option>

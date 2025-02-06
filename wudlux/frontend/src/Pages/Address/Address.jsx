@@ -168,9 +168,9 @@ const AddressList = () => {
   return (
     <div className="address-container">
       {/* Breadcrumb Section */}
-      <div className="breadcrumb">
+      <div className="breadcrumb1">
         <img src={breadcrumbIcon} alt="Breadcrumb" />
-        <h2 className="btext">{">"} Addresses</h2>
+        <h2 className="btext1">{">"} Addresses</h2>
       </div>
 
       {/* User Greeting */}

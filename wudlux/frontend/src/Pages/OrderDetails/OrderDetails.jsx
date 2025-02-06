@@ -6,7 +6,7 @@ import html2canvas from "html2canvas";
 import "./OrderDetails.css";
 import customer from "../../assets/customer.png";
 import shiping from "../../assets/shiping.png";
-import mastercard from "../../assets/mastercard.png";
+// import mastercard from "../../assets/mastercard.png";
 import print from "../../assets/print.png";
 
 const API_BASE_URL = "http://localhost:5000";

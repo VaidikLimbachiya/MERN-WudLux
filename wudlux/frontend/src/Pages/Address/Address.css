@@ -184,6 +184,29 @@
     font-size: 14px;
   }
   
+  .breadcrumb1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: #6c757d;
+    margin-bottom: 10px;
+    margin-left: -242px;
+  
+  }
+  
+  .breadcrumb1 img {
+    height: 24px;
+    object-fit: contain;
+    margin-right: 10px;
+  }
+  
+  .btext1 {
+    font-size: 16px;
+    color: #0a0a0a;
+    margin-bottom: 1px;
+    margin-left: -12px;
+  }
   .update-button {
     background: #50433c;
     color: #fff;
@@ -218,6 +241,7 @@
 }
 
 /* Add a custom checkmark for the checkbox */
+
 .address-form .form-group label input[type="checkbox"]:checked {
     background-color: #50433c;
     border-color: #50433c;
@@ -279,6 +303,27 @@
     margin-bottom: 20px;
   }
 
+  .breadcrumb1 {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 0;
+    /* margin-top; */
+  }
+
+  .breadcrumb1 img {
+    height: 24px;
+    object-fit: contain;
+    margin-right: 10px;
+    margin-top: -21.5rem;
+  }
+
+  .btext1 {
+    font-size: 16px;
+    color: #0a0a0a;
+    margin-bottom: -3px;
+    margin-left: -8px;
+    margin-top: -21.5rem;
+  }
   .address-form h2 {
     font-size: 18px;
     text-align: center;

@@ -69,7 +69,7 @@
 .breadcrumb img {
   height: 24px;
   object-fit: contain;
-  margin-right: 10px;
+  margin-right: -2px;
 }
 
 .btext {
@@ -86,25 +86,74 @@
   margin-bottom: 20px;
 }
 
+
+/* Filters Section */
+/* Filters Section */
 .filters {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 20px;
+  /* background: #fff; Clean background for filter section */
+  border-radius: 8px;
+  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); Subtle shadow for emphasis */
 }
 
+/* Search Container */
+.search-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Search Input */
 .search-input {
-  padding: 10px;
-  border: 1px solid #ccc;
+  width: 100%;
+  padding: 10px 15px 10px 40px; /* Padding for the search icon */
+  font-size: 14px;
+  /* border: 1px solid #e0e0e0; */
   border-radius: 8px;
-  /* justify-content: flex-start; */
+  outline: none;
+  /* background: #fafafa; */
+  transition: 0.3s ease-in-out;
 }
 
 
+/* Search Icon */
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none; /* Prevent interaction with the icon */
+  opacity: 0.7; /* Slightly dimmed for better contrast */
+  transition: opacity 0.3s ease;
+}
 
+.search-input:focus + .search-icon {
+  opacity: 1;
+}
+
+/* Dropdowns Section */
 .filter-dropdown {
+  flex: 1;
   padding: 10px;
+  font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  outline: none;
+  background: #fafafa;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
+
+
+
+/* Responsive Design */
 
 /* Table Styling */
 .order-table {
