@@ -28,7 +28,7 @@
   margin: auto 0;
 }
 
-.dropdownButton {
+.dropdownButton1 {
   align-items: center;
   border-radius: 8px;
   border: 1px solid var(--primary-primary-200, #cdc2bc);
@@ -37,7 +37,19 @@
   padding: 10px 13px;
   margin-left: 30px;
   margin-right: 30px;
-  width: 150px;
+  /* width: 150px; */
+  cursor: pointer;
+}
+.dropdownButton2 {
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--primary-primary-200, #cdc2bc);
+  display: flex;
+  justify-content: space-between;
+  /* padding: 10px 10px; */
+  margin-left: 30px;
+  /* margin-right: 30px; */
+  /* width: 150px; */
   cursor: pointer;
 }
 
