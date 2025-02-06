@@ -12,7 +12,7 @@
   overflow: visible;
 }
 
-a{
+a {
   text-decoration: none;
   color: black;
 }
@@ -99,7 +99,7 @@ a{
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.2s ease;
-  font-family: 'Poppins', sans-serif; 
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
 
@@ -108,13 +108,14 @@ a{
   opacity: 1;
 }
 
-a{
+a {
   text-decoration: none;
-  color:black;
+  color: black;
 }
 
 .dropdownItem {
-  position: relative; /* Required for positioning the pseudo-element */
+  position: relative;
+  /* Required for positioning the pseudo-element */
   padding: 8px 12px;
   cursor: pointer;
   border-radius: 4px;
@@ -123,25 +124,36 @@ a{
 
 /* Vertical line effect */
 .dropdownItem::before {
-  content: ""; /* Empty content for the vertical line */
+  content: "";
+  /* Empty content for the vertical line */
   position: absolute;
-  top: 10%; /* Slight offset from the top */
-  bottom: 10%; /* Slight offset from the bottom */
-  left: 0; /* Position it to the left of the item */
-  width: 3px; /* Line thickness */
-  background-color: transparent; /* Initially invisible */
-  border-radius: 4px; /* Matches the item's border-radius */
-  transition: background-color 0.3s ease; /* Smooth color transition */
+  top: 10%;
+  /* Slight offset from the top */
+  bottom: 10%;
+  /* Slight offset from the bottom */
+  left: 0;
+  /* Position it to the left of the item */
+  width: 3px;
+  /* Line thickness */
+  background-color: transparent;
+  /* Initially invisible */
+  border-radius: 4px;
+  /* Matches the item's border-radius */
+  transition: background-color 0.3s ease;
+  /* Smooth color transition */
 }
 
 /* Hover effect */
 .dropdownItem:hover {
-  background-color: white; /* Light gray background on hover */
-  color: #000; /* Change text color to black on hover */
+  background-color: white;
+  /* Light gray background on hover */
+  color: #000;
+  /* Change text color to black on hover */
 }
 
 .dropdownItem:hover::before {
-  background-color: #543A14; /* Black vertical line on hover */
+  background-color: #543A14;
+  /* Black vertical line on hover */
 }
 
 
@@ -149,9 +161,11 @@ a{
 .categoryButton.active {
   font-weight: bold;
 }
+
 .profileMenu {
   position: absolute;
-  top: 60px; /* Adjust based on navbar height */
+  top: 60px;
+  /* Adjust based on navbar height */
   right: 10px;
   background: #fff;
   border: 1px solid #ccc;
@@ -293,6 +307,7 @@ a{
   border: 2px solid white;
   padding: 1px 6px;
 }
+
 /* Modal background overlay */
 .searchOverlay {
   position: fixed;
@@ -340,6 +355,7 @@ a{
   align-items: center;
   padding: 20px;
 }
+
 .searchHeader h3 {
   font-size: 1.2rem;
   font-weight: 100;
@@ -353,11 +369,16 @@ a{
 .searchHeader h3::after {
   content: '';
   position: absolute;
-  bottom: -5px; /* Adjust the spacing below the text */
-  left: 0; /* Align underline with the text */
-  width: 370px; /* Set desired underline width */
-  height: 2px; /* Thickness of the underline */
-  background-color: #333; /* Color of the underline */
+  bottom: -5px;
+  /* Adjust the spacing below the text */
+  left: 0;
+  /* Align underline with the text */
+  width: 370px;
+  /* Set desired underline width */
+  height: 2px;
+  /* Thickness of the underline */
+  background-color: #333;
+  /* Color of the underline */
   margin-bottom: -10px;
 }
 
@@ -373,30 +394,38 @@ a{
   padding: 0.8rem 0;
   position: relative;
   cursor: pointer;
-  transition: color 0.3s ease; /* Optional: smooth color transition */
+  transition: color 0.3s ease;
+  /* Optional: smooth color transition */
 }
 
 .searchCategories li:hover {
-  color: #000; /* Optional: Change text color on hover */
+  color: #000;
+  /* Optional: Change text color on hover */
 }
 
 /* Vertical line effect */
 .searchCategories li::before {
   content: '';
   position: absolute;
-  left: -10px; /* Align the line to the left */
+  left: -10px;
+  /* Align the line to the left */
   top: 10px;
   bottom: 0;
   height: 30px;
-  width: 2px; /* Thickness of the vertical line */
-  background-color: #543A14; /* Line color */
-  transform: scaleY(0); /* Initially hidden (collapsed) */
+  width: 2px;
+  /* Thickness of the vertical line */
+  background-color: #543A14;
+  /* Line color */
+  transform: scaleY(0);
+  /* Initially hidden (collapsed) */
   /* transform-origin: top; Line grows from top to bottom */
-  transition: transform 0.3s ease; /* Smooth animation */
+  transition: transform 0.3s ease;
+  /* Smooth animation */
 }
 
 .searchCategories li:hover::before {
-  transform: scaleY(1); /* Expand the vertical line on hover */
+  transform: scaleY(1);
+  /* Expand the vertical line on hover */
   color: #543A14;
 }
 
@@ -481,11 +510,14 @@ a{
 }
 
 .cartItems {
-  flex-grow: 1; /* Takes up all available space */
+  flex-grow: 1;
+  /* Takes up all available space */
   overflow-y: auto;
   padding: 16px;
-  max-height: calc(100vh - 140px); /* Adjust based on header/footer height */
+  max-height: calc(100vh - 140px);
+  /* Adjust based on header/footer height */
 }
+
 .cartItem {
   display: flex;
   flex-grow: 1;
@@ -525,23 +557,25 @@ a{
   align-items: center;
   justify-content: center;
   border: 1px solid #ddd;
-  border-radius: 30px; /* Rounded container */
+  border-radius: 30px;
   overflow: hidden;
-  width: 120px; /* Adjust width as needed */
-  height: 40px; /* Adjust height as needed */
+  width: 120px;
+  height: 40px;
   /* background-color: #f9f9f9; */
   /* margin-right: 45px; */
   margin-top: 20px;
-  margin-right: 40px;
+  margin-right: 21px;
 }
- 
+
 
 .cart-quantity-decrement1,
 .cart-quantity-increment1 {
   border: none;
   outline: none;
-  width: 22px; /* Button width */
-  height: 26px; /* Button height */
+  width: 26px;
+  /* Button width */
+  height: 26px;
+  /* Button height */
   background-color: #DDD6D2;
   color: #000;
   font-size: 18px;
@@ -553,8 +587,9 @@ a{
   border-radius: 40px;
   transition: background-color 0.3s ease;
   margin-right: 14px;
-    margin-left: 14px;
+  margin-left: 14px;
 }
+
 .quantityButton:hover {
   background-color: #e0e0e0;
 }
@@ -564,8 +599,10 @@ a{
   font-weight: bold;
   color: #000;
   text-align: center;
-  width: 40px; /* Adjust width to match button */
-  line-height: 40px; /* Vertically center the number */
+  width: 40px;
+  /* Adjust width to match button */
+  line-height: 40px;
+  /* Vertically center the number */
   background-color: transparent;
   margin-left: 10px;
   margin-right: 10px;
@@ -574,22 +611,25 @@ a{
 .removeButton {
   background: none;
   border: 1px solid #ddd;
-  color: #000;
-  font-size: 14px;
+  color: #4e4e4e;
+  font-size: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 8px;
   border-radius: 50%;
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
+  margin-top: -46px;
 }
 
 .cart-quantity-decrement1:hover,
 .cart-quantity-increment1:hover {
-  background-color: #d6d6d6; /* Hover effect */
+  background-color: #d6d6d6;
+  /* Hover effect */
 }
+
 /* Footer Section */
 .cartFooter {
   padding: 16px;
@@ -599,7 +639,8 @@ a{
   position: sticky;
   bottom: 0;
   width: 100%;
-  z-index: 10; /* Ensures it stays above other elements */
+  z-index: 10;
+  /* Ensures it stays above other elements */
 }
 
 /* Cart Summary */
@@ -704,11 +745,12 @@ a{
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.row-divider{
+.row-divider {
   padding-left: 10px;
   width: 300px;
   color: #6c543e solid 1px;
 }
+
 .popupContent h3 {
   font-size: 18px;
   margin-bottom: 10px;
@@ -811,7 +853,8 @@ a{
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  max-width: 320px; /* Restrict width to fit smaller screens */
+  max-width: 320px;
+  /* Restrict width to fit smaller screens */
   padding: 10px;
   background: #ffffff;
   border-radius: 8px;
@@ -947,13 +990,15 @@ a{
     width: 100%;
     height: 100%;
     background-color: white;
-    transform: translateX(-100%); /* Hidden off-screen to the left */
+    transform: translateX(-100%);
+    /* Hidden off-screen to the left */
     transition: transform 0.3s ease;
     z-index: 20;
   }
 
   .searchDrawer.open {
-    transform: translateX(0); /* Slide into view */
+    transform: translateX(0);
+    /* Slide into view */
   }
 
   /* Cart Slider - Opens from the Right */
@@ -964,13 +1009,15 @@ a{
     width: 100%;
     height: 100%;
     background-color: white;
-    transform: translateX(100%); /* Hidden off-screen to the right */
+    transform: translateX(100%);
+    /* Hidden off-screen to the right */
     transition: transform 0.3s ease;
     z-index: 20;
   }
 
   .cartSlider.open {
-    transform: translateX(0); /* Slide into view */
+    transform: translateX(0);
+    /* Slide into view */
   }
 
   /* Common Header Styles for Drawers */
@@ -1033,13 +1080,15 @@ a{
 
   /* Mobile Navbar */
   .mobileNavbar {
-    padding: 0px 10px; /* Reduce padding for smaller screens */
+    padding: 0px 10px;
+    /* Reduce padding for smaller screens */
   }
 
   .navbar__menuIcon img,
   .navbar__searchIcon img,
   .navbar__cartIcon img {
-    width: 22px; /* Slightly smaller icon size */
+    width: 22px;
+    /* Slightly smaller icon size */
     height: 22px;
   }
 
@@ -1048,7 +1097,8 @@ a{
   }
 
   .navbar__logo img {
-    width: 55px; /* Smaller logo */
+    width: 55px;
+    /* Smaller logo */
     height: 55px;
     align-items: center;
     margin-left: -65px;
@@ -1058,8 +1108,10 @@ a{
 
   .navbar__cartBadge {
     top: 26px;
-    font-size: 8px; /* Smaller badge font */
-    padding: 1px 4px; /* Adjust padding for smaller badge */
+    font-size: 8px;
+    /* Smaller badge font */
+    padding: 1px 4px;
+    /* Adjust padding for smaller badge */
     margin-right: 11px;
   }
 
@@ -1069,17 +1121,21 @@ a{
     position: fixed;
     top: 0;
     right: 0;
-    width: 100%; /* Adjust width as needed */
+    width: 100%;
+    /* Adjust width as needed */
     height: 100%;
     background-color: white;
-    transform: translateX(-100%); /* Hidden off-screen to the right */
+    transform: translateX(-100%);
+    /* Hidden off-screen to the right */
     transition: transform 0.3s ease;
     z-index: 25;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
   }
 
   .menuDrawer.open {
-    transform: translateX(0); /* Slide into view */
+    transform: translateX(0);
+    /* Slide into view */
   }
 
   .menuDrawerHeader {
@@ -1113,114 +1169,118 @@ a{
   }
 
   .menuDrawerContent a:hover {
-    color: #c0a062; /* Gold color for hover effect */
+    color: #c0a062;
+    /* Gold color for hover effect */
   }
 
-  
-
- 
-    .navigationCategories {
-      padding: 8px;
-      max-width: 100%;
-    }
-  
-    .categoryTrigger {
-      font-size: 12px;
-      padding: 10px;
-    }
-  
-    .categoryIcon {
-      width: 16px;
-      height: 16px;
-    }
 
 
-    .dropdownOption {
-      font-size: 13px;
-      color: #000;
-      padding: 6px;
-      text-decoration: none;
-      /* transition: background 0.3s ease; */
-    }
-  
-    .userAccountSection {
-      display: flex;
-      align-items: center;
-      padding: 12px;
-      border-top: 1px solid #ddd;
-      background-color: #f9f9f9;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      justify-content: left;
-      margin-left: -10px;
-    }
-  
-    .userAvatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-    .userInfo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      position: relative;
-    }
 
-    .accountDropdownTrigger {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      color: #333;
-    }
+  .navigationCategories {
+    padding: 8px;
+    max-width: 100%;
+  }
 
-    .dropdownIcon {
-      margin-left: 5px;
-      font-size: 12px;
-      transition: transform 0.3s ease;
-    }
+  .categoryTrigger {
+    font-size: 12px;
+    padding: 10px;
+  }
 
-    .dropdownIcon.open {
-      transform: rotate(180deg); /* Rotate arrow when open */
-    }
+  .categoryIcon {
+    width: 16px;
+    height: 16px;
+  }
 
 
-    .userName {
-      font-size: 14px;
-      font-weight: bold;
-      color: #333;
-    }
+  .dropdownOption {
+    font-size: 13px;
+    color: #000;
+    padding: 6px;
+    text-decoration: none;
+    /* transition: background 0.3s ease; */
+  }
 
-    .accountDropdown {
-      position: absolute;
-      bottom: 40px;
-      background-color: white;
-      border: 1px solid #ddd;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 6px;
-      padding: 8px 10px;
-      display: flex;
-      flex-direction: column;
-      min-width: 300px;
-      z-index: 10;
-      margin-left: 221px;
-  }  
-    .accountLink {
-      font-size: 12px;
-      color: #000;
-      text-decoration: none;
-    }
-  
-    .accountLink:hover {
-      text-decoration: underline;
-    }
+  .userAccountSection {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    justify-content: left;
+    margin-left: -10px;
+  }
 
-      .dropdownOption:hover {
+  .userAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+  }
+
+  .accountDropdownTrigger {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .dropdownIcon {
+    margin-left: 5px;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .dropdownIcon.open {
+    transform: rotate(180deg);
+    /* Rotate arrow when open */
+  }
+
+
+  .userName {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .accountDropdown {
+    position: absolute;
+    bottom: 40px;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    z-index: 10;
+    margin-left: 221px;
+  }
+
+  .accountLink {
+    font-size: 12px;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .accountLink:hover {
+    text-decoration: underline;
+  }
+
+  .dropdownOption:hover {
     background: #f1f1f1;
   }
 
@@ -1237,5 +1297,54 @@ a{
   .logoutButton:hover {
     background: #f1f1f1;
   }
-  
+
+
+  .removeButton {
+    background: none;
+    border: 1px solid #ddd;
+    color: #4e4e4e;
+    font-size: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    margin-top: -40px;
+  }
+
+  .cartQuantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100px;
+    height: 35px;
+    margin-top: 15px;
+    margin-right: 10px;
+  }
+
+  .cart-quantity-decrement1, 
+  .cart-quantity-increment1 {
+    border: none;
+    outline: none;
+    width: 22px;
+    height: 22px;
+    background-color: #DDD6D2;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    transition: background-color 0.3s ease;
+    margin-right: 15px;
+  }
+
 }

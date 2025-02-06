@@ -13,10 +13,10 @@
 
 .productsSubtitle {
   font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
-  /* color: #666; */
-  margin-top: 10px;
+  color: #666;
+  margin-top: 4px;
 }
 
 /* Product Grid */
@@ -88,9 +88,10 @@
 .titleUnderline {
   margin: 10px auto 0;
   width: 100px; /* Adjust the underline width */
-  height: 3px; /* Thickness of the underline */
+  height: 2px; /* Thickness of the underline */
   background-color: #c0a062; /* Gold color for the underline */
   border-radius: 2px; /* Rounded corners for a polished look */
+  margin-top: 2px;
 }
 
 
@@ -354,6 +355,15 @@
     font-size: 14px;
     padding: 8px 21px;
   }
+  .titleUnderline {
+    margin: 10px auto 0;
+    width: 100px; /* Adjust the underline width */
+    height: 2px; /* Thickness of the underline */
+    background-color: #c0a062; /* Gold color for the underline */
+    border-radius: 2px; /* Rounded corners for a polished look */
+    margin-top: 2px;
+  }
+  
 
   .discountBadge {
     font-size: 10px;

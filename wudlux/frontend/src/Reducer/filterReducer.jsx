@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 // export const initialFilterState = {
 //     selectedMaterials: [], // Supports multiple selections
 //     selectedCategory: "",
@@ -28,7 +28,7 @@
 //         return state;
 //     }
 //   };
-=======
+
 export const initialFilterState = {
     selectedMaterials: [], // Supports multiple selections
     selectedCategory: "",
@@ -58,5 +58,5 @@ export const initialFilterState = {
         return state;
     }
   };
->>>>>>> dab1c22ff97df1574679dc3c0b48a362e89fab14
+
   

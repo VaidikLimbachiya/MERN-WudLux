@@ -253,7 +253,7 @@
 
   /* Adjust heading size */
   .login-form h1 {
-    font-size: 1.2rem; /* Smaller for small screens */
+    font-size: 25px; /* Smaller for small screens */
   }
 
   .login-description {

@@ -15,9 +15,9 @@ const categories = [
     iconSrc:
       "https://cdn.builder.io/api/v1/image/assets/TEMP/a1cfa473b4c3091f113c79eb7155d25fb5458b102ed1a68b6ce2308227f94925",
     dropdownItems: [
-      { text: "Tray", link: "/Serveware/ServingTray" },
-      { text: "Platter", link: "/ServeWare/withDrawer" },
-      { text: "Bowl", link: "/Serveware/BeerCaddy" },
+      { text: "Tray", link: "/" },
+      { text: "Platter", link: "/" },
+      { text: "Bowl", link: "/" },
       // { text: "Serving Platter", link: "/Serveware/ServingPlatter" },
       // { text: "Wine Serving Tray", link: "/Serveware/WineServingTray" },
     ],
@@ -27,8 +27,8 @@ const categories = [
     iconSrc:
       "https://cdn.builder.io/api/v1/image/assets/TEMP/93802c32367c70d0f1cbcf887c7e26e1d4f770ebf8473953950cd1af3bf76896",
     dropdownItems: [
-      { text: "Chopping Board", link: "/Kitchenware/ChoppingBoard" },
-      { text: "Tissue Holder", link: "/Kitchenware/Tissue Holder" },
+      { text: "Chopping Board", link: "/" },
+      { text: "Tissue Holder", link: "/" },
     ],
   },
   {
@@ -36,16 +36,16 @@ const categories = [
     iconSrc:
       "https://cdn.builder.io/api/v1/image/assets/TEMP/c9ea7504e7b254d854b06a79b48cf39d39e2ab6c6f3afb37338801a7c60027f8",
     dropdownItems: [
-      { text: "Fruit Bowl", link: "/Tableware/FruitBowl" },
-      { text: "Cutlery Caddy", link: "/Tableware/CutleryCaddy" },
-      { text: "Lazy Susan", link: "/Tableware/LazySusan" },
+      { text: "Fruit Bowl", link: "/" },
+      { text: "Cutlery Caddy", link: "/" },
+      { text: "Lazy Susan", link: "/" },
     ],
   },
   {
     text: "Collections",
     iconSrc:
       "https://cdn.builder.io/api/v1/image/assets/TEMP/3a93a25a709f4fb428d7f57f554a75f6dae8c2c4a680b05c19026a7d150d8a2f",
-    dropdownItems: [{ text: "Bella", link: "/Collections/Bella" }],
+    dropdownItems: [{ text: "Bella", link: "/" }],
   },
 ];
 

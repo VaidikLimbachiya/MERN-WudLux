@@ -299,9 +299,11 @@
   }
 
   .heading-underline {
-    width: 60px; /* Smaller underline */
-    margin: 10px auto; /* Centered */
-    margin-top: -10px;
+    width: 77px;
+    margin: 10px auto;
+    margin-top: -13px;
+    height: 2px;
+    margin-left: 110px;
   }
 
   .heading-subtitle {
