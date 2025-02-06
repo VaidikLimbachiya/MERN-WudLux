@@ -1,4 +1,4 @@
-import Filters from "../../Components/Filter/Filter";
+// import Filters from "../../Components/Filter/Filter";
 import Productlist from "../../Components/ProductList/Productlist";
 import Services from "../../Components/Services/service";
 import HeroImage from "../../assets/kitchen.png";
@@ -12,7 +12,7 @@ const KitchenWare = () => {
   return (
     <div>
       <header className="hero-section" style={{ backgroundImage: `url(${HeroImage})` }}></header>
-      <Filters category={category} />
+      {/* <Filters category={category}/> */}
       <Productlist category={category} />
       <Services />
     </div>
