@@ -6,14 +6,14 @@ import { BrowserRouter } from "react-router-dom";
 import { CartProvider } from "./Context/CartContext"; 
 import { UserProvider } from "./Context/UserContext"; 
 // import { FilterProvider } from "./Context/FilterContext"; 
-import { AuthProvider } from "./Context/AuthContext"; // ✅ Import AuthProvider
+import { AuthProvider } from "./Context/AuthContext"; //   Import AuthProvider
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
         {" "}
-        {/* ✅ Wrap everything inside AuthProvider */}
+        {/*   Wrap everything inside AuthProvider */}
         <UserProvider>
           <CartProvider>
             {/* <FilterProvider>  */}

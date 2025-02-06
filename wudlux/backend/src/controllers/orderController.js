@@ -31,48 +31,38 @@ exports.getOrders = async (req, res) => {
   }
 };
 
-// Get Orders by User ID
 exports.getOrdersByUserId = async (req, res) => {
-    try {
-      const { userId } = req.params; // Extract userId from URL params
-  
-      console.log("Fetching orders for userId:", userId); // ✅ Debugging log
-  
-      // Validate userId
-      if (!userId) {
-        return res.status(400).json({
-          success: false,
-          message: "User ID is required in the request.",
-        });
-      }
-  
-      // Find all orders for the given userId
-      const orders = await Order.find({ userId })
-        .populate("userId", "name email") // Include user details
-        .populate("items.productId", "name price image"); // Include product details
-  
-      // Check if orders exist
-      if (!orders.length) {
-        return res.status(404).json({
-          success: false,
-          message: `No orders found for user ID ${userId}`,
-        });
-      }
-  
-      res.status(200).json({
-        success: true,
-        orders,
-      });
-    } catch (error) {
-      console.error("❌ Error fetching orders by user ID:", error);
-      res.status(500).json({
+  try {
+    const { userId } = req.params;
+    console.log("Fetching orders for userId:", userId);
+
+    if (!userId) {
+      return res.status(400).json({
         success: false,
-        message: "Failed to fetch orders",
-        error: error.message,
+        message: "User ID is required.",
       });
     }
-  };
-  
+
+    // ✅ Ensure fresh order retrieval and sort by latest
+    const orders = await Order.find({ userId })
+      .sort({ createdAt: -1 }) // Orders sorted by newest first
+      .populate("userId", "firstName lastName email")
+      .populate("items.productId", "title images price");
+
+    res.status(200).json({
+      success: true,
+      orders,
+    });
+  } catch (error) {
+    console.error("❌ Error fetching orders:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch orders",
+      error: error.message,
+    });
+  }
+};
+
 // Get Order by ID
 exports.getOrderByOrderId = async (req, res) => {
     try {
@@ -83,15 +73,15 @@ exports.getOrderByOrderId = async (req, res) => {
         return res.status(400).json({ success: false, message: "Order ID is required" });
       }
   
-      // ✅ Populate `userId` and `items.productId` properly
+      //   Populate `userId` and `items.productId` properly
       const order = await Order.findOne({ orderId })
-        .populate("userId", "firstName lastName email") // ✅ Fetch First & Last Name
+        .populate("userId", "firstName lastName email") //   Fetch First & Last Name
         .populate({
           path: "items.productId",
-          select: "title images price", // ✅ Fetch Product Title, Images, and Price
+          select: "title images price", //   Fetch Product Title, Images, and Price
         });
   
-      console.log("✅ Populated Order Data:", JSON.stringify(order, null, 2)); // Debugging log
+      console.log("  Populated Order Data:", JSON.stringify(order, null, 2)); // Debugging log
   
       if (!order) {
         return res.status(404).json({ success: false, message: `Order with ID ${orderId} not found` });
@@ -117,11 +107,11 @@ const generateOrderId = () => {
 // Create an order
 exports.createOrder = async (req, res) => {
     try {
-      console.log("Incoming Order Request:", req.body); // ✅ Debugging log
+      console.log("Incoming Order Request:", req.body); //   Debugging log
   
       const { userId, items, totalAmount, shippingAddress, notes } = req.body;
   
-      // ✅ Validate request data
+      //   Validate request data
       if (!userId || !Array.isArray(items) || items.length === 0 || !totalAmount || !shippingAddress) {
         console.error("❌ Missing required fields:", req.body);
         return res.status(400).json({
@@ -152,7 +142,7 @@ exports.createOrder = async (req, res) => {
       // Save to DB
       await newOrder.save();
   
-      console.log("✅ Order created successfully:", newOrder);
+      console.log("  Order created successfully:", newOrder);
   
       res.status(201).json({
         success: true,

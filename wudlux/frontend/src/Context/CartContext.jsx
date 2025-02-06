@@ -161,25 +161,18 @@ export const CartProvider = ({ children }) => {
 
   // Clear the entire cart
   const clearCart = async () => {
-    const token = localStorage.getItem("accessToken");
-    setError(null);
-
     try {
-      const response = await fetch("http://localhost:5000/api/cart/clear", {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const token = localStorage.getItem("accessToken");
+      if (!token) throw new Error("No access token found");
 
-      if (!response.ok) {
-        throw new Error("Failed to clear cart");
-      }
-
+      // Instead of calling a non-existent API, clear cart locally
       setCartItems([]);
+      console.log("Cart cleared successfully.");
     } catch (err) {
       console.error("Error clearing cart:", err);
-      setError(err.message);
     }
-  };
+};
+
 
   // Clear cart state locally (e.g., on logout)
   const clearCartState = () => {
@@ -193,7 +186,7 @@ export const CartProvider = ({ children }) => {
     } else {
       clearCartState(); // Clear cart when user logs out
     }
-  }, [user]); // ✅ Runs every time user logs in or out
+  }, [user]); //   Runs every time user logs in or out
   
   
 

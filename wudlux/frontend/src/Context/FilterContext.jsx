@@ -27,7 +27,7 @@ import {
   
           console.log("API Response:", result);
   
-          // ✅ Extract `data` array if available
+          //   Extract `data` array if available
           if (result.success && Array.isArray(result.data)) {
             setData(result.data);
           } else {
@@ -48,14 +48,14 @@ import {
     useEffect(() => {
       let filtered = [...data];
   
-      // ✅ Filter by Material (Supports multiple selections)
+      //   Filter by Material (Supports multiple selections)
       if (state.selectedMaterials.length > 0) {
         filtered = filtered.filter((item) =>
           state.selectedMaterials.includes(item.material)
         );
       }
   
-      // ✅ Filter by Price Range
+      //   Filter by Price Range
       if (state.priceRange.min !== null && state.priceRange.max !== null) {
         filtered = filtered.filter(
           (item) =>
@@ -64,19 +64,19 @@ import {
         );
       }
   
-      // ✅ Filter by Category
+      //   Filter by Category
       if (state.selectedCategory) {
         filtered = filtered.filter((item) => item.category === state.selectedCategory);
       }
   
-      // ✅ Search Filtering (Case Insensitive)
+      //   Search Filtering (Case Insensitive)
       if (state.searchQuery.trim() !== "") {
         filtered = filtered.filter((item) =>
           item.title.toLowerCase().includes(state.searchQuery.toLowerCase())
         );
       }
   
-      // ✅ Sorting Logic
+      //   Sorting Logic
       switch (state.sortOption) {
         case "Price-low-to-High":
           filtered.sort((a, b) => a.price - b.price);

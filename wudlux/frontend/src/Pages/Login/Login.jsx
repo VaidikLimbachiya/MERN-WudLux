@@ -4,19 +4,19 @@ import { apiCall } from "../../api/api";
 import "./Login.css";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthContext";
-import { useCartContext } from "../../Context/CartContext"; // ✅ Correct import
+import { useCartContext } from "../../Context/CartContext"; //   Correct import
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { login } = useContext(AuthContext);
-  const { fetchCart } = useCartContext(); // ✅ Corrected usage
+  const { fetchCart } = useCartContext(); //   Corrected usage
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // ✅ Function to handle login
+  //   Function to handle login
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -26,15 +26,15 @@ const LoginPage = () => {
 
       toast.success("Login successful");
 
-      // ✅ Store authentication details in AuthContext
+      //   Store authentication details in AuthContext
       login(result.user, result.accessToken, result.refreshToken);
 
-      // ✅ Store tokens in localStorage
+      //   Store tokens in localStorage
       localStorage.setItem("accessToken", result.accessToken);
       localStorage.setItem("refreshToken", result.refreshToken);
       localStorage.setItem("user", JSON.stringify(result.user));
 
-      // ✅ Fetch cart data immediately after login
+      //   Fetch cart data immediately after login
       await fetchCart(true);
 
       const params = new URLSearchParams(location.search);

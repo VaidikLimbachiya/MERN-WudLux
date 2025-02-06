@@ -1,11 +1,9 @@
-import { useState, useEffect,useCallback } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { useCartContext } from "../../Context/CartContext";
-import { useUserContext } from "../../Context/UserContext";
-import {  toast } from "react-toastify";
-
+import { AuthContext } from "../../Context/AuthContext";
+import { toast } from "react-toastify";
 import "./Checkout.css";
 import logo from "../../assets/logo.png";
 
@@ -13,8 +11,7 @@ const API_BASE_URL = "http://localhost:5000"; // Backend API base URL
 
 const Checkout = () => {
   const { cartItems = [], clearCart } = useCartContext();
-  const [isLoggedIn] = useState(false);
-  const { user } = useUserContext();
+  const { user } = useContext(AuthContext); // Get logged-in user
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -29,12 +26,12 @@ const Checkout = () => {
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
     address: "",
     zipCode: "",
     country: "India",
     state: "",
     city: "",
-    phone: "",
     notes: "",
   });
 
@@ -52,10 +49,9 @@ const Checkout = () => {
         console.error("Error fetching addresses:", error);
       }
     };
-  
+
     fetchAddresses();
-  }, [user?.id]); // ✅ Now only updates when user.id changes
-  
+  }, [user?.id]);
 
   // Ensure addresses are always an array
   const userAddresses = Array.isArray(addresses) ? addresses : [];
@@ -63,24 +59,23 @@ const Checkout = () => {
   // Auto-fill form fields when user logs in
   useEffect(() => {
     if (!userAddresses.length) return;
-    
+
     const defaultAddress = userAddresses.find((addr) => addr.isDefault) || userAddresses[0];
-  
+
     setSelectedAddressId(defaultAddress?._id || "");
     setFormData((prev) => ({
       ...prev,
       firstName: user?.firstName || "",
       lastName: user?.lastName || "",
       email: user?.email || "",
+      phone: user?.phoneNumber || "",
       address: defaultAddress?.street || "",
       zipCode: defaultAddress?.zipCode || "",
       country: defaultAddress?.country || "India",
       state: defaultAddress?.state || "",
       city: defaultAddress?.city || "",
-      phone: user?.phoneNumber || "",
     }));
-  }, [userAddresses, user?.id]); // ✅ Ensures only necessary updates
-  
+  }, [userAddresses, user?.id]);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -90,7 +85,6 @@ const Checkout = () => {
       ...(name === "state" && { city: "" }), // Reset city when state changes
     }));
   };
-  
 
   const handleAddressChange = (e) => {
     const selectedId = e.target.value;
@@ -110,79 +104,82 @@ const Checkout = () => {
   };
 
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-const refreshToken = useCallback(async () => {
-  try {
-    const storedRefreshToken = localStorage.getItem("refreshToken");
-    if (!storedRefreshToken) {
-      throw new Error("No refresh token found");
+
+  const refreshToken = useCallback(async () => {
+    try {
+      const storedRefreshToken = localStorage.getItem("refreshToken");
+      if (!storedRefreshToken) {
+        throw new Error("No refresh token found");
+      }
+
+      const response = await axios.post(`${API_BASE_URL}/api/users/refresh-token`, {
+        refreshToken: storedRefreshToken,
+      });
+
+      const { accessToken } = response.data;
+      localStorage.setItem("accessToken", accessToken);
+      toast.success("Session refreshed successfully!");
+
+      return accessToken;
+    } catch (error) {
+      console.error("Token refresh error:", error);
+      toast.error("Session expired. Please log in again.");
+      localStorage.clear();
+      navigate("/log-in");
     }
+  }, [navigate]);
 
-    const response = await axios.post(`${API_BASE_URL}/api/users/refresh-token`, {
-      refreshToken: storedRefreshToken,
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const { accessToken } = response.data;
-    localStorage.setItem("accessToken", accessToken);
-    toast.success("Session refreshed successfully!");
-
-    return accessToken;
-  } catch (error) {
-    console.error("Token refresh error:", error);
-    toast.error("Session expired. Please log in again.");
-    localStorage.clear();
-    navigate("/log-in");
-  }
-}, [navigate]);
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  if (!formData.firstName || !formData.lastName || !formData.email || !formData.address || !formData.state || !formData.city || !formData.phone) {
-    toast.error("Please complete all required fields.");
-    return;
-  }
-
-  let token = localStorage.getItem("accessToken");
-
-  if (!token) {
-    token = await refreshToken();
-    if (!token) {
-      toast.error("Authentication required. Please log in.");
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.address || !formData.state || !formData.city || !formData.phone) {
+      toast.error("Please complete all required fields.");
       return;
     }
-  }
 
-  try {
-    const orderPayload = {
-      userId: user?.id,
-      selectedAddressId,
-      items: cartItems.map((item) => ({
-        productId: item.productId,
-        quantity: item.quantity,
-        price: item.price,
-      })),
-      totalAmount: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
-      shippingAddress: {
-        street: formData.address,
-        city: formData.city,
-        state: formData.state,
-        zipCode: formData.zipCode,
-        country: formData.country,
-      },
-      notes: formData.notes,
-    };
+    let token = localStorage.getItem("accessToken");
 
-    await axios.post(`${API_BASE_URL}/api/orders`, orderPayload, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    if (!token) {
+      token = await refreshToken();
+      if (!token) {
+        toast.error("Authentication required. Please log in.");
+        return;
+      }
+    }
 
-    toast.success("Order placed successfully!");
-    clearCart();
-  } catch (error) {
-    console.error("Checkout Error:", error);
-    toast.error("Failed to place order. Please try again.");
-  }
-};   
+    try {
+      const orderPayload = {
+        userId: user?.id,
+        selectedAddressId,
+        items: cartItems.map((item) => ({
+          productId: item.productId,
+          quantity: item.quantity,
+          price: item.price,
+        })),
+        totalAmount: totalPrice,
+        shippingAddress: {
+          street: formData.address,
+          city: formData.city,
+          state: formData.state,
+          zipCode: formData.zipCode,
+          country: formData.country,
+        },
+        notes: formData.notes,
+      };
+
+      await axios.post(`${API_BASE_URL}/api/orders`, orderPayload, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      toast.success("Order placed successfully!");
+      clearCart();
+      navigate("/order-success");
+    } catch (error) {
+      console.error("Checkout Error:", error);
+      toast.error("Failed to place order. Please try again.");
+    }
+  };
+
   return (
     <div className="checkout-wrapper">
       {/* Left Part - Shipping Form */}
@@ -308,40 +305,6 @@ const handleSubmit = async (e) => {
               required
             />
           </div>
-          {!isLoggedIn && (
-            <div className="checkbox-group">
-              <label  className="checkbox-label">
-                <input
-                  type="checkbox"
-                   className="checkbox-Invoice"
-                  name="registerAccount"
-                  checked={formData.registerAccount}
-                  onChange={handleInputChange}
-                />
-                Register an account with the above information?
-              </label>
-            </div>
-          )}
-          {!isLoggedIn && formData.registerAccount && (
-            <div className="input-group">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password *"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-              />
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm Password *"
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-          )}
 
           <h2>Payment Method:</h2>
           <div className="payment-container">
@@ -458,7 +421,7 @@ const handleSubmit = async (e) => {
                   </div>
                   <div className="product-cost">
                     ₹{item.price ? item.price.toFixed(2) : "0.00"}{" "}
-                    {/* ✅ Prevents crash */}
+                    {/* Prevents crash */}
                   </div>
                 </div>
               </div>

@@ -130,7 +130,7 @@ exports.resetPassword = async (req, res) => {
       return res.status(404).json({ message: "No account found with this email." });
     }
 
-    // ✅ Hash the new password before saving it
+    //   Hash the new password before saving it
     user.password = await bcrypt.hash(newPassword, 10);
     await user.save();
 
@@ -149,7 +149,7 @@ exports.verifyEmail = async (req, res) => {
       return res.status(400).json({ message: "Email is required." });
     }
 
-    console.log("Checking email:", email); // ✅ Debugging log
+    console.log("Checking email:", email); //   Debugging log
 
     const user = await User.findOne({ email });
 

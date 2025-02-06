@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { io } from "socket.io-client"; // ✅ Import socket.io-client
 import prev from "../../assets/prev.png";
 import next from "../../assets/next.png";
 import breadcrumbIcon from "../../assets/home.png";
+import { AuthContext } from "../../Context/AuthContext";
+
 import { Link } from "react-router-dom";
-import { useUserContext } from "../../Context/UserContext";
+
 import "./Order.css";
 
 const API_BASE_URL = "http://localhost:5000";
-
 const OrderHistory = () => {
-  const { user } = useUserContext();
+  const { user } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -21,62 +21,46 @@ const OrderHistory = () => {
     const handleResize = () => {
       setIsMobileMode(window.innerWidth <= 320);
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const fetchOrders = async () => {
-    if (!user || !user.id) {
-      setError("User not found. Please log in.");
-      return;
-    }
-
-    const token = localStorage.getItem("accessToken");
-    if (!token) {
-      setError("Unauthorized! Please log in.");
-      return;
-    }
-
-    try {
-      console.log(`Fetching orders for user ID: ${user.id}`);
-
-      const response = await axios.get(
-        `${API_BASE_URL}/api/orders/user/${user.id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-
-      console.log("✅ User Orders:", response.data.orders);
-
-      setOrders(response.data.orders);
-    } catch (error) {
-      console.error("❌ Error fetching orders:", error);
-      setError("Failed to fetch orders.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // ✅ Listen for real-time order updates
   useEffect(() => {
+    if (!user?.id) {
+      setOrders([]);
+      setLoading(false);
+      return;
+    }
+
+    const fetchOrders = async () => {
+      try {
+        setLoading(true);
+        setOrders([]);
+
+        const token = localStorage.getItem("accessToken");
+        if (!token) {
+          setError("Unauthorized! Please log in.");
+          setLoading(false);
+          return;
+        }
+
+        const response = await axios.get(`${API_BASE_URL}/api/orders/user/${user.id}?timestamp=${Date.now()}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        console.log("User Orders:", response.data.orders);
+        setOrders(response.data.orders);
+        setError("");
+      } catch (error) {
+        console.error("❌ Error fetching orders:", error);
+        setError("Failed to fetch orders.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchOrders();
-
-    // Initialize WebSocket connection
-    const socket = io(API_BASE_URL);
-
-    // ✅ Listen for order status updates
-    socket.on("orderUpdated", ({ orderId, status }) => {
-      setOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order._id === orderId ? { ...order, orderStatus: status } : order
-        )
-      );
-    });
-
-    return () => socket.disconnect();
-  }, []);
-
-  if (loading) return <p>Loading orders...</p>;
-  if (error) return <p className="error-message">{error}</p>;
+  }, [user]);
 
   return (
     <div className="order-history-container">

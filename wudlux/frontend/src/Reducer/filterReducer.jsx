@@ -11,7 +11,7 @@ export const initialFilterState = {
       case "SET_MATERIAL":
         return {
           ...state,
-          selectedMaterials: action.payload, // ✅ Supports multiple selections
+          selectedMaterials: action.payload, //   Supports multiple selections
         };
       case "SET_CATEGORY":
         return { ...state, selectedCategory: action.payload };
@@ -22,7 +22,7 @@ export const initialFilterState = {
       case "SET_SORT_OPTION":
         return { ...state, sortOption: action.payload };
       case "RESET_FILTERS":
-        return initialFilterState; // ✅ Fully resets filters
+        return initialFilterState; //   Fully resets filters
       default:
         return state;
     }

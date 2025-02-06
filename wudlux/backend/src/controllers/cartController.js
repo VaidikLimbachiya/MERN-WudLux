@@ -79,7 +79,7 @@ exports.getCart = async (req, res) => {
     // Find the user and populate cart products with required fields
     const user = await userModel.findById(userId).populate({
       path: "cart.productId",
-      select: "title category size images price", // ✅ Include category & size
+      select: "title category size images price", //   Include category & size
     });
 
     if (!user) {
@@ -94,8 +94,8 @@ exports.getCart = async (req, res) => {
       cartItems: user.cart.map((item) => ({
         productId: item.productId._id,
         title: item.productId.title,
-        category: item.productId.category || "No category", // ✅ Now included
-        size: item.productId.size || [], // ✅ Now included
+        category: item.productId.category || "No category", //   Now included
+        size: item.productId.size || [], //   Now included
         price: item.productId.price,
         images: item.productId.images,
         quantity: item.quantity,
