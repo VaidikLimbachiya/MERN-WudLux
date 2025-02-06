@@ -92,11 +92,29 @@ exports.getOrderByOrderId = async (req, res) => {
       console.error("❌ Error fetching order:", error);
       res.status(500).json({ success: false, message: "Failed to fetch order", error: error.message });
     }
-  };
-  
-    
-  
-    
+
+    // Populate `userId` and `items.productId` properly
+    const order = await Order.findOne({ orderId })
+      .populate("userId", "firstName lastName email") // Fetch First & Last Name
+      .populate({
+        path: "items.productId",
+        select: "title images price", // Fetch Product Title, Images, and Price
+      });
+
+    console.log("✅ Populated Order Data:", JSON.stringify(order, null, 2)); // Debugging log
+
+    if (!order) {
+      return res
+        .status(404)
+        .json({
+          success: false,
+          message: `Order with ID ${orderId} not found`,
+        });
+    }
+
+    res.status(200).json({ success: true, order });
+}
+
 // Function to generate custom Order ID
 const generateOrderId = () => {
   const prefix = "#WU"; // Fixed prefix
@@ -106,7 +124,7 @@ const generateOrderId = () => {
 
 // Create an order
 exports.createOrder = async (req, res) => {
-    try {
+  try {
       console.log("Incoming Order Request:", req.body); //   Debugging log
   
       const { userId, items, totalAmount, shippingAddress, notes } = req.body;
@@ -153,8 +171,48 @@ exports.createOrder = async (req, res) => {
       console.error("❌ Server error during order creation:", error);
       res.status(500).json({
         success: false,
-        message: "Failed to create order",
-        error: error.message,
+        message:
+          "Invalid input. Ensure all required fields are filled correctly.",
       });
     }
-  };
+
+    // Generate unique Order ID
+    const orderId = generateOrderId();
+
+    // Create new order
+const newOrder = new Order({
+      
+      orderId,
+      userId,
+      items: items.map((item) => ({
+        productId: item.productId,
+        quantity: item.quantity,
+        price: item.price,
+      })),
+      totalAmount,
+      shippingAddress,
+      notes: notes || "",
+      paymentStatus: "Pending",
+      orderStatus: "Pending",
+    });
+   try{
+
+    // Save to DB
+    await newOrder.save();
+
+    console.log("✅ Order created successfully:", newOrder);
+
+    res.status(201).json({
+      success: true,
+      message: "Order created successfully",
+      order: newOrder,
+    });
+  } catch (error) {
+    console.error("❌ Server error during order creation:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to create order",
+      error: error.message,
+    });
+  }
+};

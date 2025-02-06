@@ -36,7 +36,7 @@
 }
 
 .sale-offer {
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
   color: #8d6e4d;
   font-weight: 600;
   margin-bottom: 10px;
@@ -64,6 +64,7 @@
   font-size: 1.2rem;
   font-weight: bold;
   background: linear-gradient(45deg, #0A0A0A, #D97B48, #000000);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -133,7 +134,7 @@
 .slider-heading {
   font-size: 3rem;
   font-weight: bold;
-  margin-bottom:10px;
+  margin-bottom:-6px;
   line-height: 1.2;
   width: 2px;
   font-family: 'playfair display', serif;

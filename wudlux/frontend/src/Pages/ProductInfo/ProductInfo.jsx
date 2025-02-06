@@ -34,6 +34,24 @@ const ProductPage = () => {
   const quantity = cartItem ? cartItem.quantity : 1;
 
 
+  const handleShare = () => {
+    if (navigator.share) {
+      // Web Share API for mobile & modern browsers
+      navigator.share({
+        title:`${product.title}`,
+        text: `Check out this product: ${product.title}`,
+        url: window.location.href,
+      })
+      .then(() => console.log("Successful share"))
+      .catch((error) => console.log("Error sharing:", error));
+    } else {
+      // Fallback for older browsers - Copy link to clipboard
+      navigator.clipboard.writeText("url")
+        .then(() => alert("Link copied to clipboard! Share it anywhere."))
+        .catch((err) => console.error("Error copying link:", err));
+    }
+  };
+
   // Fetch product data based on the product ID from the URL
   useEffect(() => {
     const fetchProduct = async () => {
@@ -303,9 +321,9 @@ const ProductPage = () => {
 
           {/* Social Media Icons */}
           <div className="social-links">
-            <div className="share-icon">
-              <img src={share} alt="Share" className="icon" />
-            </div>
+          <div className="share-icon" onClick={handleShare} style={{ cursor: "pointer" }}>
+      <img src={share} alt="Share" className="icon" />
+    </div>
             <div className="social-icons">
               <a href="#facebook" className="social-icon">
                 <FaFacebook />

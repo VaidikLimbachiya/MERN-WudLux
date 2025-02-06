@@ -80,45 +80,4 @@ body {
     padding: 0 10px;
   }
   
-  @media (max-width: 768px) {
-    .responsive-policy {
-      padding: 15px;
-    }
-  
-    .section-title {
-      font-size: 1.6rem;
-    }
-  
-    .section-paragraph {
-      font-size: 0.95rem;
-    }
-  }
-  
-  @media (max-width: 425px) {
-    .responsive-policy {
-      padding: 10px;
-    }
-  
-    .section-title {
-      font-size: 1.4rem;
-    }
-  
-    .section-paragraph {
-      font-size: 0.9rem;
-    }
-  }
-  
-  @media (min-width: 1200px) {
-    .responsive-policy {
-      padding: 30px;
-    }
-  
-    .section-title {
-      font-size: 2rem;
-    }
-  
-    .section-paragraph {
-      font-size: 1.1rem;
-    }
-  }
-  
+ 

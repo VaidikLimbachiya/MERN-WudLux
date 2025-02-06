@@ -16,6 +16,7 @@
 }
 
 .sidebar-header {
+  margin-top: 106px;
   display: flex;
   align-items: center;
   gap: 10px;
