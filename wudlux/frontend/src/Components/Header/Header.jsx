@@ -32,25 +32,15 @@ const Slider = () => {
   const [currentIndex, setCurrentIndex] = useState(1); // Start at first real slide
   const [isTransitioning, setIsTransitioning] = useState(true);
 
-<<<<<<< HEAD
-  //   Auto Slide Every 3 Seconds
-=======
   // Auto Slide Every 3 Seconds
->>>>>>> 335fefab1947c264ce085c2cd630dfb273119e0a
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
     }, 3000);
     return () => clearInterval(interval);
-<<<<<<< HEAD
-  }, [currentIndex]); //   Fixed dependency
-
-  //   Handle Next Slide (Seamless Loop)
-=======
   }, [currentIndex]); // Fixed dependency
 
   // Handle Next Slide (Seamless Loop)
->>>>>>> 335fefab1947c264ce085c2cd630dfb273119e0a
   const nextSlide = () => {
     if (currentIndex < totalSlides) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
@@ -65,11 +55,7 @@ const Slider = () => {
   };
 
 
-<<<<<<< HEAD
-  //   Handle Dot Click
-=======
   // Handle Dot Click
->>>>>>> 335fefab1947c264ce085c2cd630dfb273119e0a
   const handleDotClick = (index) => {
     setCurrentIndex(index + 1); // Offset by 1 because of cloned slides
   };
@@ -108,11 +94,7 @@ const Slider = () => {
         ))}
       </div>
 
-<<<<<<< HEAD
-      {/*   Dots Navigation */}
-=======
       {/* Dots Navigation */}
->>>>>>> 335fefab1947c264ce085c2cd630dfb273119e0a
       <div className="dots-container">
         {slides.map((_, index) => (
           <span
