@@ -163,7 +163,7 @@ const OrderSummary = () => {
         <h4>Payment Info</h4>
         <div className="payment-details">
           <div className="card-info">
-            <img src={mastercard} alt="MasterCard Logo" className="card-logo" />
+            {/* <img src={mastercard} alt="MasterCard Logo" className="card-logo" /> */}
             <span>{order.paymentMethod || "Not Available"}</span>
           </div>
           <p>Business Name: {order.userId?.name || "Unknown User"}</p>

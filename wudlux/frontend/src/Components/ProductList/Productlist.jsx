@@ -43,7 +43,10 @@ const Productlist = () => {
         }
 
         const response = await fetch(url);
-        if (!response.ok) throw new Error(`Failed to fetch products. Status: ${response.status}`);
+        if (!response.ok)
+          throw new Error(
+            `Failed to fetch products. Status: ${response.status}`
+          );
 
         const result = await response.json();
         if (result.success) {
@@ -51,8 +54,12 @@ const Productlist = () => {
 
           // ✅ Fix: Ensure Material Filtering Works (Check inside materials array)
           if (material) {
-            filteredProducts = filteredProducts.filter((product) =>
-              product.materials && product.materials.some((mat) => mat.toLowerCase() === material.toLowerCase())
+            filteredProducts = filteredProducts.filter(
+              (product) =>
+                product.materials &&
+                product.materials.some(
+                  (mat) => mat.toLowerCase() === material.toLowerCase()
+                )
             );
           }
 
@@ -84,13 +91,19 @@ const Productlist = () => {
             <div
               className="shop-product-list-card"
               key={product._id}
-              onClick={() => navigate(`/product-info/${product._id}`, { state: { product } })}
+              onClick={() =>
+                navigate(`/product-info/${product._id}`, { state: { product } })
+              }
             >
               <div className="shop-product-list-image-wrapper">
                 <img
                   className="shop-product-list-image"
                   crossOrigin="anonymous"
-                  src={`http://localhost:5000/uploads/${Array.isArray(product.images) ? product.images[0] : product.images}`}
+                  src={`http://localhost:5000/uploads/${
+                    Array.isArray(product.images)
+                      ? product.images[0]
+                      : product.images
+                  }`}
                   alt={product.title}
                 />
                 {product.discount > 0 && (
@@ -106,7 +119,11 @@ const Productlist = () => {
                       addToCart(product);
                     }}
                   >
-                    <img src={bagIcon} alt="Bag Icon" className="shop-product-list-bag-icon" />
+                    <img
+                      src={bagIcon}
+                      alt="Bag Icon"
+                      className="shop-product-list-bag-icon"
+                    />
                     {isInCart ? "Added" : "Add to Bag"}
                   </button>
                 </div>
@@ -129,7 +146,9 @@ const Productlist = () => {
           );
         })
       ) : (
-        <div className="noProductsMessage">No products available in this category.</div>
+        <div className="noProductsMessage">
+          No products available in this category.
+        </div>
       )}
     </div>
   );

@@ -94,7 +94,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 10px 20px;
+  padding: 10px 7px;
   /* background: #fff; Clean background for filter section */
   border-radius: 8px;
   /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); Subtle shadow for emphasis */
@@ -111,7 +111,8 @@
 /* Search Input */
 .search-input {
   width: 100%;
-  padding: 10px 15px 10px 40px; /* Padding for the search icon */
+  padding: 10px 15px 10px 40px;
+  /* Padding for the search icon */
   font-size: 14px;
   /* border: 1px solid #e0e0e0; */
   border-radius: 8px;
@@ -129,12 +130,14 @@
   transform: translateY(-50%);
   width: 16px;
   height: 16px;
-  pointer-events: none; /* Prevent interaction with the icon */
-  opacity: 0.7; /* Slightly dimmed for better contrast */
+  pointer-events: none;
+  /* Prevent interaction with the icon */
+  opacity: 0.7;
+  /* Slightly dimmed for better contrast */
   transition: opacity 0.3s ease;
 }
 
-.search-input:focus + .search-icon {
+.search-input:focus+.search-icon {
   opacity: 1;
 }
 
@@ -146,9 +149,11 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   outline: none;
-  background: #fafafa;
+  /* background: #fafafa; */
   cursor: pointer;
   transition: 0.3s ease;
+  margin: 4px;
+  width: 11rem;
 }
 
 
@@ -380,5 +385,85 @@
   .pagination button {
     padding: 4px;
     font-size: 10px;
+  }
+
+  .filters {
+    flex-direction: column;
+    /* Stack elements vertically */
+    align-items: stretch;
+    /* Stretch elements to fit container */
+    gap: 12px;
+    /* Add spacing between elements */
+    padding: 10px;
+    /* Adjust padding for smaller screens */
+  }
+
+  .search-container {
+    width: 100%;
+    /* Full width for search container */
+  }
+
+  .search-input {
+    width: 100%;
+    /* Full width for input field */
+    padding: 10px 15px 10px 40px;
+    /* Keep padding for the search icon */
+    font-size: 12px;
+    /* Slightly smaller font size for better fit */
+    border-radius: 6px;
+    /* Reduce border radius for smaller screens */
+  }
+
+  .search-icon {
+    left: 10px;
+    /* Adjust icon position */
+    width: 14px;
+    /* Smaller icon size */
+    height: 14px;
+    /* Smaller icon size */
+  }
+
+  .filter-dropdown {
+    width: 100%;
+    /* Full width for dropdowns */
+    padding: 8px 10px;
+    /* Adjust padding for smaller screens */
+    font-size: 12px;
+    /* Reduce font size */
+    border-radius: 6px;
+    /* Reduce border radius for consistency */
+  }
+
+  /* Add spacing between dropdown options */
+  .filter-dropdown option {
+    padding: 5px;
+  }
+
+  .pagination {
+    gap: 5px;
+    /* Reduce gap between buttons */
+    padding: 0px 0;
+    flex-wrap: inherit;
+    /* Ensure buttons wrap on small screens */
+  }
+
+  .pagination button {
+    padding: 6px 8px;
+    font-size: 12px;
+    width: 45px;
+    height: 31px;
+
+  }
+
+  /* Smaller font size for smaller screens */
+  .pagination button.active {
+    padding: 6px 10px;
+    /* Slightly increase padding for active button */
+  }
+
+  .pagination button img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
   }
 }

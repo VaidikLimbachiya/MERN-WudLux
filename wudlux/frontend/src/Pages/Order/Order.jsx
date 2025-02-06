@@ -137,7 +137,7 @@ const OrderHistory = () => {
         </div>
 
         <div className="order-header">
-          <h1>Orders</h1>
+          <h2>Orders</h2>
         </div>
 
         <div className="filters">
@@ -151,28 +151,30 @@ const OrderHistory = () => {
             />
             <img src={Search} alt="Search Icon" className="search-icon" />
           </div>
-          <select
-            className="filter-dropdown"
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}
-          >
-            <option value="">Status</option>
-            <option value="Pending">Pending</option>
-            <option value="Processing">Processing</option>
-            <option value="Delivered">Delivered</option>
-            <option value="Cancelled">Cancelled</option>
-          </select>
+          <div className="filter-buttons">
+            <select
+              className="filter-dropdown"
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+            >
+              <option value="">Status</option>
+              <option value="Pending">Pending</option>
+              <option value="Processing">Processing</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
 
-          <select
-            className="filter-dropdown"
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
-          >
-            <option value="date-desc">Newest First</option>
-            <option value="date-asc">Oldest First</option>
-            <option value="amount-desc">High to Low (Amount)</option>
-            <option value="amount-asc">Low to High (Amount)</option>
-          </select>
+            <select
+              className="filter-dropdown"
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+            >
+              <option value="date-desc">Newest First</option>
+              <option value="date-asc">Oldest First</option>
+              <option value="amount-desc">High to Low (Amount)</option>
+              <option value="amount-asc">Low to High (Amount)</option>
+            </select>
+          </div>
         </div>
 
         {/* Order Table */}
@@ -208,18 +210,17 @@ const OrderHistory = () => {
                         </span>
                       </td>
                       <td>
-                      <span
-  className={`status ${
-    order.orderStatus === "Delivered"
-      ? "delivered"
-      : order.orderStatus === "Cancelled"
-      ? "cancelled"
-      : "processing"
-  }`}
->
-  {order.orderStatus}
-</span>
-
+                        <span
+                          className={`status ${
+                            order.orderStatus === "Delivered"
+                              ? "delivered"
+                              : order.orderStatus === "Cancelled"
+                              ? "cancelled"
+                              : "processing"
+                          }`}
+                        >
+                          {order.orderStatus}
+                        </span>
                       </td>
                       <td>
                         <Link
@@ -234,12 +235,26 @@ const OrderHistory = () => {
                   ))}
                 </tbody>
               </table>
+              
             ) : (
               <p className="no-orders-message">
                 No orders found matching your search.
               </p>
             )}
           </div>
+        </div>
+        <div className="pagination">
+          <button>
+            <img src={prev} alt="Previous" className="pagination-button" />
+          </button>
+          <button className="active">1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>...</button>
+          <button>21</button>
+          <button>
+            <img src={next} alt="Next" className="pagination-button" />
+          </button>
         </div>
       </div>
     </div>
