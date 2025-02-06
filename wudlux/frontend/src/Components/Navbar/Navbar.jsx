@@ -148,33 +148,18 @@ const Navbar = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  const handleLogout = async () => {
-    // Confirm logout for better UX
-    const confirmLogout = window.confirm("Are you sure you want to log out?");
-    if (!confirmLogout) return;
-  
-    try {
-      const token = localStorage.getItem("accessToken");
-      if (token) {
-        await fetch("http://localhost:5000/api/auth/logout", {
-          method: "POST",
-          headers: { Authorization: `Bearer ${token}` },
-        });
-      }
-  
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("refreshToken");
-      localStorage.removeItem("user");
-      sessionStorage.clear(); // Clear sessionStorage (if any)
-  
-      setIsLoggedIn(false);
-      setIsProfileMenuOpen(false); // Close the profile menu
-      navigate("/log-in");
-  
-      console.log("User successfully logged out.");
-    } catch (error) {
-      console.error("Error during logout:", error);
-    }
+  const handleLogout = () => {
+    // Clear tokens from localStorage
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("user");
+
+    // Update login state
+    setIsLoggedIn(false);
+    setIsProfileMenuOpen(false); // Close the profile menu
+
+    // Redirect to login page
+    navigate("/log-in");
   };
   const handleNavigate = (path) => {
     setIsCartOpen(false); // Close cart when navigating

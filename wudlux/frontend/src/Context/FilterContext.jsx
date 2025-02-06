@@ -27,7 +27,11 @@ import {
   
           console.log("API Response:", result);
   
+<<<<<<< HEAD
+          //   Extract `data` array if available
+=======
           // Extract `data` array if available
+>>>>>>> 335fefab1947c264ce085c2cd630dfb273119e0a
           if (result.success && Array.isArray(result.data)) {
             setData(result.data);
           } else {
@@ -48,14 +52,22 @@ import {
     useEffect(() => {
       let filtered = [...data];
   
+<<<<<<< HEAD
+      //   Filter by Material (Supports multiple selections)
+=======
       // Filter by Material (Supports multiple selections)
+>>>>>>> 335fefab1947c264ce085c2cd630dfb273119e0a
       if (state.selectedMaterials.length > 0) {
         filtered = filtered.filter((item) =>
           state.selectedMaterials.includes(item.material)
         );
       }
   
+<<<<<<< HEAD
+      //   Filter by Price Range
+=======
       // Filter by Price Range
+>>>>>>> 335fefab1947c264ce085c2cd630dfb273119e0a
       if (state.priceRange.min !== null && state.priceRange.max !== null) {
         filtered = filtered.filter(
           (item) =>
@@ -64,19 +76,31 @@ import {
         );
       }
   
+<<<<<<< HEAD
+      //   Filter by Category
+=======
       // Filter by Category
+>>>>>>> 335fefab1947c264ce085c2cd630dfb273119e0a
       if (state.selectedCategory) {
         filtered = filtered.filter((item) => item.category === state.selectedCategory);
       }
   
+<<<<<<< HEAD
+      //   Search Filtering (Case Insensitive)
+=======
       // Search Filtering (Case Insensitive)
+>>>>>>> 335fefab1947c264ce085c2cd630dfb273119e0a
       if (state.searchQuery.trim() !== "") {
         filtered = filtered.filter((item) =>
           item.title.toLowerCase().includes(state.searchQuery.toLowerCase())
         );
       }
   
+<<<<<<< HEAD
+      //   Sorting Logic
+=======
       // Sorting Logic
+>>>>>>> 335fefab1947c264ce085c2cd630dfb273119e0a
       switch (state.sortOption) {
         case "Price-low-to-High":
           filtered.sort((a, b) => a.price - b.price);

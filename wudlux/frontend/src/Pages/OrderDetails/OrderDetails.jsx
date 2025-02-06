@@ -32,7 +32,7 @@ const OrderSummary = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        console.log("✅ API Response:", response.data); // Debugging
+        console.log("  API Response:", response.data); // Debugging
         setOrder(response.data.order);
       } catch (error) {
         console.error("❌ Error fetching order details:", error);
@@ -49,7 +49,7 @@ const OrderSummary = () => {
   if (error) return <p className="error-message">{error}</p>;
   if (!order) return <p>No order details found.</p>;
 
-  // Dynamically Calculate Order Summary
+  //   Dynamically Calculate Order Summary
   const summary = {
     totalAmount: order.totalAmount || 0,
     cgst: order.cgst || 0,
