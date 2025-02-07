@@ -132,6 +132,7 @@ const OrderHistory = () => {
             src={breadcrumbIcon}
             alt="Breadcrumb"
             className="breadcrumb-icon"
+            loading="lazy"
           />
           <h2 className="btext">{">"} Order History</h2>
         </div>

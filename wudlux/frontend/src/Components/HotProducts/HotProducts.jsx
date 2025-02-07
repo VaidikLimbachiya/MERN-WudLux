@@ -22,42 +22,42 @@ const HotProducts = () => {
       {/* Grid Layout */}
       <div className="grid-gallery">
         <div className="grid-item item1">
-          <img src={image1} alt="Product 1" />
+          <img src={image1} alt="Product 1" loading="lazy"/>
             <div className="hover-overlay">
               <span className="hover-text">Wooden Bowl</span>
                 <a href="/product-1" className="hover-link">Shop Now</a>
             </div>
         </div>
         <div className="grid-item item2">
-          <img src={image2} alt="Product 2" />
+          <img src={image2} alt="Product 2" loading="lazy"/>
           <div className="hover-overlay">
             <span className="hover-text">Wooden Tray</span>
             <a href="/product-2" className="hover-link">Shop Now</a>
           </div>
         </div>
         <div className="grid-item item3">
-          <img src={image3} alt="Product 3" />
+          <img src={image3} alt="Product 3" loading="lazy"/>
           <div className="hover-overlay">
             <span className="hover-text">Tissue Holder</span>
             <a href="/product-3" className="hover-link">Shop Now</a>
           </div>
         </div>
         <div className="grid-item item4">
-          <img src={image4} alt="Product 4" />
+          <img src={image4} alt="Product 4" loading="lazy"/>
           <div className="hover-overlay">
             <span className="hover-text">Chopping Board</span>
             <a href="/product-4" className="hover-link">Shop Now</a>
           </div>
         </div>
         <div className="grid-item item5">
-          <img src={image5} alt="Product 5" />
+          <img src={image5} alt="Product 5" loading="lazy"/>
           <div className="hover-overlay">
             <span className="hover-text">Butcher Board</span>
             <a href="/product-5" className="hover-link">Shop Now</a>
           </div>
         </div>
         <div className="grid-item item6">
-          <img src={image6} alt="Product 6" />
+          <img src={image6} alt="Product 6" loading="lazy"/>
           <div className="hover-overlay">
             <span className="hover-text">Serving Platter</span>
             <a href="/product-6" className="hover-link">Shop Now</a>

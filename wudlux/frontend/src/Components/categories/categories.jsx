@@ -52,6 +52,7 @@ const Categories = () => {
                   src={category.image}
                   alt={`${category.title} category`}
                   className="categoryImage"
+                  
                 />
                 <div className="hoverOverlay">
                   <span>+</span>

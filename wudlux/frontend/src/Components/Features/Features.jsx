@@ -29,7 +29,7 @@ const Features = () => {
     <div className="features-container">
       {features.map((feature, index) => (
         <div key={index} className="feature-card">
-          <img src={feature.icon} alt={`${feature.title} Icon`} className="feature-icon" />
+          <img src={feature.icon} alt={`${feature.title} Icon`} className="feature-icon" loading="lazy"/>
           <h2 className="feature-title">{feature.title}</h2>
           <p className="feature-description">{feature.description}</p>
         </div>

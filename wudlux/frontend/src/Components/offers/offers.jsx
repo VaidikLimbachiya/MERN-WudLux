@@ -10,7 +10,7 @@ const Offers = () => {
       <div className="offers-container">
         {/* First Card */}
         <div className="offer-card">
-          <img src={tablewareImage} alt="Tableware Collections" className="offer-image" />
+          <img src={tablewareImage} alt="Tableware Collections" className="offer-image" loading="lazy"/>
           <div className="offer-overlay">
             <p className="offer-titlee">Top Trending</p>
             <h3 className="offer-subtitle">Tableware <br />Collections</h3>
@@ -20,7 +20,7 @@ const Offers = () => {
 
         {/* Second Card */}
         <div className="offer-card">
-          <img src={saleImage} alt="Black Friday Sale" className="offer-image" />
+          <img src={saleImage} alt="Black Friday Sale" className="offer-image" loading="lazy"/>
           <div className="offer-overlay">
             <p className="offer-titlee">Black Fridays!</p>
             <h3 className="offer-subtitle">Sale up to <br />50% off</h3>
@@ -30,7 +30,7 @@ const Offers = () => {
 
         {/* Third Card */}
         <div className="offer-card">
-          <img src={kitchenwareImage} alt="Kitchenware Collections" className="offer-image" />
+          <img src={kitchenwareImage} alt="Kitchenware Collections" className="offer-image" loading="lazy" />
           <div className="offer-overlay">
             <p className="offer-titlee">Top Trending</p>
             <h3 className="offer-subtitle">Kitchenware - <br />Bella Collections</h3>

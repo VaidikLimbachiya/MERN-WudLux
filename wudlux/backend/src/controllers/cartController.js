@@ -1,45 +1,59 @@
 const userModel = require("../models/userModel");
+const productModel = require("../models/product"); // Import Product model to fetch full details
 
-// Add items to user cart
 exports.addToCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
 
     if (!productId || !Number.isInteger(quantity) || quantity <= 0) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Valid product ID and quantity are required.",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Valid product ID and quantity are required.",
+      });
     }
 
     const userId = req.user.id; // Use authenticated user's ID
     const user = await userModel.findById(userId);
 
     if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found." });
+      return res.status(404).json({ success: false, message: "User not found." });
+    }
+
+    // Find full product details
+    const product = await productModel.findById(productId);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found." });
     }
 
     // Check if the product already exists in the cart
-    const existingItem = user.cart.find(
-      (item) => item.productId.toString() === productId
-    );
+    const existingItem = user.cart.find((item) => item.productId.toString() === productId);
 
     if (existingItem) {
-      existingItem.quantity += quantity;
+      existingItem.quantity += quantity; // Increment quantity
     } else {
       user.cart.push({ productId, quantity });
     }
 
     await user.save();
 
+    // Fetch updated cart with full product details
+    const updatedCart = await Promise.all(
+      user.cart.map(async (item) => {
+        const fullProduct = await productModel.findById(item.productId);
+        return {
+          productId: item.productId,
+          title: fullProduct.title,
+          price: fullProduct.price,
+          images: fullProduct.images || [],
+          quantity: item.quantity,
+        };
+      })
+    );
+
     res.json({
       success: true,
       message: "Item added to cart successfully.",
-      cart: user.cart,
+      cart: updatedCart, // Send cart with full details
     });
   } catch (error) {
     console.error("Error adding to cart:", error);

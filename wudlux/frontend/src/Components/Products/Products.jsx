@@ -98,7 +98,10 @@ const Products = () => {
             <div
               className="productCard"
               key={product.id || index}
-              onClick={() => navigate(`/product-info/${product._id}`, { state: { product } })}
+              onClick={() => {
+                window.scrollTo(0, 0); // Scroll to top before navigating
+                navigate(`/product-info/${product._id}`, { state: { product } });
+              }}              
             >
               <div className="productImageWrapper">
                 <img
@@ -106,6 +109,7 @@ const Products = () => {
                   crossOrigin="anonymous"
                   src={`http://localhost:5000/uploads/${Array.isArray(product.images) ? product.images[0] : product.images}`}
                   alt={product.title}
+                  loading="lazy"
                 />
                 {product.discount > 0 && (
                   <div className="discountBadge">{product.discount}% OFF</div>
@@ -118,7 +122,7 @@ const Products = () => {
                       addToCart({ ...product, quantity: 1 }); // Pass full product details
                     }}
                   >
-                    Add to Bag <img src={bagIcon} alt="Bag Icon" className="bagIcon" />
+                    Add to Bag <img src={bagIcon} alt="Bag Icon" className="bagIcon" loading="lazy"/>
                   </button>
                 </div>
               </div>

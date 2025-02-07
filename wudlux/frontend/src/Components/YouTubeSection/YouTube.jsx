@@ -40,6 +40,7 @@ const YouTube = () => {
                 src={video.thumbnail}
                 alt={`Premium Look Video ${video.id}`}
                 className="video-thumbnail"
+                loading="lazy"
               />
               <a
                 href={video.videoUrl}
@@ -47,7 +48,7 @@ const YouTube = () => {
                 rel="noopener noreferrer"
                 className="play-button"
               >
-                <img src={playIcon} alt="Play" className="play-icon" />
+                <img src={playIcon} alt="Play" className="play-icon" loading="lazy"/>
               </a>
             </div>
           </div>
