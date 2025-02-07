@@ -28,31 +28,32 @@
   margin: auto 0;
 }
 
+.dropdownButton {
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--primary-primary-200, #cdc2bc);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  margin-left: 30px;
+  margin-right: 30px;
+  width: 250px;
+  cursor: pointer;
+}
+
+
 .dropdownButton1 {
   align-items: center;
   border-radius: 8px;
   border: 1px solid var(--primary-primary-200, #cdc2bc);
   display: flex;
   justify-content: space-between;
-  padding: 10px 13px;
+  padding: 10px 16px;
   margin-left: 30px;
   margin-right: 30px;
-  /* width: 150px; */
+  width: 150px;
   cursor: pointer;
 }
-.dropdownButton2 {
-  align-items: center;
-  border-radius: 8px;
-  border: 1px solid var(--primary-primary-200, #cdc2bc);
-  display: flex;
-  justify-content: space-between;
-  /* padding: 10px 10px; */
-  margin-left: 30px;
-  /* margin-right: 30px; */
-  /* width: 150px; */
-  cursor: pointer;
-}
-
 .dropdownText {
   font-feature-settings: "liga" off, "clig" off;
   width: 132px;
@@ -97,7 +98,7 @@
 
 .priceInput {
   width: 105px;
-  text-align: left;
+  text-align: right;
   padding: 10px 16px;
   border: none;
 }
@@ -120,11 +121,10 @@
   background: var(--Neutral-50, #fff);
   display: flex;
   margin-top: 25px;
-  width: 96%;
+  width: 100%;
   gap: 40px 100px;
   flex-wrap: wrap;
   padding: 16px 0;
-  margin-left: 35px;
 }
 
 .activeFiltersList {
@@ -151,10 +151,8 @@
 }
 
 .removeIcon {
-  /* font-size: 90px; */
   aspect-ratio: 1;
-  width: 20px;
-  height: 20px;
+  width: 12px;
   cursor: pointer;
 }
 
@@ -173,92 +171,97 @@
 @media (max-width: 320px) {
   .filterContainer {
     flex-direction: column;
-    gap: 12px; /* Reduced gap for compactness */
-    padding: 8px; /* Reduced padding for small screens */
+    gap: 12px; /* Reduced spacing for compact layout */
+    padding: 8px; /* Add some padding for better alignment */
   }
 
   .filterRow {
-    flex-direction: column;
-    gap: 12px; /* Tighter spacing */
-    align-items: flex-start;
+    flex-direction: column; /* Stack elements vertically */
+    gap: 12px; /* Compact gap */
+    align-items: flex-start; /* Align to the left */
+    width: 100%;
   }
 
   .filterGroup {
-    width: 100%;
-    justify-content: flex-start;
-    gap: 6px;
+    flex-direction: column; /* Stack dropdowns vertically */
+    gap: 8px; /* Compact gap between items */
+    align-items: flex-start; /* Left alignment */
+    width: 100%; /* Full width for mobile */
+    margin: 0;
   }
 
   .dropdownButton {
-    padding: 6px 8px; /* Compact padding */
-    font-size: 10px; /* Smaller font size */
-    width: 100%; /* Full width for mobile */
+    width: 60%; /* Full width for dropdown */
+    padding: 8px; /* Compact padding */
+    font-size: 12px; /* Smaller font size for mobile */
+    margin-left: 0px;
   }
-
-  .dropdownText {
-    width: auto;
-    font-size: 10px;
-    text-align: left;
-  }
-
-  .priceSlider {
-    width: 100%;
-    margin: 0; /* Eliminate excess spacing */
-  }
-
-  .currencyInput {
-    flex-direction: row; /* Align currency inputs horizontally */
-    justify-content: space-between;
-    gap: 6px;
-    width: 100%;
-  }
-
-  .currencySymbol {
-    padding: 6px 8px;
-    font-size: 10px; /* Adjust for small screens */
-  }
-
-  .priceInput {
-    padding: 6px 8px;
-    font-size: 10px; /* Match other small inputs */
-    text-align: left;
-    border: none;
+  .dropdownButton1 {
+    width: 100%; /* Full width for dropdown */
+    padding: 8px; /* Compact padding */
+    font-size: 12px; /* Smaller font size for mobile */
+    margin-left: 0px;
   }
 
   .priceRange {
-    flex-direction: column; /* Stack vertically */
-    align-items: flex-start;
-    gap: 6px;
-    width: 100%;
+    flex-direction: row; /* Stack price range inputs vertically */
+    gap: 8px; /* Compact spacing */
+    align-items: center; /* Align items to the left */
+    width: 100%; /* Full width */
+  }
+
+  .currencyInput {
+    width: 100%; /* Full width for inputs */
+    gap: 6px; /* Reduced gap */
+    padding: 6px; /* Compact padding */
+  }
+
+  .currencySymbol {
+    padding: 6px; /* Reduced padding */
+    font-size: 12px; /* Adjust for smaller screens */
+  }
+
+  .priceInput {
+    width: 100%; /* Full width for input fields */
+    padding: 6px 8px; /* Compact padding */
+    font-size: 12px; /* Smaller font size */
+    text-align: left;
   }
 
   .applyButton {
-    padding: 6px 8px;
-    font-size: 12px;
-    width: 100%;
+    width: 35%; /* Full width for Apply button */
+    padding: 8px; /* Compact padding */
+    font-size: 14px; /* Standard font size for clarity */
     justify-content: center; /* Center align text */
   }
 
   .activeFiltersBar {
-    flex-direction: column; /* Stack active filters */
-    gap: 8px;
-    padding: 10px;
-    width: 100%;
-    align-items: flex-start;
-    margin-left: 0px;
+    flex-direction: column; /* Stack active filters vertically */
+    gap: 8px; /* Compact spacing */
+    padding: 8px 0; /* Adjust padding */
+    width: 100%; /* Full width */
+    align-items: flex-start; /* Left alignment */
   }
 
   .activeFiltersList {
-    flex-direction: row;
-    gap: 18px;
-    width: 100%;
-    margin-left: -38px;
+    flex-wrap: wrap; /* Allow filters to wrap */
+    gap: 8px; /* Compact spacing */
+    width: 100%; /* Full width */
+    align-items: flex-start; /* Align items to the left */
   }
 
   .resultsCount {
-    font-size: 13px;
-    text-align: right;
-    margin: 0;
+    font-size: 12px; /* Smaller font size */
+    text-align: left; /* Align to the left */
+    width: 100%; /* Full width */
+  }
 
+  .removeIcon {
+    width: 10px; /* Smaller icon size */
+    height: 10px;
+  }
+
+  .dropdownText {
+    font-size: 12px; /* Adjust text size for smaller screens */
   }
 }

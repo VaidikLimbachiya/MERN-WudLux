@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import './Filter.css';
-import rp from '../../assets/rp.png';
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import "./Filter.css";
+import rp from "../../assets/rp.png";
 import { CiCircleRemove } from "react-icons/ci";
 
 export default function Filter({ productCount }) {
@@ -21,9 +21,12 @@ export default function Filter({ productCount }) {
 
   // State for filter values before applying
   const [selectedMaterial, setSelectedMaterial] = useState(initialMaterial);
-  const [priceRange, setPriceRange] = useState({ min: initialMinPrice, max: initialMaxPrice });
+  const [priceRange, setPriceRange] = useState({
+    min: initialMinPrice,
+    max: initialMaxPrice,
+  });
   const [sortOption, setSortOption] = useState(initialSortOption);
-  
+
   // State for applied filters (Only updates when Apply is clicked)
   const [activeFilters, setActiveFilters] = useState([]);
 
@@ -34,21 +37,24 @@ export default function Filter({ productCount }) {
     if (category) newParams.set("category", category);
     if (subcategory) newParams.set("subcategory", subcategory);
     if (selectedMaterial) newParams.set("material", selectedMaterial);
-    if (priceRange.min) newParams.set("minPrice", Number(priceRange.min));  // Ensure number conversion
+    if (priceRange.min) newParams.set("minPrice", Number(priceRange.min)); // Ensure number conversion
     if (priceRange.max) newParams.set("maxPrice", Number(priceRange.max));
-    if (sortOption && sortOption !== "Latest") newParams.set("sortOption", sortOption);
+    if (sortOption && sortOption !== "Latest")
+      newParams.set("sortOption", sortOption);
 
     // Update URL
     navigate(`/products?${newParams.toString()}`);
 
     // Update active filters (only on Apply button click)
     const filters = [];
-    if (selectedMaterial) filters.push({ id: "material", text: selectedMaterial });
+    if (selectedMaterial)
+      filters.push({ id: "material", text: selectedMaterial });
     if (priceRange.min || priceRange.max) {
-      const priceText = `₹${priceRange.min || '0'} - ₹${priceRange.max || '∞'}`;
+      const priceText = `₹${priceRange.min || "0"} - ₹${priceRange.max || "∞"}`;
       filters.push({ id: "price", text: priceText });
     }
-    if (sortOption && sortOption !== "Latest") filters.push({ id: "sort", text: `Sort: ${sortOption}` });
+    if (sortOption && sortOption !== "Latest")
+      filters.push({ id: "sort", text: `Sort: ${sortOption}` });
 
     setActiveFilters(filters);
   };
@@ -75,82 +81,110 @@ export default function Filter({ productCount }) {
     navigate(`/products?${newParams.toString()}`);
 
     // Update active filters list
-    setActiveFilters(activeFilters.filter(filter => filter.id !== filterId));
+    setActiveFilters(activeFilters.filter((filter) => filter.id !== filterId));
   };
 
   return (
     <div className="filterContainer">
       <div className="filterRow">
-        {/* Material Filter */}
-        <select className="dropdownButton2" value={selectedMaterial} onChange={(e) => setSelectedMaterial(e.target.value)}>
-          <option value="">Select Material</option>
-          <option value="Acacia wood">Acacia wood</option>
-          <option value="Teak wood">Teak wood</option>
-          <option value="Mango wood">Mango wood</option>
-        </select>
+        <div className="filterGroup">
+          <select
+            className="dropdownButton"
+            value={selectedMaterial}
+            onChange={(e) => setSelectedMaterial(e.target.value)}
+          >
+            <option value="">Select Material</option>
+            <option value="Acacia wood">Acacia wood</option>
+            <option value="Teak wood">Teak wood</option>
+            <option value="Mango wood">Mango wood</option>
+          </select>
 
-        {/* Price Range Filter */}
-        <div className="priceRange">
-          <span className="priceLabel">Price</span>
-          <div className="currencyInput">
-            <span className="currencySymbol"><img src={rp} alt="" /></span>
-            <input
-              type="number"
-              className="priceInput"
-              placeholder="Min"
-              value={priceRange.min}
-              onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })}
-            />
+            {/* Price Range Filter */}
+            <div className="priceRange">
+              <span className="priceLabel">Price</span>
+              <div className="currencyInput">
+                <span className="currencySymbol">
+                  <img src={rp} alt="" />
+                </span>
+                <input
+                  type="number"
+                  className="priceInput"
+                  placeholder="Min"
+                  value={priceRange.min}
+                  onChange={(e) =>
+                    setPriceRange({ ...priceRange, min: e.target.value })
+                  }
+                />
+              </div>
+              <span>to</span>
+              <div className="currencyInput">
+                <span className="currencySymbol">
+                  <img src={rp} alt="" />
+                </span>
+                <input
+                  type="number"
+                  className="priceInput"
+                  placeholder="Max"
+                  value={priceRange.max}
+                  onChange={(e) =>
+                    setPriceRange({ ...priceRange, max: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+
+            <button className="applyButton" onClick={applyFilters}>
+              Apply
+              <img
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/d65c38d49cc0cc7f1ecc59f5c6f56ed7d0e5da7faa4138d582f4497361762f54?placeholderIfAbsent=true&apiKey=4bede4563f2047b58544427a4978e824"
+                  alt="Apply icon"
+                  className="dropdownIcon"
+                />
+
+            </button>
           </div>
-          <span>to</span>
-          <div className="currencyInput">
-            <span className="currencySymbol"><img src={rp} alt="" /></span>
-            <input
-              type="number"
-              className="priceInput"
-              placeholder="Max"
-              value={priceRange.max}
-              onChange={(e) => setPriceRange({ ...priceRange, max: e.target.value })}
-            />
-          </div>
+        <div>
+          <select
+            className="dropdownButton1"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value="Featured">Featured</option>
+            <option value="Best Selling">Best Selling</option>
+            <option value="Alphabetically: A to Z">
+              Alphabetically A to Z
+            </option>
+            <option value="Alphabetically: Z to A">
+              Alphabetically Z to A
+            </option>
+            <option value="Price-low-to-High">Price: Low to High</option>
+            <option value="Price-High-to-Low">Price: High to Low</option>
+            <option value="Date - old to new">Date: Old to New</option>
+            <option value="Date - new to old">Date: New to Old</option>
+          </select>
         </div>
-
-        {/* Sort Filter */}
-<select className="dropdownButton1" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-  <option value="Featured">Featured</option>
-  <option value="Best Selling">Best Selling</option>
-  <option value="Alphabetically: A to Z">Alphabetically A to Z</option>
-  <option value="Alphabetically: Z to A">Alphabetically Z to A</option>
-  <option value="Price-low-to-High">Price: Low to High</option>
-  <option value="Price-High-to-Low">Price: High to Low</option>
-  <option value="Date - old to new">Date: Old to New</option>
-  <option value="Date - new to old">Date: New to Old</option>
-</select>
-
-
-        {/* Apply Button */}
-        <button className="applyButton" onClick={applyFilters}>Apply</button>
       </div>
 
-      {/* Active Filters & Results Count (Only show after clicking Apply) */}
-{activeFilters.length > 0 && (
-  <div className="activeFiltersBar">
-    <div className="activeFiltersList">
-      <span className="activeFiltersLabel">Active Filters:</span>
-      {activeFilters.map((filter) => (
-        <div className="filterTag" key={filter.id}>
-          <span>{filter.text}</span>
-          <CiCircleRemove className="removeIcon" onClick={() => removeFilter(filter.id)} />
+      {activeFilters.length > 0 && (
+        <div className="activeFiltersBar">
+          <div className="activeFiltersList">
+            <span className="activeFiltersLabel">Active Filters:</span>
+            {activeFilters.map((filter) => (
+              <div className="filterTag" key={filter.id}>
+                <span>{filter.text}</span>
+                <CiCircleRemove
+                  className="removeIcon"
+                  onClick={() => removeFilter(filter.id)}
+                />
+              </div>
+            ))}
+          </div>
+          {/* ✅ Display the product count dynamically */}
+          <div className="resultsCount">
+            <span>Results Found: {productCount}</span>
+          </div>
         </div>
-      ))}
-    </div>
-    {/* ✅ Display the product count dynamically */}
-    <div className="resultsCount">
-      <span>Results Found: {productCount}</span>
-    </div>
-  </div>
-)}
-
+      )}
     </div>
   );
 }
