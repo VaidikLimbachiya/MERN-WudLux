@@ -1,0 +1,505 @@
+# Query: img
+# ContextLines: 1
+
+123 results - 39 files
+
+wudlux\admin\package-lock.json:
+  7114        "resolved": "https://registry.npmjs.org/csstype/-/csstype-3.1.3.tgz",
+  7115:       "integrity": "sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw=="
+  7116      },
+
+wudlux\admin\public\vite.svg:
+  1: <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3
+
+wudlux\admin\src\assets\react.svg:
+  1: <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.5
+
+wudlux\admin\src\components\Navbar\Navbar.css:
+  228  /* Reset filter for images with class "image" in light mode */
+  229: .lightcolors label img.image {
+  230      filter: none; /* Reset filter for images with class "image" in light mode */
+
+wudlux\admin\src\components\Navbar\Navbar.jsx:
+  55        <div className="navbar">
+  56:         <img className="logo" src={assets.logo} alt="" loading="lazy"/>
+  57          <span className="admin-text">Admin</span>
+  58:         <img className="profile" src={assets.profile_image} alt="" loading="lazy" />
+  59        </div>
+
+wudlux\admin\src\components\Sidebar\Sidebar.jsx:
+  10              <Link to='/add' className="sidebar-option">
+  11:                 <img className='addd' src={assets.add_icon} alt="" loading="lazy"/>
+  12                  <p>Add Items</p>
+
+  14              <Link to='/list' className="sidebar-option">
+  15:                 <img className='listt' src={assets.list} alt="" loading="lazy"/>
+  16                  <p>List Items</p>
+
+  18              <Link to='/orders' className="sidebar-option">
+  19:                 <img className='orderr' src={assets.order_icon} alt="" loading="lazy" />
+  20                  <p>Orders</p>
+
+wudlux\admin\src\pages\Add\Add.css:
+  13  
+  14: .add-img-upload,
+  15  .add-variant-images,
+
+  28  
+  29: .add-img-upload p,
+  30  .add-variant-images p,
+
+  42  
+  43: .add-img-upload label,
+  44  .add-variant-images label {
+
+  55  
+  56: .add-img-upload label:hover,
+  57  .add-variant-images label:hover {
+
+wudlux\admin\src\pages\Add\Add.jsx:
+  119          {/* Image Upload Section */}
+  120:         <div className="add-img-upload">
+  121            <p>Upload Main Images</p>
+  122            <label htmlFor="images">
+  123:             <img
+  124                className="image-preview" loading="lazy"
+
+  146            <label htmlFor="variantImages">
+  147:             <img
+  148                className="image-preview" loading="lazy"
+
+  163                variantImages.map((image, index) => (
+  164:                 <img
+  165                    key={index} loading="lazy"
+
+wudlux\admin\src\pages\List\List.css:
+   98  /* Image Styling */
+   99: .list-table-row img {
+  100    width: 60px;
+
+  107  
+  108: .list-table-row img:hover {
+  109    transform: scale(1.1);
+
+wudlux\admin\src\pages\List\List.jsx:
+  71              <div key={product._id} className="list-table-row">
+  72:               <img
+  73                  crossOrigin="anonymous" loading="lazy"
+
+wudlux\admin\src\pages\Orders\Orders.jsx:
+  62                      <li key={index} className="order-product">
+  63:                       <img 
+  64                          crossOrigin='anonymous' loading="lazy"
+
+wudlux\frontend\package-lock.json:
+  2046        "resolved": "https://registry.npmjs.org/csstype/-/csstype-3.1.3.tgz",
+  2047:       "integrity": "sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==",
+  2048        "dev": true,
+
+wudlux\frontend\src\Components\carousalProduct\caroProduct.jsx:
+   94              <div className="shop-carousel-image-wrapper">
+   95:               <img
+   96                  crossOrigin="anonymous" loading="lazy"
+
+  108                    Add to Bag
+  109:                   <img
+  110                      src={bagIcon}
+
+wudlux\frontend\src\Components\categories\categories.jsx:
+  49                >
+  50:                 <img
+  51                    loading="lazy"
+
+wudlux\frontend\src\Components\Features\Features.jsx:
+  31          <div key={index} className="feature-card">
+  32:           <img src={feature.icon} alt={`${feature.title} Icon`} className="feature-icon" loading="lazy" />
+  33            <h2 className="feature-title">{feature.title}</h2>
+
+wudlux\frontend\src\Components\Filter\Filter.jsx:
+   95            <div className="currencyInput">
+   96:             <span className="currencySymbol"><img src={rp} alt="" loading="lazy"/></span>
+   97              <input
+
+  106            <div className="currencyInput">
+  107:             <span className="currencySymbol"><img src={rp} alt="" loading="lazy"/></span>
+  108              <input
+
+wudlux\frontend\src\Components\HotProducts\HotProducts.css:
+   82  
+   83: .grid-item img {
+   84    width: 100%;
+
+   90  /* Hover Effect */
+   91: .grid-item:hover img {
+   92    transform: scale(1); /* Slight zoom effect */
+
+  224    
+  225:   .grid-item img {
+  226      border-radius: 10px; /* Enhance aesthetics for larger screens */
+
+  260  
+  261:   .grid-item img {
+  262      height: 6rem; /* Ensure images resize properly */
+
+  319  
+  320:   .grid-item img {
+  321      height: 6rem; /* Ensure images adapt properly */
+
+wudlux\frontend\src\Components\HotProducts\HotProducts.jsx:
+  24          <div className="grid-item item1">
+  25:           <img src={image1} alt="Product 1" loading="lazy" />
+  26              <div className="hover-overlay">
+
+  31          <div className="grid-item item2">
+  32:           <img src={image2} alt="Product 2" loading="lazy" />
+  33            <div className="hover-overlay">
+
+  38          <div className="grid-item item3">
+  39:           <img src={image3} alt="Product 3" loading="lazy"/>
+  40            <div className="hover-overlay">
+
+  45          <div className="grid-item item4">
+  46:           <img src={image4} alt="Product 4" loading="lazy"/>
+  47            <div className="hover-overlay">
+
+  52          <div className="grid-item item5">
+  53:           <img src={image5} alt="Product 5" loading="lazy"/>
+  54            <div className="hover-overlay">
+
+  59          <div className="grid-item item6">
+  60:           <img src={image6} alt="Product 6" loading="lazy"/>
+  61            <div className="hover-overlay">
+
+wudlux\frontend\src\Components\Navbar\Navbar.css:
+   816  
+   817: .navbar__menuIcon img,
+   818: .navbar__searchIcon img,
+   819: .navbar__cartIcon img {
+   820    width: 24px;
+
+   824  
+   825: .navbar__logo img {
+   826    width: 50px;
+
+  1086  
+  1087:   .navbar__menuIcon img,
+  1088:   .navbar__searchIcon img,
+  1089:   .navbar__cartIcon img {
+  1090      width: 22px;
+
+  1094  
+  1095:   .navbar__searchIcon img {
+  1096      margin-left: -70px;
+
+  1098  
+  1099:   .navbar__logo img {
+  1100      width: 55px;
+
+wudlux\frontend\src\Components\Navbar\Navbar.jsx:
+  197              <div className="navbar__menuIcon" onClick={toggleMenu}>
+  198:               <img src={menuBar} alt="Menu" loading="lazy"/>
+  199              </div>
+
+  232                        <span className="categoryLabel">{category.text}</span>
+  233:                       <img
+  234                          src={category.iconSrc} loading="lazy"
+
+  314              <div className="navbar__searchIcon">
+  315:               <img src={searchIcon} alt="Search" onClick={toggleSearch} loading="lazy"/>
+  316              </div>
+
+  319              <div className="navbar__logo" onClick={() => navigate("/")}>
+  320:               <img src={logo} alt="Logo" loading="lazy"/>
+  321              </div>
+
+  324              <div className="navbar__cartIcon" onClick={toggleCart}>
+  325:               <img src={cartIcon} alt="Cart" loading="lazy"/>
+  326                <span className="navbar__cartBadge">{totalQuantity}</span>
+
+  331              <div className="logoSection" onClick={() => navigate("/")}>
+  332:               <img
+  333                  src={logo} loading="lazy"
+
+  359                      <span className="categoryText">{category.text}</span>
+  360:                     <img
+  361                        src={category.iconSrc} loading="lazy"
+
+  396              <div className="userActions">
+  397:               <img
+  398                  src={searchIcon} loading="lazy"
+
+  404                <div className="profileIconWrapper">
+  405:                 <img
+  406                    src={profileIcon} loading="lazy"
+
+  441                <div className="cartIcon" onClick={toggleCart}>
+  442:                 <img src={cartIcon} alt="Shopping Cart" className="cartImage" loading="lazy"/>
+  443                  <span className="cartBadge">{totalQuantity}</span>
+
+  464                >
+  465:                 <img
+  466                    crossOrigin="anonymous" loading="lazy"
+
+wudlux\frontend\src\Components\offers\offers.jsx:
+  12          <div className="offer-card">
+  13:           <img src={tablewareImage} alt="Tableware Collections" className="offer-image" loading="lazy"/>
+  14            <div className="offer-overlay">
+
+  22          <div className="offer-card">
+  23:           <img src={saleImage} alt="Black Friday Sale" className="offer-image" loading="lazy"/>
+  24            <div className="offer-overlay">
+
+  32          <div className="offer-card">
+  33:           <img src={kitchenwareImage} alt="Kitchenware Collections" className="offer-image" loading="lazy"/>
+  34            <div className="offer-overlay">
+
+wudlux\frontend\src\Components\ProductList\Productlist.jsx:
+  137                  <div className="shop-product-list-image-wrapper">
+  138:                   <img
+  139                      className="shop-product-list-image" loading="lazy"
+
+  160                      >
+  161:                       <img
+  162                          src={bagIcon} loading="lazy"
+
+wudlux\frontend\src\Components\Products\Products.jsx:
+  106                <div className="productImageWrapper">
+  107:                 <img
+  108                    className="productImage" loading="lazy"
+
+  123                    >
+  124:                     Add to Bag <img src={bagIcon} alt="Bag Icon" className="bagIcon" />
+  125                    </button>
+
+wudlux\frontend\src\Components\Rating\testimonials.jsx:
+   95                <div className="testimonial-user">
+   96:                 <img
+   97                    src={testimonial.image} loading="lazy"
+
+  137              <div className="testimonial-user">
+  138:               <img
+  139                  src={testimonials[currentIndex].image} loading="lazy"
+
+wudlux\frontend\src\Components\Services\service.css:
+  31  
+  32: .service-icon img {
+  33    width: 80px;
+
+wudlux\frontend\src\Components\Services\service.jsx:
+  39              <div className="service-icon">
+  40:               <img src={service.icon} alt={`${service.title} icon`} loading="lazy"/>
+  41              </div>
+
+wudlux\frontend\src\Components\Sidebar\Sidebar.jsx:
+  22          <div className="sidebar-header">
+  23:             <img src={logoIcon} alt="Logo" className="sidebar-logo" loading="lazy"/>
+  24              <h2 className="sidebar-title">Wudlux</h2>
+
+  34              >
+  35:                 <img src={item.icon} alt={item.label} className="sidebar-nav-icon" loading="lazy"/>
+  36                  <span className="sidebar-nav-text">{item.label}</span>
+
+wudlux\frontend\src\Components\YouTubeSection\YouTube.jsx:
+  38              <div className="video-wrapper">
+  39:               <img
+  40                  src={video.thumbnail} loading="lazy"
+
+  49                >
+  50:                 <img src={playIcon} alt="Play" className="play-icon" loading="lazy"/>
+  51                </a>
+
+wudlux\frontend\src\Pages\Address\Address.jsx:
+  171        <div className="breadcrumb">
+  172:         <img src={breadcrumbIcon} alt="Breadcrumb" loading="lazy"/>
+  173          <h2 className="btext">{">"} Addresses</h2>
+
+wudlux\frontend\src\Pages\Cart\CartPage.jsx:
+  51        <td className="cart-item-details">
+  52:         <img
+  53            crossOrigin="anonymous" loading="lazy"
+
+wudlux\frontend\src\Pages\Checkout\Checkout.jsx:
+  188            <Link to="/">
+  189:             <img src={logo} alt="Company Logo" className="logo-image" loading="lazy"/>
+  190            </Link>
+
+  406                <div key={item.id || index} className="product-box">
+  407:                 <img
+  408                    crossOrigin="anonymous" loading="lazy"
+
+wudlux\frontend\src\Pages\ContactUs\ContactUs.jsx:
+  30            <div className="info-item">
+  31:             <img src={phoneIcon} alt="Phone Icon" className="icon" loading="lazy"/>
+  32              <div className="contact-text">
+
+  38            <div className="info-item">
+  39:             <img src={emailIcon} alt="Email Icon" className="icon" loading="lazy"/>
+  40              <div className="contact-text">
+
+wudlux\frontend\src\Pages\Order\Order.css:
+   68  
+   69: .breadcrumb img {
+   70    height: 24px;
+
+  206  
+  207: .pagination button img {
+  208    width: 50px;
+
+  253  
+  254:   .breadcrumb img {
+  255      height: 24px;
+
+wudlux\frontend\src\Pages\Order\Order.jsx:
+  130          <div className="breadcrumb">
+  131:           <img
+  132              src={breadcrumbIcon} loading="lazy"
+
+wudlux\frontend\src\Pages\OrderDetails\OrderDetails.css:
+   78    
+   79:   .print-icon img {
+   80      width: 30px;
+
+  289    
+  290:     .print-icon img {
+  291        width: 24px;
+
+wudlux\frontend\src\Pages\OrderDetails\OrderDetails.jsx:
+   82            <div className="print-icon">
+   83:             <img src={print} alt="Print Icon" loading="lazy"/>
+   84            </div>
+
+   91            <div className="icon-title">
+   92:             <img src={customer} alt="Customer Icon" className="info-icon" loading="lazy"/>
+   93              <h4>Customer Info</h4>
+
+  100            <div className="icon-title">
+  101:             <img src={shiping} alt="Shipping Icon" className="info-icon" loading="lazy"/>
+  102              <h4>Shipping Address</h4>
+
+  127                    <div className="product-details">
+  128:                     <img
+  129                        crossOrigin="anonymous" loading="lazy"
+
+  165            <div className="card-info">
+  166:             <img src={mastercard} alt="MasterCard Logo" className="card-logo" loading="lazy"/>
+  167              <span>{order.paymentMethod || "Not Available"}</span>
+
+wudlux\frontend\src\Pages\OurStory\OurStory.jsx:
+  22            <div className="image-container">
+  23:             <img src={storyImage} alt="WUDLUX Story" className="story-image" loading="lazy"/>
+  24            </div>
+
+wudlux\frontend\src\Pages\ProductInfo\ProductInfo.css:
+   50  
+   51: .zoom-button img {
+   52    width: 90px;
+
+  248  
+  249: .nav-button img {
+  250    width: 50px;
+
+  427  
+  428: .add-to-bag-btn img {
+  429    color: #fff;
+
+  452  
+  453: .buy-now-btn img {
+  454    width: 20px;
+
+  758  
+  759:   .nav-button img {
+  760      width: 35px;
+
+  771  
+  772:   .zoom-button img {
+  773      width: 60px; /* Adjusted for better placement */
+
+wudlux\frontend\src\Pages\ProductInfo\ProductInfo.jsx:
+  138            <a href="/" className="breadcrumb-nav-link">
+  139:             <img src={home} alt="Home" className="breadcrumb-nav-icon" loading="lazy"/>
+  140            </a>
+
+  174              <button className="nav-button prev" onClick={handlePrev}>
+  175:               <img src={prev} alt="Previous" loading="lazy" />
+  176              </button>
+  177:             <img
+  178                crossOrigin="anonymous" loading="lazy"
+
+  186              >
+  187:               <img src={zoom} alt="Zoom" loading="lazy"/>
+  188              </button>
+  189              <button className="nav-button next" onClick={handleNext}>
+  190:               <img src={next} alt="Next" loading="lazy"/>
+  191              </button>
+
+  195            <div className="thumbnail-container">
+  196:             {product.variantImages.map((img, idx) => (
+  197:               <img
+  198                  crossOrigin="anonymous" loading="lazy"
+  199                  key={idx}
+  200:                 src={`http://localhost:5000/uploads/${img}`} // Thumbnail image URL
+  201                  alt={`Thumbnail ${idx + 1}`}
+
+  255              >
+  256:               <img src={bag} alt="Bag" loading="lazy"/> Add to Bag
+  257              </button>
+
+  260              <button className="buy-now-btn">
+  261:               Buy Now <img src={arr} alt="Arrow" loading="lazy"/>
+  262              </button>
+
+  297              <div className="offer-header">
+  298:               <img src={offer} alt="Offer Icon" className="offer-icon" loading="lazy"/>
+  299                <h3 className="offer-title">Special Offer</h3>
+
+  302                <li>
+  303:                 <img src={check} alt="Checkmark" className="checkmark-icon" loading="lazy"/>
+  304                  Limited Time Offer! (Buy 3 & Get 1 free)
+
+  306                <li>
+  307:                 <img src={check} alt="Checkmark" className="checkmark-icon" loading="lazy"/>
+  308                  Free delivery available*
+
+  310                <li>
+  311:                 <img src={check} alt="Checkmark" className="checkmark-icon" loading="lazy"/>
+  312                  FESTIVE OFFER - Sale 30% Off Use Code: Deal30
+
+  321                <div className="policy">
+  322:                 <img
+  323                    src={delivery} loading="lazy"
+
+  329                <div className="policy">
+  330:                 <img
+  331                    src={cancellation} loading="lazy"
+
+  337                <div className="policy">
+  338:                 <img
+  339                    src={warranty} loading="lazy"
+
+  345                <div className="policy">
+  346:                 <img
+  347                    src={replacement} loading="lazy"
+
+  368              >
+  369:               <img src={share} alt="Share" className="icon" loading="lazy"/>
+  370              </div>
+
+  401              <div className="zoomed-image-container">
+  402:               <img
+  403                  crossOrigin="anonymous" loading="lazy"
+
+  418                >
+  419:                 <img src={prev} alt="Previous" className="carousel-nav-icon" loading="lazy"/>
+  420                </button>
+
+  423                <div className="carousel-thumbnails">
+  424:                 {product.variantImages.map((img, idx) => (
+  425:                   <img
+  426                      crossOrigin="anonymous" loading="lazy"
+  427                      key={idx}
+  428:                     src={`http://localhost:5000/uploads/${img}`} // Fallback for missing thumbnails
+  429                      alt={`Thumbnail ${idx + 1}`}
+
+  443                >
+  444:                 <img src={next} alt="Next" className="carousel-nav-icon" loading="lazy"/>
+  445                </button>

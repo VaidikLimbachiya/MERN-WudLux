@@ -54,6 +54,7 @@ const CartPage = () => {
           src={item.images ? `http://localhost:5000/uploads/${item.images}` : "placeholder.png"}
           alt={item.name || "Product image"}
           className="cart-item-image"
+          loading="lazy"
         />
         <div className="cart-item-info">
           <h4>{item.title || "Unnamed Product"}</h4>

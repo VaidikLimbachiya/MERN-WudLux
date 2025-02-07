@@ -28,7 +28,7 @@ const ContactUs = () => {
             when an unknown <br /> printer took a galley.
           </p>
           <div className="info-item">
-            <img src={phoneIcon} alt="Phone Icon" className="icon" />
+            <img src={phoneIcon} alt="Phone Icon" className="icon" loading="lazy" />
             <div className="contact-text">
               <h3>Phone Number</h3>
               <p>+91-9601272812</p>
@@ -36,7 +36,7 @@ const ContactUs = () => {
           </div>
           <hr className="dividerr" />
           <div className="info-item">
-            <img src={emailIcon} alt="Email Icon" className="icon" />
+            <img src={emailIcon} alt="Email Icon" className="icon" loading="lazy"/>
             <div className="contact-text">
               <h3>Email Address</h3>
               <p>wudluxdecor@gmail.com</p>

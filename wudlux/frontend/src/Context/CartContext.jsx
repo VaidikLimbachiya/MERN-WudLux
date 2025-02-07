@@ -22,31 +22,46 @@ export const CartProvider = ({ children }) => {
   // Fetch cart items
   const fetchCart = async (force = false) => {
     const token = localStorage.getItem("accessToken");
-
+  
     if (!user || !user.id || (!token && !force)) {
       return;
     }
-
+  
     setLoading(true);
     setError(null);
-
+  
     try {
       const response = await fetch(`http://localhost:5000/api/cart?userId=${user.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-
+  
       if (response.status === 401) {
         console.warn("Token expired. Redirecting to login.");
         redirectToLogin();
         return;
       }
-
+  
       if (!response.ok) {
         throw new Error("Failed to fetch cart");
       }
-
-      const data = await response.json();
-      setCartItems(data.cartItems || []);
+  
+      let data = await response.json();
+  
+      // Remove duplicates by grouping items by productId
+      const uniqueCartItems = [];
+      const itemMap = new Map();
+  
+      data.cartItems.forEach((item) => {
+        if (itemMap.has(item.productId)) {
+          itemMap.get(item.productId).quantity += item.quantity; // Merge quantity
+        } else {
+          itemMap.set(item.productId, { ...item });
+        }
+      });
+  
+      uniqueCartItems.push(...itemMap.values());
+  
+      setCartItems(uniqueCartItems); // Update cart state with unique items
     } catch (err) {
       console.error("Error fetching cart:", err);
       setError(err.message);
@@ -55,34 +70,47 @@ export const CartProvider = ({ children }) => {
     }
   };
   
+  
 
   // Add an item to the cart
-  const addToCart = async (productId, quantity = 1) => {
+  const addToCart = async (product) => {
+    if (!product || !product._id) {
+      console.error("Invalid product data:", product);
+      return;
+    }
+  
     const token = localStorage.getItem("accessToken");
     setError(null);
   
     try {
+      // Normalize productId
+      const productId = product.productId || product._id;
+  
       const response = await fetch("http://localhost:5000/api/cart/add", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ productId, quantity }),
+        body: JSON.stringify({
+          productId: productId,
+          quantity: 1, // 👈 Always send 1 instead of total quantity
+        }),
       });
   
       if (!response.ok) {
         throw new Error("Failed to add to cart");
       }
   
-      await fetchCart();
-      setCartItems((prevItems) => [...prevItems]); // Force re-render
+      await fetchCart(); // Sync cart with backend
     } catch (err) {
       console.error("Error adding to cart:", err);
       setError(err.message);
     }
   };
   
+   
+
 
   // Update item quantity
   const updateQuantity = async (productId, delta) => {
@@ -95,7 +123,6 @@ export const CartProvider = ({ children }) => {
       return;
     }
   
-    // Ensure the quantity never goes below 1
     const newQuantity = Math.max(1, existingItem.quantity + delta);
   
     try {
@@ -112,20 +139,21 @@ export const CartProvider = ({ children }) => {
         throw new Error("Failed to update item quantity");
       }
   
-      // Update the local state to reflect the new quantity
+      const updatedCart = await response.json(); // Ensure backend returns the updated cart
+      console.log("Updated Cart:", updatedCart);
+  
+      // Update state without duplication
       setCartItems((prevItems) =>
         prevItems.map((item) =>
           item.productId === productId ? { ...item, quantity: newQuantity } : item
         )
       );
-  
-      await fetchCart(); // Ensure cart data is refreshed
     } catch (err) {
       console.error("Error updating quantity:", err);
       setError(err.message);
     }
-  };
-  
+  };  
+
   
 
   // Remove an item from the cart
@@ -190,11 +218,14 @@ export const CartProvider = ({ children }) => {
   
   
 
-  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
+  const totalQuantity = cartItems.reduce(
+    (sum, item) => sum + (item.quantity || 0), 0
   );
+  
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + ((item.price || 0) * (item.quantity || 0)), 0
+  );
+  
   const totalProducts = cartItems.length;
 
   return (

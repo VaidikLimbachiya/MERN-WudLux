@@ -94,6 +94,7 @@ const ProductCarousel = () => {
             <div className="shop-carousel-image-wrapper">
               <img
                 crossOrigin="anonymous"
+                loading="lazy"
                 src={`http://localhost:5000/uploads/${
                   product.images ? product.images : product1
                 }`}
@@ -110,6 +111,7 @@ const ProductCarousel = () => {
                     src={bagIcon}
                     alt="Bag Icon"
                     className="shop-carousel-bag-icon"
+                    loading="lazy"
                   />
                 </button>
               </div>

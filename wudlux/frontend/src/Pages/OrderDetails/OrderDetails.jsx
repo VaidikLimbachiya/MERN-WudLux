@@ -80,7 +80,7 @@ const OrderSummary = () => {
             <p>Amount: <span className="bold">₹{summary.totalAmount.toFixed(2)}</span></p>
           </div>
           <div className="print-icon">
-            <img src={print} alt="Print Icon" />
+            <img src={print} alt="Print Icon" loading="lazy"/>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@ const OrderSummary = () => {
       <div className="info-section">
         <div className="info-box">
           <div className="icon-title">
-            <img src={customer} alt="Customer Icon" className="info-icon" />
+            <img src={customer} alt="Customer Icon" className="info-icon" loading="lazy"/>
             <h4>Customer Info</h4>
           </div>
           <p>Name: {order.userId?.firstName} {order.userId?.lastName || "Unknown User"}</p>
@@ -98,7 +98,7 @@ const OrderSummary = () => {
 
         <div className="info-box">
           <div className="icon-title">
-            <img src={shiping} alt="Shipping Icon" className="info-icon" />
+            <img src={shiping} alt="Shipping Icon" className="info-icon" loading="lazy"/>
             <h4>Shipping Address</h4>
           </div>
           <p>
@@ -132,6 +132,7 @@ const OrderSummary = () => {
                         : "placeholder.png"}
                       alt={item.productId?.title || "Unknown Product"}
                       className="product-image"
+                      loading="lazy"
                     />
                     <span>{item.productId?.title || "Product Name Unavailable"}</span>
                   </div>
@@ -163,7 +164,7 @@ const OrderSummary = () => {
         <h4>Payment Info</h4>
         <div className="payment-details">
           <div className="card-info">
-            <img src={mastercard} alt="MasterCard Logo" className="card-logo" />
+            <img src={mastercard} alt="MasterCard Logo" className="card-logo" loading="lazy"/>
             <span>{order.paymentMethod || "Not Available"}</span>
           </div>
           <p>Business Name: {order.userId?.name || "Unknown User"}</p>

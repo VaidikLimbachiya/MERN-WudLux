@@ -169,7 +169,7 @@ const AddressList = () => {
     <div className="address-container">
       {/* Breadcrumb Section */}
       <div className="breadcrumb">
-        <img src={breadcrumbIcon} alt="Breadcrumb" />
+        <img src={breadcrumbIcon} alt="Breadcrumb" loading="lazy"/>
         <h2 className="btext">{">"} Addresses</h2>
       </div>
 

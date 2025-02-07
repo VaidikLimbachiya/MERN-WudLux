@@ -97,6 +97,7 @@ const Testimonials = () => {
                   src={testimonial.image}
                   alt={testimonial.name}
                   className="testimonial-user-image"
+                  loading="lazy"
                 />
                 <div>
                   <p className="testimonial-user-name">{testimonial.name}</p>
@@ -139,6 +140,7 @@ const Testimonials = () => {
                 src={testimonials[currentIndex].image}
                 alt={testimonials[currentIndex].name}
                 className="testimonial-user-image"
+                loading="lazy"
               />
               <div>
                 <p className="testimonial-user-name">

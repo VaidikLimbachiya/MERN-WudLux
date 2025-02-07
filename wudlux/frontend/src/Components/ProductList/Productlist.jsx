@@ -138,6 +138,7 @@ const Productlist = () => {
                   <img
                     className="shop-product-list-image"
                     crossOrigin="anonymous"
+                    loading="lazy"
                     src={`http://localhost:5000/uploads/${
                       Array.isArray(product.images)
                         ? product.images[0]
@@ -162,6 +163,7 @@ const Productlist = () => {
                         src={bagIcon}
                         alt="Bag Icon"
                         className="shop-product-list-bag-icon"
+                        loading="lazy"
                       />
                       {isInCart ? "Added" : "Add to Bag"}
                     </button>

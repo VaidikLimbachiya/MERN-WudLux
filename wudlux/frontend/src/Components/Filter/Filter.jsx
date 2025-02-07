@@ -93,7 +93,7 @@ export default function Filter({ productCount }) {
         <div className="priceRange">
           <span className="priceLabel">Price</span>
           <div className="currencyInput">
-            <span className="currencySymbol"><img src={rp} alt="" /></span>
+            <span className="currencySymbol"><img src={rp} alt="" loading="lazy"/></span>
             <input
               type="number"
               className="priceInput"
@@ -104,7 +104,7 @@ export default function Filter({ productCount }) {
           </div>
           <span>to</span>
           <div className="currencyInput">
-            <span className="currencySymbol"><img src={rp} alt="" /></span>
+            <span className="currencySymbol"><img src={rp} alt="" loading="lazy"/></span>
             <input
               type="number"
               className="priceInput"

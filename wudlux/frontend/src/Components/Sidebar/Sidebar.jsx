@@ -20,7 +20,7 @@
     return (
         <div className="sidebar">
         <div className="sidebar-header">
-            <img src={logoIcon} alt="Logo" className="sidebar-logo" />
+            <img src={logoIcon} alt="Logo" className="sidebar-logo" loading="lazy"/>
             <h2 className="sidebar-title">Wudlux</h2>
         </div>
         <nav className="sidebar-navigation">
@@ -32,7 +32,7 @@
                 location.pathname === item.link ? 'sidebar-nav-active' : ''
                 }`}
             >
-                <img src={item.icon} alt={item.label} className="sidebar-nav-icon" />
+                <img src={item.icon} alt={item.label} className="sidebar-nav-icon" loading="lazy"/>
                 <span className="sidebar-nav-text">{item.label}</span>
             </Link>
             ))}

@@ -9,59 +9,74 @@ const { Server } = require("socket.io");
 const fs = require("fs");
 const path = require("path");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
+const compression = require('compression');
+
+
+
+// ✅ Import Routes
 const authRoutes = require("./src/routes/authRoutes");
 const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
 const addressRoutes = require("./src/routes/addressRoutes");
 const orderRoutes = require("./src/routes/orderRoutes");
+
+// ✅ Import Models
 const Order = require("./src/models/orderModel");
 
-dotenv.config();
+dotenv.config({ path: ".env" });
+console.log("✅ Environment variables loaded.");
 
 const app = express();
-const server = http.createServer(app); //
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
-});
-io.on("connection", (socket) => {
-  console.log("🔵 A user connected:", socket.id);
+const server = http.createServer(app);
 
-  socket.on("disconnect", () => {
-    console.log("❌ User disconnected:", socket.id);
-  });
-});
-
-
+// ✅ Middleware Setup
 app.use(express.json());
+app.use(cookieParser());
 app.use(helmet());
-app.use(morgan("dev"));
+app.use(compression());
 
+// ✅ Use Morgan for Logging in Development Mode
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
+// ✅ Optimized CORS Configuration
 const corsOptions = {
   origin: ["http://localhost:5173", "http://localhost:5174"],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 };
 app.use(cors(corsOptions));
 
+// ✅ MongoDB Connection with Performance Logging
+const startTime = Date.now();
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("  Connected to MongoDB"))
-  .catch((err) => console.error("❌ MongoDB connection failed:", err.message));
+  .then(() => console.log(`✅ MongoDB Connected in ${Date.now() - startTime}ms`))
+  .catch((err) => {
+    console.error("❌ MongoDB connection failed:", err.message);
+    process.exit(1);
+  });
 
+// ✅ Ensure Uploads Directory Exists Asynchronously
 const uploadDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
+  fs.mkdir(uploadDir, { recursive: true }, (err) => {
+    if (err) console.error("❌ Error creating upload directory:", err.message);
+  });
 }
 app.use("/uploads", express.static(uploadDir));
+
+// ✅ Routes Setup
 app.use("/api/auth", authRoutes);
 app.use("/addresses", addressRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 
+// ✅ Utility Functions for Authentication
 const isValidRefreshToken = (token) => {
   try {
     return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
@@ -76,43 +91,45 @@ const generateAccessToken = (userId) => {
   });
 };
 
+// ✅ Refresh Token Route
 app.post("/api/auth/refresh", (req, res) => {
-  const refreshToken = req.cookies.refreshToken;
+  const refreshToken = req.cookies?.refreshToken;
   if (!refreshToken) {
+    console.log("❌ Refresh token missing");
     return res.status(400).json({ error: "Refresh token is required" });
   }
+
   const decoded = isValidRefreshToken(refreshToken);
   if (!decoded) {
+    console.log("❌ Invalid or expired refresh token");
     return res.status(401).json({ error: "Invalid or expired refresh token" });
   }
+
   const newAccessToken = generateAccessToken(decoded.id);
   res.json({ accessToken: newAccessToken });
 });
 
+// ✅ Order Status Update API with Socket.IO Notification
 app.post("/api/order/status", async (req, res) => {
   const { orderId, status } = req.body;
-  console.log("  Updating Order:", { orderId, status });
+  console.log("🟡 Updating Order:", { orderId, status });
+
   try {
     if (!orderId || !status) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Missing orderId or status" });
+      return res.status(400).json({ success: false, message: "Missing orderId or status" });
     }
-    const order = await Order.findByIdAndUpdate(
-      orderId,
-      { orderStatus: status },
-      { new: true }
-    );
+
+    const order = await Order.findByIdAndUpdate(orderId, { orderStatus: status }, { new: true });
+
     if (!order) {
       console.error("❌ Order not found:", orderId);
-      return res
-        .status(404)
-        .json({ success: false, message: "Order not found" });
+      return res.status(404).json({ success: false, message: "Order not found" });
     }
+
     io.emit("orderUpdated", { orderId, status });
     res.json({
       success: true,
-      message: "Order status updated successfully",
+      message: "✅ Order status updated successfully",
       updatedOrder: order,
     });
   } catch (error) {
@@ -125,14 +142,25 @@ app.post("/api/order/status", async (req, res) => {
   }
 });
 
+// ✅ Global Error Handling Middleware
 app.use((err, req, res, next) => {
-  console.error("❌ Internal Server Error:", err);
-  res
-    .status(500)
-    .json({ message: "Internal server error", error: err.message });
+  console.error("❌ Internal Server Error:", err.stack);
+  res.status(500).json({
+    message: "Internal server error",
+    error: process.env.NODE_ENV === "development" ? err.message : "Something went wrong!",
+  });
 });
 
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => {
-  console.log(`  Server running on port ${PORT}`);
+// ✅ Start Server with Optimized Socket.IO
+server.listen(process.env.PORT || 5000, () => {
+  console.log(`🚀 Server running on port ${process.env.PORT || 5000}`);
+
+  const io = new Server(server, {
+    cors: { origin: ["http://localhost:5173", "http://localhost:5174"], methods: ["GET", "POST"] },
+  });
+
+  io.on("connection", (socket) => {
+    console.log("🔵 User connected:", socket.id);
+    socket.on("disconnect", () => console.log("❌ User disconnected:", socket.id));
+  });
 });

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {  NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import searchIcon from "../../assets/Vector.png";
@@ -118,6 +118,7 @@ const Navbar = () => {
       // Handle only category click (e.g., open/close the dropdown)
       setActiveCategory(activeCategory === categoryText ? null : categoryText);
     }
+    setIsMenuOpen(false);
   };
 
   const toggleSearch = () => setIsSearchOpen((prev) => !prev);
@@ -175,6 +176,18 @@ const Navbar = () => {
     return data;
   };
 
+useEffect(() => {
+  if (isMenuOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  return () => {
+    document.body.style.overflow = "auto"; // Cleanup on unmount
+  };
+}, [isMenuOpen]);
+
   return (
     <>
       <nav className="navigation" role="navigation">
@@ -182,7 +195,7 @@ const Navbar = () => {
           <div className="mobileNavbar">
             {/* Menu Icon */}
             <div className="navbar__menuIcon" onClick={toggleMenu}>
-              <img src={menuBar} alt="Menu" />
+              <img src={menuBar} alt="Menu" loading="lazy"/>
             </div>
 
             {/* Menu Drawer */}
@@ -221,6 +234,7 @@ const Navbar = () => {
                         src={category.iconSrc}
                         alt={`${category.text} Icon`}
                         className="categoryIcon"
+                        loading="lazy"
                       />
                     </div>
                     {activeCategory === category.text && (
@@ -242,66 +256,74 @@ const Navbar = () => {
                   </div>
                 ))}
                 <div className="userAccountSection">
-  {isLoggedIn ? (
-    // If user is logged in, show account dropdown
-    <div className="userInfo">
-      <div
-        className="accountDropdownTrigger"
-        onClick={() => setIsAccountDropdownOpen(!isAccountDropdownOpen)}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            setIsAccountDropdownOpen(!isAccountDropdownOpen);
-          }
-        }}
-      >
-        <span className="userName">Account</span>
-        <span className={`dropdownIcon ${isAccountDropdownOpen ? "open" : ""}`}>
-          ▼
-        </span>
-      </div>
+                  {isLoggedIn ? (
+                    // If user is logged in, show account dropdown
+                    <div className="userInfo">
+                      <div
+                        className="accountDropdownTrigger"
+                        onClick={() =>
+                          setIsAccountDropdownOpen(!isAccountDropdownOpen)
+                        }
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            setIsAccountDropdownOpen(!isAccountDropdownOpen);
+                          }
+                        }}
+                      >
+                        <span className="userName">Account</span>
+                        <span
+                          className={`dropdownIcon ${
+                            isAccountDropdownOpen ? "open" : ""
+                          }`}
+                        >
+                          ▼
+                        </span>
+                      </div>
 
-      {isAccountDropdownOpen && (
-        <div className="accountDropdown">
-          <NavLink to="/orders" className="dropdownOption">
-            Orders
-          </NavLink>
-          <NavLink to="/address" className="dropdownOption">
-            Address
-          </NavLink>
-          <button className="logoutButton" onClick={handleLogout}>
-            Logout
-          </button>
-        </div>
-      )}
-    </div>
-  ) : (
-    // If user is not logged in, show login link
-    <div className="userInfo">
-      <NavLink to="/log-in" className="accountLink">
-        View Account
-      </NavLink>
-    </div>
-  )}
-</div>
-
+                      {isAccountDropdownOpen && (
+                        <div className="accountDropdown">
+                          <NavLink to="/orders" className="dropdownOption">
+                            Orders
+                          </NavLink>
+                          <NavLink to="/address" className="dropdownOption">
+                            Address
+                          </NavLink>
+                          <button
+                            className="logoutButton"
+                            onClick={handleLogout}
+                          >
+                            Logout
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    // If user is not logged in, show login link
+                    <div className="userInfo">
+                      <NavLink to="/log-in" className="accountLink">
+                        View Account
+                      </NavLink>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
             {/* Search Icon */}
             <div className="navbar__searchIcon">
-              <img src={searchIcon} alt="Search" onClick={toggleSearch} />
+              <img src={searchIcon} alt="Search" onClick={toggleSearch}loading="lazy" />
             </div>
 
             {/* Logo */}
             <div className="navbar__logo" onClick={() => navigate("/")}>
-              <img src={logo} alt="Logo" />
+              <img src={logo} alt="Logo" loading="lazy"/>
             </div>
 
             {/* Cart Icon */}
             <div className="navbar__cartIcon" onClick={toggleCart}>
-              <img src={cartIcon} alt="Cart" />
+              <img src={cartIcon} alt="Cart" loading="lazy"/>
               <span className="navbar__cartBadge">{totalQuantity}</span>
             </div>
           </div>
@@ -340,6 +362,7 @@ const Navbar = () => {
                       src={category.iconSrc}
                       alt={`${category.text} Icon`}
                       className="dropdownIcon"
+                      loading="lazy"
                     />
                   </div>
                   {activeCategory === category.text && (
@@ -378,6 +401,7 @@ const Navbar = () => {
                 alt="Search"
                 className="actionIcon"
                 onClick={toggleSearch}
+                loading="lazy"
               />
               <div className="divider"></div>
               <div className="profileIconWrapper">
@@ -386,6 +410,7 @@ const Navbar = () => {
                   alt="User Account"
                   className="actionIcon"
                   onClick={handleProfileIconClick}
+                  loading="lazy"
                 />
                 {isProfileMenuOpen && isLoggedIn && (
                   <div className="profileMenu">
@@ -418,7 +443,7 @@ const Navbar = () => {
               </div>
               <div className="divider"></div>
               <div className="cartIcon" onClick={toggleCart}>
-                <img src={cartIcon} alt="Shopping Cart" className="cartImage" />
+                <img src={cartIcon} alt="Shopping Cart" className="cartImage" loading="lazy"/>
                 <span className="cartBadge">{totalQuantity}</span>
               </div>
             </div>
@@ -443,6 +468,7 @@ const Navbar = () => {
               >
                 <img
                   crossOrigin="anonymous"
+                  loading="lazy"
                   src={
                     item.images
                       ? `http://localhost:5000/uploads/${item.images}`

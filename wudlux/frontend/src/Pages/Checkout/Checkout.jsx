@@ -186,7 +186,7 @@ const Checkout = () => {
       <div className="form-container">
         <div className="logo-box">
           <Link to="/">
-            <img src={logo} alt="Company Logo" className="logo-image" />
+            <img src={logo} alt="Company Logo" className="logo-image" loading="lazy" />
           </Link>
         </div>
         <h1 className="form-title">Shipping Information</h1>
@@ -413,6 +413,7 @@ const Checkout = () => {
                   }
                   alt={item.title || "Product Image"}
                   className="product-thumbnail"
+                  loading="lazy"
                 />
                 <div className="product-info">
                   <div className="product-title">

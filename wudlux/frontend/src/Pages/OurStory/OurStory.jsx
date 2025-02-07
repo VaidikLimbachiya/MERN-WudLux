@@ -20,7 +20,7 @@ function OurStory() {
         <div className="story-section">
           {/* Image */}
           <div className="image-container">
-            <img src={storyImage} alt="WUDLUX Story" className="story-image" />
+            <img src={storyImage} alt="WUDLUX Story" className="story-image" loading="lazy"/>
           </div>
 
           {/* Text Content */}
