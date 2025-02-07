@@ -256,8 +256,8 @@ body {
     }
   
     .story-image {
-      width: 90%;
-      max-width: 250px;
+      width: 100%;
+      /* max-width: 250px; */
       margin-left: 0;
     }
   
@@ -285,6 +285,7 @@ body {
       width: 100%;
       font-size: 14px;
       line-height: 1.4;
+      text-align: left;
     }
   
     /* Features Section */

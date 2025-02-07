@@ -360,7 +360,7 @@ font-family: "Playfair Display", serif;
   }
 
   .contact-banner h1 {
-    font-size: 1.6rem;
+    font-size: 24px;
   }
 
   .contact-content {
@@ -375,14 +375,14 @@ font-family: "Playfair Display", serif;
 
   .contact-info h2,
   .contact-form h2 {
-    font-size: 1.3rem;
+    font-size: 24px;
   }
 
   .info-item {
     flex-direction: row;
     align-items: center;
     text-align: left;
-    margin-left: 51px;
+    margin-left: 31px;
   }
 
  .icon{
@@ -393,6 +393,16 @@ font-family: "Playfair Display", serif;
   margin-left: -13rem;
   margin-top: 3px;
  } 
+
+ .contact-info p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  /* font-weight: 500s; */
+  /* margin-top: 20px; */
+  /* margin-bottom: 15px; */
+  color: black;
+  line-height: 1.6;
+}
 
 
   .contact-form form input,

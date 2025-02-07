@@ -271,7 +271,7 @@
     flex-direction: row;
     padding: 10px;
     margin-top: -29.7px;
-    margin-left: 10px;
+    margin-left: 0px;
   }
 
   .address-header {
@@ -313,7 +313,7 @@
   .breadcrumb1 img {
     height: 24px;
     object-fit: contain;
-    margin-right: 10px;
+    margin-right: 3px;
     margin-top: -21.5rem;
   }
 

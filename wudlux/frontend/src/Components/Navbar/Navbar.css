@@ -1333,10 +1333,10 @@ a {
     border: none;
     outline: none;
     width: 22px;
-    height: 22px;
+    height: 17px;
     background-color: #DDD6D2;
     color: #000;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: bold;
     cursor: pointer;
     display: flex;
