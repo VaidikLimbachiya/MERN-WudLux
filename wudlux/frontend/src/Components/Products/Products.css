@@ -306,7 +306,7 @@
 }
 
 /* For screens smaller than 480px (extra small devices) */
-@media (max-width: 480px) {
+@media (max-width: 425px) {
   .productsGrid {
     grid-template-columns: 1fr; /* Single column for ultra small screens */
     gap: 10px; /* Adjust gap between items */

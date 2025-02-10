@@ -23,7 +23,7 @@
 .title-underline {
   margin: 10px auto 0;
   width: 100px; /* Adjust width of the underline */
-  height: 3px; /* Thickness of the underline */
+  height: 2px; /* Thickness of the underline */
   background-color: #c0a062; /* Gold color for the underline */
   border-radius: 2px;
 }

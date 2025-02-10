@@ -301,3 +301,117 @@
     }
   }
   
+
+  @media (max-width: 1024px) {
+    .register-container {
+      width: 80%;
+      padding: 25px;
+    }
+  
+    .register-title {
+      font-size: 26px;
+    }
+  
+    .register-subtitle {
+      font-size: 13px;
+    }
+  
+    .form-row {
+      flex-direction: row;
+      gap: 10px;
+    }
+  
+    .password-row {
+      flex-direction: row;
+      gap: 15px;
+    }
+  
+    .form-input,
+    .form-input-full {
+      font-size: 13px;
+      padding: 10px 12px;
+    }
+  
+    .register-button,
+    .back-to-login {
+      font-size: 14px;
+      padding: 10px;
+      width: 60%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .register-container {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .register-title {
+      font-size: 24px;
+    }
+  
+    .register-subtitle {
+      font-size: 12px;
+    }
+  
+    .form-row {
+      flex-direction: row;
+      gap: 10px;
+    }
+  
+    .password-row {
+      flex-direction: row;
+      gap: 15px;
+    }
+  
+    .form-input,
+    .form-input-full {
+      font-size: 12px;
+      padding: 8px 10px;
+    }
+  
+    .register-button,
+    .back-to-login {
+      font-size: 13px;
+      width: 70%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .register-container {
+      width: 95%;
+      padding: 18px;
+    }
+  
+    .register-title {
+      font-size: 22px;
+    }
+  
+    .register-subtitle {
+      font-size: 11px;
+    }
+  
+    .form-row {
+      flex-direction: row;
+      gap: 8px;
+    }
+  
+    .password-row {
+      flex-direction: row;
+      gap: 12px;
+    }
+  
+    .form-input,
+    .form-input-full {
+      font-size: 11px;
+      padding: 8px;
+      border-radius: 25px;
+    }
+  
+    .register-button,
+    .back-to-login {
+      font-size: 12px;
+      width: 80%;
+    }
+  }
+  

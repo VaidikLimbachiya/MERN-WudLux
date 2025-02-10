@@ -1,60 +1,57 @@
-/* Main Section Styling */
+/* ✅ Main Section Styling */
 .premium-look-section {
   text-align: center;
-  padding: 20px 30px;
+  padding: 5vh 5vw; /* Scales dynamically */
   background-color: white;
   color: #fff;
 }
 
-/* Header Styling */
+/* ✅ Header Styling */
 .section-header {
-  margin-bottom: 30px;
+  margin-bottom: 4vh;
 }
 
 .section-title {
   font-family: "Playfair Display", serif;
-  /* font-size: 36px; */
+  font-size: 3.5vw; /* Responsive title size */
   font-weight: bold;
   color: #333;
-  position: relative;
-  display: inline-block; /* Ensure underline aligns to the title */
-  /* margin-bottom: 10px; */
 }
 
 .section-subtitle {
   font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
+  font-size: 2vw;
   color: black;
-  margin-top: 10px;
+  margin-top: 2vh;
 }
 
-/* Video Grid */
+/* ✅ Video Grid */
 .video-grid {
   display: flex;
-  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2vw;
   max-width: 100%;
-  margin: 20px auto; /* Center grid */
+  margin: 5vh auto;
 }
 
-/* Video Item */
+/* ✅ Video Item */
 .video-item {
   position: relative;
+  width: 40vw; /* Adjusts dynamically */
+  max-width: 600px; /* Prevents excessive scaling */
 }
 
 .video-wrapper {
   position: relative;
-  /* border-radius: 10px; */
   overflow: hidden;
+  border-radius: 1vw;
 }
 
 .video-thumbnail {
-  
-  justify-content: space-between;
-  padding-left: 10px;
-  margin-left: 30px;
-  width: 42rem;
+  width: 100%;
   height: 100%;
-  object-fit:cover; /* Ensures thumbnails are properly fitted */
+  object-fit: cover;
 }
 
 .play-button {
@@ -62,54 +59,119 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 15px;
+  padding: 1vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .play-icon {
-  width: 80px;
-  height: 80px;
+  width: 6vw;
+  height: 6vw;
+  max-width: 80px;
+  max-height: 80px;
 }
 
 .play-button:hover {
-  transform: translate(-50%, -50%) scale(1.1); /* Slightly enlarge on hover */
-  /* background-color: rgba(255, 255, 255, 1); Solid white background */
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* For screens up to 320px (Very small devices) */
-@media (max-width: 320px) {
-  .premium-look-section {
-    padding: 5px 5px; /* Minimal padding for ultra-small screens */
-  }
+/* ========== 📱 ✅ Responsive Adjustments ✅ 📱 ========== */
 
+/* 📌 Tablets (768px) */
+@media (max-width: 768px) {
   .section-title {
-    font-size: 24px;
+    font-size: 5vw;
   }
-  .video-grid {
-    flex-direction: column;
-    gap: 10px;
-    margin-left: -25px;
-}
 
   .section-subtitle {
-    font-size: 16px;
+    font-size: 3vw;
   }
 
-  .video-thumbnail {
-    width: 18rem; /* Compact thumbnail size */
+  .video-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .video-item {
+    width: 85vw;
   }
 
   .play-icon {
-    width: 50px;
-    height: 50px;
-    margin-left: 50px; /* Tiny play icon */
+    width: 8vw;
+    height: 8vw;
   }
 }
 
+/* 📌 Small Mobile (320px - 425px) */
+@media (max-width: 425px) {
+  .premium-look-section {
+    padding: 4vh 4vw;
+  }
 
+  .section-title {
+    font-size: 6vw;
+  }
 
+  .section-subtitle {
+    font-size: 4vw;
+  }
 
+  .video-item {
+    width: 90vw;
+  }
 
+  .play-icon {
+    width: 10vw;
+    height: 10vw;
+  }
+}
+
+/* 📌 Desktop (1440px) */
+@media (min-width: 1440px) {
+  .premium-look-section {
+    padding: 6vh 10vw;
+  }
+
+  .section-title {
+    font-size: 2.8vw;
+  }
+
+  .section-subtitle {
+    font-size: 1.5vw;
+  }
+
+  .video-item {
+    width: 35vw;
+  }
+
+  .play-icon {
+    width: 5vw;
+    height: 5vw;
+  }
+}
+
+/* 📌 Ultra-Wide Screens (2560px) */
+@media (min-width: 2560px) {
+  .premium-look-section {
+    padding: 8vh 15vw;
+  }
+
+  .section-title {
+    font-size: 2vw;
+  }
+
+  .section-subtitle {
+    font-size: 1.2vw;
+  }
+
+  .video-item {
+    width: 30vw;
+  }
+
+  .play-icon {
+    width: 4vw;
+    height: 4vw;
+  }
+}

@@ -376,9 +376,9 @@ useEffect(() => {
                           key={item.link}
                           to={item.link}
                           className="dropdownItem"
-                          onClick={() =>
-                            handleCategoryClick(category.text, item.text)
-                          } // Fetch products when clicking on a subcategory
+                           onClick={() =>
+                              handleCategoryClick(category.text, item.text)
+                            }  // Fetch products when clicking on a subcategory
                         >
                           {item.text}
                         </NavLink>
@@ -573,7 +573,7 @@ useEffect(() => {
             ✖
           </button>
         </div>
-        <ul className="searchCategories">
+        <ul className="searchCategories" >
           <li>Tray</li>
           <li>Platter</li>
           <li>Chopping Board</li>

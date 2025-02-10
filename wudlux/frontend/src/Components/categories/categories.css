@@ -111,6 +111,7 @@
   text-align: center;
   color: #000;
 }
+
 @media (max-width: 320px) {
   /* Ensure categories are in a single row and scrollable */
   .categoriesGrid {
@@ -181,5 +182,165 @@
     margin-left: -18px;
   }
 }
+/* Base Styles (Mobile-First Approach) */
+/* @media (max-width: 425px) {
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 10px;
+  }
 
+  .logoSection {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo {
+    width: 50px;
+  }
+
+  .leftActions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .menuIcon, .searchIcon, .cartIcon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .cartBadge {
+    top: -6px;
+    right: -10px;
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .mobileNavbar {
+    padding: 0 10px;
+  }
+
+  .navbar__menuIcon img,
+  .navbar__searchIcon img,
+  .navbar__cartIcon img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .navbar__searchIcon img {
+    margin-left: -70px;
+  }
+
+  .navbar__logo img {
+    width: 55px;
+    height: 55px;
+    align-items: center;
+    margin-left: -65px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .navbar__cartBadge {
+    top: 26px;
+    font-size: 8px;
+    padding: 1px 4px;
+    margin-right: 11px;
+  }
+
+  .offers {
+    margin: 5px;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .offers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    gap: 12px;
+    margin: 0 auto;
+  }
+
+  .offer-card {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .offer-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .categoriesGrid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    min-width: 100vw;
+  }
+
+  .categoriesGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .categoryCard {
+    flex: 0 0 auto;
+    width: 150px;
+    scroll-snap-align: start;
+  }
+
+  .categoryHoverEffect {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .categoryImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .categoryTitle {
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  .headingTitle {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .headingUnderline {
+    width: 96px;
+    height: 2px;
+    background-color: #c0a062;
+    margin: 0 auto;
+  }
+
+  .headingSubtitle {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 5px;
+    color: #666;
+    width: 100%;
+    margin-left: 0;
+  }
+} */
 
