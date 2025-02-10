@@ -181,5 +181,218 @@
     margin-left: -18px;
   }
 }
+@media (max-width: 375px) {
+
+  /* Categories Grid */
+  .categoriesGrid {
+    display: flex;
+    flex-wrap: nowrap; /* Keep items in one row */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Smooth scrolling effect */
+    gap: 12px; /* Increased spacing between cards */
+    padding: 0 12px; /* Adjust padding for visibility */
+    box-sizing: border-box;
+    min-width: 100vw; /* Ensure full width for scrolling */
+  }
+
+  /* Hide scrollbar for cleaner UI */
+  .categoriesGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Category Card */
+  .categoryCard {
+    flex: 0 0 auto; /* Prevent shrinking */
+    width: 160px; /* Slightly larger for better visibility */
+    scroll-snap-align: start; /* Proper alignment */
+  }
+
+  /* Hover Effect */
+  .categoryHoverEffect {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Circular shape */
+    overflow: hidden;
+  }
+
+  /* Category Image */
+  .categoryImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Category Title */
+  .categoryTitle {
+    font-size: 14px; /* Slightly larger font */
+    margin-top: 6px;
+    text-align: center;
+  }
+
+  /* Heading Section */
+  .headingTitle {
+    font-size: 26px; /* Slightly larger heading font */
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .headingUnderline {
+    width: 100px; /* Adjusted underline width */
+    height: 2px;
+    background-color: #c0a062;
+    margin: 0 auto;
+  }
+
+  .headingSubtitle {
+    font-size: 14px; /* Larger subtitle */
+    text-align: center;
+    margin-top: 6px;
+    color: #666;
+    width: 100%;
+    margin-left: 0; /* Center-align subtitle */
+  }
+}
+@media (max-width: 375px) {
+
+  /* Categories Grid */
+  .categoriesGrid {
+    display: flex;
+    flex-wrap: nowrap; /* Keep items in one row */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Smooth scrolling effect */
+    gap: 12px; /* Increased spacing between cards */
+    padding: 0 12px; /* Adjust padding for visibility */
+    box-sizing: border-box;
+    min-width: 100vw; /* Ensure full width for scrolling */
+  }
+
+  /* Hide scrollbar for cleaner UI */
+  .categoriesGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Category Card */
+  .categoryCard {
+    flex: 0 0 auto; /* Prevent shrinking */
+    width: 160px; /* Slightly larger for better visibility */
+    scroll-snap-align: start; /* Proper alignment */
+  }
+
+  /* Hover Effect */
+  .categoryHoverEffect {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Circular shape */
+    overflow: hidden;
+  }
+
+  /* Category Image */
+  .categoryImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Category Title */
+  .categoryTitle {
+    font-size: 14px; /* Slightly larger font */
+    margin-top: 6px;
+    text-align: center;
+  }
+
+  /* Heading Section */
+  .headingTitle {
+    font-size: 26px; /* Slightly larger heading font */
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .headingUnderline {
+    width: 100px; /* Adjusted underline width */
+    height: 2px;
+    background-color: #c0a062;
+    margin: 0 auto;
+  }
+
+  .headingSubtitle {
+    font-size: 14px; /* Larger subtitle */
+    text-align: center;
+    margin-top: 6px;
+    color: #666;
+    width: 100%;
+    margin-left: 0; /* Center-align subtitle */
+  }
+}
+@media (max-width: 425px) {
+
+  /* Categories Grid */
+  .categoriesGrid {
+    display: flex;
+    flex-wrap: nowrap; /* Keep items in one row */
+    overflow-x: auto; /* Horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Smooth scrolling */
+    gap: 14px; /* Increased gap for better spacing */
+    padding: 0 15px; /* Adjusted padding */
+    box-sizing: border-box;
+    min-width: 100vw;
+  }
+
+  /* Hide scrollbar for cleaner UI */
+  .categoriesGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Category Card */
+  .categoryCard {
+    flex: 0 0 auto;
+    width: 180px; /* Larger for better proportions */
+    scroll-snap-align: start;
+  }
+
+  /* Hover Effect */
+  .categoryHoverEffect {
+    width: 170px;
+    height: 170px; /* Larger for visibility */
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  /* Category Image */
+  .categoryImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Category Title */
+  .categoryTitle {
+    font-size: 16px; /* Larger font for better readability */
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  /* Heading Section */
+  .headingTitle {
+    font-size: 28px; /* Larger font for heading */
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .headingUnderline {
+    width: 110px; /* Adjusted underline size */
+    height: 2px;
+    background-color: #c0a062;
+    margin: 0 auto;
+  }
+
+  .headingSubtitle {
+    font-size: 16px; /* Larger font for subtitle */
+    text-align: center;
+    margin-top: 8px;
+    color: #666;
+    width: 100%;
+    margin-left: 0;
+  }
+}
 
 
