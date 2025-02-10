@@ -10,9 +10,7 @@ const fs = require("fs");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const compression = require('compression');
-
-
+const compression = require("compression");
 
 // ✅ Import Routes
 const authRoutes = require("./src/routes/authRoutes");
@@ -54,7 +52,9 @@ app.use(cors(corsOptions));
 const startTime = Date.now();
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log(`✅ MongoDB Connected in ${Date.now() - startTime}ms`))
+  .then(() =>
+    console.log(`✅ MongoDB Connected in ${Date.now() - startTime}ms`)
+  )
   .catch((err) => {
     console.error("❌ MongoDB connection failed:", err.message);
     process.exit(1);
@@ -116,14 +116,22 @@ app.post("/api/order/status", async (req, res) => {
 
   try {
     if (!orderId || !status) {
-      return res.status(400).json({ success: false, message: "Missing orderId or status" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Missing orderId or status" });
     }
 
-    const order = await Order.findByIdAndUpdate(orderId, { orderStatus: status }, { new: true });
+    const order = await Order.findByIdAndUpdate(
+      orderId,
+      { orderStatus: status },
+      { new: true }
+    );
 
     if (!order) {
       console.error("❌ Order not found:", orderId);
-      return res.status(404).json({ success: false, message: "Order not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Order not found" });
     }
 
     io.emit("orderUpdated", { orderId, status });
@@ -147,7 +155,10 @@ app.use((err, req, res, next) => {
   console.error("❌ Internal Server Error:", err.stack);
   res.status(500).json({
     message: "Internal server error",
-    error: process.env.NODE_ENV === "development" ? err.message : "Something went wrong!",
+    error:
+      process.env.NODE_ENV === "development"
+        ? err.message
+        : "Something went wrong!",
   });
 });
 
@@ -156,11 +167,16 @@ server.listen(process.env.PORT || 5000, () => {
   console.log(`🚀 Server running on port ${process.env.PORT || 5000}`);
 
   const io = new Server(server, {
-    cors: { origin: ["http://localhost:5173", "http://localhost:5174"], methods: ["GET", "POST"] },
+    cors: {
+      origin: ["http://localhost:5173", "http://localhost:5174"],
+      methods: ["GET", "POST"],
+    },
   });
 
   io.on("connection", (socket) => {
     console.log("🔵 User connected:", socket.id);
-    socket.on("disconnect", () => console.log("❌ User disconnected:", socket.id));
+    socket.on("disconnect", () =>
+      console.log("❌ User disconnected:", socket.id)
+    );
   });
 });

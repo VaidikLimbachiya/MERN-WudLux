@@ -230,7 +230,7 @@
   .slider-track {
     height: 220px; /* Reduce slider height for small screens */
   }
-  
+
   .slider-heading {
     font-size: 1.2rem; /* Adjust heading size for better readability */
     margin-bottom: 0px;
@@ -242,8 +242,9 @@
     margin-left: -7rem;/* Remove margin */
   }
 
+
   .sale-offer {
-    font-size: 0.8rem; /* Properly sized font for small screens */
+    font-size: 24px; /* Properly sized font for small screens */
     margin-left: 0; /* Remove margin */
   }
 

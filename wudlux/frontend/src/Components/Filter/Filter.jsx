@@ -99,50 +99,49 @@ export default function Filter({ productCount }) {
             <option value="Mango wood">Mango wood</option>
           </select>
 
-            {/* Price Range Filter */}
-            <div className="priceRange">
-              <span className="priceLabel">Price</span>
-              <div className="currencyInput">
-                <span className="currencySymbol">
-                  <img src={rp} alt="" />
-                </span>
-                <input
-                  type="number"
-                  className="priceInput"
-                  placeholder="Min"
-                  value={priceRange.min}
-                  onChange={(e) =>
-                    setPriceRange({ ...priceRange, min: e.target.value })
-                  }
-                />
-              </div>
-              <span>to</span>
-              <div className="currencyInput">
-                <span className="currencySymbol">
-                  <img src={rp} alt="" />
-                </span>
-                <input
-                  type="number"
-                  className="priceInput"
-                  placeholder="Max"
-                  value={priceRange.max}
-                  onChange={(e) =>
-                    setPriceRange({ ...priceRange, max: e.target.value })
-                  }
-                />
-              </div>
+          {/* Price Range Filter */}
+          <div className="priceRange">
+            <span className="priceLabel">Price</span>
+            <div className="currencyInput">
+              <span className="currencySymbol">
+                <img src={rp} alt="" />
+              </span>
+              <input
+                type="number"
+                className="priceInput"
+                placeholder="Min"
+                value={priceRange.min}
+                onChange={(e) =>
+                  setPriceRange({ ...priceRange, min: e.target.value })
+                }
+              />
             </div>
-
-            <button className="applyButton" onClick={applyFilters}>
-              Apply
-              <img
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/d65c38d49cc0cc7f1ecc59f5c6f56ed7d0e5da7faa4138d582f4497361762f54?placeholderIfAbsent=true&apiKey=4bede4563f2047b58544427a4978e824"
-                  alt="Apply icon"
-                  className="dropdownIcon"
-                />
-
-            </button>
+            <span>to</span>
+            <div className="currencyInput">
+              <span className="currencySymbol">
+                <img src={rp} alt="" />
+              </span>
+              <input
+                type="number"
+                className="priceInput"
+                placeholder="Max"
+                value={priceRange.max}
+                onChange={(e) =>
+                  setPriceRange({ ...priceRange, max: e.target.value })
+                }
+              />
+            </div>
           </div>
+
+          <button className="applyButton" onClick={applyFilters}>
+            Apply
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/d65c38d49cc0cc7f1ecc59f5c6f56ed7d0e5da7faa4138d582f4497361762f54?placeholderIfAbsent=true&apiKey=4bede4563f2047b58544427a4978e824"
+              alt="Apply icon"
+              className="dropdownIcon"
+            />
+          </button>
+        </div>
         <div>
           <select
             className="dropdownButton1"

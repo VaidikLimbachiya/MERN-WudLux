@@ -215,7 +215,7 @@ const ProductPage = () => {
         <div className="product-container">
           {/* Product Title and Price Section */}
           <div className="product-header">
-            <h1 className="product-title">{product.title}</h1>
+            <h1 className="product-title1">WUDLUX choice</h1>
             <h2 className="product-name">{product.title}</h2>
             <div className="price-section">
               <span className="current-price">₹{product.price}</span>

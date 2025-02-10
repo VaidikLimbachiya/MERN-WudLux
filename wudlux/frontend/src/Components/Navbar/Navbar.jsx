@@ -114,11 +114,11 @@ const Navbar = () => {
       // Navigate with both category and subcategory query parameters
       const queryParams = `category=${categoryText}&subcategory=${subCategoryText}`;
       navigate(`/products?${queryParams}`);
+      setIsMenuOpen(false);
     } else {
       // Handle only category click (e.g., open/close the dropdown)
       setActiveCategory(activeCategory === categoryText ? null : categoryText);
     }
-    setIsMenuOpen(false);
   };
 
   const toggleSearch = () => setIsSearchOpen((prev) => !prev);
