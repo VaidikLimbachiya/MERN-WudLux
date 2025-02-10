@@ -24,6 +24,9 @@ export const CartProvider = ({ children }) => {
     const token = localStorage.getItem("accessToken");
   
     if (!user || !user.id || (!token && !force)) {
+      console.log("Fetching guest cart...");
+      const guestCart = JSON.parse(localStorage.getItem("guestCart")) || [];
+      setCartItems([...guestCart]); // 🔥 Force re-render
       return;
     }
   
@@ -45,23 +48,9 @@ export const CartProvider = ({ children }) => {
         throw new Error("Failed to fetch cart");
       }
   
-      let data = await response.json();
-  
-      // Remove duplicates by grouping items by productId
-      const uniqueCartItems = [];
-      const itemMap = new Map();
-  
-      data.cartItems.forEach((item) => {
-        if (itemMap.has(item.productId)) {
-          itemMap.get(item.productId).quantity += item.quantity; // Merge quantity
-        } else {
-          itemMap.set(item.productId, { ...item });
-        }
-      });
-  
-      uniqueCartItems.push(...itemMap.values());
-  
-      setCartItems(uniqueCartItems); // Update cart state with unique items
+      const data = await response.json();
+      setCartItems([...data.cartItems]); // 🔥 Force re-render by updating the state with a new array
+      window.dispatchEvent(new Event("cartUpdated")); // 🔥 Notify Navbar and other components
     } catch (err) {
       console.error("Error fetching cart:", err);
       setError(err.message);
@@ -69,6 +58,10 @@ export const CartProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  
+  
+  
+  
   
   
 
@@ -86,6 +79,24 @@ export const CartProvider = ({ children }) => {
       // Normalize productId
       const productId = product.productId || product._id;
   
+      if (!token) {
+        // Handle Guest Cart: Store in localStorage
+        console.log("User not logged in, adding to guest cart");
+        const guestCart = JSON.parse(localStorage.getItem("guestCart")) || [];
+        
+        const existingItemIndex = guestCart.findIndex((item) => item.productId === productId);
+        if (existingItemIndex > -1) {
+          guestCart[existingItemIndex].quantity += 1; // Increase quantity if already in cart
+        } else {
+          guestCart.push({ ...product, productId, quantity: 1 });
+        }
+  
+        localStorage.setItem("guestCart", JSON.stringify(guestCart));
+        setCartItems(guestCart); // Update state
+        return;
+      }
+  
+      // Handle Logged-in User Cart
       const response = await fetch("http://localhost:5000/api/cart/add", {
         method: "POST",
         headers: {
@@ -93,8 +104,8 @@ export const CartProvider = ({ children }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          productId: productId,
-          quantity: 1, // 👈 Always send 1 instead of total quantity
+          productId,
+          quantity: 1, 
         }),
       });
   
@@ -109,6 +120,7 @@ export const CartProvider = ({ children }) => {
     }
   };
   
+  
    
 
 
@@ -117,15 +129,32 @@ export const CartProvider = ({ children }) => {
     const token = localStorage.getItem("accessToken");
     setError(null);
   
-    const existingItem = cartItems.find((item) => item.productId === productId);
-    if (!existingItem) {
-      console.error("Item not found in cart");
+    if (!token) {
+      // Handle Guest Cart Update
+      console.log("Updating quantity in guest cart...");
+      const guestCart = JSON.parse(localStorage.getItem("guestCart")) || [];
+  
+      const updatedCart = guestCart.map((item) =>
+        item.productId === productId
+          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
+          : item
+      );
+  
+      localStorage.setItem("guestCart", JSON.stringify(updatedCart));
+      setCartItems(updatedCart);
       return;
     }
   
-    const newQuantity = Math.max(1, existingItem.quantity + delta);
-  
+    // Handle Logged-in User Cart Update
     try {
+      const existingItem = cartItems.find((item) => item.productId === productId);
+      if (!existingItem) {
+        console.error("Item not found in cart");
+        return;
+      }
+  
+      const newQuantity = Math.max(1, existingItem.quantity + delta);
+  
       const response = await fetch("http://localhost:5000/api/cart/update", {
         method: "PATCH",
         headers: {
@@ -139,20 +168,12 @@ export const CartProvider = ({ children }) => {
         throw new Error("Failed to update item quantity");
       }
   
-      const updatedCart = await response.json(); // Ensure backend returns the updated cart
-      console.log("Updated Cart:", updatedCart);
-  
-      // Update state without duplication
-      setCartItems((prevItems) =>
-        prevItems.map((item) =>
-          item.productId === productId ? { ...item, quantity: newQuantity } : item
-        )
-      );
+      await fetchCart();
     } catch (err) {
       console.error("Error updating quantity:", err);
       setError(err.message);
     }
-  };  
+  };    
 
   
 
@@ -160,10 +181,20 @@ export const CartProvider = ({ children }) => {
   const removeItem = async (productId) => {
     const token = localStorage.getItem("accessToken");
     setError(null);
-
+  
+    if (!token) {
+      // Handle Guest Cart Removal
+      console.log("Removing item from guest cart...");
+      const guestCart = JSON.parse(localStorage.getItem("guestCart")) || [];
+      const updatedCart = guestCart.filter((item) => item.productId !== productId);
+  
+      localStorage.setItem("guestCart", JSON.stringify(updatedCart));
+      setCartItems(updatedCart);
+      return;
+    }
+  
+    // Handle Logged-in User Cart Removal
     try {
-      console.log("Removing productId:", productId);
-
       const response = await fetch("http://localhost:5000/api/cart/remove", {
         method: "DELETE",
         headers: {
@@ -172,34 +203,49 @@ export const CartProvider = ({ children }) => {
         },
         body: JSON.stringify({ productId }),
       });
-
+  
       if (!response.ok) {
-        const errorResponse = await response.json();
-        console.error("API Error Response:", errorResponse);
-        throw new Error(errorResponse.message || "Failed to remove item");
+        throw new Error("Failed to remove item");
       }
-
-      // Refresh cart data after successful removal
+  
       await fetchCart();
     } catch (err) {
       console.error("Error removing item:", err);
       setError(err.message);
     }
   };
+  
 
   // Clear the entire cart
   const clearCart = async () => {
-    try {
-      const token = localStorage.getItem("accessToken");
-      if (!token) throw new Error("No access token found");
-
-      // Instead of calling a non-existent API, clear cart locally
+    const token = localStorage.getItem("accessToken");
+  
+    if (!token) {
+      // Clear Guest Cart
+      console.log("Clearing guest cart...");
+      localStorage.removeItem("guestCart");
       setCartItems([]);
-      console.log("Cart cleared successfully.");
+      return;
+    }
+  
+    // Clear Logged-in User Cart
+    try {
+      const response = await fetch("http://localhost:5000/api/cart/clear", {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to clear cart");
+      }
+  
+      await fetchCart();
     } catch (err) {
       console.error("Error clearing cart:", err);
+      setError(err.message);
     }
-};
+  };
+  
 
 
   // Clear cart state locally (e.g., on logout)
@@ -209,12 +255,26 @@ export const CartProvider = ({ children }) => {
 
   // Watch for login/logout and refresh cart accordingly
   useEffect(() => {
-    if (user && user.id) {
-      fetchCart(true);
-    } else {
-      clearCartState(); // Clear cart when user logs out
+    if (user?.id) {
+      console.log("User logged in, fetching backend cart...");
+      fetchCart(true); // 🔥 Fetch cart when user logs in
     }
-  }, [user]); //   Runs every time user logs in or out
+  
+    // Listen for global cart update events
+    const handleCartUpdate = () => {
+      console.log("Cart update event detected. Fetching latest cart...");
+      fetchCart(true);
+    };
+  
+    window.addEventListener("cartUpdated", handleCartUpdate);
+  
+    return () => {
+      window.removeEventListener("cartUpdated", handleCartUpdate);
+    };
+  }, [user?.id]);
+  
+  
+  
   
   
 

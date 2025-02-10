@@ -10,47 +10,98 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    const accessToken = localStorage.getItem("accessToken");
-
-    if (storedUser && accessToken) {
-      setUser(JSON.parse(storedUser));
-    } else if (localStorage.getItem("refreshToken")) {
-      refreshAccessToken(); // Try refreshing token if available
-    }
+    const initializeAuth = async () => {
+      const storedUser = localStorage.getItem("user");
+      const accessToken = localStorage.getItem("accessToken");
+      const refreshToken = localStorage.getItem("refreshToken");
+  
+      if (storedUser && accessToken) {
+        setUser(JSON.parse(storedUser));
+      } else if (refreshToken) {
+        await refreshAccessToken();
+      }
+    };
+  
+    initializeAuth();
   }, []);
+  
 
-  const login = (userData, accessToken, refreshToken) => {
+  const login = async (userData, accessToken, refreshToken) => {
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
-    navigate("/"); // Redirect to homepage after login
+  
+    const guestCart = JSON.parse(localStorage.getItem("guestCart")) || [];
+    if (guestCart.length > 0) {
+      console.log("Merging guest cart into backend cart...");
+  
+      for (const item of guestCart) {
+        await fetch("http://localhost:5000/api/cart/add", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            productId: item.productId,
+            quantity: item.quantity,
+          }),
+        });
+      }
+  
+      localStorage.removeItem("guestCart"); // Clear guest cart after merging
+    }
+  
+    await fetchCart(); // 🔥 Immediately update the cart UI after login
+    window.dispatchEvent(new Event("cartUpdated")); // 🔥 Notify other components to update
+  
+    navigate("/");
   };
+  
+  
+  
+  
+  
 
   const logout = () => {
     setUser(null);
     setOrders([]);
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("user");
+    localStorage.removeItem("guestCart"); // 🔥 Clear guest cart on logout
+  
+    window.dispatchEvent(new Event("userLoggedOut")); // 🔥 Notify components globally about logout
+  
     localStorage.clear();
     navigate("/log-in");
   };
+  
 
   const refreshAccessToken = async () => {
     try {
       const refreshToken = localStorage.getItem("refreshToken");
-      if (!refreshToken) return logout();
-
+      if (!refreshToken) {
+        console.log("No refresh token found, logging out.");
+        return logout();
+      }
+  
+      console.log("Attempting token refresh...");
+  
       const response = await axios.post("/api/auth/refresh-token", {
         token: refreshToken,
       });
-
+  
+      console.log("Token refreshed successfully:", response.data);
+  
       localStorage.setItem("accessToken", response.data.accessToken);
-      setUser((prevUser) => ({ ...prevUser })); // Update state to trigger re-render
+      setUser((prevUser) => ({ ...prevUser })); // Force re-render
     } catch (error) {
       console.error("Token refresh failed:", error);
-      logout(); // Logout if refresh fails
+      logout();
     }
-  };
+  };  
 
   return (
     <AuthContext.Provider value={{ user, login, logout, refreshAccessToken }}>
