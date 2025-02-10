@@ -48,12 +48,29 @@
 }
 
 .summary-container {
+  display: flex;
+  flex-direction: column;
+  height: 800px; /* Fixed height for the summary */
   padding: 20px;
   border-radius: 8px;
   border: 1px solid #ccc;
   width: 30rem;
-  /* height: 42rem; */
 }
+
+.product-list {
+  flex: 1; /* Makes this section take available space */
+  overflow-y: auto; /* Enables scrolling only for product items */
+  padding-right: 10px; /* Space for scrollbar */
+}
+
+.summary-totals {
+  margin-top: auto; /* Ensures it always sticks at the bottom */
+  padding-top: 10px;
+  border-top: 2px solid #000; /* Optional separator */
+  background: white; /* Ensures it does not overlap */
+}
+
+
 
 h1,
 h2,

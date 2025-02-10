@@ -4,8 +4,9 @@ import { AuthContext } from "../../Context/AuthContext";
 import { io } from "socket.io-client"; // Import Socket.IO client
 import prev from "../../assets/prev.png";
 import next from "../../assets/next.png";
-import breadcrumbIcon from "../../assets/home.png";
+// import breadcrumbIcon from "../../assets/home.png";
 import { Link } from "react-router-dom";
+import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import "./Order.css";
 import Search from "../../assets/Search 2.png";
 const API_BASE_URL = "http://localhost:5000";
@@ -124,17 +125,12 @@ const OrderHistory = () => {
   }, [searchQuery, filterStatus, sortOption, orders]);
 
   return (
+    <>
+      <Breadcrumb />
     <div className="order-history-container">
       <div className="main-content">
         {/* Breadcrumb */}
         <div className="breadcrumb">
-          <img
-            src={breadcrumbIcon}
-            alt="Breadcrumb"
-            className="breadcrumb-icon"
-            loading="lazy"
-          />
-          <h2 className="btext">{">"} Order History</h2>
         </div>
 
         <div className="order-header">
@@ -259,6 +255,8 @@ const OrderHistory = () => {
         </div>
       </div>
     </div>
+    </>
+
   );
 };
 

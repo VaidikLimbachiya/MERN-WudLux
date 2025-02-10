@@ -46,23 +46,25 @@ const ContactUs = () => {
 
         {/* Right Section */}
         <div className="contact-form">
-          <h2>Send us a message</h2>
-          <form>
-            <label>
-              <input type="text" name="name" required />
-              <span className="placeholder">Your Name <span className="red">*</span></span>
-            </label>
-            <label>
-              <input type="email" name="email" required />
-              <span className="placeholder">Email Address <span className="red">*</span></span>
-            </label>
-            <label>
-              <textarea name="message" rows="10"></textarea>
-              <span className="placeholder">Your Message</span>
-            </label>
-            <button type="submit">Submit</button>
-          </form>
-        </div>
+  <h2>Send us a message</h2>
+  <form>
+    <label className="input-container">
+      <input type="text" name="name" placeholder="Your Name *" required />
+    </label>
+
+    <label className="input-container">
+      <input type="email" name="email" placeholder="Email Address *" required />
+    </label>
+
+    <label className="input-container">
+      <textarea name="message" rows="10" placeholder="Your Message"></textarea>
+    </label>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+
       </section>
     </div>
   );
