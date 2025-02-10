@@ -96,6 +96,7 @@ const Navbar = () => {
     } else {
       navigate("/log-in"); // Redirect to login page
     }
+    setIsMenuOpen(false); // Close the menu when profile icon is clicked
   };
 
   const handleCategoryClick = async (categoryText, subCategoryText = "") => {
@@ -107,6 +108,7 @@ const Navbar = () => {
           subCategoryText
         );
         console.log("Fetched products:", products); // Debug: View fetched products
+        
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -114,11 +116,12 @@ const Navbar = () => {
       // Navigate with both category and subcategory query parameters
       const queryParams = `category=${categoryText}&subcategory=${subCategoryText}`;
       navigate(`/products?${queryParams}`);
+      setIsMenuOpen(false);
     } else {
       // Handle only category click (e.g., open/close the dropdown)
       setActiveCategory(activeCategory === categoryText ? null : categoryText);
     }
-    setIsMenuOpen(false);
+    
   };
 
   const toggleSearch = () => setIsSearchOpen((prev) => !prev);
@@ -187,6 +190,7 @@ useEffect(() => {
     document.body.style.overflow = "auto"; // Cleanup on unmount
   };
 }, [isMenuOpen]);
+
 
   return (
     <>

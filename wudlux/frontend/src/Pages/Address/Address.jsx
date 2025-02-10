@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Address.css";
-import breadcrumbIcon from "../../assets/home.png";
-
+import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 const API_BASE_URL = "http://localhost:5000/addresses";
 
 const AddressList = () => {
@@ -20,7 +19,6 @@ const AddressList = () => {
     isDefault: false,
   });
 
-  // Fetch user info from local storage
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser?.id) {
@@ -28,8 +26,6 @@ const AddressList = () => {
     }
     setLoading(false);
   }, []);
-
-  // Fetch addresses from the database
   useEffect(() => {
     if (!user?.id) return;
 
@@ -75,13 +71,8 @@ const AddressList = () => {
       );
 
       if (response.data) {
-        // Ensure we get the new address and update state
         setAddresses((prev) => [...prev, response.data]);
-
-        // Reset form and hide add form
         toggleAddForm();
-
-        // **Force a re-fetch to ensure state updates immediately**
         fetchAddresses();
       } else {
         console.error("Unexpected API response:", response);
@@ -99,7 +90,6 @@ const AddressList = () => {
     }
   };
 
-  // Fetch addresses when component mounts or user ID changes
   useEffect(() => {
     if (user?.id) {
       fetchAddresses();
@@ -108,7 +98,7 @@ const AddressList = () => {
 
   const toggleEdit = (address) => {
     setEditingAddressId(address._id);
-    setShowAddForm(true); // Show form when editing
+    setShowAddForm(true);
     setNewAddress({
       street: address.street,
       city: address.city,
@@ -133,10 +123,8 @@ const AddressList = () => {
             addr._id === editingAddressId ? response.data : addr
           )
         );
-
-        // Reset form after updating
         setEditingAddressId(null);
-        toggleAddForm(); // Hide form after editing
+        toggleAddForm();
       }
     } catch (error) {
       console.error("Error updating address:", error);
@@ -166,25 +154,16 @@ const AddressList = () => {
   };
 
   return (
+    <>
+    
+    <Breadcrumb />
     <div className="address-container">
-      {/* Breadcrumb Section */}
-      <div className="breadcrumb">
-        <img src={breadcrumbIcon} alt="Breadcrumb" loading="lazy"/>
-        <h2 className="btext">{">"} Addresses</h2>
-      </div>
-
-      {/* User Greeting */}
-
-      {/* Address Header */}
-      <div className="address-header">
+           <div className="address-header">
         <h2>Addresses</h2>
-
         <button className="add-address-button" onClick={toggleAddForm}>
           {showAddForm ? "Cancel" : "Add a new address →"}
         </button>
       </div>
-
-      {/* Add/Edit Address Form */}
       {showAddForm || editingAddressId ? (
         <form
           className="address-form"
@@ -296,6 +275,7 @@ const AddressList = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
