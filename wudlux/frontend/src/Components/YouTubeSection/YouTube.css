@@ -103,6 +103,73 @@
     height: 8vw;
   }
 }
+@media (max-width: 375px) {
+
+  .premium-look-section {
+    padding: 10px 10px; /* Increased padding for better spacing */
+  }
+
+  .section-title {
+    font-size: 26px; /* Slightly larger for better visibility */
+    text-align: center; /* Center align the title */
+  }
+
+  .section-subtitle {
+    font-size: 18px; /* Improved readability for subtitles */
+    text-align: center;
+  }
+
+  .video-grid {
+    flex-direction: column; /* Stack videos vertically */
+    gap: 12px; /* Increased gap for better separation */
+    margin-left: 0; /* Center align the grid */
+  }
+
+  .video-thumbnail {
+    width: 20rem; /* Slightly larger thumbnail size */
+    margin: 0 auto; /* Center thumbnails */
+  }
+
+  .play-icon {
+    width: 55px; /* Increased size for better visibility */
+    height: 55px;
+    margin-left: 0; /* Center the play icon */
+  }
+}
+
+@media (max-width: 425px) {
+
+  .premium-look-section {
+    padding: 15px 15px; /* Balanced padding for larger screen */
+  }
+
+  .section-title {
+    font-size: 28px; /* Enhanced for better focus */
+    text-align: center;
+  }
+
+  .section-subtitle {
+    font-size: 20px; /* Increased size for clarity */
+    text-align: center;
+  }
+
+  .video-grid {
+    flex-direction: column;
+    gap: 15px; /* More spacing between video thumbnails */
+    margin-left: 0; /* Center align */
+  }
+
+  .video-thumbnail {
+    width: 22rem; /* Larger thumbnail for bigger screens */
+    margin: 0 auto;
+  }
+
+  .play-icon {
+    width: 60px; /* Proportionally larger icon */
+    height: 60px;
+    margin-left: 0; /* Center the play icon */
+  }
+}
 
 /* 📌 Small Mobile (320px - 425px) */
 @media (max-width: 425px) {

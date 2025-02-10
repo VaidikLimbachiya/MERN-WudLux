@@ -237,3 +237,111 @@
     font-size: 16px; /* Adjust arrow size */
   }
 }
+@media (max-width: 375px) {
+  /* Grid Gallery */
+  .grid-gallery {
+    grid-template-columns: 1fr; /* Maintain single-column layout */
+    gap: 4px; /* Slightly increased gap */
+    border-radius: 12px;
+  }
+
+  /* Headings */
+  .heading-title {
+    font-size: 26px; /* Slightly larger font for readability */
+    margin: 12px;
+  }
+
+  .heading-underline {
+    width: 80px;
+    margin: 12px auto;
+    margin-top: -10px;
+    height: 2px;
+    margin-left: 120px;
+  }
+
+  .heading-subtitle {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+
+  /* Grid Items */
+  .grid-item {
+    border-radius: 6px;
+    height: 110px; /* Adjusted for better proportion */
+  }
+
+  .grid-item img {
+    height: 7rem;
+  }
+
+  /* Hover Overlay */
+  .grid-item .hover-overlay {
+    padding: 6px 12px;
+  }
+
+  .hover-overlay .hover-text {
+    font-size: 16px;
+  }
+
+  .hover-overlay .hover-link {
+    font-size: 14px;
+  }
+
+  .hover-overlay .hover-link::after {
+    font-size: 18px;
+  }
+}
+@media (max-width: 425px) {
+  /* Grid Gallery */
+  .grid-gallery {
+    grid-template-columns: 1fr 1fr; /* Two-column layout */
+    gap: 5px;
+    border-radius: 12px;
+  }
+
+  /* Headings */
+  .heading-title {
+    font-size: 28px;
+    margin: 14px;
+  }
+
+  .heading-underline {
+    width: 85px;
+    margin: 14px auto;
+    margin-top: -10px;
+    height: 2px;
+    margin-left: 130px;
+  }
+
+  .heading-subtitle {
+    font-size: 15px;
+    margin-top: 7px;
+  }
+
+  /* Grid Items */
+  .grid-item {
+    border-radius: 8px;
+    height: 120px;
+  }
+
+  .grid-item img {
+    height: 8rem;
+  }
+
+  /* Hover Overlay */
+  .grid-item .hover-overlay {
+    padding: 7px 14px;
+  }
+
+  .hover-overlay .hover-text {
+    font-size: 18px;
+  }
+
+  .hover-overlay .hover-link {
+    font-size: 15px;
+  }
+
+  .hover-overlay .hover-link::after {
+    font-size: 20px;
+  }
+}

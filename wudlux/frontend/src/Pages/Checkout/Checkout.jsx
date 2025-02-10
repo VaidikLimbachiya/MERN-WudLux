@@ -52,6 +52,55 @@ const Checkout = () => {
 
     fetchAddresses();
   }, [user?.id]);
+  useEffect(() => {
+    if (!user) {
+      console.log("User is not logged in. Redirecting to login page...");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: "",
+        zipCode: "",
+        country: "India",
+        state: "",
+        city: "",
+        notes: "",
+      });
+  
+      setAddresses([]); // Clear stored addresses
+      setSelectedAddressId(""); // Reset selected address
+  
+      navigate("/log-in"); // Redirect to login page
+    }
+  }, [user, navigate]);  
+  useEffect(() => {
+    const handleUserLogout = () => {
+      console.log("User logged out. Resetting checkout form...");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        address: "",
+        zipCode: "",
+        country: "India",
+        state: "",
+        city: "",
+        notes: "",
+      });
+  
+      setAddresses([]); // Clear stored addresses
+      setSelectedAddressId(""); // Reset selected address
+    };
+  
+    window.addEventListener("userLoggedOut", handleUserLogout);
+  
+    return () => {
+      window.removeEventListener("userLoggedOut", handleUserLogout);
+    };
+  }, []);
+  
 
   // Ensure addresses are always an array
   const userAddresses = Array.isArray(addresses) ? addresses : [];

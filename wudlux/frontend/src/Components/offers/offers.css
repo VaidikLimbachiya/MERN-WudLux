@@ -347,3 +347,136 @@
     margin-top: 8px;
   }
 }
+
+@media (max-width: 375px) {
+  .offers {
+    margin: 8px;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .offers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 12px;
+    gap: 14px;
+    margin: 0 auto;
+  }
+
+  .offer-card {
+    width: 95%; /* Slightly reduced width for better spacing */
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .offer-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .offer-overlay {
+    top: 18px;
+    left: 18px;
+    padding-left: 12px;
+  }
+
+  .offer-title {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .offer-subtitle {
+    font-size: 26px;
+    line-height: 1.4;
+    max-width: 280px;
+  }
+
+  .offer-button {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 10px;
+    margin-top: 12px;
+  }
+
+  .offer-button::after {
+    font-size: 13px;
+    right: -20px;
+  }
+
+  .offer-button:hover::after {
+    right: -5px;
+  }
+
+  .offer-button-container {
+    margin-top: 10px;
+  }
+}
+@media (max-width: 425px) {
+  .offers {
+    margin: 10px;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .offers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    gap: 16px;
+    margin: 0 auto;
+  }
+
+  .offer-card {
+    width: 90%; /* More spacing on the sides */
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .offer-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  .offer-overlay {
+    top: 20px;
+    left: 20px;
+    padding-left: 14px;
+  }
+
+  .offer-title {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+
+  .offer-subtitle {
+    font-size: 28px;
+    line-height: 1.5;
+    max-width: 300px;
+  }
+
+  .offer-button {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 12px;
+    margin-top: 14px;
+  }
+
+  .offer-button::after {
+    font-size: 14px;
+    right: -22px;
+  }
+
+  .offer-button:hover::after {
+    right: -6px;
+  }
+
+  .offer-button-container {
+    margin-top: 12px;
+  }
+}

@@ -178,6 +178,19 @@ const Navbar = () => {
     const data = await response.json();
     return data;
   };
+  useEffect(() => {
+    const handleCartUpdate = () => {
+      console.log("Cart update detected in Navbar. Re-rendering...");
+      setCartItems([...cartItems]); // 🔥 Force re-render
+    };
+  
+    window.addEventListener("cartUpdated", handleCartUpdate);
+  
+    return () => {
+      window.removeEventListener("cartUpdated", handleCartUpdate);
+    };
+  }, []);
+  
 
 useEffect(() => {
   if (isMenuOpen) {
