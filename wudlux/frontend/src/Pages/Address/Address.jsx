@@ -161,7 +161,7 @@ const AddressList = () => {
            <div className="address-header">
         <h2>Addresses</h2>
         <button className="add-address-button" onClick={toggleAddForm}>
-          {showAddForm ? "Cancel" : "Add a new address →"}
+          {showAddForm ? "Back" : "Add a new address →"}
         </button>
       </div>
       {showAddForm || editingAddressId ? (

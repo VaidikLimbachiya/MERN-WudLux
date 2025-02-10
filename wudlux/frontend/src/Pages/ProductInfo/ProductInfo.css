@@ -72,6 +72,7 @@
 }
 
 .modal-content {
+  margin-top: 20px;
   position: relative;
   width: 95%;
   /* Adjust width for smaller screens */
@@ -88,16 +89,16 @@
   /* Prevent content overflow */
 }
 
-/* Close Button */
 .close-modal {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 25px;
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
 }
+
 
 /* Zoomed Image Section */
 .zoomed-image-container {
@@ -124,7 +125,7 @@
   display: flex;
   align-items: center;
   margin-top: 20px;
-  margin-left: 200px;
+  margin-left: 290px;
   gap: 10px;
   overflow-x: hidden;
   /* Hide overflow if thumbnails exceed width */
@@ -707,6 +708,12 @@
     margin: 0 auto;
   }
 
+  .product-name {
+    font-size: 1.9rem;
+    /* font-weight: bold; */
+    /* margin: 10px 0; */
+  }
+
   /* Grid Layout Adjustments */
   .product-gridd {
     grid-template-columns: 1fr; /* Single-column layout */
@@ -769,6 +776,17 @@
     height: 30px;
   }
 
+
+  .close-modal {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    /* background: none; */
+    /* border: none; */
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
   .zoom-button img {
     width: 60px; /* Adjusted for better placement */
     height: 60px;
@@ -822,10 +840,11 @@
   }
 
   /* Title and Price Section */
-  .product-title {
-    font-size: 14px;
-    margin: 8px 0;
-    text-align: center;
+  .product-title1 {
+    margin-top: 20px;
+    font-size: 16px;
+    /* margin: 8px 0; */
+    /* text-align: center; */
   }
 
   .price-section {

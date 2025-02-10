@@ -477,7 +477,8 @@ select:disabled {
     align-items: left;
     margin-bottom: 15px;
     padding: 10px;
-    border-bottom: 1px solid #ccc;
+    width: 100%; /* Full width for small screens */
+    /* border-bottom: 1px solid #ccc; */
   }
 
   .product-thumbnail {
