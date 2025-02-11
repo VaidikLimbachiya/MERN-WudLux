@@ -61,10 +61,11 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false);
-  const [ setCartItems] = useState([]);
+
 
   const {
     cartItems,
+    setCartItems,
     totalQuantity,
     totalPrice,
     totalProducts,

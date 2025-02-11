@@ -47,7 +47,7 @@ body {
   width: 400px;
   height: auto;
   border-radius: 8px;
-  margin-left: -300px;
+  margin-left: -30px;
 }
 
 /* Content Container */
@@ -205,6 +205,167 @@ body {
 
   .section-subtitlee::after {
     width: 50%;
+  }
+
+  .section-description {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .explore-products-button {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  /* Features Section */
+  .features-image {
+    height: 250px;
+  }
+  
+  .explore-products-button:hover::before {
+    left: 0; /* Slide the background into view */
+  }
+  
+  .explore-products-button:hover {
+    color: white; /* Change text color to white on hover */
+  }
+}
+
+@media (max-width: 375px) {
+  /* Adjust Hero Section */
+  .hero-section {
+    height: 200px;
+  }
+  .page-title {
+    font-size: 24px;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  /* Stack Image and Content Vertically */
+  .story-section {
+    flex-direction: column;
+    text-align: center;
+    width: 90%;
+  }
+
+  .image-container {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* 🖼 Make Image Vertical */
+  .story-image {
+    width: 250px;
+    height: auto;
+    margin-left: 0;
+    border-radius: 8px;
+  }
+
+  /* Adjust Content */
+  .content-container {
+    padding: 0;
+    max-width: 100%;
+  }
+  
+  .section-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: -10px;
+  }
+  
+  .section-subtitlee {
+    font-size: 24px;
+  }
+
+  .section-subtitlee {
+    font-size: 18px;
+  }
+
+  .section-subtitlee::after {
+    width: 100%;
+  }
+
+  .section-description {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .explore-products-button {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  /* Features Section */
+  .features-image {
+    height: 250px;
+  }
+  
+  .explore-products-button:hover::before {
+    left: 0; /* Slide the background into view */
+  }
+  
+  .explore-products-button:hover {
+    color: white; /* Change text color to white on hover */
+  }
+}
+@media (max-width: 425px) {
+  /* Adjust Hero Section */
+  .hero-section {
+    height: 200px;
+  }
+  .page-title {
+    font-size: 24px;
+    text-align: center;
+    padding: 0 15px;
+  }
+
+  /* Stack Image and Content Vertically */
+  .story-section {
+    flex-direction: column;
+    text-align: center;
+    width: 90%;
+  }
+
+  .image-container {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* 🖼 Make Image Vertical */
+  .story-image {
+    width: 250px;
+    height: auto;
+    margin-left: 0;
+    border-radius: 8px;
+  }
+
+  /* Adjust Content */
+  .content-container {
+    padding: 0;
+    max-width: 100%;
+  }
+  
+  .section-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: -10px;
+  }
+  
+  .section-subtitlee {
+    font-size: 24px;
+  }
+
+  .section-subtitlee {
+    font-size: 18px;
+  }
+
+  .section-subtitlee::after {
+    width: 100%;
   }
 
   .section-description {

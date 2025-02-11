@@ -456,8 +456,8 @@ const ProductPage = () => {
         </div>
       )}
       <>
-        <Products />
         <Services />
+        <Products />
       </>
     </div>
   );
