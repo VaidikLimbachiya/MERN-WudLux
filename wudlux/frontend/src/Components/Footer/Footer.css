@@ -273,10 +273,136 @@
   font-weight: 400;
  }
 
+ /* For devices with max width of 768px (Tablets and smaller screens) */
+@media (max-width: 768px) {
+  .footer-container {
+      flex-direction: column; /* Stack sections vertically */
+      margin-left: 0; /* Remove margin */
+  }
 
+  .footer-section {
+      flex: 100%;
+      margin: -59px -57px;
+      margin-right: -109px;/* Reduce margin */
+      padding: 20px; /* Adjust padding */
+  }
 
+  .footer-section h3,
+  .footer-section h4 {
+      font-size: 16px; /* Smaller font size for headings */
+  }
 
+  .footer-section p {
+      font-size: 12px; /* Smaller font size for paragraphs */
+  }
 
+  .footer-section ul li {
+      font-size: 14px; /* Reduce font size of list items */
+  }
+
+  .newsletter-input input,
+  .newsletter-input button {
+      width: 100%; /* Full width input and button */
+      margin: 5px 0; /* Adjust margins */
+  }
+
+  .social-icons {
+      font-size: 18px; /* Adjust font size of social icons */
+  }
+
+  .footer-bottom {
+      font-size: 12px; /* Adjust footer text size */
+  }
+}
+
+/* For devices with max width of 576px (Small tablets or larger smartphones) */
+@media (max-width: 576px) {
+  .footer-container {
+      flex-direction: column; /* Stack sections vertically */
+  }
+
+  .footer-section {
+    margin: -59px -57px;
+    margin-right: -109px; /* Reduce margin */
+      padding: 15px; /* Adjust padding */
+  }
+
+  .footer-section h3,
+  .footer-section h4 {
+      font-size: 14px; /* Smaller font size */
+  }
+
+  .footer-section p {
+      font-size: 12px; /* Smaller font size */
+  }
+
+  .footer-section ul li {
+      font-size: 13px; /* Reduce list item font size */
+  }
+
+  .newsletter-input input,
+  .newsletter-input button {
+      width: 100%; /* Full width input and button */
+      margin: 5px 0; /* Adjust margins */
+  }
+
+  .social-icons {
+      font-size: 16px; /* Adjust font size of social icons */
+  }
+
+  .footer-bottom {
+      font-size: 12px; /* Adjust footer text size */
+  }
+}
+
+/* For devices with max width of 480px (Small mobile devices) */
+@media (max-width: 480px) {
+  .footer-container {
+      flex-direction: column; /* Stack sections vertically */
+  }
+
+  .footer-section {
+    margin: -59px -57px;
+    margin-right: -109px; /* Reduce margin */
+      padding: 10px; /* Adjust padding */
+  }
+
+  .footer-section h3,
+  .footer-section h4 {
+      font-size: 12px; /* Smaller font size */
+  }
+
+  .footer-section p {
+      font-size: 10px; /* Smaller font size */
+  }
+
+  .footer-section ul li {
+      font-size: 12px; /* Reduce list item font size */
+  }
+
+  .newsletter-input input{
+    /* width: 50%; */
+    margin: 4px 22px;
+    margin-right: 75px;
+    margin-left: -7px;
+  }
+  
+
+  .newsletter-input input,
+  .newsletter-input button {
+      width: 100%; /* Full width input and button */
+      padding: 6px; /* Adjust padding */
+      margin: 5px 0; /* Adjust margins */
+  }
+
+  .social-icons {
+      font-size: 14px; /* Adjust font size of social icons */
+  }
+
+  .footer-bottom {
+      font-size: 11px; /* Adjust footer text size */
+  }
+}
 
 /* For devices with max width of 320px (Very small mobile devices) */
 @media (max-width: 320px) {
@@ -325,103 +451,3 @@
       font-size: 10px; /* Adjust footer text size */
   }
 }
-
- 
-
-@media (max-width: 375px) {
-
-  .foter {
-    margin-left: -40px;
-  }
-  .footer-container {
-    
-      flex-direction: column; /* Stack sections vertically */
-  }
-
-  .footer-section {
-    margin: -59px -57px;
-    margin-right: -109px;/* Reduce margin */
-      padding: 10px; /* Adjust padding */
-  }
-
-  .footer-section h3,
-  .footer-section h4 {
-      font-size: 17px; /* Smaller font size */
-  }
-
-  .footer-section p {
-      font-size: 10px; /* Smaller font size */
-      width: 231px;
-  }
-
-  .footer-section ul li {
-      font-size: 12px; /* Reduce list item font size */
-  }
-
-  .newsletter-input input,
-  .newsletter-input button {
-      width: 100%; /* Full width input and button */
-      padding: 6px; /* Adjust padding */
-      margin: 5px -60px;
-      margin-left: -9px; /* Adjust margins */
-  }
-
-  .social-icons {
-      font-size: 14px; /* Adjust font size of social icons */
-  }
-
-  .footer-bottom {
-      font-size: 10px; /* Adjust footer text size */
-  }
-}
-
-@media (max-width: 425px) {
-
-  .foter {
-    margin-left: -40px;
-  }
-  .footer-container {
-    
-      flex-direction: column; /* Stack sections vertically */
-  }
-
-  .footer-section {
-    margin: -59px -57px;
-    margin-right: -109px;/* Reduce margin */
-      padding: 10px; /* Adjust padding */
-  }
-
-  .footer-section h3,
-  .footer-section h4 {
-      font-size: 17px; /* Smaller font size */
-  }
-
-  .footer-section p {
-      font-size: 10px; /* Smaller font size */
-      width: 231px;
-  }
-
-  .footer-section ul li {
-      font-size: 12px; /* Reduce list item font size */
-  }
-
-  .newsletter-input input,
-  .newsletter-input button {
-      width: 100%; /* Full width input and button */
-      padding: 6px; /* Adjust padding */
-      margin: 5px -60px;
-      margin-left: -9px; /* Adjust margins */
-  }
-
-  .social-icons {
-      font-size: 14px; /* Adjust font size of social icons */
-  }
-
-  .footer-bottom {
-      font-size: 10px; /* Adjust footer text size */
-  }
-}
-
- 
-
- 

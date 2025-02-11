@@ -378,10 +378,13 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 425px) {
   .login-container {
-    width: 90%;
-    padding: 1rem;
+    width: 100%;
+    padding: 20px;
+    /* margin-top: -55rem; */
+    /* margin-bottom: -55rem; */
+    /* font-family: Arial, sans-serif; */
   }
 
   .login-form {
@@ -412,9 +415,9 @@
   .remember-me {
     flex-direction: row;
     font-size: 0.75rem;
-    justify-content: center;
-    padding-left: 0;
-    padding-right: 0;
+    justify-content: space-between;
+    padding-left:   -60rem;
+    padding-right: -40rem;
   }
 
   .btn {
@@ -423,6 +426,7 @@
   }
 
   .Forgot-link {
+    margin-top: -30px;
     font-size: 0.8rem;
   }
 }
