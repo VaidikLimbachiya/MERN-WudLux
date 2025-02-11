@@ -22,7 +22,7 @@ const YouTube = () => {
     <div className="premium-look-section">
       {/* Header */}
       <div className="section-header">
-        <h2 className="section-title">
+        <h2 className="section-title1">
           See Our Premium Look
           <div className="title-underline"></div> {/* Add underline below the title */}
         </h2>

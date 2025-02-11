@@ -1890,15 +1890,22 @@ a {
   }
 
   .navbar__menuIcon img,
-  .navbar__searchIcon img,
+  .navbar__searchIcon img {
+    width: 22px;
+    /* Slightly smaller icon size */
+    height: 22px;
+    
+  }
+
   .navbar__cartIcon img {
     width: 22px;
     /* Slightly smaller icon size */
     height: 22px;
+    margin-right: 10px;
   }
 
   .navbar__searchIcon img {
-    margin-left: -70px;
+    margin-left: -90px;
   }
 
   .navbar__logo img {
@@ -1906,7 +1913,7 @@ a {
     /* Smaller logo */
     height: 55px;
     align-items: center;
-    margin-left: -65px;
+    margin-left: -75px;
     margin-top: 10px;
     margin-bottom: 10px;
   }
@@ -1917,7 +1924,7 @@ a {
     /* Smaller badge font */
     padding: 1px 4px;
     /* Adjust padding for smaller badge */
-    margin-right: 11px;
+    margin-right: 21px;
   }
 
 
