@@ -259,3 +259,111 @@
     margin-left: -10.3rem;
   }
 }
+@media (max-width: 375px) {
+
+  .banner {
+    padding: 0 20px;
+    justify-content: center; /* Center-align text for smaller screens */
+    text-align: center;
+  }
+  .banner-content {
+    margin: 0 auto;
+    max-width: 100%;
+    margin-left: 0; /* Adjust for very small screens */
+  }
+
+  .dot {
+    margin-bottom: -9px;
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .slider-track {
+    height: 220px; /* Reduce slider height for small screens */
+  }
+
+  .slider-heading {
+    font-size: 1.2rem; /* Adjust heading size for better readability */
+    margin-bottom: 0px;
+    margin-left: 0rem;
+  }
+
+  .slider-SubHeading {
+    font-size: 1.4rem;
+    margin-left: -7rem;/* Remove margin */
+  }
+
+
+  .sale-offer {
+    font-size: 24px; /* Properly sized font for small screens */
+    margin-left: 0; /* Remove margin */
+  }
+
+  .line-offer {
+    width: 100%;
+    margin-left: 0; /* Remove margin */
+  }
+
+  .shop-now {
+    padding: 4px 6px; /* Slightly smaller padding for button */
+    font-size: 0.7rem; /* Small font size for button text */
+    margin-left: -10.3rem;
+  }
+}
+@media (max-width: 425px) {
+
+  .banner {
+    padding: 0 20px;
+    justify-content: center; /* Center-align text for smaller screens */
+    text-align: center;
+  }
+  .banner-content {
+    margin: 0 auto;
+    max-width: 100%;
+    margin-left: 0; /* Adjust for very small screens */
+  }
+
+  .dot {
+    margin-bottom: -9px;
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .slider-track {
+    height: 220px; /* Reduce slider height for small screens */
+  }
+
+  .slider-heading {
+    font-size: 1.2rem; /* Adjust heading size for better readability */
+    margin-bottom: 0px;
+    margin-left: 0rem;
+  }
+
+  .slider-SubHeading {
+    font-size: 1.4rem;
+    margin-left: -7rem;/* Remove margin */
+  }
+
+
+  .sale-offer {
+    font-size: 24px; /* Properly sized font for small screens */
+    margin-left: 0; /* Remove margin */
+  }
+
+  .line-offer {
+    width: 100%;
+    margin-left: 0; /* Remove margin */
+  }
+
+  .shop-now {
+    padding: 4px 6px; /* Slightly smaller padding for button */
+    font-size: 0.7rem; /* Small font size for button text */
+    margin-left: -10.3rem;
+  }
+}

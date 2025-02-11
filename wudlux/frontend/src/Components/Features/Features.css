@@ -65,71 +65,58 @@
     }
   }
   @media (max-width: 375px) {
-
     .features-container {
-      flex-direction: column; /* Stack items vertically */
+      flex-direction: column;
       align-items: center;
-      height: 100%; /* Dynamic height */
-      padding: 1rem; /* Add spacing for better layout */
+      height: 100%; /* Allow dynamic height */
+      /* padding: 1rem; Add some padding for spacing */
     }
   
     .feature-card {
-      width: 90%; /* Slightly reduced width for spacing */
-      height: auto; /* Ensure dynamic height */
-      padding: 1rem; /* Maintain spacing inside cards */
-      margin-bottom: 1rem; /* Add space between cards */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for better focus */
+      width: 100%; /* Adjust width for better fit */
+      height: 100%; /* Remove fixed height for better responsiveness */
+      /* padding: 1.5rem; Reduce padding for smaller screens */
+      margin-bottom: 0px;
     }
   
     .feature-icon {
-      width: 70px; /* Adjust icon size for visibility */
-      height: 70px;
+      width: 60px; /* Reduce icon size for better proportion */
+      height: 60px;
     }
   
     .feature-title {
-      font-size: 1.6rem; /* Slightly larger for better readability */
-      margin: 0.5rem 0; /* Add spacing above and below title */
-      text-align: center;
+      font-size: 1.5rem; /* Slightly smaller font */
     }
   
     .feature-description {
-      font-size: 1rem; /* Improve readability */
-      text-align: center; /* Center-align description */
-      line-height: 1.5; /* Add line height for better spacing */
+      font-size: 0.9rem; /* Reduce text size for better fit */
     }
   }
   @media (max-width: 425px) {
-
     .features-container {
-      flex-direction: column; /* Stack items */
+      flex-direction: column;
       align-items: center;
-      height: 100%; /* Dynamic height */
-      padding: 1.5rem; /* Increased padding for better spacing */
+      height: 100%; /* Allow dynamic height */
+      /* padding: 1rem; Add some padding for spacing */
     }
   
     .feature-card {
-      width: 85%; /* Slightly wider for better fit */
-      height: auto; /* Ensure responsiveness */
-      padding: 1.2rem; /* Maintain consistent padding */
-      margin-bottom: 1.2rem; /* Add space between cards */
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Enhanced shadow for larger screens */
+      width: 100%; /* Adjust width for better fit */
+      height: 100%; /* Remove fixed height for better responsiveness */
+      /* padding: 1.5rem; Reduce padding for smaller screens */
+      margin-bottom: 0px;
     }
   
     .feature-icon {
-      width: 80px; /* Larger icon size for visibility */
-      height: 80px;
+      width: 60px; /* Reduce icon size for better proportion */
+      height: 60px;
     }
   
     .feature-title {
-      font-size: 1.8rem; /* Larger font for better focus */
-      margin: 0.8rem 0; /* Increased spacing above and below title */
-      text-align: center;
+      font-size: 1.5rem; /* Slightly smaller font */
     }
   
     .feature-description {
-      font-size: 1.1rem; /* Improve readability for larger screens */
-      text-align: center; /* Center-align description */
-      line-height: 1.6; /* Enhanced spacing for readability */
+      font-size: 0.9rem; /* Reduce text size for better fit */
     }
   }
-    

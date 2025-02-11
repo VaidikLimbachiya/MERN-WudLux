@@ -1,7 +1,3 @@
-
-
-
-
 /* Section Styles */
 .testimonials-section {
   background-color: #fff;
@@ -23,7 +19,7 @@
 .title-underline {
   margin: 10px auto 0;
   width: 100px; /* Adjust width of the underline */
-  height: 2px; /* Thickness of the underline */
+  height: 3px; /* Thickness of the underline */
   background-color: #c0a062; /* Gold color for the underline */
   border-radius: 2px;
 }
@@ -220,156 +216,160 @@
   }
   @media (max-width: 375px) {
     .testimonials-section {
-      padding: 12px;
+      padding: 10px;
       text-align: center;
     }
   
     .testimonials-title {
-      font-size: 26px; /* Slightly larger title */
+      font-size: 24px; /* Reduce title size further */
     }
   
     .title-underline {
-      width: 70px;
+      width: 60px; /* Narrower underline */
       height: 2px;
-      margin: 5px auto;
+      margin: 4px auto;
     }
-  
-    .underline {
-      background-color: #000000;
-      margin-top: 12px;
+    .underline{
+      /* height: 2px; Thickness of the line */
+      background-color: #000000; /* Gold-like color */
+      /* padding-top:5px; Center the underline */
+      margin-top: 10px;
+     
     }
-  
+    
     .testimonials-subtitle {
-      font-size: 13px;
-      margin-bottom: 12px;
+      font-size: 12px; /* Smaller subtitle font size */
+      margin-bottom: 10px;
     }
   
     .testimonials-carousel {
-      flex-direction: column;
-      gap: 18px;
-      overflow: visible;
+      flex-direction: column; /* Stack cards vertically */
+      gap: 15px; /* Smaller space between cards */
+      overflow: visible; /* Ensure all content is visible */
     }
   
     .testimonial-card {
-      max-width: 88%;
-      padding: 18px;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.12);
-      margin-left: auto;
+      max-width: 85%; /* Narrower card size */
+      padding: 15px; /* Adjust padding for compact design */
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Slightly lighter shadow */
+      margin-left: auto; /* Center align card */
       margin-right: auto;
     }
   
     .testimonial-rating {
-      font-size: 1rem;
+      font-size: 0.9rem; /* Slightly smaller rating size */
     }
   
     .testimonial-review {
-      font-size: 12px;
-      margin-bottom: 12px;
+      font-size: 11px; /* Reduce review text size */
+      margin-bottom: 10px; /* Adjust spacing */
     }
   
     .testimonial-user {
-      gap: 8px;
+      gap: 6px; /* Smaller gap between image and text */
     }
   
     .testimonial-user-image {
-      width: 38px;
-      height: 38px;
+      width: 35px; /* Smaller profile image */
+      height: 35px;
     }
   
     .testimonial-user-name {
-      font-size: 13px;
+      font-size: 12px; /* Adjust name size */
     }
   
     .testimonial-user-title {
-      font-size: 11px;
+      font-size: 10px; /* Adjust title size */
     }
   
     .carousel-controls {
-      margin-top: 12px;
-      gap: 6px;
+      margin-top: 10px;
+      gap: 5px; /* Smaller gap between buttons */
     }
   
     .carousel-button {
-      width: 28px;
-      height: 28px;
-      font-size: 13px;
+      width: 25px; /* Smaller button size */
+      height: 25px;
+      font-size: 12px; /* Adjust icon size */
     }
   }
+
   @media (max-width: 425px) {
     .testimonials-section {
-      padding: 15px;
+      padding: 10px;
       text-align: center;
     }
   
     .testimonials-title {
-      font-size: 28px; /* Improved readability */
+      font-size: 24px; /* Reduce title size further */
     }
   
     .title-underline {
-      width: 80px;
-      height: 3px;
-      margin: 6px auto;
+      width: 60px; /* Narrower underline */
+      height: 2px;
+      margin: 4px auto;
     }
-  
-    .underline {
-      background-color: #000000;
-      margin-top: 14px;
+    .underline{
+      /* height: 2px; Thickness of the line */
+      background-color: #000000; /* Gold-like color */
+      /* padding-top:5px; Center the underline */
+      margin-top: 10px;
+     
     }
-  
+    
     .testimonials-subtitle {
-      font-size: 14px;
-      margin-bottom: 14px;
+      font-size: 12px; /* Smaller subtitle font size */
+      margin-bottom: 10px;
     }
   
     .testimonials-carousel {
-      flex-direction: column;
-      gap: 20px;
-      overflow: visible;
+      flex-direction: column; /* Stack cards vertically */
+      gap: 15px; /* Smaller space between cards */
+      overflow: visible; /* Ensure all content is visible */
     }
   
     .testimonial-card {
-      max-width: 90%;
-      padding: 20px;
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
-      margin-left: auto;
+      max-width: 85%; /* Narrower card size */
+      padding: 15px; /* Adjust padding for compact design */
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Slightly lighter shadow */
+      margin-left: auto; /* Center align card */
       margin-right: auto;
     }
   
     .testimonial-rating {
-      font-size: 1.1rem;
+      font-size: 0.9rem; /* Slightly smaller rating size */
     }
   
     .testimonial-review {
-      font-size: 13px;
-      margin-bottom: 14px;
+      font-size: 11px; /* Reduce review text size */
+      margin-bottom: 10px; /* Adjust spacing */
     }
   
     .testimonial-user {
-      gap: 10px;
+      gap: 6px; /* Smaller gap between image and text */
     }
   
     .testimonial-user-image {
-      width: 40px;
-      height: 40px;
+      width: 35px; /* Smaller profile image */
+      height: 35px;
     }
   
     .testimonial-user-name {
-      font-size: 14px;
+      font-size: 12px; /* Adjust name size */
     }
   
     .testimonial-user-title {
-      font-size: 12px;
+      font-size: 10px; /* Adjust title size */
     }
   
     .carousel-controls {
-      margin-top: 14px;
-      gap: 7px;
+      margin-top: 10px;
+      gap: 5px; /* Smaller gap between buttons */
     }
   
     .carousel-button {
-      width: 30px;
-      height: 30px;
-      font-size: 14px;
+      width: 25px; /* Smaller button size */
+      height: 25px;
+      font-size: 12px; /* Adjust icon size */
     }
   }
-    
