@@ -33,7 +33,7 @@ body {
     }
   }
   
-  @media (max-width: 425px) {
+  @media (max-width: 430px) {
     .responsive-hero {
       height: 200px;
     }

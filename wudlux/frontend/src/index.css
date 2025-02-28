@@ -6,6 +6,16 @@
 }
 
 
+/* Global Fix for Horizontal Overflow */
+html, body {
+  overflow-x: hidden !important;  /* Force disable horizontal scrolling */
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

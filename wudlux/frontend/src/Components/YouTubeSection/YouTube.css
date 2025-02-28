@@ -1,6 +1,6 @@
 .premium-look-section {
   text-align: center;
-  padding: 5vh 5vw;
+  padding: 15px ;
   background-color: white;
   color: #fff;
 }
@@ -48,8 +48,8 @@
 /* ✅ Video Item */
 .video-item {
   position: relative;
-  width: 40vw;
-  max-width: 600px;
+  width: 600px;
+  /* max-width: 600px; */
 }
 
 .video-wrapper {

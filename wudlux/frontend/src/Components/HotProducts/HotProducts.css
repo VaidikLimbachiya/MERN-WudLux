@@ -185,7 +185,7 @@
 
 /* Extra Small Screens (320px and below) */
 
-@media (max-width: 425px) {
+@media (max-width: 430px) {
   /* Grid Gallery */
   .grid-gallery {
     grid-template-columns: 1fr; /* Single-column layout */

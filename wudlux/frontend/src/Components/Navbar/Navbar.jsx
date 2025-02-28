@@ -51,7 +51,7 @@ const categories = [
 
 const Navbar = () => {
   const [activeCategory, setActiveCategory] = useState(null);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  // const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false); // Profile menu state
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
@@ -61,6 +61,7 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
 
   const {
@@ -152,6 +153,9 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
+    if (window.innerWidth <= 430) {
+      setIsSearchOpen(!isSearchOpen);
+    }
   };
 
   const handleLogout = () => {
@@ -341,6 +345,7 @@ useEffect(() => {
             <div className="navbar__searchIcon">
               <img src={searchIcon} alt="Search" onClick={toggleSearch}loading="lazy" />
             </div>
+            
 
             {/* Cart Icon */}
             <div className="navbar__cartIcon" onClick={toggleCart}>

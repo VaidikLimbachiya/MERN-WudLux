@@ -277,9 +277,10 @@
     flex-direction: column; /* Stack items */
     align-items: center; /* Center align */
     width: 100%;
-    padding: 10px;
+    padding: -1px;
     gap: 12px; /* Space between elements */
     margin: 0 auto; /* Ensure proper centering */
+    margin-left: -5px;
   }
 
   /* Adjust offer cards for small screens */
