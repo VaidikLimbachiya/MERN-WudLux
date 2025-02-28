@@ -208,62 +208,6 @@
 
 
 
-@media (max-width: 430px) {
-
-  .banner {
-    padding: 0 20px;
-    justify-content: center; /* Center-align text for smaller screens */
-    text-align: center;
-  }
-  .banner-content {
-    margin: 0 auto;
-    max-width: 100%;
-    margin-left: 0; /* Adjust for very small screens */
-  }
-
-  .dot {
-    margin-bottom: -9px;
-    width: 8px;
-    height: 8px;
-    background-color: #ccc;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .slider-track {
-    height: 220px; /* Reduce slider height for small screens */
-  }
-
-  .slider-heading {
-    font-size: 1.2rem; /* Adjust heading size for better readability */
-    margin-bottom: 0px;
-    margin-left: 0rem;
-  }
-
-  .slider-SubHeading {
-    font-size: 1.4rem;
-    margin-left: -7rem;/* Remove margin */
-  }
-
-
-  .sale-offer {
-    font-size: 24px; /* Properly sized font for small screens */
-    margin-left: 0; /* Remove margin */
-  }
-
-  .line-offer {
-    width: 100%;
-    margin-left: 0; /* Remove margin */
-  }
-
-  .shop-now {
-    padding: 4px 6px; /* Slightly smaller padding for button */
-    font-size: 0.7rem; /* Small font size for button text */
-    margin-left: -10.3rem;
-  }
-}
-
-
 @media (max-width: 375px) {
 
   .banner {
@@ -321,20 +265,21 @@
 /* Mobile-Optimized Styles */
 @media (max-width: 430px) {
   /* Slider Container */
+  /* Ensure full width and height match the uploaded design */
   .slider-container {
     position: relative;
     width: 100%;
-    max-width: 430px; /* Ensure it fits mobile screens */
-    height: 704px;
+    max-width: 375px;
+    height: 650px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  /* Slider Track */
+  /* Adjust slider track */
   .slider-track {
-    height: 704px; /* Keep consistent height */
+    height: 650px;
     display: flex;
     transition: transform 0.5s ease-in-out;
     will-change: transform;
@@ -344,61 +289,86 @@
   .banner {
     min-width: 100%;
     height: 100%;
-    background-size: cover; /* Ensures full image fills the space */
-    background-position: center;
+    background-size: cover; /* Ensures full image visibility */
+    background-position: center center; /* Centers image properly */
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Move content to the top */
+    align-items: center;
     flex-direction: column;
-    padding: 20px;
-  }
-
-  /* Banner Content (Text Over Image) */
-  .banner-content {
-    max-width: 100%;
+    padding: 15px;
     text-align: center;
-    margin: 0 auto;
-    position: absolute;
-    top: 15%; /* Adjust position */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
+    position: relative;
   }
+  
+
+  /* Centered Banner Content */
+  .banner-content {
+    width: 90%;
+    position: absolute;
+    top: 35%; /* Move text down for better balance */
+    left: 90%;
+    transform: translate(-50%, -50%); /* Ensures full centering */
+    text-align: center;
+    color: #000;
+    z-index: 10;
+    padding: 12px;
+    border-radius: 10px;
+    max-width: 320px; /* Prevents text from stretching too much */
+  }
+  
 
   /* Sale Offer Text */
   .sale-offer {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     color: #c0a062;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    white-space: nowrap; /* Keeps text on one line */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." if text is too long */
+    max-width: 90%; /* Prevents it from pushing beyond container */
+  }
+  
+
+  /* Gradient Line */
+  .line-offer {
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, #000000, #D97B48, #000000);
+    margin: 4px auto;
   }
 
-  /* Heading Styling */
+  /* Centered Headings */
   .slider-heading {
     font-size: 1.8rem;
     font-weight: bold;
     color: black;
     margin: 5px 0;
+    text-align: center;
   }
 
   .slider-SubHeading {
     font-size: 1.6rem;
     font-weight: bold;
     color: black;
-    margin: 0;
+    margin-bottom: 12px;
+    text-align: center;
   }
 
-  /* Shop Now Button */
+  /* Centered Shop Now Button */
   .shop-now {
-    background: black;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    font-size: 1rem;
-    border-radius: 5px;
+    width: 180px;
+    height: 50px;
+    display: block;
+    margin: 18px auto; /* Centers button */
+    color: black;
+    border: 1px solid black;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 40px;
     cursor: pointer;
     transition: background 0.3s ease-in-out;
-    margin-top: 15px;
   }
 
   .shop-now:hover {
@@ -408,7 +378,7 @@
   /* Navigation Dots */
   .dots-container {
     position: absolute;
-    bottom: 15px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -429,3 +399,127 @@
   }
 }
 
+/* ========== 430px ========== */
+@media (max-width: 430px) {
+  .slider-container {
+    width: 100%;
+    max-width: 431px;
+    height: 700px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slider-track {
+    height: 700px;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .banner {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+  }
+
+  .banner-content {
+    width: 90%;
+    position: absolute;
+    top: 25%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #000;
+    z-index: 10;
+    padding: 12px;
+    border-radius: 10px;
+    max-width: 340px;
+  }
+
+  .sale-offer {
+    font-size: 12px;
+    font-weight: 600;
+    color: #c0a062;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+  }
+
+  .line-offer {
+    width: 250px;
+    height: 2px;
+    background: linear-gradient(90deg, #000000, #D97B48, #000000);
+    margin: 4px auto;
+  }
+
+  .slider-heading {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: black;
+    margin: 5px 0;
+    text-align: center;
+    margin-left: 70px;
+  }
+
+  .slider-SubHeading {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 12px;
+    text-align: center;
+    margin-left: -40px;
+  }
+
+  .shop-now {
+    width: 180px;
+    height: 50px;
+    display: block;
+    margin: 18px auto;
+    color: black;
+    border: 1px solid black;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-left: 40px;
+  }
+
+  .shop-now:hover {
+    background: gray;
+  }
+
+  .dots-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .dot.active {
+    background-color: black;
+  }
+}

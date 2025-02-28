@@ -1,25 +1,38 @@
 import { useState, useEffect } from "react";
 import "./Header.css";
 import backgroundImage1 from "../../assets/header.png";
-import backgroundImage2 from "../../assets/header2.png";
-import backgroundImage3 from "../../assets/header3.png";
+import backgroundImage2 from "../../assets/header2.jpeg";
+import backgroundImage3 from "../../assets/header3.jpeg";
+
+/* Mobile-specific images */
+import mobileImage1 from "../../assets/Mheader1.png";
+import mobileImage2 from "../../assets/Mheader2.png";
+import mobileImage3 from "../../assets/Mheader3.png";
 
 const Slider = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 431);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 431);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const slides = [
     {
-      image: backgroundImage1,
+      image: isMobile ? mobileImage1 : backgroundImage1, // Use mobile image when on mobile view
       heading: "Wooden",
       SubHading: "Kitchenware",
       subheading: "Sale offer 10% off this week",
     },
     {
-      image: backgroundImage2,
+      image: isMobile ? mobileImage2 : backgroundImage2,
       heading: "Wooden",
       SubHading: "Kitchenware",
       subheading: "Sale offer 10% off this week",
     },
     {
-      image: backgroundImage3,
+      image: isMobile ? mobileImage3 : backgroundImage3,
       heading: "Wooden",
       SubHading: "Kitchenware",
       subheading: "Sale offer 10% off this week",
@@ -27,37 +40,33 @@ const Slider = () => {
   ];
 
   const totalSlides = slides.length;
-  const extendedSlides = [slides[totalSlides - 1], ...slides, slides[0]]; // Clone first & last for smooth looping
+  const extendedSlides = [slides[totalSlides - 1], ...slides, slides[0]];
 
-  const [currentIndex, setCurrentIndex] = useState(1); // Start at first real slide
+  const [currentIndex, setCurrentIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(true);
 
-  //   Auto Slide Every 3 Seconds
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
     }, 3000);
     return () => clearInterval(interval);
-  }, [currentIndex]); //   Fixed dependency
+  }, [currentIndex]);
 
-  //   Handle Next Slide (Seamless Loop)
   const nextSlide = () => {
     if (currentIndex < totalSlides) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
     } else {
       setIsTransitioning(false);
-      setCurrentIndex(0); // Instantly jump
+      setCurrentIndex(0);
       setTimeout(() => {
         setIsTransitioning(true);
-        setCurrentIndex(1); // Reset smoothly
+        setCurrentIndex(1);
       }, 50);
     }
   };
 
-
-  //   Handle Dot Click
   const handleDotClick = (index) => {
-    setCurrentIndex(index + 1); // Offset by 1 because of cloned slides
+    setCurrentIndex(index + 1);
   };
 
   return (
