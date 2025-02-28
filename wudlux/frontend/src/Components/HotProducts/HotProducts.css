@@ -178,112 +178,96 @@
   color: black; /* Slightly lighter color on hover */
 }
 
-/* Extra Small Screens (320px and below) */
-@media (max-width: 375px) {
+/* Mobile Carousel View */
+.carousel-gallery {
+  display: none;
+  width: 100%;
+  max-width: 398px; /* Fixed width for mobile layout */
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Swiper Container */
+.swiper-container {
+  position: relative;
+}
+
+/* Carousel Items */
+.carousel-item {
+  position: relative;
+  text-align: center;
+  width: 398px;
+  height: 550px;
+  gap: 4px;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+/* Carousel Images */
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Overlay for Carousel */
+.carousel-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Overlay Text */
+.carousel-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Overlay Link */
+.carousel-link {
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Add Arrow */
+.carousel-link::after {
+  content: "→";
+  font-size: 18px;
+  margin-left: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.carousel-link:hover::after {
+  opacity: 1;
+}
+
+/* Show Carousel & Hide Grid on Mobile */
+@media (max-width: 768px) {
   .grid-gallery {
-    grid-template-columns: 1fr; /* Single-column layout */
-    gap: 3px; /* Reduced gap */
-    border-radius: 10px;
+    display: none;
   }
-
-  /* Headings */
-  .heading-title {
-    font-size: 24px; /* Smaller font for titles */
-    margin: 10px; /* Reduced margin */
-  }
-
-  .heading-underline {
-    width: 77px;
-    margin: 10px auto;
-    margin-top: -13px;
-    height: 2px;
-    margin-left: 110px;
-  }
-
-  .heading-subtitle {
-    font-size: 12px; /* Smaller font for subtitles */
-    margin-top: 5px;
-  }
-
-  /* Grid Items */
-  .grid-item {
-    border-radius: 4px;
-    height: 96px; /* Slightly smaller border-radius */
-  }
-
-  .grid-item img {
-    height: 6rem; /* Ensure images adapt properly */
-  }
-
-  /* Hover Overlay */
-  .grid-item .hover-overlay {
-    padding: 5px 10px; /* Smaller padding */
-  }
-
-  .hover-overlay .hover-text {
-    font-size: 14px; /* Smaller text for hover */
-  }
-
-  .hover-overlay .hover-link {
-    font-size: 12px; /* Smaller link font */
-  }
-
-  .hover-overlay .hover-link::after {
-    font-size: 16px; /* Adjust arrow size */
+  .carousel-gallery {
+    display: block;
   }
 }
 
-@media (max-width: 430px) {
-  /* Grid Gallery */
-  .grid-gallery {
-    grid-template-columns: 1fr; /* Single-column layout */
-    gap: 3px; /* Reduced gap */
-    border-radius: 10px;
-  }
 
-  /* Headings */
-  .heading-title {
-    font-size: 24px; /* Smaller font for titles */
-    margin: 10px; /* Reduced margin */
-  }
-
-  .heading-underline {
-    width: 77px;
-    margin: 10px auto;
-    margin-top: -13px;
-    height: 2px;
-    margin-left: 110px;
-  }
-
-  .heading-subtitle {
-    font-size: 12px; /* Smaller font for subtitles */
-    margin-top: 5px;
-  }
-
-  /* Grid Items */
-  .grid-item {
-    border-radius: 4px;
-    height: 96px; /* Slightly smaller border-radius */
-  }
-
-  .grid-item img {
-    height: 6rem; /* Ensure images adapt properly */
-  }
-
-  /* Hover Overlay */
-  .grid-item .hover-overlay {
-    padding: 5px 10px; /* Smaller padding */
-  }
-
-  .hover-overlay .hover-text {
-    font-size: 14px; /* Smaller text for hover */
-  }
-
-  .hover-overlay .hover-link {
-    font-size: 12px; /* Smaller link font */
-  }
-
-  .hover-overlay .hover-link::after {
-    font-size: 16px; /* Adjust arrow size */
-  }
-}
