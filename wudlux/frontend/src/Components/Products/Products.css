@@ -306,67 +306,44 @@
 }
 
 /* For screens smaller than 480px (extra small devices) */
-@media (max-width: 480px) {
-  .productsGrid {
-    grid-template-columns: 1fr; /* Single column for ultra small screens */
-    gap: 10px; /* Adjust gap between items */
+@media (max-width: 430px) {
+  /* Remove background and border from slider buttons */
+  .swiper-container {
+    position: relative;
+    padding-bottom: 20px;
   }
-
-  .productCard {
-    margin: 6px 0; /* Reduce space between cards */
-  }
-
-  .productImage {
-    height: 200px; /* Further reduced image height */
-  }
-
-  .productsTitle {
-    font-size: 22px; /* Even smaller font size */
-  }
-
-  .viewAllButton {
-    font-size: 14px; /* Adjust button font */
-    padding: 6px 12px;
-  }
+.sliderButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-/* For screens smaller than 320px (extremely small devices like old phones) */
-@media (max-width: 320px) {
-  .productsGrid {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    padding: 0;
-  }
+.prevButton,
+.nextButton {
+  background: none !important; /* Removes background */
+  border: none !important; /* Removes any border */
+  box-shadow: none !important; /* Removes any shadow */
+  outline: none !important; /* Removes focus outline */
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .productCard {
-    margin: 5px auto;
-    width: 90%; /* Narrow card width */
-  }
+/* Ensure the icons are properly sized */
+.prevButton img,
+.nextButton img {
+  width: 55px; /* Adjust icon size as needed */
+  height: 55px;
+  object-fit: contain; /* Prevents distortion */
+}
 
-  .productImage {
-    height: 180px;
-  }
+/* Add hover effect if needed */
+.prevButton:hover img,
+.nextButton:hover img {
+  opacity: 0.8; /* Slight opacity change on hover */
+}
 
-  .productsTitle {
-    font-size: 24px;
-  }
-
-  .viewAllButton {
-    font-size: 14px;
-    padding: 8px 21px;
-  }
-  .titleUnderline {
-    margin: 10px auto 0;
-    width: 100px; /* Adjust the underline width */
-    height: 2px; /* Thickness of the underline */
-    background-color: #c0a062; /* Gold color for the underline */
-    border-radius: 2px; /* Rounded corners for a polished look */
-    margin-top: 2px;
-  }
-  
-
-  .discountBadge {
-    font-size: 10px;
-    padding: 3px 5px;
-  }
 }

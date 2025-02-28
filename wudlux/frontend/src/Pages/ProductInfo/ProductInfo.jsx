@@ -252,7 +252,7 @@ const ProductPage = () => {
               className="add-to-bag-btn"
               onClick={(e) => {
                 e.stopPropagation();
-                addToCart(product._id, quantity);
+                addToCart({ ...product, quantity: 1 });
               }}
             >
               <img src={bag} alt="Bag" loading="lazy"/> Add to Bag
@@ -456,8 +456,8 @@ const ProductPage = () => {
         </div>
       )}
       <>
-        <Services />
         <Products />
+        <Services />
       </>
     </div>
   );

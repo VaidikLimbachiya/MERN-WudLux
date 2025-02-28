@@ -297,6 +297,7 @@ export const CartProvider = ({ children }) => {
         totalPrice,
         totalProducts,
         addToCart,
+        setCartItems,
         updateQuantity,
         removeItem,
         clearCart,

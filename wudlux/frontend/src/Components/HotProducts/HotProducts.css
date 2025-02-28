@@ -178,14 +178,8 @@
   color: black; /* Slightly lighter color on hover */
 }
 
-/* General Mobile First Approach */
-
-
-/* Extra Small Screens (less than  ) */
-
 /* Extra Small Screens (320px and below) */
 @media (max-width: 375px) {
-  /* Grid Gallery */
   .grid-gallery {
     grid-template-columns: 1fr; /* Single-column layout */
     gap: 3px; /* Reduced gap */
@@ -239,61 +233,7 @@
   }
 }
 
-@media (max-width: 425px) {
-  /* Grid Gallery */
-  .grid-gallery {
-    grid-template-columns: 1fr; /* Single-column layout */
-    gap: 3px; /* Reduced gap */
-    border-radius: 10px;
-  }
-
-  /* Headings */
-  .heading-title {
-    font-size: 24px; /* Smaller font for titles */
-    margin: 10px; /* Reduced margin */
-  }
-
-  .heading-underline {
-    width: 77px;
-    margin: 10px auto;
-    margin-top: -13px;
-    height: 2px;
-    margin-left: 110px;
-  }
-
-  .heading-subtitle {
-    font-size: 12px; /* Smaller font for subtitles */
-    margin-top: 5px;
-  }
-
-  /* Grid Items */
-  .grid-item {
-    border-radius: 4px;
-    height: 96px; /* Slightly smaller border-radius */
-  }
-
-  .grid-item img {
-    height: 6rem; /* Ensure images adapt properly */
-  }
-
-  /* Hover Overlay */
-  .grid-item .hover-overlay {
-    padding: 5px 10px; /* Smaller padding */
-  }
-
-  .hover-overlay .hover-text {
-    font-size: 14px; /* Smaller text for hover */
-  }
-
-  .hover-overlay .hover-link {
-    font-size: 12px; /* Smaller link font */
-  }
-
-  .hover-overlay .hover-link::after {
-    font-size: 16px; /* Adjust arrow size */
-  }
-}
-@media (max-width: 320px) {
+@media (max-width: 430px) {
   /* Grid Gallery */
   .grid-gallery {
     grid-template-columns: 1fr; /* Single-column layout */

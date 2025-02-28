@@ -4,6 +4,7 @@ import "./Productlist.css";
 import bagIcon from "../../assets/bag.png";
 import { useCartContext } from "../../Context/CartContext";
 import Filter from "../Filter/Filter"; // Import Filter component
+import Products from "../Products/Products";
 
 const Productlist = () => {
   const { addToCart, cartItems = [] } = useCartContext();
@@ -192,6 +193,7 @@ const Productlist = () => {
           </div>
         )}
       </div>
+        
     </>
   );  
 };

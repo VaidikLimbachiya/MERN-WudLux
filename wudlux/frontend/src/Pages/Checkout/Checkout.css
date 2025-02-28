@@ -1,5 +1,5 @@
-*{
-  font-family: 'Poppins';
+* {
+  font-family: "Poppins";
 }
 
 .logo-box {
@@ -26,10 +26,10 @@
   padding-bottom: 20px;
   font-family: sans-serif, serif;
 }
-.name{
+.name {
   padding-top: 6px;
-    margin-top: 17px;
-    margin-left: -45px;
+  margin-top: 17px;
+  margin-left: -45px;
 }
 .form-title {
   font-size: 2rem;
@@ -70,13 +70,11 @@
   background: white; /* Ensures it does not overlap */
 }
 
-
-
 h1,
 h2,
 h3 {
   font-weight: 500;
-  font-family:"Poppins";
+  font-family: "Poppins";
 }
 
 .input-group {
@@ -178,7 +176,7 @@ select:disabled {
   color: #999;
   cursor: not-allowed;
 }
-.checkbox-group{
+.checkbox-group {
   display: flex;
   /* margin-top:20px; */
   /* flex-direction: row; */
@@ -188,7 +186,6 @@ select:disabled {
 
 .checkbox-group-one {
   display: contents;
-  
 }
 
 .submit-button {
@@ -203,9 +200,8 @@ select:disabled {
 }
 
 .submit-button:hover {
-  background:black;
+  background: black;
   transition: background-color 0.5s ease;
-
 }
 
 .product-list {
@@ -277,7 +273,7 @@ select:disabled {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: 16px;
   font-weight: 500;
   color: #000;
@@ -292,13 +288,12 @@ select:disabled {
   z-index: 0; /* Keep the text above the background */
 
   &:hover {
-    color: white; 
+    color: white;
     background-color: #000;
     transition: background-color 0.9s ease;
-/* Change text color on hover */
+    /* Change text color on hover */
   }
 }
-
 
 /* .back-button {
   background: none;
@@ -315,7 +310,7 @@ select:disabled {
   color: #fff;
 } */
 .shipping-method {
-  border-top:2px solid #000;
+  border-top: 2px solid #000;
   padding-top: 20px;
   margin-bottom: 0px;
   position: relative;
@@ -332,7 +327,6 @@ select:disabled {
   text-align: center;
 }
 
-
 .price-item {
   display: flex;
   justify-content: space-between;
@@ -341,13 +335,12 @@ select:disabled {
 
 .price-item span {
   font-size: 16px;
-  font-family: 'Poppins';
-
+  font-family: "Poppins";
 }
 
 .discount-product {
   color: #007bff; /* Blue for discount */
-  font-weight :600;
+  font-weight: 600;
 }
 
 .price-divider {
@@ -360,10 +353,8 @@ select:disabled {
   color: #fff;
 } */
 
-
 /* General Reset for 320px screens */
 @media (max-width: 320px) {
-
   .logo-box {
     text-align: left;
     margin-bottom: 0px;
@@ -548,7 +539,6 @@ select:disabled {
 }
 
 @media (max-width: 375px) {
-
   .logo-box {
     text-align: left;
     margin-bottom: 0px;
@@ -732,8 +722,7 @@ select:disabled {
   }
 }
 
-@media (max-width: 425px) {
-
+@media (max-width: 430px) {
   .logo-box {
     text-align: left;
     margin-bottom: 0px;
@@ -793,7 +782,8 @@ select:disabled {
   /* Buttons */
   .button-group {
     display: flex;
-    flex-direction: column; /* Stack buttons vertically */
+    flex-direction: row; /* Align buttons in a row */
+    justify-content: space-between; /* Space between buttons */
     gap: 10px;
     margin-top: 20px;
   }
@@ -804,9 +794,11 @@ select:disabled {
     padding: 10px 15px;
     border-radius: 25px;
     text-align: center;
-    width: 100%; /* Full width buttons */
+    flex: 1; /* Makes both buttons equal width */
+    max-width: 200px; /* Optional: Adjust max width */
   }
 
+  /* Back Button */
   .back-button {
     background-color: transparent;
     color: #000;
@@ -818,6 +810,7 @@ select:disabled {
     color: #fff;
   }
 
+  /* Submit Button */
   .submit-button {
     background-color: #000;
     color: #fff;
@@ -827,62 +820,74 @@ select:disabled {
     background-color: #444;
   }
 
-  /* Summary Container */
   .summary-container {
-    width: 100%; /* Full width for small screens */
+    width: 100%;
     padding: 10px;
     border-radius: 8px;
     margin-top: 20px;
-    border: 1px solid #ccc;
+    border: none !important;
+
   }
 
   .product-list {
     margin-top: 10px;
     padding: 0;
+    
   }
 
   .product-box {
     display: flex;
-    flex-direction: row; /* Stack product details vertically */
-    align-items: left;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 15px;
     padding: 10px;
-    width: 100%; /* Full width for small screens */
-    /* border-bottom: 1px solid #ccc; */
-  }
+    width: 100%;
+    border-bottom: 1px solid #E6E6E6;
+}
+
 
   .product-thumbnail {
     width: 80px;
     height: 80px;
-    margin-bottom: 10px;
+    border-radius: 8px;
     object-fit: cover;
   }
 
   .product-info {
     display: flex;
-    flex-direction: column; /* Stack product title and price vertically */
+    flex-direction: row;
     align-items: center;
-    text-align: center;
-  }
-
-  .product-title {
-    font-size: 14px;
-    margin-bottom: 5px;
+    margin-left: 10px;
+    flex-grow: 1; /* Makes the title take available space */
+    border-bottom: none !important;
   }
 
   .quantity-badge {
     font-size: 13px;
-    padding: 6px 17px;
-    background-color: #000;
+    padding: 4px 10px;
+    background-color: #3d2c2c;
     color: #fff;
-    border-radius: 20px;
-    margin-bottom: -7px;
-    /* /* margin-left: -38px; */
+    border-radius: 15px;
+    font-weight: bold;
+    margin-right: 10px; /* Adjusts position */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+  }
+
+  .product-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 5px;
+    white-space: nowrap;
   }
 
   .product-cost {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
+    white-space: nowrap;
   }
 
   /* Totals Section */

@@ -65,7 +65,6 @@ const Navbar = () => {
 
   const {
     cartItems,
-    setCartItems,
     totalQuantity,
     totalPrice,
     totalProducts,
@@ -183,7 +182,6 @@ const Navbar = () => {
   useEffect(() => {
     const handleCartUpdate = () => {
       console.log("Cart update detected in Navbar. Re-rendering...");
-      setCartItems([...cartItems]); // 🔥 Force re-render
     };
   
     window.addEventListener("cartUpdated", handleCartUpdate);

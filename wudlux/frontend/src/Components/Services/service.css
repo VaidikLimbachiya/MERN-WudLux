@@ -1,69 +1,63 @@
 /* Services Section */
 .services {
-  padding: 40px 20px;
+  padding: 20px;
   background-color: black;
   text-align: center;
   width: 100%;
-  /* margin-left: 0px; */
+  overflow: hidden; /* Prevents unwanted overflow */
 }
 
-.services-container {
+/* Swiper Wrapper */
+.services-slider {
+  padding-bottom: 20px;
+}
+
+/* Individual Slide */
+.swiper-slide {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;
+  align-items: center;
 }
 
+/* Service Card */
 .service-card {
-  width: 250px;
   background: black;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-}
-
-.service-icon img {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 15px;
-}
-
-.service-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-  margin: 0 0 10px;
-}
-
-.service-description {
-  font-size: 14px;
   color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  width: 250px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Responsive Styles */
-@media (max-width: 320px) {
-  .services-container {
-    gap: 5px; /* Minimal gap for very small screens */
-  }
+/* Service Icon */
+.service-icon img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
 
-  .service-card {
-    width: 140px; /* Further reduce width for tiny screens */
-    padding: 8px; /* Reduce padding to fit content */
-  }
+/* Title */
+.service-title {
+  font-size: 16px;
+  font-weight: bold;
+}
 
-  .service-title {
-    font-size: 14px; /* Very small font size for the title */
-  }
+/* Description */
+.service-description {
+  font-size: 12px;
+}
 
-  .service-description {
-    font-size: 10px; /* Smaller font size for the description */
-  }
+/* Swiper Pagination */
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
 }

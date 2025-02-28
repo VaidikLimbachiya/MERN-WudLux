@@ -111,214 +111,166 @@
   text-align: center;
   color: #000;
 }
-@media (max-width: 320px) {
-  /* Ensure categories are in a single row and scrollable */
-  .categoriesGrid {
-    display: flex;
-    flex-wrap: nowrap; /* Ensure all items stay in one row */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    scroll-snap-type: x mandatory; /* Smooth scrolling effect */
-    gap: 10px; /* Maintain spacing */
-    padding: 0 10px; /* Prevent cutting off items */
-    box-sizing: border-box;
-    min-width: 100vw; /* Ensure full viewport width for scrolling */
+@media (max-width: 430px) {
+   
+  .categoriesContainer {
+    padding: 15px;
+    width: 430px;
+    height: 390px;
+    padding: 66px 16px 66px 16px;
   }
 
-  /* Hide the horizontal scrollbar for cleaner UI */
-  .categoriesGrid::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Category Card */
-  .categoryCard {
-    flex: 0 0 auto; /* Prevent shrinking */
-    width: 150px; /* Adjust size for visibility */
-    scroll-snap-align: start; /* Align items properly */
-  }
-
-  /* Hover Effect */
-  .categoryHoverEffect {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    overflow: hidden;
-  }
-
-  /* Category Image */
-  .categoryImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* Ensure proper title spacing */
-  .categoryTitle {
-    font-size: 12px;
-    margin-top: 5px;
+  .headingContainer {
+    width: 398px;
+    height: 81px;
+    gap:16px;
     text-align: center;
+    padding: 20px;
   }
+ 
 
-  /* Ensure the heading is also properly aligned */
   .headingTitle {
+    width: 394px;
+    height: 34px;
     font-size: 24px;
-    text-align: center;
-    margin-bottom: 5px;
-  }
-
-  .headingUnderline {
-    width: 96px;
-    height: 2px;
-    background-color: #c0a062;
-    margin: 0 auto;
+    font-style: italic;
+    font-weight: 800;
+    color: #0A0A0A;
+    align-items: center;
   }
 
   .headingSubtitle {
-    font-size: 12px;
-    text-align: center;
-    margin-top: 5px;
-    color: #666;
-    width: 118%;
-    margin-left: -18px;
+    width: 394px;
+    height: 23px;
+    color: #0A0A0A;
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: 400;
+    align-items: center;
   }
+
+  
+.headingUnderline {
+  width: 80px; /* Width of the underline */
+  height: 3px; /* Thickness of the line */
+  background-color: #B6A69D; /* Gold-like color */
+  align-items: center;
+  margin-left: 160px;
+}
+
+.categoryImage {
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  z-index: 1; /* Ensure the image is above the overlay */
+  transition: transform 0.3s ease;
+}
+
+
+.categoriesGrid {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  white-space: inherit;
+  padding: 10px 10px;
+  scroll-behavior: smooth;
+  width: 430px;
+  gap: 40px;
+  justify-content: flex-start;
+
+  /* padding: 20px; */
+}
+
+  .categoryCard {
+    width: 90px;
+    /* padding-bottom: 20px; */
+  }
+
+  .categoryHoverEffect {
+    width: 160px;
+    height: 160px;
+  }
+
+  .hoverOverlay span {
+    font-size: 50px;
+  }
+
+  .categoryTitle {
+    width: 81px;
+    height: 45px;
+    margin-top: -40px;
+    font-size: 16px;
+    /* margin-bottom: 30px; */
+  }
+ 
 }
 @media (max-width: 375px) {
-  /* Ensure categories are in a single row and scrollable */
-  .categoriesGrid {
-    display: flex;
-    flex-wrap: nowrap; /* Ensure all items stay in one row */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    scroll-snap-type: x mandatory; /* Smooth scrolling effect */
-    gap: 10px; /* Maintain spacing */
-    padding: 0 10px; /* Prevent cutting off items */
-    box-sizing: border-box;
-    min-width: 100vw; /* Ensure full viewport width for scrolling */
+  .categoriesContainer {
+    padding: 15px;
+    width: 375px;
+    height: auto;
   }
 
-  /* Hide the horizontal scrollbar for cleaner UI */
-  .categoriesGrid::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Category Card */
-  .categoryCard {
-    flex: 0 0 auto; /* Prevent shrinking */
-    width: 150px; /* Adjust size for visibility */
-    scroll-snap-align: start; /* Align items properly */
-  }
-
-  /* Hover Effect */
-  .categoryHoverEffect {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    overflow: hidden;
-  }
-
-  /* Category Image */
-  .categoryImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* Ensure proper title spacing */
-  .categoryTitle {
-    font-size: 12px;
-    margin-top: 5px;
+  .headingContainer {
+    width: 375px;
     text-align: center;
+    padding: 15px;
   }
 
-  /* Ensure the heading is also properly aligned */
   .headingTitle {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 5px;
-  }
-
-  .headingUnderline {
-    width: 96px;
-    height: 2px;
-    background-color: #c0a062;
-    margin: 0 auto;
+    font-size: 22px; /* Adjusted title size */
   }
 
   .headingSubtitle {
-    font-size: 12px;
-    text-align: center;
-    margin-top: 5px;
-    color: #666;
-    width: 118%;
-    margin-left: -18px;
-  }
-}
-
-@media (max-width: 425px) {
-  /* Ensure categories are in a single row and scrollable */
-  .categoriesGrid {
-    display: flex;
-    flex-wrap: nowrap; /* Ensure all items stay in one row */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    scroll-snap-type: x mandatory; /* Smooth scrolling effect */
-    gap: 10px; /* Maintain spacing */
-    padding: 0 10px; /* Prevent cutting off items */
-    box-sizing: border-box;
-    min-width: 100vw; /* Ensure full viewport width for scrolling */
-  }
-
-  /* Hide the horizontal scrollbar for cleaner UI */
-  .categoriesGrid::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Category Card */
-  .categoryCard {
-    flex: 0 0 auto; /* Prevent shrinking */
-    width: 150px; /* Adjust size for visibility */
-    scroll-snap-align: start; /* Align items properly */
-  }
-
-  /* Hover Effect */
-  .categoryHoverEffect {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    overflow: hidden;
-  }
-
-  /* Category Image */
-  .categoryImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* Ensure proper title spacing */
-  .categoryTitle {
-    font-size: 12px;
-    margin-top: 5px;
-    text-align: center;
-  }
-
-  /* Ensure the heading is also properly aligned */
-  .headingTitle {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 5px;
+    font-size: 14px; /* Adjusted subtitle size */
+    margin-top: 8px;
   }
 
   .headingUnderline {
-    width: 96px;
-    height: 2px;
-    background-color: #c0a062;
-    margin: 0 auto;
+    width: 60px; /* Adjust underline width */
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .headingSubtitle {
-    font-size: 12px;
-    text-align: center;
-    margin-top: 5px;
-    color: #666;
-    width: 118%;
-    margin-left: -18px;
+  .categoriesGrid {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 8px 10px;
+    scroll-behavior: smooth;
+    width: 100%;
+    max-width: 375px;
+    gap: 30px; /* Adjust gap for better spacing */
+    justify-content: flex-start;
+  }
+
+  .categoryCard {
+    width: 80px; /* Adjusted category width */
+    flex-shrink: 0;
+  }
+
+  .categoryHoverEffect {
+    width: 140px; /* Adjusted hover effect */
+    height: 140px;
+  }
+
+  .categoryImage {
+    width: 90px;
+    height: 90px;
+  }
+
+  .hoverOverlay span {
+    font-size: 40px; /* Adjusted hover effect size */
+  }
+
+  .categoryTitle {
+    width: 75px;
+    height: auto;
+    margin-top: -30px;
+    font-size: 14px; /* Reduced font size for better fit */
   }
 }

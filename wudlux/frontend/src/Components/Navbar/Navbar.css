@@ -980,6 +980,7 @@ a {
     width: 20px;
     height: 20px;
     cursor: pointer;
+
   }
 
   /* Search Drawer - Opens from the Left */
@@ -1093,7 +1094,7 @@ a {
   }
 
   .navbar__searchIcon img {
-    margin-left: -70px;
+    margin-left: 70px;
   }
 
   .navbar__logo img {
@@ -1747,7 +1748,7 @@ a {
   }
 
 }
-@media (max-width: 425px) {
+@media (max-width: 430px) {
   .header {
     display: flex;
     flex-direction: row;
