@@ -1,5 +1,5 @@
 * {
-  font-family: 'Poppins';
+  font-family: "Poppins";
 }
 
 .logo-box {
@@ -26,7 +26,6 @@
   padding-bottom: 20px;
   font-family: sans-serif, serif;
 }
-
 .name {
   padding-top: 6px;
   margin-top: 17px;
@@ -78,8 +77,6 @@
   background: white;
   /* Ensures it does not overlap */
 }
-
-
 
 h1,
 h2,
@@ -188,7 +185,6 @@ select:disabled {
   color: #999;
   cursor: not-allowed;
 }
-
 .checkbox-group {
   display: flex;
   /* margin-top:20px; */
@@ -199,7 +195,6 @@ select:disabled {
 
 .checkbox-group-one {
   display: contents;
-
 }
 
 .submit-button {
@@ -216,7 +211,6 @@ select:disabled {
 .submit-button:hover {
   background: black;
   transition: background-color 0.5s ease;
-
 }
 
 .product-list {
@@ -288,7 +282,7 @@ select:disabled {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: 16px;
   font-weight: 500;
   color: #000;
@@ -311,8 +305,22 @@ select:disabled {
   }
 }
 
+/* .back-button {
+  background: none;
+  border: 1px solid #5c3c1d;
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.back-button:hover {
+  background: #5c3c1d;
+  color: #fff;
+} */
 .shipping-method {
-  /* border-top: 2px solid #000; */
+  border-top: 2px solid #000;
   padding-top: 20px;
   margin-bottom: 0px;
   position: relative;
@@ -330,16 +338,6 @@ select:disabled {
   text-align: center;
 }
 
-.price-item1 {
-  display: flex;
-  padding: 5px;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  border-top: 2px dashed black;
-  border-bottom: 2px dashed black;
-
-}
-
 .price-item {
   display: flex;
   justify-content: space-between;
@@ -348,13 +346,11 @@ select:disabled {
 
 .price-item span {
   font-size: 16px;
-  font-family: 'Poppins';
-
+  font-family: "Poppins";
 }
 
 .discount-product {
-  color: #007bff;
-  /* Blue for discount */
+  color: #007bff; /* Blue for discount */
   font-weight: 600;
 }
 
@@ -369,10 +365,15 @@ select:disabled {
   color: #fff;
 } */
 
+<<<<<<< HEAD
 
 
 @media (max-width: 430px) {
 
+=======
+/* General Reset for 320px screens */
+@media (max-width: 320px) {
+>>>>>>> 467a4b5ce167d8b1169b8de365f77bf901e9700e
   .logo-box {
     text-align: left;
     margin-bottom: 0px;
@@ -569,7 +570,6 @@ select:disabled {
 }
 
 @media (max-width: 375px) {
-
   .logo-box {
     text-align: left;
     margin-bottom: 0px;
@@ -707,8 +707,7 @@ select:disabled {
 
   .product-info {
     display: flex;
-    flex-direction: column;
-    /* Stack product title and price vertically */
+    flex-direction: column; /* Stack product title and price vertically */
     align-items: center;
     text-align: center;
   }
@@ -731,6 +730,206 @@ select:disabled {
   .product-cost {
     font-size: 14px;
     font-weight: bold;
+  }
+
+  /* Totals Section */
+  .summary-totals {
+    margin-top: 15px;
+  }
+
+  .price-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .discount-product {
+    color: #007bff;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .price-divider {
+    border: none;
+    border-top: 1px dashed #000;
+    margin: 10px 0;
+  }
+
+  .summary-totals h3 {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 430px) {
+  .logo-box {
+    text-align: left;
+    margin-bottom: 0px;
+    margin-top: 39px;
+  }
+  /* Wrapper */
+  .checkout-wrapper {
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    padding: 10px;
+  }
+
+  /* Form Container */
+  .form-container {
+    width: 100%; /* Full width for small screens */
+    padding: 0;
+  }
+
+  .form-title {
+    font-size: 1.9rem;
+    text-align: center;
+    margin-bottom: 17px;
+    margin-left: -11px;
+  }
+
+  .form-subtitle {
+    font-size: 0.8rem; /* Adjust subtitle size */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: row; /* Stack inputs vertically */
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 20px;
+    width: 100%; /* Full width for inputs */
+  }
+
+  textarea {
+    height: 80px;
+  }
+
+  .readonly-input {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+  }
+
+  /* Buttons */
+  .button-group {
+    display: flex;
+    flex-direction: row; /* Align buttons in a row */
+    justify-content: space-between; /* Space between buttons */
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .back-button,
+  .submit-button {
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    text-align: center;
+    flex: 1; /* Makes both buttons equal width */
+    max-width: 200px; /* Optional: Adjust max width */
+  }
+
+  /* Back Button */
+  .back-button {
+    background-color: transparent;
+    color: #000;
+    border: 1px solid #000;
+  }
+
+  .back-button:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  /* Submit Button */
+  .submit-button {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .submit-button:hover {
+    background-color: #444;
+  }
+
+  .summary-container {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border: none !important;
+
+  }
+
+  .product-list {
+    margin-top: 10px;
+    padding: 0;
+    
+  }
+
+  .product-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px;
+    width: 100%;
+    border-bottom: 1px solid #E6E6E6;
+}
+
+
+  .product-thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .product-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+    flex-grow: 1; /* Makes the title take available space */
+    border-bottom: none !important;
+  }
+
+  .quantity-badge {
+    font-size: 13px;
+    padding: 4px 10px;
+    background-color: #3d2c2c;
+    color: #fff;
+    border-radius: 15px;
+    font-weight: bold;
+    margin-right: 10px; /* Adjusts position */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+  }
+
+  .product-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 5px;
+    white-space: nowrap;
+  }
+
+  .product-cost {
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
   }
 
   /* Totals Section */

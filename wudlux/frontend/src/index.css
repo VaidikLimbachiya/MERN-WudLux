@@ -1,11 +1,4 @@
 @import '@fortawesome/fontawesome-free/css/all.css';
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-
 /* Global Fix for Horizontal Overflow */
 html, body {
   overflow-x: hidden !important;  /* Force disable horizontal scrolling */
@@ -14,6 +7,7 @@ html, body {
   padding: 0;
   box-sizing: border-box;
 }
+
 
 
 

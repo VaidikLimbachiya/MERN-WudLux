@@ -318,4 +318,114 @@
     margin-left: -10.3rem;
   }
 }
+/* Mobile-Optimized Styles */
+@media (max-width: 430px) {
+  /* Slider Container */
+  .slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 430px; /* Ensure it fits mobile screens */
+    height: 704px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Slider Track */
+  .slider-track {
+    height: 704px; /* Keep consistent height */
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+  }
+
+  /* Individual Slide */
+  .banner {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures full image fills the space */
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Move content to the top */
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  /* Banner Content (Text Over Image) */
+  .banner-content {
+    max-width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    top: 15%; /* Adjust position */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+  }
+
+  /* Sale Offer Text */
+  .sale-offer {
+    font-size: 14px;
+    font-weight: 600;
+    color: #c0a062;
+    margin-bottom: 8px;
+  }
+
+  /* Heading Styling */
+  .slider-heading {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: black;
+    margin: 5px 0;
+  }
+
+  .slider-SubHeading {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: black;
+    margin: 0;
+  }
+
+  /* Shop Now Button */
+  .shop-now {
+    background: black;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    margin-top: 15px;
+  }
+
+  .shop-now:hover {
+    background: gray;
+  }
+
+  /* Navigation Dots */
+  .dots-container {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .dot.active {
+    background-color: black;
+  }
+}
 

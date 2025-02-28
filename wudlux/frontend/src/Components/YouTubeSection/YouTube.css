@@ -1,6 +1,6 @@
 .premium-look-section {
   text-align: center;
-  padding: 15px ;
+  /* padding: 5vh 5vw; */
   background-color: white;
   color: #fff;
 }
@@ -42,14 +42,14 @@
   justify-content: center;
   gap: 2vw;
   max-width: 100%;
-  margin: 5vh auto;
+  /* margin: 5vh auto; */
 }
 
 /* ✅ Video Item */
 .video-item {
   position: relative;
-  width: 600px;
-  /* max-width: 600px; */
+  /* width: 40vw; */
+  max-width: 600px;
 }
 
 .video-wrapper {
@@ -151,11 +151,12 @@
   }
 
   .video-thumbnail {
-    width: 100%;
-    height: auto;
+    width: 85%;
+    height: 300px;
     border-radius: 10px;
-  }
-
+    margin-left: -39px;
+    padding: -1px;
+}
   .play-button {
     position: absolute;
     top: 50%;

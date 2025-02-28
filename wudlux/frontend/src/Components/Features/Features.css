@@ -47,10 +47,12 @@
   }
 
   .feature-card {
-    width: 100%; /* Adjust width for better fit */
-    height: 100%; /* Remove fixed height for better responsiveness */
-    /* padding: 1.5rem; Reduce padding for smaller screens */
-    margin-bottom: 0px;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay */
+    padding: 2rem;
+    /* border-radius: 10px; */
+    text-align: center;
+    width: 100%; /* Fixed width for cards */
+    height: 400px; /* Fixed height for cards */
   }
 
   .feature-icon {
@@ -65,64 +67,62 @@
   .feature-description {
     font-size: 0.9rem; /* Reduce text size for better fit */
   }
-}
-
-
-@media (max-width: 375px) {
-  .features-container {
-    flex-direction: column;
-    align-items: center;
-    height: 100%; /* Allow dynamic height */
-    /* padding: 1rem; Add some padding for spacing */
+  @media (max-width: 375px) {
+    .features-container {
+      flex-direction: column;
+      align-items: left;
+      height: auto;
+      background: url("../../assets/res.png"); /* New Mobile Image */
+      background-size: cover;
+    }
+  
+    .feature-card {
+      width: 100%; /* Adjust width for better fit */
+      height: 100%; /* Remove fixed height for better responsiveness */
+      /* padding: 1.5rem; Reduce padding for smaller screens */
+      margin-bottom: 0px;
+    }
+  
+    .feature-icon {
+      width: 60px; /* Reduce icon size for better proportion */
+      height: 60px;
+    }
+  
+    .feature-title {
+      font-size: 1.5rem; /* Slightly smaller font */
+    }
+  
+    .feature-description {
+      font-size: 0.9rem; /* Reduce text size for better fit */
+    }
   }
-
-  .feature-card {
-    width: 100%; /* Adjust width for better fit */
-    height: 100%; /* Remove fixed height for better responsiveness */
-    /* padding: 1.5rem; Reduce padding for smaller screens */
-    margin-bottom: 0px;
-  }
-
-  .feature-icon {
-    width: 60px; /* Reduce icon size for better proportion */
-    height: 60px;
-  }
-
-  .feature-title {
-    font-size: 1.5rem; /* Slightly smaller font */
-  }
-
-  .feature-description {
-    font-size: 0.9rem; /* Reduce text size for better fit */
-  }
-}
-
-
-@media (max-width: 430px) {
-  .features-container {
-    flex-direction: column;
-    align-items: center;
-    height: 100%; /* Allow dynamic height */
-    /* padding: 1rem; Add some padding for spacing */
-  }
-
-  .feature-card {
-    width: 100%; /* Adjust width for better fit */
-    height: 100%; /* Remove fixed height for better responsiveness */
-    /* padding: 1.5rem; Reduce padding for smaller screens */
-    margin-bottom: 0px;
-  }
-
-  .feature-icon {
-    width: 60px; /* Reduce icon size for better proportion */
-    height: 60px;
-  }
-
-  .feature-title {
-    font-size: 1.5rem; /* Slightly smaller font */
-  }
-
-  .feature-description {
-    font-size: 0.9rem; /* Reduce text size for better fit */
+  @media (max-width: 430px) {
+    .features-container {
+      flex-direction: column;
+      align-items: left;
+      height: auto;
+      background: url("../../assets/res.png"); /* New Mobile Image */
+      background-size: cover;
+    }
+  
+    .feature-card {
+      width: 100%; /* Adjust width for better fit */
+      height: 100%; /* Remove fixed height for better responsiveness */
+      /* padding: 1.5rem; Reduce padding for smaller screens */
+      margin-bottom: 0px;
+    }
+  
+    .feature-icon {
+      width: 60px; /* Reduce icon size for better proportion */
+      height: 60px;
+    }
+  
+    .feature-title {
+      font-size: 1.5rem; /* Slightly smaller font */
+    }
+  
+    .feature-description {
+      font-size: 0.9rem; /* Reduce text size for better fit */
+    }
   }
 }

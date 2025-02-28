@@ -3,6 +3,8 @@
   text-align: center;
   /* padding: 10px 10px; */
   width: 100%;
+  margin-bottom: 50px;
+  margin-top: 50px;
   /* margin-left: 10px; */
   /* background-color: #fff; White background */
 }
@@ -258,65 +260,6 @@
   }
 }
 
-@media (max-width: 430px) {
-  .productsGrid {
-    grid-template-columns: repeat(2, 1fr); /* 2-column layout */
-    gap: 10px; /* Reduce gap for better fit */
-    padding: 10px; /* Adjust padding */
-    width: 100%; /* Make grid fully responsive */
-  }
-
-  .productCard {
-    width: 100%; /* Ensure cards take full column width */
-    margin: 0; /* Remove extra margins */
-  }
-
-  .productImage {
-    height: 180px; /* Adjust image height */
-  }
-
-  .discountBadge {
-    top: 8px;
-    right: 8px;
-    font-size: 12px; /* Reduce badge font size */
-    padding: 3px 6px; /* Adjust padding */
-  }
-
-  .productDetails {
-    padding: 8px; /* Reduce padding for compact fit */
-  }
-
-  .productsTitle {
-    font-size: 24px; /* Adjust title size */
-  }
-
-  .titleUnderline {
-    width: 70px; /* Adjust underline width */
-  }
-
-  .productPrice {
-    gap: 5px; /* Reduce gap between prices */
-  }
-
-  .currentPrice {
-    font-size: 16px; /* Adjust price font size */
-  }
-
-  .originalPrice {
-    font-size: 12px;
-  }
-
-  .addToBagButton {
-    font-size: 12px;
-    padding: 8px 14px; /* Adjust button padding */
-  }
-
-  .viewAllButton {
-    font-size: 14px; /* Adjust button text size */
-    padding: 8px 16px;
-  }
-}
-
 @media (max-width: 375px) {
   .productsGrid {
     grid-template-columns: repeat(2, 1fr);
@@ -332,38 +275,56 @@
     height: 160px; /* Reduce image height */
   }
 
-  .discountBadge {
-    font-size: 10px;
-    padding: 2px 5px;
-  }
-
   .productsTitle {
-    font-size: 22px;
-  }
-
-  .productDetails {
-    padding: 6px;
-  }
-
-  .productPrice {
-    gap: 4px;
-  }
-
-  .currentPrice {
-    font-size: 14px;
-  }
-
-  .originalPrice {
-    font-size: 10px;
-  }
-
-  .addToBagButton {
-    font-size: 10px;
-    padding: 6px 12px;
+    font-size: 28px; /* Smaller title font */
   }
 
   .viewAllButton {
-    font-size: 12px;
-    padding: 6px 14px;
+    padding: 8px 16px; /* Adjust button size */
   }
+}
+
+/* For screens smaller than 576px (small devices like phones) */
+
+/* For screens smaller than 480px (extra small devices) */
+@media (max-width: 430px) {
+  /* Remove background and border from slider buttons */
+  .swiper-container {
+    position: relative;
+    padding-bottom: 20px;
+  }
+.sliderButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.prevButton,
+.nextButton {
+  background: none !important; /* Removes background */
+  border: none !important; /* Removes any border */
+  box-shadow: none !important; /* Removes any shadow */
+  outline: none !important; /* Removes focus outline */
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure the icons are properly sized */
+.prevButton img,
+.nextButton img {
+  width: 55px; /* Adjust icon size as needed */
+  height: 55px;
+  object-fit: contain; /* Prevents distortion */
+}
+
+/* Add hover effect if needed */
+.prevButton:hover img,
+.nextButton:hover img {
+  opacity: 0.8; /* Slight opacity change on hover */
+}
+
 }

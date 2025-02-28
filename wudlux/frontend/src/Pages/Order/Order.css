@@ -470,15 +470,23 @@
 }
 
 @media (max-width: 430px) {
+<<<<<<< HEAD
+=======
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+>>>>>>> 467a4b5ce167d8b1169b8de365f77bf901e9700e
   .order-history-container {
+    display: flex;
     flex-direction: column;
     padding: 10px;
-    margin-top: -50px;
+    margin-top: -100px;
   }
 
   .sidebar-header {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
     margin-bottom: 12px;
     margin-top: -50px;
@@ -489,25 +497,27 @@
     margin-left: 0;
     margin-top: 0;
     padding: 10px;
+    text-align: left;
   }
 
   .sidebar-logo {
     margin-top: 96px;
     width: 60px;
     height: 60px;
-    margin-left: -14.9rem;
+    margin-left: 0;
   }
 
   main-content {
     margin-top: -28px;
     padding: 7px;
+    text-align: left;
   }
 
   .breadcrumb {
     flex-direction: row;
     align-items: flex-start;
     margin-left: 0;
-    /* margin-top; */
+    text-align: left;
   }
 
   .breadcrumb img {
@@ -515,160 +525,105 @@
     object-fit: contain;
     margin-right: 3px;
     margin-top: -21.5rem;
+    margin-left: 0;
   }
 
   .btext {
     font-size: 16px;
     color: #0a0a0a;
     margin-bottom: -3px;
-    margin-left: -8px;
+    margin-left: 0;
     margin-top: -21.5rem;
+    text-align: left;
   }
 
   .order-header {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
 
+  /*** FILTERS DISPLAY SIDE-BY-SIDE ***/
   .filters {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row; /* Side by side */
     align-items: center;
+    justify-content: flex-start;
+    gap: 10px; /* Space between elements */
     width: 100%;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+  }
+
+  .filter-input,
+  .filter-dropdown {
+    flex: 1; /* Equal width distribution */
+    min-width: 140px; /* Prevents excessive shrinking */
   }
 
   .filter-input input,
-  .filter-dropdown {
+  .filter-dropdown select {
     width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
   }
 
-  /* Ensure table data is fully visible */
-  .order-slider-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 10px;
-  }
-
-  .order-slider {
-    min-width: 600px;
-    /* Ensures content doesn't get squeezed */
-    overflow-x: auto;
-    scroll-snap-align: start;
-  }
-
+  /*** TABLE STYLING ***/
   .table-wrapper {
     width: 100%;
     overflow-x: auto;
-    white-space: nowrap;
   }
 
   .order-table {
-    min-width: 600px;
-    /* Ensures horizontal scrolling */
+    width: 100%;
     border-collapse: collapse;
   }
 
   .order-table thead th {
-    border-bottom: 1px solid #50433c;
-    padding: 10px;
-    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
   }
 
-  .order-table td {
-    border-left: none;
-    text-align: center;
-    padding: 10px;
-    white-space: nowrap;
+  .order-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
   }
 
+  /*** PAGINATION ***/
   .pagination {
-    flex-wrap: wrap;
+    display: flex;
     justify-content: center;
-  }
-
-  .pagination button {
-    padding: 4px;
-    font-size: 10px;
-  }
-
-  .filters {
-    flex-direction: column;
-    /* Stack elements vertically */
-    align-items: stretch;
-    /* Stretch elements to fit container */
-    gap: 12px;
-    /* Add spacing between elements */
-    padding: 10px;
-    /* Adjust padding for smaller screens */
-  }
-
-  .search-container {
-    width: 100%;
-    /* Full width for search container */
-  }
-
-  .search-input {
-    width: 100%;
-    /* Full width for input field */
-    padding: 10px 15px 10px 40px;
-    /* Keep padding for the search icon */
-    font-size: 12px;
-    /* Slightly smaller font size for better fit */
-    border-radius: 6px;
-    /* Reduce border radius for smaller screens */
-  }
-
-  .search-icon {
-    left: 10px;
-    /* Adjust icon position */
-    width: 14px;
-    /* Smaller icon size */
-    height: 14px;
-    /* Smaller icon size */
-  }
-
-  .filter-dropdown {
-    width: 100%;
-    /* Full width for dropdowns */
-    padding: 8px 10px;
-    /* Adjust padding for smaller screens */
-    font-size: 12px;
-    /* Reduce font size */
-    border-radius: 6px;
-    /* Reduce border radius for consistency */
-  }
-
-  /* Add spacing between dropdown options */
-  .filter-dropdown option {
-    padding: 5px;
-  }
-
-  .pagination {
+    align-items: center;
     gap: 5px;
-    /* Reduce gap between buttons */
-    padding: 0px 0;
-    flex-wrap: inherit;
-    /* Ensure buttons wrap on small screens */
+    margin-top: 10px;
+    flex-wrap: wrap;
   }
 
   .pagination button {
-    padding: 6px 8px;
-    font-size: 12px;
-    width: 45px;
-    height: 31px;
-
-  }
-
-  /* Smaller font size for smaller screens */
-  .pagination button.active {
+    background: none;
+    border: 1px solid #aaa;
     padding: 6px 10px;
-    /* Slightly increase padding for active button */
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    cursor: pointer;
   }
 
-  .pagination button img {
-    width: 45px;
-    height: 45px;
-    object-fit: contain;
+  .pagination button.active {
+    background: black;
+    color: white;
+    border-color: black;
+  }
+
+  .pagination button:hover {
+    background: #ddd;
   }
 }
+
