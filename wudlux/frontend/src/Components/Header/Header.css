@@ -205,7 +205,10 @@
 
 /* Responsive Design */
 /* Media Query: max-width 320px */
-@media (max-width: 320px) {
+
+
+
+@media (max-width: 430px) {
 
   .banner {
     padding: 0 20px;
@@ -259,6 +262,8 @@
     margin-left: -10.3rem;
   }
 }
+
+
 @media (max-width: 375px) {
 
   .banner {
@@ -313,6 +318,7 @@
     margin-left: -10.3rem;
   }
 }
+<<<<<<< HEAD
 /* Mobile-Optimized Styles */
 @media (max-width: 430px) {
   /* Slider Container */
@@ -423,3 +429,6 @@
     background-color: black;
   }
 }
+=======
+
+>>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e

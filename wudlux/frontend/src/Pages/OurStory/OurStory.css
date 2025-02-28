@@ -5,31 +5,23 @@ body {
   padding: 0;
 }
 
-/* Hero Section */
+/* ✅ Hero Section */
 .hero-section {
-  height: 250px; /* Reduce height for mobile */
+  height: 300px; /* Default height */
   background-size: cover;
   background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  width: 100%;
 }
 
-.page-title {
-  font-size: 28px; /* Adjust font size for smaller screens */
-  font-weight: bold;
-  color: #fff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-  text-align: center;
-  padding: 0 10px; /* Ensure title fits on smaller screens */
-}
-
-/* Story Section */
+/* ✅ Story Section */
 .story-section {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 20px;
   width: 90%;
   max-width: 1200px;
@@ -37,98 +29,84 @@ body {
   padding: 20px;
 }
 
-/* Image Container */
+/* ✅ Image Container */
 .image-container {
   flex: 1;
-  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .story-image {
   width: 400px;
   height: auto;
   border-radius: 8px;
-  margin-left: -30px;
+  margin-left: -300px;
 }
 
-/* Content Container */
+/* ✅ Content Container */
 .content-container {
-  max-width: 800px;
-  padding: 0 20px;
+  flex: 1;
+  max-width: 600px;
+  text-align: center; /* Center content */
 }
 
 .section-title {
-  font-size: 30px; /* Adjust font size for smaller screens */
+  font-size: 32px;
   font-weight: bold;
   color: black;
   margin-bottom: 10px;
+  margin-left: -45rem;
 }
 
 .section-subtitlee {
-  font-size: 20px; /* Adjust font size */
+  font-size: 20px;
   font-weight: normal;
   color: black;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   position: relative;
-  display: inline-block; /* Ensure the underline adjusts to the text width */
+  display: inline-block;
+  margin-left: -30rem;
 }
 
 .section-subtitlee::after {
   content: "";
   position: absolute;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: -5px;
-  width: 30%; /* Make underline wider */
+  width: 40%;
   height: 2px;
   background-color: black;
 }
 
 .section-description {
-  width: 100%;
-  font-size: 14px; /* Adjust font size */
+  font-size: 16px;
   color: #555;
   line-height: 1.6;
   margin-bottom: 20px;
+  padding: 0 10px;
+  text-align: justify;
+  margin-left: -195px;
 }
 
-/* Responsive Explore Button */
-.explore-products-button {
-  padding: 10px 18px;
-  background-color: #6a4b35;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-/* Features Section */
-.features-section {
-  text-align: center;
-  margin: 40px auto;
-}
-
-.features-image {
-  width: 100%;
-  height: 350px;
-}
-
-/* Responsive Explore Button */
+/* ✅ Explore Button */
 .explore-products-button {
   position: relative;
   overflow: hidden;
-  background: none;
-  border: 1px solid black;
-  padding: 10px 18px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 20px;
+  padding: 12px 20px;
+  background-color: white;
   color: black;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid #6a4b35;
+  transition: color 0.3s ease;
   z-index: 1;
+  margin-left: -46rem;
 }
 
+/* Creating the hover effect */
 .explore-products-button::before {
   content: "";
   position: absolute;
@@ -136,11 +114,12 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: black;
+  background-color: #6a4b35;
   transition: all 0.4s ease;
   z-index: -1;
 }
 
+/* On hover, move the background effect from left to right */
 .explore-products-button:hover::before {
   left: 0;
 }
@@ -149,58 +128,42 @@ body {
   color: white;
 }
 
-/* 🌟 Responsive Design for 320px width */
-@media (max-width: 320px) {
-  /* Adjust Hero Section */
+
+
+@media (max-width: 375px) {
   .hero-section {
-    height: 200px;
-  }
-  .page-title {
-    font-size: 24px;
-    text-align: center;
-    padding: 0 15px;
+    height: 220px;
   }
 
-  /* Stack Image and Content Vertically */
   .story-section {
     flex-direction: column;
     text-align: center;
-    width: 90%;
+    gap: 15px;
   }
 
+  /* 🖼 Center Image */
   .image-container {
-    max-width: 100%;
-    display: flex;
     justify-content: center;
   }
 
-  /* 🖼 Make Image Vertical */
   .story-image {
-    width: 250px;
-    height: auto;
-    margin-left: 0;
-    border-radius: 8px;
+    width: 280px;
+    margin: 0 auto;
   }
 
-  /* Adjust Content */
   .content-container {
-    padding: 0;
     max-width: 100%;
+    text-align: center;
   }
-  
+
   .section-title {
-    font-size: 36px;
-    font-weight: bold;
-    color: black;
-    margin-bottom: -10px;
-  }
-  
-  .section-subtitlee {
-    font-size: 24px;
+    font-size: 26px;
+    margin: 0 auto;
   }
 
   .section-subtitlee {
     font-size: 18px;
+    margin: 0 auto;
   }
 
   .section-subtitlee::after {
@@ -210,27 +173,19 @@ body {
   .section-description {
     font-size: 14px;
     text-align: center;
+    margin: 0 auto;
   }
 
+  /* Center the button */
   .explore-products-button {
     font-size: 14px;
-    padding: 8px 14px;
-  }
-
-  /* Features Section */
-  .features-image {
-    height: 250px;
-  }
-  
-  .explore-products-button:hover::before {
-    left: 0; /* Slide the background into view */
-  }
-  
-  .explore-products-button:hover {
-    color: white; /* Change text color to white on hover */
+    padding: 10px;
+    margin: 10px auto;
+    display: block;
   }
 }
 
+<<<<<<< HEAD
 @media (max-width: 375px) {
   /* Adjust Hero Section */
   .hero-section {
@@ -391,3 +346,5 @@ body {
     color: white; /* Change text color to white on hover */
   }
 }
+=======
+>>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e

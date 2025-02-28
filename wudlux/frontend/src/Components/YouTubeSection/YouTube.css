@@ -1,28 +1,38 @@
-/* ✅ Main Section Styling */
 .premium-look-section {
   text-align: center;
-  padding: 5vh 5vw; /* Scales dynamically */
+  /* padding: 5vh 5vw; */
   background-color: white;
   color: #fff;
 }
 
 /* ✅ Header Styling */
 .section-header {
-  margin-bottom: 4vh;
+  margin-bottom: 24px;
 }
 
-.section-title {
+
+.title-underline1 {
+  margin: 10px auto 0;
+  width: 100px; /* Adjust width of the underline */
+  height: 3px; /* Thickness of the underline */
+  background-color: #c0a062; /* Gold color for the underline */
+  border-radius: 0px;
+}
+
+.section-title1 {
   font-family: "Playfair Display", serif;
-  font-size: 3.5vw; /* Responsive title size */
+  font-size: clamp(24px, 4vw, 42px);
+  /* Adjusts dynamically */
   font-weight: bold;
   color: #333;
 }
 
 .section-subtitle {
   font-family: 'DM Sans', sans-serif;
-  font-size: 2vw;
-  color: black;
-  margin-top: 2vh;
+  font-size: clamp(12px, 1.5vw, 15px);
+  font-weight: 400;
+  color: #666;
+  margin-top: 8px;
 }
 
 /* ✅ Video Grid */
@@ -32,14 +42,14 @@
   justify-content: center;
   gap: 2vw;
   max-width: 100%;
-  margin: 5vh auto;
+  /* margin: 5vh auto; */
 }
 
 /* ✅ Video Item */
 .video-item {
   position: relative;
-  width: 40vw; /* Adjusts dynamically */
-  max-width: 600px; /* Prevents excessive scaling */
+  /* width: 40vw; */
+  max-width: 600px;
 }
 
 .video-wrapper {
@@ -50,7 +60,7 @@
 
 .video-thumbnail {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
 }
 
@@ -67,178 +77,174 @@
 }
 
 .play-icon {
-  width: 6vw;
-  height: 6vw;
-  max-width: 80px;
-  max-height: 80px;
+  width: clamp(40px, 6vw, 80px);
+  height: clamp(40px, 6vw, 80px);
 }
 
 .play-button:hover {
   transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* ========== 📱 ✅ Responsive Adjustments ✅ 📱 ========== */
+@media (max-width: 430px) {
+  .premium-look-section {
+    margin-top: 50px;
+    padding: 10px;
+    width: 430px;
+    height: 700px;
+  }
 
-/* 📌 Tablets (768px) */
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 5vw;
+  .section-header {
+    margin-bottom: 24px;
+    width: 398px;
+    height: 81px;
+    gap: 16px;
+  }
+
+  .title-underline1 {
+    margin: 10px auto 0;
+    width: 100px; /* Adjust width of the underline */
+    height: 3px; /* Thickness of the underline */
+    background-color: #B6A69D; /* Gold color for the underline */
+    border-radius: 0px;
+  }
+
+  .section-title1 {
+    font-size: 24px;
+    width: 398px;
+    height: 34px;
+    font-weight: 800;
+    font-style: italic;
+    line-height: 33.6px;
+    color: #0A0A0A;
+    /* Adjusted title size */
+    text-align: center;
   }
 
   .section-subtitle {
-    font-size: 3vw;
+    width: 398px;
+    height: 23px;
+    color: #0A0A0A;
+    font-size: 16px;
+    line-height: 22.4px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
   }
 
   .video-grid {
     flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+  }
+
+  .video-item {
+    width: 100%;
+    max-width: 100%;
+  }
+
+
+  .video-wrapper {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .video-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+  }
+
+  .play-icon {
+    width: 100px;
+    height: 70.38px;
+  }
+}
+@media (max-width: 375px) {
+  .premium-look-section {
+    margin-top: 40px; /* Adjusted margin for better spacing */
+    padding: 8px;
+    width: 100%;
+    height: auto; /* Allow dynamic height adjustment */
+  }
+
+  .section-header {
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .title-underline1 {
+    margin: 8px auto 0;
+    width: 90px; /* Slightly narrower underline */
+    height: 3px;
+    background-color: #B6A69D;
+    border-radius: 0px;
+  }
+
+  .section-title1 {
+    font-size: 22px; /* Adjusted title size */
+    width: auto;
+    font-weight: 800;
+    font-style: italic;
+    line-height: 30px;
+    color: #0A0A0A;
+    text-align: center;
+  }
+
+  .section-subtitle {
+    width: auto;
+    color: #0A0A0A;
+    font-size: 14px; /* Reduced subtitle size */
+    line-height: 20px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 8px;
+    margin-top: 15px;
+  }
+
+  .video-grid {
+    flex-direction: column;
+    gap: 8px;
     align-items: center;
   }
 
   .video-item {
-    width: 85vw;
+    width: 100%;
+    max-width: 100%;
   }
 
-  .play-icon {
-    width: 8vw;
-    height: 8vw;
-  }
-}
-@media (max-width: 375px) {
-
-  .premium-look-section {
-    padding: 10px 10px; /* Increased padding for better spacing */
-  }
-
-  .section-title {
-    font-size: 26px; /* Slightly larger for better visibility */
-    text-align: center; /* Center align the title */
-  }
-
-  .section-subtitle {
-    font-size: 18px; /* Improved readability for subtitles */
-    text-align: center;
-  }
-
-  .video-grid {
-    flex-direction: column; /* Stack videos vertically */
-    gap: 12px; /* Increased gap for better separation */
-    margin-left: 0; /* Center align the grid */
+  .video-wrapper {
+    border-radius: 6px; /* Slightly reduced border-radius */
+    overflow: hidden;
   }
 
   .video-thumbnail {
-    width: 20rem; /* Slightly larger thumbnail size */
-    margin: 0 auto; /* Center thumbnails */
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 8px;
   }
 
   .play-icon {
-    width: 55px; /* Increased size for better visibility */
-    height: 55px;
-    margin-left: 0; /* Center the play icon */
+    width: 80px; /* Slightly smaller play icon */
+    height: 56px;
   }
 }
 
-@media (max-width: 425px) {
-
-  .premium-look-section {
-    padding: 15px 15px; /* Balanced padding for larger screen */
-  }
-
-  .section-title {
-    font-size: 28px; /* Enhanced for better focus */
-    text-align: center;
-  }
-
-  .section-subtitle {
-    font-size: 20px; /* Increased size for clarity */
-    text-align: center;
-  }
-
-  .video-grid {
-    flex-direction: column;
-    gap: 15px; /* More spacing between video thumbnails */
-    margin-left: 0; /* Center align */
-  }
-
-  .video-thumbnail {
-    width: 22rem; /* Larger thumbnail for bigger screens */
-    margin: 0 auto;
-  }
-
-  .play-icon {
-    width: 60px; /* Proportionally larger icon */
-    height: 60px;
-    margin-left: 0; /* Center the play icon */
-  }
-}
-
-/* 📌 Small Mobile (320px - 425px) */
-@media (max-width: 425px) {
-  .premium-look-section {
-    padding: 4vh 4vw;
-  }
-
-  .section-title {
-    font-size: 6vw;
-  }
-
-  .section-subtitle {
-    font-size: 4vw;
-  }
-
-  .video-item {
-    width: 90vw;
-  }
-
-  .play-icon {
-    width: 10vw;
-    height: 10vw;
-  }
-}
-
-/* 📌 Desktop (1440px) */
-@media (min-width: 1440px) {
-  .premium-look-section {
-    padding: 6vh 10vw;
-  }
-
-  .section-title {
-    font-size: 2.8vw;
-  }
-
-  .section-subtitle {
-    font-size: 1.5vw;
-  }
-
-  .video-item {
-    width: 35vw;
-  }
-
-  .play-icon {
-    width: 5vw;
-    height: 5vw;
-  }
-}
-
-/* 📌 Ultra-Wide Screens (2560px) */
-@media (min-width: 2560px) {
-  .premium-look-section {
-    padding: 8vh 15vw;
-  }
-
-  .section-title {
-    font-size: 2vw;
-  }
-
-  .section-subtitle {
-    font-size: 1.2vw;
-  }
-
-  .video-item {
-    width: 30vw;
-  }
-
-  .play-icon {
-    width: 4vw;
-    height: 4vw;
-  }
-}

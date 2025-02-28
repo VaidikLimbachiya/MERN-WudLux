@@ -31,6 +31,7 @@
   margin-top: 17px;
   margin-left: -45px;
 }
+
 .form-title {
   font-size: 2rem;
   font-weight: bold;
@@ -50,7 +51,8 @@
 .summary-container {
   display: flex;
   flex-direction: column;
-  height: 800px; /* Fixed height for the summary */
+  height: 800px;
+  /* Fixed height for the summary */
   padding: 20px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -58,16 +60,22 @@
 }
 
 .product-list {
-  flex: 1; /* Makes this section take available space */
-  overflow-y: auto; /* Enables scrolling only for product items */
-  padding-right: 10px; /* Space for scrollbar */
+  flex: 1;
+  /* Makes this section take available space */
+  overflow-y: auto;
+  /* Enables scrolling only for product items */
+  padding-right: 10px;
+  /* Space for scrollbar */
 }
 
 .summary-totals {
-  margin-top: auto; /* Ensures it always sticks at the bottom */
+  margin-top: auto;
+  /* Ensures it always sticks at the bottom */
   padding-top: 10px;
-  border-top: 2px solid #000; /* Optional separator */
-  background: white; /* Ensures it does not overlap */
+  border-top: 2px solid #000;
+  /* Optional separator */
+  background: white;
+  /* Ensures it does not overlap */
 }
 
 h1,
@@ -156,6 +164,7 @@ textarea {
   /* margin-right: 30px; */
   padding-left: 22px;
 }
+
 .payment-label {
   font-size: 14px;
   color: #333;
@@ -285,7 +294,8 @@ select:disabled {
   cursor: pointer;
   text-align: center;
   transition: color 0.3s ease;
-  z-index: 0; /* Keep the text above the background */
+  z-index: 0;
+  /* Keep the text above the background */
 
   &:hover {
     color: white;
@@ -315,6 +325,7 @@ select:disabled {
   margin-bottom: 0px;
   position: relative;
 }
+
 .shipping-button {
   background: #ece5e0;
   border: 1px solid #ccc;
@@ -348,6 +359,7 @@ select:disabled {
   border-top: 1px dashed #000;
   margin: 10px 0;
 }
+
 /* .shipping-button:hover {
   background: #5c3c1d;
   color: #fff;
@@ -360,16 +372,19 @@ select:disabled {
     margin-bottom: 0px;
     margin-top: 39px;
   }
+
   /* Wrapper */
   .checkout-wrapper {
     display: flex;
-    flex-direction: column; /* Stack sections vertically */
+    flex-direction: column;
+    /* Stack sections vertically */
     padding: 10px;
   }
 
   /* Form Container */
   .form-container {
-    width: 100%; /* Full width for small screens */
+    width: 100%;
+    /* Full width for small screens */
     padding: 0;
   }
 
@@ -381,14 +396,16 @@ select:disabled {
   }
 
   .form-subtitle {
-    font-size: 0.8rem; /* Adjust subtitle size */
+    font-size: 0.8rem;
+    /* Adjust subtitle size */
     text-align: center;
     margin-bottom: 20px;
   }
 
   .input-group {
     display: flex;
-    flex-direction: row; /* Stack inputs vertically */
+    flex-direction: row;
+    /* Stack inputs vertically */
     gap: 10px;
     margin-bottom: 15px;
   }
@@ -399,7 +416,8 @@ select:disabled {
     font-size: 14px;
     padding: 8px;
     border-radius: 20px;
-    width: 100%; /* Full width for inputs */
+    width: 100%;
+    /* Full width for inputs */
   }
 
   textarea {
@@ -414,7 +432,8 @@ select:disabled {
   /* Buttons */
   .button-group {
     display: flex;
-    flex-direction: column; /* Stack buttons vertically */
+    flex-direction: column;
+    /* Stack buttons vertically */
     gap: 10px;
     margin-top: 20px;
   }
@@ -425,7 +444,8 @@ select:disabled {
     padding: 10px 15px;
     border-radius: 25px;
     text-align: center;
-    width: 100%; /* Full width buttons */
+    width: 100%;
+    /* Full width buttons */
   }
 
   .back-button {
@@ -450,7 +470,8 @@ select:disabled {
 
   /* Summary Container */
   .summary-container {
-    width: 100%; /* Full width for small screens */
+    width: 100%;
+    /* Full width for small screens */
     padding: 10px;
     border-radius: 8px;
     margin-top: 20px;
@@ -464,11 +485,13 @@ select:disabled {
 
   .product-box {
     display: flex;
-    flex-direction: row; /* Stack product details vertically */
+    flex-direction: row;
+    /* Stack product details vertically */
     align-items: left;
     margin-bottom: 15px;
     padding: 10px;
-    width: 100%; /* Full width for small screens */
+    width: 100%;
+    /* Full width for small screens */
     /* border-bottom: 1px solid #ccc; */
   }
 
@@ -481,7 +504,8 @@ select:disabled {
 
   .product-info {
     display: flex;
-    flex-direction: column; /* Stack product title and price vertically */
+    flex-direction: column;
+    /* Stack product title and price vertically */
     align-items: center;
     text-align: center;
   }
@@ -544,16 +568,19 @@ select:disabled {
     margin-bottom: 0px;
     margin-top: 39px;
   }
+
   /* Wrapper */
   .checkout-wrapper {
     display: flex;
-    flex-direction: column; /* Stack sections vertically */
+    flex-direction: column;
+    /* Stack sections vertically */
     padding: 10px;
   }
 
   /* Form Container */
   .form-container {
-    width: 100%; /* Full width for small screens */
+    width: 100%;
+    /* Full width for small screens */
     padding: 0;
   }
 
@@ -565,14 +592,16 @@ select:disabled {
   }
 
   .form-subtitle {
-    font-size: 0.8rem; /* Adjust subtitle size */
+    font-size: 0.8rem;
+    /* Adjust subtitle size */
     text-align: center;
     margin-bottom: 20px;
   }
 
   .input-group {
     display: flex;
-    flex-direction: row; /* Stack inputs vertically */
+    flex-direction: row;
+    /* Stack inputs vertically */
     gap: 10px;
     margin-bottom: 15px;
   }
@@ -583,7 +612,8 @@ select:disabled {
     font-size: 14px;
     padding: 8px;
     border-radius: 20px;
-    width: 100%; /* Full width for inputs */
+    width: 100%;
+    /* Full width for inputs */
   }
 
   textarea {
@@ -598,7 +628,8 @@ select:disabled {
   /* Buttons */
   .button-group {
     display: flex;
-    flex-direction: column; /* Stack buttons vertically */
+    flex-direction: column;
+    /* Stack buttons vertically */
     gap: 10px;
     margin-top: 20px;
   }
@@ -609,7 +640,8 @@ select:disabled {
     padding: 10px 15px;
     border-radius: 25px;
     text-align: center;
-    width: 100%; /* Full width buttons */
+    width: 100%;
+    /* Full width buttons */
   }
 
   .back-button {
@@ -634,7 +666,8 @@ select:disabled {
 
   /* Summary Container */
   .summary-container {
-    width: 100%; /* Full width for small screens */
+    width: 100%;
+    /* Full width for small screens */
     padding: 10px;
     border-radius: 8px;
     margin-top: 20px;
@@ -648,11 +681,13 @@ select:disabled {
 
   .product-box {
     display: flex;
-    flex-direction: row; /* Stack product details vertically */
+    flex-direction: row;
+    /* Stack product details vertically */
     align-items: left;
     margin-bottom: 15px;
     padding: 10px;
-    width: 100%; /* Full width for small screens */
+    width: 100%;
+    /* Full width for small screens */
     /* border-bottom: 1px solid #ccc; */
   }
 

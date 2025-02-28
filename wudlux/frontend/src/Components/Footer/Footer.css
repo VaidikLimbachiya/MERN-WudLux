@@ -356,7 +356,7 @@
 }
 
 /* For devices with max width of 480px (Small mobile devices) */
-@media (max-width: 480px) {
+@media (max-width: 430px) {
   .footer-container {
       flex-direction: column; /* Stack sections vertically */
   }
@@ -405,7 +405,7 @@
 }
 
 /* For devices with max width of 320px (Very small mobile devices) */
-@media (max-width: 320px) {
+@media (max-width: 375px) {
 
   .foter {
     margin-left: -40px;

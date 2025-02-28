@@ -81,7 +81,7 @@ a {
 
 .dropdownIcon {
   width: 14px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 /* Dropdown Menu */
@@ -941,8 +941,8 @@ a {
 
 
 /* Base styles remain unchanged */
-/* Media Query for 320px Width */
-@media (max-width: 320px) {
+
+@media (max-width: 430px) {
   .header {
     display: flex;
     flex-direction: row;
@@ -1086,15 +1086,26 @@ a {
   }
 
   .navbar__menuIcon img,
-  .navbar__searchIcon img,
+  .navbar__searchIcon img {
+    width: 22px;
+    /* Slightly smaller icon size */
+    height: 22px;
+    
+  }
+
   .navbar__cartIcon img {
     width: 22px;
     /* Slightly smaller icon size */
     height: 22px;
+    margin-right: 10px;
   }
 
   .navbar__searchIcon img {
+<<<<<<< HEAD
     margin-left: 70px;
+=======
+    margin-left: -90px;
+>>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e
   }
 
   .navbar__logo img {
@@ -1102,7 +1113,7 @@ a {
     /* Smaller logo */
     height: 55px;
     align-items: center;
-    margin-left: -65px;
+    margin-left: -75px;
     margin-top: 10px;
     margin-bottom: 10px;
   }
@@ -1113,7 +1124,7 @@ a {
     /* Smaller badge font */
     padding: 1px 4px;
     /* Adjust padding for smaller badge */
-    margin-right: 11px;
+    margin-right: 21px;
   }
 
 
@@ -1343,7 +1354,6 @@ a {
     transition: background-color 0.3s ease;
     margin-right: 15px;
   }
-
 }
 
 @media (max-width: 375px) {
@@ -1747,6 +1757,7 @@ a {
     margin-right: 15px;
   }
 
+<<<<<<< HEAD
 }
 @media (max-width: 430px) {
   .header {
@@ -2149,4 +2160,6 @@ a {
     margin-right: 15px;
   }
 
+=======
+>>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e
 }

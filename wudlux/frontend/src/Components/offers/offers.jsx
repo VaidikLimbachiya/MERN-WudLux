@@ -13,7 +13,7 @@ const Offers = () => {
           <img src={tablewareImage} alt="Tableware Collections" className="offer-image" loading="lazy"/>
           <div className="offer-overlay">
             <p className="offer-titlee">Top Trending</p>
-            <h3 className="offer-subtitle">Tableware <br />Collections</h3>
+            <h3 className="offer-subtitle">Tableware Collections</h3>
             <a href="#" className="offer-button">Discover Now</a>
           </div>
         </div>
@@ -33,7 +33,7 @@ const Offers = () => {
           <img src={kitchenwareImage} alt="Kitchenware Collections" className="offer-image" loading="lazy" />
           <div className="offer-overlay">
             <p className="offer-titlee">Top Trending</p>
-            <h3 className="offer-subtitle">Kitchenware - <br />Bella Collections</h3>
+            <h3 className="offer-subtitle">Kitchenware - Bella <br /> Collections</h3>
             <a href="#" className="offer-button">Discover Now</a>
           </div>
         </div>

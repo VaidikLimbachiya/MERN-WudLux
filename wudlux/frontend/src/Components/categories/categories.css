@@ -40,10 +40,12 @@
 /* Categories Grid */
 .categoriesGrid {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: center;
   gap: 20px;
-  padding: 0 10px;
+  width: 100%;
+  /* padding: 0 ; */
+  align-items: center;
 }
 
 /* Category Card Styles */

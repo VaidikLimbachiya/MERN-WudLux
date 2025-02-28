@@ -1,11 +1,3 @@
-/* .product-container{
-  padding:40px ;
-    width: 100%;
-    padding: 20px;
-    margin-right: 100px;
-   
-  } */
-
 .product-gridd {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -698,6 +690,12 @@
   margin-top: -20px
 }
 
+<<<<<<< HEAD
+=======
+/* Extra Small Devices (max-width: 320px) */
+
+ 
+>>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e
 @media (max-width: 375px) {
   /* General Container Adjustments */
   .parent-container {
