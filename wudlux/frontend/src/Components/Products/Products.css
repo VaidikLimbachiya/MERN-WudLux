@@ -332,7 +332,6 @@
     height: 160px; /* Reduce image height */
   }
 
-<<<<<<< HEAD
   .productsTitle {
     font-size: 28px; /* Smaller title font */
   }
@@ -408,40 +407,3 @@
 }
 
 }
-=======
-  .discountBadge {
-    font-size: 10px;
-    padding: 2px 5px;
-  }
-
-  .productsTitle {
-    font-size: 22px;
-  }
-
-  .productDetails {
-    padding: 6px;
-  }
-
-  .productPrice {
-    gap: 4px;
-  }
-
-  .currentPrice {
-    font-size: 14px;
-  }
-
-  .originalPrice {
-    font-size: 10px;
-  }
-
-  .addToBagButton {
-    font-size: 10px;
-    padding: 6px 12px;
-  }
-
-  .viewAllButton {
-    font-size: 12px;
-    padding: 6px 14px;
-  }
-}
->>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e

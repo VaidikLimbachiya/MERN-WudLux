@@ -16,12 +16,7 @@
 .swiper-slide {
   display: flex;
   justify-content: center;
-<<<<<<< HEAD
   align-items: center;
-=======
-  gap: 40px;
-  width: 100%;
->>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e
 }
 
 /* Service Card */

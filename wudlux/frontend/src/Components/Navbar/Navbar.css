@@ -1101,11 +1101,7 @@ a {
   }
 
   .navbar__searchIcon img {
-<<<<<<< HEAD
-    margin-left: 70px;
-=======
     margin-left: -90px;
->>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e
   }
 
   .navbar__logo img {
@@ -1757,7 +1753,6 @@ a {
     margin-right: 15px;
   }
 
-<<<<<<< HEAD
 }
 @media (max-width: 430px) {
   .header {
@@ -2160,6 +2155,4 @@ a {
     margin-right: 15px;
   }
 
-=======
->>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e
 }

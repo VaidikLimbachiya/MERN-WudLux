@@ -167,11 +167,12 @@
   object-fit: cover;
   z-index: 1; /* Ensure the image is above the overlay */
   transition: transform 0.3s ease;
+  margin-top: 10px ;
 }
 
 
 .categoriesGrid {
-  margin-top: 40px;
+  margin-top: 50px;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -205,6 +206,22 @@
     margin-top: -40px;
     font-size: 16px;
     /* margin-bottom: 30px; */
+  }
+  .categoryHoverEffect:hover .categoryImage {
+    transform: scale(1.05); /* Smaller scale for mobile */
+  }
+
+  .categoryHoverEffect:hover .hoverOverlay {
+    opacity: 0.5; /* Slightly reduced opacity for a cleaner effect */
+  }
+  .categoryHoverEffect:hover .hoverOverlay {
+    opacity: 0.50; /* Further reduce overlay darkness */
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+    margin-left: 27.5px;
+    margin-top: 7.5px;
+    /* padding-bottom:-10px ; */
   }
  
 }
@@ -274,5 +291,35 @@
     height: auto;
     margin-top: -30px;
     font-size: 14px; /* Reduced font size for better fit */
+  }
+  .categoryHoverEffect:hover .categoryImage {
+    transform: scale(1.03); /* Even smaller hover effect for compact screens */
+  }
+
+  .categoryHoverEffect:hover .hoverOverlay {
+    opacity: 0.4; /* Less aggressive overlay */
+  }
+
+  .hoverOverlay span {
+    font-size: 35px; /* Reduce text size inside hover effect */
+  }
+  .categoryHoverEffect:hover .hoverOverlay {
+    opacity: 0.3; /* Reduce overlay darkness */
+    width: 80%; /* Reduce width */
+    height: 80%; /* Reduce height */
+    border-radius: 50%; /* Maintain circular shape */
+  }
+
+  .hoverOverlay span {
+    font-size: 35px; /* Reduce the '+' symbol size */
+  }
+  .categoryHoverEffect:hover .hoverOverlay {
+    opacity: 0.50; /* Further reduce overlay darkness */
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    margin-left: 22px;
+    margin-top: 7.5px;
+    /* padding-bottom:-10px ; */
   }
 }

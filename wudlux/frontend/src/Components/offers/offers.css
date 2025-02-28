@@ -360,7 +360,6 @@
   }
 }
 
-<<<<<<< HEAD
   /* Stack offer cards vertically on small screens */
   .offers-container {
     display: flex;
@@ -439,7 +438,7 @@
     justify-content: center;
     margin-top: 8px;
   }
-}
+
 @media (max-width: 430px) {
   /* Ensure the main offers container fits the screen */
   .offers {
@@ -527,5 +526,3 @@
     margin-top: 8px;
   }
 }
-=======
->>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e
