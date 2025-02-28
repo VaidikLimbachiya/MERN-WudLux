@@ -34,7 +34,7 @@ const Categories = () => {
         <h1 className="headingTitle">Shop by Categories</h1>
         <div className="headingUnderline"></div>
         <p className="headingSubtitle">
-          Discover a wide range of categories to find the perfect item for you.
+        Accumsan vitae pede lacus ut ullamcorper.
         </p>
       </div>
 
@@ -61,6 +61,7 @@ const Categories = () => {
             </div>
             <div className="categoryTitle">{category.title}</div>
           </div>
+          
         ))}
       </div>
     </div>

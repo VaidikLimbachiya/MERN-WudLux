@@ -24,7 +24,7 @@ const YouTube = () => {
       <div className="section-header">
         <h2 className="section-title1">
           See Our Premium Look
-          <div className="title-underline"></div> {/* Add underline below the title */}
+          <div className="title-underline1"></div> {/* Add underline below the title */}
         </h2>
         <p className="section-subtitle">
           curate your style and effortlessly craft your perfect Wudlux.

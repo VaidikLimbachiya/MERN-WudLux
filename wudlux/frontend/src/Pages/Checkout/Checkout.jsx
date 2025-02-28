@@ -482,6 +482,10 @@ const Checkout = () => {
         </div>
 
         <div className="summary-totals">
+        <h2 className="shipping-method">Shipping Method:</h2>
+        <button className="shipping-button">
+          Free Delivery – <strong> Free Shipping</strong>
+        </button>
           <div className="price-item">
             <span>Total Amount:</span>
             <span>₹{totalPrice.toFixed(2)}</span>
@@ -498,9 +502,9 @@ const Checkout = () => {
             <span>Coupon Discount:</span>
             <span className="discount-product">-₹99.00</span>
           </div>
-          <hr />
-          <h3 className="price-item">
-            <span>Amount Payable:</span>
+          
+          <h3 className="price-item1">
+            <span >Amount Payable:</span>
             <span>₹{(totalPrice + totalPrice * 0.18 - 99).toFixed(2)}</span>
           </h3>
         </div>

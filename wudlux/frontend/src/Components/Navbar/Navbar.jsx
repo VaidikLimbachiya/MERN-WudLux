@@ -331,13 +331,15 @@ useEffect(() => {
             </div>
 
             {/* Search Icon */}
-            <div className="navbar__searchIcon">
-              <img src={searchIcon} alt="Search" onClick={toggleSearch}loading="lazy" />
-            </div>
+            
 
             {/* Logo */}
             <div className="navbar__logo" onClick={() => navigate("/")}>
               <img src={logo} alt="Logo" loading="lazy"/>
+            </div>
+
+            <div className="navbar__searchIcon">
+              <img src={searchIcon} alt="Search" onClick={toggleSearch}loading="lazy" />
             </div>
 
             {/* Cart Icon */}

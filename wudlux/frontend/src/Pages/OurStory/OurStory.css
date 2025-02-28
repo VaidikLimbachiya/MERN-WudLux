@@ -129,10 +129,7 @@ body {
 }
 
 
-/* ✅ Responsive Design */
 
-/* 📌 425px - Large Phones */
-/* ✅ 375px - Medium Phones */
 @media (max-width: 375px) {
   .hero-section {
     height: 220px;
@@ -188,58 +185,3 @@ body {
   }
 }
 
-/* ✅ 320px - Small Phones */
-@media (max-width: 320px) {
-  .hero-section {
-    height: 200px;
-  }
-
-  .story-section {
-    flex-direction: column;
-    text-align: center;
-    gap: 10px;
-  }
-
-  /* 🖼 Center Image */
-  .image-container {
-    justify-content: center;
-  }
-
-  .story-image {
-    width: 250px;
-    margin: 0 auto;
-  }
-
-  .content-container {
-    max-width: 100%;
-    text-align: center;
-  }
-
-  .section-title {
-    font-size: 24px;
-    margin: 0 auto;
-  }
-
-  .section-subtitlee {
-    font-size: 16px;
-    margin: 0 auto;
-  }
-
-  .section-subtitlee::after {
-    width: 40%;
-  }
-
-  .section-description {
-    font-size: 14px;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  /* Center the button */
-  .explore-products-button {
-    font-size: 14px;
-    padding: 8px 12px;
-    margin: 10px auto;
-    display: block;
-  }
-}

@@ -12,6 +12,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
+  width: 100%;
 }
 
 .service-card {

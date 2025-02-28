@@ -14,9 +14,9 @@ function Home() {
       <Header />
       <Categories />
       <Offers />
+      <Products />
       <Services />
       <HotProducts />
-      <Products />
       <YouTube />
       <Testimonials />
     </>

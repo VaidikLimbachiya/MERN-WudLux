@@ -293,7 +293,7 @@ font-family: "Playfair Display", serif;
 }
 
 /* For Small Phones (max-width: 480px) */
-@media (max-width: 480px) {
+@media (max-width: 430px) {
   .contact-banner {
     height: 180px;
     padding: 0 10px;
@@ -347,7 +347,7 @@ font-family: "Playfair Display", serif;
 }
 
 /* For Extra Small Phones (max-width: 320px) */
-@media (max-width: 320px) {
+@media (max-width: 375px) {
   .contact-banner {
     height: 160px;
     padding: 0 5px;

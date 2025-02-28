@@ -4,6 +4,7 @@
   gap: 30px;
   padding: 20px;
   max-width: 100%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -93,7 +94,7 @@
 }
 
 .shop-product-list-title {
-  font-size: 16px;
+  font-size: 12px;
   color: black;
   font-weight:bolder;
   margin: 5px;
@@ -117,4 +118,253 @@
   font-weight: normal;
   color: #999;
   text-decoration: line-through;
+}
+
+/* Product Grid - 2 Columns on Mobile */
+@media (max-width: 430px) {
+  .shop-product-list-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Ensures 2 columns */
+    gap: 15px; /* Reduced gap for better spacing */
+    padding: 10px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Adjust Product Card */
+  .shop-product-list-card {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Product Image */
+  .shop-product-list-image-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shop-product-list-image {
+    width: 100%;
+    height: 200px; /* Adjusted height to fit grid */
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  /* Discount Badge */
+  .shop-product-list-discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px; /* Adjusted for mobile view */
+    background-color: red;
+    color: #fff;
+    font-size: 12px; /* Smaller size */
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  /* Hide Bag Button by Default */
+  .shop-product-list-bag-button-wrapper {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  /* Show Bag Button on Hover */
+  .shop-product-list-image-wrapper:hover .shop-product-list-bag-button-wrapper {
+    opacity: 1;
+    visibility: visible;
+    bottom: 20px;
+  }
+
+  .shop-product-list-desc {
+  
+    font-size: 14px;
+    color: #000;
+    margin: 5px;
+  }
+
+  /* Product Details */
+  .shop-product-list-details {
+    padding: 8px;
+    text-align: center;
+  }
+
+  .shop-product-list-title {
+    font-size: 14px; /* Slightly smaller */
+    font-weight: bold;
+    margin-top: 5px;
+  }
+
+  .shop-product-list-price-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* gap: 5px; */
+    margin-top: 10px;
+  }
+  .shop-product-list-bag-button {
+    width: 110px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 15px;
+    font-size: 10px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    /* Space between icon and text */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .shop-product-list-current-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+  }
+ 
+  .shop-product-list-bag-icon {
+    width: 12x;
+    height: 12px;
+    filter: brightness(0) invert(1);
+    /* Ensures the icon matches the button color */
+  }
+
+  
+  .shop-product-list-original-price {
+    font-size: 12px;
+    color: #999;
+    text-decoration: line-through;
+  }
+}
+
+/* Further Adjustments for 375px */
+@media (max-width: 375px) {
+  .shop-product-list-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Ensures 2 columns */
+    gap: 10px; /* Adjusted spacing */
+    padding: 8px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Adjust Product Card */
+  .shop-product-list-card {
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Product Image */
+  .shop-product-list-image-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shop-product-list-image {
+    width: 100%;
+    height: 180px; /* Reduced height for better fit */
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  /* Discount Badge */
+  .shop-product-list-discount-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px; /* Adjusted for mobile view */
+    background-color: red;
+    color: #fff;
+    font-size: 10px; /* Smaller size */
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 4px;
+  }
+
+  /* Hide Bag Button by Default */
+  .shop-product-list-bag-button-wrapper {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  /* Show Bag Button on Hover */
+  .shop-product-list-image-wrapper:hover .shop-product-list-bag-button-wrapper {
+    opacity: 1;
+    visibility: visible;
+    bottom: 15px;
+  }
+
+  /* Product Description */
+  .shop-product-list-desc {
+    font-size: 12px;
+    color: #000;
+    margin: 4px;
+    text-align: center;
+  }
+
+  /* Product Details */
+  .shop-product-list-details {
+    padding: 6px;
+    text-align: center;
+  }
+
+  .shop-product-list-title {
+    font-size: 12px; /* Slightly smaller */
+    font-weight: bold;
+    margin-top: 4px;
+  }
+
+  .shop-product-list-price-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 6px;
+  }
+
+  /* Bag Button */
+  .shop-product-list-bag-button {
+    width: 90px; /* Adjusted width */
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 8px 12px;
+    font-size: 9px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* Space between icon and text */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .shop-product-list-bag-icon {
+    width: 10px;
+    height: 10px;
+    filter: brightness(0) invert(1);
+    /* Ensures the icon matches the button color */
+  }
+
+  .shop-product-list-current-price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .shop-product-list-original-price {
+    font-size: 10px;
+    color: #999;
+    text-decoration: line-through;
+  }
 }

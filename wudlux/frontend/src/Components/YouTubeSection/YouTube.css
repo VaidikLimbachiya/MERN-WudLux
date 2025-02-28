@@ -10,9 +10,19 @@
   margin-bottom: 24px;
 }
 
+
+.title-underline1 {
+  margin: 10px auto 0;
+  width: 100px; /* Adjust width of the underline */
+  height: 3px; /* Thickness of the underline */
+  background-color: #c0a062; /* Gold color for the underline */
+  border-radius: 0px;
+}
+
 .section-title1 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(24px, 4vw, 42px); /* Adjusts dynamically */
+  font-size: clamp(24px, 4vw, 42px);
+  /* Adjusts dynamically */
   font-weight: bold;
   color: #333;
 }
@@ -75,99 +85,166 @@
   transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* ✅ Responsive Design */
-
-/* ✅ 425px - Large Phones */
-@media (max-width: 425px) {
+@media (max-width: 430px) {
   .premium-look-section {
-    padding: 15px;
-  }
-
-  .section-title1 {
-    font-size: 28px;
-  }
-
-  .section-subtitle {
-    font-size: 16px;
-  }
-
-  .video-grid {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .video-item {
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .play-icon {
-    width: 60px;
-    height: 60px;
-  }
-}
-
-/* ✅ 375px - Medium Phones */
-@media (max-width: 375px) {
-  .premium-look-section {
+    margin-top: 50px;
     padding: 10px;
+    width: 430px;
+    height: 700px;
   }
 
-  .section-title1 {
-    font-size: 26px;
+  .section-header {
+    margin-bottom: 24px;
+    width: 398px;
+    height: 81px;
+    gap: 16px;
   }
 
-  .section-subtitle {
-    font-size: 14px;
-  }
-
-  .video-grid {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .video-item {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .play-icon {
-    width: 55px;
-    height: 55px;
-  }
-}
-
-/* ✅ 320px - Small Phones */
-@media (max-width: 320px) {
-  .premium-look-section {
-    padding: 8px;
+  .title-underline1 {
+    margin: 10px auto 0;
+    width: 100px; /* Adjust width of the underline */
+    height: 3px; /* Thickness of the underline */
+    background-color: #B6A69D; /* Gold color for the underline */
+    border-radius: 0px;
   }
 
   .section-title1 {
     font-size: 24px;
+    width: 398px;
+    height: 34px;
+    font-weight: 800;
+    font-style: italic;
+    line-height: 33.6px;
+    color: #0A0A0A;
+    /* Adjusted title size */
+    text-align: center;
   }
 
   .section-subtitle {
-    font-size: 12px;
+    width: 398px;
+    height: 23px;
+    color: #0A0A0A;
+    font-size: 16px;
+    line-height: 22.4px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
   }
 
   .video-grid {
     flex-direction: column;
     gap: 10px;
     align-items: center;
+
   }
 
   .video-item {
-    width: 90%;
-    max-width: 280px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+
+  .video-wrapper {
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   .video-thumbnail {
-    border-radius: 8px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
   }
 
   .play-icon {
-    width: 45px;
-    height: 45px;
+    width: 100px;
+    height: 70.38px;
   }
 }
+@media (max-width: 375px) {
+  .premium-look-section {
+    margin-top: 40px; /* Adjusted margin for better spacing */
+    padding: 8px;
+    width: 100%;
+    height: auto; /* Allow dynamic height adjustment */
+  }
+
+  .section-header {
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .title-underline1 {
+    margin: 8px auto 0;
+    width: 90px; /* Slightly narrower underline */
+    height: 3px;
+    background-color: #B6A69D;
+    border-radius: 0px;
+  }
+
+  .section-title1 {
+    font-size: 22px; /* Adjusted title size */
+    width: auto;
+    font-weight: 800;
+    font-style: italic;
+    line-height: 30px;
+    color: #0A0A0A;
+    text-align: center;
+  }
+
+  .section-subtitle {
+    width: auto;
+    color: #0A0A0A;
+    font-size: 14px; /* Reduced subtitle size */
+    line-height: 20px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 8px;
+    margin-top: 15px;
+  }
+
+  .video-grid {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .video-item {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .video-wrapper {
+    border-radius: 6px; /* Slightly reduced border-radius */
+    overflow: hidden;
+  }
+
+  .video-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 8px;
+  }
+
+  .play-icon {
+    width: 80px; /* Slightly smaller play icon */
+    height: 56px;
+  }
+}
+
