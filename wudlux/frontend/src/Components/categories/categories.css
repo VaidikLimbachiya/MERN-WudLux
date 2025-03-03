@@ -235,6 +235,7 @@
   .headingContainer {
     width: 375px;
     text-align: center;
+    justify-items: center;
     padding: 15px;
   }
 

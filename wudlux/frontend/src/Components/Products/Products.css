@@ -292,6 +292,7 @@
   .swiper-container {
     position: relative;
     padding-bottom: 20px;
+    margin-right: 10px;
   }
 .sliderButtons {
   display: flex;
@@ -299,6 +300,35 @@
   gap: 10px;
   margin-top: 10px;
 }
+/* Ensure the image and wrapper have a consistent border radius */
+.productImageWrapper {
+  position: relative;
+  width: 390px !important;
+  height: 390px !important;
+  overflow: hidden;
+  border-radius: 8px !important; /* Ensures rounded corners */
+  margin-left: -4%;
+}
+
+/* Ensure product images inherit the rounded corners */
+.productImage {
+  width: 390px !important;
+  height: 390px !important; /* Adjust height */
+  object-fit: cover !important;
+  border-radius: 8px !important; /* Ensures it matches the wrapper */
+}
+
+
+/* Ensure the product card maintains spacing */
+.productCard {
+  width: 390px !important;
+  height: 390px; /* Ensures max width of 390px */
+  height: auto !important;
+  gap: 4px !important;  
+  border-radius: 8px !important;
+  padding: 14px !important;
+}
+
 
 .prevButton,
 .nextButton {
@@ -325,6 +355,13 @@
 .prevButton:hover img,
 .nextButton:hover img {
   opacity: 0.8; /* Slight opacity change on hover */
+}
+.productImageWrapper {
+  width: 390px;
+}
+.productDetails{
+  padding: 10px;
+  margin-right: 10%;
 }
 
 }
