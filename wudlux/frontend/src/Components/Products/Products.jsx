@@ -69,7 +69,8 @@ const Products = () => {
           <div className="titleUnderline"></div>
         </h2>
         <p className="productsSubtitle">
-          Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero est...
+          Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero
+          est...
         </p>
       </div>
 
@@ -105,7 +106,9 @@ const Products = () => {
                       loading="lazy"
                     />
                     {product.discount > 0 && (
-                      <div className="discountBadge">{product.discount}% OFF</div>
+                      <div className="discountBadge">
+                        {product.discount}% OFF
+                      </div>
                     )}
                     <div className="addToBagWrapper">
                       <button
@@ -127,9 +130,13 @@ const Products = () => {
                   </div>
                   <div className="productDetails">
                     <p className="shop-product-list-title">{product.title}</p>
-                    <p className="shop-product-list-desc">{product.description}</p>
+                    <p className="shop-product-list-desc">
+                      {product.description}
+                    </p>
                     <div className="productPrice">
-                      <span className="currentPrice">₹{product.price.toFixed(2)}</span>
+                      <span className="currentPrice">
+                        ₹{product.price.toFixed(2)}
+                      </span>
                       {product.originalPrice > product.price && (
                         <span className="originalPrice">
                           ₹{product.originalPrice.toFixed(2)}
@@ -146,10 +153,16 @@ const Products = () => {
 
           {/* Navigation Buttons */}
           <div className="sliderButtons">
-            <button className="prevButton" onClick={() => sliderRef.current.slickPrev()}>
+            <button
+              className="prevButton"
+              onClick={() => sliderRef.current.slickPrev()}
+            >
               <img src={prev} alt="Previous" />
             </button>
-            <button className="nextButton" onClick={() => sliderRef.current.slickNext()}>
+            <button
+              className="nextButton"
+              onClick={() => sliderRef.current.slickNext()}
+            >
               <img src={next} alt="Next" />
             </button>
           </div>
@@ -178,6 +191,39 @@ const Products = () => {
                   {product.discount > 0 && (
                     <div className="discountBadge">{product.discount}% OFF</div>
                   )}
+                  <div className="addToBagWrapper">
+                    <button
+                      className="addToBagButton"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToCart({ ...product, quantity: 1 });
+                      }}
+                    >
+                      Add to Bag{" "}
+                      <img
+                        src={bagIcon}
+                        alt="Bag Icon"
+                        className="bagIcon"
+                        loading="lazy"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div className="productDetails">
+                  {/* <p className="shop-product-list-title">{product.title}</p> */}
+                  <p className="shop-product-list-desc">
+                    {product.description}
+                  </p>
+                  <div className="productPrice">
+                    <span className="currentPrice">
+                      ₹{product.price.toFixed(2)}
+                    </span>
+                    {product.originalPrice > product.price && (
+                      <span className="originalPrice">
+                        ₹{product.originalPrice.toFixed(2)}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             ))

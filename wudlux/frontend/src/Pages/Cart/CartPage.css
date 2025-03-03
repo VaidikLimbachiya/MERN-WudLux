@@ -508,7 +508,7 @@ ul {
   background-color: #000;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 376px) {
   /* Wrapper for cart header */
   .cart-header-container {
     padding: 10px;

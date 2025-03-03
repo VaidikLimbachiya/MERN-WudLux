@@ -470,13 +470,10 @@
 }
 
 @media (max-width: 430px) {
-<<<<<<< HEAD
-=======
   body {
     font-family: Arial, sans-serif;
   }
 
->>>>>>> 467a4b5ce167d8b1169b8de365f77bf901e9700e
   .order-history-container {
     display: flex;
     flex-direction: column;

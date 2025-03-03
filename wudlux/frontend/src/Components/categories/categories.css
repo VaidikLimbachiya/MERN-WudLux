@@ -13,7 +13,8 @@
 }
 
 .headingTitle {
-  font-family: 'Playfair Display', serif; /* Elegant serif font */
+  font-family: 'Playfair Display', serif;
+  /* Elegant serif font */
   font-size: 36px;
   font-weight: 700;
   color: #000;
@@ -22,17 +23,23 @@
 }
 
 .headingUnderline {
-  width: 100px; /* Width of the underline */
-  height: 4px; /* Thickness of the line */
-  background-color: #c0a062; /* Gold-like color */
-  margin: 10px auto; /* Center the underline */
+  width: 100px;
+  /* Width of the underline */
+  height: 4px;
+  /* Thickness of the line */
+  background-color: #c0a062;
+  /* Gold-like color */
+  margin: 10px auto;
+  /* Center the underline */
 }
 
 .headingSubtitle {
-  font-family: 'DM Sans', sans-serif; /* Clean sans-serif font */
+  font-family: 'DM Sans', sans-serif;
+  /* Clean sans-serif font */
   font-size: 16px;
   font-weight: 400;
-  color: #666; /* Slightly lighter text color */
+  color: #666;
+  /* Slightly lighter text color */
   margin: 10px;
   margin-top: 20px;
 }
@@ -54,7 +61,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 221px; /* Fixed width for consistent sizing */
+  width: 221px;
+  /* Fixed width for consistent sizing */
   padding-bottom: 27px;
   position: relative;
   cursor: pointer;
@@ -72,12 +80,14 @@
   width: 100%;
   aspect-ratio: 1;
   object-fit: contain;
-  z-index: 1; /* Ensure the image is above the overlay */
+  z-index: 1;
+  /* Ensure the image is above the overlay */
   transition: transform 0.3s ease;
 }
 
 .categoryHoverEffect:hover .categoryImage {
-  transform: scale(1.1); /* Scale the image slightly */
+  transform: scale(1.1);
+  /* Scale the image slightly */
 }
 
 .hoverOverlay {
@@ -88,7 +98,8 @@
   height: 100%;
   background-color: black;
   opacity: 0;
-  z-index: 2; /* Overlay sits above the image */
+  z-index: 2;
+  /* Overlay sits above the image */
   transition: opacity 0.3s ease;
   display: flex;
   align-items: center;
@@ -96,27 +107,30 @@
 }
 
 .categoryHoverEffect:hover .hoverOverlay {
-  opacity: 0.6; /* Make the overlay visible on hover */
+  opacity: 0.6;
+  /* Make the overlay visible on hover */
 }
 
 .hoverOverlay span {
   font-size: 60px;
   font-weight: 50;
-  color: white; /* White '+' symbol */
+  color: white;
+  /* White '+' symbol */
 }
 
 .categoryTitle {
   margin-top: 15px;
   font-family: 'DM Sans', sans-serif;
   font-size: 18px;
-  font-weight: 790; /* Bold title */
+  font-weight: 790;
+  /* Bold title */
   text-align: center;
   color: #000;
 }
 
 
 @media (max-width: 430px) {
-   
+
   .categoriesContainer {
     padding: 15px;
     width: 430px;
@@ -127,11 +141,11 @@
   .headingContainer {
     width: 398px;
     height: 81px;
-    gap:16px;
+    gap: 16px;
     text-align: center;
     padding: 20px;
   }
- 
+
 
   .headingTitle {
     width: 394px;
@@ -155,39 +169,43 @@
     margin-left: -25px;
   }
 
-.headingUnderline {
-  width: 80px; /* Width of the underline */
-  height: 3px; /* Thickness of the line */
-  background-color: #B6A69D; /* Gold-like color */
-  align-items: center;
-  margin-left: 140px;
-}
+  .headingUnderline {
+    width: 80px;
+    /* Width of the underline */
+    height: 3px;
+    /* Thickness of the line */
+    background-color: #B6A69D;
+    /* Gold-like color */
+    align-items: center;
+    margin-left: 140px;
+  }
 
-.categoryImage {
-  width: 100px;
-  height: 100px;
-  aspect-ratio: 1;
-  object-fit: cover;
-  z-index: 1; /* Ensure the image is above the overlay */
-  transition: transform 0.3s ease;
-  margin-top: 10px ;
-}
+  .categoryImage {
+    width: 100px;
+    height: 100px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    z-index: 1;
+    /* Ensure the image is above the overlay */
+    transition: transform 0.3s ease;
+    margin-top: 10px;
+  }
 
 
-.categoriesGrid {
-  margin-top: 50px;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  white-space: inherit;
-  padding: 10px 10px;
-  scroll-behavior: smooth;
-  width: 430px;
-  gap: 40px;
-  justify-content: flex-start;
+  .categoriesGrid {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: inherit;
+    padding: 10px 10px;
+    scroll-behavior: smooth;
+    width: 430px;
+    gap: 40px;
+    justify-content: flex-start;
 
-  /* padding: 20px; */
-}
+    /* padding: 20px; */
+  }
 
   .categoryCard {
     width: 90px;
@@ -210,15 +228,20 @@
     font-size: 16px;
     /* margin-bottom: 30px; */
   }
+
   .categoryHoverEffect:hover .categoryImage {
-    transform: scale(1.05); /* Smaller scale for mobile */
+    transform: scale(1.05);
+    /* Smaller scale for mobile */
   }
 
   .categoryHoverEffect:hover .hoverOverlay {
-    opacity: 0.5; /* Slightly reduced opacity for a cleaner effect */
+    opacity: 0.5;
+    /* Slightly reduced opacity for a cleaner effect */
   }
+
   .categoryHoverEffect:hover .hoverOverlay {
-    opacity: 0.50; /* Further reduce overlay darkness */
+    opacity: 0.50;
+    /* Further reduce overlay darkness */
     width: 105px;
     height: 105px;
     border-radius: 50%;
@@ -226,8 +249,9 @@
     margin-top: 7.5px;
     /* padding-bottom:-10px ; */
   }
- 
+
 }
+
 @media (max-width: 375px) {
   .categoriesContainer {
     padding: 15px;
@@ -242,16 +266,19 @@
   }
 
   .headingTitle {
-    font-size: 22px; /* Adjusted title size */
+    font-size: 22px;
+    /* Adjusted title size */
   }
 
   .headingSubtitle {
-    font-size: 14px; /* Adjusted subtitle size */
+    font-size: 14px;
+    /* Adjusted subtitle size */
     margin-top: 8px;
   }
 
   .headingUnderline {
-    width: 60px; /* Adjust underline width */
+    width: 60px;
+    /* Adjust underline width */
     margin-left: auto;
     margin-right: auto;
   }
@@ -266,17 +293,20 @@
     scroll-behavior: smooth;
     width: 100%;
     max-width: 375px;
-    gap: 30px; /* Adjust gap for better spacing */
+    gap: 30px;
+    /* Adjust gap for better spacing */
     justify-content: flex-start;
   }
 
   .categoryCard {
-    width: 80px; /* Adjusted category width */
+    width: 80px;
+    /* Adjusted category width */
     flex-shrink: 0;
   }
 
   .categoryHoverEffect {
-    width: 140px; /* Adjusted hover effect */
+    width: 140px;
+    /* Adjusted hover effect */
     height: 140px;
   }
 
@@ -286,38 +316,52 @@
   }
 
   .hoverOverlay span {
-    font-size: 40px; /* Adjusted hover effect size */
+    font-size: 40px;
+    /* Adjusted hover effect size */
   }
 
   .categoryTitle {
     width: 75px;
     height: auto;
     margin-top: -30px;
-    font-size: 14px; /* Reduced font size for better fit */
+    font-size: 14px;
+    /* Reduced font size for better fit */
   }
+
   .categoryHoverEffect:hover .categoryImage {
-    transform: scale(1.03); /* Even smaller hover effect for compact screens */
+    transform: scale(1.03);
+    /* Even smaller hover effect for compact screens */
   }
 
   .categoryHoverEffect:hover .hoverOverlay {
-    opacity: 0.4; /* Less aggressive overlay */
-  }
-
-  .hoverOverlay span {
-    font-size: 35px; /* Reduce text size inside hover effect */
-  }
-  .categoryHoverEffect:hover .hoverOverlay {
-    opacity: 0.3; /* Reduce overlay darkness */
-    width: 80%; /* Reduce width */
-    height: 80%; /* Reduce height */
-    border-radius: 50%; /* Maintain circular shape */
+    opacity: 0.4;
+    /* Less aggressive overlay */
   }
 
   .hoverOverlay span {
-    font-size: 35px; /* Reduce the '+' symbol size */
+    font-size: 35px;
+    /* Reduce text size inside hover effect */
   }
+
   .categoryHoverEffect:hover .hoverOverlay {
-    opacity: 0.50; /* Further reduce overlay darkness */
+    opacity: 0.3;
+    /* Reduce overlay darkness */
+    width: 80%;
+    /* Reduce width */
+    height: 80%;
+    /* Reduce height */
+    border-radius: 50%;
+    /* Maintain circular shape */
+  }
+
+  .hoverOverlay span {
+    font-size: 35px;
+    /* Reduce the '+' symbol size */
+  }
+
+  .categoryHoverEffect:hover .hoverOverlay {
+    opacity: 0.50;
+    /* Further reduce overlay darkness */
     width: 95px;
     height: 95px;
     border-radius: 50%;

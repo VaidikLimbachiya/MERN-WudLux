@@ -57,14 +57,18 @@ const ProductCarousel = () => {
   // Navigate to the next set of products
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex + productsToShow >= products.length ? 0 : prevIndex + productsToShow
+      prevIndex + productsToShow >= products.length
+        ? 0
+        : prevIndex + productsToShow
     );
   };
 
   // Navigate to the previous set of products
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex - productsToShow < 0 ? products.length - productsToShow : prevIndex - productsToShow
+      prevIndex - productsToShow < 0
+        ? products.length - productsToShow
+        : prevIndex - productsToShow
     );
   };
 
@@ -118,7 +122,9 @@ const ProductCarousel = () => {
             </div>
             <div className="shop-carousel-details">
               <p className="shop-carousel-product-title">{product.title}</p>
-              <p className="shop-carousel-product-title">{product.description}</p>
+              <p className="shop-carousel-product-title">
+                {product.description}
+              </p>
               <div className="shop-carousel-product-price">
                 <span className="shop-carousel-current-price">
                   ₹{product.price}
