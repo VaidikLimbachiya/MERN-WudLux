@@ -1345,6 +1345,89 @@ a {
 
 }
 @media (max-width: 430px) {
+  .no-scroll {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+  }
+  
+  .cartPopup, .searchPopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 630px;
+    height: auto;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: block;
+  }
+  
+  .cartPopup .cartHeader, .searchPopup .searchHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cartPopup .closeButton, .searchPopup .closeButton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .cartPopup .cartItems, .searchPopup .searchCategories {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .searchPopup ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .searchPopup li {
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .searchPopup li:hover {
+    background: #f1f1f1;
+  }
+  .cartItems {
+    max-height: 400px; /* Limit height so scrolling works */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px;
+  }
+  
+  /* Ensure scrollbar looks nice */
+  .cartItems::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .cartItems::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+  }
+  .cartFooter {
+    padding: 16px;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+    text-align: center;
+    position: sticky;
+    bottom: -400px;
+    width: 100%;
+    z-index: 10;
+    /* Ensures it stays above other elements */
+  }
   .header {
     display: flex;
     flex-direction: row;
@@ -1464,6 +1547,22 @@ a {
     border-radius: 50%;
     padding: 2px 6px;
   }
+  .searchHeading {
+    width: 100%;
+    border: none;
+    font-size: 1.3rem; /* Make it look like h3 */
+    font-weight: bold;
+    background: transparent;
+    outline: none;
+    color: black;
+    padding: 10px;
+  }
+  
+  .searchHeading::placeholder {
+    color: #888;
+    font-weight: normal;
+  }
+  
 
   /* Hide the login icon */
   .profileIconWrapper {

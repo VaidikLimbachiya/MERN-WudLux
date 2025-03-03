@@ -162,7 +162,7 @@
   .play-button {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 45%;
     transform: translate(-50%, -50%);
     padding: 10px;
   }
@@ -178,51 +178,56 @@
 
 @media (max-width: 376px) {
   .premium-look-section {
-    margin-top: 40px; /* Adjusted margin for better spacing */
-    padding: 8px;
-    width: 100%;
-    height: auto; /* Allow dynamic height adjustment */
+    margin-top: 50px;
+    padding: 10px;
+    width: 375px;
+    height: 700px;
   }
 
   .section-header {
-    margin-bottom: 20px;
-    width: 100%;
-    text-align: center;
+    margin-bottom: 24px;
+    width: 398px;
+    height: 81px;
+    gap: 16px;
   }
 
   .title-underline1 {
-    margin: 8px auto 0;
-    width: 90px; /* Slightly narrower underline */
-    height: 3px;
-    background-color: #B6A69D;
+    margin: 10px auto 0;
+    width: 100px; /* Adjust width of the underline */
+    height: 3px; /* Thickness of the underline */
+    background-color: #B6A69D; /* Gold color for the underline */
     border-radius: 0px;
   }
 
   .section-title1 {
-    font-size: 22px; /* Adjusted title size */
-    width: auto;
+    font-size: 24px;
+    width: 398px;
+    height: 34px;
     font-weight: 800;
     font-style: italic;
-    line-height: 30px;
+    line-height: 33.6px;
     color: #0A0A0A;
+    /* Adjusted title size */
     text-align: center;
   }
 
   .section-subtitle {
-    width: auto;
+    width: 398px;
+    height: 23px;
     color: #0A0A0A;
-    font-size: 14px; /* Reduced subtitle size */
-    line-height: 20px;
+    font-size: 16px;
+    line-height: 22.4px;
     font-weight: 400;
     text-align: center;
-    margin-bottom: 8px;
-    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-top: 20px;
   }
 
   .video-grid {
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     align-items: center;
+
   }
 
   .video-item {
@@ -230,28 +235,34 @@
     max-width: 100%;
   }
 
+
   .video-wrapper {
-    border-radius: 6px; /* Slightly reduced border-radius */
+    border-radius: 8px;
     overflow: hidden;
+    width: 100%;
+    margin-left: 15px;
   }
 
   .video-thumbnail {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-
+    width: 90%;
+    height: 300px;
+    border-radius: 10px;
+    margin-left: -39px;
+    padding: -1px;
+}
   .play-button {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 45%;
     transform: translate(-50%, -50%);
-    padding: 8px;
+    padding: 10px;
   }
 
   .play-icon {
-    width: 80px; /* Slightly smaller play icon */
-    height: 56px;
+    /* position:relative; */
+    width: 100px;
+    height: 80.38px;
+    margin-left: -35px;
   }
 }
 
