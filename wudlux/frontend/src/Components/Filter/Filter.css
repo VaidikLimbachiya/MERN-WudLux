@@ -164,105 +164,236 @@
   line-height: 20px;
   margin-right: 30px;
 }
+.applyButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--primary-primary-800, #50433c);
+  padding: 10px 16px;
+  cursor: pointer;
+  background-color: white;
+}
 
 .resultsNumber {
   font-weight: 700;
 }
+.filter-button {
+  display: none;
+}
+.filter-button {
+  background: none;
+  border: none; /* Removes border */
+  outline: none; /* Prevents focus outline */
+  box-shadow: none; /* Removes any shadow */
+  cursor: pointer;
+}
+/* Bottom Sheet Styling */
+.bottomSheet {
+  position: fixed;
+  bottom: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 430px;
+  height: 650px;
+  background: #fff;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+  transition: bottom 0.3s ease-in-out;
+  z-index: 1000;
+  padding: 10px 16px;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-@media (max-width: 320px) {
-  .filterContainer {
-    flex-direction: column;
-    gap: 12px; /* Reduced spacing for compact layout */
-    padding: 8px; /* Add some padding for better alignment */
+/* Open Bottom Sheet */
+.bottomSheet.open {
+  bottom: 0;
+}
+
+/* Bottom Sheet Header */
+.bottomSheetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.bottomSheetHandle {
+  width: 50px;
+  height: 4px;
+  background: #ccc;
+  border-radius: 10px;
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Close Button */
+.closeIcon {
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 180px;
+}
+.filterGroupMobile{
+  align-self: stretch;
+  display: flex;
+  min-width: 240px;
+  align-items: center;
+  gap: 16px;
+  justify-content: start;
+  flex-wrap: wrap;
+  margin: auto 0;
+}
+
+/* Material Filter Buttons */
+.materialFilter {
+  display: flex;
+  /* justify-content: space-between; */
+  gap: 10px;
+  width: 600px;
+}
+
+.materialButton {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+
+.materialButton.active {
+  background: #50433C;
+  color: white;
+  border-color: #50433C;
+}
+
+/* Price Range Filter */
+.priceRangeMobile {
+  display: flex;
+  flex-direction: column; /* Keep heading on top */
+  align-items: flex-start; /* Align everything to the left */
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.priceLabel {
+  font-weight: bold;
+}
+
+.priceInputsContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between inputs */
+}
+.priceInput {
+  padding: 8px;
+  border: none;
+  outline: none;
+  text-align: left;
+  font-size: 16px;
+  width: 140px;
+  background: transparent;
+}
+
+
+/* Sort By Section */
+/* Sort By Section */
+.sortByMobile {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sortByMobile span {
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+/* Ensure proper alignment of radio buttons and text */
+.sortByMobile label {
+  /* display: flex; */
+  align-items: center;
+  gap: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 1.5; /* Ensures vertical alignment */
+  width: 100%;
+}
+.radiobtn{
+  margin-right: 10px;
+  top:4px
+}
+
+/* Custom Radio Buttons */
+.sortByMobile input[type="radio"] {
+  /* appearance: none; */
+  width: 18px;
+  height: 18px;
+  border: 2px solid #999;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0; /* Ensures consistent spacing */
+  
+}
+
+/* Checked State */
+.sortByMobile input[type="radio"]:checked {
+  border-color: black;
+}
+
+.sortByMobile input[type="radio"]:checked::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: black;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Apply Button */
+.applyButtonMobile {
+  display: block;
+  background: black;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.applyButton:hover {
+  background: #333;
+}
+
+@media (max-width: 430px) {
+  .filter-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    /* border: 1px solid #c1b6ae; */
+    border-radius: 12px;
+    background-color: white;
+    cursor: pointer;
   }
 
   .filterRow {
-    flex-direction: column; /* Stack elements vertically */
-    gap: 12px; /* Compact gap */
-    align-items: flex-start; /* Align to the left */
-    width: 100%;
-  }
-
-  .filterGroup {
-    flex-direction: column; /* Stack dropdowns vertically */
-    gap: 8px; /* Compact gap between items */
-    align-items: flex-start; /* Left alignment */
-    width: 100%; /* Full width for mobile */
-    margin: 0;
-  }
-
-  .dropdownButton {
-    width: 60%; /* Full width for dropdown */
-    padding: 8px; /* Compact padding */
-    font-size: 12px; /* Smaller font size for mobile */
-    margin-left: 0px;
-  }
-  .dropdownButton1 {
-    width: 100%; /* Full width for dropdown */
-    padding: 8px; /* Compact padding */
-    font-size: 12px; /* Smaller font size for mobile */
-    margin-left: 0px;
-  }
-
-  .priceRange {
-    flex-direction: row; /* Stack price range inputs vertically */
-    gap: 8px; /* Compact spacing */
-    align-items: center; /* Align items to the left */
-    width: 100%; /* Full width */
-  }
-
-  .currencyInput {
-    width: 100%; /* Full width for inputs */
-    gap: 6px; /* Reduced gap */
-    padding: 6px; /* Compact padding */
-  }
-
-  .currencySymbol {
-    padding: 6px; /* Reduced padding */
-    font-size: 12px; /* Adjust for smaller screens */
-  }
-
-  .priceInput {
-    width: 100%; /* Full width for input fields */
-    padding: 6px 8px; /* Compact padding */
-    font-size: 12px; /* Smaller font size */
-    text-align: left;
-  }
-
-  .applyButton {
-    width: 35%; /* Full width for Apply button */
-    padding: 8px; /* Compact padding */
-    font-size: 14px; /* Standard font size for clarity */
-    justify-content: center; /* Center align text */
-  }
-
-  .activeFiltersBar {
-    flex-direction: column; /* Stack active filters vertically */
-    gap: 8px; /* Compact spacing */
-    padding: 8px 0; /* Adjust padding */
-    width: 100%; /* Full width */
-    align-items: flex-start; /* Left alignment */
-  }
-
-  .activeFiltersList {
-    flex-wrap: wrap; /* Allow filters to wrap */
-    gap: 8px; /* Compact spacing */
-    width: 100%; /* Full width */
-    align-items: flex-start; /* Align items to the left */
-  }
-
-  .resultsCount {
-    font-size: 12px; /* Smaller font size */
-    text-align: left; /* Align to the left */
-    width: 100%; /* Full width */
-  }
-
-  .removeIcon {
-    width: 10px; /* Smaller icon size */
-    height: 10px;
-  }
-
-  .dropdownText {
-    font-size: 12px; /* Adjust text size for smaller screens */
+    display: none;
   }
 }

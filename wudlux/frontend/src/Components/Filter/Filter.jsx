@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Filter.css";
 import rp from "../../assets/rp.png";
+import rct from "../../assets/rct.png";
 import { CiCircleRemove } from "react-icons/ci";
+import { IoClose } from "react-icons/io5";
+import fltr from "../../assets/fltr.png";
 
 export default function Filter({ productCount }) {
   const navigate = useNavigate();
@@ -19,16 +22,23 @@ export default function Filter({ productCount }) {
   const initialMaxPrice = queryParams.get("maxPrice") || "";
   const initialSortOption = queryParams.get("sortOption") || "Latest";
 
-  // State for filter values before applying
+  // State for filter values
   const [selectedMaterial, setSelectedMaterial] = useState(initialMaterial);
   const [priceRange, setPriceRange] = useState({
     min: initialMinPrice,
     max: initialMaxPrice,
   });
   const [sortOption, setSortOption] = useState(initialSortOption);
-
-  // State for applied filters (Only updates when Apply is clicked)
   const [activeFilters, setActiveFilters] = useState([]);
+  const [showBottomSheet, setShowBottomSheet] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  // Detect screen size for mobile filter button
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Apply Filters & Update URL
   const applyFilters = () => {
@@ -37,15 +47,14 @@ export default function Filter({ productCount }) {
     if (category) newParams.set("category", category);
     if (subcategory) newParams.set("subcategory", subcategory);
     if (selectedMaterial) newParams.set("material", selectedMaterial);
-    if (priceRange.min) newParams.set("minPrice", Number(priceRange.min)); // Ensure number conversion
+    if (priceRange.min) newParams.set("minPrice", Number(priceRange.min));
     if (priceRange.max) newParams.set("maxPrice", Number(priceRange.max));
     if (sortOption && sortOption !== "Latest")
       newParams.set("sortOption", sortOption);
 
-    // Update URL
     navigate(`/products?${newParams.toString()}`);
 
-    // Update active filters (only on Apply button click)
+    // Update active filters
     const filters = [];
     if (selectedMaterial)
       filters.push({ id: "material", text: selectedMaterial });
@@ -57,6 +66,7 @@ export default function Filter({ productCount }) {
       filters.push({ id: "sort", text: `Sort: ${sortOption}` });
 
     setActiveFilters(filters);
+    setShowBottomSheet(false); // Close mobile filter after applying
   };
 
   // Remove Individual Filters
@@ -77,15 +87,13 @@ export default function Filter({ productCount }) {
       newParams.delete("sortOption");
     }
 
-    // Update URL
     navigate(`/products?${newParams.toString()}`);
-
-    // Update active filters list
     setActiveFilters(activeFilters.filter((filter) => filter.id !== filterId));
   };
 
   return (
     <div className="filterContainer">
+      {/* Desktop Filter */}
       <div className="filterRow">
         <div className="filterGroup">
           <select
@@ -181,6 +189,187 @@ export default function Filter({ productCount }) {
           {/* ✅ Display the product count dynamically */}
           <div className="resultsCount">
             <span>Results Found: {productCount}</span>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Filter Button (Hidden on Desktop) */}
+      {isMobile && (
+        <button
+          className="filter-button"
+          onClick={() => setShowBottomSheet(true)}
+        >
+          <img src={fltr} alt="Filter" className="filter-icon" />
+        </button>
+      )}
+
+      {/* Mobile Bottom Sheet */}
+      {showBottomSheet && (
+        <div className="bottomSheet open">
+          <div className="bottomSheetHeader">
+            <img
+              src={rct}
+              onClick={() => setShowBottomSheet(false)}
+              className="closeIcon"
+            />
+          </div>
+          <div className="filterGroupMobile">
+            <h2>Select Material:</h2>
+            <div className="materialFilter">
+              <button
+                className={`materialButton ${
+                  selectedMaterial === "Acacia wood" ? "active" : ""
+                }`}
+                onClick={() => setSelectedMaterial("Acacia wood")}
+              >
+                Acacia wood
+              </button>
+              <button
+                className={`materialButton ${
+                  selectedMaterial === "Teak wood" ? "active" : ""
+                }`}
+                onClick={() => setSelectedMaterial("Teak wood")}
+              >
+                Teak wood
+              </button>
+              <button
+                className={`materialButton ${
+                  selectedMaterial === "Mango wood" ? "active" : ""
+                }`}
+                onClick={() => setSelectedMaterial("Mango wood")}
+              >
+                Mango wood
+              </button>
+            </div>
+            <div className="priceRangeMobile">
+              <span className="priceLabel">Price</span>
+
+              <div className="priceInputsContainer">
+                <div className="currencyInput">
+                  <span className="currencySymbol">₹</span>
+                  <input
+                    type="number"
+                    className="priceInput"
+                    placeholder="Min"
+                    value={priceRange.min}
+                    onChange={(e) =>
+                      setPriceRange({ ...priceRange, min: e.target.value })
+                    }
+                  />
+                </div>
+
+                <span>to</span>
+
+                <div className="currencyInput">
+                  <span className="currencySymbol">₹</span>
+                  <input
+                    type="number"
+                    className="priceInput"
+                    placeholder="Max"
+                    value={priceRange.max}
+                    onChange={(e) =>
+                      setPriceRange({ ...priceRange, max: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="sortByMobile">
+              <span>Sort By</span>
+              <label className="text">
+                <input
+                  className="radiobtn"
+                  type="radio"
+                  name="sort"
+                  value="Featured"
+                  checked={sortOption === "Featured"}
+                  onChange={() => setSortOption("Featured")}
+                />
+                Featured
+              </label>
+              <label>
+                <input
+                  className="radiobtn"
+                  type="radio"
+                  name="sort"
+                  value="Best Selling"
+                  checked={sortOption === "Best Selling"}
+                  onChange={() => setSortOption("Best Selling")}
+                />
+                Best Selling
+              </label>
+              <label>
+                <input
+                  className="radiobtn"
+                  type="radio"
+                  name="sort"
+                  value="Price-low-to-High"
+                  checked={sortOption === "Alphabetically A to Z"}
+                  onChange={() => setSortOption("Alphabetically A to Z")}
+                />
+                Alphabetically A to Z
+              </label>
+              <label>
+                <input
+                  className="radiobtn"
+                  type="radio"
+                  name="sort"
+                  value="Price-low-to-High"
+                  checked={sortOption === "Alphabetically Z to A"}
+                  onChange={() => setSortOption("Alphabetically Z to A")}
+                />
+                Alphabetically Z to A
+              </label>
+              <label>
+                <input
+                  className="radiobtn"
+                  type="radio"
+                  name="sort"
+                  value="Price-High-to-Low"
+                  checked={sortOption === "Price-High-to-Low"}
+                  onChange={() => setSortOption("Price-High-to-Low")}
+                />
+                Price: High to Low
+              </label>
+              <label>
+                <input
+                  className="radiobtn"
+                  type="radio"
+                  name="sort"
+                  value="Price-low-to-High"
+                  checked={sortOption === "Price-low-to-High"}
+                  onChange={() => setSortOption("Price-low-to-High")}
+                />
+                Price: Low to High
+              </label>
+              <label>
+                <input
+                  className="radiobtn"
+                  type="radio"
+                  name="sort"
+                  value="Price-low-to-High"
+                  checked={sortOption === "Date - old to new"}
+                  onChange={() => setSortOption("Date - old to new")}
+                />
+                Date - old to new
+              </label>
+              <label>
+                <input
+                  className="radiobtn"
+                  type="radio"
+                  name="sort"
+                  value="Price-low-to-High"
+                  checked={sortOption === "Date - new to old"}
+                  onChange={() => setSortOption("Date - new to old")}
+                />
+                Date - new to old
+              </label>
+            </div>
+
+            <button className="applyButtonMobile" onClick={applyFilters}>
+              Apply
+            </button>
           </div>
         </div>
       )}

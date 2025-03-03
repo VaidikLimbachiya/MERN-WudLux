@@ -191,7 +191,6 @@ const Navbar = () => {
     setIsMenuOpen((prev) => !prev); // Only toggles the menu
     setIsSearchOpen(false); // Ensure search is closed when opening menu
   };
-  
 
   const handleLogout = () => {
     // Clear tokens from localStorage
@@ -599,7 +598,7 @@ const Navbar = () => {
               </button>
               <button
                 className="goToCartButton"
-                onClick={() => handleNavigate("/cartPage")}
+                onClick={() => handleNavigate("/CartPage")}
                 disabled={cartItems.length === 0} // Disable if cart is empty
               >
                 Go to Cart →
