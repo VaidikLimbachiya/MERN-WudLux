@@ -1511,12 +1511,12 @@ a {
     margin-bottom: 10px;
   }
   .navbar__cartBadge {
-    top: 26px;
-    font-size: 8px;
-    /* Smaller badge font */
-    padding: 1px 4px;
-    /* Adjust padding for smaller badge */
-    margin-right: 21px;
+    width: 16px;
+    height: 16px;
+    top: 25px;
+    font-size: 10px;
+    padding: 0px 5px;
+    margin-right: 19px;
   }
 
 
@@ -1722,21 +1722,21 @@ a {
     border: 1px solid #ddd;
     border-radius: 20px;
     overflow: hidden;
-    width: 100px;
-    height: 35px;
+    width: 120px;
+    height: 40px;
     margin-top: 15px;
-    margin-right: 10px;
+    margin-right: 65px;
   }
 
   .cart-quantity-decrement1, 
   .cart-quantity-increment1 {
     border: none;
     outline: none;
-    width: 22px;
-    height: 17px;
+    width: 24px;
+    height: 24px;
     background-color: #DDD6D2;
     color: #000;
-    font-size: 13px;
+    font-size: 17px;
     font-weight: bold;
     cursor: pointer;
     display: flex;

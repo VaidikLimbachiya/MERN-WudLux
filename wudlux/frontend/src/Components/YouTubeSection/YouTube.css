@@ -148,10 +148,12 @@
   .video-wrapper {
     border-radius: 8px;
     overflow: hidden;
+    width: 100%;
+    /* margin-left: 20px; */
   }
 
   .video-thumbnail {
-    width: 85%;
+    width: 90%;
     height: 300px;
     border-radius: 10px;
     margin-left: -39px;
@@ -166,10 +168,14 @@
   }
 
   .play-icon {
+    /* position:relative; */
     width: 100px;
-    height: 70.38px;
+    height: 80.38px;
+    margin-left: -35px;
   }
 }
+
+
 @media (max-width: 375px) {
   .premium-look-section {
     margin-top: 40px; /* Adjusted margin for better spacing */

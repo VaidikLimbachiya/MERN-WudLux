@@ -17,10 +17,10 @@
 
 .productsSubtitle {
   font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
+  /* font-size: 12px;
   font-weight: 400;
-  color: #666;
-  margin-top: 4px;
+  color: #666;*/
+  margin-top: 4px; 
 }
 
 /* Product Grid */

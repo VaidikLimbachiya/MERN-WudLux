@@ -31,7 +31,7 @@
 .testimonials-subtitle {
   font-family: "DM Sans", sans-serif;
   font-size: 16px;
-  color: #666;
+  /* color: #666; */
   margin-bottom: 20px;
 }
 
@@ -139,7 +139,6 @@
   color: #fff;
 }
 
-
 @media (max-width: 430px) {
   .testimonials-section {
     padding: 10px;
@@ -168,7 +167,7 @@
   }
   
   .testimonials-subtitle {
-    font-size: 12px; /* Smaller subtitle font size */
+    font-size: 16px; /* Smaller subtitle font size */
     margin-bottom: 10px;
   }
 
@@ -240,9 +239,6 @@
     transition: background-color 0.3s;
   }
 }
-
-
-
 @media (max-width: 375px) {
   .testimonials-section {
     padding: 10px;
@@ -269,7 +265,7 @@
   }
   
   .testimonials-subtitle {
-    font-size: 12px; /* Smaller subtitle font size */
+    font-size: 14px; /* Smaller subtitle font size */
     margin-bottom: 10px;
   }
 

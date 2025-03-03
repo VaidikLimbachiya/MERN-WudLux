@@ -21,7 +21,7 @@
 
 .cart-subtitle {
   font-size: 14px;
-  color: #666;
+  /* color: #666; */
   font-family: "poppins", sans-serif;
   line-height: 1.5;
 }
@@ -281,12 +281,12 @@ ul {
   }
 
   .cart-title {
-    font-size: 1.2rem;
+    font-size: 24px;
     margin-bottom: 5px;
   }
 
   .cart-subtitle {
-    font-size: 0.8rem;
+    font-size: 16px;
     line-height: 1.4;
     margin-bottom: 10px;
   }
@@ -636,12 +636,12 @@ ul {
   }
 
   .cart-title {
-    font-size: 1.2rem;
+    font-size: 24pxm;
     margin-bottom: 5px;
   }
 
   .cart-subtitle {
-    font-size: 0.8rem;
+    font-size: 16px;
     line-height: 1.4;
     margin-bottom: 10px;
   }
