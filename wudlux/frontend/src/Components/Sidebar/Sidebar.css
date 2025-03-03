@@ -1,5 +1,5 @@
 .sidebar {
-    width: 100%;
+    width: 350px;
     padding: 20px;
     font-family: 'DM Sans', sans-serif;
     border-right: none;
@@ -81,7 +81,6 @@
     gap: 8px;
     margin-bottom: 16px;
   }
-<<<<<<< HEAD
 
   .sidebar-logo {
     margin-top: 96px;
@@ -136,7 +135,6 @@
 
   .sidebar-header {
     flex-direction: column; /* Stack the logo and title vertically */
-=======
   
  @media (max-width: 430px) {
   .sidebar {
@@ -154,14 +152,12 @@
   .sidebar-header {
     display: flex;
     flex-direction: column; /* Stack logo and title */
->>>>>>> 185ca23e9d9785fc7fef2f61ce7ec885d68e4e85
     align-items: center;
     gap: 8px;
     margin-bottom: 16px;
   }
 
   .sidebar-logo {
-<<<<<<< HEAD
     margin-top: 96px;
     width: 60px; /* Reduce logo size */
     height: 60px;
@@ -205,7 +201,6 @@
 
 
   
-=======
     width: 60px; /* Adjust logo size */
     height: 60px;
     margin-left: -250px;
@@ -265,6 +260,3 @@
     padding: 16px;
   }
 }
-
-}
->>>>>>> 185ca23e9d9785fc7fef2f61ce7ec885d68e4e85

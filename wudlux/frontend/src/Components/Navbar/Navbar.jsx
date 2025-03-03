@@ -62,7 +62,35 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredCategories, setFilteredCategories] = useState([]);
 
+  const categoriesList = [
+    "Tray",
+    "Platter",
+    "Chopping Board",
+    "Cheese Board",
+    "Chip & Dip",
+    "Bowls",
+  ];
+
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredCategories(categoriesList); // Show all when empty
+    } else {
+      setFilteredCategories(
+        categoriesList.filter((item) =>
+          item.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
+    }
+  }, [searchQuery]);
+
+  const handleSearch = (category) => {
+    console.log("Searching for:", category);
+    navigate(`/products?search=${category}`);
+    setIsSearchOpen(false); // Close search popup after selection
+  };
 
   const {
     cartItems,
@@ -89,6 +117,17 @@ const Navbar = () => {
       window.removeEventListener("resize", checkScreenWidth); // Cleanup listener
     };
   }, []);
+  useEffect(() => {
+    if (isCartOpen || isSearchOpen) {
+      document.body.classList.add("no-scroll"); // Add class to disable scrolling
+    } else {
+      document.body.classList.remove("no-scroll"); // Remove class to re-enable scrolling
+    }
+
+    return () => {
+      document.body.classList.remove("no-scroll"); // Cleanup on unmount
+    };
+  }, [isCartOpen, isSearchOpen]);
 
   const handleProfileIconClick = () => {
     const token = localStorage.getItem("accessToken");
@@ -110,7 +149,6 @@ const Navbar = () => {
           subCategoryText
         );
         console.log("Fetched products:", products); // Debug: View fetched products
-        
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -123,11 +161,10 @@ const Navbar = () => {
       // Handle only category click (e.g., open/close the dropdown)
       setActiveCategory(activeCategory === categoryText ? null : categoryText);
     }
-    
   };
 
-  const toggleSearch = () => setIsSearchOpen((prev) => !prev);
   const toggleCart = () => setIsCartOpen((prev) => !prev);
+  const toggleSearch = () => setIsSearchOpen((prev) => !prev);
 
   const openPopup = (product) => {
     console.log("Product passed to openPopup:", product);
@@ -151,11 +188,10 @@ const Navbar = () => {
   };
 
   const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-    if (window.innerWidth <= 430) {
-      setIsSearchOpen(!isSearchOpen);
-    }
+    setIsMenuOpen((prev) => !prev); // Only toggles the menu
+    setIsSearchOpen(false); // Ensure search is closed when opening menu
   };
+  
 
   const handleLogout = () => {
     // Clear tokens from localStorage
@@ -187,27 +223,25 @@ const Navbar = () => {
     const handleCartUpdate = () => {
       console.log("Cart update detected in Navbar. Re-rendering...");
     };
-  
+
     window.addEventListener("cartUpdated", handleCartUpdate);
-  
+
     return () => {
       window.removeEventListener("cartUpdated", handleCartUpdate);
     };
   }, []);
-  
 
-useEffect(() => {
-  if (isMenuOpen) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-  return () => {
-    document.body.style.overflow = "auto"; // Cleanup on unmount
-  };
-}, [isMenuOpen]);
-
+    return () => {
+      document.body.style.overflow = "auto"; // Cleanup on unmount
+    };
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -216,7 +250,7 @@ useEffect(() => {
           <div className="mobileNavbar">
             {/* Menu Icon */}
             <div className="navbar__menuIcon" onClick={toggleMenu}>
-              <img src={menuBar} alt="Menu" loading="lazy"/>
+              <img src={menuBar} alt="Menu" loading="lazy" />
             </div>
 
             {/* Menu Drawer */}
@@ -333,21 +367,24 @@ useEffect(() => {
             </div>
 
             {/* Search Icon */}
-            
 
             {/* Logo */}
             <div className="navbar__logo" onClick={() => navigate("/")}>
-              <img src={logo} alt="Logo" loading="lazy"/>
+              <img src={logo} alt="Logo" loading="lazy" />
             </div>
 
             <div className="navbar__searchIcon">
-              <img src={searchIcon} alt="Search" onClick={toggleSearch}loading="lazy" />
+              <img
+                src={searchIcon}
+                alt="Search"
+                onClick={toggleSearch}
+                loading="lazy"
+              />
             </div>
-            
 
             {/* Cart Icon */}
             <div className="navbar__cartIcon" onClick={toggleCart}>
-              <img src={cartIcon} alt="Cart" loading="lazy"/>
+              <img src={cartIcon} alt="Cart" loading="lazy" />
               <span className="navbar__cartBadge">{totalQuantity}</span>
             </div>
           </div>
@@ -396,9 +433,9 @@ useEffect(() => {
                           key={item.link}
                           to={item.link}
                           className="dropdownItem"
-                           onClick={() =>
-                              handleCategoryClick(category.text, item.text)
-                            }  // Fetch products when clicking on a subcategory
+                          onClick={() =>
+                            handleCategoryClick(category.text, item.text)
+                          } // Fetch products when clicking on a subcategory
                         >
                           {item.text}
                         </NavLink>
@@ -467,104 +504,110 @@ useEffect(() => {
               </div>
               <div className="divider"></div>
               <div className="cartIcon" onClick={toggleCart}>
-                <img src={cartIcon} alt="Shopping Cart" className="cartImage" loading="lazy"/>
+                <img
+                  src={cartIcon}
+                  alt="Shopping Cart"
+                  className="cartImage"
+                  loading="lazy"
+                />
                 <span className="cartBadge">{totalQuantity}</span>
               </div>
             </div>
           </div>
         )}
       </nav>
-
       {/* Cart Slider */}
-      <div className={`cartSlider ${isCartOpen ? "open" : ""}`}>
-        <div className="cartHeader">
-          <h3>Shopping Cart</h3>
-          <button className="closeButton" onClick={toggleCart}>
-            ✖
-          </button>
-        </div>
-        <div className="cartItems">
-          {cartItems.length > 0 ? (
-            cartItems.map((item, index) => (
-              <div
-                key={`${item.productId}-${index}`} // Ensures unique key by combining productId and index
-                className="cartItem"
-              >
-                <img
-                  crossOrigin="anonymous"
-                  loading="lazy"
-                  src={
-                    item.images
-                      ? `http://localhost:5000/uploads/${item.images}`
-                      : "path/to/placeholder-image.png"
-                  }
-                  alt={item.title || "Product Image"}
-                  className="cartItemImage"
-                />
-                <div className="cartItemDetails">
-                  <p className="cartItemName">
-                    {item.title || "Unnamed Product"}
-                  </p>
-                  <p className="cartItemPrice">
-                    ₹
-                    {typeof item.price === "number"
-                      ? item.price.toFixed(2)
-                      : "0.00"}
-                  </p>
-                </div>
-                <div className="cartQuantity">
-                  <button
-                    className="cart-quantity-decrement1"
-                    onClick={() => updateQuantity(item.productId, -1)}
-                    disabled={item.quantity <= 1}
-                  >
-                    -
-                  </button>
-                  <span>{item.quantity}</span>
-                  <button
-                    className="cart-quantity-increment1"
-                    onClick={() => updateQuantity(item.productId, 1)}
-                  >
-                    +
-                  </button>
-                </div>
-                <button
-                  className="removeButton"
-                  onClick={() => openPopup(item)}
+      {isCartOpen && (
+        <div className={isMobile ? "cartPopup" : "cartSlider open"}>
+          <div className="cartHeader">
+            <h3>Shopping Cart</h3>
+            <button className="closeButton" onClick={toggleCart}>
+              ✖
+            </button>
+          </div>
+          <div className="cartItems">
+            {cartItems.length > 0 ? (
+              cartItems.map((item, index) => (
+                <div
+                  key={`${item.productId}-${index}`} // Ensures unique key by combining productId and index
+                  className="cartItem"
                 >
-                  ✖
-                </button>
-              </div>
-            ))
-          ) : (
-            <p>Your cart is empty.</p>
-          )}
-        </div>
+                  <img
+                    crossOrigin="anonymous"
+                    loading="lazy"
+                    src={
+                      item.images
+                        ? `http://localhost:5000/uploads/${item.images}`
+                        : "path/to/placeholder-image.png"
+                    }
+                    alt={item.title || "Product Image"}
+                    className="cartItemImage"
+                  />
+                  <div className="cartItemDetails">
+                    <p className="cartItemName">
+                      {item.title || "Unnamed Product"}
+                    </p>
+                    <p className="cartItemPrice">
+                      ₹
+                      {typeof item.price === "number"
+                        ? item.price.toFixed(2)
+                        : "0.00"}
+                    </p>
+                  </div>
+                  <div className="cartQuantity">
+                    <button
+                      className="cart-quantity-decrement1"
+                      onClick={() => updateQuantity(item.productId, -1)}
+                      disabled={item.quantity <= 1}
+                    >
+                      -
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button
+                      className="cart-quantity-increment1"
+                      onClick={() => updateQuantity(item.productId, 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    className="removeButton"
+                    onClick={() => openPopup(item)}
+                  >
+                    ✖
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p>Your cart is empty.</p>
+            )}
+          </div>
 
-        {/* Cart Footer */}
-        <div className="cartFooter">
-          <div className="cartSummary">
-            <span>{totalProducts} Product(s)</span>
-            <span>Total: ₹{totalPrice.toFixed(2)}</span>
-          </div>
-          <div className="cartActions">
-            <button
-              className="checkoutButton"
-              onClick={() => handleNavigate("/checkout")}
-              disabled={cartItems.length === 0} // Disable if cart is empty
-            >
-              Checkout →
-            </button>
-            <button
-              className="goToCartButton"
-              onClick={() => handleNavigate("/cartPage")}
-              disabled={cartItems.length === 0} // Disable if cart is empty
-            >
-              Go to Cart →
-            </button>
+          {/* Cart Footer */}
+          <div className="cartFooter">
+            <div className="cartSummary">
+              <span>{totalProducts} Product(s)</span>
+              <span>Total: ₹{totalPrice.toFixed(2)}</span>
+            </div>
+            <div className="cartActions">
+              <button
+                className="checkoutButton"
+                onClick={() => handleNavigate("/checkout")}
+                disabled={cartItems.length === 0} // Disable if cart is empty
+              >
+                Checkout →
+              </button>
+              <button
+                className="goToCartButton"
+                onClick={() => handleNavigate("/cartPage")}
+                disabled={cartItems.length === 0} // Disable if cart is empty
+              >
+                Go to Cart →
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Popup */}
       {isPopupOpen && (
@@ -586,22 +629,35 @@ useEffect(() => {
       )}
 
       {/* Search Drawer */}
-      <div className={`searchDrawer ${isSearchOpen ? "open" : ""}`}>
-        <div className="searchHeader">
-          <h3>Search by Category...</h3>
-          <button className="closeButton" onClick={toggleSearch}>
-            ✖
-          </button>
+      {isSearchOpen && (
+        <div className={isMobile ? "searchPopup" : "searchDrawer open"}>
+          <div className="searchHeader">
+            <input
+              type="text"
+              placeholder="Search by Category..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="searchHeading"
+            />
+            <button className="closeButton" onClick={toggleSearch}>
+              ✖
+            </button>
+          </div>
+
+          {/* Filtered Search Categories */}
+          <ul className="searchCategories">
+            {filteredCategories.length > 0 ? (
+              filteredCategories.map((category, index) => (
+                <li key={index} onClick={() => handleSearch(category)}>
+                  {category}
+                </li>
+              ))
+            ) : (
+              <li className="no-results">No results found</li>
+            )}
+          </ul>
         </div>
-        <ul className="searchCategories" >
-          <li>Tray</li>
-          <li>Platter</li>
-          <li>Chopping Board</li>
-          <li>Cheese Board</li>
-          <li>Chip & Dip</li>
-          <li>Bowls</li>
-        </ul>
-      </div>
+      )}
     </>
   );
 };
