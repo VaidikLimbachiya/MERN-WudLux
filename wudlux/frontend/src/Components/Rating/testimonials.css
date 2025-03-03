@@ -31,7 +31,7 @@
 .testimonials-subtitle {
   font-family: "DM Sans", sans-serif;
   font-size: 16px;
-  color: #666;
+  /* color: #666; */
   margin-bottom: 20px;
 }
 
@@ -139,7 +139,6 @@
   color: #fff;
 }
 
-
 @media (max-width: 430px) {
   .testimonials-section {
     padding: 10px;
@@ -147,7 +146,6 @@
     margin-top: 70px;
   }
 
-<<<<<<< HEAD
   .testimonials-title {
     font-size: 24px; /* Reduce title size further */
   }
@@ -162,37 +160,14 @@
     /* height: 2px; Thickness of the line */
     background-color: #000000; /* Gold-like color */
     /* padding-top:5px; Center the underline */
-    margin-bottom: -15px;
-    padding-bottom: -20px;
-=======
-  @media (max-width: 430px) {
-    .testimonials-section {
-      padding: 10px;
-      text-align: center;
-    }
-  
-    .testimonials-title {
-      font-size: 24px; /* Reduce title size further */
-    }
-  
-    .title-underline {
-      width: 60px; /* Narrower underline */
-      height: 2px;
-      margin: 4px auto;
-    }
-    .underline{
-      /* height: 2px; Thickness of the line */
-      background-color: #000000; /* Gold-like color */
-      /* padding-top:5px; Center the underline */
-      margin-top: 10px;
-     
-    }
->>>>>>> 185ca23e9d9785fc7fef2f61ce7ec885d68e4e85
+    margin-bottom: 0px;
+    /* padding-bottom: -20px; */
+    width: 235px;
     
   }
   
   .testimonials-subtitle {
-    font-size: 12px; /* Smaller subtitle font size */
+    font-size: 16px; /* Smaller subtitle font size */
     margin-bottom: 10px;
   }
 
@@ -201,15 +176,23 @@
     gap: 15px; /* Smaller space between cards */
     overflow: visible; 
     width: 100%;/* Ensure all content is visible */
-    height: 190px;
   }
 
   .testimonial-card {
-    max-width: 95%; /* Narrower card size */
-    padding: 15px; /* Adjust padding for compact design */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Slightly lighter shadow */
+    width: 390px; /* Fixed width */
+    height: 319px; /* Increased height */
+    border-radius: 8px; /* Rounded corners */
+    border-bottom-width: 2px; /* Apply bottom border */
+    padding: 32px 32px 0 32px; /* Top, Right, Bottom, Left */
+    gap: 32px; /* Space between elements inside the card */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15); /* Slight shadow for depth */
     margin: auto;
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center text inside */
+}
+
+
 
   .testimonial-rating {
     font-size: 0.9rem; /* Slightly smaller rating size */
@@ -243,13 +226,19 @@
   }
 
   .carousel-button {
-    width: 25px; /* Smaller button size */
-    height: 25px;
-    font-size: 12px; /* Adjust icon size */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
   }
 }
-
-
 @media (max-width: 375px) {
   .testimonials-section {
     padding: 10px;
@@ -276,7 +265,7 @@
   }
   
   .testimonials-subtitle {
-    font-size: 12px; /* Smaller subtitle font size */
+    font-size: 14px; /* Smaller subtitle font size */
     margin-bottom: 10px;
   }
 

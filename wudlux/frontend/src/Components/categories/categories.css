@@ -113,6 +113,8 @@
   text-align: center;
   color: #000;
 }
+
+
 @media (max-width: 430px) {
    
   .categoriesContainer {
@@ -139,6 +141,7 @@
     font-weight: 800;
     color: #0A0A0A;
     align-items: center;
+    margin-left: -30px;
   }
 
   .headingSubtitle {
@@ -149,15 +152,15 @@
     margin-top: 10px;
     font-weight: 400;
     align-items: center;
+    margin-left: -25px;
   }
 
-  
 .headingUnderline {
   width: 80px; /* Width of the underline */
   height: 3px; /* Thickness of the line */
   background-color: #B6A69D; /* Gold-like color */
   align-items: center;
-  margin-left: 160px;
+  margin-left: 140px;
 }
 
 .categoryImage {
