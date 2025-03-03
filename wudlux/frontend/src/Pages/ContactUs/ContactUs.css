@@ -225,13 +225,16 @@ font-family: "Playfair Display", serif;
     margin-right: 10px;
   }
 
-  .contact-form form input,
-  .contact-form form textarea {
+  .contact-form form input {
     padding: 10px;
     font-size: 0.95rem;
     border-radius: 60px;
   }
 
+  .contact-form form textarea {
+    height: 200px;
+    border-radius: 24px;
+  }
   .contact-form form button {
     width: 100%;
     padding: 10px;
@@ -239,7 +242,7 @@ font-family: "Playfair Display", serif;
 }
 
 /* For Small Phones (max-width: 480px) */
-@media (max-width: 430px) {
+@media (max-width: 376px) {
   .contact-banner {
     height: 200px;
     padding: 0 15px;
@@ -293,9 +296,10 @@ font-family: "Playfair Display", serif;
   }
 
   .contact-form form button {
-    width: 166px;
+    width: 296px;
     height: 54px;
     border-radius: 56px;
     padding: 10px;
+    margin-left: 12px;
   }
 }

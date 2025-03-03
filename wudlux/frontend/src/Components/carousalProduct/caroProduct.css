@@ -209,7 +209,8 @@
 
   .shop-carousel-grid {
     gap: 20px;
-    grid-template-columns: 1fr; /* Single column on small devices */
+    grid-template-columns: 1fr;
+    /* Single column on small devices */
   }
 
   .shop-carousel-image {

@@ -297,15 +297,17 @@ a {
 
 .cartBadge {
   position: absolute;
-  top: -6px;
-  right: -13px;
+  top: -5px;
+  right: -11px;
   background-color: hsl(0, 100%, 62%);
   color: white;
   font-size: 12px;
   font-weight: bold;
-  border-radius: 50%;
+  border-radius: 100%;
   border: 2px solid white;
-  padding: 1px 6px;
+  padding: 0px 5px;
+  width: 21px;
+  height: 21px;
 }
 
 /* Modal background overlay */
@@ -942,7 +944,7 @@ a {
 
 /* Base styles remain unchanged */
 
-@media (max-width: 375px) {
+@media (max-width: 376px) {
   .header {
     display: flex;
     flex-direction: row;

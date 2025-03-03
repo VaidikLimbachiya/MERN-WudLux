@@ -114,10 +114,10 @@ const LoginPage = () => {
             required
           />
           <div className="form-actions">
-            <p className="remember-me">
+            <div className="remember-me">
               <input className="checkBox" type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">Remember Me</label>
-            </p>
+            </div>
             <Link to="/forgot-password" className="Forgot-link">
               Forgot Password?
             </Link>

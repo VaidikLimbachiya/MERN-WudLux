@@ -690,12 +690,9 @@
   margin-top: -20px
 }
 
-<<<<<<< HEAD
-=======
 /* Extra Small Devices (max-width: 320px) */
 
  
->>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e
 @media (max-width: 375px) {
   /* General Container Adjustments */
   .parent-container {
@@ -938,6 +935,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 8px;
+    margin-left: 16px;
   }
 
   /* Image Section */

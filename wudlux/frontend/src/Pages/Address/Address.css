@@ -41,7 +41,7 @@
   /* Address List */
   .address-list {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
   }
   
   .address-card {
@@ -338,7 +338,7 @@
     align-items: center;
     gap: 85px;
     font-size: 14px;
-}
+  }
 
   .form-group,
   .form-group-row {
