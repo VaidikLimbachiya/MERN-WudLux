@@ -38,17 +38,18 @@ body {
 }
 
 .story-image {
-  width: 400px;
-  height: auto;
+  width: 486px;
+  height: 651px;
   border-radius: 8px;
-  margin-left: -300px;
+  margin-left: -200px;
 }
 
 /* ✅ Content Container */
 .content-container {
   flex: 1;
   max-width: 600px;
-  text-align: center; /* Center content */
+  text-align: left;
+  margin-left: -100px;
 }
 
 .section-title {
@@ -56,7 +57,7 @@ body {
   font-weight: bold;
   color: black;
   margin-bottom: 10px;
-  margin-left: -45rem;
+  font-family: "playfair display", serif;
 }
 
 .section-subtitlee {
@@ -66,18 +67,17 @@ body {
   margin-bottom: 15px;
   position: relative;
   display: inline-block;
-  margin-left: -30rem;
 }
 
 .section-subtitlee::after {
   content: "";
   position: absolute;
-  left: 50%;
+  left: 8%;
   transform: translateX(-50%);
   bottom: -5px;
-  width: 40%;
+  width: 15%;
   height: 2px;
-  background-color: black;
+  background-color: #B6A69D;
 }
 
 .section-description {
@@ -85,9 +85,7 @@ body {
   color: #555;
   line-height: 1.6;
   margin-bottom: 20px;
-  padding: 0 10px;
-  text-align: justify;
-  margin-left: -195px;
+  text-align: left;
 }
 
 /* ✅ Explore Button */
@@ -103,7 +101,6 @@ body {
   border: 2px solid #6a4b35;
   transition: color 0.3s ease;
   z-index: 1;
-  margin-left: -46rem;
 }
 
 /* Creating the hover effect */
@@ -127,8 +124,6 @@ body {
 .explore-products-button:hover {
   color: white;
 }
-
-
 
 @media (max-width: 375px) {
   /* Adjust Hero Section */
@@ -173,28 +168,27 @@ body {
     font-weight: bold;
     color: black;
     margin-bottom: -10px;
+    margin-left: 30px;
   }
   
   .section-subtitlee {
     font-size: 24px;
+    margin-left: 30px;
   }
-
-  .section-subtitlee {
-    font-size: 18px;
-  }
-
   .section-subtitlee::after {
-    width: 100%;
+    width: 20%;
   }
 
   .section-description {
     font-size: 14px;
     text-align: center;
+    margin-left: 30px;
   }
 
   .explore-products-button {
     font-size: 14px;
     padding: 8px 14px;
+    margin-left: 30px;
   }
 
   /* Features Section */
@@ -253,28 +247,29 @@ body {
     font-weight: bold;
     color: black;
     margin-bottom: -10px;
+    margin-left: 30px;
   }
   
   .section-subtitlee {
-    font-size: 24px;
-  }
-
-  .section-subtitlee {
     font-size: 18px;
+    margin-left: 30px;
   }
 
   .section-subtitlee::after {
-    width: 100%;
+    width: 20%;
+    margin-left: 10px;
   }
 
   .section-description {
     font-size: 14px;
     text-align: left;
+    margin-left: 30px;
   }
 
   .explore-products-button {
     font-size: 14px;
     padding: 8px 14px;
+    margin-left: 30px;
   }
 
   /* Features Section */

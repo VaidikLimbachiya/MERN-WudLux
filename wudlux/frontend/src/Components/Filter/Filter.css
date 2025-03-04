@@ -194,8 +194,8 @@
   bottom: -100%;
   left: 50%;
   transform: translateX(-50%);
-  width: 430px;
-  height: 650px;
+  width: 100%;
+  height: 99%;
   background: #fff;
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
   transition: bottom 0.3s ease-in-out;
@@ -254,7 +254,7 @@
   display: flex;
   /* justify-content: space-between; */
   gap: 10px;
-  width: 600px;
+  width: 100%;
 }
 
 .materialButton {
@@ -279,7 +279,7 @@
   display: flex;
   flex-direction: column; /* Keep heading on top */
   align-items: flex-start; /* Align everything to the left */
-  gap: 8px;
+  gap: 3px;
   margin-bottom: 16px;
 }
 
@@ -290,7 +290,7 @@
 .priceInputsContainer {
   display: flex;
   align-items: center;
-  gap: 8px; /* Space between inputs */
+  gap: 3px; /* Space between inputs */
 }
 .priceInput {
   padding: 8px;
@@ -298,7 +298,7 @@
   outline: none;
   text-align: left;
   font-size: 16px;
-  width: 140px;
+  width: 115px;
   background: transparent;
 }
 
