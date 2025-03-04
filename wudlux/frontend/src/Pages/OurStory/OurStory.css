@@ -38,17 +38,18 @@ body {
 }
 
 .story-image {
-  width: 400px;
-  height: auto;
+  width: 486px;
+  height: 651px;
   border-radius: 8px;
-  margin-left: -300px;
+  margin-left: -200px;
 }
 
 /* ✅ Content Container */
 .content-container {
   flex: 1;
   max-width: 600px;
-  text-align: center; /* Center content */
+  text-align: left;
+  margin-left: -100px;
 }
 
 .section-title {
@@ -56,7 +57,7 @@ body {
   font-weight: bold;
   color: black;
   margin-bottom: 10px;
-  margin-left: -45rem;
+  font-family: "playfair display", serif;
 }
 
 .section-subtitlee {
@@ -66,18 +67,17 @@ body {
   margin-bottom: 15px;
   position: relative;
   display: inline-block;
-  margin-left: -30rem;
 }
 
 .section-subtitlee::after {
   content: "";
   position: absolute;
-  left: 50%;
+  left: 8%;
   transform: translateX(-50%);
   bottom: -5px;
-  width: 40%;
+  width: 15%;
   height: 2px;
-  background-color: black;
+  background-color: #B6A69D;
 }
 
 .section-description {
@@ -85,9 +85,7 @@ body {
   color: #555;
   line-height: 1.6;
   margin-bottom: 20px;
-  padding: 0 10px;
-  text-align: justify;
-  margin-left: -195px;
+  text-align: left;
 }
 
 /* ✅ Explore Button */
@@ -103,7 +101,6 @@ body {
   border: 2px solid #6a4b35;
   transition: color 0.3s ease;
   z-index: 1;
-  margin-left: -46rem;
 }
 
 /* Creating the hover effect */
@@ -128,64 +125,6 @@ body {
   color: white;
 }
 
-
-
-@media (max-width: 375px) {
-  .hero-section {
-    height: 220px;
-  }
-
-  .story-section {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-  }
-
-  /* 🖼 Center Image */
-  .image-container {
-    justify-content: center;
-  }
-
-  .story-image {
-    width: 280px;
-    margin: 0 auto;
-  }
-
-  .content-container {
-    max-width: 100%;
-    text-align: center;
-  }
-
-  .section-title {
-    font-size: 26px;
-    margin: 0 auto;
-  }
-
-  .section-subtitlee {
-    font-size: 18px;
-    margin: 0 auto;
-  }
-
-  .section-subtitlee::after {
-    width: 50%;
-  }
-
-  .section-description {
-    font-size: 14px;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  /* Center the button */
-  .explore-products-button {
-    font-size: 14px;
-    padding: 10px;
-    margin: 10px auto;
-    display: block;
-  }
-}
-
-<<<<<<< HEAD
 @media (max-width: 375px) {
   /* Adjust Hero Section */
   .hero-section {
@@ -229,28 +168,27 @@ body {
     font-weight: bold;
     color: black;
     margin-bottom: -10px;
+    margin-left: 30px;
   }
   
   .section-subtitlee {
     font-size: 24px;
+    margin-left: 30px;
   }
-
-  .section-subtitlee {
-    font-size: 18px;
-  }
-
   .section-subtitlee::after {
-    width: 100%;
+    width: 20%;
   }
 
   .section-description {
     font-size: 14px;
     text-align: center;
+    margin-left: 30px;
   }
 
   .explore-products-button {
     font-size: 14px;
     padding: 8px 14px;
+    margin-left: 30px;
   }
 
   /* Features Section */
@@ -309,28 +247,29 @@ body {
     font-weight: bold;
     color: black;
     margin-bottom: -10px;
+    margin-left: 30px;
   }
   
   .section-subtitlee {
-    font-size: 24px;
-  }
-
-  .section-subtitlee {
     font-size: 18px;
+    margin-left: 30px;
   }
 
   .section-subtitlee::after {
-    width: 100%;
+    width: 20%;
+    margin-left: 10px;
   }
 
   .section-description {
     font-size: 14px;
     text-align: left;
+    margin-left: 30px;
   }
 
   .explore-products-button {
     font-size: 14px;
     padding: 8px 14px;
+    margin-left: 30px;
   }
 
   /* Features Section */
@@ -346,5 +285,3 @@ body {
     color: white; /* Change text color to white on hover */
   }
 }
-=======
->>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e
