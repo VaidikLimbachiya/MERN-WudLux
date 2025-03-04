@@ -10,7 +10,12 @@
   }
   
   .footer-container {
-    display: flex;.footer {
+    display: flex;
+    width: 90%;
+    margin-left: 95px;
+    
+    
+    .footer {
       background-color: #f7f5f4;
       padding: 0px -1px;
       color: #000000;
@@ -44,6 +49,7 @@
     .footer-section p {
       font-size: 14px;
       margin-bottom: 10px;
+      width: 231px;
     }
     
     .footer-section ul {
@@ -74,6 +80,12 @@
     
     }
     
+    .newsletter p {
+      font-size: 12px;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+
     .newsletter-input input {
       text-align: left;
       padding: 6px 37px;
@@ -132,9 +144,7 @@
       color: #666;
    }
     /* flex-wrap: wrap; */
-    width: 90%;
-    margin-left: 125px;
-
+   
   }
   
   .footer-section {
@@ -269,8 +279,11 @@
  }
  
  .span-arrow{
-  margin-top: 20px;
+  /* margin-top: 2px; */
+  padding-top: 8px;
   font-weight: 400;
+  height: 17px;
+  width: 19px;
  }
 
  /* For devices with max width of 768px (Tablets and smaller screens) */
@@ -365,7 +378,9 @@
     margin: -59px -57px;
     margin-right: -109px; /* Reduce margin */
       padding: 10px; /* Adjust padding */
-  }
+      /* display: ; */
+      flex-direction: row;
+    }
 
   .footer-section h3,
   .footer-section h4 {
@@ -374,10 +389,29 @@
 
   .footer-section p {
       font-size: 10px; /* Smaller font size */
+      margin-left: -22px;
   }
 
+  .footer-section ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* gap: 10px; */
+    margin-left: -25px;
+    width: 420px;
+  }
+
+  .footer-section h4 {
+    font-size: 20px;
+    margin-left: -25px;
+  }
+
+
   .footer-section ul li {
-      font-size: 12px; /* Reduce list item font size */
+    font-size: 18px;
+    width: 48%; /* Ensure two-column alignment */
+    text-align: left;
+
   }
 
   .newsletter-input input{
@@ -405,7 +439,7 @@
 }
 
 /* For devices with max width of 320px (Very small mobile devices) */
-@media (max-width: 375px) {
+@media (max-width: 376px) {
 
   .foter {
     margin-left: -40px;
@@ -439,7 +473,7 @@
   .newsletter-input button {
       width: 100%; /* Full width input and button */
       padding: 6px; /* Adjust padding */
-      margin: 5px -60px;
+      margin: 5px -40px;
       margin-left: -9px; /* Adjust margins */
   }
 

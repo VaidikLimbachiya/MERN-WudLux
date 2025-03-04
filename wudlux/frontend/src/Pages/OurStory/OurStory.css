@@ -131,62 +131,6 @@ body {
 
 
 @media (max-width: 375px) {
-  .hero-section {
-    height: 220px;
-  }
-
-  .story-section {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-  }
-
-  /* 🖼 Center Image */
-  .image-container {
-    justify-content: center;
-  }
-
-  .story-image {
-    width: 280px;
-    margin: 0 auto;
-  }
-
-  .content-container {
-    max-width: 100%;
-    text-align: center;
-  }
-
-  .section-title {
-    font-size: 26px;
-    margin: 0 auto;
-  }
-
-  .section-subtitlee {
-    font-size: 18px;
-    margin: 0 auto;
-  }
-
-  .section-subtitlee::after {
-    width: 50%;
-  }
-
-  .section-description {
-    font-size: 14px;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  /* Center the button */
-  .explore-products-button {
-    font-size: 14px;
-    padding: 10px;
-    margin: 10px auto;
-    display: block;
-  }
-}
-
-<<<<<<< HEAD
-@media (max-width: 375px) {
   /* Adjust Hero Section */
   .hero-section {
     height: 200px;
@@ -346,5 +290,3 @@ body {
     color: white; /* Change text color to white on hover */
   }
 }
-=======
->>>>>>> 63bb06e706c36d10661363039fd78d03ff967c1e

@@ -10,14 +10,14 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         {/* Newsletter Section */}
-        <div className="footer-section newsletter">
+        <div className=" newsletter">
           <h3>Join Our Newsletter Now</h3>
           <p>Get E-mail updates about our latest shop and special offers.</p>
           <div className="newsletter-input">
             <input type="email" placeholder="Email Address" />
             <button>
               Subscribe  
-             <span className="span-arrow"> <FaArrowRightLong /></span>
+             <span > <FaArrowRightLong className="span-arrow" /></span>
             </button>
           </div>
           <div className="social-icons">

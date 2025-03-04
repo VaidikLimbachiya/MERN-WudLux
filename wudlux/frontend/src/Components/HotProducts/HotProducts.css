@@ -1,6 +1,7 @@
-.grid-section{
+.grid-section {
   width: 100%;
 }
+
 .section-heading {
   text-align: center;
   margin-bottom: 20px;
@@ -8,88 +9,120 @@
 
 /* Main Title */
 .heading-title {
-   font-family: 'Playfair Display', serif;/* Elegant serif font */
-  font-size: 36px; /* Adjust size */
-  font-weight: bold; /* Make it bold */
-  color: #000; /* Black color */
+  font-family: 'Playfair Display', serif;
+  /* Elegant serif font */
+  font-size: 36px;
+  /* Adjust size */
+  font-weight: bold;
+  /* Make it bold */
+  color: #000;
+  /* Black color */
   margin: 20px;
 }
 
 /* Underline */
 .heading-underline {
-  width: 100px; /* Adjust the width */
-  height: 2px; /* Thickness of the line */
-  background-color: #c0a062; /* Beige color for the underline */
-  margin: 20px auto; /* Centered */
- margin-top: -20px;
+  width: 100px;
+  /* Adjust the width */
+  height: 2px;
+  /* Thickness of the line */
+  background-color: #c0a062;
+  /* Beige color for the underline */
+  margin: 20px auto;
+  /* Centered */
+  margin-top: -20px;
 }
 
 /* Subtitle */
 .heading-subtitle {
-  font-family: 'Lato', sans-serif; /* Modern sans-serif font */
+  font-family: 'Lato', sans-serif;
+  /* Modern sans-serif font */
   font-size: 16px;
   font-weight: 400;
   /* color: #666; Gray color */
   margin-top: 10px;
 }
+
 /* Grid container */
 .grid-gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-    grid-template-rows: repeat(2, auto); /* 2 rows */
-    gap: 20px; /* Space between grid items */
-    width: 90%;
-    margin: 0 auto; /* Center the grid */
-  }
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* 4 equal columns */
+  grid-template-rows: repeat(2, auto);
+  /* 2 rows */
+  gap: 20px;
+  /* Space between grid items */
+  width: 90%;
+  margin: 0 auto;
+  /* Center the grid */
+}
 
 /* Grid items positioning */
 .item1 {
-  grid-column: 1 / 3; /* Column 1 to 2 */
-  grid-row: 1; /* Row 1 */
+  grid-column: 1 / 3;
+  /* Column 1 to 2 */
+  grid-row: 1;
+  /* Row 1 */
 }
 
 .item2 {
-  grid-column: 3; /* Column 3 */
-  grid-row: 1; /* Row 1 */
+  grid-column: 3;
+  /* Column 3 */
+  grid-row: 1;
+  /* Row 1 */
 }
 
 .item3 {
-  grid-column: 4; /* Column 4 */
-  grid-row: 1; /* Row 1 */
+  grid-column: 4;
+  /* Column 4 */
+  grid-row: 1;
+  /* Row 1 */
 }
 
 .item4 {
-  grid-column: 1; /* Column 1 */
-  grid-row: 2; /* Row 2 */
+  grid-column: 1;
+  /* Column 1 */
+  grid-row: 2;
+  /* Row 2 */
 }
 
 .item5 {
-  grid-column: 2 / 4; /* Column 2 to 3 */
-  grid-row: 2; /* Row 2 */
+  grid-column: 2 / 4;
+  /* Column 2 to 3 */
+  grid-row: 2;
+  /* Row 2 */
 }
 
 .item6 {
-  grid-column: 4; /* Column 4 */
-  grid-row: 2; /* Row 2 */
+  grid-column: 4;
+  /* Column 4 */
+  grid-row: 2;
+  /* Row 2 */
 }
 
 /* Image styling */
 .grid-item {
-  position: relative; /* For overlay positioning */
-  overflow: hidden; /* Prevent overflow */
-  border-radius: 8px; /* Optional rounded corners */
+  position: relative;
+  /* For overlay positioning */
+  overflow: hidden;
+  /* Prevent overflow */
+  border-radius: 8px;
+  /* Optional rounded corners */
 }
 
 .grid-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensure the image covers the grid cell */
-  transition: transform 0.3s ease-in-out; /* Smooth zoom effect */
+  object-fit: cover;
+  /* Ensure the image covers the grid cell */
+  transition: transform 0.3s ease-in-out;
+  /* Smooth zoom effect */
 }
 
 /* Hover Effect */
 .grid-item:hover img {
-  transform: scale(1); /* Slight zoom effect */
+  transform: scale(1);
+  /* Slight zoom effect */
 }
 
 /* Hover overlay */
@@ -99,90 +132,116 @@
   left: 10px;
   width: 95%;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.8); /* Light transparent white overlay */
-  padding: 10px 30px; /* Padding inside the overlay */
+  background: rgba(255, 255, 255, 0.8);
+  /* Light transparent white overlay */
+  padding: 10px 30px;
+  /* Padding inside the overlay */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transform: translateY(100%); /* Hidden initially */
+  transform: translateY(100%);
+  /* Hidden initially */
   transition: transform 0.3s ease-in-out;
 }
 
 .grid-item:hover .hover-overlay {
-  transform: translateY(-10px); /* Slide up on hover */
+  transform: translateY(-10px);
+  /* Slide up on hover */
 }
 
 .hover-overlay .hover-text {
   font-family: 'Playfair Display', serif;
   font-size: 18px;
   font-weight: bold;
-  color: #000; /* Black text */
+  color: #000;
+  /* Black text */
 }
 
 
 .hover-overlay .hover-link {
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
-  color: #000; /* Black text */
-  text-decoration: none; /* Remove default underline */
+  color: #000;
+  /* Black text */
+  text-decoration: none;
+  /* Remove default underline */
   position: relative;
   font-weight: 500;
   transition: color 0.3s ease-in-out;
-  display: inline-block; /* Ensures proper layout for the arrow effect */
+  display: inline-block;
+  /* Ensures proper layout for the arrow effect */
 }
 
 .hover-overlay .hover-link {
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
-  color: #000; /* Black text */
-  text-decoration: none; /* Remove default underline */
+  color: #000;
+  /* Black text */
+  text-decoration: none;
+  /* Remove default underline */
   position: relative;
   font-weight: 500;
   transition: color 0.3s ease-in-out;
-  display: inline-block; /* Ensures proper layout for the arrow effect */
+  display: inline-block;
+  /* Ensures proper layout for the arrow effect */
 }
 
 .hover-overlay .hover-link::after {
-  content: "→"; /* Add the arrow */
+  content: "→";
+  /* Add the arrow */
   position: absolute;
   bottom: 0;
-  left: -25px; /* Start off-screen to the left */
-  opacity: 0; /* Initially hidden */
-  font-size: 20px; /* Larger arrow */
+  left: -25px;
+  /* Start off-screen to the left */
+  opacity: 0;
+  /* Initially hidden */
+  font-size: 20px;
+  /* Larger arrow */
   font-weight: 1000;
-  color: black; /* Darker arrow color */
-  transition: all 0.3s ease-in-out; /* Smooth animation */
+  color: black;
+  /* Darker arrow color */
+  transition: all 0.3s ease-in-out;
+  /* Smooth animation */
 }
 
 .hover-overlay .hover-link::before {
   content: "";
   position: absolute;
-  bottom: -2px; /* Position the line */
+  bottom: -2px;
+  /* Position the line */
   left: 0;
   width: 0;
-  height: 2px; /* Line thickness */
-  background-color: #222; /* Line color */
-  transition: width 0.3s ease-in-out; /* Smooth underline animation */
+  height: 2px;
+  /* Line thickness */
+  background-color: #222;
+  /* Line color */
+  transition: width 0.3s ease-in-out;
+  /* Smooth underline animation */
 }
 
 .hover-overlay .hover-link:hover::before {
-  width: 100px; /* Full underline on hover */
+  width: 100px;
+  /* Full underline on hover */
 }
 
 .hover-overlay .hover-link:hover::after {
-  left: calc(100% + 5px); /* Slide the arrow to the right, just beyond the text */
-  opacity: 1; /* Make the arrow visible */
+  left: calc(100% + 5px);
+  /* Slide the arrow to the right, just beyond the text */
+  opacity: 1;
+  /* Make the arrow visible */
 }
 
 .hover-overlay .hover-link:hover {
-  color: black; /* Slightly lighter color on hover */
+  color: black;
+  /* Slightly lighter color on hover */
 }
 
 /* Mobile Carousel View */
 .carousel-gallery {
   display: none;
   width: 100%;
-  max-width: 398px; /* Fixed width for mobile layout */
+  max-width: 398px;
+  /* Fixed width for mobile layout */
   margin: 0 auto;
   position: relative;
 }
@@ -243,12 +302,13 @@
   color: #000;
   text-decoration: none;
   font-weight: 500;
+  border-bottom: 3px solid black;
   position: relative;
   transition: color 0.3s ease-in-out;
 }
 
 /* Add Arrow */
-.carousel-link::after {
+/* .carousel-link::after {
   content: "→";
   font-size: 18px;
   margin-left: 5px;
@@ -258,17 +318,53 @@
 
 .carousel-link:hover::after {
   opacity: 1;
-}
+} */
 
 /* Show Carousel & Hide Grid on Mobile */
 @media (max-width: 768px) {
   .grid-gallery {
     display: none;
   }
+
   .carousel-gallery {
     display: block;
   }
 }
 
+@media (max-width: 430px) {
+
+  .heading-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: #000;
+    margin: 20px;
+    gap: 8px;
+    line-height: 33.6px;
+  }
+
+  .heading-underline {
+    width: 80px;
+    height: 3px;
+    background-color: #B6A69D;
+    margin: 20px auto;
+    margin-top: -20px;
+}
+
+.heading-subtitle {
+  width: 358px;
+  height: 23px;
+  color: #0A0A0A;
+  font-size: 18px;
+  line-height: 22.4px;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 20px;
+  /* margin-top: 20px; */
+  margin-left: 20px;
+}
+
+}
 
 
+@media (max-width: 376px) {}
