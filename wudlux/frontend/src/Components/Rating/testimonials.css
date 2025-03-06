@@ -4,11 +4,12 @@
   padding: 10px 10px;
   text-align: center;
   width: 100%;
+  margin-top: 50px;
 }
 
 .testimonials-title {
   font-family: "Playfair Display", serif;
-  /* font-size: 32px; */
+  font-size: 32px;
   font-weight: bold;
   margin-bottom: 10px;
   color: #333333;
@@ -19,7 +20,7 @@
 
 .title-underline {
   margin: 10px auto 0;
-  width: 100px;
+  width: 80px;
   /* Adjust width of the underline */
   height: 3px;
   /* Thickness of the underline */
@@ -30,7 +31,7 @@
 
 .testimonials-subtitle {
   font-family: "DM Sans", sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   /* color: #666; */
   margin-bottom: 20px;
 }

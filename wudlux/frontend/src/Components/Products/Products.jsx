@@ -129,7 +129,7 @@ const Products = () => {
                     </div>
                   </div>
                   <div className="productDetails">
-                    <p className="shop-product-list-title">{product.title}</p>
+                    {/* <p className="shop-product-list-title">{product.title}</p> */}
                     <p className="shop-product-list-desc">
                       {product.description}
                     </p>

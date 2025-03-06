@@ -22,13 +22,13 @@
 
 /* Underline */
 .heading-underline {
-  width: 100px;
+  width: 80px;
   /* Adjust the width */
-  height: 2px;
+  height: 3px;
   /* Thickness of the line */
   background-color: #c0a062;
   /* Beige color for the underline */
-  margin: 20px auto;
+  margin: 10px auto;
   /* Centered */
   margin-top: -20px;
 }

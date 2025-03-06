@@ -16,10 +16,10 @@
 
 
 .productsSubtitle {
-  font-family: 'DM Sans', sans-serif;
-  /* font-size: 12px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
   font-weight: 400;
-  color: #666;*/
+  color: #666;
   margin-top: 4px; 
 }
 
@@ -81,7 +81,7 @@
 /* Title Styles */
 .productsTitle {
   font-family: "Playfair Display", serif;
-  font-size: 36px;
+  font-size: 24px;
   font-weight: bold;
   color: black;
   position: relative;
@@ -91,8 +91,8 @@
 
 .titleUnderline {
   margin: 10px auto 0;
-  width: 100px; /* Adjust the underline width */
-  height: 2px; /* Thickness of the underline */
+  width: 80px; /* Adjust the underline width */
+  height: 3px; /* Thickness of the underline */
   background-color: #c0a062; /* Gold color for the underline */
   border-radius: 2px; /* Rounded corners for a polished look */
   margin-top: 2px;
@@ -260,11 +260,12 @@
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 376px) {
   .productsGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px; /* Further reduce gap */
     padding: 8px;
+    /* width: 20px; */
   }
 
   .productCard {
@@ -272,8 +273,11 @@
   }
 
   .productImage {
-    height: 160px; /* Reduce image height */
-  }
+    width: 340px !important;
+    height: 320px !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+}
 
   .productsTitle {
     font-size: 28px; /* Smaller title font */
