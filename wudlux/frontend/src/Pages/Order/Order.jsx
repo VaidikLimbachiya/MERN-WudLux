@@ -21,6 +21,8 @@ const OrderHistory = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState(""); // Status Filter
   const [sortOption, setSortOption] = useState("date-desc"); // Sorting
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 5;
 
   useEffect(() => {
     if (!user?.id) {
@@ -123,6 +125,9 @@ const OrderHistory = () => {
 
     setFilteredOrders(updatedOrders);
   }, [searchQuery, filterStatus, sortOption, orders]);
+  const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
+  const startIndex = (currentPage - 1) * ordersPerPage;
+  const paginatedOrders = filteredOrders.slice(startIndex, startIndex + ordersPerPage);
 
   return (
     <>
@@ -190,7 +195,7 @@ const OrderHistory = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredOrders.map((order) => (
+                  {paginatedOrders.map((order) => (
                     <tr key={order._id}>
                       <td>{order.orderId}</td>
                       <td>{new Date(order.createdAt).toLocaleDateString()}</td>
@@ -241,18 +246,25 @@ const OrderHistory = () => {
           </div>
         </div>
         <div className="pagination">
-          <button>
-            <img src={prev} alt="Previous" className="pagination-button" />
-          </button>
-          <button className="active">1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>...</button>
-          <button>21</button>
-          <button>
-            <img src={next} alt="Next" className="pagination-button" />
-          </button>
-        </div>
+  <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
+    <img src={prev} alt="Previous" />
+  </button>
+
+  {/* Generate Page Numbers */}
+  {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+    <button
+      key={page}
+      className={currentPage === page ? "active" : ""}
+      onClick={() => setCurrentPage(page)}
+    >
+      {page}
+    </button>
+  ))}
+
+  <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages}>
+    <img src={next} alt="Next" />
+  </button>
+</div>
       </div>
     </div>
     </>

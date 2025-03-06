@@ -269,16 +269,17 @@ const ProductPage = () => {
             <h3 className="specifications-title">Product Specifications</h3>
             <div className="specs">
               <div className="spec-row side-by-side">
-                <div className="spec-item">
-                  <span className="spec-label">Category:</span>
-                  <span className="spec-value">{product.category}</span>
-                </div>
-                <div className="spec-item">
-                  <span className="spec-label">Material:</span>
-                  <span className="spec-value">
-                    {product.materials.join(", ")}
-                  </span>
-                </div>
+              <div className="spec-container">
+  <div className="spec-item">
+    <span className="spec-label">Category:</span>
+    <span className="spec-value">{product.category}</span>
+  </div>
+  <div className="spec-item">
+    <span className="spec-label">Material:</span>
+    <span className="spec-value">{product.materials.join(", ")}</span>
+  </div>
+</div>
+
               </div>
 
               {/* Sizes */}

@@ -134,7 +134,7 @@ const OrderSummary = () => {
                       className="product-image"
                       loading="lazy"
                     />
-                    <span>{item.productId?.title || "Product Name Unavailable"}</span>
+                    <span className="productTitle">{item.productId?.title || "Product Name Unavailable"}</span>
                   </div>
                 </td>
                 <td>{item.quantity || "0"}</td>

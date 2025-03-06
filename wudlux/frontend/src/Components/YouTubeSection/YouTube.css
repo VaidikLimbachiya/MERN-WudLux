@@ -21,7 +21,7 @@
 
 .section-title1 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(24px, 4vw, 42px);
+  font-size: 36px;
   /* Adjusts dynamically */
   font-weight: bold;
   color: #333;
@@ -29,7 +29,7 @@
 
 .section-subtitle {
   font-family: 'DM Sans', sans-serif;
-  font-size: clamp(12px, 1.5vw, 15px);
+  font-size: 18px;
   font-weight: 400;
   color: #666;
   margin-top: 8px;

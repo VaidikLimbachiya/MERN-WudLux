@@ -13,14 +13,15 @@
 }
 
 .cart-title {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 36px;
+  font-weight: 800;
   margin-bottom: 5px;
   font-family: "Playfair Display", serif; /* Optional styling */
 }
 
 .cart-subtitle {
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 400;
   /* color: #666; */
   font-family: "poppins", sans-serif;
   line-height: 1.5;
@@ -72,8 +73,14 @@
 }
 
 .productTH {
+  font-size: 18px;
+  font-weight: 800;
   flex: 3;
   text-align: space-between;
+}
+.productData{
+  font-size: 18px;
+  font-weight: 800;
 }
 .tableRow {
   display: grid;
@@ -90,8 +97,8 @@
 }
 
 .cart-item-image {
-  width: 100px; /* Adjusted width */
-  height: 100px; /* Adjusted height */
+  width: 140px; /* Adjusted width */
+  height: 140px; /* Adjusted height */
   object-fit: cover;
   border-radius: 5px;
 }
@@ -100,6 +107,23 @@
   font-size: 14px;
   color: #666;
 }
+h4 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25.2px;
+  letter-spacing: -0.02em; /* Corrected letter-spacing */
+}
+p {
+  font-weight: 600;
+  font-size: 16px;
+ color: #5D5D5D;
+}
+.cart-item-size{
+    font-weight: 400;
+    font-size: 16px;
+    color: #0A0A0A;
+}
+
 
 ul {
   list-style-type: none;
@@ -111,9 +135,9 @@ ul {
   align-items: center;
   /* justify-content: center; */
   border: 1px solid #ddd;
-  border-radius: 30px; /* Rounded container */
+  border-radius: 170px; /* Rounded container */
   overflow: hidden;
-  width: 120px; /* Adjust width as needed */
+  width: 124px; /* Adjust width as needed */
   height: 50px; /* Adjust height as needed */
   /* background-color: #f9f9f9; */
 }
@@ -122,8 +146,8 @@ ul {
 .cart-quantity-increment {
   border: none;
   outline: none;
-  width: 29px; /* Button width */
-  height: 26px; /* Button height */
+  width: 34px; /* Button width */
+  height: 34px; /* Button height */
   background-color: #ddd6d2;
   color: #000;
   font-size: 18px;
@@ -141,7 +165,7 @@ ul {
   font-weight: bold;
   color: #000;
   text-align: center;
-  width: 40px;
+  width: 10px;
   line-height: 35px;
   background-color: transparent;
 }
@@ -258,7 +282,7 @@ ul {
 .order-summary-checkout-button {
   width: 100%;
   padding: 12px 0;
-  background-color: #543a14;
+  background-color: #50433C;
   color: white;
   border: none;
   border-radius: 40px;
