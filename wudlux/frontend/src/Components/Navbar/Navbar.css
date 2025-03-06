@@ -297,13 +297,13 @@ a {
 
 .cartBadge {
   position: absolute;
-  top: -5px;
-  right: -11px;
+  top: -4px;
+  right: -10px;
   background-color: hsl(0, 100%, 62%);
   color: white;
   font-size: 12px;
   font-weight: bold;
-  border-radius: 100%;
+  border-radius: 16px;
   border: 2px solid white;
   padding: 0px 5px;
   width: 21px;
@@ -659,6 +659,20 @@ a {
   display: flex;
   justify-content: space-between;
   gap: 8px;
+}
+.searchHeading {
+  width: 100%;
+  border: none;
+  font-size: 1.3rem; /* Make it look like h3 */
+  /* font-weight: bold; */
+  background: transparent;
+  outline: none;
+  padding: 10px;
+}
+
+.searchHeading::placeholder {
+  color: #888;
+  font-weight: lighter;
 }
 
 /* Go to Cart Button */

@@ -504,7 +504,7 @@
     margin-left: 0;
   }
 
-  main-content {
+  .main-content {
     margin-top: -28px;
     padding: 7px;
     text-align: left;
@@ -607,8 +607,8 @@
     border: 1px solid #aaa;
     padding: 6px 10px;
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 50px;
+    height: 50px;
     font-size: 14px;
     cursor: pointer;
   }
@@ -617,10 +617,6 @@
     background: black;
     color: white;
     border-color: black;
-  }
-
-  .pagination button:hover {
-    background: #ddd;
   }
 }
 

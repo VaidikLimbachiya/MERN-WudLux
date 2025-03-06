@@ -8,6 +8,7 @@ import next from "../../assets/next.png"; // Ensure correct path
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import arr from "../../assets/arr.png"; // Ensure correct path
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -16,6 +17,7 @@ const Products = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [showAll, setShowAll] = useState(false); // State to toggle product display
 
   const sliderRef = useRef(null); // Slider reference
 
@@ -174,7 +176,7 @@ const Products = () => {
   ) : error ? (
     <div className="errorMessage">⚠️ Error: {error}</div>
   ) : products.length > 0 ? (
-    products.slice(0, 8).map((product, index) => (
+    (showAll ? products : products.slice(0, 8)).map((product, index) => (
       <div
         className="productCard"
         key={product.id || index}
@@ -217,7 +219,7 @@ const Products = () => {
                     </div>
         </div>
         <div className="productDetails">
-          <p className="shop-product-list-title">{product.title}</p>
+          {/* <p className="shop-product-list-title">{product.title}</p> */}
           <p className="shop-product-list-desc">{product.description}</p>
           <div className="productPrice">
             <span className="currentPrice">₹{product.price.toFixed(2)}</span>
@@ -235,7 +237,16 @@ const Products = () => {
   )}
 </div>
 
+
       )}
+       {products.length > 8 && (
+              <button className="newLaunchViewAll" onClick={() => setShowAll(!showAll)}>
+                {showAll ? "Show Less" : "View All"}
+                <span className="arr">
+                  <img src={arr} alt="Arrow Icon" />
+                </span>
+              </button>
+            )}
     </div>
   );
 };
