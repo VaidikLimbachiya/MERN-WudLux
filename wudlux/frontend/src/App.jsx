@@ -22,6 +22,7 @@ import CartPage from "./Pages/Cart/CartPage";
 import Order from "./Pages/Order/Order";
 import Address from "./Pages/Address/Address";
 import Sidebar from "./Components/Sidebar/Sidebar";
+import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 import OrderDetails from "./Pages/OrderDetails/OrderDetails";
 import { useEffect, useState } from "react";
 
@@ -48,6 +49,7 @@ const SidebarLayout = ({ children }) => {
 function App() {
   return (
     <>
+      <ScrollToTop /> 
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

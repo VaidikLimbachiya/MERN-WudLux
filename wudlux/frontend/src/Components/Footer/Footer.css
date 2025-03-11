@@ -220,6 +220,7 @@
   .newsletter-input {
     display: flex;
     margin-top: 10px;
+    width: 300px;
   
   }
   
@@ -228,15 +229,19 @@
     border: 1px solid #ccc;
     border-radius: 50px;
     flex: 1;
+    height: 54px;
+    font-size: 14px;
+    /* min-width: 300px; */
   }
   
   .newsletter-input button {
     padding: 8px 1px;
-    width: 10rem;
+    width: 195px;
+    height: 54px;
     background-color: #733f2b;
     color: #fff;
     border: none;
-    border-radius: 50px;
+    border-radius: 56px;
     cursor: pointer;
   }
   
