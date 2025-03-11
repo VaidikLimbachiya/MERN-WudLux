@@ -171,36 +171,41 @@ const Products = () => {
         </div>
       ) : (
         <div className="productsGrid">
-  {loading ? (
-    <div className="loadingSpinner">Loading products...</div>
-  ) : error ? (
-    <div className="errorMessage">⚠️ Error: {error}</div>
-  ) : products.length > 0 ? (
-    (showAll ? products : products.slice(0, 8)).map((product, index) => (
-      <div
-        className="productCard"
-        key={product.id || index}
-        onClick={() => {
-          window.scrollTo(0, 0);
-          navigate(`/product-info/${product._id}`, {
-            state: { product },
-          });
-        }}
-      >
-        <div className="productImageWrapper">
-          <img
-            className="productImage"
-            crossOrigin="anonymous"
-            src={`http://localhost:5000/uploads/${
-              Array.isArray(product.images) ? product.images[0] : product.images
-            }`}
-            alt={product.title}
-            loading="lazy"
-          />
-          {product.discount > 0 && (
-            <div className="discountBadge">{product.discount}% OFF</div>
-          )}
-          <div className="addToBagWrapper">
+          {loading ? (
+            <div className="loadingSpinner">Loading products...</div>
+          ) : error ? (
+            <div className="errorMessage">⚠️ Error: {error}</div>
+          ) : products.length > 0 ? (
+            (showAll ? products : products.slice(0, 8)).map(
+              (product, index) => (
+                <div
+                  className="productCard"
+                  key={product.id || index}
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                    navigate(`/product-info/${product._id}`, {
+                      state: { product },
+                    });
+                  }}
+                >
+                  <div className="productImageWrapper">
+                    <img
+                      className="productImage"
+                      crossOrigin="anonymous"
+                      src={`http://localhost:5000/uploads/${
+                        Array.isArray(product.images)
+                          ? product.images[0]
+                          : product.images
+                      }`}
+                      alt={product.title}
+                      loading="lazy"
+                    />
+                    {product.discount > 0 && (
+                      <div className="discountBadge">
+                        {product.discount}% OFF
+                      </div>
+                    )}
+                    <div className="addToBagWrapper">
                       <button
                         className="addToBagButton"
                         onClick={(e) => {
@@ -217,36 +222,42 @@ const Products = () => {
                         />
                       </button>
                     </div>
+                  </div>
+                  <div className="productDetails">
+                    {/* <p className="shop-product-list-title">{product.title}</p> */}
+                    <p className="shop-product-list-desc">
+                      {product.description}
+                    </p>
+                    <div className="productPrice">
+                      <span className="currentPrice">
+                        ₹{product.price.toFixed(2)}
+                      </span>
+                      {product.originalPrice > product.price && (
+                        <span className="originalPrice">
+                          ₹{product.originalPrice.toFixed(2)}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )
+            )
+          ) : (
+            <div>No products available</div>
+          )}
         </div>
-        <div className="productDetails">
-          {/* <p className="shop-product-list-title">{product.title}</p> */}
-          <p className="shop-product-list-desc">{product.description}</p>
-          <div className="productPrice">
-            <span className="currentPrice">₹{product.price.toFixed(2)}</span>
-            {product.originalPrice > product.price && (
-              <span className="originalPrice">
-                ₹{product.originalPrice.toFixed(2)}
-              </span>
-            )}
-          </div>
-        </div>
-      </div>
-    ))
-  ) : (
-    <div>No products available</div>
-  )}
-</div>
-
-
       )}
-       {products.length > 8 && (
-              <button className="newLaunchViewAll" onClick={() => setShowAll(!showAll)}>
-                {showAll ? "Show Less" : "View All"}
-                <span className="arr">
-                  <img src={arr} alt="Arrow Icon" />
-                </span>
-              </button>
-            )}
+      {products.length > 8 && (
+        <button
+          className="newLaunchViewAll"
+          onClick={() => setShowAll(!showAll)}
+        >
+          {showAll ? "Show Less" : "View All"}
+          <span className="arr">
+            <img src={arr} alt="Arrow Icon" />
+          </span>
+        </button>
+      )}
     </div>
   );
 };

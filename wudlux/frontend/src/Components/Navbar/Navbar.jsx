@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.svg";
 import searchIcon from "../../assets/Vector.png";
-import profileIcon from "../../assets/profile.png";
+import profileIcon from "../../assets/Vector.svg";
 import cartIcon from "../../assets/bag.png";
 import { useCartContext } from "../../Context/CartContext";
 // import { IoMenu } from "react-icons/io5";
