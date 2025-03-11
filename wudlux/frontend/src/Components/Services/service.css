@@ -1,54 +1,174 @@
+/* Services Section */
 .services {
-    background-color: #1c1c1c; /* Dark background */
-    color: #fff; /* White text */
-    padding: 40px 20px;
-    text-align: center;
-  }
+  padding: 40px 8px 40px 8px;
+  background-color: black;
+  text-align: center;
+  width: 100%;
+  overflow: hidden; /* Prevents unwanted overflow */
+  height: 344px;
+}
+
+/* Swiper Wrapper */
+.services-slider {
+  padding-bottom: 20px;
+}
+
+/* Individual Slide */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
-  .services-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
+}
+
+/* Service Card */
+.service-card {
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  width: 408px;
+  height: 184px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+}
+
+/* Service Icon */
+.service-icon img {
+  width: 108px;
+  height: 108px;
+  /* margin-bottom: 10px; */
+  padding: 12px;
+  gap: 8px;
+}
+
+/* Title */
+.service-title {
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: -2%;
+  font-family: "DM Sans", sans-serif;
+}
+
+/* Description */
+.service-description {
+  font-size: 16px;
+  color: #FFFFFF;
+  margin-bottom: 60px;
+}
+
+/* Swiper Pagination */
+.swiper-pagination-bullet {
+  background: white !important;
+  opacity: 0.5;
+<<<<<<< HEAD
+
+=======
+  margin-left: -20px;
+>>>>>>> 1543e8814097d608ac105c5b47bdfb7137082897
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+
+/* Responsive for 430px */
+@media (max-width: 430px) {
+  .services {
+    padding: 40px 8px 40px 8px;
+    width: 430px;
+    height: 360px;
+    /* margin-: 20px; */
   }
-  
+
   .service-card {
-    flex: 1 1 20%;
-    margin: 10px;
-    text-align: center;
-    padding: 20px;
-    background-color: #2a2a2a; /* Slightly lighter background for cards */
-    border-radius: 8px;
-    transition: transform 0.3s ease;
+    width: 414px;
+    height: 268px;
+    padding: 12px;
+    margin-left: -40px;
   }
-  
-  .service-card:hover {
-    transform: translateY(-10px);
+
+  .service-icon img {
+    width: 108px;
+    height: 108px;
+    margin-bottom: 8px;
+    padding: 4px;
+    border-radius: 60px;
+    gap: 8px;
   }
-  
-  .service-icon {
-    font-size: 40px;
-    margin-bottom: 10px;
-    display: inline-block;
-    background-color: #333;
-    padding: 20px;
-    border-radius: 50%;
-  }
-  
+
   .service-title {
-    font-size: 18px;
-    margin: 10px 0;
-    font-weight: bold;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 42px;
+    align-items: center;
+    /* width: 408px; */
+    /* height: 21px; */
+    font-family: "DM Sans", sans-serif;
   }
-  
+
   .service-description {
-    font-size: 14px;
-    color: #bbb;
+    font-size: 16px;
+    font-weight: 400;
+    /* list-style: none; */
+    line-height: 22.4px;
+    /* width: 408px; */
+    /* height: 23px; */
   }
-  
-  @media (max-width: 768px) {
-    .service-card {
-      flex: 1 1 100%;
-    }
+
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    margin-left:-40px;
   }
+  .swiper-pagination{
+    margin-left: -20px;   
+  }
+}
+
+/* Responsive for 376px */
+@media (max-width: 376px) {
+  .services {
+    padding: 35px 6px;
+    width: 376px;
+    height: 340px;
+  }
+
+  .service-card {
+    width: 360px;
+    height: 250px;
+  }
+
+  .service-icon img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 6px;
+    padding: 4px;
+    border-radius: 50px;
+    gap: 6px;
+  }
+
+  .service-title {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 40px;
+    align-items: center;
+    font-family: "DM Sans", sans-serif;
+  }
+
+  .service-description {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 21px;
+  }
+
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+  }
+}

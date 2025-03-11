@@ -1,0 +1,622 @@
+/* Container */
+.order-history-container {
+  display: flex;
+  font-family: "DM Sans", sans-serif;
+  color: #0a0a0a;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #fff;
+  padding: 20px;
+  /* border-right: 1px solid #ccc; */
+  margin-left: 100px;
+  margin-top: 132px;
+}
+
+.sidebar-header {
+  margin-top: -40px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sidebar-logo {
+  width: 50px;
+}
+
+.sidebar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: playfair display, serif;
+}
+
+.sidebar-navigation .sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.sidebar-navigation .sidebar-nav-item.active {
+  background-color: #50433c;
+  color: #fff;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-top: 28px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: #6c757d;
+  margin-bottom: 20px;
+  margin-left: -285px;
+
+}
+
+.breadcrumb img {
+  height: 24px;
+  object-fit: contain;
+  margin-right: -2px;
+}
+
+.btext {
+  font-size: 16px;
+  color: #0a0a0a;
+  margin-bottom: 1px;
+  margin-left: -12px;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+
+/* Filters Section */
+/* Filters Section */
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 7px;
+  /* background: #fff; Clean background for filter section */
+  border-radius: 8px;
+  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); Subtle shadow for emphasis */
+}
+
+/* Search Container */
+.search-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Search Input */
+.search-input {
+  width: 100%;
+  padding: 10px 15px 10px 40px;
+  /* Padding for the search icon */
+  font-size: 14px;
+  /* border: 1px solid #e0e0e0; */
+  border-radius: 8px;
+  outline: none;
+  /* background: #fafafa; */
+  transition: 0.3s ease-in-out;
+}
+
+
+/* Search Icon */
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  /* Prevent interaction with the icon */
+  opacity: 0.7;
+  /* Slightly dimmed for better contrast */
+  transition: opacity 0.3s ease;
+}
+
+.search-input:focus+.search-icon {
+  opacity: 1;
+}
+
+/* Dropdowns Section */
+.filter-dropdown {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  /* background: #fafafa; */
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin: 4px;
+  width: 11rem;
+}
+
+
+
+/* Responsive Design */
+
+/* Table Styling */
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.order-table th,
+.order-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #50433c;
+  /* Horizontal border */
+  font-family: "DM Sans", sans-serif;
+}
+
+.order-table thead th {
+  border-bottom: 1px solid #50433c;
+  /* Thicker border for the header row */
+}
+
+/* Remove Vertical Borders */
+.order-table th,
+.order-table td {
+  border-left: none;
+  /* Remove vertical borders */
+}
+
+/* Status Styling */
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  color: #2657C1;
+}
+
+.status.processing {
+  background-color: #BFFBD3;
+  color: #2A7B45;
+}
+
+.status.delivered {
+  background-color: #E3ECFF;
+  color: #2657C1;
+}
+
+.status.cancelled {
+  background-color: #FFD8D8;
+  color: #A72D2D;
+}
+
+/* View Button Styling */
+.view-button {
+  padding: 5px 10px;
+  background-color: #fff;
+  /* color: #fff; */
+  border: none;
+  color: #000;
+  /* border-radius: 4px; */
+  cursor: pointer;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.pagination button {
+  background-color: #fff;
+  border: 1px solid #cdc2bc;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: #50433c;
+  transition: all 0.3s ease;
+}
+
+.pagination button.active {
+  background-color: #50433c;
+  color: #fff;
+  border-color: #50433c;
+}
+
+.pagination button:hover {
+  background-color: #f4f2f0;
+}
+
+.pagination button img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+@media (max-width: 375px) {
+  .order-history-container {
+    flex-direction: column;
+    padding: 10px;
+    margin-top: -50px;
+  }
+
+  .sidebar-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    margin-top: -50px;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0;
+    padding: 10px;
+  }
+
+  .sidebar-logo {
+    margin-top: 96px;
+    width: 60px;
+    height: 60px;
+    margin-left: -14.9rem;
+  }
+
+  main-content {
+    margin-top: -28px;
+    padding: 7px;
+  }
+
+  .breadcrumb {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 0;
+    /* margin-top; */
+  }
+
+  .breadcrumb img {
+    height: 24px;
+    object-fit: contain;
+    margin-right: 3px;
+    margin-top: -21.5rem;
+  }
+
+  .btext {
+    font-size: 16px;
+    color: #0a0a0a;
+    margin-bottom: -3px;
+    margin-left: -8px;
+    margin-top: -21.5rem;
+  }
+
+  .order-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .filter-input input,
+  .filter-dropdown {
+    width: 100%;
+  }
+
+  /* Ensure table data is fully visible */
+  .order-slider-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+
+  .order-slider {
+    min-width: 600px;
+    /* Ensures content doesn't get squeezed */
+    overflow-x: auto;
+    scroll-snap-align: start;
+  }
+
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .order-table {
+    min-width: 600px;
+    /* Ensures horizontal scrolling */
+    border-collapse: collapse;
+  }
+
+  .order-table thead th {
+    border-bottom: 1px solid #50433c;
+    padding: 10px;
+    white-space: nowrap;
+  }
+
+  .order-table td {
+    border-left: none;
+    text-align: center;
+    padding: 10px;
+    white-space: nowrap;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pagination button {
+    padding: 4px;
+    font-size: 10px;
+  }
+
+  .filters {
+    flex-direction: column;
+    /* Stack elements vertically */
+    align-items: stretch;
+    /* Stretch elements to fit container */
+    gap: 12px;
+    /* Add spacing between elements */
+    padding: 10px;
+    /* Adjust padding for smaller screens */
+  }
+
+  .search-container {
+    width: 100%;
+    /* Full width for search container */
+  }
+
+  .search-input {
+    width: 100%;
+    /* Full width for input field */
+    padding: 10px 15px 10px 40px;
+    /* Keep padding for the search icon */
+    font-size: 12px;
+    /* Slightly smaller font size for better fit */
+    border-radius: 6px;
+    /* Reduce border radius for smaller screens */
+  }
+
+  .search-icon {
+    left: 10px;
+    /* Adjust icon position */
+    width: 14px;
+    /* Smaller icon size */
+    height: 14px;
+    /* Smaller icon size */
+  }
+
+  .filter-dropdown {
+    width: 100%;
+    /* Full width for dropdowns */
+    padding: 8px 10px;
+    /* Adjust padding for smaller screens */
+    font-size: 12px;
+    /* Reduce font size */
+    border-radius: 6px;
+    /* Reduce border radius for consistency */
+  }
+
+  /* Add spacing between dropdown options */
+  .filter-dropdown option {
+    padding: 5px;
+  }
+
+  .pagination {
+    gap: 5px;
+    /* Reduce gap between buttons */
+    padding: 0px 0;
+    flex-wrap: inherit;
+    /* Ensure buttons wrap on small screens */
+  }
+
+  .pagination button {
+    padding: 6px 8px;
+    font-size: 12px;
+    width: 45px;
+    height: 31px;
+
+  }
+
+  /* Smaller font size for smaller screens */
+  .pagination button.active {
+    padding: 6px 10px;
+    /* Slightly increase padding for active button */
+  }
+
+  .pagination button img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 430px) {
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .order-history-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: -100px;
+  }
+
+  .sidebar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 12px;
+    margin-top: -50px;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0;
+    padding: 10px;
+    text-align: left;
+  }
+
+  .sidebar-logo {
+    margin-top: 96px;
+    width: 60px;
+    height: 60px;
+    margin-left: 0;
+  }
+
+  .main-content {
+    margin-top: -28px;
+    padding: 7px;
+    text-align: left;
+  }
+
+  .breadcrumb {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 0;
+    text-align: left;
+  }
+
+  .breadcrumb img {
+    height: 24px;
+    object-fit: contain;
+    margin-right: 3px;
+    margin-top: -21.5rem;
+    margin-left: 0;
+  }
+
+  .btext {
+    font-size: 16px;
+    color: #0a0a0a;
+    margin-bottom: -3px;
+    margin-left: 0;
+    margin-top: -21.5rem;
+    text-align: left;
+  }
+
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  /*** FILTERS DISPLAY SIDE-BY-SIDE ***/
+  .filters {
+    display: flex;
+    flex-direction: row; /* Side by side */
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px; /* Space between elements */
+    width: 100%;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+  }
+
+  .filter-input,
+  .filter-dropdown {
+    flex: 1; /* Equal width distribution */
+    min-width: 140px; /* Prevents excessive shrinking */
+  }
+
+  .filter-input input,
+  .filter-dropdown select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+
+  /*** TABLE STYLING ***/
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .order-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .order-table thead th {
+    text-align: left;
+    font-weight: bold;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .order-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+  }
+
+  /*** PAGINATION ***/
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .pagination button {
+    background: none;
+    border: 1px solid #aaa;
+    padding: 6px 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .pagination button.active {
+    background: black;
+    color: white;
+    border-color: black;
+  }
+}
+

@@ -1,0 +1,87 @@
+.sidebar {
+    width: 18%;
+    min-height: 100vh;
+    border: 1.5px solid #a9a9a9;
+    border-top: 0;
+    font-size: max(1vw, 18px);
+    font-family: 'Poppins', sans-serif;
+}
+
+.sidebar-options {
+    padding-top: 50px;
+    padding-left: 20%;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #a9a9a9;
+    border-right: 0;
+    padding: 8px 40px;
+    border-radius: 40px;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: hidden; /* Ensure sliding text stays within bounds */
+    position: relative;
+    transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+.sidebar-option p {
+    margin: 0;
+    position: relative;
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth text sliding */
+}
+
+/* Slide text on hover */
+.sidebar-option:hover p {
+    transform: translateX(10px); /* Slide text slightly to the right */
+    color: #ff3333; /* Optional: Change text color on hover */
+}
+
+/* Unique hover effects for each sidebar option */
+.sidebar-option:nth-child(1):hover {
+    background-color: #ffcccc; /* Light red */
+    border-color: #ff6666; /* Red */
+}
+
+.sidebar-option:nth-child(2):hover {
+    background-color: #ccffcc; /* Light green */
+    border-color: #66cc66; /* Green */
+}
+
+.sidebar-option:nth-child(3):hover {
+    background-color: #ccccff; /* Light blue */
+    border-color: #6666ff; /* Blue */
+}
+
+.sidebar-option:nth-child(4):hover {
+    background-color: #ffffcc; /* Light yellow */
+    border-color: #ffcc33; /* Yellow */
+}
+
+/* List and order icon sizes */
+.listt {
+    width: 30px;
+    height: 30px;
+}
+
+.orderr {
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar-option.active {
+    background-color: var(--sidebar);
+    border-color: tomato;
+}
+
+@media (max-width: 900px) {
+    .sidebar-option p {
+        display: none;
+    }
+}

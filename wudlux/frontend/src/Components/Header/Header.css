@@ -1,65 +1,493 @@
-/* Slider Component Styles */
-.slider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8f1e8;
-    height: 400px; /* Adjust based on your layout */
-    padding: 20px;
-  }
+/* Slider Container */
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%; /* Adjust height dynamically */
+  overflow: hidden;
+}
+
+/* Slider Track for Smooth Transition */
+.slider-track {
+  display: flex;
+  transition: transform 1s ease-in-out;
+  width: 100%;
+  height: 650px; /* Default height for large screens */
+}
+
+/* Each Slide (Banner) */
+.banner {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  padding: 0 40px;
+  color: #000;
   
-  .slider-content {
-    display: flex;
-    max-width: 1200px;
+}
+
+/* Text Content Overlay */
+.banner-content {
+  margin-left: 200px;
+  max-width: 40%;
+  z-index: 25;
+}
+
+.sale-offer {
+  /* font-size: 1.2rem; */
+  color: #8d6e4d;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-left: 7px;
+}
+
+.line-offer {
+  margin: 8px;
+  width: 85%;
+  height: 1px; /* Change to height for gradient */
+  background: linear-gradient(90deg, #000000, #D97B48, #000000);
+  background-size: 200% 200%; /* To enable animation */
+  animation: line-gradient 4s linear infinite;
+  border: none; /* Remove static border */
+  animation: line-glow 2s infinite alternate, line-move 2s ease-in-out infinite; 
+  margin-left: -2px;
+}
+
+.gradient-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #0A0A0A, #D97B48, #000000);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  position: relative;
+  animation: move-gradient 2s linear infinite;
+}
+
+/* Gradient animation */
+@keyframes move-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+
+/* To animate the gradient */
+.gradient-text {
+  background-size: 200% 200%;
+}
+
+@keyframes line-glow {
+  0% {
+    border-color: #000;
+    /* box-shadow: 0 0 5px #000; */
+  }
+  50% {
+    border-color: #D97B48;
+    /* box-shadow: 0 0 10px #D97B48; */
+  }
+  100% {
+    border-color: #000;
+    /* box-shadow: 0 0 5px #000; */
+  }
+}
+
+@keyframes line-glow {
+  0% {
+    border-color: #000;
+    /* box-shadow: 0 0 5px #000; */
+  }
+  50% {
+    border-color: #D97B48;
+    /* box-shadow: 0 0 10px #D97B48; */
+  }
+  100% {
+    border-color: #000;
+    
+  }
+}
+
+/* Line up-and-down movement animation
+@keyframes line-move {
+  0% {
+    transform: translateY(0); 
+  }
+  50% {
+    transform: translateY(-10rem);
+  100% {
+    transform: translateY(0); 
+  }
+} */
+
+
+.slider-heading {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom:-6px;
+  line-height: 1.2;
+  width: 2px;
+  font-family: 'playfair display', serif;
+}
+
+.slider-SubHeading{
+  font-weight: 300;
+  font-size: 50px;
+} 
+.arrspan{
+  /* padding:0px 10px; */
+  /* display: flex; */
+  margin-bottom :-5px;
+  margin-left: 5px;
+  height: 22.05px;
+  width: 25px;
+  font-weight: 600;
+  /* font-size: px; */
+}
+
+.shop-now {
+  position: relative;
+  overflow: hidden;
+  background: none;
+  border: 1px solid black;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 40px;
+  color: black;
+  z-index: 1;
+}
+
+.shop-now::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #5a4c40;
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+.shop-now:hover::before {
+  left: 0;
+}
+
+.shop-now:hover {
+  color: white;
+}
+
+/* Dots Navigation */
+.dots-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #000;
+}
+
+/* Responsive Design */
+/* Media Query: max-width 320px */
+/* Mobile-Optimized Styles */
+@media (max-width: 376px) {
+  /* Slider Container */
+  /* Ensure full width and height match the uploaded design */
+  .slider-container {
+    position: relative;
     width: 100%;
-    justify-content: space-between;
+    max-width: 375px;
+    height: 650px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
     align-items: center;
   }
-  
-  .slider-text {
-    max-width: 500px;
+
+  /* Adjust slider track */
+  .slider-track {
+    height: 650px;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+  }
+
+  /* Individual Slide */
+  .banner {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover; /* Ensures full image visibility */
+    background-position: center center; /* Centers image properly */
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    text-align: center;
+    position: relative;
   }
   
-  .sale-offer {
-    font-size: 1rem;
-    color: #8d6e4d;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  
-  .sale-offer span {
-    color: black;
-    font-weight: bold;
-  }
-  
-  .slider-heading {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    line-height: 1.2;
-  }
-  
-  .shop-now {
-    background: none;
-    border: 1px solid black;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .shop-now:hover {
-    background: black;
-    color: white;
-  }
-  
-  .shop-now span {
-    font-weight: bold;
-  }
-  
-  .slider-image img {
-    width: 500px; /* Adjust image size */
+
+  /* Centered Banner Content */
+  .banner-content {
+    width: 90%;
+    position: absolute;
+    top: 35%; /* Move text down for better balance */
+    left: 90%;
+    transform: translate(-50%, -50%); /* Ensures full centering */
+    text-align: center;
+    color: #000;
+    z-index: 10;
+    padding: 12px;
     border-radius: 10px;
+    max-width: 320px; /* Prevents text from stretching too much */
   }
   
+
+  /* Sale Offer Text */
+  .sale-offer {
+    font-size: 12px;
+    font-weight: 600;
+    color: #c0a062;
+    margin-bottom: 6px;
+    white-space: nowrap; /* Keeps text on one line */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." if text is too long */
+    max-width: 90%; /* Prevents it from pushing beyond container */
+  }
+  
+
+  /* Gradient Line */
+  .line-offer {
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, #000000, #D97B48, #000000);
+    margin: 4px auto;
+  }
+
+  /* Centered Headings */
+  .slider-heading {
+    font-size: 32px;
+    /* font-weight: bold; */
+    color: black;
+    margin: 5px 0;
+    text-align: center;
+  }
+
+  .slider-SubHeading {
+    font-size: 32px;
+    /* font-weight: bold; */
+    color: black;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  /* Centered Shop Now Button */
+  
+    .shop-now {
+      position: relative;
+      overflow: hidden;
+      background: none;
+      border: 1px solid black;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3sease;
+      border-radius: 40px;
+      color: black;
+      z-index: 1;
+      height: 54px;
+      width: 190px;
+      display: block;
+  }
+
+  .shop-now:hover {
+    background: gray;
+  }
+
+  /* Navigation Dots */
+  .dots-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .dot.active {
+    background-color: black;
+  }
+}
+
+
+@media (max-width: 430px) {
+  .slider-container {
+    width: 100%;
+    max-width: 431px;
+    height: 700px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slider-track {
+    height: 700px;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .banner {
+    min-width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+  }
+
+  .banner-content {
+    width: 90%;
+    position: absolute;
+    top: 25%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #000;
+    z-index: 10;
+    padding: 12px;
+    border-radius: 10px;
+    max-width: 340px;
+  }
+
+  .sale-offer {
+    font-size: 12px;
+    font-weight: 600;
+    color: #c0a062;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+  }
+
+  .line-offer {
+    width: 250px;
+    height: 2px;
+    background: linear-gradient(90deg, #000000, #D97B48, #000000);
+    margin: 4px auto;
+  }
+
+  .slider-heading {
+    font-size: 32px;
+    /* font-weight: bold; */
+    color: black;
+    margin: 5px 0;
+    text-align: center;
+    margin-left: 70px;
+  }
+
+  .slider-SubHeading {
+    font-size: 32px;
+    /* font-weight: bold; */
+    color: black;
+    margin-bottom: 12px;
+    text-align: center;
+    margin-left: -40px;
+  }
+
+  .arrspan{
+    /* padding:0px 10px; */
+    /* display: flex; */
+    margin-bottom :-5px;
+    margin-left: 5px;
+    height: 22.05px;
+    width: 25px;
+    font-weight: 600;
+    /* font-size: px; */
+  }
+  
+    .shop-now {
+      position: relative ;
+      overflow: hidden;
+      background: none;
+      border: 1px solid black;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3sease;
+      border-radius: 40px;
+      color: black;
+      z-index: 1;
+      height: 54px;
+      width: 190px;
+      display: block;
+      margin-left: 40px;
+  }
+
+  .shop-now:hover {
+    background: gray;
+  }
+
+  .dots-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .dot.active {
+    background-color: black;
+  }
+}

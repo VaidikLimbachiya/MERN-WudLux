@@ -1,0 +1,59 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+/* Responsive Hero Section */
+.responsive-hero {
+  padding: 20px;
+}
+
+
+/* Extra Small Devices (320px and below) */
+@media (max-width: 320px) {
+  .hero-section {
+    height: 150px;
+    padding: 5px;
+  }
+
+  .hero-title {
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
+
+  .responsive-policy {
+    padding: 8px;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .section-paragraph {
+    font-size: 0.8rem;
+  }
+
+  .text-content {
+    padding: 0 5px;
+    line-height: 1.5;
+  }
+}

@@ -1,0 +1,200 @@
+.sidebar {
+    width: 350px;
+    padding: 20px;
+    font-family: 'DM Sans', sans-serif;
+    border-right: none;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 10px;
+  }
+  
+  .sidebar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #50433c;
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .sidebar-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+  }
+  
+  .sidebar-nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #50433c;
+    border-radius: 8px;
+    color: #50433c; /* Default text color */
+    text-decoration: none;
+    background-color: #fff; /* Default background color */
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-nav-active {
+    background-color: #50433c; /* Active background color */
+    color: #fff; /* Active text color */
+    border-color: #50433c;
+  }
+  
+  .sidebar-nav-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  .sidebar-nav-text {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .sidebar-nav-active .sidebar-nav-icon {
+    filter: invert(1) brightness(1.5);
+  }
+
+@media (max-width: 430px) {
+  .sidebar {
+    width: 100%;
+    /* Sidebar spans full width */
+    height: auto;
+    /* Adjust height to fit content */
+    padding: 8px;
+    /* Reduce padding for smaller screens */
+    box-shadow: none;
+    /* Remove shadow for a cleaner look */
+    border-right: none;
+    /* Remove border for a minimal design */
+  }
+
+  .sidebar-header {
+    flex-direction: column; /* Stack the logo and title vertically */
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .sidebar-logo {
+    margin-top: 96px;
+    width: 60px; /* Reduce logo size */
+    height: 60px;
+    margin-left: -18rem;  
+  }
+
+  .sidebar-title {
+    font-size: 30px; /* Reduce title font size */
+    margin-left: -15rem;
+  }
+
+  .sidebar-navigation {
+    gap: 12px; /* Reduce the gap between navigation items */
+  }
+
+  .sidebar-nav-item {
+    padding: 6px 8px; /* Reduce padding for smaller navigation items */
+  }
+
+  .sidebar-nav-icon {
+    width: 20px; /* Adjust icon size */
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  .sidebar-nav-text {
+    font-size: 14px; /* Reduce text size */
+  }
+
+  /* Adjust the layout so the rest of the page content is below the sidebar */
+  .app-container {
+    display: flex;
+    flex-direction: column; /* Stack the sidebar and main content */
+  }
+
+  .main-content {
+    margin-top: 16px; /* Add space between the sidebar and content */
+    padding: 8px; /* Add padding for smaller screens */
+  }
+}
+
+@media (max-width: 375px) {
+  .sidebar {
+    width: 100%; /* Sidebar spans full width */
+    height: auto; /* Adjust height to fit content */
+    padding: 8px; /* Reduce padding for smaller screens */
+    box-shadow: none; /* Remove shadow for a cleaner look */
+    border-right: none; /* Remove border for a minimal design */
+  }
+
+  .sidebar-header {
+    flex-direction: column; /* Stack the logo and title vertically */
+    width: 60px; /* Adjust logo size */
+    height: 60px;
+    margin-left: -250px;
+  }
+
+  .sidebar-title {
+    font-size: 20px; /* Reduce font size for smaller screens */
+    font-weight: bold;
+    text-align: center;
+    margin-left: -250px;
+  }
+
+  .sidebar-navigation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px; /* Spacing between nav items */
+  }
+
+  .sidebar-nav-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  /* Order History Active State */
+  .sidebar-nav-item.active {
+    background-color: #5C4535; /* Brownish active state */
+    color: white;
+  }
+
+  /* Icons */
+  .sidebar-nav-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+  }
+
+  .sidebar-nav-text {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  /* Main Content */
+  .app-container {
+    display: flex;
+    flex-direction: column; /* Stack sidebar and main content */
+  }
+
+  .main-content {
+    margin-top: 16px;
+    padding: 16px;
+  }
+}

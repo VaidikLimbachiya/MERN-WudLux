@@ -1,0 +1,131 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  
+  /* Responsive Hero Section */
+  .responsive-hero {
+    padding: 20px;
+  }
+  
+  
+  @media (max-width: 430px) {
+    .responsive-hero {
+      height: 200px;
+    }
+  
+    .hero-title {
+      font-size: 24px;
+      padding-bottom: 20px;
+      margin-left: -12px;
+      
+    }
+  }
+  
+  /* Policy Content */
+  .policy-content {
+    max-width: 800px;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    margin-top: 10px;
+    color: #333;
+  }
+  
+  .section-paragraph {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .text-content {
+    line-height: 1.8;
+  }
+  
+  /* Responsive Content */
+  .responsive-content {
+    padding: 20px;
+  }
+  
+  .responsive-policy {
+    padding: 20px;
+  }
+  
+  .responsive-text {
+    padding: 0 10px;
+  }
+  
+  @media (max-width: 376px) {
+    .responsive-hero {
+        height: 180px; /* Slightly reduced height for smaller screens */
+    }
+
+    .hero-title {
+        font-size: 22px; /* Adjusted for better readability */
+        padding-bottom: 15px;
+        margin-left: -10px;
+        text-align: left; /* Ensures proper alignment */
+    }
+
+    /* Policy Content */
+    .policy-content {
+        max-width: 90%; /* Adjusted width for small screens */
+        margin: 15px auto;
+        border-radius: 8px;
+        padding: 15px;
+    }
+
+    .section-title {
+        font-size:22px; /* Slightly smaller for readability */
+        margin-top: 8px;
+        color: #333;
+        text-align: left;
+    }
+
+    .section-paragraph {
+        margin-bottom: 12px;
+        font-size: 0.95rem; /* Reduced font size slightly */
+        color: #555;
+        text-align: justify;
+    }
+
+    .text-content {
+        line-height: 1.6;
+    }
+
+    /* Responsive Content */
+    .responsive-content {
+        padding: 15px;
+    }
+
+    .responsive-policy {
+        padding: 15px;
+    }
+
+    .responsive-text {
+        padding: 0 8px;
+    }
+}

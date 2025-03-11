@@ -1,0 +1,273 @@
+/* Main Section Container */
+.newLaunchSection {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
+  
+  /* Header Styles */
+  .newLaunchHeader {
+    margin-bottom: 10px;
+  }
+  .newLaunchTitle{
+    font-family: "Playfair Display", serif;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333333;
+    position: relative;
+    text-align: center;
+  }
+  .newLaunchSubtitle {
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    /* color: #666; */
+    margin-top: 4px;
+  }
+  
+  /* Product Grid */
+  .newLaunchGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 10px;
+    max-width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Product Card */
+  .newLaunchCard {
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    background: #fff;
+  }
+  
+  .newLaunchCard:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Product Image */
+  .newLaunchImageWrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  .newLaunchImage {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  /* Discount Badge */
+  .newLaunchDiscountBadge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    z-index: 10;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    
+  }
+  
+  /* Product Details */
+  .newLaunchDetails {
+    padding: 8px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .newLaunchProductTitle {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .newLaunchProductDesc {
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    text-align: center;
+    margin: 5px auto;
+    max-width: 90%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Price Details */
+  .newLaunchPrice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+  }
+  
+  .newLaunchCurrentPrice {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .newLaunchOriginalPrice {
+    font-size: 12px;
+    color: #999;
+    text-decoration: line-through;
+  }
+  
+  /* View All Button */
+ 
+.newLaunchViewAll {
+  position: relative;
+  overflow: hidden;
+  background: none;
+  border: 1px solid black;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 40px;
+  color: black;
+  z-index: 1;
+  width: 171px;
+  height: 54px;
+}
+
+.newLaunchViewAll::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #5a4c40;
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+.newLaunchViewAll:hover::before {
+  left: 0;
+}
+
+.newLaunchViewAll:hover {
+  color: white;
+}
+  .rightarr{
+    width: 25px;
+    height: 15.05px;
+    margin-bottom:-3px;
+  }
+  /* Responsive for 430px */
+@media (max-width: 430px) {
+  .newLaunchGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 40px 16px 40px 16px;
+  }
+
+  .newLaunchImage {
+    height: 170px;
+  }
+
+  .newLaunchTitle {
+    font-size: 24px;
+  }
+
+  .newLaunchSubtitle {
+    font-size: 16px;
+  }
+
+  .newLaunchViewAll {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+
+  .newLaunchProductTitle {
+    font-size: 14px;
+  }
+
+  .newLaunchProductDesc {
+    font-size: 13px;
+    max-width: 85%;
+  }
+
+  .newLaunchCurrentPrice {
+    font-size: 15px;
+  }
+
+  .newLaunchOriginalPrice {
+    font-size: 12px;
+  }
+
+  .newLaunchDiscountBadge {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}
+
+/* Responsive for 375px */
+@media (max-width: 375px) {
+  .newLaunchGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .newLaunchImage {
+    height: 160px;
+  }
+
+  .newLaunchTitle {
+    font-size: 28px;
+  }
+
+  .newLaunchSubtitle {
+    font-size: 12px;
+  }
+
+  .newLaunchViewAll {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .newLaunchProductTitle {
+    font-size: 13px;
+  }
+
+  .newLaunchProductDesc {
+    font-size: 12px;
+    max-width: 80%;
+  }
+
+  .newLaunchCurrentPrice {
+    font-size: 14px;
+  }
+
+  .newLaunchOriginalPrice {
+    font-size: 11px;
+  }
+
+  .newLaunchDiscountBadge {
+    font-size: 11px;
+    padding: 3px 7px;
+  }
+}
