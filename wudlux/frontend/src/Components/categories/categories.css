@@ -23,13 +23,13 @@
 }
 
 .headingUnderline {
-  width: 100px;
+  width: 80px;
   /* Width of the underline */
-  height: 4px;
+  height: 3px;
   /* Thickness of the line */
-  background-color: #c0a062;
+  background-color: #B6A69D;
   /* Gold-like color */
-  margin: 10px auto;
+  margin: 5px auto;
   /* Center the underline */
 }
 
@@ -38,7 +38,7 @@
   /* Clean sans-serif font */
   font-size: 18px;
   font-weight: 400;
-  color: #666;
+  color: #0A0A0A;
   /* Slightly lighter text color */
   margin: 10px;
   margin-top: 20px;

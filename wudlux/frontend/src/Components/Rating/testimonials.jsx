@@ -4,8 +4,8 @@ import person1 from "../../assets/person1.png";
 import person2 from "../../assets/person2.png";
 import person3 from "../../assets/person3.png";
 import person4 from "../../assets/person4.png";
-import { FaArrowRightLong } from "react-icons/fa6";
-import { FaArrowLeftLong } from "react-icons/fa6";
+import { BsArrowRight } from "react-icons/bs";
+import { BsArrowLeft } from "react-icons/bs";
 const Testimonials = () => {
   const testimonials = [
     {
@@ -111,10 +111,10 @@ const Testimonials = () => {
         </div>
         <div className="carousel-controls">
           <button className="carousel-button" onClick={handlePrev}>
-          <FaArrowLeftLong />
+          <BsArrowLeft  className="arr"/>
           </button>
           <button className="carousel-button" onClick={handleNext}>
-          <FaArrowRightLong />
+          <BsArrowRight className="arr" />
           </button>
         </div>
       </div>
@@ -157,10 +157,10 @@ const Testimonials = () => {
         </div>
         <div className="carousel-controls">
           <button className="carousel-button" onClick={handlePrev}>
-            <FaArrowLeftLong />
+          <BsArrowLeft className="arr"/>
           </button>
           <button className="carousel-button" onClick={handleNext}>
-            <FaArrowRightLong />
+            <BsArrowRight className="arr" />
           </button>
         </div>
       </div>

@@ -3,7 +3,7 @@ import "./Header.css";
 import backgroundImage1 from "../../assets/header.png";
 import backgroundImage2 from "../../assets/header2.jpeg";
 import backgroundImage3 from "../../assets/header3.jpeg";
-import arr from "../../assets/arr.png";
+// import arr from "../../assets/arr.png";
 /* Mobile-specific images */
 import { BsArrowRight } from "react-icons/bs";
 

@@ -2,13 +2,14 @@ import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../Context/CartContext";
 import "./Products.css";
-import bagIcon from "../../assets/bag.png";
+import bagIcon from "../../assets/bag.svg";
 import prev from "../../assets/prev.png"; // Ensure correct path
 import next from "../../assets/next.png"; // Ensure correct path
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import arr from "../../assets/arr.png"; // Ensure correct path
+import { BsArrowRight } from "react-icons/bs";
+// import arr from "../../assets/arr.png"; // Ensure correct path
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -253,9 +254,10 @@ const Products = () => {
           onClick={() => setShowAll(!showAll)}
         >
           {showAll ? "Show Less" : "View All"}
-          <span className="arr">
-            <img src={arr} alt="Arrow Icon" />
-          </span>
+          
+            {/* <img src={arr} alt="Arrow Icon" /> */}
+            <BsArrowRight className="rightarrow"/>
+          
         </button>
       )}
     </div>

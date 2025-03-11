@@ -18,7 +18,7 @@
   font-family: "DM Sans", sans-serif;
   font-size: 18px;
   font-weight: 400;
-  color: #666;
+  color: #0A0A0A;
   margin-top: 4px;
 }
 
@@ -79,7 +79,7 @@
 /* Title Styles */
 .productsTitle {
   font-family: "Playfair Display", serif;
-  font-size: 24px;
+  font-size: 36px;
   font-weight: bold;
   color: black;
   position: relative;
@@ -91,7 +91,7 @@
   margin: 10px auto 0;
   width: 80px; /* Adjust the underline width */
   height: 3px; /* Thickness of the underline */
-  background-color: #c0a062; /* Gold color for the underline */
+  background-color: #B6A69D; /* Gold color for the underline */
   border-radius: 2px; /* Rounded corners for a polished look */
   margin-top: 2px;
 }
@@ -127,9 +127,17 @@
   margin-bottom: 20px;
 }
 
-.arr{
+.rightarrow{
+  margin-bottom :-5px;
   margin-left: 5px;
+  height: 22.05px;
+  width: 20px;
+  font-weight: 800;
 }
+
+/* .arr{
+  margin-left: 5px;
+} */
 /* Button */
 /* .viewAllButton {
   position: relative; 

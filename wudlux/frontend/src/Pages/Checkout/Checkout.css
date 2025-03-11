@@ -213,6 +213,14 @@ select:disabled {
   transition: background-color 0.5s ease;
 }
 
+.rightarr{
+  margin-bottom :-5px;
+  margin-left: 5px;
+  height: 22.05px;
+  width: 20px;
+  font-weight: 600;
+}
+
 .product-list {
   border-top: 2px solid #000;
   margin-top: 10px;
@@ -221,7 +229,7 @@ select:disabled {
 
 .product-box {
   display: flex;
-  align-items: flex-start;
+  /* align-items: flex-start; */
   margin-bottom: 19px;
   padding-right: 2rem;
   padding-left: 2rem;
@@ -320,7 +328,7 @@ select:disabled {
   color: #fff;
 } */
 .shipping-method {
-  border-top: 2px solid #000;
+  /* border-top: 2px solid #000; */
   padding-top: 20px;
   margin-bottom: 0px;
   position: relative;
@@ -344,6 +352,16 @@ select:disabled {
   margin-bottom: 10px;
 }
 
+.price-item1 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-top: 2px dashed black;
+  border-bottom: 2px dashed black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .price-item span {
   font-size: 16px;
   font-family: "Poppins";
@@ -359,6 +377,10 @@ select:disabled {
   border-top: 1px dashed #000;
   margin: 10px 0;
 }
+
+/* .price-item1{
+  border-top: 2px solid dashed;
+} */
 
 /* .shipping-button:hover {
   background: #5c3c1d;

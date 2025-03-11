@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Productlist.css";
-import bagIcon from "../../assets/bag.png";
+import bagIcon from "../../assets/bag.svg";
 import { useCartContext } from "../../Context/CartContext";
 import Filter from "../Filter/Filter"; // Import Filter component
 

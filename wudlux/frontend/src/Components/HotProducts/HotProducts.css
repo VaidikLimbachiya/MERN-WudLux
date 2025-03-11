@@ -26,9 +26,9 @@
   /* Adjust the width */
   height: 3px;
   /* Thickness of the line */
-  background-color: #c0a062;
+  background-color: #B6A69D;
   /* Beige color for the underline */
-  margin: 10px auto;
+  margin: 5px auto;
   /* Centered */
   margin-top: -20px;
 }
@@ -38,11 +38,11 @@
   font-family: 'Lato', sans-serif; /* Modern sans-serif font */
   font-size: 18px;
   font-weight: 400;
-  /* color: #666; Gray color */
+  color: #0A0A0A; 
   margin-top: 10px;
 }
 
-/* Grid container */
+/* Grid conta iner */
 .grid-gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -186,21 +186,15 @@
 }
 
 .hover-overlay .hover-link::after {
-  content: "→";
-  /* Add the arrow */
+  /* content: "→"; */
   position: absolute;
   bottom: 0;
   left: -25px;
-  /* Start off-screen to the left */
   opacity: 0;
-  /* Initially hidden */
   font-size: 20px;
-  /* Larger arrow */
   font-weight: 1000;
   color: black;
-  /* Darker arrow color */
   transition: all 0.3s ease-in-out;
-  /* Smooth animation */
 }
 
 .hover-overlay .hover-link::before {
@@ -219,7 +213,7 @@
 }
 
 .hover-overlay .hover-link:hover::before {
-  width: 100px;
+  width: 80px;
   /* Full underline on hover */
 }
 

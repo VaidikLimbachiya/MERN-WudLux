@@ -217,6 +217,13 @@ a {
   color: var(--Neutral-900, #0a0a0a);
 }
 
+.bsarrowright{
+  margin-bottom :-5px;
+    margin-left: 5px;
+    height: 22.05px;
+    width: 22px;
+    font-weight: 600;
+}
 .promoButton {
   font-size: 17px;
   font-weight: 600;
@@ -236,10 +243,10 @@ a {
 .promoButton::after {
   content: "➔";
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 400;
   color: var(--Neutral-900, #0a0a0a);
   position: absolute;
-  right: -25px;
+  right: -15px;
   top: 50%;
   transform: translateY(-50%);
   opacity: 0;
@@ -299,16 +306,11 @@ a {
   background-color: hsl(0, 100%, 62%);
   color: white;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 400;
   border-radius: 50%; /* Ensures a perfect circular shape */
   border: 2px solid white;
-<<<<<<< HEAD
-  padding: 0 5px; /* Adds horizontal padding for larger numbers */
-  min-width: 21px; /* Ensures it doesn’t shrink too much */
-=======
   padding: 0px 5px;
   width: 21px;
->>>>>>> 1543e8814097d608ac105c5b47bdfb7137082897
   height: 21px;
   display: flex;
   align-items: center;
@@ -1105,6 +1107,7 @@ a {
   /* Hide the login icon */
   .profileIconWrapper {
     display: none;
+    /* margin-top: 10px; */
   }
 
   /* Hide the navigation categories */

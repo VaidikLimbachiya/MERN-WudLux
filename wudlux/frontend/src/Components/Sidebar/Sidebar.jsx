@@ -6,7 +6,7 @@
     import ordersIcon from '../../assets/history.png';
     import addressesIcon from '../../assets/address.png';
     import logoutIcon from '../../assets/logout.png';
-    import logoIcon from '../../assets/logo.png'; // Update with your logo's file name
+    import logoIcon from '../../assets/logo.svg'; // Update with your logo's file name
 
     const navItems = [
     { id: 'orders', label: 'Order History', icon: ordersIcon, link: '/orders' },

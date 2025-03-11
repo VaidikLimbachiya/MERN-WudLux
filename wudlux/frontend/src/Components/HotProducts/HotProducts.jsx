@@ -14,6 +14,7 @@ import image3 from "../../assets/hp3.png";
 import image4 from "../../assets/hp4.png";
 import image5 from "../../assets/hp5.png";
 import image6 from "../../assets/hp6.png";
+import { Link } from "react-router-dom";
 
 const products = [
   { image: image1, name: "Wooden Bowl", link: "/product-1" },
@@ -44,7 +45,7 @@ const HotProducts = () => {
             <img src={product.image} alt={product.name} loading="lazy" />
             <div className="hover-overlay">
               <span className="hover-text">{product.name}</span>
-              <a href={product.link} className="hover-link">Shop Now</a>
+              <Link href={product.link} className="hover-link">Shop Now</Link>
             </div>
           </div>
         ))}

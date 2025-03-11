@@ -146,18 +146,20 @@ ul {
 .cart-quantity-increment {
   border: none;
   outline: none;
-  width: 34px; /* Button width */
-  height: 34px; /* Button height */
+  width: 34px;
+  height: 33px;
   background-color: #ddd6d2;
   color: #000;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
-  /* display: flex; */
+  display: flex
+;
   align-items: center;
   justify-content: center;
   border-radius: 40px;
   transition: background-color 0.3s ease;
+  margin-left: 1px;
 }
 
 .cart-quantity-value {

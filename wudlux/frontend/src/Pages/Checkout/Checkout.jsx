@@ -5,7 +5,9 @@ import { useCartContext } from "../../Context/CartContext";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
 import "./Checkout.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.svg";
+import { BsArrowRight } from "react-icons/bs";
+import { BsArrowLeft } from "react-icons/bs";
 
 const API_BASE_URL = "http://localhost:5000"; // Backend API base URL
 
@@ -438,10 +440,10 @@ const Checkout = () => {
               className="back-button"
               onClick={() => navigate("/cartPage")}
             >
-              ← Back to Cart
+              < BsArrowLeft className="rightarr"/> Back to Cart
             </button>
             <button type="submit" className="submit-button">
-              Checkout →
+              Checkout <BsArrowRight className="rightarr" />
             </button>
           </div>
         </form>

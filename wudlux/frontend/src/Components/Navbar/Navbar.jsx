@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.svg";
-import searchIcon from "../../assets/Vector.png";
+import searchIcon from "../../assets/Search.svg";
 import profileIcon from "../../assets/Vector.svg";
-import cartIcon from "../../assets/bag.png";
+import cartIcon from "../../assets/bag.svg";
 import { useCartContext } from "../../Context/CartContext";
 // import { IoMenu } from "react-icons/io5";
 import menuBar from "../../assets/Hamburger.png";
 import debounce from "lodash.debounce";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { BsArrowRight } from "react-icons/bs";
 
 const categories = [
   {
@@ -619,14 +620,14 @@ const Navbar = () => {
                 onClick={() => handleNavigate("/checkout")}
                 disabled={cartItems.length === 0} // Disable if cart is empty
               >
-                Checkout →
+                Checkout <BsArrowRight className="bsarrowright"/>
               </button>
               <button
                 className="goToCartButton"
                 onClick={() => handleNavigate("/CartPage")}
                 disabled={cartItems.length === 0} // Disable if cart is empty
               >
-                Go to Cart →
+                Go to Cart <BsArrowRight className="bsarrowright" />
               </button>
             </div>
           </div>

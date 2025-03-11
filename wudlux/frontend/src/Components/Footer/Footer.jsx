@@ -31,32 +31,6 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         {/* Newsletter Section */}
-<<<<<<< HEAD
-         <div className="footer-section newsletter">
-      <h3>Join Our Newsletter Now</h3>
-      <p>Get E-mail updates about our latest shop and special offers.</p>
-      <div className="newsletter-input">
-        <input
-          type="email"
-          placeholder="Email Address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <button onClick={handleSubscribe}>
-          Subscribe  
-          <span className="span-arrow"> <FaArrowRightLong /></span>
-        </button>
-      </div>
-      <div className="social-icons">
-        <a href="#facebook" className="social-icon">
-          <FaFacebookF />
-        </a>
-        <a href="#instagram" className="social-icon">
-          <BiLogoInstagramAlt />
-        </a>
-      </div>
-    </div>
-=======
         <div className=" newsletter">
           <h3>Join Our Newsletter Now</h3>
           <p>Get E-mail updates about our latest shop and special offers.</p>
@@ -76,7 +50,6 @@ const Footer = () => {
             </a>
           </div>
         </div>
->>>>>>> 1543e8814097d608ac105c5b47bdfb7137082897
 
         {/* Links Section */}
         <div className="footer-section">

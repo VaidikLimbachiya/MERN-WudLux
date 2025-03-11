@@ -13,10 +13,10 @@
 
 
 .title-underline1 {
-  margin: 10px auto 0;
+  margin: 5px auto ;
   width: 100px; /* Adjust width of the underline */
   height: 3px; /* Thickness of the underline */
-  background-color: #c0a062; /* Gold color for the underline */
+  background-color: #B6A69D; /* Gold color for the underline */
   border-radius: 0px;
 }
 
@@ -32,7 +32,7 @@
   font-family: 'DM Sans', sans-serif;
   font-size: 18px;
   font-weight: 400;
-  color: #666;
+  color:#0A0A0A ;
   margin-top: 8px;
 }
 
