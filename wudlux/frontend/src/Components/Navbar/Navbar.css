@@ -67,7 +67,7 @@ a {
 }
 
 .categoryText {
-  font: 600 18px/1.4 'DM Sans', sans-serif;
+  font: 600 18px/1.4 "DM Sans", sans-serif;
   color: var(--Neutral-900, #0a0a0a);
   white-space: nowrap;
   padding-right: 9px;
@@ -99,7 +99,7 @@ a {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s, opacity 0.2s ease;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
 }
 
@@ -152,11 +152,9 @@ a {
 }
 
 .dropdownItem:hover::before {
-  background-color: #543A14;
+  background-color: #543a14;
   /* Black vertical line on hover */
 }
-
-
 
 .categoryButton.active {
   font-weight: bold;
@@ -203,7 +201,6 @@ a {
   background: #f0f0f0;
 }
 
-
 /* Promotion Section */
 .promotionBanner {
   display: flex;
@@ -237,7 +234,7 @@ a {
 }
 
 .promoButton::after {
-  content: '➔';
+  content: "➔";
   font-size: 18px;
   font-weight: bold;
   color: var(--Neutral-900, #0a0a0a);
@@ -303,11 +300,16 @@ a {
   color: white;
   font-size: 12px;
   font-weight: bold;
-  border-radius: 16px;
+  border-radius: 50%; /* Ensures a perfect circular shape */
   border: 2px solid white;
-  padding: 0px 3px;
-  width: 21px;
+  padding: 0 5px; /* Adds horizontal padding for larger numbers */
+  min-width: 21px; /* Ensures it doesn’t shrink too much */
   height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap; /* Prevents text wrapping */
 }
 
 /* Modal background overlay */
@@ -365,11 +367,11 @@ a {
   text-align: left;
   position: relative;
   display: inline-block;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .searchHeader h3::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   /* Adjust the spacing below the text */
@@ -383,7 +385,6 @@ a {
   /* Color of the underline */
   margin-bottom: -10px;
 }
-
 
 .searchCategories {
   list-style: none;
@@ -407,7 +408,7 @@ a {
 
 /* Vertical line effect */
 .searchCategories li::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -10px;
   /* Align the line to the left */
@@ -416,7 +417,7 @@ a {
   height: 30px;
   width: 2px;
   /* Thickness of the vertical line */
-  background-color: #543A14;
+  background-color: #543a14;
   /* Line color */
   transform: scaleY(0);
   /* Initially hidden (collapsed) */
@@ -428,7 +429,7 @@ a {
 .searchCategories li:hover::before {
   transform: scaleY(1);
   /* Expand the vertical line on hover */
-  color: #543A14;
+  color: #543a14;
 }
 
 .closeButton {
@@ -558,56 +559,62 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ddd;
-  border-radius: 30px;
+  border: 1px solid #ddd6d2;
+  border-radius: 170px;
   overflow: hidden;
-  width: 120px;
-  height: 40px;
-  /* background-color: #f9f9f9; */
-  /* margin-right: 45px; */
+  width: 110px;
+  height: 45px;
   margin-top: 20px;
   margin-right: 21px;
+  padding: 8px;
 }
-
 
 .cart-quantity-decrement1,
 .cart-quantity-increment1 {
   border: none;
   outline: none;
-  width: 26px;
-  /* Button width */
-  height: 26px;
-  /* Button height */
-  background-color: #DDD6D2;
-  color: #000;
+  width: 30px;
+  height: 27px;
+  background-color: #ddd6d2;
+  color: #b6a69d;
   font-size: 18px;
-  font-weight: bold;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 40px;
   transition: background-color 0.3s ease;
-  margin-right: 14px;
-  margin-left: 14px;
 }
 
 .quantityButton:hover {
-  background-color: #e0e0e0;
+  background-color: #b6a69d;
 }
 
 .cartQuantityValue {
-  font-size: 16px;
-  font-weight: bold;
-  color: #000;
+  font-size: 18px;
+  /* font-weight: 400; */
+  color: #0a0a0a;
   text-align: center;
-  width: 40px;
-  /* Adjust width to match button */
+  min-width: 30px; /* Ensures space for at least 3-digit numbers */
+  max-width: 40px; /* Avoids excessive stretching */
   line-height: 40px;
-  /* Vertically center the number */
   background-color: transparent;
-  margin-left: 10px;
-  margin-right: 10px;
+  padding: 0 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quantity {
+  width: 40px;
+  height: 26px;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center; /* Centers text properly */
+  font-size: 18px;
+  /* font-weight: 600; */
+  border: none;
+  background-color: transparent;
 }
 
 .removeButton {
@@ -700,7 +707,7 @@ a {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 16px;
   font-weight: bold;
   color: #000;
@@ -735,8 +742,6 @@ a {
   left: 0;
 }
 
-
-
 /* Popup Overlay */
 .popupOverlay {
   position: fixed;
@@ -754,48 +759,67 @@ a {
 /* Popup Content */
 .popupContent {
   background: #fff;
-  padding: 20px;
+  padding: 16px;
   border-radius: 8px;
   width: 340px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: 269px;
+  width: 430px;
 }
 
 .row-divider {
-  padding-left: 10px;
-  width: 300px;
+  margin-left: -16px;
+  width: 430px;
   color: #6c543e solid 1px;
 }
 
 .popupContent h3 {
-  font-size: 18px;
+  font-size: 24px;
   margin-bottom: 10px;
+  font-weight: 800;
 }
 
 .popupContent p {
+  font-size: 18px;
   margin-bottom: 20px;
-  color: #555;
+  color: #0a0a0a;
+  font-weight: 400;
+  line-height: 25.2px;
+  margin-top: 40px;
 }
 
 .popupActions {
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  margin-top: 30px;
 }
 
 .confirmButton {
   background: white;
   color: black;
+  font-size: 18px;
+  font-weight: 600;
   padding: 10px 20px;
-  border-radius: 40px;
+  border: 1px solid #50433c;
+  border-radius: 56px;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 5px;
+  width: 186px;
+  height: 54px;
+}
+.trash {
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
 }
 
 .confirmButton:hover {
   background: #6c543e;
+  color: white;
 }
 
 .cancelButton {
@@ -803,18 +827,17 @@ a {
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 40px;
+  border-radius: 56px;
   cursor: pointer;
-  width: 50%;
+  width: 186px;
+  height: 54px;
+  font-size: 18px;
+  font-weight:600 ;
 }
 
 .cancelButton:hover {
   background: #999;
 }
-
-
-
-
 
 /* Mobile Navbar */
 .mobileNavbar {
@@ -860,9 +883,6 @@ a {
 .desktopNavbar {
   display: none;
 }
-
-
-
 
 .navigationCategories {
   display: flex;
@@ -952,9 +972,7 @@ a {
   background: #e0e0e0;
 }
 
-
 /* Media Query for Desktop View */
-
 
 /* Base styles remain unchanged */
 
@@ -1127,9 +1145,7 @@ a {
     font-size: 8px;
     padding: 1px 4px;
     margin-right: 21px;
-}
-
-
+  }
 
   .menuDrawer {
     position: fixed;
@@ -1201,7 +1217,6 @@ a {
     height: 16px;
   }
 
-
   .dropdownOption {
     font-size: 13px;
     color: #000;
@@ -1258,7 +1273,6 @@ a {
     /* Rotate arrow when open */
   }
 
-
   .userName {
     font-size: 14px;
     font-weight: bold;
@@ -1308,7 +1322,6 @@ a {
     background: #f1f1f1;
   }
 
-
   .removeButton {
     background: none;
     border: 1px solid #ddd;
@@ -1338,13 +1351,13 @@ a {
     margin-right: 10px;
   }
 
-  .cart-quantity-decrement1, 
+  .cart-quantity-decrement1,
   .cart-quantity-increment1 {
     border: none;
     outline: none;
     width: 22px;
     height: 17px;
-    background-color: #DDD6D2;
+    background-color: #ddd6d2;
     color: #000;
     font-size: 13px;
     font-weight: bold;
@@ -1356,7 +1369,6 @@ a {
     transition: background-color 0.3s ease;
     margin-right: 15px;
   }
-
 }
 @media (max-width: 430px) {
   .no-scroll {
@@ -1365,8 +1377,9 @@ a {
     width: 100vw;
     position: fixed;
   }
-  
-  .cartPopup, .searchPopup {
+
+  .cartPopup,
+  .searchPopup {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -1381,38 +1394,69 @@ a {
     z-index: 1000;
     display: block;
   }
-  
-  .cartPopup .cartHeader, .searchPopup .searchHeader {
+
+  .cartPopup .cartHeader,
+  .searchPopup .searchHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 10px;
     border-bottom: 1px solid #ddd;
   }
-  
-  .cartPopup .closeButton, .searchPopup .closeButton {
+
+  .cartPopup .closeButton,
+  .searchPopup .closeButton {
     background: none;
     border: none;
     font-size: 20px;
     cursor: pointer;
   }
-  
-  .cartPopup .cartItems, .searchPopup .searchCategories {
+
+  .cartPopup .cartItems,
+  .searchPopup .searchCategories {
     max-height: 300px;
     overflow-y: auto;
   }
-  
+
   .searchPopup ul {
     list-style: none;
     padding: 0;
   }
-  
+  .popupContent {
+    width: 90%;
+    max-width: 375px;
+    height: auto;
+    padding: 12px;
+  }
+
+  .popupContent h3 {
+    font-size: 18px;
+  }
+
+  .popupContent p {
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 20px;
+  }
+
+  .popupActions {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .confirmButton,
+  .cancelButton {
+    max-width: 50%;
+    font-size: 14px;
+    height: 44px;
+  }
+
   .searchPopup li {
     padding: 8px;
     cursor: pointer;
     transition: background 0.3s ease;
   }
-  
+
   .searchPopup li:hover {
     background: #f1f1f1;
   }
@@ -1421,12 +1465,12 @@ a {
     overflow-y: auto; /* Enable vertical scrolling */
     padding: 10px;
   }
-  
+
   /* Ensure scrollbar looks nice */
   .cartItems::-webkit-scrollbar {
     width: 6px;
   }
-  
+
   .cartItems::-webkit-scrollbar-thumb {
     background-color: #ccc;
     border-radius: 3px;
@@ -1571,12 +1615,11 @@ a {
     color: black;
     padding: 10px;
   }
-  
+
   .searchHeading::placeholder {
     color: #888;
     font-weight: normal;
   }
-  
 
   /* Hide the login icon */
   .profileIconWrapper {
@@ -1604,7 +1647,6 @@ a {
     width: 22px;
     /* Slightly smaller icon size */
     height: 22px;
-    
   }
 
   .navbar__cartIcon img {
@@ -1633,8 +1675,6 @@ a {
     padding: 0px 5px;
     margin-right: 19px;
   }
-
-
 
   .menuDrawer {
     position: fixed;
@@ -1706,7 +1746,6 @@ a {
     height: 16px;
   }
 
-
   .dropdownOption {
     font-size: 13px;
     color: #000;
@@ -1763,7 +1802,6 @@ a {
     /* Rotate arrow when open */
   }
 
-
   .userName {
     font-size: 14px;
     font-weight: bold;
@@ -1813,7 +1851,6 @@ a {
     background: #f1f1f1;
   }
 
-
   .removeButton {
     background: none;
     border: 1px solid #ddd;
@@ -1843,13 +1880,13 @@ a {
     margin-right: 65px;
   }
 
-  .cart-quantity-decrement1, 
+  .cart-quantity-decrement1,
   .cart-quantity-increment1 {
     border: none;
     outline: none;
     width: 24px;
     height: 24px;
-    background-color: #DDD6D2;
+    background-color: #ddd6d2;
     color: #000;
     font-size: 17px;
     font-weight: bold;

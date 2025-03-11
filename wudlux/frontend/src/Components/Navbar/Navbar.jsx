@@ -8,6 +8,8 @@ import cartIcon from "../../assets/bag.png";
 import { useCartContext } from "../../Context/CartContext";
 // import { IoMenu } from "react-icons/io5";
 import menuBar from "../../assets/Hamburger.png";
+import debounce from "lodash.debounce";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const categories = [
   {
@@ -64,6 +66,7 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredCategories, setFilteredCategories] = useState([]);
+  const [ setCart] = useState([]);
 
   const categoriesList = [
     "Tray",
@@ -71,7 +74,7 @@ const Navbar = () => {
     "Chopping Board",
     "Cheese Board",
     "Chip & Dip",
-    "Bowls",
+    "Bowl",
   ];
 
   useEffect(() => {
@@ -86,10 +89,10 @@ const Navbar = () => {
     }
   }, [searchQuery]);
 
-  const handleSearch = (category) => {
-    console.log("Searching for:", category);
-    navigate(`/products?search=${category}`);
-    setIsSearchOpen(false); // Close search popup after selection
+  const handleSearch = (subCategoryText) => {
+    // Example logic: navigate with the category in the query string
+    const queryParams = `subcategory=${subCategoryText}`;
+    navigate(`/products?${queryParams}`);
   };
 
   const {
@@ -218,15 +221,34 @@ const Navbar = () => {
     const data = await response.json();
     return data;
   };
+  
+  const fetchCartData = async () => {
+    console.log("Fetching latest cart from backend...");
+    try {
+      const response = await fetch("/api/cart");
+      const data = await response.json();
+      
+      if (data.success) {
+        setCart(data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching cart:", error);
+    }
+  };
+  
   useEffect(() => {
-    const handleCartUpdate = () => {
-      console.log("Cart update detected in Navbar. Re-rendering...");
-    };
-
+    // Debounced cart update handler
+    const handleCartUpdate = debounce(() => {
+      console.log("Cart update detected. Fetching latest cart...");
+      fetchCartData();
+    }, 1000); // Debounce to 1 second (adjust as needed)
+  
+    // Attach event listener
     window.addEventListener("cartUpdated", handleCartUpdate);
-
+  
     return () => {
       window.removeEventListener("cartUpdated", handleCartUpdate);
+      handleCartUpdate.cancel(); // Cancel any pending executions
     };
   }, []);
 
@@ -338,15 +360,18 @@ const Navbar = () => {
 
                       {isAccountDropdownOpen && (
                         <div className="accountDropdown">
-                          <NavLink to="/orders" className="dropdownOption">
+                          <NavLink to="/orders" className="dropdownOption" onClick={() => setIsMenuOpen(false)}>
                             Orders
                           </NavLink>
-                          <NavLink to="/address" className="dropdownOption">
+                          <NavLink to="/address" className="dropdownOption" onClick={() => setIsMenuOpen(false)}>
                             Address
                           </NavLink>
                           <button
                             className="logoutButton"
-                            onClick={handleLogout}
+                            onClick={() => {
+                              handleLogout(); // Call logout function
+                              setIsMenuOpen(false); // Close the menu
+                            }}
                           >
                             Logout
                           </button>
@@ -561,7 +586,7 @@ const Navbar = () => {
                     >
                       -
                     </button>
-                    <span>{item.quantity}</span>
+                    <span className="quantity">{item.quantity}</span>
                     <button
                       className="cart-quantity-increment1"
                       onClick={() => updateQuantity(item.productId, 1)}
@@ -617,7 +642,7 @@ const Navbar = () => {
             <p>Are you sure you want to remove this product?</p>
             <div className="popupActions">
               <button className="confirmButton" onClick={confirmRemove}>
-                <span>🗑</span> Yes, Delete
+                <span><FaRegTrashAlt className="trash"/></span> Yes, Delete
               </button>
               <button className="cancelButton" onClick={closePopup}>
                 Cancel

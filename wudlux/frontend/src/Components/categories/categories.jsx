@@ -60,8 +60,7 @@ const Categories = () => {
               </div>
             </div>
             <div className="categoryTitle">{category.title}</div>
-          </div>
-          
+          </div> 
         ))}
       </div>
     </div>

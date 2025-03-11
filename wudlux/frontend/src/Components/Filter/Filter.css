@@ -104,15 +104,7 @@
   border: none;
 }
 
-.applyButton {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 8px;
-  border: 1px solid var(--primary-primary-800, #50433c);
-  padding: 10px 16px;
-  cursor: pointer;
-}
+
 
 .activeFiltersBar {
   justify-content: space-between;
@@ -174,6 +166,20 @@
   cursor: pointer;
   background-color: white;
 }
+.applyButton img {
+  width: 16px; /* Adjust as needed */
+  height: auto;
+}
+
+.applyButton:hover {
+  background: #50433C;
+  color: white;
+}
+
+.applyButton:hover img {
+  filter: brightness(0) invert(1); /* Converts dark arrow to white */
+}
+
 
 .resultsNumber {
   font-weight: 700;
@@ -378,7 +384,7 @@
   cursor: pointer;
 }
 
-.applyButton:hover {
+.applyButtonMobile:hover {
   background: #333;
 }
 

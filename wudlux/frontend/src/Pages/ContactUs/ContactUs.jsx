@@ -5,6 +5,31 @@ import emailIcon from '../../assets/email.png'; // Path to email icon
 import contactBanner from '../../assets/contact.png'; // Path to banner image
 
 const ContactUs = () => {
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevents page refresh
+  
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+    };
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+  
+      const data = await response.json();
+      alert(data.message); // Notify user
+      e.target.reset(); // Clear form
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };  
+  
   return (
     <div className="contact-page">
       {/* Banner Section */}
@@ -47,7 +72,7 @@ const ContactUs = () => {
         {/* Right Section */}
         <div className="contact-form">
   <h2>Send us a message</h2>
-  <form>
+  <form onSubmit={handleSubmit}>
     <label className="input-container">
       <input type="text" name="name" placeholder="Your Name *" required />
     </label>
@@ -60,7 +85,7 @@ const ContactUs = () => {
       <textarea name="message" rows="10" placeholder="Your Message"></textarea>
     </label>
 
-    <button type="submit">Submit</button>
+    <button type="submit" onSubmit={handleSubmit}>Submit</button>
   </form>
 </div>
 

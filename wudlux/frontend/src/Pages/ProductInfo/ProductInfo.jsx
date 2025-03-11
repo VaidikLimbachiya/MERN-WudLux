@@ -255,7 +255,7 @@ const ProductPage = () => {
                 addToCart({ ...product, quantity: 1 });
               }}
             >
-              <img src={bag} alt="Bag" loading="lazy"/> Add to Bag
+               Add to Bag<img src={bag} alt="Bag" loading="lazy"/>
             </button>
 
             {/* Buy Now Button */}
@@ -284,7 +284,7 @@ const ProductPage = () => {
 
               {/* Sizes */}
               <div className="spec-row">
-                <span className="spec-label">Sizes:</span>
+                <span className="spec-label">Size:</span>
                 <div className="size-options">
                   {product.size.map((size, index) => (
                     <div key={index} className="size-box">
