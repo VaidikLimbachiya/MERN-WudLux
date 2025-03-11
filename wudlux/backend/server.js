@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === "development") {
 
 // ✅ Optimized CORS Configuration
 const corsOptions = {
-  origin: ["http://localhost:5173", "http://localhost:5174"],
+  origin: ["http://localhost:5177", "http://localhost:5174"],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
