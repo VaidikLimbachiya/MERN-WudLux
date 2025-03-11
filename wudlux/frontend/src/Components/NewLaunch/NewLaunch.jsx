@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./NewLaunch.css";
 import arr from "../../assets/arr.png"; // Ensure correct path
+import { BsArrowRight } from "react-icons/bs";
 
 const NewLaunch = () => {
   const [products, setProducts] = useState([]);
@@ -79,7 +80,7 @@ const NewLaunch = () => {
                   )}
                 </div>
                 <div className="newLaunchDetails">
-                  <p className="newLaunchProductTitle">{product.title}</p>
+                  {/* <p className="newLaunchProductTitle">{product.title}</p> */}
                   <p className="newLaunchProductDesc">{product.description}</p>
                   <div className="newLaunchPrice">
                     <span className="newLaunchCurrentPrice">₹{product.price.toFixed(2)}</span>
@@ -100,7 +101,8 @@ const NewLaunch = () => {
         <button className="newLaunchViewAll" onClick={() => setShowAll(!showAll)}>
           {showAll ? "Show Less" : "View All"}
           <span className="arr">
-            <img src={arr} alt="Arrow Icon" />
+            {/* <img src={arr} alt="Arrow Icon" /> */}
+            <BsArrowRight className="rightarr"/> 
           </span>
         </button>
       )}

@@ -3,8 +3,10 @@ import "./Header.css";
 import backgroundImage1 from "../../assets/header.png";
 import backgroundImage2 from "../../assets/header2.jpeg";
 import backgroundImage3 from "../../assets/header3.jpeg";
-
+import arr from "../../assets/arr.png";
 /* Mobile-specific images */
+import { BsArrowRight } from "react-icons/bs";
+
 import mobileImage1 from "../../assets/Mheader1.png";
 import mobileImage2 from "../../assets/Mheader2.png";
 import mobileImage3 from "../../assets/Mheader3.png";
@@ -96,7 +98,7 @@ const Slider = () => {
               <h1 className="slider-heading">{slide.heading}</h1>
               <h1 className="slider-SubHeading">{slide.SubHading}</h1>
               <button className="shop-now">
-                Shop Now <span>→</span>
+                Shop Now <BsArrowRight className="arrspan" /> 
               </button>
             </div>
           </div>

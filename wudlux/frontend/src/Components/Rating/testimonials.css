@@ -1,13 +1,10 @@
-
-
-
-
 /* Section Styles */
 .testimonials-section {
   background-color: #fff;
   padding: 10px 10px;
   text-align: center;
   width: 100%;
+  margin-top: 50px;
 }
 
 .testimonials-title {
@@ -16,15 +13,19 @@
   font-weight: bold;
   margin-bottom: 10px;
   color: #333333;
-  position: relative; /* Required for the underline */
+  position: relative;
+  /* Required for the underline */
   text-align: center;
 }
 
 .title-underline {
   margin: 10px auto 0;
-  width: 100px; /* Adjust width of the underline */
-  height: 3px; /* Thickness of the underline */
-  background-color: #c0a062; /* Gold color for the underline */
+  width: 80px;
+  /* Adjust width of the underline */
+  height: 3px;
+  /* Thickness of the underline */
+  background-color: #B6A69D;
+  /* Gold color for the underline */
   border-radius: 0px;
 }
 
@@ -60,12 +61,14 @@
 
 .testimonial-rating {
   font-size: 1.2rem;
-  color: #ffc107; /* Gold for filled stars */
+  color: #ffc107;
+  /* Gold for filled stars */
 }
 
 .testimonial-rating span {
   font-size: 1.2rem;
-  color: #e4e5e9; /* Light gray for empty stars */
+  color: #e4e5e9;
+  /* Light gray for empty stars */
 }
 
 .testimonial-review {
@@ -102,12 +105,16 @@
   color: #666;
   font-family: 'Poppins', sans-serif;
 }
-.underline{
-  height: 2px; /* Thickness of the line */
-  background-color: #000000; /* Gold-like color */
-  padding-top:5px; /* Center the underline */
+
+.underline {
+  height: 2px;
+  /* Thickness of the line */
+  background-color: #000000;
+  /* Gold-like color */
+  padding-top: 5px;
+  /* Center the underline */
   margin-top: 10px;
- 
+
 }
 
 /* Carousel Controls */
@@ -141,88 +148,109 @@
 
 @media (max-width: 430px) {
   .testimonials-section {
-    padding: 10px;
+    padding: 40px 16px 40px 16px;
     text-align: center;
     margin-top: 70px;
   }
 
   .testimonials-title {
-    font-size: 24px; /* Reduce title size further */
+    font-size: 24px;
+    /* Reduce title size further */
   }
 
   .title-underline {
-    width: 60px; /* Narrower underline */
-    height: 2px;
-    margin: 6px auto;
+    width: 80px;
+    /* Narrower underline */
+    height: 3px;
+    color: #B6A69D;
+    margin: 2px auto;
   }
 
-  .underline{
+  .underline {
     /* height: 2px; Thickness of the line */
-    background-color: #000000; /* Gold-like color */
+    background-color: #000000;
+    /* Gold-like color */
     /* padding-top:5px; Center the underline */
-    margin-bottom: 0px;
+    /* margin-bottom: 0px; */
     /* padding-bottom: -20px; */
     width: 235px;
-    
+
   }
-  
+
   .testimonials-subtitle {
-    font-size: 16px; /* Smaller subtitle font size */
+    font-size: 16px;
+    /* Smaller subtitle font size */
     margin-bottom: 10px;
   }
 
   .testimonials-carousel {
-    flex-direction: column; /* Stack cards vertically */
-    gap: 15px; /* Smaller space between cards */
-    overflow: visible; 
-    width: 100%;/* Ensure all content is visible */
+    flex-direction: column;
+    /* Stack cards vertically */
+    gap: 15px;
+    /* Smaller space between cards */
+    overflow: visible;
+    /* width: 398px;Ensure all content is visible */
   }
 
   .testimonial-card {
-    width: 390px; /* Fixed width */
-    height: 319px; /* Increased height */
-    border-radius: 8px; /* Rounded corners */
-    border-bottom-width: 2px; /* Apply bottom border */
-    padding: 32px 32px 0 32px; /* Top, Right, Bottom, Left */
-    gap: 32px; /* Space between elements inside the card */
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15); /* Slight shadow for depth */
+    width: 390px;
+    /* Fixed width */
+    height: 319px;
+    /* Increased height */
+    border-radius: 8px;
+    /* Rounded corners */
+    border-bottom-width: 2px;
+    /* Apply bottom border */
+    padding: 32px 32px 0px 32px;
+    /* Top, Right, Bottom, Left */
+    gap: 32px;
+    /* Space between elements inside the card */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    /* Slight shadow for depth */
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center text inside */
-}
-
-
+    justify-content: center;
+    /* Center text inside */
+  }
 
   .testimonial-rating {
-    font-size: 0.9rem; /* Slightly smaller rating size */
+    font-size: 0.9rem;
+    /* Slightly smaller rating size */
   }
 
   .testimonial-review {
-    font-size: 11px; /* Reduce review text size */
-    margin-bottom: 10px; /* Adjust spacing */
+    font-size: 16px;
+    /* Reduce review text size */
+    margin-bottom: 10px;
+    /* Adjust spacing */
   }
 
   .testimonial-user {
-    gap: 6px; /* Smaller gap between image and text */
+    gap: 6px;
+    /* Smaller gap between image and text */
   }
 
   .testimonial-user-image {
-    width: 35px; /* Smaller profile image */
+    width: 35px;
+    /* Smaller profile image */
     height: 35px;
   }
 
   .testimonial-user-name {
-    font-size: 12px; /* Adjust name size */
+    font-size: 12px;
+    /* Adjust name size */
   }
 
   .testimonial-user-title {
-    font-size: 10px; /* Adjust title size */
+    font-size: 10px;
+    /* Adjust title size */
   }
 
   .carousel-controls {
     margin-top: 10px;
-    gap: 5px; /* Smaller gap between buttons */
+    gap: 5px;
+    /* Smaller gap between buttons */
   }
 
   .carousel-button {
@@ -239,85 +267,110 @@
     transition: background-color 0.3s;
   }
 }
-@media (max-width: 375px) {
+
+@media (max-width: 376px) {
   .testimonials-section {
-    padding: 10px;
+    padding: 40px 16px 40px 16px;
     text-align: center;
 
   }
 
   .testimonials-title {
-    font-size: 24px; /* Reduce title size further */
+    font-size: 24px;
+    /* Reduce title size further */
   }
 
   .title-underline {
-    width: 60px; /* Narrower underline */
-    height: 2px;
-    margin: 4px auto;
+    width: 80px;
+    /* Narrower underline */
+    height: 3px;
+    color: #B6A69D;
+    margin: 2px auto;
   }
 
-  .underline{
+  .underline {
     /* height: 2px; Thickness of the line */
-    background-color: #000000; /* Gold-like color */
+    background-color: #000000;
+    /* Gold-like color */
     /* padding-top:5px; Center the underline */
     margin-top: 10px;
-    
+
   }
-  
+
   .testimonials-subtitle {
-    font-size: 14px; /* Smaller subtitle font size */
+    font-size: 16px;
+    /* Smaller subtitle font size */
     margin-bottom: 10px;
   }
 
   .testimonials-carousel {
-    flex-direction: column; /* Stack cards vertically */
-    gap: 15px; /* Smaller space between cards */
-    overflow: visible; /* Ensure all content is visible */
+    flex-direction: column;
+    /* Stack cards vertically */
+    gap: 15px;
+    /* Smaller space between cards */
+    overflow: visible;
+    /* Ensure all content is visible */
   }
 
   .testimonial-card {
-    width: 390px; /* Fixed width */
-    height: 319px; /* Increased height */
-    border-radius: 8px; /* Rounded corners */
-    border-bottom-width: 2px; /* Apply bottom border */
-    padding: 32px 32px 0 32px; /* Top, Right, Bottom, Left */
-    gap: 32px; /* Space between elements inside the card */
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15); /* Slight shadow for depth */
+    width: 390px;
+    /* Fixed width */
+    height: 319px;
+    /* Increased height */
+    border-radius: 8px;
+    /* Rounded corners */
+    border-bottom-width: 2px;
+    /* Apply bottom border */
+    padding: 32px 32px 0 32px;
+    /* Top, Right, Bottom, Left */
+    gap: 32px;
+    /* Space between elements inside the card */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+    /* Slight shadow for depth */
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center text inside */
-}
+    justify-content: center;
+    /* Center text inside */
+  }
 
   .testimonial-rating {
-    font-size: 0.9rem; /* Slightly smaller rating size */
+    font-size: 0.9rem;
+    /* Slightly smaller rating size */
   }
 
   .testimonial-review {
-    font-size: 11px; /* Reduce review text size */
-    margin-bottom: 10px; /* Adjust spacing */
+    font-size: 11px;
+    /* Reduce review text size */
+    margin-bottom: 10px;
+    /* Adjust spacing */
   }
 
   .testimonial-user {
-    gap: 6px; /* Smaller gap between image and text */
+    gap: 6px;
+    /* Smaller gap between image and text */
   }
 
   .testimonial-user-image {
-    width: 35px; /* Smaller profile image */
+    width: 35px;
+    /* Smaller profile image */
     height: 35px;
   }
 
   .testimonial-user-name {
-    font-size: 12px; /* Adjust name size */
+    font-size: 12px;
+    /* Adjust name size */
   }
 
   .testimonial-user-title {
-    font-size: 10px; /* Adjust title size */
+    font-size: 10px;
+    /* Adjust title size */
   }
 
   .carousel-controls {
     margin-top: 10px;
-    gap: 5px; /* Smaller gap between buttons */
+    gap: 5px;
+    /* Smaller gap between buttons */
   }
 
   .carousel-button {

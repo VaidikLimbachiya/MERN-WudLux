@@ -299,25 +299,25 @@
 
   /* Adjust overlay text positioning */
   .offer-overlay {
-    width: 293px;
+    width: 280px;
     position: absolute;
-    top: 64px;
-    left: 15px;
-    padding-left: 50px;
+    top: 50px;
+    left: 12px;
+    padding-left: 40px;
     z-index: 2;
     text-align: left;
-    gap:24px
   }
 
   /* Adjust title size for readability */
   .offer-titlee {
-    width: 105px;
-    height: 23px;
+    width: 101px;
+    height: 20px;
     font-size: 16px;
     font-weight: 400;
     font-family: 'Lato', sans-serif;
     color: black;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
+    line-height: 22.4px;
   }
 
   /* Adjust subtitle for mobile screens */
@@ -335,9 +335,9 @@
 
   /* Adjust button size & positioning */
   .offer-button {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-    padding: 6px 0px;
+    padding: 1px;
     text-align: center;
     display: inline-block;
     /* margin-top: 10px; */ 
@@ -358,6 +358,103 @@
     display: flex;
     justify-content: center;
     margin-top: 8px;
+  }
+}
+
+@media (max-width: 376px) {
+  /* Ensure the main offers container fits the screen */
+  .offers {
+    margin: 5px;
+    /* padding: 20px; */
+    max-width: 100%;
+    margin-top: 40px;
+  }
+
+  /* Stack offer cards vertically on small screens */
+  .offers-container {
+    display: flex;
+    flex-direction: column; /* Stack items */
+    align-items: center; /* Center align */
+    width: 100%;
+    gap: 10px; /* Space between elements */
+    /* margin:px; */
+  }
+
+  /* Adjust offer cards for small screens */
+  .offer-card {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  /* Ensure images inside the container are fully responsive */
+  .offer-image {
+    width: 340px; /* Adjusted width for smaller screens */
+    height: 340px;
+    border-radius: 8px;
+  }
+
+  /* Adjust overlay text positioning */
+  .offer-overlay {
+    width: 280px;
+    position: absolute;
+    top: 38px;
+    left: 12px;
+    padding-left: 40px;
+    z-index: 2;
+    text-align: left;
+  }
+
+  /* Adjust title size for readability */
+  .offer-titlee {
+    width: 101px;
+    height: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+    color: black;
+    margin-bottom: 2px;
+    line-height: 22.4px;
+  }
+
+  /* Adjust subtitle for mobile screens */
+  .offer-subtitle {
+    color: #0A0A0A;
+    font-size: 24px;
+    line-height: 1.3;
+    width: 280px;
+    height: 65px;
+    text-align: left;
+    font-family: 'Playfair Display';
+    font-style: italic;
+    max-width: 230px;
+
+  }
+
+  /* Adjust button size & positioning */
+  .offer-button {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 1px;
+    text-align: center;
+    display: inline-block;
+  }
+
+  /* Adjust arrow animation for mobile */
+  .offer-button::after {
+    font-size: 11px;
+    right: -15px;
+  }
+
+  .offer-button:hover::after {
+    right: -2px;
+  }
+
+  /* Center button container */
+  .offer-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
   }
 }
 

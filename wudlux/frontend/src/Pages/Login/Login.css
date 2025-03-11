@@ -46,12 +46,20 @@
   /* Form heading */
 .login-form h1 {
     margin-bottom: 1rem;
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
     color: black;
     position: relative;
     display: inline-block;
     font-family: 'Playfair Display', serif;
+  }
+  
+  .sub-title {
+    margin-bottom:16px;
+    font-size: 0.9rem;
+    color:black;
+    line-height: 1.4;
+    font-family: 'Poppins', sans-serif;
   }
   
   .login-form h1::after {
@@ -121,7 +129,7 @@
   }
   
 
-  .remember-me{
+  .remember-me-container{
     display: flex;
     justify-content:space-between;
     align-items: center;
@@ -140,12 +148,13 @@
   
   /* Button */
   .btn {
+    width: 250px;
     position: relative;
     display: inline-block;
-    padding: 10px 20px;
-    font-family: 'Arial', sans-serif;
+    padding: 10px 20px ;
+    font-family: 'Poppins',sans-serif;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 400;
     color: #000;
     background: none;
     border: 2px solid #5a4c40; /* Border color */
@@ -229,106 +238,58 @@
   
   
 
-/* 320px screen size adjustments */
-@media (max-width: 375px) {
-  .login-page {
-    min-height: 100%;
-    padding: 0px;
-    
+  @media (max-width: 376px) {
+    .login-container {
+      width: 100%;
+      padding: 15px;
+    }
+  
+    .login-form {
+      padding: 0.8rem;
+    }
+  
+    .login-form h1 {
+      font-size: 22px; /* Slightly smaller for better readability */
+    }
+  
+    .login-form p {
+      font-size: 15px;
+      color: black;
+    }
+  
+    .login-form input[type="email"],
+    .login-form input[type="password"] {
+      width: 94%; /* Adjusted width for proper spacing */
+      font-size: 0.75rem;
+    }
+  
+    .form-actions {
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+      padding: 0;
+      font-size: 0.75rem;
+    }
+  
+    .remember-me-container {
+      width: 55%;
+      display: flex;
+      margin-top: -5px;
+      padding-left: 0px; /* Adjusted padding */
+    }
+  
+    .btn {
+      width: 65%; /* Slightly increased width for better UI */
+      font-size: 12px;
+    }
+  
+    .Forgot-link {
+      width: 40%;
+      margin-top: -30px;
+      font-size: 13px;
+    }
   }
-
-  .login-container {
-    width: 100%;
-    max-width: none;
-    padding: 0.8rem; /* Less padding to fit content properly */
-    display: flex;
-    justify-content: center;
-  }
-
-  .login-form {
-    width: 100%;
-    padding: 1rem; /* Reduce padding for compact design */
-    text-align: center;
-  }
-
-  /* Adjust heading size */
-  .login-form h1 {
-    font-size: 25px; /* Smaller for small screens */
-  }
-
-  .login-description {
-    font-size: 0.85rem; /* Reduce text size for better readability */
-    margin-bottom: 1rem;
-  }
-
-  /* Ensure inputs fit within the small screen */
-  .login-form input[type="email"],
-  .login-form input[type="password"] {
-    width: 95%; /* Make inputs fill the screen width */
-    padding: 10px;
-    font-size: 0.9rem;
-  }
-
-  /* Adjust form actions (Remember Me & Forgot Password) */
-  .form-actions {
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
-    font-size: 0.85rem;
-  }
-
-  .remember-me {
-    display: flex;
-    align-items: center;
-    font-size: 0.8rem;
-    flex-direction: row;
-  }
-
-  .checkBox {
-    width: 15px;
-    height: 15px;
-    margin-right: 5px;
-  }
-
-  /* Make the button full width */
-  .btn {
-    width: 50%;
-    padding: 12px;
-    font-size: 14px;
-    text-align: center;
-  }
-
-  .Forgot-link {
-    width: 42%;
-    margin-top: -35px;
-    /* margin-left:5px ; */
-    /* font-size: 20px; */
-  }
-
-  /* Register Now link styling */
-  .register-link {
-    font-size: 0.9rem;
-    display: inline-block;
-    margin-top: 5px;
-    cursor: pointer;
-  }
-  .login-form p a {
-    font-size: 0.8rem;
-  }
-.form-actions a {
-  text-decoration: none;
-  /* color: #007bff; */
-  font-size: 0.7rem;
-  margin-top: -54px;
-  margin-right: -149px;
-}
-.remember-me{
-  margin-left: -80px;
-  font-size: 0.5rem;
-  width: 58%;
-}
-}
-
+  
 
 @media (max-width: 430px) {
   .login-container {

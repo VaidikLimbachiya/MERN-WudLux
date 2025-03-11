@@ -96,7 +96,7 @@ const LoginPage = () => {
       <main className="login-container">
         <form id="login-form" className="login-form" onSubmit={handleLogin}>
           <h1>Login</h1>
-          <p>Your personal data will be used to manage access to your account.</p>
+          <p className="sub-title">Your personal data will be used to manage access to your account.</p>
           <input
             type="email"
             id="email"
@@ -114,7 +114,7 @@ const LoginPage = () => {
             required
           />
           <div className="form-actions">
-            <div className="remember-me">
+            <div className="remember-me-container">
               <input className="checkBox" type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">Remember Me</label>
             </div>
@@ -123,7 +123,7 @@ const LoginPage = () => {
             </Link>
           </div>
           <button className="btn" type="submit" disabled={loading}>
-            {loading ? "Logging in..." : "Login →"}
+            {loading ? "Logging in..." : " Login → "}
           </button>
           <p>
             Don’t have an account?{" "}

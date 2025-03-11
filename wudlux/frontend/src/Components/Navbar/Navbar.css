@@ -302,8 +302,13 @@ a {
   font-weight: bold;
   border-radius: 50%; /* Ensures a perfect circular shape */
   border: 2px solid white;
+<<<<<<< HEAD
   padding: 0 5px; /* Adds horizontal padding for larger numbers */
   min-width: 21px; /* Ensures it doesn’t shrink too much */
+=======
+  padding: 0px 5px;
+  width: 21px;
+>>>>>>> 1543e8814097d608ac105c5b47bdfb7137082897
   height: 21px;
   display: flex;
   align-items: center;

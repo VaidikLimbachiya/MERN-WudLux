@@ -3,6 +3,7 @@
   /* padding: 5vh 5vw; */
   background-color: white;
   color: #fff;
+  margin-top: 50px;
 }
 
 /* ✅ Header Styling */
@@ -87,13 +88,14 @@
 
 @media (max-width: 430px) {
   .premium-look-section {
-    margin-top: 50px;
-    padding: 10px;
+    /* margin-top: 50px; */
+    padding: 40px 16px 40px 16px;
     width: 430px;
     height: 700px;
   }
 
   .section-header {
+    /* margin-left: 20px; */
     margin-bottom: 24px;
     width: 398px;
     height: 81px;
@@ -101,8 +103,8 @@
   }
 
   .title-underline1 {
-    margin: 10px auto 0;
-    width: 100px; /* Adjust width of the underline */
+    margin: 2px auto 0;
+    width: 80px; /* Adjust width of the underline */
     height: 3px; /* Thickness of the underline */
     background-color: #B6A69D; /* Gold color for the underline */
     border-radius: 0px;
@@ -118,13 +120,14 @@
     color: #0A0A0A;
     /* Adjusted title size */
     text-align: center;
+    margin-left: -20px;
   }
 
   .section-subtitle {
-    width: 398px;
+    width: 358px;
     height: 23px;
     color: #0A0A0A;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 22.4px;
     font-weight: 400;
     text-align: center;
@@ -179,21 +182,21 @@
 @media (max-width: 376px) {
   .premium-look-section {
     margin-top: 50px;
-    padding: 10px;
+    padding: 40px 16px 40px 16px;
     width: 375px;
     height: 700px;
   }
 
   .section-header {
     margin-bottom: 24px;
-    width: 398px;
+    width: 353px;
     height: 81px;
     gap: 16px;
   }
 
   .title-underline1 {
-    margin: 10px auto 0;
-    width: 100px; /* Adjust width of the underline */
+    margin: 2px auto ;
+    width: 80px; /* Adjust width of the underline */
     height: 3px; /* Thickness of the underline */
     background-color: #B6A69D; /* Gold color for the underline */
     border-radius: 0px;
@@ -201,7 +204,7 @@
 
   .section-title1 {
     font-size: 24px;
-    width: 398px;
+    width: 353px;
     height: 34px;
     font-weight: 800;
     font-style: italic;
@@ -212,7 +215,7 @@
   }
 
   .section-subtitle {
-    width: 398px;
+    width: 353px;
     height: 23px;
     color: #0A0A0A;
     font-size: 16px;
