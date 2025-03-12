@@ -1,6 +1,6 @@
 // import React from "react";
 import "./RefundPolicy.css";
-import HeroImage from "../../assets/refund.png";
+import HeroImage from "../../assets/refund.svg";
 
 const RefundPolicy = () => {
   return (

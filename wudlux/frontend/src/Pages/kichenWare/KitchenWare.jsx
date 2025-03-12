@@ -2,7 +2,7 @@
 import Productlist from "../../Components/ProductList/Productlist";
 import Products from "../../Components/Products/Products";
 import Services from "../../Components/Services/service";
-import HeroImage from "../../assets/kitchen.png";
+import HeroImage from "../../assets/kitchen.svg";
 import { useLocation } from "react-router-dom";
 
 const KitchenWare = () => {
