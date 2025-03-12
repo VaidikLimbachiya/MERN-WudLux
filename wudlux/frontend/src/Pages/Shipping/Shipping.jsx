@@ -1,6 +1,6 @@
 // import React from "react";
 import "./Shipping.css";
-import HeroImage from "../../assets/shipping.png";
+import HeroImage from "../../assets/shipping.svg";
 
 const Shipping = () => (
   <div className="shipping-page">

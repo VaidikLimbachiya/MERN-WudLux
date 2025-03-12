@@ -1,6 +1,6 @@
 // import React from "react";
 import "./TermsCondition.css";
-import HeroImage from "../../assets/terms.png";
+import HeroImage from "../../assets/terms.svg";
 
 const TermsCondition = () => {
   return (
