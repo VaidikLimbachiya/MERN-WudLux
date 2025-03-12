@@ -124,7 +124,6 @@ const Productlist = () => {
           <div className="errorMessage">⚠️ {error}</div>
         ) : products.length > 0 ? (
           products.map((product) => {
-            const isInCart = cartItems.some((item) => item._id === product._id);
   
             return (
               <div
@@ -159,13 +158,13 @@ const Productlist = () => {
                         addToCart(product);
                       }}
                     >
+                      Add to Bag{" "}
                       <img
                         src={bagIcon}
                         alt="Bag Icon"
                         className="shop-product-list-bag-icon"
                         loading="lazy"
                       />
-                      {isInCart ? "Add to Bag" : "Add to Bag"}
                     </button>
                   </div>
                 </div>

@@ -1,269 +1,284 @@
 /* Address Container */
 .address-container {
-    font-family: "Poppins", sans-serif;
-    color: #0a0a0a;
-    padding: 20px;
-    margin-top: -23px;
-  }
-  
-  /* Header Section */
-  .address-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-top: 70px;
-    margin-right: 50px;
-    margin-left: 50px;
-  }
-  
-  .address-header h2 {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .add-address-button {
-    background: none;
-    border: 1px solid #50433c;
-    border-radius: 20px;
-    color: #50433c;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .add-address-button:hover {
-    background: #50433c;
-    color: #fff;
-  }
-  
-  /* Address List */
-  .address-list {
-    display: flex;
-    /* flex-wrap: wrap; */
-  }
-  
-  .address-card {
-    border: 1px dashed #50433c;
-    border-radius: 8px;
-    padding: 20px;
-    width: 500px; /* Adjust to 50% width */
-    box-sizing: border-box;
-    margin-left: 50px;
-  }
-  
-  .address-info {
-    margin-bottom: 10px;
-    font-family: 'poppins', sans-serif;
-  }
-  
-  .address-name {
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .default-badge {
-    font-size: 14px;
-    color: #50433c;
-    background-color: #f4f2f0;
-    padding: 2px 8px;
-    border-radius: 8px;
-    margin-left: 25rem;
-  }
-  
-  .address-details {
-    margin-top: 10px;
-    color: #6c757d;
-  }
-  
-  /* Address Actions */
-  .address-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .edit-button,
-  .remove-button,
-  .set-default-button {
-    background: none;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .edit-button {
-    color: #007bff;
-  }
-  
-  .edit-button:hover {
-    text-decoration: underline;
-  }
-  
-  .remove-button {
-    color: #dc3545;
-  }
-  
-  .remove-button:hover {
-    text-decoration: underline;
-  }
-  
-  .set-default-button {
-    color: #28a745;
-  }
-  
-  .set-default-button:hover {
-    text-decoration: underline;
-  }
-  
-  /* No Address */
-  .no-address {
-    text-align: center;
-    font-size: 16px;
-    color: #6c757d;
-    width: 100%;
-    background-color: #f4f2f0;
-    padding: 15px;
-    border-radius: 8px;
-    margin-left: 30px;
-  }
-  
-  /* Address Form */
+  font-family: "Poppins", sans-serif;
+  color: #0a0a0a;
+  padding: 20px;
+  margin-top: -23px;
+  width: 100%;
+}
+
+/* Header Section */
+.address-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 70px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+.address-header h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.add-address-button {
+  background: none;
+  border: 1px solid #50433c;
+  border-radius: 20px;
+  color: #50433c;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-address-button:hover {
+  background: #50433c;
+  color: #fff;
+}
+
+/* Address List */
+.address-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Exactly two columns */
+  gap: 20px; /* Adjust gap for equal spacing */
+  justify-content: center; /* Center align the grid */
+  max-width: 1000px; /* Prevents excessive spacing */
+  margin: 0 auto; /* Centers the grid within the parent container */
+  align-items: start; /* Ensures equal height alignment */
+}
+
+.address-card {
+  position: relative;
+  border: 1px dashed #50433c;
+  border-radius: 8px;
+  padding: 20px;
+  width: 500px;
+  box-sizing: border-box;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures actions stay at the bottom */
+  min-height: 160px; /* Keep all cards equal height */
+}
+
+.address-info {
+  margin-bottom: 10px;
+  font-family: "poppins", sans-serif;
+}
+
+.address-name {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Poppins", sans-serif;
+}
+
+.default-badge {
+  position: absolute; /* 🔹 Keeps it in place */
+  top: 10px; /* 🔹 Positions it at the top */
+  right: 10px; /* 🔹 Aligns it to the right */
+  font-size: 14px;
+  color: #50433c;
+  background-color: #f4f2f0;
+  padding: 2px 8px;
+  border-radius: 8px;
+  width: auto; /* 🔹 Prevents full width */
+  display: inline-block;
+  text-align: center;
+}
+
+.address-details {
+  margin-top: 10px;
+  color: #6c757d;
+}
+
+/* Address Actions */
+.address-actions {
+  display: flex;
+  justify-content: flex-start; /* 🔹 Aligns buttons to the left */
+  gap: 10px; /* 🔹 Spaces out the buttons */
+  margin-top: auto; /* 🔹 Pushes buttons to the bottom */
+}
+
+.edit-button,
+.remove-button,
+.set-default-button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-button {
+  color: #007bff;
+}
+
+.edit-button:hover {
+  text-decoration: underline;
+}
+
+.remove-button {
+  color: #dc3545;
+}
+
+.remove-button:hover {
+  text-decoration: underline;
+}
+
+.set-default-button {
+  color: #28a745;
+}
+
+.set-default-button:hover {
+  text-decoration: underline;
+}
+
+/* No Address */
+.no-address {
+  text-align: center;
+  font-size: 16px;
+  color: #6c757d;
+  width: 100%;
+  background-color: #f4f2f0;
+  padding: 15px;
+  border-radius: 8px;
+  margin-left: 30px;
+}
+
+/* Address Form */
 .address-form {
-    padding: 20px;
-    background-color: #fff;
-    margin-bottom: 10px;
-    margin-left: 30px;
-  }
-  
-  .address-form h2 {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .address-form input,
-  .address-form select {
-    flex: 1;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    box-sizing: border-box;
-  }
+  padding: 20px;
+  background-color: #fff;
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
 
-  .fname-input{
-    /* margin-bottom: 20px; */
-    width: 100%;
-  }
+.address-form h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
 
-  .lname-input{
-    /* margin-bottom: 20px; */
-    width: 100%;
-  }
-  
-  /* Add margin between email and address fields */
-  .form-group-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .address-form label {
-    /* display: flex; */
-    align-items: center;
-    gap: 15px;
-    font-size: 14px;
-  }
-  
-  .breadcrumb1 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 16px;
-    color: #6c757d;
-    margin-bottom: 10px;
-    margin-left: -242px;
-  
-  }
-  
-  .breadcrumb1 img {
-    height: 24px;
-    object-fit: contain;
-    margin-right: 10px;
-  }
-  
-  .btext1 {
-    font-size: 16px;
-    color: #0a0a0a;
-    margin-bottom: 1px;
-    margin-left: -12px;
-  }
-  .update-button {
-    background: #50433c;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .update-button:hover {
-    background: #6d5c52;
-  }
+.form-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
 
-  
-  .email-input{
-    margin-bottom: 20px;
-    width: 100%;
-  }
-  /* Style the checkbox */
+.address-form input,
+.address-form select {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.fname-input {
+  /* margin-bottom: 20px; */
+  width: 100%;
+}
+
+.lname-input {
+  /* margin-bottom: 20px; */
+  width: 100%;
+}
+
+/* Add margin between email and address fields */
+.form-group-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.address-form label {
+  /* display: flex; */
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+}
+
+.breadcrumb1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: #6c757d;
+  margin-bottom: 10px;
+  margin-left: -242px;
+}
+
+.breadcrumb1 img {
+  height: 24px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.btext1 {
+  font-size: 16px;
+  color: #0a0a0a;
+  margin-bottom: 1px;
+  margin-left: -12px;
+}
+.update-button {
+  background: #50433c;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.update-button:hover {
+  background: #6d5c52;
+}
+
+.email-input {
+  margin-bottom: 20px;
+  width: 100%;
+}
+/* Style the checkbox */
 .address-form .form-group label input[type="checkbox"] {
-    width: 20px;
-    height: 19px;
-    border: 2px solid #50433c; 
-    border-radius: 4px;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    background-color: white; 
-    position: relative;
+  width: 20px;
+  height: 19px;
+  border: 2px solid #50433c;
+  border-radius: 4px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  position: relative;
 }
 
 /* Add a custom checkmark for the checkbox */
 
 .address-form .form-group label input[type="checkbox"]:checked {
-    background-color: #50433c;
-    border-color: #50433c;
-    margin-bottom: -7px; 
+  background-color: #50433c;
+  border-color: #50433c;
+  margin-bottom: -7px;
 }
 
 .address-form .form-group label input[type="checkbox"]:checked::after {
-    content: '✔';
-    position: absolute;
-    top: 2px;
-    left: 4px;
-    color: white; 
-    font-size: 14px;
-    font-weight: bold;
+  content: "✔";
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
 }
-.custom-checkbox{
-    margin-top: 15px;
+.custom-checkbox {
+  margin-top: 15px;
 }
-.dfText{
-    margin-top: 15px;
-    margin-left: 6px;
+.dfText {
+  margin-top: 15px;
+  margin-left: 6px;
 }
 
 @media (max-width: 430px) {
@@ -283,7 +298,6 @@
     margin: 10px 0;
   }
 
-  
   .add-address-button {
     width: 50%; /* Button should adjust to content */
     text-align: center;
@@ -299,7 +313,6 @@
     background-color: #fff;
   }
 
-   
   .form-group {
     display: flex;
     gap: 10px;
@@ -386,9 +399,13 @@
 
   /* Address List adjustments */
   .address-list {
+    display: flex;
     flex-direction: column;
     align-items: center;
-  }
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
 
   .address-card {
     width: 100%;
@@ -416,10 +433,12 @@
     margin: 10px 0;
   }
 
-  .default-badge{
-    margin-left: 300px;
-  
-  }
+  .default-badge {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
 }
 
 @media (max-width: 375px) {
@@ -439,7 +458,6 @@
     margin: 10px 0;
   }
 
-  
   .add-address-button {
     width: 50%; /* Button should adjust to content */
     text-align: center;
@@ -455,7 +473,6 @@
     background-color: #fff;
   }
 
-   
   .form-group {
     display: flex;
     gap: 10px;
@@ -494,7 +511,7 @@
     align-items: center;
     gap: 85px;
     font-size: 14px;
-}
+  }
 
   .form-group,
   .form-group-row {
@@ -572,10 +589,7 @@
     margin: 10px 0;
   }
 
-  .default-badge{
+  .default-badge {
     margin-left: 250px;
-  
   }
 }
-
-

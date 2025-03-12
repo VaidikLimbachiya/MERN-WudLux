@@ -21,6 +21,8 @@ const OrderHistory = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState(""); // Status Filter
   const [sortOption, setSortOption] = useState("date-desc"); // Sorting
+  const [itemsPerPage, setItemsPerPage] = useState(20); // Default: Show 20
+
   const [currentPage, setCurrentPage] = useState(1);
   const ordersPerPage = 5;
 
@@ -53,6 +55,8 @@ const OrderHistory = () => {
         );
 
         console.log("User Orders:", response.data.orders);
+        console.log("Order Status for Order ID:", orders.orderId, "is:", orders.orderStatus);
+
         setOrders(response.data.orders);
         setFilteredOrders(response.data.orders);
         setError("");
@@ -125,150 +129,189 @@ const OrderHistory = () => {
 
     setFilteredOrders(updatedOrders);
   }, [searchQuery, filterStatus, sortOption, orders]);
-  const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
-  const startIndex = (currentPage - 1) * ordersPerPage;
-  const paginatedOrders = filteredOrders.slice(startIndex, startIndex + ordersPerPage);
+  const totalPages =
+    itemsPerPage === "all"
+      ? 1
+      : Math.ceil(filteredOrders.length / itemsPerPage);
+  const startIndex =
+    (currentPage - 1) *
+    (itemsPerPage === "all" ? filteredOrders.length : itemsPerPage);
+  const paginatedOrders = filteredOrders.slice(
+    startIndex,
+    startIndex + (itemsPerPage === "all" ? filteredOrders.length : itemsPerPage)
+  );
+  useEffect(() => {
+    setCurrentPage(1); // Reset to first page on items per page change
+  }, [itemsPerPage]);
+  
 
   return (
     <>
       <Breadcrumb />
-    <div className="order-history-container">
-      <div className="main-content">
-        {/* Breadcrumb */}
-        <div className="breadcrumb">
-        </div>
+      
+      <div className="order-history-container">
+        <div className="main-content">
+          {/* Breadcrumb */}
+          <div className="breadcrumb"></div>
 
-        <div className="order-header">
-          <h2>Orders</h2>
-        </div>
-
-        <div className="filters">
-          <div className="search-container">
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Search by Order ID"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <img src={Search} alt="Search Icon" className="search-icon" />
+          <div className="order-header">
+            <h2>Orders</h2>
           </div>
-          <div className="filter-buttons">
-            <select
-              className="filter-dropdown"
-              value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value)}
-            >
-              <option value="">Status</option>
-              <option value="Pending">Pending</option>
-              <option value="Processing">Processing</option>
-              <option value="Delivered">Delivered</option>
-              <option value="Cancelled">Cancelled</option>
-            </select>
 
-            <select
-              className="filter-dropdown"
-              value={sortOption}
-              onChange={(e) => setSortOption(e.target.value)}
-            >
-              <option value="date-desc">Newest First</option>
-              <option value="date-asc">Oldest First</option>
-              <option value="amount-desc">High to Low (Amount)</option>
-              <option value="amount-asc">Low to High (Amount)</option>
-            </select>
+          <div className="filters">
+            <div className="search-container">
+              <input
+                type="text"
+                className="search-input"
+                placeholder="Search by Order ID"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <img src={Search} alt="Search Icon" className="search-icon" />
+            </div>
+            <div className="statusdropdown">
+              <select
+                className="filter-dropdown"
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value)}
+              >
+                <option value="">Status</option>
+                <option value="Pending">Pending</option>
+                <option value="Processing">Processing</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
+            <div className="datedropdown">
+              <select
+                className="filter-dropdown"
+                value={itemsPerPage}
+                onChange={(e) =>
+                  setItemsPerPage(
+                    e.target.value === "all" ? "all" : Number(e.target.value)
+                  )
+                }
+              >
+                <option value="20">Show 20</option>
+                <option value="50">Show 50</option>
+                <option value="100">Show 100</option>
+                <option value="all">Show All</option>
+              </select>
+            </div>
           </div>
-        </div>
 
-        {/* Order Table */}
-        <div className="order-slider-wrapper">
-          <div className="table-wrapper">
-            {filteredOrders.length > 0 ? (
-              <table className="order-table">
-                <thead>
-                  <tr>
-                    <th>Order ID</th>
-                    <th>Date</th>
-                    <th>Total</th>
-                    <th>Payment</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {paginatedOrders.map((order) => (
-                    <tr key={order._id}>
-                      <td>{order.orderId}</td>
-                      <td>{new Date(order.createdAt).toLocaleDateString()}</td>
-                      <td>₹{order.totalAmount}</td>
-                      <td>
-                        <span
-                          className={`status ${
-                            order.paymentStatus === "Completed"
-                              ? "processing"
-                              : "pending"
-                          }`}
-                        >
-                          {order.paymentStatus}
-                        </span>
-                      </td>
-                      <td>
-                        <span
-                          className={`status ${
-                            order.orderStatus === "Delivered"
-                              ? "delivered"
-                              : order.orderStatus === "Cancelled"
-                              ? "cancelled"
-                              : "processing"
-                          }`}
-                        >
-                          {order.orderStatus}
-                        </span>
-                      </td>
-                      <td>
-                        <Link
-                          to={`/order-details/${encodeURIComponent(
-                            order.orderId
-                          )}`}
-                        >
-                          <button className="view-button">View</button>
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              
-            ) : (
-              <p className="no-orders-message">
-                No orders found matching your search.
-              </p>
+          {/* Order Table */}
+          <div className="order-slider-wrapper">
+            <div className="table-wrapper">
+              {filteredOrders.length > 0 ? (
+                <div className="scrollable-table">
+                  <table className="order-table">
+                    <thead>
+                      <tr>
+                        <th>Order ID</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                        <th>Payment</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {paginatedOrders.map((order) => (
+                        
+                        <tr key={order._id}>
+                          <td>{order.orderId}</td>
+                          <td>
+                            {new Date(order.createdAt).toLocaleDateString()}
+                          </td>
+                          <td>₹{order.totalAmount}</td>
+                          <td>
+                            <span
+                              className={`status ${
+                                order.paymentStatus === "Completed"
+                                  ? "processing"
+                                  : "pending"
+                              }`}
+                            >
+                              {order.paymentStatus}
+                            </span>
+                          </td>
+                          <td>
+                          <span
+  className={`status ${
+    order.orderStatus?.trim().toLowerCase() === "delivered"
+      ? "delivered"
+      : order.orderStatus?.trim().toLowerCase() === "cancle" || order.orderStatus?.trim().toLowerCase() === "cancelled"
+      ? "cancelled"
+      : order.orderStatus?.trim().toLowerCase() === "processing"
+      ? "processing"
+      : order.orderStatus?.trim().toLowerCase() === "pending"
+      ? "pending"
+      : "unknown" // Default case if status is not recognized
+  }`}
+>
+  {order.orderStatus || "Unknown"}
+</span>
+
+
+
+
+                          </td>
+                          <td>
+                            <Link
+                              to={`/order-details/${encodeURIComponent(
+                                order.orderId
+                              )}`}
+                            >
+                              <button className="view-button">View</button>
+                            </Link>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p className="no-orders-message">
+                  No orders found matching your search.
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="pagination">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              <img src={prev} alt="Previous" />
+            </button>
+
+            {/* Generate Page Numbers */}
+            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+              (page) => (
+                <button
+                  key={page}
+                  className={currentPage === page ? "active" : ""}
+                  onClick={() => setCurrentPage(page)}
+                >
+                  {page}
+                </button>
+              )
             )}
+
+            <button
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+              disabled={currentPage === totalPages}
+            >
+              <img src={next} alt="Next" />
+            </button>
           </div>
         </div>
-        <div className="pagination">
-  <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
-    <img src={prev} alt="Previous" />
-  </button>
-
-  {/* Generate Page Numbers */}
-  {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
-    <button
-      key={page}
-      className={currentPage === page ? "active" : ""}
-      onClick={() => setCurrentPage(page)}
-    >
-      {page}
-    </button>
-  ))}
-
-  <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages}>
-    <img src={next} alt="Next" />
-  </button>
-</div>
       </div>
-    </div>
     </>
-
   );
 };
 

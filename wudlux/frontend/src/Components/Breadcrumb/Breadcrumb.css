@@ -1,7 +1,7 @@
 .breadcrumb-container {
     position: relative; /* Fixes breadcrumb at the top */
     top: 20px;
-    left:20px;
+    right:100px;
     width: 100%;
     margin-left: -15rem;
     /* background: white; Ensure visibility */
