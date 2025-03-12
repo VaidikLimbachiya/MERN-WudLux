@@ -107,6 +107,7 @@ const OrderSummary = () => {
           </p>
           <p>{order.shippingAddress?.zipCode || "Zip Unavailable"}, {order.shippingAddress?.country || "Country Unavailable"}</p>
         </div>
+          
       </div>
 
       {/* Product Table */}

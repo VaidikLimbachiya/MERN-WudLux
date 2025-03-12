@@ -33,7 +33,7 @@
   font-family: 'DM Sans', sans-serif;
   font-size: 18px;
   font-weight: 400;
-  color:#0A0A0A ;
+  color: #0A0A0A;
   margin-top: 6px;
   padding-bottom: 12px;
 }
@@ -42,93 +42,107 @@
 .testimonials-carousel {
   display: flex;
   justify-content: center;
-  gap: 50px;
-  width: 100%;
+  align-items: center;
+  padding: 20px;
   overflow: hidden;
-padding-top: 20px;
-padding-bottom: 20px;
-
+  gap: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  
 }
 
 .testimonial-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background: white;
+  top: 24px;
+  padding: 32px 32px 0px 32px;
   border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1), 
-              0px -4px 10px rgba(0, 0, 0, 0.05), 
-              4px 0px 10px rgba(0, 0, 0, 0.05), 
-              -4px 0px 10px rgba(0, 0, 0, 0.05);
-  max-width: 300px;
-  flex: 0 0 calc(25% - 20px);
-  display: flex;
-  flex-direction: column;
-  align-items: left;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1),
+    0px -4px 10px rgba(0, 0, 0, 0.01),
+    4px 0px 10px rgba(0, 0, 0, 0.01),
+    -4px 0px 10px rgba(0, 0, 0, 0.01);
+  max-width: 330px;
+  height: 319px;
   text-align: left;
+  gap: 20px;
 }
 
 .testimonial-rating {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
   font-size: 1.2rem;
   color: #ffc107;
+  height: 24px;
   /* Gold for filled stars */
 }
 
-.testimonial-rating span {
-  font-size: 1.2rem;
-  color: #e4e5e9;
-  /* Light gray for empty stars */
+.star-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 3px;
 }
 
+.stars {
+  display: flex;
+  gap: 1px;
+}
+
+
 .testimonial-review {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 20px;
-  line-height: 1.5;
+  height: 135px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: #0A0A0A;
+  font-weight: 400;
+  line-height: 22.4px;
+  margin-bottom: 35px;
+  padding-top: 5px;
 }
 
 .testimonial-user {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
+  height: 48px;
 }
 
 .testimonial-user-image {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #ddd;
 }
 
 .testimonial-user-name {
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 18px;
+  weight: 800;
+  line-height: 25.2px;
   color: #333;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .testimonial-user-title {
   font-size: 14px;
-  color: #666;
-  font-family: 'Poppins', sans-serif;
+  color: #5D5D5D;
+  font-weight:400 ;
+  line-height: 19.6px;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .underline {
-  height: 2px;
-  /* Thickness of the line */
-  background-color: #000000;
-  /* Gold-like color */
-  padding-top: 5px;
-  /* Center the underline */
-  margin-top: 10px;
-
+  margin-top: 31px;
+  height: 4px;
+  width: 290px;
+  background: #000;
+  border-radius: 1px;
+  margin-left: -11px;
 }
- .arr{
+
+.arr {
   height: 30px;
   width: 22px;
   font-weight: bold;
- }
+}
 
 /* Carousel Controls */
 .carousel-controls {
@@ -137,7 +151,7 @@ padding-bottom: 20px;
   display: flex;
   justify-content: center;
   gap: 10px;
- 
+
 }
 
 .carousel-button {
@@ -162,123 +176,63 @@ padding-bottom: 20px;
 
 @media (max-width: 430px) {
   .testimonials-section {
-    padding: 40px 16px 40px 16px;
+    padding: 40px 16px;
     text-align: center;
     margin-top: 70px;
   }
 
   .testimonials-title {
     font-size: 24px;
-    /* Reduce title size further */
   }
 
   .title-underline {
     width: 80px;
-    /* Narrower underline */
     height: 3px;
-    color: #B6A69D;
+    background-color: #B6A69D;
     margin: 2px auto;
-  }
-
-  .underline {
-    /* height: 2px; Thickness of the line */
-    background-color: #000000;
-    /* Gold-like color */
-    /* padding-top:5px; Center the underline */
-    /* margin-bottom: 0px; */
-    /* padding-bottom: -20px; */
-    width: 235px;
-
-  }
-
-  .testimonials-subtitle {
-    font-size: 16px;
-    /* Smaller subtitle font size */
-    margin-bottom: 10px;
   }
 
   .testimonials-carousel {
     flex-direction: column;
-    /* Stack cards vertically */
     gap: 15px;
-    /* Smaller space between cards */
     overflow: visible;
-    /* width: 398px;Ensure all content is visible */
   }
 
   .testimonial-card {
-    width: 390px;
-    /* Fixed width */
-    height: 319px;
-    /* Increased height */
-    border-radius: 8px;
-    /* Rounded corners */
-    border-bottom-width: 2px;
-    /* Apply bottom border */
-    padding: 32px 32px 0px 32px;
-    /* Top, Right, Bottom, Left */
-    gap: 32px;
-    /* Space between elements inside the card */
+    width: 100%;
+    height: auto;
+    padding: 24px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
-    /* Slight shadow for depth */
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* Center text inside */
-  }
-
-  .testimonial-rating {
-    font-size: 0.9rem;
-    /* Slightly smaller rating size */
   }
 
   .testimonial-review {
-    font-size: 16px;
-    /* Reduce review text size */
+    font-size: 14px;
+    line-height: 20px;
     margin-bottom: 10px;
-    /* Adjust spacing */
   }
 
   .testimonial-user {
-    gap: 6px;
-    /* Smaller gap between image and text */
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
   }
 
   .testimonial-user-image {
-    width: 35px;
-    /* Smaller profile image */
-    height: 35px;
+    width: 40px;
+    height: 40px;
   }
 
   .testimonial-user-name {
-    font-size: 12px;
-    /* Adjust name size */
+    font-size: 14px;
   }
 
   .testimonial-user-title {
-    font-size: 10px;
-    /* Adjust title size */
+    font-size: 12px;
   }
 
-  .carousel-controls {
-    margin-top: 10px;
-    gap: 5px;
-    /* Smaller gap between buttons */
-  }
-
-  .carousel-button {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s;
+  .underline {
+    width: 80%;
+    margin: auto;
   }
 }
 

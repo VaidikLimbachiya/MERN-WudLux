@@ -6,6 +6,7 @@
   width: 100%;
   overflow: hidden; /* Prevents unwanted overflow */
   height: 344px;
+  margin-bottom: 70px;
 }
 
 /* Swiper Wrapper */
@@ -34,7 +35,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 /* Service Icon */
@@ -65,11 +66,7 @@
 .swiper-pagination-bullet {
   background: white !important;
   opacity: 0.5;
-<<<<<<< HEAD
-
-=======
   margin-left: -20px;
->>>>>>> 1543e8814097d608ac105c5b47bdfb7137082897
 }
 
 .swiper-pagination-bullet-active {

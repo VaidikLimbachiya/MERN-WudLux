@@ -51,6 +51,8 @@
       margin-bottom: 10px;
       width: 231px;
     }
+
+    
     
     .footer-section ul {
       font-size: 18px;
@@ -147,8 +149,6 @@
       font-size: 14px;
       color: #666;
    }
-    /* flex-wrap: wrap; */
-   
   }
   
   .footer-section {
