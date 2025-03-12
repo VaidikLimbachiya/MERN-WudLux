@@ -1,8 +1,8 @@
 // import React from 'react';
 import './ContactUs.css';
-import phoneIcon from '../../assets/phone.png'; // Path to phone icon
-import emailIcon from '../../assets/email.png'; // Path to email icon
-import contactBanner from '../../assets/contact.png'; // Path to banner image
+import phoneIcon from '../../assets/phone.svg'; // Path to phone icon
+import emailIcon from '../../assets/email.svg'; // Path to email icon
+import contactBanner from '../../assets/contact.svg'; // Path to banner image
 
 const ContactUs = () => {
 

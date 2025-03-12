@@ -4,7 +4,9 @@ import { apiCall } from "../../api/api";
 import "./Login.css";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Context/AuthContext";
-import { useCartContext } from "../../Context/CartContext"; //   Correct import
+import { useCartContext } from "../../Context/CartContext";
+ //   Correct import
+ import { BsArrowRight } from "react-icons/bs";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -123,7 +125,7 @@ const LoginPage = () => {
             </Link>
           </div>
           <button className="btn" type="submit" disabled={loading}>
-            {loading ? "Logging in..." : " Login → "}
+            {loading ? "Logging in..." : " Login"}<BsArrowRight className="bsarrow"/>
           </button>
           <p>
             Don’t have an account?{" "}
