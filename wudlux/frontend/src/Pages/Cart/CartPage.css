@@ -147,7 +147,7 @@ ul {
   border: none;
   outline: none;
   width: 34px;
-  height: 33px;
+  height: 34px;
   background-color: #ddd6d2;
   color: #000;
   font-size: 20px;
@@ -312,7 +312,7 @@ ul {
 .cart-quantity-controls {
   display: flex;
   align-items: center;
-  background: #f9f9f9;
+  /* background: #f9f9f9; */
   padding: 6px 12px;
   border-radius: 30px;
   border: 1px solid #ddd;

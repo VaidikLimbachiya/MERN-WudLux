@@ -96,7 +96,7 @@ const LoginPage = () => {
       <main className="login-container">
         <form id="login-form" className="login-form" onSubmit={handleLogin}>
           <h1>Login</h1>
-          <p className="sub-title">Your personal data will be used to manage access to your account.</p>
+          <h3 className="sub-title">Your personal data will be used to manage access to your account.</h3>
           <input
             type="email"
             id="email"

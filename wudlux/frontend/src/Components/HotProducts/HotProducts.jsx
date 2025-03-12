@@ -8,12 +8,12 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./HotProducts.css";
 
-import image1 from "../../assets/hp1.png";
-import image2 from "../../assets/hp2.png";
-import image3 from "../../assets/hp3.png";
-import image4 from "../../assets/hp4.png";
-import image5 from "../../assets/hp5.png";
-import image6 from "../../assets/hp6.png";
+import image1 from "../../assets/hp1.svg";
+import image2 from "../../assets/hp2.svg";
+import image3 from "../../assets/hp3.svg";
+import image4 from "../../assets/hp4.svg";
+import image5 from "../../assets/hp5.svg";
+import image6 from "../../assets/hp6.svg";
 import { Link } from "react-router-dom";
 
 const products = [

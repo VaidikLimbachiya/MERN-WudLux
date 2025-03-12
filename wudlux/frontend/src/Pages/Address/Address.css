@@ -4,7 +4,10 @@
   color: #0a0a0a;
   padding: 20px;
   margin-top: -23px;
+<<<<<<< HEAD
+=======
   width: 100%;
+>>>>>>> 5ac658353456ddf7fcafb86d07ccc97ebfb1d09e
 }
 
 /* Header Section */
@@ -66,7 +69,7 @@
 
 .address-info {
   margin-bottom: 10px;
-  font-family: "poppins", sans-serif;
+  font-family: 'poppins', sans-serif;
 }
 
 .address-name {
@@ -179,7 +182,6 @@
 }
 
 .fname-input {
-  /* margin-bottom: 20px; */
   width: 100%;
 }
 
@@ -210,6 +212,10 @@
   color: #6c757d;
   margin-bottom: 10px;
   margin-left: -242px;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5ac658353456ddf7fcafb86d07ccc97ebfb1d09e
 }
 
 .breadcrumb1 img {
@@ -282,21 +288,21 @@
 }
 
 @media (max-width: 430px) {
-  /* Container adjustments */
-  .address-container {
-    flex-direction: column;
-    padding: 10px;
-    margin-top: -29.7px;
-    margin-left: 0px;
-    align-items: flex-start;
-  }
+/* Container adjustments */
+.address-container {
+  flex-direction: column;
+  padding: 10px;
+  margin-top: -29.7px;
+  margin-left: 0px;
+  align-items: flex-start;
+}
 
-  .address-header {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    margin: 10px 0;
-  }
+.address-header {
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  margin: 10px 0;
+}
 
   .add-address-button {
     width: 50%; /* Button should adjust to content */
@@ -306,12 +312,13 @@
     margin-left: 0; /* Align left */
   }
 
-  /* Form adjustments */
-  .address-form {
-    padding: 10px;
-    margin-left: 0;
-    background-color: #fff;
-  }
+.add-address-button {
+  width: 50%; /* Button should adjust to content */
+  text-align: center;
+  font-size: 12px; /* Reduced font size */
+  padding: 6px 10px; /* Reduced padding */
+  margin-left: 0; /* Align left */
+}
 
   .form-group {
     display: flex;
@@ -319,83 +326,84 @@
     margin-bottom: 20px;
   }
 
-  .breadcrumb1 {
-    flex-direction: row;
-    align-items: flex-start;
-    margin-left: 0;
-    /* margin-top; */
-  }
+ 
+.form-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
 
-  .breadcrumb1 img {
-    height: 24px;
-    object-fit: contain;
-    margin-right: 3px;
-    margin-top: -21.5rem;
-  }
+.breadcrumb1 {
+  flex-direction: row;
+  align-items: flex-start;
+  margin-left: 0;
+  /* margin-top; */
+}
 
-  .btext1 {
-    font-size: 16px;
-    color: #0a0a0a;
-    margin-bottom: -3px;
-    margin-left: -8px;
-    margin-top: -21.5rem;
-  }
-  .address-form h2 {
-    font-size: 18px;
-    text-align: center;
-    margin-bottom: 15px;
-  }
+.breadcrumb1 img {
+  height: 24px;
+  object-fit: contain;
+  margin-right: 3px;
+  margin-top: -21.5rem;
+}
 
-  .address-form label {
-    /* display: flex; */
-    align-items: center;
-    gap: 85px;
-    font-size: 14px;
-  }
+.btext1 {
+  font-size: 16px;
+  color: #0a0a0a;
+  margin-bottom: -3px;
+  margin-left: -8px;
+  margin-top: -21.5rem;
+}
+.address-form h2 {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 15px;
+}
 
-  .form-group,
-  .form-group-row {
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 15px;
-  }
+.address-form label {
+  /* display: flex; */
+  align-items: center;
+  gap: 85px;
+  font-size: 14px;
+}
 
-  .address-form input,
-  .address-form select {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-  }
+.form-group,
+.form-group-row {
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
 
-  .email-input {
-    width: 100%;
-    margin-bottom: 15px;
-  }
+.address-form input,
+.address-form select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+}
 
-  .update-button {
-    width: 100%;
-    font-size: 14px;
-    padding: 10px;
-    margin-top: 10px;
-  }
+.email-input {
+  width: 100%;
+  margin-bottom: 15px;
+}
 
-  /* Checkbox adjustments */
-  .custom-checkbox {
-    flex-direction: row;
-    gap: 5px;
-    align-items: center;
-  }
+.update-button {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px;
+  margin-top: 10px;
+}
 
-  .custom-checkbox input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-  }
+/* Checkbox adjustments */
+.custom-checkbox {
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
 
-  .dfText {
-    font-size: 12px;
-    /* margin: 0; */
-    margin-left: 6px;
-  }
+.custom-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
 
   /* Address List adjustments */
   .address-list {
@@ -407,31 +415,30 @@
 }
 
 
-  .address-card {
-    width: 100%;
-    margin: 10px 0;
-    padding: 15px;
-  }
+/* Address List adjustments */
+.address-list {
+  flex-direction: column;
+  align-items: center;
+}
 
-  .address-name {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    gap: 5px;
-  }
+.address-card {
+  width: 100%;
+  margin: 10px 0;
+  padding: 15px;
+}
 
-  .address-actions {
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-  }
+.address-name {
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 5px;
+}
 
-  /* No Address message */
-  .no-address {
-    font-size: 14px;
-    padding: 10px;
-    margin: 10px 0;
-  }
+.address-actions {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
 
   .default-badge {
     position: absolute;

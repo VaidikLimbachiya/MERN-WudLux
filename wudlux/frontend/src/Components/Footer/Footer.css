@@ -24,9 +24,144 @@
 
   .footer-container {
     display: flex;
-    /* flex-wrap: wrap; */
-    width: 100%;
-    margin-left: 2500px;
+    width: 90%;
+    margin-left: 95px;
+    
+    
+    .footer {
+      background-color: #f7f5f4;
+      padding: 0px -1px;
+      color: #000000;
+      font-family: Arial, sans-serif;
+      font-weight:600;
+    }
+    
+    .footer-container {
+      display: flex;
+      /* flex-wrap: wrap; */
+      width: 100%;
+      margin-left: 2500px;
+  
+    }
+    
+    .footer-section {
+      flex:100%;
+      margin: -62px -44px;
+      padding: 70px;
+      font-family: 'Poppins', sans-serif;
+      
+    }
+    
+    .footer-section h3,
+    .footer-section h4 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #000;
+    }
+    
+    .footer-section p {
+      font-size: 14px;
+      margin-bottom: 10px;
+      width: 231px;
+    }
+
+    
+    
+    .footer-section ul {
+      font-size: 18px;
+      list-style: none;
+      padding: 0px 0px 10px 0px; 
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 15px;
+    }
+    
+    .footer-section ul li a {
+      text-decoration: none;
+      color: #000000;
+      font-size: 16px;
+    }
+    
+    .footer-section ul li a:hover {
+      color: #555353;
+      transition: 0.3s;
+    }
+    
+    .newsletter-input {
+      display: flex;
+      margin-top: 10px;
+      margin-left: -1px;
+    
+    }
+    
+    .newsletter p {
+        font-size: 15px;
+        margin-bottom: 10px;
+        font-weight: 400;
+        font-family: sans-serif;
+        color: #0A0A0A;
+        height: 45px;
+    }
+
+    .newsletter-input input {
+      height: 54px;
+      text-align: left;
+      padding: 6px 37px;
+      border: 1px solid #ccc;
+      border-radius: 50px;
+      flex: 1;
+    }
+    
+    .newsletter-input button {
+      padding: 8px 1px;
+      width: 10rem;
+      margin-left: -100px;
+      background-color: #685752;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+    
+    .newsletter-input button:hover {
+      background-color: #000000;
+    }
+    
+    .social-icons {
+      margin-top: 10px;
+      font-size: large;
+      align-items: center;
+    }
+    
+    .social-icon {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin-right: 3px;
+      background-color: #B6A69D;
+      color: #000;
+      text-align: center;
+      line-height: 35px;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 15px;
+      position: relative;
+      padding-top: -1px;
+    }
+  
+    .social-icon:hover {
+      background-color: #553b2f;
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      margin-top: 20px;;
+      border-top: 1px solid #000;
+      padding-top: 20px;
+      font-size: 14px;
+      color: #666;
+   }
   }
 
   .footer-section {

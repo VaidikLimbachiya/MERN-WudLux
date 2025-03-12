@@ -481,7 +481,7 @@ const Navbar = () => {
                 onClick={toggleSearch}
                 loading="lazy"
               />
-              <div className="divider"></div>
+              <div className="divider1"></div>
               <div className="profileIconWrapper">
                 <img
                   src={profileIcon}
