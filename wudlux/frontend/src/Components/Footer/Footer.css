@@ -81,12 +81,16 @@
     }
     
     .newsletter p {
-      font-size: 12px;
-      margin-bottom: 10px;
-      font-weight: 400;
+        font-size: 15px;
+        margin-bottom: 10px;
+        font-weight: 400;
+        font-family: sans-serif;
+        color: #0A0A0A;
+        height: 45px;
     }
 
     .newsletter-input input {
+      height: 54px;
       text-align: left;
       padding: 6px 37px;
       border: 1px solid #ccc;
@@ -230,19 +234,21 @@
     border-radius: 50px;
     flex: 1;
     height: 54px;
-    font-size: 14px;
+    font-size: 16px;
+    width: 50%;
     /* min-width: 300px; */
   }
   
   .newsletter-input button {
     padding: 8px 1px;
-    width: 195px;
-    height: 54px;
-    background-color: #733f2b;
-    color: #fff;
-    border: none;
-    border-radius: 56px;
-    cursor: pointer;
+        width: 50%;
+        margin-left: -100px;
+        background-color: #685752;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 16px;
   }
   
   .newsletter-input button:hover {
@@ -251,16 +257,16 @@
   
   .social-icons {
     margin-top: 50px;
-    font-size: large;
+    font-size: 500;
     align-items: center;
-  }
+  } 
   
   .social-icon {
     display: inline-block;
     width: 30px;
     height: 30px;
     margin-right: 10px;
-    background-color: #D8C4B6;
+    /* background-color: #D8C4B6; */
     color: #000;
     text-align: center;
     line-height: 30px;
@@ -269,9 +275,8 @@
     font-size: 14px;
   }
 
-  .social-icon:hover {
-    background-color: #000000;
-    color: #fff;
+  .social-icons :hover {
+    color: #FFFFFF;
   }
   
   .footer-bottom {
@@ -285,12 +290,19 @@
  
  .span-arrow{
   /* margin-top: 2px; */
-  padding-top: 8px;
-  font-weight: 400;
-  height: 17px;
-  width: 19px;
+  margin-bottom :-5px;
+    margin-left: 5px;
+    height: 22.05px;
+    width: 22px;
+    font-weight: 600;
  }
-
+ 
+ .phonediv {
+  color :#1a1919;
+ }
+ .maildiv{
+  color: #1a1919;
+ }
  /* For devices with max width of 768px (Tablets and smaller screens) */
 @media (max-width: 768px) {
   .footer-container {

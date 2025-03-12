@@ -21,6 +21,14 @@
   color: #0A0A0A;
   margin-top: 4px;
 }
+.shop-product-list-desc {
+  font-size: 18px !important;
+  color: #000 !important;
+  margin: 4px !important;
+  font-weight: 400 !important;
+  line-height: 25.2px !important;
+  align-self: center !important;
+}
 
 /* Product Grid */
 .productsGrid {

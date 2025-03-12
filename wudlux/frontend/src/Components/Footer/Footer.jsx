@@ -1,13 +1,14 @@
 // Footer.js
 import { useState } from "react";
 import { FaFacebookF } from "react-icons/fa6";
-import { FaArrowRightLong } from "react-icons/fa6";
+// import { FaArrowRightLong } from "react-icons/fa6";
 import { BiLogoInstagramAlt } from "react-icons/bi";
 import "./Footer.css";
 import { Link } from "react-router-dom";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { BsArrowRight } from "react-icons/bs";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -38,16 +39,16 @@ const Footer = () => {
             <input type="email" placeholder="Email Address" />
             <button>
               Subscribe  
-             <span > <FaArrowRightLong className="span-arrow" /></span>
+             <span > <BsArrowRight className="span-arrow" /></span>
             </button>
           </div>
           <div className="social-icons">
-            <a href="#facebook" className="social-icon">
-              <FaFacebookF />
-            </a>
-            <a href="#instagram" className="social-icon">
+            <Link to = "#facebook" className="social-icon ">
+              <FaFacebookF   />
+            </Link>
+            <Link to ="#instagram" className="social-icon">
               <BiLogoInstagramAlt />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -83,8 +84,8 @@ const Footer = () => {
         {/* Contact Information */}
         <div className="footer-section">
           <h4>Contact Information</h4>
-          <p><strong>Phone:</strong> +91-9601272812</p>
-          <p><strong>Email:</strong> wudluxdecor@gmail.com</p>
+          <p className="phonediv"><strong>Phone:</strong> +91-9601272812</p>
+          <p className="maildiv"><strong >Email:</strong> wudluxdecor@gmail.com</p>
         </div>
       </div>
 
