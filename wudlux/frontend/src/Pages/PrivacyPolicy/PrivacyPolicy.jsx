@@ -1,6 +1,6 @@
-import React from "react";
+// import React from "react";
 import "./PrivacyPolicy.css";
-import HeroImage from "../../assets/privacy.png";
+import HeroImage from "../../assets/privacy.svg";
 
 const PrivacyPolicy = () => {
   return (
