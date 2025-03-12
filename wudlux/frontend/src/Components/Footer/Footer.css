@@ -1,14 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 .footer {
-    background-color: #f7f5f4;;
-    padding: 15px ;
+  background-color: #f7f5f4;
+  padding: 15px;
+  color: #000000;
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  width: 90%;
+  margin-left: 95px;
+
+  .footer {
+    background-color: #f7f5f4;
+    padding: 0px -1px;
     color: #000000;
     font-family: Arial, sans-serif;
-    font-weight:600;
-    width: 100%;
+    font-weight: 600;
   }
-  
+
   .footer-container {
     display: flex;
     width: 90%;
@@ -150,263 +163,377 @@
       color: #666;
    }
   }
-  
+
   .footer-section {
-    flex:15%;
-    margin: 0px 5px;
-    padding: 0px;
-    font-family: "Afacad Flux", serif;
-    
+    flex: 100%;
+    margin: -62px -44px;
+    padding: 70px;
+    font-family: "Poppins", sans-serif;
   }
-  
+
   .footer-section h3,
   .footer-section h4 {
     font-size: 18px;
     margin-bottom: 10px;
     color: #000;
   }
-  
+
   .footer-section p {
     font-size: 14px;
     margin-bottom: 10px;
+    width: 231px;
   }
-  
+
   .footer-section ul {
-    font-size: 14px;
+    font-size: 18px;
     list-style: none;
-    /* padding: 0px 0px 0px 0px;  */
-    margin-left: 10px;
+    padding: 0px 0px 10px 0px;
   }
-  
+
   .footer-section ul li {
-    margin-bottom: -5px;
-    
+    margin-bottom: 15px;
   }
-  
+
   .footer-section ul li a {
     text-decoration: none;
     color: #000000;
     font-size: 16px;
   }
-  
-  .footer-section ul li a {
-    position: relative; /* Required for positioning the pseudo-element */
-    text-decoration: none; /* Remove underline */
-    color: inherit; /* Use the inherited color for default state */
-    transition: color 0.3s ease; /* Smooth text color transition */
-  }
-  
-  /* Vertical line effect */
-  .footer-section ul li a::before {
-    content: ""; /* Empty content for the vertical line */
-    position: absolute;
-    top: 0; /* Align with the top of the link */
-    bottom: 0; /* Align with the bottom of the link */
-    left: -10px; /* Position the line slightly to the left of the link */
-    width: 2px; /* Line thickness */
-    background-color: transparent; /* Initially invisible */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth line appearance */
-    transform: scaleY(1); /* Initially hidden (scaled down vertically) */
-  }
-  
-  /* Hover effect for the link */
+
   .footer-section ul li a:hover {
-    color: #000; /* Change the link text color to black */
+    color: #555353;
+    transition: 0.3s;
   }
-  
-  /* Hover effect for the vertical line */
-  .footer-section ul li a:hover::before {
-    background-color: #543A14; /* Black vertical line */
-    transform: scaleY(1); /* Expand the line to full height */
-  }
-  
-  
+
   .newsletter-input {
     display: flex;
     margin-top: 10px;
-    width: 300px;
-  
+    margin-left: -1px;
   }
-  
+
+  .newsletter p {
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-family: sans-serif;
+    color: #0a0a0a;
+    height: 45px;
+  }
+
   .newsletter-input input {
-    padding: 8px;
+    height: 54px;
+    text-align: left;
+    padding: 6px 37px;
     border: 1px solid #ccc;
     border-radius: 50px;
     flex: 1;
-    height: 54px;
-    font-size: 16px;
-    width: 50%;
-    /* min-width: 300px; */
   }
-  
+
   .newsletter-input button {
     padding: 8px 1px;
-        width: 50%;
-        margin-left: -100px;
-        background-color: #685752;
-        color: #fff;
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-        font-size: 16px;
+    width: 10rem;
+    margin-left: -100px;
+    background-color: #685752;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
   }
-  
+
   .newsletter-input button:hover {
-    background-color: #553b2f;
+    background-color: #000000;
   }
-  
+
   .social-icons {
-    margin-top: 50px;
-    font-size: 500;
+    margin-top: 10px;
+    font-size: large;
     align-items: center;
-  } 
-  
+  }
+
   .social-icon {
     display: inline-block;
     width: 30px;
     height: 30px;
-    margin-right: 10px;
-    /* background-color: #D8C4B6; */
+    margin-right: 3px;
+    background-color: #b6a69d;
     color: #000;
     text-align: center;
-    line-height: 30px;
+    line-height: 35px;
     border-radius: 50%;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
+    position: relative;
+    padding-top: -1px;
   }
 
-  .social-icons :hover {
-    color: #FFFFFF;
+  .social-icon:hover {
+    background-color: #553b2f;
   }
-  
+
   .footer-bottom {
     text-align: center;
-    margin-top: 40px;;
+    margin-top: 20px;
     border-top: 1px solid #000;
-    padding-top: 14px;
-    font-size: 16px;
-    color: #1a1919;
- }
- 
- .span-arrow{
-  /* margin-top: 2px; */
-  margin-bottom :-5px;
-    margin-left: 5px;
-    height: 22.05px;
-    width: 22px;
-    font-weight: 600;
- }
- 
- .phonediv {
-  color :#1a1919;
- }
- .maildiv{
+    padding-top: 20px;
+    font-size: 14px;
+    color: #666;
+  }
+  /* flex-wrap: wrap; */
+}
+
+.footer-section {
+  flex: 15%;
+  margin: 0px 5px;
+  padding: 0px;
+  font-family: "Afacad Flux", serif;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.footer-section p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  font-size: 14px;
+  list-style: none;
+  /* padding: 0px 0px 0px 0px;  */
+  margin-left: 10px;
+}
+
+.footer-section ul li {
+  margin-bottom: -5px;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 16px;
+}
+
+.footer-section ul li a {
+  position: relative; /* Required for positioning the pseudo-element */
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Use the inherited color for default state */
+  transition: color 0.3s ease; /* Smooth text color transition */
+}
+
+/* Vertical line effect */
+.footer-section ul li a::before {
+  content: ""; /* Empty content for the vertical line */
+  position: absolute;
+  top: 0; /* Align with the top of the link */
+  bottom: 0; /* Align with the bottom of the link */
+  left: -10px; /* Position the line slightly to the left of the link */
+  width: 2px; /* Line thickness */
+  background-color: transparent; /* Initially invisible */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth line appearance */
+  transform: scaleY(1); /* Initially hidden (scaled down vertically) */
+}
+
+/* Hover effect for the link */
+.footer-section ul li a:hover {
+  color: #000; /* Change the link text color to black */
+}
+
+/* Hover effect for the vertical line */
+.footer-section ul li a:hover::before {
+  background-color: #543a14; /* Black vertical line */
+  transform: scaleY(1); /* Expand the line to full height */
+}
+
+.newsletter-input {
+  display: flex;
+  margin-top: 10px;
+  width: 350px;
+  height: 54px;
+}
+
+.newsletter-input input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  flex: 1;
+  height: 54px;
+  font-size: 16px;
+  /* width: 20%; */
+  /* min-width: 0px; */
+}
+
+.newsletter-input button {
+  padding: 8px 1px;
+  width: 50%;
+  /* margin-left: -100px; */
+  background-color: #685752;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.newsletter-input button:hover {
+  background-color: #553b2f;
+}
+
+.social-icons {
+  margin-top: 50px;
+  font-size: 500;
+  align-items: center;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  /* background-color: #D8C4B6; */
+  color: #000;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.social-icons :hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #000;
+  padding-top: 14px;
+  font-size: 16px;
   color: #1a1919;
- }
- /* For devices with max width of 768px (Tablets and smaller screens) */
+}
+
+.span-arrow {
+  /* margin-top: 2px; */
+  margin-bottom: -5px;
+  margin-left: 5px;
+  height: 22.05px;
+  width: 22px;
+  font-weight: 600;
+}
+
+.phonediv {
+  color: #1a1919;
+}
+.maildiv {
+  color: #1a1919;
+}
+/* For devices with max width of 768px (Tablets and smaller screens) */
 @media (max-width: 768px) {
   .footer-container {
-      flex-direction: column; /* Stack sections vertically */
-      margin-left: 0; /* Remove margin */
+    flex-direction: column; /* Stack sections vertically */
+    margin-left: 0; /* Remove margin */
   }
 
   .footer-section {
-      flex: 100%;
-      margin: -59px -57px;
-      margin-right: -109px;/* Reduce margin */
-      padding: 20px; /* Adjust padding */
+    flex: 100%;
+    margin: -59px -57px;
+    margin-right: -109px; /* Reduce margin */
+    padding: 20px; /* Adjust padding */
   }
 
   .footer-section h3,
   .footer-section h4 {
-      font-size: 16px; /* Smaller font size for headings */
+    font-size: 16px; /* Smaller font size for headings */
   }
 
   .footer-section p {
-      font-size: 12px; /* Smaller font size for paragraphs */
+    font-size: 12px; /* Smaller font size for paragraphs */
   }
 
   .footer-section ul li {
-      font-size: 14px; /* Reduce font size of list items */
+    font-size: 14px; /* Reduce font size of list items */
   }
 
   .newsletter-input input,
   .newsletter-input button {
-      width: 100%; /* Full width input and button */
-      margin: 5px 0; /* Adjust margins */
+    width: 100%; /* Full width input and button */
+    margin: 5px 0; /* Adjust margins */
   }
 
   .social-icons {
-      font-size: 18px; /* Adjust font size of social icons */
+    font-size: 18px; /* Adjust font size of social icons */
   }
 
   .footer-bottom {
-      font-size: 12px; /* Adjust footer text size */
+    font-size: 12px; /* Adjust footer text size */
   }
 }
 
 /* For devices with max width of 576px (Small tablets or larger smartphones) */
 @media (max-width: 576px) {
   .footer-container {
-      flex-direction: column; /* Stack sections vertically */
+    flex-direction: column; /* Stack sections vertically */
   }
 
   .footer-section {
     margin: -59px -57px;
     margin-right: -109px; /* Reduce margin */
-      padding: 15px; /* Adjust padding */
+    padding: 15px; /* Adjust padding */
   }
 
   .footer-section h3,
   .footer-section h4 {
-      font-size: 14px; /* Smaller font size */
+    font-size: 14px; /* Smaller font size */
   }
 
   .footer-section p {
-      font-size: 12px; /* Smaller font size */
+    font-size: 12px; /* Smaller font size */
   }
 
   .footer-section ul li {
-      font-size: 13px; /* Reduce list item font size */
+    font-size: 13px; /* Reduce list item font size */
   }
 
   .newsletter-input input,
   .newsletter-input button {
-      width: 100%; /* Full width input and button */
-      margin: 5px 0; /* Adjust margins */
+    width: 100%; /* Full width input and button */
+    margin: 5px 0; /* Adjust margins */
   }
 
   .social-icons {
-      font-size: 16px; /* Adjust font size of social icons */
+    font-size: 16px; /* Adjust font size of social icons */
   }
 
   .footer-bottom {
-      font-size: 12px; /* Adjust footer text size */
+    font-size: 12px; /* Adjust footer text size */
   }
 }
 
 /* For devices with max width of 480px (Small mobile devices) */
 @media (max-width: 430px) {
   .footer-container {
-      flex-direction: column; /* Stack sections vertically */
+    flex-direction: column; /* Stack sections vertically */
   }
 
   .footer-section {
     margin: -59px -57px;
     margin-right: -109px; /* Reduce margin */
-      padding: 10px; /* Adjust padding */
-      /* display: ; */
-      flex-direction: row;
-    }
+    padding: 10px; /* Adjust padding */
+    /* display: ; */
+    flex-direction: row;
+  }
 
   .footer-section h3,
   .footer-section h4 {
-      font-size: 12px; /* Smaller font size */
+    font-size: 12px; /* Smaller font size */
   }
 
   .footer-section p {
-      font-size: 10px; /* Smaller font size */
-      margin-left: -22px;
+    font-size: 10px; /* Smaller font size */
+    margin-left: -22px;
   }
 
   .footer-section ul {
@@ -423,82 +550,77 @@
     margin-left: -25px;
   }
 
-
   .footer-section ul li {
     font-size: 18px;
     width: 48%; /* Ensure two-column alignment */
     text-align: left;
-
   }
 
-  .newsletter-input input{
+  .newsletter-input input {
     /* width: 50%; */
     margin: 4px 22px;
     margin-right: 75px;
     margin-left: -7px;
   }
-  
 
   .newsletter-input input,
   .newsletter-input button {
-      width: 100%; /* Full width input and button */
-      padding: 6px; /* Adjust padding */
-      margin: 5px 0; /* Adjust margins */
+    width: 100%; /* Full width input and button */
+    padding: 6px; /* Adjust padding */
+    margin: 5px 0; /* Adjust margins */
   }
 
   .social-icons {
-      font-size: 14px; /* Adjust font size of social icons */
+    font-size: 14px; /* Adjust font size of social icons */
   }
 
   .footer-bottom {
-      font-size: 11px; /* Adjust footer text size */
+    font-size: 11px; /* Adjust footer text size */
   }
 }
 
 /* For devices with max width of 320px (Very small mobile devices) */
 @media (max-width: 376px) {
-
   .foter {
     margin-left: -40px;
   }
   .footer-container {
-    
-      flex-direction: column; /* Stack sections vertically */
+    flex-direction: column; /* Stack sections vertically */
   }
 
   .footer-section {
     margin: -59px -57px;
-    margin-right: -109px;/* Reduce margin */
-      padding: 10px; /* Adjust padding */
+    margin-right: -109px; /* Reduce margin */
+    padding: 10px; /* Adjust padding */
   }
 
   .footer-section h3,
   .footer-section h4 {
-      font-size: 17px; /* Smaller font size */
+    font-size: 17px; /* Smaller font size */
   }
 
   .footer-section p {
-      font-size: 10px; /* Smaller font size */
-      width: 231px;
+    font-size: 10px; /* Smaller font size */
+    width: 231px;
   }
 
   .footer-section ul li {
-      font-size: 12px; /* Reduce list item font size */
+    font-size: 12px; /* Reduce list item font size */
   }
 
   .newsletter-input input,
   .newsletter-input button {
-      width: 100%; /* Full width input and button */
-      padding: 6px; /* Adjust padding */
-      margin: 5px -40px;
-      margin-left: -9px; /* Adjust margins */
+    width: 100%; /* Full width input and button */
+    padding: 6px; /* Adjust padding */
+    margin: 5px -40px;
+    margin-left: -9px; /* Adjust margins */
   }
 
   .social-icons {
-      font-size: 14px; /* Adjust font size of social icons */
+    font-size: 14px; /* Adjust font size of social icons */
   }
 
   .footer-bottom {
-      font-size: 10px; /* Adjust footer text size */
+    font-size: 10px; /* Adjust footer text size */
   }
 }

@@ -6,10 +6,10 @@ import "swiper/css/pagination";
 import "./service.css"; // CSS file for styling
 
 // Import icons
-import shippingIcon from "../../assets/icon1.png";
-import supportIcon from "../../assets/icon2.png";
-import moneyReturnIcon from "../../assets/icon3.png";
-import discountIcon from "../../assets/icon4.png";
+import shippingIcon from "../../assets/icon1.svg";
+import supportIcon from "../../assets/icon2.svg";
+import moneyReturnIcon from "../../assets/icon3.svg";
+import discountIcon from "../../assets/icon4.svg";
 
 const Services = () => {
   const services = [

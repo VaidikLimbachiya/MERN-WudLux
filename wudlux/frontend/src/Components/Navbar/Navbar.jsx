@@ -58,8 +58,6 @@ const Navbar = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false); // Profile menu state
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
-  const [productToRemove, setProductToRemove] = useState(null); // Product to remove
-  const [isPopupOpen, setIsPopupOpen] = useState(false); // Popup state
   // const [isSliderOpen] = useState(false); // Fix initial state of slider to false
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -103,6 +101,10 @@ const Navbar = () => {
     totalProducts,
     updateQuantity,
     removeItem,
+    isPopupOpen,
+    productToRemove,
+    closePopup,
+    openPopup
   } = useCartContext();
   const navigate = useNavigate();
 
@@ -170,16 +172,6 @@ const Navbar = () => {
   const toggleCart = () => setIsCartOpen((prev) => !prev);
   const toggleSearch = () => setIsSearchOpen((prev) => !prev);
 
-  const openPopup = (product) => {
-    console.log("Product passed to openPopup:", product);
-    setProductToRemove(product);
-    setIsPopupOpen(true);
-  };
-
-  const closePopup = () => {
-    setProductToRemove(null);
-    setIsPopupOpen(false);
-  };
 
   const confirmRemove = () => {
     if (productToRemove && productToRemove.productId) {
@@ -489,7 +481,7 @@ const Navbar = () => {
                 onClick={toggleSearch}
                 loading="lazy"
               />
-              <div className="divider"></div>
+              <div className="divider1"></div>
               <div className="profileIconWrapper">
                 <img
                   src={profileIcon}
@@ -580,13 +572,13 @@ const Navbar = () => {
                     </p>
                   </div>
                   <div className="cartQuantity">
-                    <button
-                      className="cart-quantity-decrement1"
-                      onClick={() => updateQuantity(item.productId, -1)}
-                      disabled={item.quantity <= 1}
-                    >
-                      -
-                    </button>
+                  <button
+  className="cart-quantity-decrement1"
+  onClick={() => updateQuantity(item.productId, -1)}
+>
+  -
+</button>
+
                     <span className="quantity">{item.quantity}</span>
                     <button
                       className="cart-quantity-increment1"

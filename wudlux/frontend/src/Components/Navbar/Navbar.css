@@ -283,10 +283,14 @@ a {
 
 .divider {
   height: 24px;
-  width: 1px;
+  width: 1.2px;
   background-color: #d1d1d1;
 }
-
+.divider1 {
+  height: 24px;
+  width: 1.2px;
+  background-color: #d1d1d1;
+}
 /* Cart Icon */
 .cartIcon {
   display: flex;

@@ -18,6 +18,18 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [productToRemove, setProductToRemove] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+    const openPopup = (product) => {
+        setProductToRemove(product);
+        setIsPopupOpen(true);
+    };
+
+    const closePopup = () => {
+        setProductToRemove(null);
+        setIsPopupOpen(false);
+    };
 
   // Redirect to login if token is invalid or expired
   const redirectToLogin = () => {
@@ -137,55 +149,55 @@ export const CartProvider = ({ children }) => {
   // Update item quantity
   const updateQuantity = async (productId, delta) => {
     const token = localStorage.getItem("accessToken");
-    setError(null);
 
-    if (!token) {
-      // Handle Guest Cart Update
-      console.log("Updating quantity in guest cart...");
-      const guestCart = JSON.parse(localStorage.getItem("guestCart")) || [];
-
-      const updatedCart = guestCart.map((item) =>
-        item.productId === productId
-          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-          : item
-      );
-
-      localStorage.setItem("guestCart", JSON.stringify(updatedCart));
-      setCartItems(updatedCart);
-      return;
-    }
-
-    // Handle Logged-in User Cart Update
-    try {
-      const existingItem = cartItems.find(
-        (item) => item.productId === productId
-      );
-      if (!existingItem) {
+    const existingItem = cartItems.find((item) => item.productId === productId);
+    if (!existingItem) {
         console.error("Item not found in cart");
         return;
-      }
-
-      const newQuantity = Math.max(1, existingItem.quantity + delta);
-
-      const response = await fetch("http://localhost:5000/api/cart/update", {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ productId, quantity: newQuantity }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update item quantity");
-      }
-
-      await fetchCart();
-    } catch (err) {
-      console.error("Error updating quantity:", err);
-      setError(err.message);
     }
-  };
+
+    if (existingItem.quantity === 1 && delta === -1) {
+        // Open the popup if quantity is 1 and user tries to decrement
+        openPopup(existingItem);
+        return;
+    }
+
+    if (!token) {
+        console.log("Updating quantity in guest cart...");
+        const guestCart = JSON.parse(localStorage.getItem("guestCart")) || [];
+
+        const updatedCart = guestCart.map((item) =>
+            item.productId === productId
+                ? { ...item, quantity: Math.max(1, item.quantity + delta) }
+                : item
+        );
+
+        localStorage.setItem("guestCart", JSON.stringify(updatedCart));
+        setCartItems(updatedCart);
+        return;
+    }
+
+    // Logged-in user update
+    try {
+        const newQuantity = Math.max(1, existingItem.quantity + delta);
+        const response = await fetch("http://localhost:5000/api/cart/update", {
+            method: "PATCH",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ productId, quantity: newQuantity }),
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to update item quantity");
+        }
+
+        await fetchCart();
+    } catch (err) {
+        console.error("Error updating quantity:", err);
+    }
+};
 
   // Remove an item from the cart
   const removeItem = async (productId) => {
@@ -225,6 +237,7 @@ export const CartProvider = ({ children }) => {
       console.error("Error removing item:", err);
       setError(err.message);
     }
+    closePopup();
   };
 
   // Clear the entire cart
@@ -313,6 +326,10 @@ export const CartProvider = ({ children }) => {
         clearCart,
         loading,
         error,
+        isPopupOpen,
+        productToRemove,
+        openPopup,
+        closePopup
       }}
     >
       {children}

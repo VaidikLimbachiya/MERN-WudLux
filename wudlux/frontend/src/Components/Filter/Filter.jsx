@@ -4,8 +4,9 @@ import "./Filter.css";
 import rp from "../../assets/rp.png";
 import rct from "../../assets/rct.png";
 import { CiCircleRemove } from "react-icons/ci";
-import { IoClose } from "react-icons/io5";
+// import { IoClose } from "react-icons/io5";
 import fltr from "../../assets/fltr.png";
+// import down from "../../assets/Down.png";
 
 export default function Filter({ productCount }) {
   const navigate = useNavigate();
@@ -68,6 +69,15 @@ export default function Filter({ productCount }) {
     setActiveFilters(filters);
     setShowBottomSheet(false); // Close mobile filter after applying
   };
+  const handleSortChange = (e) => {
+    const newSortOption = e.target.value;
+    setSortOption(newSortOption);
+  
+    const newParams = new URLSearchParams(location.search);
+    newParams.set("sortOption", newSortOption);
+    navigate(`/products?${newParams.toString()}`);
+  };
+  
 
   // Remove Individual Filters
   const removeFilter = (filterId) => {
@@ -96,16 +106,17 @@ export default function Filter({ productCount }) {
       {/* Desktop Filter */}
       <div className="filterRow">
         <div className="filterGroup">
-          <select
-            className="dropdownButton"
-            value={selectedMaterial}
-            onChange={(e) => setSelectedMaterial(e.target.value)}
-          >
-            <option value="">Select Material</option>
-            <option value="Acacia wood">Acacia wood</option>
-            <option value="Teak wood">Teak wood</option>
-            <option value="Mango wood">Mango wood</option>
-          </select>
+          <div className="custom-dropdown">
+            <select
+              value={selectedMaterial}
+              onChange={(e) => setSelectedMaterial(e.target.value)}
+            >
+              <option value="">Select Material</option>
+              <option value="Acacia wood">Acacia wood</option>
+              <option value="Teak wood">Teak wood</option>
+              <option value="Mango wood">Mango wood</option>
+            </select>
+          </div>
 
           {/* Price Range Filter */}
           <div className="priceRange">
@@ -150,26 +161,29 @@ export default function Filter({ productCount }) {
             />
           </button>
         </div>
-        <div>
-          <select
-            className="dropdownButton1"
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
-          >
-            <option value="Featured">Featured</option>
-            <option value="Best Selling">Best Selling</option>
-            <option value="Alphabetically: A to Z">
-              Alphabetically A to Z
-            </option>
-            <option value="Alphabetically: Z to A">
-              Alphabetically Z to A
-            </option>
-            <option value="Price-low-to-High">Price: Low to High</option>
-            <option value="Price-High-to-Low">Price: High to Low</option>
-            <option value="Date - old to new">Date: Old to New</option>
-            <option value="Date - new to old">Date: New to Old</option>
-          </select>
-        </div>
+        <div className="custom-dropdown1">
+  <select
+    value={sortOption === "Latest" ? "" : sortOption} // Ensure placeholder is shown initially
+    onChange={handleSortChange}
+    className={!sortOption || sortOption === "Latest" ? "placeholder" : ""}
+  >
+    <option value="" disabled hidden>
+      Sort By
+    </option>
+    <option value="Featured">Featured</option>
+    <option value="Best Selling">Best Selling</option>
+    <option value="Alphabetically: A to Z">Alphabetically A to Z</option>
+    <option value="Alphabetically: Z to A">Alphabetically Z to A</option>
+    <option value="Price-low-to-High">Price: Low to High</option>
+    <option value="Price-High-to-Low">Price: High to Low</option>
+    <option value="Date - old to new">Date: Old to New</option>
+    <option value="Date - new to old">Date: New to Old</option>
+  </select>
+</div>
+
+
+
+
       </div>
 
       {activeFilters.length > 0 && (

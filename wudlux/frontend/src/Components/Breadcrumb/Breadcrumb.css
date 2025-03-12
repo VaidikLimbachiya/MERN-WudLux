@@ -1,54 +1,15 @@
 .breadcrumb-container {
-  position: relative; /* Fixes breadcrumb at the top */
-  top: 20px;
-  left:20px;
-  width: 100%;
-  margin-left: -15rem;
-  /* background: white; Ensure visibility */
-  /* z-index: 1000; Keeps it above other elements */
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
-}
-
-.breadcrumb-home img {
-  width: 24px;
-  height: auto;
-  margin-right: 5px;
-}
-
-.breadcrumb-separator {
-  margin: 0 5px;
-  color: #6c757d;
-}
-
-.breadcrumb-link {
-  text-decoration: none;
-  color: #007bff;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-.breadcrumb-link:hover {
-  color: #0056b3;
-}
-
-.breadcrumb-text {
-  color: #6c757d;
-  font-weight: 500;
-}
-
-
-@media (max-width: 320px) {
-  .breadcrumb-container {
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: flex-start; /* Align to left */
-      gap: 3px;
-      padding: 6px 10px;
-      font-size: 12px;
+    position: relative; /* Fixes breadcrumb at the top */
+    top: 20px;
+    right:100px;
+    width: 100%;
+    margin-left: -15rem;
+    /* background: white; Ensure visibility */
+    /* z-index: 1000; Keeps it above other elements */
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
   }
 
   .breadcrumb-home img {

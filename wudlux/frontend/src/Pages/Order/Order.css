@@ -143,73 +143,158 @@
 }
 
 /* Dropdowns Section */
-.filter-dropdown {
-  flex: 1;
-  padding: 10px;
-  font-size: 14px;
+.statusdropdown {
+  position: relative;
+  display: inline-block;
+  width: 178px;
+  height: 40px;
+  margin-left: 240px;
+}
+
+.statusdropdown select {
+  width: 100%;
+  padding: 10px 16px 10px 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  outline: none;
-  /* background: #fafafa; */
+  background: white;
+  appearance: none; /* Hides default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
   cursor: pointer;
-  transition: 0.3s ease;
-  margin: 4px;
-  width: 11rem;
+}
+
+/* Add a custom icon */
+.statusdropdown::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px; /* Adjust to your icon size */
+  height: 16px;
+  background: url("../../assets/Down.svg") no-repeat center;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.datedropdown {
+  position: relative;
+  display: inline-block;
+  width: 178px;
+  height: 40px;
 }
 
 
+.datedropdown select {
+  width: 100%;
+  padding: 10px 16px 10px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  appearance: none; /* Hides default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
 
-/* Responsive Design */
+/* Add a custom icon */
+.datedropdown::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px; /* Adjust to your icon size */
+  height: 16px;
+  background: url("../../assets/Down.svg") no-repeat center;
+  background-size: contain;
+  pointer-events: none;
+}
 
 /* Table Styling */
+.scrollable-table {
+  max-height: 300px; /* Adjust as needed */
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-bottom: 1px solid #ddd; /* Only bottom border */
+}
+
 .order-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
 }
 
-.order-table th,
-.order-table td {
+/* Fix Table Header */
+.order-table thead {
+  position: sticky;
+  top: 0;
+  background: #fff; /* Ensures header remains visible */
+  z-index: 10;
+  border-bottom: 1px solid #0A0A0A; /* Keeps header bottom border */
+}
+
+/* Remove side & top borders from table */
+.order-table th, .order-table td {
   padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #50433c;
-  /* Horizontal border */
-  font-family: "DM Sans", sans-serif;
-}
-
-.order-table thead th {
-  border-bottom: 1px solid #50433c;
-  /* Thicker border for the header row */
-}
-
-/* Remove Vertical Borders */
-.order-table th,
-.order-table td {
+  border-bottom: 1px solid #0A0A0A; /* Keeps row separators */
+  border-top: none;
   border-left: none;
-  /* Remove vertical borders */
+  border-right: none;
 }
+
+/* Remove scrollbars */
+.scrollable-table::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 4px;
+}
+
+.scrollable-table::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+
 
 /* Status Styling */
+/* Default Status Styling */
 .status {
-  padding: 5px 10px;
+  display: inline-block;
+  padding: 5px 12px;
   border-radius: 20px;
-  color: #2657C1;
+  font-weight: bold;
+  text-align: center;
+  min-width: 100px;
 }
 
+/* Processing (Green) */
 .status.processing {
-  background-color: #BFFBD3;
-  color: #2A7B45;
+  background-color: #bffbd3;
+  color: #2a7b45;
 }
 
+/* Delivered (Blue) */
 .status.delivered {
   background-color: #E3ECFF;
-  color: #2657C1;
+  color: #2657c1;
 }
 
+/* Cancelled (Red) */
 .status.cancelled {
-  background-color: #FFD8D8;
-  color: #A72D2D;
+  background-color: #FFD8D8 !important; /* Light Red */
+  color: #A72D2D !important; /* Dark Red */
 }
+
+
+/* Pending (Orange) */
+.status.pending {
+  background-color: #ffe5b4;
+  color: #a36a00;
+}
+
 
 /* View Button Styling */
 .view-button {
