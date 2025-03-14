@@ -434,6 +434,20 @@
 }
 
 @media (max-width: 430px) {
+  .mobile-filter-buttons {
+    display: flex;
+    justify-content: space-between; /* ✅ Space them evenly */
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background: #fff;
+    /* border-top: 1px solid #ddd; */
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    /* z-index: 10; */
+    margin-top: -20px;
+  }
   .filter-button {
     display: flex;
     align-items: center;
@@ -447,4 +461,77 @@
   .filterRow {
     display: none;
   }
+  .sort-button{
+    display: flex;
+    align-items: center;
+    /* padding: 10px 16px; */
+    border: 1px solid #c1b6ae;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+    width: 87px;
+    height: 40px;
+    padding-left: 10px;
+  }
+  .sortIcon{
+    width: 14px;
+    height: 14px;
+    margin-left: 5px;
+  }
+  .activeFiltersBar {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align items to the left */
+    padding: 10px; /* Reduce padding for compact look */
+    gap: 8px; /* Add space between elements */
+    margin-top: 0px;
+}
+
+.activeFiltersList {
+    width: 100%; /* Full width for better spacing */
+    display: flex;
+    flex-wrap: wrap; /* Allow filters to wrap properly */
+    gap: 6px;
+}
+
+.activeFiltersLabel {
+    font-size: 14px; /* Smaller text */
+    font-weight: bold;
+    color: #333;
+    margin-left: 0px;
+}
+
+.filterTag {
+    /* background: #f4f1ef; */
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 16px;
+    font-size: 13px; /* Adjust font size for mobile */
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.filterTag:hover {
+    background: #e0d8d3;
+}
+
+.removeIcon {
+    font-size: 14px;
+    cursor: pointer;
+    color: #7a5f50;
+}
+
+.removeIcon:hover {
+    color: #543a14;
+}
+
+.resultsCount {
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+    padding-top: 5px;
+}
+  
 }

@@ -249,17 +249,24 @@ const Products = () => {
         </div>
       )}
       {products.length > 8 && (
-        <button
-          className="newLaunchViewAll"
-          onClick={() => setShowAll(!showAll)}
-        >
-          {showAll ? "Show Less" : "View All"}
-          
-            {/* <img src={arr} alt="Arrow Icon" /> */}
-            <BsArrowRight className="rightarrow"/>
-          
-        </button>
-      )}
+  <button
+    className="newLaunchViewAll"
+    onClick={() => {
+      setShowAll(!showAll);
+      if (showAll) {
+        // Scrolls to the top of the products section
+        window.scrollTo({
+          top: document.querySelector(".productsSection").offsetTop - 100, // Adjust offset if needed
+          behavior: "smooth"
+        });
+      }
+    }}
+  >
+    {showAll ? "Show Less" : "View All"}
+    <BsArrowRight className="rightarrow"/>
+  </button>
+)}
+
     </div>
   );
 };

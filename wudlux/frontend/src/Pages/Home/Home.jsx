@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from '../../Components/Header/Header';
-import Categories from '../../Components/Categories/Categories';
+import Categories from '../../Components/categories/categories';
 import Products from '../../Components/Products/Products';
 import HotProducts from '../../Components/HotProducts/HotProducts';
 import YouTube from '../../Components/YouTubeSection/YouTube';

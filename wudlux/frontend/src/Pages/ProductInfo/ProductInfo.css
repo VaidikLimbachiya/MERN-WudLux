@@ -3,8 +3,6 @@
   grid-template-columns: 1fr 1fr;
   height: 991px;
   gap: 20px;
-  
-
 }
 
 .product-image-section {
@@ -12,8 +10,6 @@
   flex-direction: column;
   padding-left: 40px;
 }
-
-
 
 .main-image-wrapper {
   position: relative;
@@ -43,13 +39,10 @@
   margin-right: -30px;
 }
 
-
-
 .zoom-button img {
   width: 90px;
   height: 90px;
 }
-
 
 /* Modal General Styling */
 /* Modal General Styling */
@@ -95,7 +88,6 @@
   font-size: 1.5rem;
   cursor: pointer;
 }
-
 
 /* Zoomed Image Section */
 .zoomed-image-container {
@@ -161,8 +153,6 @@
   border-color: #000;
 }
 
-
-
 .main-image {
   width: 90%;
   height: 804px;
@@ -213,9 +203,6 @@
   object-fit: contain;
 }
 
-
-
-
 .nav-button {
   position: absolute;
   top: 50%;
@@ -249,7 +236,6 @@
   width: 50px;
   height: 50px;
 }
-
 
 .thumbnail-container {
   display: flex;
@@ -291,7 +277,7 @@
 .product-title1 {
   font-size: 20px;
   font-weight: bold;
-  color: #50433C;
+  color: #50433c;
   text-align: left;
   position: relative;
   margin: 20px 0;
@@ -305,7 +291,7 @@
   transform: translateX(-370px);
   width: 21%;
   height: 2px;
-  background-color: #50433C; 
+  background-color: #50433c;
 }
 
 .product-title1::before {
@@ -315,7 +301,6 @@
 .product-title1::after {
   bottom: -10px;
 }
-
 
 .product-name {
   font-size: 30px;
@@ -358,7 +343,6 @@
   margin: 20px 0;
 }
 
-
 .quantity-container {
   display: flex;
   align-items: center;
@@ -375,7 +359,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #DDD6D2;
+  border: 1px solid #ddd6d2;
   border-radius: 170px;
   overflow: hidden;
   width: 110px;
@@ -389,8 +373,8 @@
   outline: none;
   width: 30px;
   height: 27px;
-  background-color: #DDD6D2;
-  color: #B6A69D;
+  background-color: #ddd6d2;
+  color: #b6a69d;
   font-size: 18px;
   cursor: pointer;
   display: flex;
@@ -411,8 +395,6 @@
   border: none;
   background-color: transparent;
 }
-
-
 
 .add-to-bag-btn {
   background-color: #000;
@@ -441,11 +423,10 @@
   height: 24px;
 }
 
-
 .buy-now-btn {
   background-color: transparent;
   color: #000;
-  padding: 12px 30px ;
+  padding: 12px 30px;
   border: 1px solid #000;
   border-radius: 50px;
   font-size: 18px;
@@ -479,17 +460,16 @@
 .specifications-title {
   font-size: 20px;
   font-weight: 800;
-  color: #0A0A0A;
+  color: #0a0a0a;
   margin-bottom: 10px;
-  border-bottom: 1px solid #CDC2BC;
+  border-bottom: 1px solid #cdc2bc;
 }
 
 .specs {
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 15px;
 }
-
 
 .side-by-side {
   display: flex;
@@ -509,19 +489,17 @@
   gap: 5px;
 }
 
-
 .spec-label {
   font-size: 16px;
   font-weight: 800;
-  color: #0A0A0A;
+  color: #0a0a0a;
 }
 
 .spec-value {
   font-size: 16px;
   font-weight: 400;
-  color: #0A0A0A;
+  color: #0a0a0a;
 }
-
 
 .spec-row {
   display: flex;
@@ -536,7 +514,6 @@
   flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
-
 .order-summary-amount-payable {
   display: flex;
   justify-content: space-between;
@@ -544,14 +521,14 @@
 
 .size-box {
   padding: 5px 10px;
-  border: 1px solid #50433C;
+  border: 1px solid #50433c;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 400;
 }
 
 .special-offer {
-  background-color: #50433C;
+  background-color: #50433c;
   color: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -568,7 +545,6 @@
 .offer-icon {
   width: 40px;
   height: 40px;
-
 }
 
 .offer-title {
@@ -600,7 +576,7 @@
 .policy-title {
   font-size: 20px;
   font-weight: 800;
-  color: #0A0A0A;
+  color: #0a0a0a;
   margin-bottom: 10px;
 }
 
@@ -631,21 +607,20 @@
 .policy-text {
   font-size: 16px;
   font-weight: 600;
-  color: #0A0A0A;
+  color: #0a0a0a;
   font-family: "Poppins", sans-serif;
 }
 
 .additional-info {
   margin-top: 20px;
   padding-top: 20px;
-  
 }
 
 .additional-title {
   border-bottom: 1px solid #ddd;
   font-size: 20px;
   font-weight: 800;
-  color: #0A0A0A;
+  color: #0a0a0a;
   margin-bottom: 10px;
 }
 
@@ -653,11 +628,10 @@
   font-size: 16px;
   line-height: 22.4px;
   font-weight: 400;
-  color: #0A0A0A;
+  color: #0a0a0a;
   margin-top: 10px;
   font-family: "Poppins", sans-serif;
 }
-
 
 .social-links {
   display: flex;
@@ -666,7 +640,6 @@
   gap: 1px;
   margin-top: 20px;
 }
-
 
 .share-icon .icon {
   object-fit: none;
@@ -677,7 +650,6 @@
   padding: 0px;
   margin-top: -10px;
 }
-
 
 .social-icons {
   display: flex;
@@ -708,14 +680,12 @@
   color: #000;
 }
 
-
 .products-info {
-  margin-top: -20px
+  margin-top: -20px;
 }
 
 /* Extra Small Devices (max-width: 320px) */
 
- 
 @media (max-width: 375px) {
   /* General Container Adjustments */
   .parent-container {
@@ -825,7 +795,7 @@
     gap: 10px; /* Add spacing between buttons */
     flex-wrap: wrap; /* Allow wrapping on small screens */
   }
-  
+
   /* Buttons */
   .add-to-bag-btn,
   .buy-now-btn {
@@ -845,21 +815,21 @@
     padding-top: 20px;
     border-top: none;
   }
-  
+
   .specifications-title {
     font-size: 1.2rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
-    border-bottom: 1px solid #CDC2BC;
+    border-bottom: 1px solid #cdc2bc;
   }
 
   /* Title and Price Section */
   .product-title1 {
     margin-top: 20px;
     font-size: 16px;
-    border-top: 1px solid #CDC2BC;
-    border-bottom: 1px solid #CDC2BC;
+    border-top: 1px solid #cdc2bc;
+    border-bottom: 1px solid #cdc2bc;
     width: 35%; /* Adjust width as needed */
     text-align: left;
     padding: 5px 0;
@@ -905,12 +875,11 @@
   .additional-info {
     margin-top: 20px;
     padding-top: 20px;
-    border-top: none ; /* Ensure border is removed */
+    border-top: none; /* Ensure border is removed */
   }
-  .additional-title{
-    border-bottom: 1px solid #CDC2BC;
+  .additional-title {
+    border-bottom: 1px solid #cdc2bc;
   }
-  
 
   /* Carousel Navigation */
   .carousel-nav {
@@ -934,7 +903,7 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   /* Adjust the icon inside social links */
   .icon {
     width: 60px;
@@ -947,6 +916,7 @@
 
 @media (max-width: 430px) {
   /* General Container Adjustments */
+  
 
   /* Product Name */
   .product-name {
@@ -959,6 +929,7 @@
     grid-template-columns: 1fr;
     gap: 8px;
     margin-left: 16px;
+    height: 1600px;
   }
 
   /* Image Section */
@@ -1050,14 +1021,14 @@
     gap: 10px; /* Add spacing between buttons */
     flex-wrap: wrap; /* Allow wrapping on small screens */
   }
-  
+
   /* Buttons */
   .add-to-bag-btn,
   .buy-now-btn {
     padding: 12px 40px; /* Adjust padding for better spacing */
     font-size: 1rem;
     display: flex;
-    flex:content;
+    flex: content;
     justify-content: center;
     width: 100%; /* Make both buttons equal in size */
     max-width: 200px; /* Limit width on larger screens */
@@ -1068,21 +1039,21 @@
     padding-top: 20px;
     border-top: none;
   }
-  
+
   .specifications-title {
     font-size: 1.2rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 10px;
-    border-bottom: 1px solid #CDC2BC;
+    border-bottom: 1px solid #cdc2bc;
   }
 
   /* Title and Price Section */
   .product-title1 {
     margin-top: 20px;
     font-size: 16px;
-    border-top: 1px solid #CDC2BC;
-    border-bottom: 1px solid #CDC2BC;
+    border-top: 1px solid #cdc2bc;
+    border-bottom: 1px solid #cdc2bc;
     width: 35%; /* Adjust width as needed */
     text-align: left;
     padding: 5px 0;
@@ -1128,12 +1099,11 @@
   .additional-info {
     margin-top: 20px;
     padding-top: 20px;
-    border-top: none ; /* Ensure border is removed */
+    border-top: none; /* Ensure border is removed */
   }
-  .additional-title{
-    border-bottom: 1px solid #CDC2BC;
+  .additional-title {
+    border-bottom: 1px solid #cdc2bc;
   }
-  
 
   /* Carousel Navigation */
   .carousel-nav {
@@ -1146,6 +1116,7 @@
     justify-content: flex-start;
     gap: 1px;
     margin-top: 20px;
+    
   }
 
   /* Social Icons */
@@ -1156,17 +1127,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* margin-bottom: 100px; */
   }
-  
+
   /* Adjust the icon inside social links */
   .icon {
     width: 60px;
     height: 60px;
     margin-left: 0px;
     margin-top: 5px;
-    margin-bottom: -1px;
+    /* margin-bottom: px; */
   }
 }
-
-
- 

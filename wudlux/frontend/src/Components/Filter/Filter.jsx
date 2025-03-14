@@ -7,6 +7,7 @@ import { CiCircleRemove } from "react-icons/ci";
 // import { IoClose } from "react-icons/io5";
 import fltr from "../../assets/fltr.png";
 // import down from "../../assets/Down.png";
+import { GrSort } from "react-icons/gr";
 
 export default function Filter({ productCount }) {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ export default function Filter({ productCount }) {
   const [activeFilters, setActiveFilters] = useState([]);
   const [showBottomSheet, setShowBottomSheet] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [showSortSheet, setShowSortSheet] = useState(false); // ✅ New state for Sort button
 
   // Detect screen size for mobile filter button
   useEffect(() => {
@@ -40,6 +42,13 @@ export default function Filter({ productCount }) {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+  useEffect(() => {
+    if (sortOption) {
+      applyFilters(sortOption); // ✅ Apply sorting instantly
+      setShowSortSheet(false); // ✅ Close the sorting sheet automatically
+    }
+  }, [sortOption]); // ✅ Runs when sortOption changes
+  
 
   // Apply Filters & Update URL
   const applyFilters = () => {
@@ -186,7 +195,29 @@ export default function Filter({ productCount }) {
 
       </div>
 
-      {activeFilters.length > 0 && (
+      
+
+      {/* Mobile Filter Button (Hidden on Desktop) */}
+      {/* Mobile Filter & Sort Buttons (Hidden on Desktop) */}
+{isMobile && (
+  <div className="mobile-filter-buttons">
+    <button
+      className="filter-button"
+      onClick={() => setShowBottomSheet(true)}
+    >
+      <img src={fltr} alt="Filter" className="filter-icon" />
+    </button>
+    
+    <button
+      className="sort-button"
+      onClick={() => setShowSortSheet(true)} // ✅ Open Sort Sheet
+    >
+      Sort By
+      <GrSort className="sortIcon" />
+    </button>
+  </div>
+)}
+{activeFilters.length > 0 && (
         <div className="activeFiltersBar">
           <div className="activeFiltersList">
             <span className="activeFiltersLabel">Active Filters:</span>
@@ -207,15 +238,6 @@ export default function Filter({ productCount }) {
         </div>
       )}
 
-      {/* Mobile Filter Button (Hidden on Desktop) */}
-      {isMobile && (
-        <button
-          className="filter-button"
-          onClick={() => setShowBottomSheet(true)}
-        >
-          <img src={fltr} alt="Filter" className="filter-icon" />
-        </button>
-      )}
 
       {/* Mobile Bottom Sheet */}
       {showBottomSheet && (
@@ -289,104 +311,55 @@ export default function Filter({ productCount }) {
               </div>
             </div>
 
-            <div className="sortByMobile">
-              <span>Sort By</span>
-              <label className="text">
-                <input
-                  className="radiobtn"
-                  type="radio"
-                  name="sort"
-                  value="Featured"
-                  checked={sortOption === "Featured"}
-                  onChange={() => setSortOption("Featured")}
-                />
-                Featured
-              </label>
-              <label>
-                <input
-                  className="radiobtn"
-                  type="radio"
-                  name="sort"
-                  value="Best Selling"
-                  checked={sortOption === "Best Selling"}
-                  onChange={() => setSortOption("Best Selling")}
-                />
-                Best Selling
-              </label>
-              <label>
-                <input
-                  className="radiobtn"
-                  type="radio"
-                  name="sort"
-                  value="Price-low-to-High"
-                  checked={sortOption === "Alphabetically A to Z"}
-                  onChange={() => setSortOption("Alphabetically A to Z")}
-                />
-                Alphabetically A to Z
-              </label>
-              <label>
-                <input
-                  className="radiobtn"
-                  type="radio"
-                  name="sort"
-                  value="Price-low-to-High"
-                  checked={sortOption === "Alphabetically Z to A"}
-                  onChange={() => setSortOption("Alphabetically Z to A")}
-                />
-                Alphabetically Z to A
-              </label>
-              <label>
-                <input
-                  className="radiobtn"
-                  type="radio"
-                  name="sort"
-                  value="Price-High-to-Low"
-                  checked={sortOption === "Price-High-to-Low"}
-                  onChange={() => setSortOption("Price-High-to-Low")}
-                />
-                Price: High to Low
-              </label>
-              <label>
-                <input
-                  className="radiobtn"
-                  type="radio"
-                  name="sort"
-                  value="Price-low-to-High"
-                  checked={sortOption === "Price-low-to-High"}
-                  onChange={() => setSortOption("Price-low-to-High")}
-                />
-                Price: Low to High
-              </label>
-              <label>
-                <input
-                  className="radiobtn"
-                  type="radio"
-                  name="sort"
-                  value="Price-low-to-High"
-                  checked={sortOption === "Date - old to new"}
-                  onChange={() => setSortOption("Date - old to new")}
-                />
-                Date - old to new
-              </label>
-              <label>
-                <input
-                  className="radiobtn"
-                  type="radio"
-                  name="sort"
-                  value="Price-low-to-High"
-                  checked={sortOption === "Date - new to old"}
-                  onChange={() => setSortOption("Date - new to old")}
-                />
-                Date - new to old
-              </label>
-            </div>
-
             <button className="applyButtonMobile" onClick={applyFilters}>
               Apply
             </button>
           </div>
         </div>
       )}
+      {/* Sort Bottom Sheet */}
+      {showSortSheet && (
+  <div className="bottomSheet open">
+    <div className="bottomSheetHeader">
+      <img
+        src={rct}
+        onClick={() => setShowSortSheet(false)} // ✅ Close Sort Sheet
+        className="closeIcon"
+      />
+    </div>
+
+    <div className="sortByMobile">
+      <h2>Sort By</h2>
+
+      {[
+        "Featured",
+        "Best Selling",
+        "Price-low-to-High",
+        "Price-High-to-Low",
+        "Date - old to new",
+        "Date - new to old"
+      ].map((option) => (
+        <label key={option}>
+          <input
+            className="radiobtn"
+            type="radio"
+            name="sort"
+            value={option}
+            checked={sortOption === option}
+            onChange={() => {
+              setSortOption(option); // ✅ Set the sort option
+              applyFilters(); // ✅ Apply the filter
+              setShowSortSheet(false); // ✅ Close the bottom sheet
+            }}
+          />
+          {option.replace("-", " ")} {/* Format text properly */}
+        </label>
+      ))}
+    </div>
+  </div>
+)}
+
+
     </div>
   );
 }
