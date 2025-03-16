@@ -7,7 +7,7 @@ import next from "../../assets/next.png";
 import bag from "../../assets/wbag.png";
 import arr from "../../assets/arr.png";
 import offer from "../../assets/offer.png";
-import check from "../../assets/check.png";
+import check from "../../assets/Check.png";
 import delivery from "../../assets/delivery.png";
 import cancellation from "../../assets/cancle.png";
 import warranty from "../../assets/warranty.png";
