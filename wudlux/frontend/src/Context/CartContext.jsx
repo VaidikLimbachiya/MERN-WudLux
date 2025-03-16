@@ -53,7 +53,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/cart?userId=${user.id}`,
+        `https://mern-wudlux-1-lss8.onrender.com/api/cart?userId=${user.id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -123,7 +123,7 @@ export const CartProvider = ({ children }) => {
       }
 
       // Handle Logged-in User Cart
-      const response = await fetch("http://localhost:5000/api/cart/add", {
+      const response = await fetch("https://mern-wudlux-1-lss8.onrender.com/api/cart/add", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -180,7 +180,7 @@ export const CartProvider = ({ children }) => {
     // Logged-in user update
     try {
         const newQuantity = Math.max(1, existingItem.quantity + delta);
-        const response = await fetch("http://localhost:5000/api/cart/update", {
+        const response = await fetch("https://mern-wudlux-1-lss8.onrender.com/api/cart/update", {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -219,7 +219,7 @@ export const CartProvider = ({ children }) => {
 
     // Handle Logged-in User Cart Removal
     try {
-      const response = await fetch("http://localhost:5000/api/cart/remove", {
+      const response = await fetch("https://mern-wudlux-1-lss8.onrender.com/api/cart/remove", {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -254,7 +254,7 @@ export const CartProvider = ({ children }) => {
 
     // Clear Logged-in User Cart
     try {
-      const response = await fetch("http://localhost:5000/api/cart/clear", {
+      const response = await fetch("https://mern-wudlux-1-lss8.onrender.com/api/cart/clear", {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

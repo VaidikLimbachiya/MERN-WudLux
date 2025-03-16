@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import "./Order.css";
 import Search from "../../assets/Search 2.png";
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://mern-wudlux-1-lss8.onrender.com";
 const socket = io(API_BASE_URL); // Initialize Socket.IO connection
 
 const OrderHistory = () => {

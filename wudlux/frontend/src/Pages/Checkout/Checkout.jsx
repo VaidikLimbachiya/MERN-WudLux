@@ -9,7 +9,7 @@ import logo from "../../assets/logo.svg";
 import { BsArrowRight } from "react-icons/bs";
 import { BsArrowLeft } from "react-icons/bs";
 
-const API_BASE_URL = "http://localhost:5000"; // Backend API base URL
+const API_BASE_URL = "https://mern-wudlux-1-lss8.onrender.com"; // Backend API base URL
 
 const Checkout = () => {
   const { cartItems = [], clearCart } = useCartContext();
@@ -459,7 +459,7 @@ const Checkout = () => {
                   crossOrigin="anonymous"
                   src={
                     item.images
-                      ? `http://localhost:5000/uploads/${item.images}`
+                      ? `https://mern-wudlux-1-lss8.onrender.com/uploads/${item.images}`
                       : "placeholder.png"
                   }
                   alt={item.title || "Product Image"}

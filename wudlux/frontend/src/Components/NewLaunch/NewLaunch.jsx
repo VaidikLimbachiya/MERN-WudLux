@@ -14,7 +14,7 @@ const NewLaunch = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/products/list/");
+        const response = await fetch("https://mern-wudlux-1-lss8.onrender.com/api/products/list/");
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -69,7 +69,7 @@ const NewLaunch = () => {
                   <img
                     className="newLaunchImage"
                     crossOrigin="anonymous"
-                    src={`http://localhost:5000/uploads/${
+                    src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${
                       Array.isArray(product.images) ? product.images[0] : product.images
                     }`}
                     alt={product.title}

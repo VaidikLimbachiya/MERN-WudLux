@@ -54,7 +54,7 @@ const CartPage = () => {
                     crossOrigin="anonymous"
                     src={
                       item.images
-                        ? `http://localhost:5000/uploads/${item.images}`
+                        ? `https://mern-wudlux-1-lss8.onrender.com/uploads/${item.images}`
                         : "placeholder.png"
                     }
                     alt={item.name || "Product image"}
@@ -131,7 +131,7 @@ const CartPage = () => {
                         crossOrigin="anonymous"
                         src={
                           item.images
-                            ? `http://localhost:5000/uploads/${item.images}`
+                            ? `https://mern-wudlux-1-lss8.onrender.com/uploads/${item.images}`
                             : "placeholder.png"
                         }
                         alt={item.name || "Product image"}
