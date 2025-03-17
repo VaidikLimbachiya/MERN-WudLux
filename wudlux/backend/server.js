@@ -172,23 +172,22 @@ app.use((err, req, res, next) => {
 // ✅ Start Server with Optimized Socket.IO
 server.listen(process.env.PORT || 5000, () => {
   console.log(`🚀 Server running on port ${process.env.PORT || 5000}`);
+});
+const io = new Server(server, {
+  cors: {
+    origin: [
+      "https://mern-wud-jw11doolu-vaidik-limbachiyas-projects.vercel.app",
+      "http://localhost:5173",
+      "http://localhost:5174"
+    ],
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});  
 
-  const io = new Server(server, {
-    cors: {
-      origin: [
-        "https://mern-wud-jw11doolu-vaidik-limbachiyas-projects.vercel.app/",
-        "http://localhost:5173",
-        "http://localhost:5174"
-      ],
-      methods: ["GET", "POST"],
-      credentials: true
-    }
-  });  
-  
-  io.on("connection", (socket) => {
-    console.log("🔵 User connected:", socket.id);
-    socket.on("disconnect", () =>
-      console.log("❌ User disconnected:", socket.id)
-    );
-  });
+io.on("connection", (socket) => {
+  console.log("🔵 User connected:", socket.id);
+  socket.on("disconnect", () =>
+    console.log("❌ User disconnected:", socket.id)
+  );
 });
