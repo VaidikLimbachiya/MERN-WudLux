@@ -48,7 +48,7 @@ if (process.env.NODE_ENV === "development") {
 
 // ✅ Optimized CORS Configuration
 const corsOptions = {
-  origin: ["https://mern-wud-jw11doolu-vaidik-limbachiyas-projects.vercel.app/", "http://localhost:5174"],
+  origin: ["https://mern-wud-lux-vaidik-limbachiyas-projects.vercel.app", "http://localhost:5174"],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization","Access-Control-Allow-Origin"],
   credentials: true,
@@ -176,7 +176,7 @@ server.listen(process.env.PORT || 5000, () => {
 const io = new Server(server, {
   cors: {
     origin: [
-      "https://mern-wud-jw11doolu-vaidik-limbachiyas-projects.vercel.app",
+      "https://mern-wud-lux-vaidik-limbachiyas-projects.vercel.app",
       "http://localhost:5173",
       "http://localhost:5174"
     ],
