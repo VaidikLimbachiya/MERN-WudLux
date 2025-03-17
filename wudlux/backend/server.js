@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === "development") {
 const corsOptions = {
   origin: ["https://mern-wud-jw11doolu-vaidik-limbachiyas-projects.vercel.app/", "http://localhost:5174"],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization","Access-Control-Allow-Origin"],
   credentials: true,
 };
 app.use(cors(corsOptions));
