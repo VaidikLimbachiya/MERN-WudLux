@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Address.css";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
-const API_BASE_URL = "http://localhost:5000/addresses";
+const API_BASE_URL = "https://mern-wudlux-1-lss8.onrender.com/addresses";
 
 const AddressList = () => {
   const [user, setUser] = useState(null);

@@ -11,7 +11,7 @@ const ProductCarousel = () => {
   // Fetch products dynamically from backend
   async function fetchProducts() {
     try {
-      const response = await fetch("http://localhost:5000/api/products/list");
+      const response = await fetch("https://mern-wudlux-1-lss8.onrender.com/api/products/list");
 
       if (!response.ok) {
         console.error("HTTP error:", response.status, response.statusText);
@@ -99,7 +99,7 @@ const ProductCarousel = () => {
               <img
                 crossOrigin="anonymous"
                 loading="lazy"
-                src={`http://localhost:5000/uploads/${
+                src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${
                   product.images ? product.images : product1
                 }`}
                 alt={product.title}

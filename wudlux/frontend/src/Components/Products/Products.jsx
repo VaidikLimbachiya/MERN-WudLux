@@ -36,7 +36,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/products/list/");
+        const response = await fetch("https://mern-wudlux-1-lss8.onrender.com/api/products/list/");
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -100,7 +100,7 @@ const Products = () => {
                     <img
                       className="productImage"
                       crossOrigin="anonymous"
-                      src={`http://localhost:5000/uploads/${
+                      src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${
                         Array.isArray(product.images)
                           ? product.images[0]
                           : product.images
@@ -193,7 +193,7 @@ const Products = () => {
                     <img
                       className="productImage"
                       crossOrigin="anonymous"
-                      src={`http://localhost:5000/uploads/${
+                      src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${
                         Array.isArray(product.images)
                           ? product.images[0]
                           : product.images
@@ -249,17 +249,24 @@ const Products = () => {
         </div>
       )}
       {products.length > 8 && (
-        <button
-          className="newLaunchViewAll"
-          onClick={() => setShowAll(!showAll)}
-        >
-          {showAll ? "Show Less" : "View All"}
-          
-            {/* <img src={arr} alt="Arrow Icon" /> */}
-            <BsArrowRight className="rightarrow"/>
-          
-        </button>
-      )}
+  <button
+    className="newLaunchViewAll"
+    onClick={() => {
+      setShowAll(!showAll);
+      if (showAll) {
+        // Scrolls to the top of the products section
+        window.scrollTo({
+          top: document.querySelector(".productsSection").offsetTop - 100, // Adjust offset if needed
+          behavior: "smooth"
+        });
+      }
+    }}
+  >
+    {showAll ? "Show Less" : "View All"}
+    <BsArrowRight className="rightarrow"/>
+  </button>
+)}
+
     </div>
   );
 };

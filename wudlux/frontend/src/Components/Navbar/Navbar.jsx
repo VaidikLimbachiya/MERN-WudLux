@@ -418,10 +418,13 @@ const Navbar = () => {
             <div className="navCategories">
               {categories.map((category) => (
                 <div
+                onMouseEnter={() => setActiveCategory(category.text)}
+                onMouseLeave={() => setTimeout(() => setActiveCategory(null), 300)}
                   key={category.text} // Use a unique property for the key
                   className={`categoryWrapper ${
                     activeCategory === category.text ? "active" : ""
-                  }`}
+                  }`
+                }
                 >
                   <div
                     onClick={() => handleCategoryClick(category.text)}
@@ -554,7 +557,7 @@ const Navbar = () => {
                     loading="lazy"
                     src={
                       item.images
-                        ? `http://localhost:5000/uploads/${item.images}`
+                        ? `https://mern-wudlux-1-lss8.onrender.com/uploads/${item.images}`
                         : "path/to/placeholder-image.png"
                     }
                     alt={item.title || "Product Image"}

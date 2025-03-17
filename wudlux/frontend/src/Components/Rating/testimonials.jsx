@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import "./Testimonials.css";
+import "./testimonials.css";
 import person1 from "../../assets/person1.svg";
 import person2 from "../../assets/person2.svg";
 import person3 from "../../assets/person3.svg";
 import person4 from "../../assets/person4.svg";
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
-import starFilled from "../../assets/starfilled.svg";
+import starFilled from "../../assets/Starfilled.svg";
 import starEmpty from "../../assets/star.svg";
 
 const Testimonials = () => {

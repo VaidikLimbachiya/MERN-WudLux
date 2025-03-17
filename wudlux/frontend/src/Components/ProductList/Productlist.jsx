@@ -28,7 +28,7 @@ const Productlist = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        let url = "http://localhost:5000/api/products/listByCategory";
+        let url = "https://mern-wudlux-1-lss8.onrender.com/api/products/listByCategory";
         const params = [];
   
         if (category) params.push(`category=${category}`);
@@ -138,7 +138,7 @@ const Productlist = () => {
                     className="shop-product-list-image"
                     crossOrigin="anonymous"
                     loading="lazy"
-                    src={`http://localhost:5000/uploads/${
+                    src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${
                       Array.isArray(product.images)
                         ? product.images[0]
                         : product.images

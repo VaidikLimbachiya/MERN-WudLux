@@ -69,7 +69,7 @@ const Register = () => {
 
     try {
       await registrationSchema.validate(structuredData, { abortEarly: false });
-      await apiCall("http://localhost:5000/api/auth/register", "POST", structuredData);
+      await apiCall("https://mern-wudlux-1-lss8.onrender.com/api/auth/register", "POST", structuredData);
       toast.success("Registration successful");
       navigate("/log-in");
     } catch (error) {

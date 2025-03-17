@@ -22,7 +22,7 @@ import {
       const fetchData = async () => {
         try {
           setLoading(true);
-          const response = await fetch("http://localhost:5000/api/products/list");
+          const response = await fetch("https://mern-wudlux-1-lss8.onrender.com/api/products/list");
           const result = await response.json();
   
           console.log("API Response:", result);

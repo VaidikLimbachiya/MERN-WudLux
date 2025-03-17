@@ -20,7 +20,7 @@ const Footer = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/subscribe", { email });
+      const response = await axios.post("https://mern-wudlux-1-lss8.onrender.com/subscribe", { email });
       toast.success(response.data.message, { position: "top-right" });
       setEmail(""); // Clear input after successful subscription
     } catch {

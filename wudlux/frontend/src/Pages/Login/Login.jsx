@@ -24,7 +24,7 @@ const LoginPage = () => {
     setLoading(true);
   
     try {
-      const result = await apiCall("http://localhost:5000/api/auth/login", "POST", { email, password });
+      const result = await apiCall("https://mern-wudlux-1-lss8.onrender.com/api/auth/login", "POST", { email, password });
 
       toast.success("Login successful");
 
@@ -55,7 +55,7 @@ const LoginPage = () => {
         throw new Error("No refresh token found");
       }
 
-      const response = await fetch("http://localhost:5000/api/users/refresh-token", {
+      const response = await fetch("https://mern-wudlux-1-lss8.onrender.com/api/users/refresh-token", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ refreshToken: storedRefreshToken }),

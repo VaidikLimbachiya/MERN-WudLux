@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
       console.log("Merging guest cart into backend cart...");
   
       for (const item of guestCart) {
-        await fetch("http://localhost:5000/api/cart/add", {
+        await fetch("https://mern-wudlux-1-lss8.onrender.com/api/cart/add", {
           method: "POST",
           headers: {
             Authorization: `Bearer ${accessToken}`,

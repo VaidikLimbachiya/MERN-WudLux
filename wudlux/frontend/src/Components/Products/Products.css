@@ -280,6 +280,7 @@
     position: relative;
     padding-bottom: 20px;
     margin-right: 10px;
+    
   }
   .sliderButtons {
     display: flex;
@@ -355,6 +356,9 @@
   .productDetails {
     padding: 10px;
     margin-right: 10%;
+  }
+  .newLaunchViewAll {
+    display: none; /* Hide on mobile screens */
   }
 }
 @media (max-width: 375px) {
@@ -433,5 +437,8 @@
   .productDetails {
     padding: 10px;
     margin-right: 10%;
+  }
+  .newLaunchViewAll {
+    display: none; /* Hide on mobile screens */
   }
 }

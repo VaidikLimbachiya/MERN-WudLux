@@ -7,7 +7,7 @@ import next from "../../assets/next.png";
 import bag from "../../assets/wbag.png";
 import arr from "../../assets/arr.png";
 import offer from "../../assets/offer.png";
-import check from "../../assets/check.png";
+import check from "../../assets/Check.png";
 import delivery from "../../assets/delivery.png";
 import cancellation from "../../assets/cancle.png";
 import warranty from "../../assets/warranty.png";
@@ -69,13 +69,13 @@ const ProductPage = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/products/list/${id}`
+          `https://mern-wudlux-1-lss8.onrender.com/api/products/list/${id}`
         );
         const fetchedProduct = response.data.product;
         setProduct(fetchedProduct); // Set product data to state
         if (fetchedProduct && fetchedProduct.variantImages.length > 0) {
           setMainImage(
-            `http://localhost:5000/uploads/${fetchedProduct.variantImages[0]}`
+            `https://mern-wudlux-1-lss8.onrender.com/uploads/${fetchedProduct.variantImages[0]}`
           ); // Set the default main image
         }
       } catch (error) {
@@ -91,7 +91,7 @@ const ProductPage = () => {
       prevIndex === 0 ? product.variantImages.length - 1 : prevIndex - 1
     );
     setMainImage(
-      `http://localhost:5000/uploads/${
+      `https://mern-wudlux-1-lss8.onrender.com/uploads/${
         product.variantImages[
           currentImage === 0
             ? product.variantImages.length - 1
@@ -107,7 +107,7 @@ const ProductPage = () => {
       prevIndex === product.variantImages.length - 1 ? 0 : prevIndex + 1
     );
     setMainImage(
-      `http://localhost:5000/uploads/${
+      `https://mern-wudlux-1-lss8.onrender.com/uploads/${
         product.variantImages[
           currentImage === product.variantImages.length - 1
             ? 0
@@ -121,7 +121,7 @@ const ProductPage = () => {
   const handleThumbnailClick = (index) => {
     setCurrentImage(index); // Update the currentImage state with the clicked thumbnail index
     setMainImage(
-      `http://localhost:5000/uploads/${product.variantImages[index]}`
+      `https://mern-wudlux-1-lss8.onrender.com/uploads/${product.variantImages[index]}`
     );
   };
 
@@ -198,7 +198,7 @@ const ProductPage = () => {
               <img
                 crossOrigin="anonymous"
                 key={idx}
-                src={`http://localhost:5000/uploads/${img}`} // Thumbnail image URL
+                src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${img}`} // Thumbnail image URL
                 alt={`Thumbnail ${idx + 1}`}
                 className={`thumbnail-image ${
                   idx === currentImage ? "active-thumbnail" : ""
@@ -409,7 +409,7 @@ const ProductPage = () => {
               <img
                 crossOrigin="anonymous"
                 id="zoomed-image"
-                src={`http://localhost:5000/uploads/${product.variantImages[currentImage]}`}
+                src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${product.variantImages[currentImage]}`}
                 alt="Zoomed product view"
                 className="full-image"
                 loading="lazy"
@@ -433,7 +433,7 @@ const ProductPage = () => {
                   <img
                     crossOrigin="anonymous"
                     key={idx}
-                    src={`http://localhost:5000/uploads/${img}`} // Fallback for missing thumbnails
+                    src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${img}`} // Fallback for missing thumbnails
                     alt={`Thumbnail ${idx + 1}`}
                     className={`thumbnail-image ${
                       idx === currentImage ? "active-thumbnail" : ""

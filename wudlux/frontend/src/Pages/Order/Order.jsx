@@ -9,8 +9,7 @@ import { Link } from "react-router-dom";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 import "./Order.css";
 import Search from "../../assets/Search 2.png";
-const API_BASE_URL = "http://localhost:5000";
-const socket = io(API_BASE_URL); // Initialize Socket.IO connection
+const API_BASE_URL = "https://mern-wudlux-1-lss8.onrender.com";
 
 const OrderHistory = () => {
   const { user } = useContext(AuthContext);
@@ -19,11 +18,12 @@ const OrderHistory = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [filterStatus, setFilterStatus] = useState(""); // Status Filter
-  const [sortOption, setSortOption] = useState("date-desc"); // Sorting
-  const [itemsPerPage, setItemsPerPage] = useState(20); // Default: Show 20
-
+  const [filterStatus, setFilterStatus] = useState("");
+  const [sortOption, setSortOption] = useState("date-desc");
+  const [itemsPerPage, setItemsPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
+  const [socketConnected, setSocketConnected] = useState(false);
+
   const ordersPerPage = 5;
 
   useEffect(() => {
@@ -39,7 +39,6 @@ const OrderHistory = () => {
         setLoading(true);
         setOrders([]);
         setFilteredOrders([]);
-
         const token = localStorage.getItem("accessToken");
         if (!token) {
           setError("Unauthorized! Please log in.");
@@ -49,13 +48,8 @@ const OrderHistory = () => {
 
         const response = await axios.get(
           `${API_BASE_URL}/api/orders/user/${user.id}?timestamp=${Date.now()}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
+          { headers: { Authorization: `Bearer ${token}` } }
         );
-
-        console.log("User Orders:", response.data.orders);
-        console.log("Order Status for Order ID:", orders.orderId, "is:", orders.orderStatus);
 
         setOrders(response.data.orders);
         setFilteredOrders(response.data.orders);
@@ -70,8 +64,17 @@ const OrderHistory = () => {
 
     fetchOrders();
 
-    // Listen for real-time updates from the server
-    socket.on("orderUpdated", ({ orderId, status }) => {
+    // 🟢 Setup socket connection
+    const socketInstance = io(API_BASE_URL, {
+      transports: ["websocket"],
+      withCredentials: true,
+    });
+
+    // Handle real-time updates
+    socketInstance.on("connect", () => setSocketConnected(true));
+    socketInstance.on("disconnect", () => setSocketConnected(false));
+
+    socketInstance.on("orderUpdated", ({ orderId, status }) => {
       console.log(`Order ${orderId} updated to status: ${status}`);
       setOrders((prevOrders) =>
         prevOrders.map((order) =>
@@ -81,7 +84,7 @@ const OrderHistory = () => {
     });
 
     return () => {
-      socket.disconnect(); // Disconnect socket when the component unmounts
+      socketInstance.disconnect();
     };
   }, [user]);
 
@@ -89,15 +92,14 @@ const OrderHistory = () => {
   useEffect(() => {
     let updatedOrders = [...orders];
 
-    // ✅ Apply Search Filter Safely
     if (searchQuery) {
       updatedOrders = updatedOrders.filter(
         (order) =>
           order.orderId.toLowerCase().includes(searchQuery.toLowerCase()) ||
           order.items.some(
             (item) =>
-              item.productId && // ✅ Ensure productId exists
-              item.productId.title && // ✅ Ensure title exists
+              item.productId &&
+              item.productId.title &&
               item.productId.title
                 .toLowerCase()
                 .includes(searchQuery.toLowerCase())
@@ -105,30 +107,29 @@ const OrderHistory = () => {
       );
     }
 
-    // ✅ Apply Status Filter
     if (filterStatus) {
       updatedOrders = updatedOrders.filter(
         (order) => order.orderStatus === filterStatus
       );
     }
 
-    // ✅ Apply Sorting
     if (sortOption === "date-desc") {
       updatedOrders.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      ); // Newest First
+      );
     } else if (sortOption === "date-asc") {
       updatedOrders.sort(
         (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-      ); // Oldest First
+      );
     } else if (sortOption === "amount-desc") {
-      updatedOrders.sort((a, b) => b.totalAmount - a.totalAmount); // High to Low
+      updatedOrders.sort((a, b) => b.totalAmount - a.totalAmount);
     } else if (sortOption === "amount-asc") {
-      updatedOrders.sort((a, b) => a.totalAmount - b.totalAmount); // Low to High
+      updatedOrders.sort((a, b) => a.totalAmount - b.totalAmount);
     }
 
     setFilteredOrders(updatedOrders);
   }, [searchQuery, filterStatus, sortOption, orders]);
+
   const totalPages =
     itemsPerPage === "all"
       ? 1
@@ -140,11 +141,10 @@ const OrderHistory = () => {
     startIndex,
     startIndex + (itemsPerPage === "all" ? filteredOrders.length : itemsPerPage)
   );
-  useEffect(() => {
-    setCurrentPage(1); // Reset to first page on items per page change
-  }, [itemsPerPage]);
-  
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [itemsPerPage]);
   return (
     <>
       <Breadcrumb />

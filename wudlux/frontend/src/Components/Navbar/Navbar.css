@@ -103,11 +103,15 @@ a {
   font-weight: 600;
 }
 
-.categoryWrapper:hover .dropdownMenu {
+.categoryWrapper:hover {
   visibility: visible;
   opacity: 1;
   /* background-color: #; */
 }
+ .dropdownMenu{
+  visibility: visible;
+  opacity: 1;
+ }
 
 a {
   text-decoration: none;

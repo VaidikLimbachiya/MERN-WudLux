@@ -7,7 +7,7 @@ import shiping from "../../assets/shiping.png";
 // import mastercard from "../../assets/mastercard.png";
 import print from "../../assets/print.png";
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://mern-wudlux-1-lss8.onrender.com";
 
 const OrderSummary = () => {
   const { orderId } = useParams();
@@ -129,7 +129,7 @@ const OrderSummary = () => {
                     <img
                       crossOrigin="anonymous"
                       src={item.productId?.images?.[0]
-                        ? `http://localhost:5000/uploads/${item.productId.images[0]}`
+                        ? `https://mern-wudlux-1-lss8.onrender.com/uploads/${item.productId.images[0]}`
                         : "placeholder.png"}
                       alt={item.productId?.title || "Unknown Product"}
                       className="product-image"
