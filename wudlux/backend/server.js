@@ -168,9 +168,14 @@ server.listen(process.env.PORT || 5000, () => {
 
   const io = new Server(server, {
     cors: {
-      origin: ["http://localhost:5173", "http://localhost:5174"],
+      origin: [
+        "https://mern-wud-lux-vaidik-limbachiyas-projects.vercel.app",
+        "http://localhost:5173",
+        "http://localhost:5174"
+      ],
       methods: ["GET", "POST"],
-    },
+      credentials: true
+    }
   });
 
   io.on("connection", (socket) => {
