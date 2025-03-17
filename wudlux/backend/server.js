@@ -177,10 +177,7 @@ server.listen(process.env.PORT || 5000, () => {
       credentials: true
     }
   });  
-  const socket = io("https://mern-wudlux-1-lss8.onrender.com", {
-    transports: ["websocket"],
-    withCredentials: true,
-  });  
+  
   io.on("connection", (socket) => {
     console.log("🔵 User connected:", socket.id);
     socket.on("disconnect", () =>
