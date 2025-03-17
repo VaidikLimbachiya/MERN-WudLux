@@ -566,6 +566,7 @@
     width: 100%; /* Full width input and button */
     padding: 6px; /* Adjust padding */
     margin: 5px 0; /* Adjust margins */
+    height: 53px;
   }
 
   .social-icons {
@@ -610,8 +611,8 @@
   .newsletter-input button {
     width: 100%; /* Full width input and button */
     padding: 6px; /* Adjust padding */
-    margin: 5px -40px;
-    margin-left: -9px; /* Adjust margins */
+    margin: 5px 0; /* Adjust margins */
+    height: 53px;
   }
 
   .social-icons {

@@ -4,6 +4,7 @@
   padding: 20px;
   width: 100%;
   overflow: hidden;
+  padding-top: 70px;
 }
 
 /* Heading Section */
@@ -30,6 +31,7 @@
   background-color: #B6A69D;
   /* Gold-like color */
   margin: 5px auto;
+  
   /* Center the underline */
 }
 

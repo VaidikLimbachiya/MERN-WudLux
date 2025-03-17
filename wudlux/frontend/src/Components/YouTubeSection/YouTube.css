@@ -21,7 +21,7 @@
 }
 
 .section-title1 {
-  font-family: "Playfair Display", serif;
+  font-family: 'Playfair Display', serif;
   font-size: 36px;
   /* Adjusts dynamically */
   font-weight: bold;
@@ -174,7 +174,7 @@
     /* position:relative; */
     width: 100px;
     height: 80.38px;
-    margin-left: -35px;
+    margin-left: -5px;
   }
 }
 

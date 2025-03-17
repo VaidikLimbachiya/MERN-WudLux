@@ -4,6 +4,8 @@
     width: 100%;
     margin-bottom: 50px;
     margin-top: 50px;
+    margin-left: 100px;
+    
   }
   
   /* Header Styles */
@@ -11,7 +13,7 @@
     margin-bottom: 10px;
   }
   .newLaunchTitle{
-    font-family: "Playfair Display", serif;
+    font-family:'Playfair Display', serif;
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -19,6 +21,14 @@
     position: relative;
     text-align: center;
   }
+  .productsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+    padding-left: 50px;
+    margin: 20px auto;
+    width: 1450px;
+}
   .newLaunchSubtitle {
     font-family: "DM Sans", sans-serif;
     font-size: 12px;
@@ -26,6 +36,16 @@
     /* color: #666; */
     margin-top: 4px;
   }
+  
+  .newLaunchTitleUnderline{
+    margin: 10px auto 0;
+  width: 80px; /* Adjust the underline width */
+  height: 3px; /* Thickness of the underline */
+  background-color: #B6A69D; /* Gold color for the underline */
+  border-radius: 2px; /* Rounded corners for a polished look */
+  margin-top: 2px;
+  }
+
   
   /* Product Grid */
   .newLaunchGrid {
@@ -178,6 +198,13 @@
   }
   /* Responsive for 430px */
 @media (max-width: 430px) {
+    .newLaunchSection {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 50px;
+      margin-top: 50px;
+      /* margin-left: 0px; */
+    }
   .newLaunchGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -193,9 +220,19 @@
   }
 
   .newLaunchSubtitle {
-    font-size: 16px;
+    /* font-size: 16px; */
+    width: 370px;
+        height: 23px;
+        color: #0A0A0A;
+        font-size: 16px;
+        margin-top: 10px;
+        font-weight: 400;
+        align-items: center;
+        margin-left: 5px;
+        justify-content: center;
   }
 
+  
   .newLaunchViewAll {
     padding: 10px 20px;
     font-size: 15px;
@@ -203,6 +240,7 @@
 
   .newLaunchProductTitle {
     font-size: 14px;
+    
   }
 
   .newLaunchProductDesc {
@@ -225,7 +263,7 @@
 }
 
 /* Responsive for 375px */
-@media (max-width: 375px) {
+@media (max-width: 376px) {
   .newLaunchGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
