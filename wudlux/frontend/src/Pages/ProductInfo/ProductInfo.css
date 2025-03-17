@@ -935,11 +935,13 @@
   /* Image Section */
   .product-image-section {
     padding-left: 0;
+    width: 400px;
+    height: 400px;
   }
 
   .main-image {
-    height: 280px;
-    width: 96%;
+    height: 400px;
+    width: 400px;
     object-fit: fill;
     margin: 5px;
   }
@@ -967,11 +969,11 @@
   }
 
   .nav-button.prev {
-    left: 20px;
+    left: -35px;
   }
 
   .nav-button.next {
-    right: 20px;
+    right: 35px;
   }
 
   /* Zoom Button */
@@ -979,8 +981,8 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 
   .zoom-button img {

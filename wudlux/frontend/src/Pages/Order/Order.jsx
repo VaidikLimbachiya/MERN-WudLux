@@ -159,46 +159,52 @@ const OrderHistory = () => {
           </div>
 
           <div className="filters">
-            <div className="search-container">
-              <input
-                type="text"
-                className="search-input"
-                placeholder="Search by Order ID"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <img src={Search} alt="Search Icon" className="search-icon" />
-            </div>
-            <div className="statusdropdown">
-              <select
-                className="filter-dropdown"
-                value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value)}
-              >
-                <option value="">Status</option>
-                <option value="Pending">Pending</option>
-                <option value="Processing">Processing</option>
-                <option value="Delivered">Delivered</option>
-                <option value="Cancelled">Cancelled</option>
-              </select>
-            </div>
-            <div className="datedropdown">
-              <select
-                className="filter-dropdown"
-                value={itemsPerPage}
-                onChange={(e) =>
-                  setItemsPerPage(
-                    e.target.value === "all" ? "all" : Number(e.target.value)
-                  )
-                }
-              >
-                <option value="20">Show 20</option>
-                <option value="50">Show 50</option>
-                <option value="100">Show 100</option>
-                <option value="all">Show All</option>
-              </select>
-            </div>
-          </div>
+  <div className="search-container">
+    <input
+      type="text"
+      className="search-input"
+      placeholder="Search by Order ID"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+    />
+    <img src={Search} alt="Search Icon" className="search-icon" />
+  </div>
+
+  {/* New horizontal row for dropdowns */}
+  <div className="dropdowns-row">
+    <div className="statusdropdown">
+      <select
+        className="filter-dropdown"
+        value={filterStatus}
+        onChange={(e) => setFilterStatus(e.target.value)}
+      >
+        <option value="">Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Processing">Processing</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+    </div>
+
+    <div className="datedropdown">
+      <select
+        className="filter-dropdown"
+        value={itemsPerPage}
+        onChange={(e) =>
+          setItemsPerPage(
+            e.target.value === "all" ? "all" : Number(e.target.value)
+          )
+        }
+      >
+        <option value="20">Show 20</option>
+        <option value="50">Show 50</option>
+        <option value="100">Show 100</option>
+        <option value="all">Show All</option>
+      </select>
+    </div>
+  </div>
+</div>
+
 
           {/* Order Table */}
           <div className="order-slider-wrapper">
