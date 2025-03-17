@@ -99,7 +99,7 @@ const ProductCarousel = () => {
               <img
                 crossOrigin="anonymous"
                 loading="lazy"
-                src={`http://localhost:5000/uploads/${
+                src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${
                   product.images ? product.images : product1
                 }`}
                 alt={product.title}
