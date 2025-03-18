@@ -9,9 +9,7 @@ const Orders = ({ url }) => {
 
   const fetchAllOrders = useCallback(async () => {
     try {
-      const response = await axios.get(`${url}/api/orders/list`);
-      console.log("Fetched Orders:", response.data); // Debugging
-
+      const response = await axios.get(`${url}/api/orders/list?page=1&limit=50`);
       if (response.data.success && Array.isArray(response.data.orders)) {
         setOrders(response.data.orders);
       } else {
@@ -20,21 +18,24 @@ const Orders = ({ url }) => {
       }
     } catch (error) {
       console.error("Error fetching orders:", error);
-      setOrders([]); // Prevents undefined state
+      setOrders([]);
       toast.error("Failed to load orders");
     }
   }, [url]);
 
-  const statusHandler = async (event, orderId) => {
+  const statusHandler = async (event, mongoId) => {
+    const newStatus = event.target.value;
     try {
-      const response = await axios.post(`${url}/api/order/status`, {
-        orderId,
-        status: event.target.value
+      const response = await axios.post(`${url}/api/orders/status`, {
+        orderId: mongoId,
+        status: newStatus
       });
       if (response.data.success) {
+        toast.success(`Status updated to ${newStatus}`);
         await fetchAllOrders();
       }
     } catch (error) {
+      console.error("Status update error:", error);
       toast.error("Failed to update status");
     }
   };
@@ -43,26 +44,33 @@ const Orders = ({ url }) => {
     fetchAllOrders();
   }, [fetchAllOrders]);
 
+  // Apply slider class to product list if there are more than 5 products
+  const handleProductList = (items) => {
+    return items.length > 5 ? 'scrollable' : ''; // Add class for scrolling
+  };
+
   return (
     <div className="order-container">
       <h3>Order List</h3>
       <div className="order-list">
-        {orders?.length > 0 ? (
+        {orders.length > 0 ? (
           orders.map((order) => (
             <div key={order._id} className="order-item">
               <div className="order-header">
                 <p><strong>Order ID:</strong> {order.orderId}</p>
                 <p><strong>User:</strong> {order.userId?.firstName} {order.userId?.lastName} ({order.userId?.email})</p>
               </div>
-              
+
               <div className="order-body">
                 <p><strong>Items Ordered:</strong></p>
-                <ul>
+                <ul className={handleProductList(order.items)}>
                   {order.items.map((item, index) => (
                     <li key={index} className="order-product">
                       <img 
-                        crossOrigin='anonymous' 
-                        src={item.productId?.images ? `http://localhost:5000/uploads/${item.productId.images}` : 'http://localhost:5000/uploads/default.png'} 
+                        crossOrigin="anonymous" 
+                        src={item.productId?.images 
+                          ? `${url}/uploads/${item.productId.images}` 
+                          : `${url}/uploads/default.png`} 
                         alt={item.productId?.title || "Product Image"} 
                         className="product-image" 
                       />
@@ -90,7 +98,7 @@ const Orders = ({ url }) => {
 
               <div className="order-footer">
                 <label><strong>Update Status:</strong></label>
-                <select onChange={(event) => statusHandler(event, order._id)} value={order.orderStatus}>
+                <select onChange={(event) => statusHandler(event, order.orderId)}>
                   <option value="Cancelled">Cancelled</option>
                   <option value="Processing">Processing</option>
                   <option value="Out for delivery">Out for delivery</option>

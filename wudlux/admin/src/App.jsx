@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
-  const url = "http://localhost:5000"
+  const url = "https://mern-wudlux-1-lss8.onrender.com"
 
   return (
     <div>
