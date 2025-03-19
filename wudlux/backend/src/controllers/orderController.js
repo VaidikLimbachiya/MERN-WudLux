@@ -1,24 +1,9 @@
 const Order = require("../models/orderModel");
 const User = require("../models/userModel");
-const nodemailer = require("nodemailer");
+const { Resend } = require('resend');
 
-// Check env before creating transporter
-if (
-  !process.env.EMAIL_USER ||
-  !process.env.EMAIL_PASS ||
-  !process.env.ADMIN_EMAIL
-) {
-  console.error("❌ EMAIL_USER, EMAIL_PASS, or ADMIN_EMAIL not set in .env file");
-}
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  debug: true,
-});
+// Setup Resend API
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 exports.getOrders = async (req, res) => {
   try {
@@ -128,19 +113,23 @@ exports.createOrder = async (req, res) => {
     await newOrder.save();
     console.log("✅ Order saved in DB:", orderId);
 
-    // ✅ Copying exact email send logic that worked in /send-test route
-    const info = await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+    // Send order email to Admin via Resend
+    await resend.emails.send({
+      from: 'Wudlux Decor <smitthakar199@gmail.com>',
       to: process.env.ADMIN_EMAIL,
       subject: `🛒 New Order - ${orderId}`,
-      text: `New order placed by User ID: ${userId}\nOrder Total: ₹${totalAmount}\nOrder ID: ${orderId}`,
+      html: `
+        <p>New order placed by User ID: ${userId}</p>
+        <p>Order Total: ₹${totalAmount}</p>
+        <p>Order ID: ${orderId}</p>
+      `,
     });
 
-    console.log("✅ Email sent inside createOrder:", info.response);
+    console.log("✅ Admin notified via Resend");
 
     return res.status(201).json({
       success: true,
-      message: "Order created & admin notified.",
+      message: "Order created & admin notified via Resend.",
       order: newOrder,
     });
   } catch (error) {
@@ -152,9 +141,6 @@ exports.createOrder = async (req, res) => {
     });
   }
 };
-
-
-
 
 exports.updateOrderStatus = async (req, res, io) => {
   const { orderId, status } = req.body;
@@ -183,16 +169,20 @@ exports.updateOrderStatus = async (req, res, io) => {
 
     io.emit("orderUpdated", { orderId: order._id, status });
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+    // Notify customer via Resend
+    await resend.emails.send({
+      from: 'Wudlux Decor <vadikl5726@gmail.com>',
       to: order.userId.email,
       subject: `Order ${order.orderId} status updated`,
-      html: `<p>Hello ${order.userId.firstName},</p><p>Your order <strong>${order.orderId}</strong> status has been updated to <strong>${status}</strong>.</p>`,
+      html: `
+        <p>Hello ${order.userId.firstName},</p>
+        <p>Your order <strong>${order.orderId}</strong> status has been updated to <strong>${status}</strong>.</p>
+      `,
     });
 
     return res.json({
       success: true,
-      message: "Order status updated & user notified",
+      message: "Order status updated & user notified via Resend",
       updatedOrder: order,
     });
   } catch (err) {
