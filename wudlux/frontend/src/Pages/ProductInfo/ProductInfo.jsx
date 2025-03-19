@@ -74,10 +74,8 @@ const ProductPage = () => {
         const fetchedProduct = response.data.product;
         setProduct(fetchedProduct); // Set product data to state
         if (fetchedProduct && fetchedProduct.variantImages.length > 0) {
-          setMainImage(
-            `https://mern-wudlux-1-lss8.onrender.com/uploads/${fetchedProduct.variantImages[0]}`
-          ); // Set the default main image
-        }
+          setMainImage(fetchedProduct.variantImages[0].url);
+        }        
       } catch (error) {
         console.error("Error fetching product:", error);
       }
@@ -91,13 +89,11 @@ const ProductPage = () => {
       prevIndex === 0 ? product.variantImages.length - 1 : prevIndex - 1
     );
     setMainImage(
-      `https://mern-wudlux-1-lss8.onrender.com/uploads/${
         product.variantImages[
           currentImage === 0
             ? product.variantImages.length - 1
             : currentImage - 1
-        ]
-      }`
+        ].url
     );
   };
 
@@ -107,22 +103,18 @@ const ProductPage = () => {
       prevIndex === product.variantImages.length - 1 ? 0 : prevIndex + 1
     );
     setMainImage(
-      `https://mern-wudlux-1-lss8.onrender.com/uploads/${
         product.variantImages[
           currentImage === product.variantImages.length - 1
             ? 0
             : currentImage + 1
-        ]
-      }`
+        ].url
     );
   };
 
   // Handle Thumbnail Click
   const handleThumbnailClick = (index) => {
     setCurrentImage(index); // Update the currentImage state with the clicked thumbnail index
-    setMainImage(
-      `https://mern-wudlux-1-lss8.onrender.com/uploads/${product.variantImages[index]}`
-    );
+product.variantImages[index].url
   };
 
   // If product is not loaded yet, show a loading state
@@ -198,7 +190,7 @@ const ProductPage = () => {
               <img
                 crossOrigin="anonymous"
                 key={idx}
-                src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${img}`} // Thumbnail image URL
+                src={img.url} // Thumbnail image URL
                 alt={`Thumbnail ${idx + 1}`}
                 className={`thumbnail-image ${
                   idx === currentImage ? "active-thumbnail" : ""
@@ -409,7 +401,7 @@ const ProductPage = () => {
               <img
                 crossOrigin="anonymous"
                 id="zoomed-image"
-                src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${product.variantImages[currentImage]}`}
+                src={product.variantImages[currentImage].url}
                 alt="Zoomed product view"
                 className="full-image"
                 loading="lazy"
@@ -433,7 +425,7 @@ const ProductPage = () => {
                   <img
                     crossOrigin="anonymous"
                     key={idx}
-                    src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${img}`} // Fallback for missing thumbnails
+                    src={img.url} // Fallback for missing thumbnails
                     alt={`Thumbnail ${idx + 1}`}
                     className={`thumbnail-image ${
                       idx === currentImage ? "active-thumbnail" : ""
