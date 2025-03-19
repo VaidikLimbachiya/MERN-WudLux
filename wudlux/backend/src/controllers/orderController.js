@@ -81,16 +81,11 @@ exports.getOrderByOrderId = async (req, res) => {
 };
 
 exports.createOrder = async (req, res) => {
-  console.log("🔔 createOrder API called");
-
   try {
     const { userId, items, totalAmount, shippingAddress, notes } = req.body;
 
     if (!userId || !items.length || !totalAmount || !shippingAddress) {
-      console.log("❌ Missing order data");
-      return res
-        .status(400)
-        .json({ success: false, message: "Invalid input." });
+      return res.status(400).json({ success: false, message: "Invalid input." });
     }
 
     const orderId = `#WU${Math.floor(1000 + Math.random() * 9000)}`;
@@ -111,34 +106,18 @@ exports.createOrder = async (req, res) => {
     });
 
     await newOrder.save();
-    console.log("✅ Order saved in DB:", orderId);
 
-    // Send order email to Admin via Resend
-    await resend.emails.send({
-      from: 'Wudlux Decor <smitthakar199@gmail.com>',
-      to: process.env.ADMIN_EMAIL,
-      subject: `🛒 New Order - ${orderId}`,
-      html: `
-        <p>New order placed by User ID: ${userId}</p>
-        <p>Order Total: ₹${totalAmount}</p>
-        <p>Order ID: ${orderId}</p>
-      `,
-    });
-
-    console.log("✅ Admin notified via Resend");
+    // ✅ Clear user cart after order placement
+    await userModel.findByIdAndUpdate(userId, { $set: { cart: [] } });
 
     return res.status(201).json({
       success: true,
-      message: "Order created & admin notified via Resend.",
+      message: "Order placed successfully. Cart has been cleared.",
       order: newOrder,
     });
   } catch (error) {
-    console.error("❌ createOrder error:", error.message);
-    return res.status(500).json({
-      success: false,
-      message: "Failed to create order",
-      error: error.message,
-    });
+    console.error("Error placing order:", error);
+    res.status(500).json({ success: false, message: "Failed to place order" });
   }
 };
 

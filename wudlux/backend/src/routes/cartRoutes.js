@@ -9,6 +9,7 @@ router.get("/", authenticateToken, cartController.getCart);
 router.post("/add", authenticateToken, cartController.addToCart);
 router.delete("/remove", authenticateToken, cartController.removeFromCart);
 router.patch("/update", authenticateToken, updateCart);
+router.delete('/clear', authenticateUser, cartController.clearCart);
 router.post("/sync", authenticateToken, async (req, res) => {
     const userId = req.user.id;
     const { cartItems } = req.body;
