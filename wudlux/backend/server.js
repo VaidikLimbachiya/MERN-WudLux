@@ -20,7 +20,6 @@ const productRoutes = require("./src/routes/productRoutes");
 const cartRoutes = require("./src/routes/cartRoutes");
 const addressRoutes = require("./src/routes/addressRoutes");
 const orderRoutes = require("./src/routes/orderRoutes");
-const testEmailRoute = require('./src/routes/testEmailRoute');
 
 dotenv.config({ path: ".env" });
 console.log("✅ Environment variables loaded.");

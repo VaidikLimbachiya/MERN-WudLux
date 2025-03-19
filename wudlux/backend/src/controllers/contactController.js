@@ -1,5 +1,7 @@
 const Contact = require("../models/Contact");
-const nodemailer = require("nodemailer");
+const { Resend } = require('resend');
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 exports.submitContactForm = async (req, res) => {
   try {
@@ -9,30 +11,20 @@ exports.submitContactForm = async (req, res) => {
       return res.status(400).json({ error: "All fields are required." });
     }
 
-    // Save contact details in database
-    const newContact = await Contact.create({ name, email, message });
+    // Save contact details in DB
+    await Contact.create({ name, email, message });
 
-    // Setup email notification
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
-    const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: process.env.ADMIN_EMAIL || "vadikl5726@gmail.com", // Ensure a valid email
-        subject: "New Contact Form Submission",
-        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-      };
-      
-
-    transporter.sendMail(mailOptions, (error) => {
-      if (error) {
-        console.error("Error sending email:", error);
-      }
+    // Send to admin from your official domain, with user’s email in reply-to
+    await resend.emails.send({
+      from: 'Wudlux Decor <smitthakar199@gmail.com>',
+      to: process.env.ADMIN_EMAIL || "vadikl5726@gmail.com",
+      reply_to: email, // USER’S submitted email will show here!
+      subject: "New Contact Form Submission",
+      html: `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong> ${message}</p>
+      `,
     });
 
     res.status(201).json({ message: "Message received successfully." });
