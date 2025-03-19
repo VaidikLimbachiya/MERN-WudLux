@@ -108,7 +108,21 @@ exports.createOrder = async (req, res) => {
     await newOrder.save();
 
     // ✅ Clear user cart after order placement
-    await userModel.findByIdAndUpdate(userId, { $set: { cart: [] } });
+    await User.findByIdAndUpdate(userId, { $set: { cart: [] } });
+
+    // ✅ Notify admin via Resend
+    await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: 'vadikl5726@gmail.com',
+      subject: `New Order Placed: ${orderId}`,
+      html: `
+        <p>Hello Admin,</p>
+        <p>A new order <strong>${orderId}</strong> has been placed.</p>
+        <p><strong>Total Amount:</strong> ₹${totalAmount}</p>
+        <p><strong>Shipping Address:</strong> ${shippingAddress}</p>
+        <p>Please check the admin dashboard for more details.</p>
+      `,
+    });
 
     return res.status(201).json({
       success: true,
@@ -150,7 +164,7 @@ exports.updateOrderStatus = async (req, res, io) => {
 
     // Notify customer via Resend
     await resend.emails.send({
-      from: 'Wudlux Decor <vadikl5726@gmail.com>',
+      from: 'onboarding@resend.dev',
       to: order.userId.email,
       subject: `Order ${order.orderId} status updated`,
       html: `
