@@ -68,31 +68,32 @@ const List = ({ url }) => {
             <b>Actions</b>
           </div>
           {productList.map((product) => (
-            <div key={product._id} className="list-table-row">
-              <img
-                crossOrigin="anonymous"
-                src={
-                  product.image
-                    ? `${url}/uploads/${product.image}`
-                    : product.variantImages?.[0]
-                    ? `${url}/uploads/${product.variantImages[0]}`
-                    : "https://via.placeholder.com/150"
-                }
-                alt={product.title}
-              />
-              <p>{product.title}</p>
-              <p>{product.category}</p>
-              <p>₹{product.price}</p>
-              <p>₹{product.originalPrice}</p>
-              <p>{product.discount}%</p>
-              <div className="actions">
-                <button onClick={() => removeProduct(product._id)} className="delete-btn">
-                  Delete
-                </button>
-                <button className="edit-btn">Edit</button>
-              </div>
-            </div>
-          ))}
+  <div key={product._id} className="list-table-row">
+    <img
+      crossOrigin="anonymous"
+      src={
+        product.image?.url
+          ? product.image.url
+          : product.variantImages?.[0]?.url
+          ? product.variantImages[0].url
+          : "https://via.placeholder.com/150"
+      }
+      alt={product.title}
+    />
+    <p>{product.title}</p>
+    <p>{product.category}</p>
+    <p>₹{product.price}</p>
+    <p>₹{product.originalPrice}</p>
+    <p>{product.discount}%</p>
+    <div className="actions">
+      <button onClick={() => removeProduct(product._id)} className="delete-btn">
+        Delete
+      </button>
+      <button className="edit-btn">Edit</button>
+    </div>
+  </div>
+))}
+
         </div>
       ) : (
         <div className="empty">

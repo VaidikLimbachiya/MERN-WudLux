@@ -64,22 +64,25 @@ const Orders = ({ url }) => {
               <div className="order-body">
                 <p><strong>Items Ordered:</strong></p>
                 <ul className={handleProductList(order.items)}>
-                  {order.items.map((item, index) => (
-                    <li key={index} className="order-product">
-                      <img 
-                        crossOrigin="anonymous" 
-                        src={item.productId?.images 
-                          ? `${url}/uploads/${item.productId.images}` 
-                          : `${url}/uploads/default.png`} 
-                        alt={item.productId?.title || "Product Image"} 
-                        className="product-image" 
-                      />
-                      <span className="product-title">
-                        {item.productId?.title || "Unknown Product"} - Qty: {item.quantity}, Price: ₹{item.price}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+  {order.items.map((item, index) => (
+    <li key={index} className="order-product">
+      <img 
+        crossOrigin="anonymous" 
+        src={
+          item.productId?.images?.[0]?.url 
+            ? item.productId.images[0].url 
+            : "https://via.placeholder.com/150"
+        } 
+        alt={item.productId?.title || "Product Image"} 
+        className="product-image" 
+      />
+      <span className="product-title">
+        {item.productId?.title || "Unknown Product"} - Qty: {item.quantity}, Price: ₹{item.price}
+      </span>
+    </li>
+  ))}
+</ul>
+
 
                 <p><strong>Total Amount:</strong> ₹{order.totalAmount}</p>
                 <p><strong>Payment Status:</strong> {order.paymentStatus}</p>
