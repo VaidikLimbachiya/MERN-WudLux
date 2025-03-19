@@ -89,7 +89,7 @@ const Add = ({ url }) => {
     variantImages.forEach((image) => formData.append("variantImages", image));
 
     try {
-      const response = await axios.post("http://localhost:5000/api/products/add", formData);
+      const response = await axios.post("https://mern-wudlux-1-lss8.onrender.com/api/products/add", formData);
       if (response.data.success) {
         setData({
           title: "",
