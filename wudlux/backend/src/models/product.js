@@ -25,12 +25,14 @@ const productSchema = new mongoose.Schema(
       {
         type: String,
         required: false,
+        public_id: String,
       },
     ],
     variantImages: [
       {
         type: String,
         required: false,
+        public_id: String,
       },
     ],
 
