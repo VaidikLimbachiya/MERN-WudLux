@@ -23,18 +23,16 @@ const productSchema = new mongoose.Schema(
     },
     images: [
       {
-        type: String,
-        required: false,
-        public_id: String,
+        url: { type: String, required: true },
+        public_id: { type: String, required: true },
       },
     ],
     variantImages: [
       {
-        type: String,
-        required: false,
-        public_id: String,
+        url: { type: String, required: true },
+        public_id: { type: String, required: true },
       },
-    ],
+    ],    
 
     price: {
       type: Number,
