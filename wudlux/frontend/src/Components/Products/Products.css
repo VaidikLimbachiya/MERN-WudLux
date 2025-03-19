@@ -36,7 +36,7 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 40px;
   padding-left: 50px;
-  /* margin: 20px auto; */
+  margin-left: 0 !important;
   width: 1450px; /* Restrict maximum grid width */
 }
 

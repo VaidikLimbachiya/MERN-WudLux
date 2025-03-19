@@ -113,9 +113,10 @@ const ProductPage = () => {
 
   // Handle Thumbnail Click
   const handleThumbnailClick = (index) => {
-    setCurrentImage(index); // Update the currentImage state with the clicked thumbnail index
-product.variantImages[index].url
+    setCurrentImage(index); 
+    setMainImage(product.variantImages[index].url); // Add this line
   };
+  
 
   // If product is not loaded yet, show a loading state
   if (!product) {
