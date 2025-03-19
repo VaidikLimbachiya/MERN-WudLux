@@ -683,7 +683,6 @@
 .products-info {
   margin-top: -20px;
 }
-
 @media (max-width: 430px) {
   /* General Container Adjustments */
   
@@ -913,9 +912,7 @@
 }
 @media (max-width: 375px) {
   /* General Container Adjustments */
-  .parent-container {
-    display: flex;
-    justify-content: flex-start;
+  .product-container {
     align-items: flex-start;
     flex-direction: column;
   }

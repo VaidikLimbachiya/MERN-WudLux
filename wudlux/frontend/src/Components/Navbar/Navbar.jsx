@@ -6,6 +6,7 @@ import searchIcon from "../../assets/Search.svg";
 import profileIcon from "../../assets/Vector.svg";
 import cartIcon from "../../assets/bag.svg";
 import { useCartContext } from "../../Context/CartContext";
+
 // import { IoMenu } from "react-icons/io5";
 import menuBar from "../../assets/Hamburger.png";
 import debounce from "lodash.debounce";
@@ -104,7 +105,8 @@ const Navbar = () => {
     isPopupOpen,
     productToRemove,
     closePopup,
-    openPopup
+    openPopup,
+    clearCartState,
   } = useCartContext();
   const navigate = useNavigate();
 
@@ -189,16 +191,14 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    // Clear tokens from localStorage
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("user");
-
-    // Update login state
+  
+    clearCartState(); // ✅ Clear cart items from memory and localStorage
+  
     setIsLoggedIn(false);
-    setIsProfileMenuOpen(false); // Close the profile menu
-
-    // Redirect to login page
+    setIsProfileMenuOpen(false);
     navigate("/log-in");
   };
   const handleNavigate = (path) => {
