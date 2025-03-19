@@ -1,13 +1,20 @@
 const Product = require("../models/product");
-const fs = require("fs");
-const path = require("path"); // Make sure to require path module
+const { v2: cloudinary } = require("cloudinary");
 
+// CREATE PRODUCT
 module.exports.createProduct = async (req, res) => {
-  const image_filenames = req.files?.images
-    ? req.files.images.map((file) => file.filename)
+  const image_data = req.files?.images
+    ? req.files.images.map((file) => ({
+        url: file.path,
+        public_id: file.filename,
+      }))
     : [];
-  const variant_image_filenames = req.files?.variantImages
-    ? req.files.variantImages.map((file) => file.filename)
+
+  const variant_image_data = req.files?.variantImages
+    ? req.files.variantImages.map((file) => ({
+        url: file.path,
+        public_id: file.filename,
+      }))
     : [];
 
   let size = req.body.size;
@@ -28,9 +35,9 @@ module.exports.createProduct = async (req, res) => {
     originalPrice: req.body.originalPrice,
     discount: req.body.discount,
     size: size,
-    materials: JSON.parse(req.body.materials),
-    images: image_filenames,
-    variantImages: variant_image_filenames,
+    materials: parsedMaterials,
+    images: image_data,
+    variantImages: variant_image_data,
   });
 
   try {
@@ -42,7 +49,7 @@ module.exports.createProduct = async (req, res) => {
   }
 };
 
-// Get all products
+// GET ALL PRODUCTS
 module.exports.listProducts = async (req, res) => {
   try {
     const products = await Product.find({});
@@ -52,6 +59,8 @@ module.exports.listProducts = async (req, res) => {
     res.json({ success: false, message: "Error fetching products" });
   }
 };
+
+// GET PRODUCT BY ID
 module.exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -65,58 +74,49 @@ module.exports.getProductById = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
-// Remove a product
+
+// REMOVE PRODUCT + DELETE FROM CLOUDINARY
 module.exports.removeProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.body.id);
 
-    // Check if the product exists
     if (!product) {
       return res.json({ success: false, message: "Product not found" });
     }
 
-    // If the product has images, remove them from the file system
+    // Delete main images from Cloudinary
     if (product.images && product.images.length > 0) {
-      product.images.forEach((image) => {
-        const imagePath = path.join(__dirname, "..", "uploads", image); // Adjusted path
-        fs.unlink(imagePath, (err) => {
-          if (err) console.log("Error deleting image", err);
-        });
-      });
+      for (const image of product.images) {
+        await cloudinary.uploader.destroy(image.public_id);
+      }
     }
 
-    // If the product has variantImages, remove them from the file system
+    // Delete variant images from Cloudinary
     if (product.variantImages && product.variantImages.length > 0) {
-      product.variantImages.forEach((image) => {
-        const imagePath = path.join(__dirname, "..", "uploads", image); // Adjusted path
-        fs.unlink(imagePath, (err) => {
-          if (err) console.log("Error deleting variant image", err);
-        });
-      });
+      for (const image of product.variantImages) {
+        await cloudinary.uploader.destroy(image.public_id);
+      }
     }
 
-    // Delete the product from the database
     await Product.findByIdAndDelete(req.body.id);
-    res.json({ success: true, message: "Product removed successfully" });
+    res.json({ success: true, message: "Product and images removed successfully" });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: "Error removing product" });
   }
 };
 
-// Controller for fetching products by category and subcategory
+// FILTER PRODUCTS
 module.exports.listProductsByCategory = async (req, res) => {
   try {
     const { category, subcategory } = req.query;
-    const filter = {}; // Initialize filter object
+    const filter = {};
 
     if (category) filter.category = category;
     if (subcategory)
-      filter.subcategory = { $regex: new RegExp(subcategory, "i") }; // Case-insensitive match
+      filter.subcategory = { $regex: new RegExp(subcategory, "i") };
 
-    console.log("Filter:", filter); // Debugging line to verify the filter
-
-    const products = await Product.find(filter); // Find products based on filter
+    const products = await Product.find(filter);
     res.status(200).json({ success: true, data: products });
   } catch (error) {
     console.error("Error fetching products by category:", error);
