@@ -66,15 +66,17 @@ const NewLaunch = () => {
                 }}
               >
                 <div className="newLaunchImageWrapper">
-                  <img
-                    className="newLaunchImage"
-                    crossOrigin="anonymous"
-                    src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${
-                      Array.isArray(product.images) ? product.images[0] : product.images
-                    }`}
-                    alt={product.title}
-                    loading="lazy"
-                  />
+                <img
+  className="newLaunchImage"
+  crossOrigin="anonymous"
+  src={
+    product.images?.[0]?.url
+      ? product.images[0].url
+      : "https://via.placeholder.com/300"
+  }
+  alt={product.title}
+  loading="lazy"
+/>
                   {product.discount > 0 && (
                     <div className="newLaunchDiscountBadge">{product.discount}% OFF</div>
                   )}

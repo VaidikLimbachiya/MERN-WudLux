@@ -97,17 +97,18 @@ const Products = () => {
                   }}
                 >
                   <div className="productImageWrapper">
-                    <img
-                      className="productImage"
-                      crossOrigin="anonymous"
-                      src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${
-                        Array.isArray(product.images)
-                          ? product.images[0]
-                          : product.images
-                      }`}
-                      alt={product.title}
-                      loading="lazy"
-                    />
+                  <img
+  className="productImage"
+  crossOrigin="anonymous"
+  loading="lazy"
+  src={
+    product.images?.[0]?.url
+      ? product.images[0].url
+      : "https://via.placeholder.com/300"
+  }
+  alt={product.title}
+/>
+
                     {product.discount > 0 && (
                       <div className="discountBadge">
                         {product.discount}% OFF
@@ -190,17 +191,18 @@ const Products = () => {
                   }}
                 >
                   <div className="productImageWrapper">
-                    <img
-                      className="productImage"
-                      crossOrigin="anonymous"
-                      src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${
-                        Array.isArray(product.images)
-                          ? product.images[0]
-                          : product.images
-                      }`}
-                      alt={product.title}
-                      loading="lazy"
-                    />
+                  <img
+  className="productImage"
+  crossOrigin="anonymous"
+  loading="lazy"
+  src={
+    product.images?.[0]?.url
+      ? product.images[0].url
+      : "https://via.placeholder.com/300"
+  }
+  alt={product.title}
+/>
+
                     {product.discount > 0 && (
                       <div className="discountBadge">
                         {product.discount}% OFF

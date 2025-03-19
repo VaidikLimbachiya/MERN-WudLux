@@ -22,73 +22,65 @@ const OrderHistory = () => {
   const [sortOption, setSortOption] = useState("date-desc");
   const [itemsPerPage, setItemsPerPage] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
-  const [socketConnected, setSocketConnected] = useState(false);
 
-  const ordersPerPage = 5;
+  const fetchOrders = async () => {
+    if (!user?.id) return;
 
-  useEffect(() => {
-    if (!user?.id) {
-      setOrders([]);
-      setFilteredOrders([]);
-      setLoading(false);
-      return;
-    }
-
-    const fetchOrders = async () => {
-      try {
-        setLoading(true);
-        setOrders([]);
-        setFilteredOrders([]);
-        const token = localStorage.getItem("accessToken");
-        if (!token) {
-          setError("Unauthorized! Please log in.");
-          setLoading(false);
-          return;
-        }
-
-        const response = await axios.get(
-          `${API_BASE_URL}/api/orders/user/${user.id}?timestamp=${Date.now()}`,
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-
-        setOrders(response.data.orders);
-        setFilteredOrders(response.data.orders);
-        setError("");
-      } catch (error) {
-        console.error("❌ Error fetching orders:", error);
-        setError("Failed to fetch orders.");
-      } finally {
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        setError("Unauthorized! Please log in.");
         setLoading(false);
+        return;
       }
-    };
 
-    fetchOrders();
+      const response = await axios.get(
+        `${API_BASE_URL}/api/orders/user/${user.id}?timestamp=${Date.now()}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-    // 🟢 Setup socket connection
-    const socketInstance = io(API_BASE_URL, {
-      transports: ["websocket"],
-      withCredentials: true,
+      setOrders(response.data.orders);
+      setFilteredOrders(response.data.orders);
+      setError("");
+    } catch (error) {
+      console.error("❌ Error fetching orders:", error);
+      setError("Failed to fetch orders.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Initial fetch when user is ready
+  useEffect(() => {
+    if (user?.id) {
+      fetchOrders();
+    }
+  }, [user]);
+
+  // Setup socket connection globally
+  useEffect(() => {
+    const socketInstance = io(API_BASE_URL, { transports: ["websocket"], withCredentials: true });
+
+    socketInstance.on("connect", () => {
+      console.log("✅ User socket connected:", socketInstance.id);
     });
 
-    // Handle real-time updates
-    socketInstance.on("connect", () => setSocketConnected(true));
-    socketInstance.on("disconnect", () => setSocketConnected(false));
-
     socketInstance.on("orderUpdated", ({ orderId, status }) => {
-      console.log(`Order ${orderId} updated to status: ${status}`);
-      setOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order._id === orderId ? { ...order, orderStatus: status } : order
-        )
-      );
+      console.log("🔥 Received orderUpdated event:", { orderId, status });
+      fetchOrders(); // Refresh orders on any update
+    });
+
+    socketInstance.on("disconnect", () => {
+      console.log("❌ Socket disconnected from user side");
     });
 
     return () => {
       socketInstance.disconnect();
     };
-  }, [user]);
+  }, [user?.id]); // track user.id so socket reconnects properly
 
-  // 🔹 Filter & Sort Orders
+  // Filter & Sort Orders
   useEffect(() => {
     let updatedOrders = [...orders];
 
@@ -100,27 +92,19 @@ const OrderHistory = () => {
             (item) =>
               item.productId &&
               item.productId.title &&
-              item.productId.title
-                .toLowerCase()
-                .includes(searchQuery.toLowerCase())
+              item.productId.title.toLowerCase().includes(searchQuery.toLowerCase())
           )
       );
     }
 
     if (filterStatus) {
-      updatedOrders = updatedOrders.filter(
-        (order) => order.orderStatus === filterStatus
-      );
+      updatedOrders = updatedOrders.filter((order) => order.orderStatus === filterStatus);
     }
 
     if (sortOption === "date-desc") {
-      updatedOrders.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
+      updatedOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     } else if (sortOption === "date-asc") {
-      updatedOrders.sort(
-        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-      );
+      updatedOrders.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
     } else if (sortOption === "amount-desc") {
       updatedOrders.sort((a, b) => b.totalAmount - a.totalAmount);
     } else if (sortOption === "amount-asc") {
@@ -131,12 +115,8 @@ const OrderHistory = () => {
   }, [searchQuery, filterStatus, sortOption, orders]);
 
   const totalPages =
-    itemsPerPage === "all"
-      ? 1
-      : Math.ceil(filteredOrders.length / itemsPerPage);
-  const startIndex =
-    (currentPage - 1) *
-    (itemsPerPage === "all" ? filteredOrders.length : itemsPerPage);
+    itemsPerPage === "all" ? 1 : Math.ceil(filteredOrders.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * (itemsPerPage === "all" ? filteredOrders.length : itemsPerPage);
   const paginatedOrders = filteredOrders.slice(
     startIndex,
     startIndex + (itemsPerPage === "all" ? filteredOrders.length : itemsPerPage)

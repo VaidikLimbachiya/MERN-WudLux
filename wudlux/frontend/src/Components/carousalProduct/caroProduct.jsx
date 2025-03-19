@@ -96,15 +96,18 @@ const ProductCarousel = () => {
         {visibleProducts.map((product, index) => (
           <div className="shop-carousel-card" key={product.id || index}>
             <div className="shop-carousel-image-wrapper">
-              <img
-                crossOrigin="anonymous"
-                loading="lazy"
-                src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${
-                  product.images ? product.images : product1
-                }`}
-                alt={product.title}
-                className="shop-carousel-image"
-              />
+            <img
+  crossOrigin="anonymous"
+  loading="lazy"
+  src={
+    product.images?.[0]?.url
+      ? product.images[0].url
+      : product1 // fallback static product image
+  }
+  alt={product.title}
+  className="shop-carousel-image"
+/>
+
               <div className="shop-carousel-discount-badge">
                 {product.discount}%
               </div>

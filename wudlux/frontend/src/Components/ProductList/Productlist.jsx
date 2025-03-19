@@ -134,17 +134,18 @@ const Productlist = () => {
                 }
               >
                 <div className="shop-product-list-image-wrapper">
-                  <img
-                    className="shop-product-list-image"
-                    crossOrigin="anonymous"
-                    loading="lazy"
-                    src={`https://mern-wudlux-1-lss8.onrender.com/uploads/${
-                      Array.isArray(product.images)
-                        ? product.images[0]
-                        : product.images
-                    }`}
-                    alt={product.title}
-                  />
+                <img
+  className="shop-product-list-image"
+  crossOrigin="anonymous"
+  loading="lazy"
+  src={
+    product.images?.[0]?.url
+      ? product.images[0].url
+      : "https://via.placeholder.com/300"
+  }
+  alt={product.title}
+/>
+
                   {product.discount > 0 && (
                     <div className="shop-product-list-discount-badge">
                       {product.discount}% OFF

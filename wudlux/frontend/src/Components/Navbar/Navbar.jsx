@@ -552,17 +552,18 @@ const Navbar = () => {
                   key={`${item.productId}-${index}`} // Ensures unique key by combining productId and index
                   className="cartItem"
                 >
-                  <img
-                    crossOrigin="anonymous"
-                    loading="lazy"
-                    src={
-                      item.images
-                        ? `https://mern-wudlux-1-lss8.onrender.com/uploads/${item.images}`
-                        : "path/to/placeholder-image.png"
-                    }
-                    alt={item.title || "Product Image"}
-                    className="cartItemImage"
-                  />
+                 <img
+  crossOrigin="anonymous"
+  loading="lazy"
+  src={
+    item.images?.[0]?.url
+      ? item.images[0].url
+      : "https://via.placeholder.com/150"
+  }
+  alt={item.title || "Product Image"}
+  className="cartItemImage"
+/>
+
                   <div className="cartItemDetails">
                     <p className="cartItemName">
                       {item.title || "Unnamed Product"}

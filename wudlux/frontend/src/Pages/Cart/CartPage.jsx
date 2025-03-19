@@ -127,17 +127,18 @@ const CartPage = () => {
                 {cartItems.map((item) => (
                   <tr className="tableRow" key={item._id || item.id}>
                     <td className="cart-item-details">
-                      <img
-                        crossOrigin="anonymous"
-                        src={
-                          item.images
-                            ? `https://mern-wudlux-1-lss8.onrender.com/uploads/${item.images}`
-                            : "placeholder.png"
-                        }
-                        alt={item.name || "Product image"}
-                        className="cart-item-image"
-                        loading="lazy"
-                      />
+                    <img
+  crossOrigin="anonymous"
+  src={
+    item.images?.[0]?.url
+      ? item.images[0].url
+      : "https://via.placeholder.com/150"
+  }
+  alt={item.name || "Product image"}
+  className="cart-item-image"
+  loading="lazy"
+/>
+
                       <div className="cart-item-info">
                         <h4>{item.title || "Unnamed Product"}</h4>
                         <p>Category: {item.category || "No category"}</p>

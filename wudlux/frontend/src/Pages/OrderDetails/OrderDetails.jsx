@@ -128,9 +128,11 @@ const OrderSummary = () => {
                   <div className="product-details">
                     <img
                       crossOrigin="anonymous"
-                      src={item.productId?.images?.[0]
-                        ? `https://mern-wudlux-1-lss8.onrender.com/uploads/${item.productId.images[0]}`
-                        : "placeholder.png"}
+                      src={
+                        item.productId?.images?.[0]?.url
+                          ? item.productId.images[0].url
+                          : "https://via.placeholder.com/150"
+                      }                      
                       alt={item.productId?.title || "Unknown Product"}
                       className="product-image"
                       loading="lazy"

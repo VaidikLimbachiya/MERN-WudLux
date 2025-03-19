@@ -224,7 +224,7 @@ const Checkout = () => {
 
       toast.success("Order placed successfully!");
       clearCart();
-      navigate("/order-success");
+      navigate("/orders");
     } catch (error) {
       console.error("Checkout Error:", error);
       toast.error("Failed to place order. Please try again.");
@@ -456,16 +456,17 @@ const Checkout = () => {
             cartItems.map((item, index) => (
               <div key={item.id || index} className="product-box">
                 <img
-                  crossOrigin="anonymous"
-                  src={
-                    item.images
-                      ? `https://mern-wudlux-1-lss8.onrender.com/uploads/${item.images}`
-                      : "placeholder.png"
-                  }
-                  alt={item.title || "Product Image"}
-                  className="product-thumbnail"
-                  loading="lazy"
-                />
+  crossOrigin="anonymous"
+  src={
+    item.images?.[0]?.url
+      ? item.images[0].url
+      : "https://via.placeholder.com/150"
+  }
+  alt={item.title || "Product Image"}
+  className="product-thumbnail"
+  loading="lazy"
+/>
+
                 <div className="product-info">
                   <div className="product-title">
                     <span className="quantity-badge">{item.quantity}</span>
