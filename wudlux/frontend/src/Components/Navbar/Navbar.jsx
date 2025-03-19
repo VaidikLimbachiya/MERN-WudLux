@@ -66,7 +66,7 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredCategories, setFilteredCategories] = useState([]);
-  const [ setCart] = useState([]);
+  const [cart, setCart] = useState([]);
 
   const categoriesList = [
     "Tray",
