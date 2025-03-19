@@ -32,6 +32,7 @@ const io = new Server(server, {
     origin: [
       "https://mern-wud-lux-vaidik-limbachiyas-projects.vercel.app",
       "https://mern-wud-lux-7czr-lrpv3w5ai-vaidik-limbachiyas-projects.vercel.app",
+      "https://mern-wud-lux-7czr-vaidik-limbachiyas-projects.vercel.app",
       "http://localhost:5173",
       "http://localhost:5174",
       "http://localhost:3001"
@@ -52,6 +53,7 @@ app.use(cors({
   origin: [
     "https://mern-wud-lux-vaidik-limbachiyas-projects.vercel.app",
     "https://mern-wud-lux-7czr-lrpv3w5ai-vaidik-limbachiyas-projects.vercel.app",
+    "https://mern-wud-lux-7czr-vaidik-limbachiyas-projects.vercel.app",
     "http://localhost:5173",
     "http://localhost:5174",
     "http://localhost:3001"
