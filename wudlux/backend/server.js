@@ -89,7 +89,6 @@ app.use("/addresses", addressRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
-app.use("/api/test", testEmailRoute);
 
 // ✅ Refresh Token Route
 app.post("/api/auth/refresh", (req, res) => {
