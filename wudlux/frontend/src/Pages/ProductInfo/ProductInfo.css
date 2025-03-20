@@ -4,6 +4,10 @@
   height: 991px;
   gap: 20px;
 }
+.no-scroll {
+  overflow: hidden !important;
+  height: 100vh;
+}
 
 .product-image-section {
   display: flex;

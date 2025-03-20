@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+import "jspdf-autotable";
 import "./OrderDetails.css";
 import customer from "../../assets/customer.png";
 import shiping from "../../assets/shiping.png";
@@ -46,44 +46,73 @@ const OrderSummary = () => {
 
     fetchOrderDetails();
   }, [orderId]);
-  const handlePrint = async () => {
-    const element = document.querySelector('.order-summary-container');
-    const printIcon = document.querySelector('.print-icon');
+  const handlePrint = () => {
+  const doc = new jsPDF();
+
+  // Header
+    // Branding
+    doc.setFontSize(18);
+    doc.setFont("helvetica", "bold");
+    doc.text("WUDLUX DECOR", 14, 20);
+    doc.text("INVOICE", 160, 20, { align: "right" });
   
-    if (!element) {
-      alert('Order summary not found!');
-      return;
-    }
+    // Invoice Info
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Invoice #: ${order.orderId || "N/A"}`, 14, 30);
+    doc.text(`Date: ${new Date(order.createdAt).toLocaleDateString()}`, 14, 35);
+    doc.text(`Payment Status: ${order.paymentStatus}`, 14, 40);
   
-    // Hide print icon temporarily
-    printIcon.style.display = 'none';
+    // Customer & Shipping Info
+    doc.setFontSize(11);
+    doc.setFont("helvetica", "bold");
+    doc.text("Bill To:", 14, 50);
+    doc.text("Ship To:", 105, 50);
   
-    // Ensure all images are fully loaded before capturing
-    const images = element.querySelectorAll('img');
-    await Promise.all(
-      Array.from(images).map(img => {
-        if (!img.complete) {
-          return new Promise(resolve => {
-            img.onload = img.onerror = resolve;
-          });
-        }
-        return Promise.resolve();
-      })
-    );
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text(`${order.userId?.firstName} ${order.userId?.lastName || ""}`, 14, 55);
+    doc.text(`${order.userId?.email || ""}`, 14, 60);
   
-    const canvas = await html2canvas(element, { scale: 2, useCORS: true });
+    doc.text(`${order.shippingAddress?.street || "N/A"}`, 105, 55);
+    doc.text(`${order.shippingAddress?.city || ""}, ${order.shippingAddress?.state || ""}`, 105, 60);
+    doc.text(`${order.shippingAddress?.zipCode || ""}, ${order.shippingAddress?.country || ""}`, 105, 65);
+
+  // Product Table
+  const rows = order.items.map((item) => [
+    item.productId?.title || "Unknown Product",
+    item.quantity || "0",
+    `₹${item.price?.toFixed(2) || "0.00"}`,
+    `₹${((item.quantity || 0) * (item.price || 0)).toFixed(2)}`
+  ]);
+
+  doc.autoTable({
+    head: [['Product', 'Quantity', 'Price', 'Total']],
+    body: rows,
+    startY: 80,
+    styles: { fontSize: 10 },
+  });
+
+  // Totals
+  const finalY = doc.lastAutoTable.finalY + 10;
+  doc.text(`Total Amount: ₹${summary.totalAmount.toFixed(2)}`, 14, finalY);
+  doc.text(`Total CGST: ₹${summary.cgst.toFixed(2)}`, 14, finalY + 6);
+  doc.text(`Total SGST: ₹${summary.sgst.toFixed(2)}`, 14, finalY + 12);
+  doc.text(`Discount: ₹${summary.discount.toFixed(2)}`, 14, finalY + 18);
+  doc.setFontSize(12);
+  doc.text(`Grand Total: ₹${summary.grandTotal.toFixed(2)}`, 14, finalY + 28);
+
+  // Payment Method
+  doc.setFontSize(10);
+  doc.text(`Payment Method: ${order.paymentMethod?.toUpperCase() || "N/A"}`, 14, finalY + 38);
+
+  doc.setFontSize(16);
+doc.text(`Thank you for choosing Wudlux Decor!
+`, 105, finalY + 48, { align: 'center' });
+
+  doc.save(`Invoice-${order.orderId || "Order"}.pdf`);
+};
   
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
-    const imgProps = pdf.getImageProperties(imgData);
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-  
-    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-    pdf.save(`Invoice-${order.orderId || "Order"}.pdf`);
-  
-    printIcon.style.display = '';
-  };
   
   
 

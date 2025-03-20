@@ -11,6 +11,12 @@
   z-index: 10;
   overflow: visible;
 }
+.no-scroll {
+  overflow: hidden !important;
+  height: 100vh;
+  position: relative;
+}
+
 
 a {
   text-decoration: none;

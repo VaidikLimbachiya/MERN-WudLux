@@ -106,8 +106,17 @@ export const AuthProvider = ({ children }) => {
   };  
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, refreshAccessToken }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated: !!user, // Dynamically derive it from user object
+        login,
+        logout,
+        refreshAccessToken,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
+  
 };

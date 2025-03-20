@@ -59,7 +59,8 @@ const Navbar = () => {
   // const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false); // Profile menu state
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
+  const { isAuthenticated } = useContext(AuthContext);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   // const [isSliderOpen] = useState(false); // Fix initial state of slider to false
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -114,8 +115,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    setIsLoggedIn(!!token); // Update login state based on token
+
 
     const checkScreenWidth = () => {
       setIsMobile(window.innerWidth <= 768); // Adjust breakpoint as needed
@@ -141,38 +141,43 @@ const Navbar = () => {
   }, [isCartOpen, isSearchOpen]);
 
   const handleProfileIconClick = () => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      setIsLoggedIn(true); // Ensure login state is updated
-      setIsProfileMenuOpen((prev) => !prev); // Toggle the profile menu
+    if (isAuthenticated) {
+      setIsProfileMenuOpen((prev) => !prev);
     } else {
-      navigate("/log-in"); // Redirect to login page
+      // 🔥 Reset UI states before navigating
+      setIsMenuOpen(false);
+      setIsAccountDropdownOpen(false);
+      setIsProfileMenuOpen(false);
+  
+      navigate("/log-in");
     }
-    setIsMenuOpen(false); // Close the menu when profile icon is clicked
-  };
+  };  
+  
 
   const handleCategoryClick = async (categoryText, subCategoryText = "") => {
     if (subCategoryText) {
-      // If a subcategory is clicked, fetch products for that subcategory
       try {
         const products = await fetchProductsByCategory(
           categoryText,
           subCategoryText
         );
-        console.log("Fetched products:", products); // Debug: View fetched products
+        console.log("Fetched products:", products);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
-
-      // Navigate with both category and subcategory query parameters
+  
+      // Close drawer & dropdown
       const queryParams = `category=${categoryText}&subcategory=${subCategoryText}`;
       navigate(`/products?${queryParams}`);
-      setIsMenuOpen(false);
+  
+      setActiveCategory(null); // 👈 close dropdown
+      setIsMenuOpen(false);    // 👈 close drawer
     } else {
-      // Handle only category click (e.g., open/close the dropdown)
+      // Open/close subcategory dropdown
       setActiveCategory(activeCategory === categoryText ? null : categoryText);
     }
   };
+  
 
   const toggleCart = () => setIsCartOpen((prev) => !prev);
   const toggleSearch = () => setIsSearchOpen((prev) => !prev);
@@ -199,10 +204,12 @@ const Navbar = () => {
     setIsMenuOpen(false);        // local UI cleanup (for mobile menu)
   };  
   const handleNavigate = (path) => {
-    setIsCartOpen(false); // Close cart when navigating
-    setIsSearchOpen(false); // Close search slider when navigating
-    navigate(path); // Navigate to the desired path
-  };
+    setActiveCategory(null);  // Reset dropdown on route change
+    setIsMenuOpen(false);
+    setIsCartOpen(false);
+    setIsSearchOpen(false);
+    navigate(path);
+  };  
   const fetchProductsByCategory = async (categoryText, subCategoryText) => {
     // Make an API call with category and subcategory as query parameters
     const response = await fetch(
@@ -243,17 +250,17 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
+    if (isMenuOpen || isCartOpen || isSearchOpen) {
+      document.body.classList.add("no-scroll");
     } else {
-      document.body.style.overflow = "auto";
+      document.body.classList.remove("no-scroll");
     }
-
+  
     return () => {
-      document.body.style.overflow = "auto"; // Cleanup on unmount
+      document.body.classList.remove("no-scroll");
     };
-  }, [isMenuOpen]);
-
+  }, [isMenuOpen, isCartOpen, isSearchOpen]);  
+  
   return (
     <>
       <nav className="navigation" role="navigation">
@@ -322,7 +329,7 @@ const Navbar = () => {
                   </div>
                 ))}
                 <div className="userAccountSection">
-                  {isLoggedIn ? (
+                  {isAuthenticated  ? (
                     // If user is logged in, show account dropdown
                     <div className="userInfo">
                       <div
@@ -371,9 +378,16 @@ const Navbar = () => {
                   ) : (
                     // If user is not logged in, show login link
                     <div className="userInfo">
-                      <NavLink to="/log-in" className="accountLink">
-                        View Account
-                      </NavLink>
+                      <NavLink 
+  to="/log-in" 
+  className="accountLink"
+  onClick={() => {
+    setIsMenuOpen(false);
+  }}
+>
+  View Account
+</NavLink>
+
                     </div>
                   )}
                 </div>
@@ -490,7 +504,7 @@ const Navbar = () => {
                   onClick={handleProfileIconClick}
                   loading="lazy"
                 />
-                {isProfileMenuOpen && isLoggedIn && (
+                {isProfileMenuOpen && isAuthenticated  && (
                   <div className="profileMenu">
                     <NavLink
                       to="/orders"
