@@ -1,232 +1,85 @@
-.navbar {
+.modern-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 4%;
-    position: relative; 
+    padding: 12px 4%;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-radius: 0 0 12px 12px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 70px;
 }
 
-.admin-text {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2.2rem; 
-    font-weight: bold; 
-    color: var(--light-text); 
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-}
-.navbar .logo{
-    width: 70px;
+/* Optional: add backdrop filter for modern effect */
+.modern-navbar {
+    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent for sticky feel */
 }
 
-.navbar .profile{
-    width: 40px;
-}
 
-#visual-toggle-button{
-    width: 140px;
-    height: 40px;
+/* Left side */
+.nav-left {
     display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
+    gap: 12px;
+}
+.nav-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+.brand-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333333;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Right side */
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+.admin-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.admin-name {
+    font-size: 1rem;
+    color: #555;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
+.nav-profile {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
     cursor: pointer;
+    transition: all 0.3s;
 }
-/* checkbox */
-#visual-toggle{
-    appearance: none;
-    display: none;
-}
-
-.svgIcon-toggle{
-    width: 25px;
+.nav-profile:hover {
+    border-color: #999;
 }
 
-.moon-svg{
-    width: 13px;
-    position: absolute;
-    transition: all .3s;
-}
-.sun-svg{
-    opacity: 0;
-    transition: all .3s;
-}
-.lightmode .sun-svg{
-    filter: brightness(0);
-    transform: rotate(180deg);
-    opacity: 1;
-}
-.lightmode .moon-svg{
-    opacity: 0;
-}
-.animate .moon-svg{
-    transform: rotate(360deg);
-    transition: all .3s;
+/* Optional dark theme button or settings icon */
+.nav-right .icon {
+    margin-left: 16px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: #555;
 }
 
-
-:root .logo {
-    filter: var(--logos-filter); 
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .brand-name {
+        display: none;
+    }
+    .admin-name {
+        display: none;
+    }
 }
-
-.lightcolors .logo {
-    filter: none; 
-}
-
-
-:root .addd {
-    filter: var(--logos-filter); 
-}
-
-.lightcolors .addd {
-    filter: none; 
-}
-
-:root .listt {
-    filter: var(--logos-filter); 
-}
-
-.lightcolors .listt {
-    filter: none; 
-}
-
-:root .orderr {
-    filter: var(--logos-filter); 
-}
-
-.lightcolors .orderr {
-    filter: none; 
-}
-
-:root p{
-    color: var(--light-text);
-}
-
-.lightcolors p{
-    filter: none;
-}
-
-:root .list-table-format.title{
-    background-color: var(--body-color);
-}
-
-.lightcolors .list-table-format.title{
-    filter: none;
-}
-
-:root .add-product-name input:focus,
-:root .add-product-description textarea:focus {
-    outline: black;
-}
-
-
-
-.lightmode .add-product-name input:focus,
-.lightmode .add-product-description textarea:focus {
-    outline: black;
-}
-
-
-/* DARK MODE FOR PRODUCTNAME & PRODUCTDESCRIPTION */
-:root .add-product-name input,
-:root .add-product-description textarea {
-    background-color: var(--background-root);
-    border: var(--border-root);
-    padding: var(--padding-root);
-    color: white; /* Add this line to set text color to white */
-}
-
-/* LIGHT MODE FOR PRODUCTNAME & PRODUCTDESCRIPTION */
-.lightcolors .add-product-name input,
-.lightcolors .add-product-description textarea {
-    background-color: white; /* Background color for light mode */
-    border: 2px solid gray; /* Border color for light mode */
-    color: black;
-}
-
-:root .add-product-name input::placeholder,
-:root .add-product-description textarea::placeholder {
-    color: gray; /* Set the placeholder text color to white */
-}
-
-.lightcolors .add-product-name input::placeholder,
-.lightcolors .add-product-description textarea::placeholder {
-    color: black;
-}
-
-
-:root .inputclasa,
-:root .selectt {
-    color: white;
-    border: 1px solid white;
-    background-color: black; 
-}
-
-
-.lightcolors .inputclasa,
-.lightcolors .selectt {
-    border: 1px solid gray;
-    background-color: transparent; 
-    color: black;
-}
-
-:root .inputclasa::placeholder,
-:root .selectt::placeholder {
-    color: gray;
-}
-
-
-
-
-:root .profile {
-    filter: var(--logos-filter); 
-}
-
-.lightcolors .profile {
-    filter: none; 
-}
-
-.toggleBtn{
-    margin-left: 77rem;
-    margin-top: -98px;
-}
-
-
-:root {
-    --input-color: black; /* Define custom color for input elements */
-    --background-root: black;
-    --border-root: 2px solid white;
-    --padding-root: 10px;
-    --upload: brightness(1) invert(1); /* Added a custom variable */
-    --logos-filter: brightness(0) invert(1); /* Added a custom variable */
-    --sidebar: black;
-    --border-color: #27272a;
-    --nav-color-one: #0d0d179a;
-    --nav-color-two: #0d0618;
-    --body-color: #121212;
-    --dark-text: #101010;
-    --light-text: #ffffff;
-    --light-text-secondary: #b9b9b9;
-    --light-text-desc: #d8d8d8;
-}
-
-/* For lightcolors */
-.lightcolors {
-    --sidebar: #fff0ed;
-    --body-color: #FFFFFF;
-    --dark-text: #fff;
-    --light-text: #101010;
-    --nav-color-two: #f6f6f2;
-    --nav-color-one: #f1f1f17e;
-    --border-color: #ddd;
-    --light-text-secondary: #464853;
-    --light-text-desc: #020202;
-    --cards-text-color: #fff; /* White text color for cards container */
-}
-
-/* Reset filter for images with class "image" in light mode */
-.lightcolors label img.image {
-    filter: none; /* Reset filter for images with class "image" in light mode */
-}
-
