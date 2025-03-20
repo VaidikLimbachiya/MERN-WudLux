@@ -23,6 +23,7 @@ const Add = ({ url }) => {
     Serveware: ["Tray", "Platter", "Bowl"],
     Tableware: ["Fruit Bowl", "Tissue Holder", "Lazy Susan", "Cutlery Caddy"],
     Kitchenware: ["Chopping Board", "Tissue Holder", "Collection"],
+    Collections: ["Bella"],
   };
 
   const materialOptions = ["Acacia Wood", "Teak Wood", "Mango Wood"];
