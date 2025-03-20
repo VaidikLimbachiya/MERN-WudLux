@@ -506,3 +506,8 @@
     height: 15px;
   }
 }
+@media print {
+  .print-icon {
+    display: none !important;
+  }
+}

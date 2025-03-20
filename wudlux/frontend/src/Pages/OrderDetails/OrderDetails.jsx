@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 import "./OrderDetails.css";
 import customer from "../../assets/customer.png";
 import shiping from "../../assets/shiping.png";
-// import mastercard from "../../assets/mastercard.png";
+import mastercard from "../../assets/mastercard.png";
 import print from "../../assets/print.png";
 
 const API_BASE_URL = "https://mern-wudlux-1-lss8.onrender.com";
@@ -44,6 +46,47 @@ const OrderSummary = () => {
 
     fetchOrderDetails();
   }, [orderId]);
+  const handlePrint = async () => {
+    const element = document.querySelector('.order-summary-container');
+    const printIcon = document.querySelector('.print-icon');
+  
+    if (!element) {
+      alert('Order summary not found!');
+      return;
+    }
+  
+    // Hide print icon temporarily
+    printIcon.style.display = 'none';
+  
+    // Ensure all images are fully loaded before capturing
+    const images = element.querySelectorAll('img');
+    await Promise.all(
+      Array.from(images).map(img => {
+        if (!img.complete) {
+          return new Promise(resolve => {
+            img.onload = img.onerror = resolve;
+          });
+        }
+        return Promise.resolve();
+      })
+    );
+  
+    const canvas = await html2canvas(element, { scale: 2, useCORS: true });
+  
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save(`Invoice-${order.orderId || "Order"}.pdf`);
+  
+    printIcon.style.display = '';
+  };
+  
+  
+
 
   if (loading) return <p>Loading order details...</p>;
   if (error) return <p className="error-message">{error}</p>;
@@ -79,8 +122,8 @@ const OrderSummary = () => {
             <p>Issue Date: <span className="bold">{order.createdAt ? new Date(order.createdAt).toLocaleDateString() : "N/A"}</span></p>
             <p>Amount: <span className="bold">₹{summary.totalAmount.toFixed(2)}</span></p>
           </div>
-          <div className="print-icon">
-            <img src={print} alt="Print Icon" loading="lazy"/>
+          <div className="print-icon" onClick={handlePrint} style={{ cursor: "pointer" }}>
+            <img src={print} alt="Print Icon" loading="lazy" />
           </div>
         </div>
       </div>
@@ -135,7 +178,6 @@ const OrderSummary = () => {
                       }                      
                       alt={item.productId?.title || "Unknown Product"}
                       className="product-image"
-                      loading="lazy"
                     />
                     <span className="productTitle">{item.productId?.title || "Product Name Unavailable"}</span>
                   </div>
@@ -167,10 +209,10 @@ const OrderSummary = () => {
         <h4>Payment Info</h4>
         <div className="payment-details">
           <div className="card-info">
-            <img src={""} alt="MasterCard Logo" className="card-logo" loading="lazy"/>
-            <span>{order.paymentMethod || "Not Available"}</span>
+            <img src={mastercard} alt="MasterCard Logo" className="card-logo" loading="lazy"/>
+            <span>{order.paymentMethod?.toUpperCase() || "NOT PROVIDED"}</span>
           </div>
-          <p>Business Name: {order.userId?.name || "Unknown User"}</p>
+          <p>Business Name: {order.userId ? `${order.userId.firstName} ${order.userId.lastName}` : "Unknown User"}</p>
         </div>
       </div>
     </div>
