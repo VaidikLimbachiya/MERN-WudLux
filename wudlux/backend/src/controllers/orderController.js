@@ -82,7 +82,7 @@ exports.getOrderByOrderId = async (req, res) => {
 
 exports.createOrder = async (req, res) => {
   try {
-    const { userId, items, totalAmount, shippingAddress, notes } = req.body;
+    const { userId, items, totalAmount, shippingAddress, notes, paymentMethod } = req.body;
 
     if (!userId || !items.length || !totalAmount || !shippingAddress) {
       return res.status(400).json({ success: false, message: "Invalid input." });
