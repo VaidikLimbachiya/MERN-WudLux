@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.svg";
@@ -6,6 +6,7 @@ import searchIcon from "../../assets/Search.svg";
 import profileIcon from "../../assets/Vector.svg";
 import cartIcon from "../../assets/bag.svg";
 import { useCartContext } from "../../Context/CartContext";
+import { AuthContext } from "../../Context/AuthContext";
 
 // import { IoMenu } from "react-icons/io5";
 import menuBar from "../../assets/Hamburger.png";
@@ -67,6 +68,8 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [cart, setCart] = useState([]);
+  const { logout } = useContext(AuthContext);
+
 
   const categoriesList = [
     "Tray",
@@ -190,17 +193,11 @@ const Navbar = () => {
     setIsSearchOpen(false); // Ensure search is closed when opening menu
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("user");
-  
-    clearCartState(); // ✅ Clear cart items from memory and localStorage
-  
-    setIsLoggedIn(false);
-    setIsProfileMenuOpen(false);
-    navigate("/log-in");
-  };
+  const handleLogoutClick = () => {
+    logout(); // Call global logout
+    setIsProfileMenuOpen(false); // local UI cleanup
+    setIsMenuOpen(false);        // local UI cleanup (for mobile menu)
+  };  
   const handleNavigate = (path) => {
     setIsCartOpen(false); // Close cart when navigating
     setIsSearchOpen(false); // Close search slider when navigating
@@ -362,7 +359,7 @@ const Navbar = () => {
                           <button
                             className="logoutButton"
                             onClick={() => {
-                              handleLogout(); // Call logout function
+                              handleLogoutClick(); // Call logout function
                               setIsMenuOpen(false); // Close the menu
                             }}
                           >
@@ -514,7 +511,7 @@ const Navbar = () => {
                       Addresses
                     </NavLink>
                     <button
-                      onClick={handleLogout}
+                      onClick={handleLogoutClick}
                       className="profileMenuItem logoutButton"
                     >
                       Logout

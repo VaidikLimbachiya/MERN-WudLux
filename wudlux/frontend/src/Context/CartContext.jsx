@@ -30,6 +30,7 @@ export const CartProvider = ({ children }) => {
         setProductToRemove(null);
         setIsPopupOpen(false);
     };
+    
 
   // Redirect to login if token is invalid or expired
   const redirectToLogin = () => {
@@ -37,6 +38,18 @@ export const CartProvider = ({ children }) => {
     clearCartState(); // Clear cart when redirecting to login
     navigate("/log-in");
   };
+
+  useEffect(() => {
+    const logoutListener = () => {
+      console.log("Detected logout event -> clearing cart state");
+      clearCartState();
+    };
+  
+    window.addEventListener("userLoggedOut", logoutListener);
+  
+    return () => window.removeEventListener("userLoggedOut", logoutListener);
+  }, []);
+  
 
   const fetchCart = async (force = false) => {
     const token = localStorage.getItem("accessToken");

@@ -22,19 +22,20 @@ const Services = () => {
   return (
     <section className="services">
       <Swiper
-        modules={[Pagination, Autoplay]}
-        slidesPerView={1}
-        spaceBetween={10}
-        loop={true}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        pagination={{ clickable: true }}
-        breakpoints={{
-          640: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 4 },
-        }}
-        className="services-slider"
-      >
+  modules={[Pagination, Autoplay]}
+  slidesPerView={1}
+  spaceBetween={10}
+  loop={services.length > 4} // 👈 Only loop when there are more than 4 slides
+  autoplay={{ delay: 3000, disableOnInteraction: false }}
+  pagination={{ clickable: true }}
+  breakpoints={{
+    640: { slidesPerView: 2 },
+    768: { slidesPerView: 3 },
+    1024: { slidesPerView: 4 },
+  }}
+  className="services-slider"
+>
+
         {services.map((service, index) => (
           <SwiperSlide key={index}>
             <div className="service-card">

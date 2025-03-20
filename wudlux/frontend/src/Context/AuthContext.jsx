@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useCartContext } from "../Context/CartContext";
+
 
 export const AuthContext = createContext();
 
@@ -70,13 +72,13 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("user");
-    localStorage.removeItem("guestCart"); // 🔥 Clear guest cart on logout
-  
-    window.dispatchEvent(new Event("userLoggedOut")); // 🔥 Notify components globally about logout
-  
-    localStorage.clear();
+    localStorage.removeItem("guestCart");
+
+    window.dispatchEvent(new Event("userLoggedOut")); // Broadcast logout globally
     navigate("/log-in");
-  };
+};
+
+  
   
 
   const refreshAccessToken = async () => {
