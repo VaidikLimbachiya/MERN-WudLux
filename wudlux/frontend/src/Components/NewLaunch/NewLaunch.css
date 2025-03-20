@@ -310,3 +310,66 @@
     padding: 3px 7px;
   }
 }
+@media (min-width: 1920px) {
+  .newLaunchSection {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 80px;
+    margin-bottom: 60px;
+  }
+
+  .newLaunchTitle {
+    font-size: 36px;
+  }
+
+  .newLaunchSubtitle {
+    font-size: 15px;
+    max-width: 580px;
+    margin: 10px auto;
+  }
+
+  .productsGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+    padding-left: 0;
+    margin-left: 0;
+    width: 400px !important;
+  }
+  .productCard{
+    width: 400px;
+  }
+
+  .productImage {
+    height: 400px; /* Balanced height */
+    width: 400px !important;
+  }
+
+  .newLaunchProductTitle {
+    font-size: 15px;
+  }
+
+  .newLaunchProductDesc {
+    font-size: 13px;
+    max-width: 90%;
+  }
+
+  .newLaunchCurrentPrice {
+    font-size: 16px;
+  }
+
+  .newLaunchOriginalPrice {
+    font-size: 12px;
+  }
+
+  .newLaunchViewAll {
+    font-size: 18px;
+    width: 180px;
+    height: 52px;
+  }
+
+  .newLaunchDiscountBadge {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+}
+
