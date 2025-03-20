@@ -110,11 +110,18 @@ exports.createOrder = async (req, res) => {
     // ✅ Clear user cart after order placement
     await User.findByIdAndUpdate(userId, { $set: { cart: [] } });
 
-    // ✅ Notify admin via Resend
+    // ✅ Fetch user details
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // ✅ Notify admin via Resend with user info now available
     await resend.emails.send({
       from: 'onboarding@resend.dev',
       to: 'vadikl5726@gmail.com',
-      subject: `🛒 New Order Placed: #${orderId}`,
+      subject: `🛒 New Order Placed: ${orderId}`,
       html: `
         <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
           <h2 style="color: #4CAF50;">🛍️ New Order Received</h2>
@@ -152,7 +159,6 @@ exports.createOrder = async (req, res) => {
         </div>
       `,
     });
-    
 
     return res.status(201).json({
       success: true,
@@ -164,6 +170,7 @@ exports.createOrder = async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to place order" });
   }
 };
+
 
 exports.updateOrderStatus = async (req, res, io) => {
   const { orderId, status } = req.body;
