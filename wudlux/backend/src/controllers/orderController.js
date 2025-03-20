@@ -100,6 +100,7 @@ exports.createOrder = async (req, res) => {
       })),
       totalAmount,
       shippingAddress,
+       paymentMethod: paymentMethod || "Cash On Delivery",
       notes: notes || "",
       paymentStatus: "Pending",
       orderStatus: "Pending",

@@ -19,6 +19,7 @@ const orderSchema = new mongoose.Schema({
     country: { type: String, required: true },
   },
   notes: { type: String },
+  paymentMethod: { type: String, default: "Cash On Delivery" }, // ✅ Added this line!
   paymentStatus: { type: String, enum: ["Pending", "Paid", "Failed"], default: "Pending" },
   orderStatus: { 
     type: String, 
