@@ -114,15 +114,45 @@ exports.createOrder = async (req, res) => {
     await resend.emails.send({
       from: 'onboarding@resend.dev',
       to: 'vadikl5726@gmail.com',
-      subject: `New Order Placed: ${orderId}`,
+      subject: `🛒 New Order Placed: #${orderId}`,
       html: `
-        <p>Hello Admin,</p>
-        <p>A new order <strong>${orderId}</strong> has been placed.</p>
-        <p><strong>Total Amount:</strong> ₹${totalAmount}</p>
-        <p><strong>Shipping Address:</strong> ${shippingAddress}</p>
-        <p>Please check the admin dashboard for more details.</p>
+        <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+          <h2 style="color: #4CAF50;">🛍️ New Order Received</h2>
+          <p>Hello Admin,</p>
+          <p>A new order has been successfully placed by <strong>${user.firstName} ${user.lastName}</strong> with the following details:</p>
+    
+          <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+            <tr>
+              <td style="padding: 8px; font-weight: bold;">Order ID:</td>
+              <td style="padding: 8px;">${orderId}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; font-weight: bold;">Customer:</td>
+              <td style="padding: 8px;">${user.firstName} ${user.lastName}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; font-weight: bold;">Total Amount:</td>
+              <td style="padding: 8px;">₹${totalAmount}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; font-weight: bold;">Shipping Address:</td>
+              <td style="padding: 8px;">
+                ${shippingAddress.street},<br/>
+                ${shippingAddress.city}, ${shippingAddress.state} - ${shippingAddress.zipCode}<br/>
+                ${shippingAddress.country}
+              </td>
+            </tr>
+          </table>
+    
+          <p style="margin-top: 20px;">Please check the <a href="https://your-admin-dashboard-link.com" style="color: #4CAF50; text-decoration: none;">admin dashboard</a> for complete details.</p>
+          
+          <p>Thank you!</p>
+          <hr style="margin-top: 30px;"/>
+          <p style="font-size: 12px; color: #999;">This is an automated notification from your e-commerce system.</p>
+        </div>
       `,
     });
+    
 
     return res.status(201).json({
       success: true,
