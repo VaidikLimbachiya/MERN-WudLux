@@ -30,7 +30,7 @@ const io = new Server(server, {
   cors: {
     origin: [
       "https://explore.wudluxdecor.com",
-      "https://mern-wud-lux-7czr.vercel.app",
+      "https://adminwudlux.vercel.app",
       "http://localhost:5173",
       "http://localhost:5174",
       "http://localhost:3001"
@@ -50,7 +50,7 @@ app.use(compression());
 app.use(cors({
   origin: [
     "https://explore.wudluxdecor.com",
-    "https://mern-wud-lux-7czr.vercel.app",
+    "https://adminwudlux.vercel.app",
     "http://localhost:5173",
     "http://localhost:5174",
     "http://localhost:3001"
