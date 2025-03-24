@@ -273,7 +273,7 @@ a {
 /* User Actions */
 .userActions {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: flex-end;
   flex: 1;
   gap: 15px;
@@ -282,9 +282,9 @@ a {
 .actionIcon {
   width: 24px;
   height: 24px;
-  object-fit: contain;
+  /* object-fit: contain; */
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  /* transition: opacity 0.2s ease; */
 }
 
 .actionIcon:hover {
@@ -308,10 +308,11 @@ a {
   gap: 12px;
   cursor: pointer;
   position: relative;
+  margin-bottom: 10px;
 }
 
 .cartImage {
-  width: 20px;
+  width: 24px;
   object-fit: contain;
 }
 
