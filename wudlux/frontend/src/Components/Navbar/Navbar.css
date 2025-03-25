@@ -132,6 +132,7 @@ a {
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 10px;
 }
 
 /* Vertical line effect */
@@ -139,7 +140,7 @@ a {
   content: "";
   /* Empty content for the vertical line */
   position: absolute;
-  top: 10%;
+  top: 20%;
   /* Slight offset from the top */
   bottom: 10%;
   /* Slight offset from the bottom */

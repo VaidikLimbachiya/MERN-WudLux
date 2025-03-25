@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Address.css";
 import Breadcrumb from "../../Components/Breadcrumb/Breadcrumb";
 const API_BASE_URL = "https://mern-wudlux-1-lss8.onrender.com/addresses";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 const AddressList = () => {
   const [user, setUser] = useState(null);
@@ -155,126 +156,135 @@ const AddressList = () => {
 
   return (
     <>
-    
-    <Breadcrumb />
-    <div className="address-container">
-           <div className="address-header">
-        <h2>Addresses</h2>
-        <button className="add-address-button" onClick={toggleAddForm}>
-          {showAddForm ? "Back" : "Add a new address →"}
-        </button>
-      </div>
-      {showAddForm || editingAddressId ? (
-        <form
-          className="address-form"
-          onSubmit={editingAddressId ? handleSaveEdit : handleAddNew}
-        >
-          <h2>{editingAddressId ? "Edit Address" : "Add a new address"}</h2>
-          <div className="form-group">
-            <input
-              type="text"
-              name="street"
-              placeholder="Street Address *"
-              value={newAddress.street}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="text"
-              name="city"
-              placeholder="City *"
-              value={newAddress.city}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              name="state"
-              placeholder="State *"
-              value={newAddress.state}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="text"
-              name="zipCode"
-              placeholder="Zip Code *"
-              value={newAddress.zipCode}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="text"
-              name="country"
-              value={newAddress.country}
-              readOnly
-            />
-          </div>
-          <div className="form-group">
-            <label>
-              <input
-                type="checkbox"
-                name="isDefault"
-                checked={newAddress.isDefault}
-                onChange={handleInputChange}
-              />
-              <span className="dfText">Use this address as default</span>
-            </label>
-          </div>
-          <button className="update-button" type="submit">
-            {editingAddressId ? "Update Address" : "Save →"}
-          </button>
-        </form>
-      ) : (
-        <div className="address-list">
-          {loading ? (
-            <p>Loading addresses...</p>
-          ) : addresses.length > 0 ? (
-            addresses.map((address) => (
-              <div key={address._id} className="address-card">
-                {address.isDefault && (
-                  <span className="default-badge">Default</span>
-                )}
-                <div className="user-info">
-                  <h3>
-                    {user?.firstName} {user?.lastName}
-                  </h3>
-                </div>
-                <div className="address-info">
-                  <p className="address-details">{`${address.street}, ${address.city}, ${address.state}, ${address.country}, ${address.zipCode}`}</p>
-                </div>
-                <div className="address-actions">
-                  <button
-                    className="edit-button"
-                    onClick={() => toggleEdit(address._id)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="remove-button"
-                    onClick={() => handleRemove(address._id)}
-                  >
-                    Remove
-                  </button>
-                  {!address.isDefault && (
-                    <button
-                      className="set-default-button"
-                      onClick={() => handleSetDefault(address._id)}
-                    >
-                      Set Default
-                    </button>
-                  )}
-                </div>
+      <Breadcrumb />
+      <div className="address-container">
+        <div className="address-header">
+          <h2>Addresses</h2>
+          <button className="add-address-button" onClick={toggleAddForm}>
+            {showAddForm ? (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <BsArrowLeft style={{ marginRight: "6px" }} />
+                Back
               </div>
-            ))
-          ) : (
-            <div className="no-address">No address yet!</div>
-          )}
+            ) : (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                Add a new address
+                <BsArrowRight style={{ marginLeft: "6px" }} />
+              </div>
+            )}
+          </button>
         </div>
-      )}
-    </div>
+        {showAddForm || editingAddressId ? (
+          <form
+            className="address-form"
+            onSubmit={editingAddressId ? handleSaveEdit : handleAddNew}
+          >
+            <h2>{editingAddressId ? "Edit Address" : "Add a new address"}</h2>
+            <div className="form-group">
+              <input
+                type="text"
+                name="street"
+                placeholder="Street Address *"
+                value={newAddress.street}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                type="text"
+                name="city"
+                placeholder="City *"
+                value={newAddress.city}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                name="state"
+                placeholder="State *"
+                value={newAddress.state}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                type="text"
+                name="zipCode"
+                placeholder="Zip Code *"
+                value={newAddress.zipCode}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                type="text"
+                name="country"
+                value={newAddress.country}
+                readOnly
+              />
+            </div>
+            <div className="form-group">
+              <label>
+                <input
+                  type="checkbox"
+                  name="isDefault"
+                  checked={newAddress.isDefault}
+                  onChange={handleInputChange}
+                />
+                <span className="dfText">Use this address as default</span>
+              </label>
+            </div>
+            <button className="update-button" type="submit">
+              {editingAddressId ? "Update Address" : "Save →"}
+            </button>
+          </form>
+        ) : (
+          <div className="address-list">
+            {loading ? (
+              <p>Loading addresses...</p>
+            ) : addresses.length > 0 ? (
+              addresses.map((address) => (
+                <div key={address._id} className="address-card">
+                  {address.isDefault && (
+                    <span className="default-badge">Default</span>
+                  )}
+                  <div className="user-info">
+                    <h3>
+                      {user?.firstName} {user?.lastName}
+                    </h3>
+                  </div>
+                  <div className="address-info">
+                    <p className="address-details">{`${address.street}, ${address.city}, ${address.state}, ${address.country}, ${address.zipCode}`}</p>
+                  </div>
+                  <div className="address-actions">
+                    <button
+                      className="edit-button"
+                      onClick={() => toggleEdit(address._id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="remove-button"
+                      onClick={() => handleRemove(address._id)}
+                    >
+                      Remove
+                    </button>
+                    {!address.isDefault && (
+                      <button
+                        className="set-default-button"
+                        onClick={() => handleSetDefault(address._id)}
+                      >
+                        Set Default
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="no-address">No address yet!</div>
+            )}
+          </div>
+        )}
+      </div>
     </>
   );
 };

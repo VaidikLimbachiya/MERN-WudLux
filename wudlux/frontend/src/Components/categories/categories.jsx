@@ -1,12 +1,12 @@
 import './categories.css'; // Single CSS file
 
 // Import images from the assets folder
-import trayImage from '../../assets/tray.png'; // Adjust the path to your assets folder
-import platterImage from '../../assets/platter.png';
-import choppingBoardImage from '../../assets/choppingBoard.png';
-import cheeseBoardImage from '../../assets/cheeseBoard.png';
-import chipDipImage from '../../assets/chip.png';
-import bowlsImage from '../../assets/bowl.png';
+import trayImage from '../../assets/tray.svg'; // Adjust the path to your assets folder
+import platterImage from '../../assets/platter.svg';
+import choppingBoardImage from '../../assets/choppingBoard.svg';
+import cheeseBoardImage from '../../assets/cheeseBoard.svg';
+import chipDipImage from '../../assets/chip.svg';
+import bowlsImage from '../../assets/bowl.svg';
 import { useNavigate } from 'react-router-dom';
 
 const categories = [

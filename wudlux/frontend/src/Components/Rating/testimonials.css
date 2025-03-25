@@ -56,6 +56,25 @@
   margin-right: 20px;
   
 }
+.carousel-wrapper {
+  overflow: hidden;
+  /* width: 100%; */
+  position: relative;
+  max-width: 1420px;
+  /* margin-right: 20px; */
+  margin-left: 70px;
+  /* height: 319px; */
+  padding: 32px 32px 0px 32px;
+}
+
+
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  gap: 20px;
+  
+}
 
 .testimonial-card {
   background: white;

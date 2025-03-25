@@ -46,10 +46,48 @@ const Testimonials = () => {
       review:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua quis nostrud exercitation ullamco.",
     },
+    {
+      id: 5,
+      name: "Leslie Alexander",
+      title: "Product Manager",
+      image: person1,
+      rating: 4,
+      review:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua quis nostrud exercitation ullamco.",
+    },
+    {
+      id: 6,
+      name: "Cody Fisher",
+      title: "Product Manager",
+      image: person2,
+      rating: 3,
+      review:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua quis nostrud exercitation ullamco.",
+    },
+    {
+      id: 7,
+      name: "Bessie Cooper",
+      title: "Product Manager",
+      image: person3,
+      rating: 2,
+      review:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua quis nostrud exercitation ullamco.",
+    },
+    {
+      id: 8,
+      name: "Kathryn Murphy",
+      title: "Product Manager",
+      image: person4,
+      rating: 4,
+      review:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua quis nostrud exercitation ullamco.",
+    },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -63,13 +101,15 @@ const Testimonials = () => {
   }, []);
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    if (currentIndex < testimonials.length - 4) {
+      setCurrentIndex(currentIndex + 1);
+    }
   };
-
+  
   const handlePrev = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length
-    );
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
   };
 
   const renderRating = (rating) => {
@@ -90,41 +130,45 @@ const Testimonials = () => {
   if (!isMobile) {
     return (
       <div className="testimonials-section">
-        <h2 className="testimonials-title">
-          Our Testimonials
-          <div className="title-underline"></div>
-        </h2>
-        <p className="testimonials-subtitle">See what people are saying...</p>
-        <div className="testimonials-carousel">
-          {testimonials.slice(currentIndex, currentIndex + 4).map((testimonial) => (
-            <div key={testimonial.id} className="testimonial-card">
-              <div className="testimonial-rating">{renderRating(testimonial.rating)}</div>
-              <p className="testimonial-review">{testimonial.review}</p>
-              <div className="testimonial-user">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="testimonial-user-image"
-                  loading="lazy"
-                />
-                <div>
-                  <p className="testimonial-user-name">{testimonial.name}</p>
-                  <p className="testimonial-user-title">{testimonial.title}</p>
-                </div>
-              </div>
-              <div className="underline"></div>
+  <h2 className="testimonials-title">
+    Our Testimonials
+    <div className="title-underline"></div>
+  </h2>
+  <p className="testimonials-subtitle">See what people are saying...</p>
+
+  <div className="carousel-wrapper">
+    <div
+      className="carousel-track"
+      style={{
+        transform: `translateX(-${currentIndex * (100 / 4)}%)`,
+      }}
+    >
+      {testimonials.map((testimonial) => (
+        <div key={testimonial.id} className="testimonial-card">
+          <div className="testimonial-rating">{renderRating(testimonial.rating)}</div>
+          <p className="testimonial-review">{testimonial.review}</p>
+          <div className="testimonial-user">
+            <img src={testimonial.image} alt={testimonial.name} className="testimonial-user-image" />
+            <div>
+              <p className="testimonial-user-name">{testimonial.name}</p>
+              <p className="testimonial-user-title">{testimonial.title}</p>
             </div>
-          ))}
+          </div>
+          <div className="underline"></div>
         </div>
-        <div className="carousel-controls">
-          <button className="carousel-button" onClick={handlePrev}>
-            <BsArrowLeft className="arr" />
-          </button>
-          <button className="carousel-button" onClick={handleNext}>
-            <BsArrowRight className="arr" />
-          </button>
-        </div>
-      </div>
+      ))}
+    </div>
+  </div>
+
+  <div className="carousel-controls">
+    <button className="carousel-button" onClick={handlePrev}>
+      <BsArrowLeft className="arr" />
+    </button>
+    <button className="carousel-button" onClick={handleNext}>
+      <BsArrowRight className="arr" />
+    </button>
+  </div>
+</div>
     );
   } else {
     return (
