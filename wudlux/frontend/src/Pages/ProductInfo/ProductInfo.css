@@ -160,10 +160,12 @@
 .main-image {
   width: 90%;
   height: 804px;
-  object-fit: cover;
+  object-fit: fill;
   border-radius: 10px;
   margin-left: 50px;
 }
+
+
 
 .breadcrumb-nav {
   display: flex;

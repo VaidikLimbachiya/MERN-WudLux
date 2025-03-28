@@ -8,10 +8,10 @@ import bag from "../../assets/wbag.png";
 import arr from "../../assets/arr.png";
 import offer from "../../assets/offer.svg";
 import check from "../../assets/Check.svg";
-import delivery from "../../assets/delivery.png";
-import cancellation from "../../assets/cancle.png";
-import warranty from "../../assets/warranty.png";
-import replacement from "../../assets/replace.png";
+import delivery from "../../assets/delivery.svg";
+import cancellation from "../../assets/cancle.svg";
+import warranty from "../../assets/warranty.svg";
+import replacement from "../../assets/replace.svg";
 import share from "../../assets/share.svg";
 import { FaFacebook } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
@@ -63,7 +63,6 @@ const ProductPage = () => {
       document.body.classList.remove("no-scroll");
     };
   }, [isModalOpen]);
-  
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -75,7 +74,7 @@ const ProductPage = () => {
         setProduct(fetchedProduct); // Set product data to state
         if (fetchedProduct && fetchedProduct.variantImages.length > 0) {
           setMainImage(fetchedProduct.variantImages[0].url);
-        }        
+        }
       } catch (error) {
         console.error("Error fetching product:", error);
       }
@@ -89,11 +88,9 @@ const ProductPage = () => {
       prevIndex === 0 ? product.variantImages.length - 1 : prevIndex - 1
     );
     setMainImage(
-        product.variantImages[
-          currentImage === 0
-            ? product.variantImages.length - 1
-            : currentImage - 1
-        ].url
+      product.variantImages[
+        currentImage === 0 ? product.variantImages.length - 1 : currentImage - 1
+      ].url
     );
   };
 
@@ -103,20 +100,17 @@ const ProductPage = () => {
       prevIndex === product.variantImages.length - 1 ? 0 : prevIndex + 1
     );
     setMainImage(
-        product.variantImages[
-          currentImage === product.variantImages.length - 1
-            ? 0
-            : currentImage + 1
-        ].url
+      product.variantImages[
+        currentImage === product.variantImages.length - 1 ? 0 : currentImage + 1
+      ].url
     );
   };
 
   // Handle Thumbnail Click
   const handleThumbnailClick = (index) => {
-    setCurrentImage(index); 
+    setCurrentImage(index);
     setMainImage(product.variantImages[index].url); // Add this line
   };
-  
 
   // If product is not loaded yet, show a loading state
   if (!product) {
@@ -131,7 +125,6 @@ const ProductPage = () => {
           <a href="/" className="breadcrumb-nav-link">
             <img src={home} alt="Home" className="breadcrumb-nav-icon" />
           </a>
-
 
           {/* Category and Subcategory Links */}
           {product.categories &&
@@ -165,7 +158,7 @@ const ProductPage = () => {
         <div className="product-image-section">
           <div className="main-image-wrapper">
             <button className="nav-button prev" onClick={handlePrev}>
-              <img src={prev} alt="Previous" loading="lazy"/>
+              <img src={prev} alt="Previous" loading="lazy" />
             </button>
             <img
               crossOrigin="anonymous"
@@ -178,10 +171,10 @@ const ProductPage = () => {
               className="zoom-button"
               onClick={() => setIsModalOpen(true)}
             >
-              <img src={zoom} alt="Zoom" loading="lazy"/>
+              <img src={zoom} alt="Zoom" loading="lazy" />
             </button>
             <button className="nav-button next" onClick={handleNext}>
-              <img src={next} alt="Next" loading="lazy"/>
+              <img src={next} alt="Next" loading="lazy" />
             </button>
           </div>
 
@@ -248,12 +241,13 @@ const ProductPage = () => {
                 addToCart({ ...product, quantity: 1 });
               }}
             >
-               Add to Bag<img src={bag} alt="Bag" loading="lazy"/>
+              Add to Bag
+              <img src={bag} alt="Bag" loading="lazy" />
             </button>
 
             {/* Buy Now Button */}
             <button className="buy-now-btn">
-              Buy Now <img src={arr} alt="Arrow" loading="lazy"/>
+              Buy Now <img src={arr} alt="Arrow" loading="lazy" />
             </button>
           </div>
 
@@ -262,17 +256,18 @@ const ProductPage = () => {
             <h3 className="specifications-title">Product Specifications</h3>
             <div className="specs">
               <div className="spec-row side-by-side">
-              <div className="spec-container">
-  <div className="spec-item">
-    <span className="spec-label">Category:</span>
-    <span className="spec-value">{product.category}</span>
-  </div>
-  <div className="spec-item">
-    <span className="spec-label">Material:</span>
-    <span className="spec-value">{product.materials.join(", ")}</span>
-  </div>
-</div>
-
+                <div className="spec-container">
+                  <div className="spec-item">
+                    <span className="spec-label">Category:</span>
+                    <span className="spec-value">{product.category}</span>
+                  </div>
+                  <div className="spec-item">
+                    <span className="spec-label">Material:</span>
+                    <span className="spec-value">
+                      {product.materials.join(", ")}
+                    </span>
+                  </div>
+                </div>
               </div>
 
               {/* Sizes */}
@@ -291,20 +286,40 @@ const ProductPage = () => {
 
           <div className="special-offer">
             <div className="offer-header">
-              <img src={offer} alt="Offer Icon" className="offer-icon" loading="lazy"/>
+              <img
+                src={offer}
+                alt="Offer Icon"
+                className="offer-icon"
+                loading="lazy"
+              />
               <h3 className="offer-title">Special Offer</h3>
             </div>
             <ul className="offer-list">
               <li>
-                <img src={check} alt="Checkmark" className="checkmark-icon" loading="lazy"/>
+                <img
+                  src={check}
+                  alt="Checkmark"
+                  className="checkmark-icon"
+                  loading="lazy"
+                />
                 Limited Time Offer! (Buy 3 & Get 1 free)
               </li>
               <li>
-                <img src={check} alt="Checkmark" className="checkmark-icon" loading="lazy"/>
+                <img
+                  src={check}
+                  alt="Checkmark"
+                  className="checkmark-icon"
+                  loading="lazy"
+                />
                 Free delivery available*
               </li>
               <li>
-                <img src={check} alt="Checkmark" className="checkmark-icon" loading="lazy"/>
+                <img
+                  src={check}
+                  alt="Checkmark"
+                  className="checkmark-icon"
+                  loading="lazy"
+                />
                 FESTIVE OFFER - Sale 30% Off Use Code: Deal30
               </li>
             </ul>
@@ -366,7 +381,7 @@ const ProductPage = () => {
               onClick={handleShare}
               style={{ cursor: "pointer" }}
             >
-              <img src={share} alt="Share" className="icon" loading="lazy"/>
+              <img src={share} alt="Share" className="icon" loading="lazy" />
             </div>
             <div className="social-icons">
               <a href="#facebook" className="social-icon">
@@ -417,7 +432,12 @@ const ProductPage = () => {
                 aria-label="View previous image"
                 onClick={handlePrev}
               >
-                <img src={prev} alt="Previous" className="carousel-nav-icon" loading="lazy"/>
+                <img
+                  src={prev}
+                  alt="Previous"
+                  className="carousel-nav-icon"
+                  loading="lazy"
+                />
               </button>
 
               {/* Thumbnails */}
@@ -443,7 +463,12 @@ const ProductPage = () => {
                 aria-label="View next image"
                 onClick={handleNext}
               >
-                <img src={next} alt="Next" className="carousel-nav-icon" loading="lazy"/>
+                <img
+                  src={next}
+                  alt="Next"
+                  className="carousel-nav-icon"
+                  loading="lazy"
+                />
               </button>
             </div>
           </div>
