@@ -100,6 +100,16 @@
 .add button:hover {
   background: #4338ca;
 }
+.text{
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
+.material-text{
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
 
 /* Responsive */
 @media (max-width: 768px) {

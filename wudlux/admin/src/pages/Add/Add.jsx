@@ -50,6 +50,20 @@ const Add = ({ url }) => {
         ...prevData,
         size: { ...prevData.size, [name]: value },
       }));
+    } else if (name === "originalPrice" || name === "discount") {
+      const originalPrice = name === "originalPrice" ? Number(value) : Number(data.originalPrice);
+      const discount = name === "discount" ? Number(value) : Number(data.discount);
+      
+      let calculatedPrice = originalPrice;
+      if (originalPrice && discount) {
+        calculatedPrice = originalPrice - (originalPrice * (discount / 100));
+      }
+
+      setData((prevData) => ({
+        ...prevData,
+        [name]: value,
+        price: calculatedPrice.toFixed(2)
+      }));
     } else {
       setData((prevData) => ({ ...prevData, [name]: value }));
     }
@@ -119,7 +133,7 @@ const Add = ({ url }) => {
       <form onSubmit={onSubmitHandler}>
         {/* Image Upload Section */}
         <div className="add-img-upload">
-          <p>Upload Main Images</p>
+          <p className="text">Upload Main Images</p>
           <label htmlFor="images">
             <img
               className="image-preview"
@@ -143,7 +157,7 @@ const Add = ({ url }) => {
 
         {/* Variant Image Upload */}
         <div className="add-variant-images">
-          <p>Upload Variant Images</p>
+          <p className="text">Upload Variant Images</p>
           <label htmlFor="variantImages">
             <img
               className="image-preview"
@@ -174,7 +188,7 @@ const Add = ({ url }) => {
 
         {/* Product Title */}
         <div className="add-product-name">
-          <p>Product Title</p>
+          <p className="text">Product Title</p>
           <input
             onChange={onChangeHandler}
             value={data.title}
@@ -187,7 +201,7 @@ const Add = ({ url }) => {
 
         {/* Category Selection */}
         <div className="add-category">
-          <p>Product Category</p>
+          <p className="text">Product Category</p>
           <select
             className="selectt"
             onChange={onChangeHandler}
@@ -204,7 +218,7 @@ const Add = ({ url }) => {
 
         {/* Subcategory Selection */}
         <div className="add-subcategory">
-          <p>Product Subcategory</p>
+          <p className="text">Product Subcategory</p>
           <select
             className="selectt"
             onChange={onChangeHandler}
@@ -220,8 +234,26 @@ const Add = ({ url }) => {
         </div>
 
         {/* Price Inputs */}
+        <div className="add-original-discount">
+          <p className="text">Original Price</p>
+          <input
+            onChange={onChangeHandler}
+            value={data.originalPrice}
+            type="number"
+            name="originalPrice"
+            placeholder="₹30"
+          />
+          <p className="text">Discount</p>
+          <input
+            onChange={onChangeHandler}
+            value={data.discount}
+            type="number"
+            name="discount"
+            placeholder="10%"
+          />
+        </div>
         <div className="add-price">
-          <p>Product Price</p>
+          <p className="text">Product Price</p>
           <input
             className="inputclasa"
             onChange={onChangeHandler}
@@ -234,28 +266,11 @@ const Add = ({ url }) => {
         </div>
 
         {/* Original Price and Discount */}
-        <div className="add-original-discount">
-          <p>Original Price</p>
-          <input
-            onChange={onChangeHandler}
-            value={data.originalPrice}
-            type="number"
-            name="originalPrice"
-            placeholder="₹30"
-          />
-          <p>Discount</p>
-          <input
-            onChange={onChangeHandler}
-            value={data.discount}
-            type="number"
-            name="discount"
-            placeholder="10%"
-          />
-        </div>
+        
 
         {/* Size Inputs */}
         <div className="add-size">
-          <p>Product Size (L x B x H)</p>
+          <p className="text">Product Size (L x B x H)</p>
           <input
             onChange={onChangeHandler}
             value={data.size.L}
@@ -281,15 +296,15 @@ const Add = ({ url }) => {
 
         {/* Materials Selection */}
         <div className="add-materials">
-          <p>Materials</p>
+          <p className="text">Materials</p>
           <select
-            className="selectt"
+            className="selectt text"
             onChange={onChangeHandler}
             name="materials"
             value={data.materials}
           >
             {materialOptions.map((option, index) => (
-              <option key={index} value={option}>
+              <option key={index} value={option} className="material-text">
                 {option}
               </option>
             ))}
@@ -298,7 +313,7 @@ const Add = ({ url }) => {
 
         {/* Description Input */}
         <div className="add-description">
-          <p>Description</p>
+          <p className="text">Description</p>
           <textarea
             onChange={onChangeHandler}
             value={data.description}
@@ -306,10 +321,11 @@ const Add = ({ url }) => {
             placeholder="Product description"
             rows="4"
             required
+            className="text"
           />
         </div>
 
-        <button type="submit">Add Product</button>
+        <button type="submit" className="text">Add Product</button>
       </form>
     </div>
   );

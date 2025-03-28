@@ -79,6 +79,7 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 6px;
+  font-family: poppins;
 }
 
 .order-product img {
@@ -92,6 +93,7 @@
 .product-title {
   font-size: 0.9rem;
   color: #333;
+  font-family: poppins;
 }
 
 /* Scrollable product list */
@@ -135,6 +137,9 @@
   text-align: center;
   color: #888;
   margin-top: 50px;
+}
+.Text{
+ font-family: 'Poppins', sans-serif;
 }
 
 /* Responsive tweak */

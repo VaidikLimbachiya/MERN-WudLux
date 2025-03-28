@@ -47,25 +47,25 @@ const List = ({ url }) => {
 
   return (
     <div className="list-container">
-      <h2>All Products</h2>
+      <h2 className="name">All Products</h2>
 
       {loading ? (
         <div className="loading">
           <div className="loading-spinner">
             <div className="spinner"></div>
-            <p>Loading Products...</p>
+            <p className="name">Loading Products...</p>
           </div>
         </div>
       ) : productList.length > 0 ? (
         <div className="list-table">
           <div className="list-table-header">
-            <b>Thumbnail</b>
-            <b>Title</b>
-            <b>Category</b>
-            <b>Price</b>
-            <b>Original Price</b>
-            <b>Discount</b>
-            <b>Actions</b>
+            <b className="name">Thumbnail</b>
+            <b className="titlename">Title</b>
+            <b className="name">Category</b>
+            <b className="name">Price</b>
+            <b className="name">Original Price</b>
+            <b className="name">Discount</b>
+            <b className="name">Actions</b>
           </div>
           {productList.map((product) => (
   <div key={product._id} className="list-table-row">
@@ -80,16 +80,15 @@ const List = ({ url }) => {
       }
       alt={product.title}
     />
-    <p>{product.title}</p>
-    <p>{product.category}</p>
-    <p>₹{product.price}</p>
-    <p>₹{product.originalPrice}</p>
-    <p>{product.discount}%</p>
+    <p className="name">{product.title}</p>
+    <p className="name">{product.category}</p>
+    <p className="name">₹{product.price}</p>
+    <p className="name">₹{product.originalPrice}</p>
+    <p className="name">{product.discount}%</p>
     <div className="actions">
       <button onClick={() => removeProduct(product._id)} className="delete-btn">
         Delete
       </button>
-      <button className="edit-btn">Edit</button>
     </div>
   </div>
 ))}

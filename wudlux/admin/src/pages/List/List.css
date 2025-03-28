@@ -60,6 +60,7 @@
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s;
+  font-family: poppins;
 }
 .delete-btn {
   background: #ef4444;
@@ -102,7 +103,13 @@
   padding: 40px;
   color: #888;
 }
-
+.name{
+  font-family: 'Poppins', sans-serif;
+}
+.titlename{
+  font-family: 'Poppins', sans-serif;
+  margin-left: 40px;
+}
 /* Responsive */
 @media (max-width: 768px) {
   .list-table-header, .list-table-row {
